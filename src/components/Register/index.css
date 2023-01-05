@@ -1,0 +1,143 @@
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.register-body {
+  min-height: 400px;
+  border: 1px solid grey;
+  width: 100%;
+  max-width: 430px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 15px #00000020;
+}
+
+.register-form {
+  max-width: 320px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.input-field {
+  width: 100%;
+}
+
+.create-account-heading {
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.step-text {
+  color: orange;
+  font-family: "Roboto";
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.upload-file-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+p {
+  margin: 0;
+}
+
+.upload-file-text {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  font-size: 19px;
+  color: blue;
+  font-family: "Roboto";
+}
+
+.next-button {
+  border: 0;
+  background-color: rgb(94, 94, 201);
+  color: #ffffff;
+  font-family: "Roboto";
+  font-size: 16px;
+  height: 35px;
+  width: 100px;
+  text-align: center;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.back-btn {
+  border: 0;
+  background: transparent;
+  font-family: "Roboto";
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+.graduation-heading {
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.from-to-heading {
+  align-self: flex-start;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+.from-to-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.select-option {
+  width: 45%;
+}
+
+.check-box-container {
+  display: flex;
+  gap: 15px;
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+.create-button {
+  border: 0;
+  background-color: rgb(94, 94, 201);
+  color: #ffffff;
+  font-family: "Roboto";
+  font-size: 16px;
+  height: 35px;
+  width: 100px;
+  text-align: center;
+  margin-top: 15px;
+  border-radius: 5px;
+}
