@@ -1,0 +1,91 @@
+.account-settings-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.setting-container {
+  width: 90%;
+  border: 1px solid grey;
+  border-radius: 3px;
+  min-height: 400px;
+  max-width: 500px;
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  background-color: rgb(222, 220, 220);
+  gap: 15px;
+  min-height: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+
+@media screen and (min-width: 767px) {
+  .settings-header {
+    padding-left: 35px;
+    gap: 25px;
+  }
+}
+
+.setting-btn {
+  font-size: 17px;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-weight: 500;
+}
+
+.update-container {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.update-form-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 4px;
+  max-width: 380px;
+  width: 100%;
+}
+
+.info-heading {
+  font-family: "Roboto";
+  font-size: 25px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.resume-text {
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.change-text {
+  align-self: flex-start;
+}
+
+.register-self-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 380px;
+  width: 100%;
+}
+
+.nav-item {
+  margin-bottom: 15px;
+}

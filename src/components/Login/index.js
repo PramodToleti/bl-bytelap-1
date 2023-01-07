@@ -129,9 +129,11 @@ class Login extends Component {
             />
             {showPassErr && <p className="error-msg">*required </p>}
           </Form.Group>
-          <button className="login-btn" type="submit">
-            Login
-          </button>
+          <Link to="/home">
+            <button className="login-btn" type="submit">
+              Login
+            </button>
+          </Link>
         </Form>
         <p className="forgot-text">Forgot Password?</p>
         <p className="accounnt-register-text">
@@ -218,9 +220,11 @@ class Login extends Component {
             />
             {showPassErr && <p className="error-msg">*required </p>}
           </Form.Group>
-          <button className="login-btn" type="submit">
-            Login
-          </button>
+          <Link to="/home">
+            <button className="login-btn" type="submit">
+              Login
+            </button>
+          </Link>
         </Form>
         <p className="forgot-text">Forgot Password?</p>
         <p className="accounnt-register-text">

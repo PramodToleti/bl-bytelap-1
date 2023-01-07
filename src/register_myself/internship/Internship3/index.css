@@ -1,0 +1,55 @@
+.form-group {
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #000000;
+  font-size: 15px;
+}
+
+input.form-control {
+  height: 45px;
+  padding: 8px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 8px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 8px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+  margin-top: 15px;
+}
+
+.achievements {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.acheivements-text {
+  color: blue;
+}
+
+.link-button {
+  width: 100%;
+}
