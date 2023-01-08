@@ -36,14 +36,21 @@ const Experience1 = (props) => {
             Looking for full time or part time
           </Form.Label>
           <Form.Select id="Select">
-            <option>Select an option</option>
+            <option>Full time</option>
+            <option>Part time</option>
+            <option>Both</option>
           </Form.Select>
         </Form.Group>
+
         <Form.Group className="mb-4 input-field">
           <Form.Label htmlFor="disabledTextInput">
             What is the schedule of the internship
           </Form.Label>
-          <Form.Control id="disabledTextInput" placeholder="Select an option" />
+          <Form.Select id="Select">
+            <option>Office</option>
+            <option>Remote</option>
+            <option>Flexible</option>
+          </Form.Select>
         </Form.Group>
         <Form.Group className="mb-4 input-field">
           <Form.Label htmlFor="disabledSelect">

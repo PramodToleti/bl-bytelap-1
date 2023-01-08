@@ -36,19 +36,25 @@ const Fresher1 = (props) => {
             Looking for full time or part time
           </Form.Label>
           <Form.Select id="Select">
-            <option>Select an option</option>
+            <option>Full time</option>
+            <option>Part time</option>
+            <option>Both</option>
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-4 input-field">
           <Form.Label htmlFor="disabledTextInput">
             What is the schedule of the internship
           </Form.Label>
-          <Form.Control id="disabledTextInput" placeholder="Select an option" />
+          <Form.Select id="Select">
+            <option>Office</option>
+            <option>Remote</option>
+            <option>Flexible</option>
+          </Form.Select>
         </Form.Group>
         <div className="form-row">
           <div className="form-group col-6">
             <label htmlFor="salary-expectation">Salary expectation</label>
-            <select
+            <Form.Select
               className="form-control"
               id="salary-expectation"
               placeholder="Range type"
@@ -57,7 +63,7 @@ const Fresher1 = (props) => {
               <option>Lac</option>
               <option>Per Month</option>
               <option>Fixed</option>
-            </select>
+            </Form.Select>
           </div>
           <div className="form-group col-3">
             <label htmlFor="min">Min</label>

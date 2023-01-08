@@ -27,12 +27,12 @@ const Experience2 = (props) => {
         </div>
         <div className="form-group">
           <label htmlFor="deadline">Duration of join internship!</label>
-          <select className="form-control" id="deadline">
+          <Form.Select className="form-control" id="deadline">
             <option>Immediately</option>
             <option>Within a week</option>
             <option>Within two weeks</option>
             <option>Custom date</option>
-          </select>
+          </Form.Select>
         </div>
         <button type="submit" className="btn btn-primary" onClick={onClickSave}>
           Save & Next

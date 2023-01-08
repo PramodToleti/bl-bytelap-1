@@ -1,10 +1,15 @@
+import { useState } from "react"
 import Button from "react-bootstrap/Button"
-import Form from "react-bootstrap/Form"
+import { Form, FormControl } from "react-bootstrap"
+import { Checkbox } from "antd"
 
 import "./index.css"
 
 const Internship1 = (props) => {
   const { updateStep2 } = props
+
+  const [selectedOptions, setSelectedOptions] = useState([])
+
   const onClickSubmit = (e) => {
     e.preventDefault()
   }
@@ -12,6 +17,20 @@ const Internship1 = (props) => {
   const onClickSave = () => {
     updateStep2()
   }
+
+  const handleChange = (option) => {
+    setSelectedOptions(
+      selectedOptions.includes(option)
+        ? selectedOptions.filter((o) => o !== option)
+        : [...selectedOptions, option]
+    )
+  }
+
+  const options = [
+    { id: 1, label: "Option 1" },
+    { id: 2, label: "Option 2" },
+    { id: 3, label: "Option 3" },
+  ]
 
   return (
     <>
@@ -36,21 +55,30 @@ const Internship1 = (props) => {
             Looking for full time or part time
           </Form.Label>
           <Form.Select id="Select">
-            <option>Select an option</option>
+            <option>Full time</option>
+            <option>Part time</option>
+            <option>Both</option>
           </Form.Select>
         </Form.Group>
+
         <Form.Group className="mb-4 input-field">
           <Form.Label htmlFor="disabledTextInput">
             What is the schedule of the internship
           </Form.Label>
-          <Form.Control id="disabledTextInput" placeholder="Select an option" />
+          <Form.Select id="Select">
+            <option>Office</option>
+            <option>Remote</option>
+            <option>Flexible</option>
+          </Form.Select>
         </Form.Group>
         <Form.Group className="mb-4 input-field">
           <Form.Label htmlFor="disabledSelect">
             Duration of internship
           </Form.Label>
           <Form.Select id="Select">
-            <option>Select an option</option>
+            {[1, 2, 3, 4, 5, 6].map((each) => (
+              <option>{each} months</option>
+            ))}
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-4 input-field">
