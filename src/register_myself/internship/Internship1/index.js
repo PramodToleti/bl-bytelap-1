@@ -1,14 +1,10 @@
-import { useState } from "react"
 import Button from "react-bootstrap/Button"
-import { Form, FormControl } from "react-bootstrap"
-import { Checkbox } from "antd"
+import { Form } from "react-bootstrap"
 
 import "./index.css"
 
 const Internship1 = (props) => {
   const { updateStep2 } = props
-
-  const [selectedOptions, setSelectedOptions] = useState([])
 
   const onClickSubmit = (e) => {
     e.preventDefault()
@@ -17,20 +13,6 @@ const Internship1 = (props) => {
   const onClickSave = () => {
     updateStep2()
   }
-
-  const handleChange = (option) => {
-    setSelectedOptions(
-      selectedOptions.includes(option)
-        ? selectedOptions.filter((o) => o !== option)
-        : [...selectedOptions, option]
-    )
-  }
-
-  const options = [
-    { id: 1, label: "Option 1" },
-    { id: 2, label: "Option 2" },
-    { id: 3, label: "Option 3" },
-  ]
 
   return (
     <>
