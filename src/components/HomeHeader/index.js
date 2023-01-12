@@ -3,15 +3,12 @@ import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
 import NavDropdown from "react-bootstrap/NavDropdown"
+import { Link } from "react-router-dom"
 
+import "./index.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
-const HomeHeader = (props) => {
-  const { navigateToRegister } = props
-  const updatenavigation = () => {
-    navigateToRegister()
-  }
-
+const HomeHeader = () => {
   return ["sm"].map((expand) => (
     <Navbar key={expand} bg="" expand={expand} className="mb-3">
       <Container>
@@ -30,31 +27,30 @@ const HomeHeader = (props) => {
 
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="/" className="fs-4">
+              <Link to="/" className="fs-4 nav-link">
                 Home
-              </Nav.Link>
+              </Link>
 
               <NavDropdown
                 title="Profile"
                 id={`offcanvasNavbarDropdown-expand-${expand}`}
                 className="fs-4"
               >
-                <NavDropdown.Item href="/saved-job">Saved Job</NavDropdown.Item>
+                <Link to="/saved-job" className="nav-link">
+                  Saved Job
+                </Link>
 
-                <NavDropdown.Item
-                  href="/account-setting/internship-1"
-                  onClick={updatenavigation}
-                >
+                <Link to="/account-setting/internship-1" className="nav-link">
                   Register Myself
-                </NavDropdown.Item>
+                </Link>
 
-                <NavDropdown.Item href="/account-setting/internship-1">
+                <Link to="/account-setting/internship-1" className="nav-link">
                   Account Setting
-                </NavDropdown.Item>
+                </Link>
               </NavDropdown>
-              <Nav.Link href="/login" className="fs-4">
+              <Link to="/login" className="fs-4  nav-link">
                 Logout
-              </Nav.Link>
+              </Link>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

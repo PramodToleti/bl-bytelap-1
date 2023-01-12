@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 import Home from "./components/Home"
 import Accountsetting from "./components/AccountSetting"
+import SavedJobs from "./components/SavedJobs"
 
 import "./App.css"
 import RegisteredInfo from "./components/RegisteredInfo"
@@ -23,6 +24,7 @@ const App = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Home} />
+      <Route exact path="/saved-job" component={SavedJobs} />
       <Route
         exact
         path="/account-setting/internship-1"

@@ -8,6 +8,8 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Fresher1 from "./Fresher1"
 
+import { Link } from "react-router-dom"
+
 function Fresher3() {
   const [validated, setValidated] = useState(false)
 
@@ -23,19 +25,16 @@ function Fresher3() {
 
   return (
     <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
-      <Nav defaultActiveKey="/home" as="ul">
-        <Nav.Item as="li">
-          <Nav.Link href="/my-info">My Info</Nav.Link>
-        </Nav.Item>
-        <Nav.Item as="li">
-          <Nav.Link href="/graduation">Graduation </Nav.Link>
-        </Nav.Item>
-        <Nav.Item as="li">
-          <Nav.Link href="/account-setting/internship-1">
-            Register Myself
-          </Nav.Link>
-        </Nav.Item>
-      </Nav>
+      <Link to="/my-info" className="header-nav-link">
+        My Info
+      </Link>
+
+      <Link to="/graduation" className="header-nav-link">
+        Graduation
+      </Link>
+      <Link to="/account-setting/internship-1" className="header-nav-link">
+        Register Myself
+      </Link>
 
       <div className="col-lg-8 border-light mt-5 shadow-sm p-3 mb-5  bg-white rounded">
         <p className="text-center">Step 3-3</p>
@@ -114,11 +113,11 @@ function Fresher3() {
           </Row>
 
           <div className="d-grid gap-2 mt-5">
-            <Nav.Link href="/">
+            <Link to="/">
               <Button variant="primary" size="lg" style={{ width: "100%" }}>
                 Save
               </Button>
-            </Nav.Link>
+            </Link>
           </div>
         </Form>
       </div>

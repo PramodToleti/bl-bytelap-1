@@ -5,24 +5,23 @@ import Form from "react-bootstrap/Form"
 import Dropdown from "react-bootstrap/Dropdown"
 import Col from "react-bootstrap/Col"
 
+import { Link } from "react-router-dom"
+
 import ChooseFile from "../../ChooseFile"
 
 function Internship1() {
   return (
     <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2 ml-4 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
-      <Nav defaultActiveKey="/home" as="ul">
-        <Nav.Item as="li">
-          <Nav.Link href="/my-info">My Info</Nav.Link>
-        </Nav.Item>
-        <Nav.Item as="li">
-          <Nav.Link href="/graduation">Graduation </Nav.Link>
-        </Nav.Item>
-        <Nav.Item as="li">
-          <Nav.Link href="/account-setting/internship-1">
-            Register Myself
-          </Nav.Link>
-        </Nav.Item>
-      </Nav>
+      <Link to="/my-info" className="header-nav-link">
+        My Info
+      </Link>
+
+      <Link to="/graduation" className="header-nav-link">
+        Graduation
+      </Link>
+      <Link to="/account-setting/internship-1" className="header-nav-link">
+        Register Myself
+      </Link>
 
       <div className="col-lg-8 border-light mt-5 shadow-sm p-3 mb-5  bg-white rounded">
         <p className="text-center mb-3">
@@ -33,14 +32,20 @@ function Internship1() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="/account-setting/internship-1">
-                Internship
+              <Dropdown.Item>
+                <Link to="/account-setting/internship-1" className="nav-link">
+                  Internship
+                </Link>
               </Dropdown.Item>
               <Dropdown.Item href="/account-setting/fresher-1">
-                Fresher
+                <Link to="/account-setting/fresher-1" className="nav-link">
+                  Fresher
+                </Link>
               </Dropdown.Item>
               <Dropdown.Item href="/account-setting/experience-1">
-                Experience
+                <Link to="/account-setting/experience-1" className="nav-link">
+                  Experience
+                </Link>
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -142,11 +147,11 @@ function Internship1() {
           </Form.Group>
 
           <div className="d-grid gap-2 mt-5">
-            <Nav.Link href="/account-setting/internship-2">
+            <Link to="/account-setting/internship-2">
               <Button variant="primary" size="lg" style={{ width: "100%" }}>
                 Save & Next
               </Button>
-            </Nav.Link>
+            </Link>
           </div>
         </Form>
       </div>
