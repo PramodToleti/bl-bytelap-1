@@ -1,20 +1,21 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-
+//Login
 import CandidateLogin from "./components/CandidateLogin"
 import EmployeeLogin from "./components/EmployeeLogin"
 import EmployeeSalesLogin from "./components/EmployeeSalesLogin"
+//Forgot Password
 import CandidateForgotPassword from "./components/CandidateForgotPassword"
 import EmployeeLForgotPassword from "./components/EmployeeForgotPassword"
 import NewPassword from "./components/NewPassword"
-
+import CreateAccount from "./components/CreateAccount"
+//Home
 import Home from "./components/Home"
+//Settings
 import Accountsetting from "./components/AccountSetting"
 import SavedJobs from "./components/SavedJobs"
-
 import RegisteredInfo from "./components/RegisteredInfo"
 import RegisteredGraduation from "./components/RegisteredGraduation"
 //Internship
-import Internship1 from "./RegisterMyself/Internship/Internship1"
 import Internship2 from "./RegisterMyself/Internship/Internship2"
 import Internship3 from "./RegisterMyself/Internship/Internship3"
 //Fresher
@@ -39,6 +40,9 @@ const App = () => (
         path="/login/employee/sales-enquiry"
         component={EmployeeSalesLogin}
       />
+      {/* Create New Account Route */}
+      <Route exact path="/create-account" component={CreateAccount} />
+      {/* Forgot Password Routes */}
       <Route
         exact
         path="/candidate/forgot-password"

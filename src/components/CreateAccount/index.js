@@ -1,14 +1,12 @@
-import Nav from "react-bootstrap/Nav"
 import Stack from "react-bootstrap/Stack"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 
 import React, { useState } from "react"
 import Col from "react-bootstrap/Col"
-import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
 
-function Createaccount() {
+function CreateAccount() {
   const [validated, setValidated] = useState(false)
 
   const handleSubmit = (event) => {
@@ -156,4 +154,4 @@ function Createaccount() {
   )
 }
 
-export default Createaccount
+export default CreateAccount
