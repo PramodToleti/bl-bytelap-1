@@ -29,7 +29,7 @@ function EmployeeLogin() {
     <div className="employee-login-container">
       <div className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
         <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-          <Stack direction="horizontal" gap={3}>
+          <Stack direction="horizontal" gap={4}>
             {["radio"].map((type) => (
               <div key={`inline-${type}`} className="mb-4">
                 <Link to="/login/candidate">
@@ -68,8 +68,17 @@ function EmployeeLogin() {
           <Row className="mb-3">
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
               <Stack direction="horizontal" gap={3}>
-                <label className="mx-1">Login </label>
-                <label className="mx-1">Sales/Enquiry </label>
+                <Link to="/login/employee" style={{ color: "grey" }}>
+                  <label className="mx-1 employee-login-btn">Login </label>
+                </Link>
+                <Link
+                  to="/login/employee/sales-enquiry"
+                  style={{ color: "grey" }}
+                >
+                  <label className="mx-1 employee-login-btn">
+                    Sales/Enquiry
+                  </label>
+                </Link>
               </Stack>
             </Form.Group>
 

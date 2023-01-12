@@ -28,7 +28,7 @@ function CandidateLogin() {
     <div className="candidate-login-container">
       <div className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
         <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-          <Stack direction="horizontal" gap={3}>
+          <Stack direction="horizontal" gap={4}>
             {["radio"].map((type) => (
               <div key={`inline-${type}`} className="mb-4">
                 <Link to="/login/candidate">
@@ -97,9 +97,13 @@ function CandidateLogin() {
                 </Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
-            <p className="text-start mt-3" style={{ color: "blue" }}>
+            <Link
+              to="/candidate/forgot-password"
+              className="text-start mt-3"
+              style={{ color: "blue", textDecoration: "none" }}
+            >
               Forget Password?
-            </p>
+            </Link>
           </Row>
 
           <div className="d-grid gap-2 mt-3">

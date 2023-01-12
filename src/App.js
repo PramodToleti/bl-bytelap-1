@@ -2,11 +2,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 import CandidateLogin from "./components/CandidateLogin"
 import EmployeeLogin from "./components/EmployeeLogin"
+import EmployeeSalesLogin from "./components/EmployeeSalesLogin"
 import Home from "./components/Home"
 import Accountsetting from "./components/AccountSetting"
 import SavedJobs from "./components/SavedJobs"
 
-import "./App.css"
 import RegisteredInfo from "./components/RegisteredInfo"
 import RegisteredGraduation from "./components/RegisteredGraduation"
 //Internship
@@ -22,12 +22,24 @@ import Experience1 from "./RegisterMyself/Experience/Experience1"
 import Experience2 from "./RegisterMyself/Experience/Experience2"
 import Experience3 from "./RegisterMyself/Experience/Experience3"
 
+import "./App.css"
+
 const App = () => (
   <BrowserRouter>
     <Switch>
+      {/* Login Routes */}
       <Route exact path="/login/candidate" component={CandidateLogin} />
       <Route exact path="/login/employee" component={EmployeeLogin} />
+      <Route
+        exact
+        path="/login/employee/sales-enquiry"
+        component={EmployeeSalesLogin}
+      />
+
+      {/* Home Route */}
       <Route exact path="/" component={Home} />
+
+      {/* Account Settings Routes */}
       <Route exact path="/saved-job" component={SavedJobs} />
       <Route
         exact

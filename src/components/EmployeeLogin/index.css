@@ -4,3 +4,11 @@
   align-items: center;
   min-height: 100vh;
 }
+
+.employee-login-btn {
+  cursor: pointer;
+}
+
+.employee-login-btn:hover {
+  color: blue;
+}
