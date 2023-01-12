@@ -1,0 +1,19 @@
+.upload-container {
+}
+
+.choose-file-text {
+  margin-right: 15px;
+}
+
+.delete-file-btn {
+  border: 0;
+  background: transparent;
+  color: rgb(99, 99, 237);
+  font-family: "Roboto";
+  font-size: 17px;
+  margin-top: 3px;
+  margin-bottom: 8px;
+}
+
+.uploaded-file {
+}

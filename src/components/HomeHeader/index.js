@@ -30,7 +30,7 @@ const HomeHeader = (props) => {
 
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="/home" className="fs-4">
+              <Nav.Link href="/" className="fs-4">
                 Home
               </Nav.Link>
 
