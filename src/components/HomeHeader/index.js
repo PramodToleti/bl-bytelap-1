@@ -42,7 +42,7 @@ const HomeHeader = (props) => {
                 <NavDropdown.Item href="/saved-job">Saved Job</NavDropdown.Item>
 
                 <NavDropdown.Item
-                  href="/account-setting"
+                  href="/account-setting/internship-1"
                   onClick={updatenavigation}
                 >
                   Register Myself
