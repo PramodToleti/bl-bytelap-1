@@ -3,6 +3,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import CandidateLogin from "./components/CandidateLogin"
 import EmployeeLogin from "./components/EmployeeLogin"
 import EmployeeSalesLogin from "./components/EmployeeSalesLogin"
+import CandidateForgotPassword from "./components/CandidateForgotPassword"
+import EmployeeLForgotPassword from "./components/EmployeeForgotPassword"
+import NewPassword from "./components/NewPassword"
+
 import Home from "./components/Home"
 import Accountsetting from "./components/AccountSetting"
 import SavedJobs from "./components/SavedJobs"
@@ -35,6 +39,17 @@ const App = () => (
         path="/login/employee/sales-enquiry"
         component={EmployeeSalesLogin}
       />
+      <Route
+        exact
+        path="/candidate/forgot-password"
+        component={CandidateForgotPassword}
+      />
+      <Route
+        exact
+        path="/employee/forgot-password"
+        component={EmployeeLForgotPassword}
+      />
+      <Route exact path="/create-new-password" component={NewPassword} />
 
       {/* Home Route */}
       <Route exact path="/" component={Home} />

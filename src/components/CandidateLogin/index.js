@@ -3,9 +3,7 @@ import Col from "react-bootstrap/Col"
 import Stack from "react-bootstrap/Stack"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
-import GoogleButton from "react-google-button"
 import React, { useState } from "react"
-import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
 import { Link } from "react-router-dom"
 
@@ -107,9 +105,16 @@ function CandidateLogin() {
           </Row>
 
           <div className="d-grid gap-2 mt-3">
-            <Button type="submit" variant="primary" size="lg">
-              Login
-            </Button>
+            <Link to="/">
+              <Button
+                style={{ width: "100%" }}
+                type="submit"
+                variant="primary"
+                size="lg"
+              >
+                Login
+              </Button>
+            </Link>
           </div>
           <p className="text-center mt-3" style={{ color: "blue" }}>
             OR
@@ -122,7 +127,10 @@ function CandidateLogin() {
               Sign in with Google
             </Button>
             <p className="text-center mt-3">
-              Don't have an account ? <a href="">Create account </a>
+              Don't have an account ?{" "}
+              <Link to="/create-account" style={{ textDecoration: "none" }}>
+                Create account
+              </Link>
             </p>
           </div>
         </Form>

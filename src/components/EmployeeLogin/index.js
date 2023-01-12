@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form"
 
 import React, { useState } from "react"
 import Col from "react-bootstrap/Col"
-import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
 
 import { Link } from "react-router-dom"
@@ -118,17 +117,31 @@ function EmployeeLogin() {
               </FloatingLabel>
             </Form.Group>
           </Row>
-          <p className="text-start mt-3" style={{ color: "blue" }}>
+          <Link
+            to="/employee/forgot-password"
+            className="text-start mt-3"
+            style={{ color: "blue", textDecoration: "none" }}
+          >
             Forget Password?
-          </p>
+          </Link>
 
           <div className="d-grid gap-2 mt-3">
-            <Button type="submit" variant="outline-secondary" size="lg">
-              Login
-            </Button>
+            <Link to="/">
+              <Button
+                type="submit"
+                style={{ width: "100%" }}
+                variant="outline-secondary"
+                size="lg"
+              >
+                Login
+              </Button>
+            </Link>
           </div>
           <p className="text-center mt-3">
-            I'm New Client <a href="">Create account </a>
+            I'm New Client{" "}
+            <Link to="/create-account" style={{ textDecoration: "none" }}>
+              Create account{" "}
+            </Link>
           </p>
         </Form>
       </div>
