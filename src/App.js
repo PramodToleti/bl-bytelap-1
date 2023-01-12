@@ -30,8 +30,12 @@ const App = () => (
         path="/account-setting/internship-1"
         component={Accountsetting}
       />
-      <Route exact path="/my-info" component={RegisteredInfo} />
-      <Route exact path="/graduation" component={RegisteredGraduation} />
+      <Route exact path="/account-setting/my-info" component={RegisteredInfo} />
+      <Route
+        exact
+        path="/account-setting/graduation"
+        component={RegisteredGraduation}
+      />
 
       <Route
         exact

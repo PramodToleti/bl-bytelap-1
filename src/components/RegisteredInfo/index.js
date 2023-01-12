@@ -33,11 +33,11 @@ function RegisteredInfo() {
       <HomeHeader />
 
       <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
-        <Link to="/my-info" className="header-nav-link">
+        <Link to="/account-setting/my-info" className="header-nav-link">
           My Info
         </Link>
 
-        <Link to="/graduation" className="header-nav-link">
+        <Link to="/account-setting/graduation" className="header-nav-link">
           Graduation
         </Link>
         <Link to="/account-setting/internship-1" className="header-nav-link">
