@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 
-import Login from "./components/Login"
+import CandidateLogin from "./components/CandidateLogin"
+import EmployeeLogin from "./components/EmployeeLogin"
 import Home from "./components/Home"
 import Accountsetting from "./components/AccountSetting"
 import SavedJobs from "./components/SavedJobs"
@@ -24,7 +25,8 @@ import Experience3 from "./RegisterMyself/Experience/Experience3"
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/login" component={Login} />
+      <Route exact path="/login/candidate" component={CandidateLogin} />
+      <Route exact path="/login/employee" component={EmployeeLogin} />
       <Route exact path="/" component={Home} />
       <Route exact path="/saved-job" component={SavedJobs} />
       <Route

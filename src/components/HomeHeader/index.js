@@ -48,7 +48,7 @@ const HomeHeader = () => {
                   Account Setting
                 </Link>
               </NavDropdown>
-              <Link to="/login" className="fs-4  nav-link">
+              <Link to="/login/candidate" className="fs-4  nav-link">
                 Logout
               </Link>
             </Nav>
