@@ -12,13 +12,15 @@ function Internship1() {
     <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2 ml-4 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
       <Nav defaultActiveKey="/home" as="ul">
         <Nav.Item as="li">
-          <Nav.Link href="/home">My Info</Nav.Link>
+          <Nav.Link href="/my-info">My Info</Nav.Link>
         </Nav.Item>
         <Nav.Item as="li">
-          <Nav.Link eventKey="link-1">Graduation </Nav.Link>
+          <Nav.Link href="/graduation">Graduation </Nav.Link>
         </Nav.Item>
         <Nav.Item as="li">
-          <Nav.Link eventKey="link-2">Register Myself</Nav.Link>
+          <Nav.Link href="/account-setting/internship-1">
+            Register Myself
+          </Nav.Link>
         </Nav.Item>
       </Nav>
 
@@ -31,9 +33,15 @@ function Internship1() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Internship</Dropdown.Item>
-              <Dropdown.Item href="#/action-1">Fresher</Dropdown.Item>
-              <Dropdown.Item href="#/action-1">Experience</Dropdown.Item>
+              <Dropdown.Item href="/account-setting/internship-1">
+                Internship
+              </Dropdown.Item>
+              <Dropdown.Item href="/account-setting/fresher-1">
+                Fresher
+              </Dropdown.Item>
+              <Dropdown.Item href="/account-setting/experience-1">
+                Experience
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </p>

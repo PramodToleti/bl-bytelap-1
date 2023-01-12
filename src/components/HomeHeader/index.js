@@ -48,7 +48,7 @@ const HomeHeader = (props) => {
                   Register Myself
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="/account-setting">
+                <NavDropdown.Item href="/account-setting/internship-1">
                   Account Setting
                 </NavDropdown.Item>
               </NavDropdown>

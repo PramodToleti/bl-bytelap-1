@@ -34,7 +34,9 @@ function RegisteredGraduation() {
             <Nav.Link href="/graduation">Graduation </Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link href="/account-setting">Register Myself</Nav.Link>
+            <Nav.Link href="/account-setting/internship-1">
+              Register Myself
+            </Nav.Link>
           </Nav.Item>
         </Nav>
 
