@@ -12,9 +12,7 @@ const HomeHeader = () => {
   return ["sm"].map((expand) => (
     <Navbar key={expand} bg="" expand={expand} className="mb-3">
       <Container>
-        <Link to="/" style={{ color: "black", textDecoration: "none" }}>
-          <h1 className="website-name">Website</h1>
-        </Link>
+        <p className="website-name">Website</p>
 
         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
         <Navbar.Offcanvas
