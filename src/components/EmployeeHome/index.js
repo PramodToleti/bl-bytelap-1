@@ -62,7 +62,13 @@ function EmployeeHome() {
                     <NavDropdown.Item href="#action5">
                       Support Center
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="#action5">Logout</NavDropdown.Item>
+                    <Link
+                      to="/login"
+                      className="nav-link"
+                      style={{ marginLeft: "9px" }}
+                    >
+                      Logout
+                    </Link>
                   </NavDropdown>
                 </Nav>
               </Offcanvas.Body>

@@ -13,11 +13,13 @@ import CandidateStep1 from "./components/CreateAccountCandidate/CandidateStep1"
 import CandidateStep2 from "./components/CreateAccountCandidate/CandidateStep2"
 import EmployeeStep1 from "./components/CreateAccountEmployee/EmployeeStep1"
 import EmployeeStep2 from "./components/CreateAccountEmployee/EmployeeStep2"
+import CreateResume from "./components/CreateResume"
 //Home
 import Home from "./components/Home"
 import EmployeeHome from "./components/EmployeeHome"
 import EmployeeDashboard from "./components/EmployeeDashboard"
 import EmployeeSettings from "./components/EmployeeSettings"
+import Template from "./components/Template"
 //Settings
 import Accountsetting from "./components/AccountSetting"
 import SavedJobs from "./components/SavedJobs"
@@ -72,6 +74,7 @@ const App = () => {
             path="/employee/create-account/step-2"
             component={EmployeeStep2}
           />
+          <Route exact path="/create-resume" component={CreateResume} />
           {/* Forgot Password Routes */}
           <Route
             exact
@@ -98,6 +101,7 @@ const App = () => {
             path="/employee/account-setting"
             component={EmployeeSettings}
           />
+          <Route exact path="/create-resume/template" component={Template} />
           {/* Account Settings Routes */}
           <Route exact path="/saved-job" component={SavedJobs} />
           <Route

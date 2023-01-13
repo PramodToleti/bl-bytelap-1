@@ -142,7 +142,9 @@ function CandidateStep1() {
                   OR
                 </p>
               </div>
-              <button className=" btn btn-outline-secondary">Create</button>
+              <Link to="/create-resume">
+                <button className=" btn btn-outline-secondary">Create</button>
+              </Link>
             </Stack>
             <Form.Control.Feedback type="invalid">
               Please upload your resume.
