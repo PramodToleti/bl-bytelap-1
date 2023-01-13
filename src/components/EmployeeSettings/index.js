@@ -3,8 +3,7 @@ import Stack from "react-bootstrap/Stack"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import Dropdown from "react-bootstrap/Dropdown"
-import Col from "react-bootstrap/Col"
-import NavDropdown from "react-bootstrap/NavDropdown"
+import { Link } from "react-router-dom"
 
 function EmployeeSettings() {
   return (
@@ -115,7 +114,9 @@ function EmployeeSettings() {
                 {" "}
                 <p>OR</p>
               </div>
-              <button className=" btn btn-outline-secondary">Create</button>
+              <Link to="/create-resume">
+                <button className=" btn btn-outline-secondary">Create</button>
+              </Link>
             </Stack>
           </Form.Group>
 

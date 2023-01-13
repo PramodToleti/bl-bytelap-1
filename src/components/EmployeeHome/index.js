@@ -8,14 +8,15 @@ import NavDropdown from "react-bootstrap/NavDropdown"
 import { Link } from "react-router-dom"
 
 import "bootstrap/dist/css/bootstrap.min.css"
+import Theme from "../../Theme"
 
 function EmployeeHome() {
   return (
     <>
       {["sm"].map((expand) => (
-        <Navbar key={expand} bg="" expand={expand} className="mb-3">
+        <Navbar key={expand} bg="" expand={expand} className="mb-3 pt-3">
           <Container>
-            <Navbar.Brand href="#">Website</Navbar.Brand>
+            <p className="website-name">Website</p>{" "}
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -29,13 +30,13 @@ function EmployeeHome() {
               </Offcanvas.Header>
 
               <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="/login" className="fs-5 mx-5">
+                <div className="justify-content-end flex-grow-1 pe-3 nav-link-container">
+                  <Link to="/login" className="fs-5 mr-5 nav-link">
                     Premium
-                  </Nav.Link>
-                  <Nav.Link href="/login" className="fs-5">
+                  </Link>
+                  <Link to="/login" className="fs-5 nav-link">
                     Post Job
-                  </Nav.Link>
+                  </Link>
                   <Link to="/employee/dashboard" className="fs-5 nav-link">
                     Dashboard
                   </Link>
@@ -45,12 +46,20 @@ function EmployeeHome() {
                     title={<span className="fs-5">Profile</span>}
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
-                    <NavDropdown.Item href="#action3">
+                    <Link
+                      to="#action3"
+                      className="nav-link"
+                      style={{ marginLeft: "9px" }}
+                    >
                       Company Limited
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action3">
+                    </Link>
+                    <Link
+                      to="#action3"
+                      className="nav-link"
+                      style={{ marginLeft: "9px" }}
+                    >
                       Info@demo.com
-                    </NavDropdown.Item>
+                    </Link>
                     <NavDropdown.Divider />
                     <Link
                       to="/employee/account-setting"
@@ -59,9 +68,13 @@ function EmployeeHome() {
                     >
                       Account setting
                     </Link>
-                    <NavDropdown.Item href="#action5">
+                    <Link
+                      to="#action5"
+                      className="nav-link"
+                      style={{ marginLeft: "9px" }}
+                    >
                       Support Center
-                    </NavDropdown.Item>
+                    </Link>
                     <Link
                       to="/login"
                       className="nav-link"
@@ -70,7 +83,8 @@ function EmployeeHome() {
                       Logout
                     </Link>
                   </NavDropdown>
-                </Nav>
+                  <Theme />
+                </div>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
