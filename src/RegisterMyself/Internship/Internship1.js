@@ -120,7 +120,6 @@ function Internship1() {
               className="mt-3"
               controlId="validationCustom01"
             >
-              <label className="mb-2 mt-">Upload Resume </label>
               <Stack
                 direction="horizontal"
                 gap={3}
@@ -142,9 +141,17 @@ function Internship1() {
                     OR
                   </p>
                 </div>
-                <button className=" btn btn-outline-secondary">Create</button>
+                <Link to="/create-resume">
+                  <button className=" btn btn-outline-secondary">Create</button>
+                </Link>
               </Stack>
+              <Form.Control.Feedback type="invalid">
+                Please upload your resume.
+              </Form.Control.Feedback>
             </Form.Group>
+            <small className="text-start text-muted mt-3">
+              PDF,Doc,Docx, | Max:2MB
+            </small>
 
             <div className="d-grid gap-2 mt-5">
               <Link to="/account-setting/internship-2">

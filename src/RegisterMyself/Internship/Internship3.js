@@ -1,11 +1,13 @@
 import Stack from "react-bootstrap/Stack"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
-
+import Col from "react-bootstrap/Col"
 import React, { useState } from "react"
 import Row from "react-bootstrap/Row"
 
 import { Link } from "react-router-dom"
+
+import ChooseFile from "../../ChooseFile"
 import HomeHeader from "../../components/HomeHeader"
 
 function Internship3() {
@@ -90,16 +92,29 @@ function Internship3() {
                   defaultValue=""
                 />
               </Form.Group>
-              <Stack direction="horizontal" gap={3}>
-                <input className="d-none" type="file" />
-                <button className="btn btn-outline-primary">
-                  Attach Certificate
-                </button>
-                <div className="ms-auto">
-                  {" "}
-                  <p>Add More</p>
-                </div>
-              </Stack>
+              <Form.Group
+                as={Col}
+                md="12"
+                className="mt-3"
+                controlId="validationCustom01"
+              >
+                <Form.Label className="mt-2">Attach Certificate </Form.Label>
+                <Stack
+                  direction="horizontal"
+                  gap={3}
+                  style={{
+                    marginTop: "7px",
+                    display: "flex",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <input className="d-none" type="file" />
+                  <ChooseFile />
+                </Stack>
+                <Form.Control.Feedback type="invalid">
+                  Please upload company logo.
+                </Form.Control.Feedback>
+              </Form.Group>
 
               <Form.Group className="mb-3 mt-3" controlId="formBasicText">
                 <Form.Label>Language</Form.Label>

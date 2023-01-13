@@ -142,13 +142,17 @@ function RegisteredInfo() {
                       OR
                     </p>
                   </div>
-                  <button className=" btn btn-outline-secondary">Create</button>
+                  <Link to="/create-resume">
+                    <button className=" btn btn-outline-secondary">
+                      Create
+                    </button>
+                  </Link>
                 </Stack>
-              </Form.Group>{" "}
-              <small
-                className="text-start text-muted "
-                style={{ marginTop: "8px" }}
-              >
+                <Form.Control.Feedback type="invalid">
+                  Please upload your resume.
+                </Form.Control.Feedback>
+              </Form.Group>
+              <small className="text-start text-muted mt-3">
                 PDF,Doc,Docx, | Max:2MB
               </small>
             </Row>
