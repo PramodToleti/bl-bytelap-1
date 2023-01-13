@@ -12,7 +12,7 @@ function LoginPage() {
   return (
     <>
       {["sm"].map((expand) => (
-        <Navbar key={expand} bg="" expand={expand} className="mb-3">
+        <Navbar key={expand} bg="" expand={expand} className="mb-3 mt-2">
           <Container>
             <p className="website-name">Website</p>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -28,13 +28,13 @@ function LoginPage() {
               </Offcanvas.Header>
 
               <Offcanvas.Body>
-                <div className="justify-content-end flex-grow-1 pe-3 nav-link-container">
+                <div className="justify-content-end flex-grow-1 nav-link-container">
                   <Link
                     to="/login/candidate"
                     className="fs-2 nav-link"
                     style={{
                       textDecoration: "none",
-                      marginRight: "10px",
+                      marginRight: "5px",
                     }}
                   >
                     Login
@@ -43,7 +43,6 @@ function LoginPage() {
                     to="/candidate/create-account/step-1"
                     style={{
                       marginRight: "8px",
-                      marginLeft: "8px",
                     }}
                   >
                     <Button variant="primary" size="lg">
@@ -54,7 +53,6 @@ function LoginPage() {
                     to="/employee/create-account/step-1"
                     style={{
                       marginRight: "8px",
-                      marginLeft: "8px",
                     }}
                   >
                     <Button variant="primary" size="lg">
