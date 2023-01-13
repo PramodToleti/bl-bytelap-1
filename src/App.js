@@ -18,7 +18,6 @@ import CreateResume from "./components/CreateResume"
 import Home from "./components/Home"
 import EmployeeHome from "./components/EmployeeHome"
 import EmployeeDashboard from "./components/EmployeeDashboard"
-import EmployeeSettings from "./components/EmployeeSettings"
 import Template from "./components/Template"
 //Settings
 import Accountsetting from "./components/AccountSetting"
@@ -36,6 +35,25 @@ import Fresher3 from "./RegisterMyself/Fresher/Fresher3"
 import Experience1 from "./RegisterMyself/Experience/Experience1"
 import Experience2 from "./RegisterMyself/Experience/Experience2"
 import Experience3 from "./RegisterMyself/Experience/Experience3"
+
+//Employee Settings
+import Myinfo from "./components/EmployeeSettings/Myinfo"
+import CompanySettings from "./components/EmployeeSettings/CompanySettings"
+
+//Employee Internship
+import Intern2 from "./DashboardRegister/Internship/Intern2"
+import Intern3 from "./DashboardRegister/Internship/Intern3"
+import Intern4 from "./DashboardRegister/Internship/Intern4"
+//Employee Fresher
+import Fresh1 from "./DashboardRegister/Fresher/Fresh1"
+import Fresh2 from "./DashboardRegister/Fresher/Fresh2"
+import Fresh3 from "./DashboardRegister/Fresher/Fresh3"
+import Fresh4 from "./DashboardRegister/Fresher/Fresh4"
+//Employee Experience
+import Exp1 from "./DashboardRegister/Experience/Exp1"
+import Exp2 from "./DashboardRegister/Experience/Exp2"
+import Exp3 from "./DashboardRegister/Experience/Exp3"
+import Exp4 from "./DashboardRegister/Experience/Exp4"
 
 import "./App.css"
 
@@ -91,16 +109,81 @@ const App = () => {
           {/* Home Route */}
           <Route exact path="/" component={Home} />
           <Route exact path="/employee" component={EmployeeHome} />
+          {/* Employee Settings */}
           <Route
             exact
-            path="/employee/dashboard"
+            path="/employee/account-setting/my-info"
+            component={Myinfo}
+          />
+          <Route
+            exact
+            path="/employee/account-setting/company-setting"
+            component={CompanySettings}
+          />
+          {/*Employee Internship */}
+          <Route
+            exact
+            path="/employee/dashboard/internship-1"
             component={EmployeeDashboard}
           />
           <Route
             exact
-            path="/employee/account-setting"
-            component={EmployeeSettings}
+            path="/employee/dashboard/internship-2"
+            component={Intern2}
           />
+          <Route
+            exact
+            path="/employee/dashboard/internship-3"
+            component={Intern3}
+          />
+          <Route
+            exact
+            path="/employee/dashboard/internship-4"
+            component={Intern4}
+          />
+          {/*Employee Fresher */}
+          <Route
+            exact
+            path="/employee/dashboard/fresher-1"
+            component={Fresh1}
+          />
+          <Route
+            exact
+            path="/employee/dashboard/fresher-2"
+            component={Fresh2}
+          />
+          <Route
+            exact
+            path="/employee/dashboard/fresher-3"
+            component={Fresh3}
+          />
+          <Route
+            exact
+            path="/employee/dashboard/fresher-4"
+            component={Fresh4}
+          />
+          {/* Employee Experience */}
+          <Route
+            exact
+            path="/employee/dashboard/experience-1"
+            component={Exp1}
+          />
+          <Route
+            exact
+            path="/employee/dashboard/experience-2"
+            component={Exp2}
+          />
+          <Route
+            exact
+            path="/employee/dashboard/experience-3"
+            component={Exp3}
+          />
+          <Route
+            exact
+            path="/employee/dashboard/experience-4"
+            component={Exp4}
+          />
+
           <Route exact path="/create-resume/template" component={Template} />
           {/* Account Settings Routes */}
           <Route exact path="/saved-job" component={SavedJobs} />

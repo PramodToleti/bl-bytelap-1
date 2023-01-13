@@ -2,20 +2,25 @@ import Nav from "react-bootstrap/Nav"
 import Stack from "react-bootstrap/Stack"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
+import Col from "react-bootstrap/Col"
 import Dropdown from "react-bootstrap/Dropdown"
 import { Link } from "react-router-dom"
+import ChooseFile from "../../ChooseFile"
 
-function EmployeeSettings() {
+function Intern1() {
   return (
     <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
-      <p className="text-start fs-5">Account Setting</p>
+      <p className="text-start fs-5">Dashboard</p>
       <hr></hr>
       <Nav defaultActiveKey="/home" as="ul">
         <Nav.Item as="li">
-          <Nav.Link href="/home">My Info</Nav.Link>
+          <Nav.Link href="/home">CV Alerts</Nav.Link>
         </Nav.Item>
         <Nav.Item as="li">
-          <Nav.Link eventKey="link-1">Company Setting</Nav.Link>
+          <Nav.Link eventKey="link-1">Active Post</Nav.Link>
+        </Nav.Item>
+        <Nav.Item as="li">
+          <Nav.Link eventKey="link-1">Create Job</Nav.Link>
         </Nav.Item>
       </Nav>
 
@@ -28,9 +33,15 @@ function EmployeeSettings() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Internship</Dropdown.Item>
-              <Dropdown.Item href="#/action-1">Fresher</Dropdown.Item>
-              <Dropdown.Item href="#/action-1">Experience</Dropdown.Item>
+              <Link to="/employee/dashboard/internship-1" className="nav-link">
+                Internship
+              </Link>
+              <Link to="/employee/dashboard/fresher-1" className="nav-link">
+                Fresher
+              </Link>
+              <Link to="/employee/dashboard/experience-1" className="nav-link">
+                Experience
+              </Link>
             </Dropdown.Menu>
           </Dropdown>
         </p>
@@ -105,25 +116,52 @@ function EmployeeSettings() {
             <Form.Control type="text" placeholder="Location" />
           </Form.Group>
 
-          <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-            <Stack direction="horizontal" gap={3}>
-              <label className="mx-1">Upload Resume </label>
+          <Form.Group
+            as={Col}
+            md="12"
+            className="mt-3"
+            controlId="validationCustom01"
+          >
+            <Form.Label className="mt-2">Upload your resume </Form.Label>
+            <Stack
+              direction="horizontal"
+              gap={3}
+              style={{
+                marginTop: "7px",
+                display: "flex",
+                alignItems: "flex-start",
+              }}
+            >
               <input className="d-none" type="file" />
-              <button className="btn btn-outline-primary">Upload</button>
-              <div className="">
+              <ChooseFile />
+              <div className="or-container">
                 {" "}
-                <p>OR</p>
+                <p
+                  style={{
+                    marginTop: "8px",
+                  }}
+                >
+                  OR
+                </p>
               </div>
               <Link to="/create-resume">
                 <button className=" btn btn-outline-secondary">Create</button>
               </Link>
             </Stack>
+            <Form.Control.Feedback type="invalid">
+              Please upload your resume.
+            </Form.Control.Feedback>
           </Form.Group>
+          <small className="text-start text-muted mt-3">
+            PDF,Doc,Docx, | Max:2MB
+          </small>
 
           <div className="d-grid gap-2 mt-5">
-            <Button variant="primary" size="lg">
-              Save & Next
-            </Button>
+            <Link to="/employee/dashboard/internship-2">
+              <Button variant="primary" size="lg" style={{ width: "100%" }}>
+                Save & Next
+              </Button>
+            </Link>
           </div>
         </Form>
       </div>
@@ -131,4 +169,4 @@ function EmployeeSettings() {
   )
 }
 
-export default EmployeeSettings
+export default Intern1

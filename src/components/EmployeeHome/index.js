@@ -1,6 +1,4 @@
-import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
-import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
 import NavDropdown from "react-bootstrap/NavDropdown"
@@ -37,7 +35,10 @@ function EmployeeHome() {
                   <Link to="/login" className="fs-5 nav-link">
                     Post Job
                   </Link>
-                  <Link to="/employee/dashboard" className="fs-5 nav-link">
+                  <Link
+                    to="/employee/dashboard/internship-1"
+                    className="fs-5 nav-link"
+                  >
                     Dashboard
                   </Link>
 
@@ -62,7 +63,7 @@ function EmployeeHome() {
                     </Link>
                     <NavDropdown.Divider />
                     <Link
-                      to="/employee/account-setting"
+                      to="/employee/account-setting/my-info"
                       className="nav-link"
                       style={{ marginLeft: "9px" }}
                     >

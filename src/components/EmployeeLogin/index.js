@@ -126,7 +126,7 @@ function EmployeeLogin() {
           </Link>
 
           <div className="d-grid gap-2 mt-3">
-            <Link to="/">
+            <Link to="/employee">
               <Button
                 type="submit"
                 style={{ width: "100%" }}
