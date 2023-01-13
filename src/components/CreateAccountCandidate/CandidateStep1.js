@@ -5,8 +5,11 @@ import Form from "react-bootstrap/Form"
 import React, { useState } from "react"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
+import { Link } from "react-router-dom"
 
-function CreateAccount() {
+import ChooseFile from "../../ChooseFile"
+
+function CandidateStep1() {
   const [validated, setValidated] = useState(false)
 
   const handleSubmit = (event) => {
@@ -118,12 +121,26 @@ function CreateAccount() {
             className="mt-3"
             controlId="validationCustom01"
           >
-            <Stack direction="horizontal" gap={3}>
+            <Stack
+              direction="horizontal"
+              gap={3}
+              style={{
+                marginTop: "7px",
+                display: "flex",
+                alignItems: "flex-start",
+              }}
+            >
               <input className="d-none" type="file" />
-              <button className="btn btn-outline-primary">Upload Resume</button>
-              <div className="">
+              <ChooseFile />
+              <div className="or-container">
                 {" "}
-                <p>OR</p>
+                <p
+                  style={{
+                    marginTop: "8px",
+                  }}
+                >
+                  OR
+                </p>
               </div>
               <button className=" btn btn-outline-secondary">Create</button>
             </Stack>
@@ -145,13 +162,20 @@ function CreateAccount() {
           />
         </Form.Group>
         <div className="d-grid gap-2 mt-5">
-          <Button type="submit" variant="outline-secondary" size="lg">
-            Next
-          </Button>
+          <Link to="/candidate/create-account/step-2">
+            <Button
+              type="submit"
+              variant="outline-secondary"
+              size="lg"
+              style={{ width: "100%" }}
+            >
+              Next
+            </Button>
+          </Link>
         </div>
       </Form>
     </div>
   )
 }
 
-export default CreateAccount
+export default CandidateStep1

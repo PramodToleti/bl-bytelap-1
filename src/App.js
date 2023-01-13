@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 //Login
+import LoginPage from "./components/LoginPage"
 import CandidateLogin from "./components/CandidateLogin"
 import EmployeeLogin from "./components/EmployeeLogin"
 import EmployeeSalesLogin from "./components/EmployeeSalesLogin"
@@ -7,7 +8,9 @@ import EmployeeSalesLogin from "./components/EmployeeSalesLogin"
 import CandidateForgotPassword from "./components/CandidateForgotPassword"
 import EmployeeLForgotPassword from "./components/EmployeeForgotPassword"
 import NewPassword from "./components/NewPassword"
-import CreateAccount from "./components/CreateAccount"
+//Create Account
+import CandidateStep1 from "./components/CreateAccountCandidate/CandidateStep1"
+import CandidateStep2 from "./components/CreateAccountCandidate/CandidateStep2"
 //Home
 import Home from "./components/Home"
 //Settings
@@ -33,6 +36,7 @@ const App = () => (
   <BrowserRouter>
     <Switch>
       {/* Login Routes */}
+      <Route exact path="/login" component={LoginPage} />
       <Route exact path="/login/candidate" component={CandidateLogin} />
       <Route exact path="/login/employee" component={EmployeeLogin} />
       <Route
@@ -41,7 +45,16 @@ const App = () => (
         component={EmployeeSalesLogin}
       />
       {/* Create New Account Route */}
-      <Route exact path="/create-account" component={CreateAccount} />
+      <Route
+        exact
+        path="/candidate/create-account/step-1"
+        component={CandidateStep1}
+      />
+      <Route
+        exact
+        path="/candidate/create-account/step-2"
+        component={CandidateStep2}
+      />
       {/* Forgot Password Routes */}
       <Route
         exact
