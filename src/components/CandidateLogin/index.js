@@ -128,7 +128,10 @@ function CandidateLogin() {
             </Button>
             <p className="text-center mt-3">
               Don't have an account ?{" "}
-              <Link to="/create-account" style={{ textDecoration: "none" }}>
+              <Link
+                to="/candidate/create-account/step-1"
+                style={{ textDecoration: "none" }}
+              >
                 Create account
               </Link>
             </p>

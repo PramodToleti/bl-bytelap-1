@@ -139,7 +139,10 @@ function EmployeeLogin() {
           </div>
           <p className="text-center mt-3">
             I'm New Client{" "}
-            <Link to="/create-account" style={{ textDecoration: "none" }}>
+            <Link
+              to="/employee/create-account/step-1"
+              style={{ textDecoration: "none" }}
+            >
               Create account{" "}
             </Link>
           </p>
