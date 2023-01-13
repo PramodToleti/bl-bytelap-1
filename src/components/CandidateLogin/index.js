@@ -130,7 +130,7 @@ function CandidateLogin() {
               Don't have an account ?{" "}
               <Link
                 to="/candidate/create-account/step-1"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", color: "blue" }}
               >
                 Create account
               </Link>

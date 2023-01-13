@@ -36,102 +36,104 @@ import "./App.css"
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        {/* Login Routes */}
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/login/candidate" component={CandidateLogin} />
-        <Route exact path="/login/employee" component={EmployeeLogin} />
-        <Route
-          exact
-          path="/login/employee/sales-enquiry"
-          component={EmployeeSalesLogin}
-        />
-        {/* Create New Account Route */}
-        <Route
-          exact
-          path="/candidate/create-account/step-1"
-          component={CandidateStep1}
-        />
-        <Route
-          exact
-          path="/candidate/create-account/step-2"
-          component={CandidateStep2}
-        />
-        <Route
-          exact
-          path="/employee/create-account/step-1"
-          component={EmployeeStep1}
-        />
-        <Route
-          exact
-          path="/employee/create-account/step-2"
-          component={EmployeeStep2}
-        />
-        {/* Forgot Password Routes */}
-        <Route
-          exact
-          path="/candidate/forgot-password"
-          component={CandidateForgotPassword}
-        />
-        <Route
-          exact
-          path="/employee/forgot-password"
-          component={EmployeeLForgotPassword}
-        />
-        <Route exact path="/create-new-password" component={NewPassword} />
+    <>
+      <BrowserRouter>
+        <Switch>
+          {/* Login Routes */}
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/login/candidate" component={CandidateLogin} />
+          <Route exact path="/login/employee" component={EmployeeLogin} />
+          <Route
+            exact
+            path="/login/employee/sales-enquiry"
+            component={EmployeeSalesLogin}
+          />
+          {/* Create New Account Route */}
+          <Route
+            exact
+            path="/candidate/create-account/step-1"
+            component={CandidateStep1}
+          />
+          <Route
+            exact
+            path="/candidate/create-account/step-2"
+            component={CandidateStep2}
+          />
+          <Route
+            exact
+            path="/employee/create-account/step-1"
+            component={EmployeeStep1}
+          />
+          <Route
+            exact
+            path="/employee/create-account/step-2"
+            component={EmployeeStep2}
+          />
+          {/* Forgot Password Routes */}
+          <Route
+            exact
+            path="/candidate/forgot-password"
+            component={CandidateForgotPassword}
+          />
+          <Route
+            exact
+            path="/employee/forgot-password"
+            component={EmployeeLForgotPassword}
+          />
+          <Route exact path="/create-new-password" component={NewPassword} />
 
-        {/* Home Route */}
-        <Route exact path="/" component={Home} />
+          {/* Home Route */}
+          <Route exact path="/" component={Home} />
 
-        {/* Account Settings Routes */}
-        <Route exact path="/saved-job" component={SavedJobs} />
-        <Route
-          exact
-          path="/account-setting/internship-1"
-          component={Accountsetting}
-        />
-        <Route
-          exact
-          path="/account-setting/my-info"
-          component={RegisteredInfo}
-        />
-        <Route
-          exact
-          path="/account-setting/graduation"
-          component={RegisteredGraduation}
-        />
+          {/* Account Settings Routes */}
+          <Route exact path="/saved-job" component={SavedJobs} />
+          <Route
+            exact
+            path="/account-setting/internship-1"
+            component={Accountsetting}
+          />
+          <Route
+            exact
+            path="/account-setting/my-info"
+            component={RegisteredInfo}
+          />
+          <Route
+            exact
+            path="/account-setting/graduation"
+            component={RegisteredGraduation}
+          />
 
-        <Route
-          exact
-          path="/account-setting/internship-2"
-          component={Internship2}
-        />
-        <Route
-          exact
-          path="/account-setting/internship-3"
-          component={Internship3}
-        />
-        <Route exact path="/account-setting/fresher-1" component={Fresher1} />
-        <Route exact path="/account-setting/fresher-2" component={Fresher2} />
-        <Route exact path="/account-setting/fresher-3" component={Fresher3} />
-        <Route
-          exact
-          path="/account-setting/experience-1"
-          component={Experience1}
-        />
-        <Route
-          exact
-          path="/account-setting/experience-2"
-          component={Experience2}
-        />
-        <Route
-          exact
-          path="/account-setting/experience-3"
-          component={Experience3}
-        />
-      </Switch>
-    </BrowserRouter>
+          <Route
+            exact
+            path="/account-setting/internship-2"
+            component={Internship2}
+          />
+          <Route
+            exact
+            path="/account-setting/internship-3"
+            component={Internship3}
+          />
+          <Route exact path="/account-setting/fresher-1" component={Fresher1} />
+          <Route exact path="/account-setting/fresher-2" component={Fresher2} />
+          <Route exact path="/account-setting/fresher-3" component={Fresher3} />
+          <Route
+            exact
+            path="/account-setting/experience-1"
+            component={Experience1}
+          />
+          <Route
+            exact
+            path="/account-setting/experience-2"
+            component={Experience2}
+          />
+          <Route
+            exact
+            path="/account-setting/experience-3"
+            component={Experience3}
+          />
+        </Switch>
+      </BrowserRouter>
+    </>
   )
 }
 

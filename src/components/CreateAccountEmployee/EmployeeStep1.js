@@ -81,7 +81,7 @@ function EmployeeStep1() {
           </button>
           <p className="text-start mt-1">
             {" "}
-            <Link to="" style={{ textDecoration: "none" }}>
+            <Link to="" style={{ textDecoration: "none", color: "blue" }}>
               Resend again{" "}
             </Link>
           </p>

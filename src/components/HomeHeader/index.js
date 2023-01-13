@@ -1,5 +1,4 @@
 import Container from "react-bootstrap/Container"
-import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
 import NavDropdown from "react-bootstrap/NavDropdown"
@@ -7,12 +6,15 @@ import { Link } from "react-router-dom"
 
 import "./index.css"
 import "bootstrap/dist/css/bootstrap.min.css"
+import Theme from "../../Theme"
 
 const HomeHeader = () => {
   return ["sm"].map((expand) => (
     <Navbar key={expand} bg="" expand={expand} className="mb-3">
       <Container>
-        <Navbar.Brand href="#">Website</Navbar.Brand>
+        <h1 className="website-name" href="#">
+          Website
+        </h1>
         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
         <Navbar.Offcanvas
           id={`offcanvasNavbar-expand-${expand}`}
@@ -26,15 +28,15 @@ const HomeHeader = () => {
           </Offcanvas.Header>
 
           <Offcanvas.Body>
-            <Nav className="justify-content-end flex-grow-1 pe-3">
+            <div className="justify-content-end flex-grow-1 nav-link-container">
               <Link to="/" className="fs-4 nav-link">
                 Home
               </Link>
 
               <NavDropdown
-                title="Profile"
+                title={<span className="fs-4">Profile</span>}
                 id={`offcanvasNavbarDropdown-expand-${expand}`}
-                className="fs-4"
+                className="fs-4 profile-nav"
               >
                 <Link to="/saved-job" className="nav-link">
                   Saved Job
@@ -51,7 +53,8 @@ const HomeHeader = () => {
               <Link to="/login" className="fs-4  nav-link">
                 Logout
               </Link>
-            </Nav>
+              <Theme />
+            </div>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>

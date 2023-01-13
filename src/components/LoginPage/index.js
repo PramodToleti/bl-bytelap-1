@@ -1,12 +1,12 @@
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
-import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
 
 import { Link } from "react-router-dom"
 
 import "bootstrap/dist/css/bootstrap.min.css"
+import Theme from "../../Theme"
 
 function LoginPage() {
   return (
@@ -14,7 +14,7 @@ function LoginPage() {
       {["sm"].map((expand) => (
         <Navbar key={expand} bg="" expand={expand} className="mb-3">
           <Container>
-            <Navbar.Brand href="#">Website</Navbar.Brand>
+            <p className="website-name">Website</p>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -28,15 +28,13 @@ function LoginPage() {
               </Offcanvas.Header>
 
               <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
+                <div className="justify-content-end flex-grow-1 pe-3 nav-link-container">
                   <Link
                     to="/login/candidate"
-                    className="fs-2"
+                    className="fs-2 nav-link"
                     style={{
-                      color: "grey",
                       textDecoration: "none",
                       marginRight: "10px",
-                      marginTop: "6px",
                     }}
                   >
                     Login
@@ -44,7 +42,6 @@ function LoginPage() {
                   <Link
                     to="/candidate/create-account/step-1"
                     style={{
-                      marginTop: "8px",
                       marginRight: "8px",
                       marginLeft: "8px",
                     }}
@@ -56,7 +53,6 @@ function LoginPage() {
                   <Link
                     to="/employee/create-account/step-1"
                     style={{
-                      marginTop: "8px",
                       marginRight: "8px",
                       marginLeft: "8px",
                     }}
@@ -65,7 +61,8 @@ function LoginPage() {
                       For Employee
                     </Button>{" "}
                   </Link>
-                </Nav>
+                  <Theme />
+                </div>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>

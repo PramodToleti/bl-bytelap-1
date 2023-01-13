@@ -141,7 +141,7 @@ function EmployeeLogin() {
             I'm New Client{" "}
             <Link
               to="/employee/create-account/step-1"
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", color: "blue" }}
             >
               Create account{" "}
             </Link>
