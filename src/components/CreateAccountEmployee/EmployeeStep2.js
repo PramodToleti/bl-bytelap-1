@@ -6,6 +6,7 @@ import React, { useState } from "react"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import { Link } from "react-router-dom"
+import ChooseFile from "../../ChooseFile"
 
 function EmployeeStep2() {
   const [validated, setValidated] = useState(false)
@@ -97,14 +98,26 @@ function EmployeeStep2() {
             className="mt-3"
             controlId="validationCustom01"
           >
-            <Stack direction="horizontal" gap={3}>
+            <Form.Label className="mt-2">Upload Company Logo </Form.Label>
+            <Stack
+              direction="horizontal"
+              gap={3}
+              style={{
+                marginTop: "7px",
+                display: "flex",
+                alignItems: "flex-start",
+              }}
+            >
               <input className="d-none" type="file" />
-              <button className="btn btn-outline-primary">Upload Logo</button>
+              <ChooseFile />
             </Stack>
             <Form.Control.Feedback type="invalid">
               Please upload company logo.
             </Form.Control.Feedback>
           </Form.Group>
+          <small className="text-start text-muted mt-3">
+            PDF,Doc,Docx, | Max:2MB
+          </small>
 
           <Form.Group
             className="mb-3 mt-3"
