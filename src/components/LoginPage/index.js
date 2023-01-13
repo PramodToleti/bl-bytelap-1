@@ -21,13 +21,13 @@ function LoginPage() {
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
             >
-              <Offcanvas.Header closeButton>
+              <Offcanvas.Header className="dark-mode-active" closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                   Website
                 </Offcanvas.Title>
               </Offcanvas.Header>
 
-              <Offcanvas.Body>
+              <Offcanvas.Body className="dark-mode-active">
                 <div className="justify-content-end flex-grow-1 nav-link-container">
                   <Link
                     to="/login/candidate"

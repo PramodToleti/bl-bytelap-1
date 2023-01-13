@@ -166,7 +166,7 @@ function EmployeeStep2() {
           />
         </Form.Group>
         <div className="d-grid gap-2 mt-2">
-          <Link to="/">
+          <Link to="/employee">
             <Button
               type="submit"
               variant="outline-secondary"

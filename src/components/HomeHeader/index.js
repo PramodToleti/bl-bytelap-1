@@ -9,6 +9,11 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import Theme from "../../Theme"
 
 const HomeHeader = () => {
+  const activeThemeStyles = (theme) => {
+    const darkTheme = theme ? "dark-theme" : "light-theme"
+    console.log(darkTheme)
+  }
+
   return ["sm"].map((expand) => (
     <Navbar key={expand} bg="" expand={expand} className="mb-3">
       <Container>
@@ -52,7 +57,7 @@ const HomeHeader = () => {
               <Link to="/login" className="fs-4  nav-link">
                 Logout
               </Link>
-              <Theme />
+              <Theme activeThemeStyles={activeThemeStyles} />
             </div>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

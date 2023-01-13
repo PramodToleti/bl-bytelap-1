@@ -3,7 +3,6 @@
   padding-right: 10px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .nav-link {
@@ -13,9 +12,15 @@
 
 .nav-link-container {
   display: flex;
+  flex-direction: column;
   gap: 20px;
-  align-items: center;
   margin-top: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-link-container {
+    flex-direction: row;
+  }
 }
 
 .website-name {
@@ -23,4 +28,9 @@
   font-size: 20px;
   font-weight: 500;
   margin-top: 15px;
+}
+
+.toggle-theme-wrapper {
+  align-self: start;
+  margin: 0;
 }

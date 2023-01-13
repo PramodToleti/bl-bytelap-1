@@ -15,6 +15,9 @@ import EmployeeStep1 from "./components/CreateAccountEmployee/EmployeeStep1"
 import EmployeeStep2 from "./components/CreateAccountEmployee/EmployeeStep2"
 //Home
 import Home from "./components/Home"
+import EmployeeHome from "./components/EmployeeHome"
+import EmployeeDashboard from "./components/EmployeeDashboard"
+import EmployeeSettings from "./components/EmployeeSettings"
 //Settings
 import Accountsetting from "./components/AccountSetting"
 import SavedJobs from "./components/SavedJobs"
@@ -84,7 +87,17 @@ const App = () => {
 
           {/* Home Route */}
           <Route exact path="/" component={Home} />
-
+          <Route exact path="/employee" component={EmployeeHome} />
+          <Route
+            exact
+            path="/employee/dashboard"
+            component={EmployeeDashboard}
+          />
+          <Route
+            exact
+            path="/employee/account-setting"
+            component={EmployeeSettings}
+          />
           {/* Account Settings Routes */}
           <Route exact path="/saved-job" component={SavedJobs} />
           <Route
