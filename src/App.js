@@ -92,7 +92,9 @@ const App = () => {
             path="/employee/create-account/step-2"
             component={EmployeeStep2}
           />
+          {/* Create Resume */}
           <Route exact path="/create-resume" component={CreateResume} />
+          <Route exact path="/create-resume/template" component={Template} />
           {/* Forgot Password Routes */}
           <Route
             exact
@@ -184,7 +186,6 @@ const App = () => {
             component={Exp4}
           />
 
-          <Route exact path="/create-resume/template" component={Template} />
           {/* Account Settings Routes */}
           <Route exact path="/saved-job" component={SavedJobs} />
           <Route
