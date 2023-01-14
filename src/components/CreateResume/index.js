@@ -13,10 +13,12 @@ const ResumeTemplate = () => {
         </h1>
         <Row className="row-container">
           <Col xs={6} md={4} className="my-4 justify-content-center">
-            <Link to="create-resume/template" className="template-navlink">
-              <Card className="card-item">
+            <Link to="create-resume/template/1" className="template-navlink">
+              <Card className="card-item card-1">
                 <Card.Body className="d-flex align-items-center justify-content-center">
-                  template
+                  <button className="use-template-btn">
+                    Use this Template
+                  </button>
                 </Card.Body>
               </Card>
             </Link>
@@ -26,6 +28,9 @@ const ResumeTemplate = () => {
               <Card className="card-item">
                 <Card.Body className="d-flex align-items-center justify-content-center">
                   template
+                  <button className="use-template-btn">
+                    Use this Template
+                  </button>
                 </Card.Body>
               </Card>
             </Link>
@@ -35,6 +40,9 @@ const ResumeTemplate = () => {
               <Card className="card-item">
                 <Card.Body className="d-flex align-items-center justify-content-center">
                   template
+                  <button className="use-template-btn">
+                    Use this Template
+                  </button>
                 </Card.Body>
               </Card>
             </Link>
@@ -44,6 +52,9 @@ const ResumeTemplate = () => {
               <Card className="card-item">
                 <Card.Body className="d-flex align-items-center justify-content-center">
                   template
+                  <button className="use-template-btn">
+                    Use this Template
+                  </button>
                 </Card.Body>
               </Card>
             </Link>
@@ -53,6 +64,9 @@ const ResumeTemplate = () => {
               <Card className="card-item">
                 <Card.Body className="d-flex align-items-center justify-content-center">
                   template
+                  <button className="use-template-btn">
+                    Use this Template
+                  </button>
                 </Card.Body>
               </Card>
             </Link>
@@ -62,6 +76,9 @@ const ResumeTemplate = () => {
               <Card className="card-item">
                 <Card.Body className="d-flex align-items-center justify-content-center">
                   template
+                  <button className="use-template-btn">
+                    Use this Template
+                  </button>
                 </Card.Body>
               </Card>
             </Link>

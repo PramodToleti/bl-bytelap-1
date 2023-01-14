@@ -16,7 +16,7 @@
 
 @media screen and (min-width: 768px) {
   .body {
-    height: 500px;
+    height: 600px;
   }
 }
 
@@ -33,6 +33,34 @@
   height: 100px;
   width: 100%;
   cursor: pointer;
+  position: relative;
+}
+
+.card-1 {
+  background-image: url("https://res.cloudinary.com/dlpgowt5s/image/upload/v1673700603/WhatsApp_Image_2023-01-14_at_18.06.53_ver8nf.jpg");
+  background-size: cover;
+}
+
+.card-item:hover .use-template-btn {
+  display: block;
+}
+
+.use-template-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s linear;
+  display: none;
+  height: 50px;
+  width: 140px;
+  border-radius: 8px;
+  background-color: rgba(54, 54, 254, 0.897);
+  color: #ffffff;
+  font-family: "Roboto";
+  font-size: 14px;
+  box-shadow: 4px 5px 10px 0px rgb(130, 175, 237);
+  border: 0;
 }
 
 @media screen and (min-width: 768px) {

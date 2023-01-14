@@ -1,9 +1,9 @@
 import { useState } from "react"
 import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
-import { Form, Card, Row, Col, FormControl, Image } from "react-bootstrap"
-import { RiAccountCircleLine } from "react-icons/ri"
-import { TbSchool } from "react-icons/tb"
+import { Form, Card, Row, Col, Image } from "react-bootstrap"
+
+import CheckboxDropdown from "../../CheckboxDropdowm"
 
 import "./index.css"
 
@@ -12,6 +12,11 @@ const Template = () => {
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+
+  const [showTemplate, setShowTemplate] = useState(false)
+
+  const handleShowTemplate = () => setShowTemplate(true)
+  const handleCloseTemplate = () => setShowTemplate(false)
 
   const [image, setImage] = useState(null)
 
@@ -23,18 +28,34 @@ const Template = () => {
     firstName: "",
     lastName: "",
     title: "",
-    address: "",
+    city: "",
     email: "",
     mobileNumber: "",
+    professionalTitle: "",
     personDetails: "",
     image: null,
     show: false,
     schoolName: "",
     degree: "",
+    branch: "",
     startDate: "",
     endDate: "",
-    city: "",
     description: "",
+    links: "",
+    linkList: [],
+    jobTitle: "",
+    company: "",
+    jobCity: "",
+    empStartDate: "",
+    empEndDate: "",
+    schoolCity: "",
+    course: "",
+    courseStartDate: "",
+    courseEndDate: "",
+    institution: "",
+    hobbies: "",
+    hobbieList: [],
+    selectedSkills: [],
   })
 
   const handleChange = (e) => {
@@ -44,82 +65,202 @@ const Template = () => {
     })
   }
 
+  const handleSelectionChange = (selected) => {
+    setState({
+      ...state,
+      selectedSkills: selected,
+    })
+  }
+
+  const onAddLink = () => {
+    setState({
+      ...state,
+      linkList: [...state.linkList, state.links],
+    })
+  }
+
+  const onAddHobby = () => {
+    setState({
+      ...state,
+      hobbieList: [...state.hobbieList, state.hobbies],
+    })
+  }
+
+  const onRemoveHobby = () => {
+    const newList = state.hobbieList
+    newList.pop()
+    setState({
+      ...state,
+      hobbieList: [...newList],
+    })
+  }
+
+  const onRemoveLink = () => {
+    const newList = state.linkList
+    newList.pop()
+    setState({
+      ...state,
+      linkList: [...newList],
+    })
+  }
+
   const renderResume = () => (
     <div className="preview-container">
       <div className="user-details-container">
-        {image && (
+        {/*{image && (
           <Image
             src={URL.createObjectURL(image)}
             alt="Uploaded"
             rounded
             className="image-card"
           />
-        )}
+        )}*/}
         <div className="user-details">
           <h1 className="user-name">
             {state.firstName} {state.lastName}
           </h1>
-          <p className="job-title">{state.title}</p>
-          <p className="address">{state.address}</p>
-          <p className="mobile-no">{state.mobileNumber}</p>
-          <a
-            href="https://mail.google.com/mail/"
-            target={"_blank"}
-            className="email"
-          >
-            {state.email}
-          </a>
+
+          <div className="personal-details">
+            <p className="user-city">{state.city}</p>
+            <div>
+              <p className="address">{state.address}</p>
+              <p className="mobile-no">{state.mobileNumber}</p>
+              <a
+                href="https://mail.google.com/mail/"
+                target={"_blank"}
+                className="email"
+              >
+                {state.email}
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="resume-body">
-        <div className="profile-container">
-          {state.personDetails !== "" && (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "8px",
-                marginTop: "5px",
-              }}
-            >
-              <RiAccountCircleLine className="heading-icon" />
-              <h1 className="profile-heading">Profile</h1>
-            </div>
-          )}
-          <p className="profile-description">{state.personDetails}</p>
+      <div className="resume-summary">
+        <div style={{ width: "40%" }}>
+          {state.title !== "" && <p className="job-title">{state.title}</p>}
+          <p className="description">{state.description}</p>
         </div>
-        {state.schoolName !== "" && (
-          <div className="education-container">
-            {state.schoolName !== "" && (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "8px",
-                  marginTop: "5px",
-                }}
-              >
-                <TbSchool className="heading-icon" />
-                <h1 className="profile-heading">Education</h1>
-              </div>
-            )}
-            <p className="school-name">{state.schoolName}</p>
-            {state.startDate !== "" && state.endDate !== "" && (
-              <p className="school-date">
-                {new Date(state.startDate).toLocaleDateString("en-US", {
-                  year: "2-digit",
-                  month: "short",
-                })}{" "}
-                -{" "}
-                {new Date(state.endDate).toLocaleDateString("en-US", {
-                  year: "2-digit",
-                  month: "short",
-                })}
-              </p>
-            )}
-            <p className="profile-description">{state.description}</p>
-          </div>
-        )}
+        <div style={{ width: "25%" }}>
+          {state.selectedSkills.length !== 0 && (
+            <>
+              <p className="job-title">Skills</p>
+              {state.selectedSkills.map((each) => (
+                <li key={each.value} style={{ fontSize: "12px" }}>
+                  {each.label}
+                </li>
+              ))}
+            </>
+          )}
+        </div>
+        <div style={{ width: "25%" }}>
+          {state.linkList.length !== 0 && (
+            <>
+              <p className="job-title">Projects</p>
+              {state.linkList.map((each) => (
+                <a
+                  key={each}
+                  style={{
+                    fontSize: "10px",
+                    color: "blue",
+                    textDecoration: "none",
+                    wordBreak: "break-word",
+                  }}
+                >
+                  {each}
+                </a>
+              ))}
+            </>
+          )}
+        </div>
+      </div>
+      <div className="resume-employement">
+        <div style={{ width: "55%" }}>
+          {state.jobTitle !== "" && (
+            <h1 className="employeement-heading">Employement History</h1>
+          )}
+          <p className="job-title">{state.jobTitle}</p>
+          <p className="company-name">
+            {state.company}, {state.jobCity}
+          </p>
+          {state.empStartDate !== "" && state.empEndDate !== "" && (
+            <p className="school-date">
+              {new Date(state.empStartDate).toLocaleDateString("en-US", {
+                year: "2-digit",
+                month: "short",
+              })}{" "}
+              -{" "}
+              {new Date(state.empEndDate).toLocaleDateString("en-US", {
+                year: "2-digit",
+                month: "short",
+              })}
+            </p>
+          )}
+        </div>
+        <div style={{ width: "50%" }}>
+          {state.schoolName !== "" && (
+            <h1 className="employeement-heading">Education</h1>
+          )}
+          {state.branch !== "" && state.degree !== "" && (
+            <p className="job-title">{`${state.degree}(${state.branch})`}</p>
+          )}
+          <p className="company-name">
+            {state.schoolName}, {state.schoolCity}
+          </p>
+          {state.startDate !== "" && state.endDate !== "" && (
+            <p className="school-date">
+              {new Date(state.startDate).toLocaleDateString("en-US", {
+                year: "2-digit",
+                month: "short",
+              })}{" "}
+              -{" "}
+              {new Date(state.endDate).toLocaleDateString("en-US", {
+                year: "2-digit",
+                month: "short",
+              })}
+            </p>
+          )}
+        </div>
+      </div>
+      <div className="resume-courses">
+        <div style={{ width: "55%" }}>
+          {state.course !== "" && (
+            <h1 className="employeement-heading">Courses</h1>
+          )}
+          <p className="job-title">{state.course}</p>
+          <p className="company-name">{state.institution}</p>
+          {state.courseStartDate !== "" && state.courseEndDate !== "" && (
+            <p className="school-date">
+              {new Date(state.courseStartDate).toLocaleDateString("en-US", {
+                year: "2-digit",
+                month: "short",
+              })}{" "}
+              -{" "}
+              {new Date(state.courseEndDate).toLocaleDateString("en-US", {
+                year: "2-digit",
+                month: "short",
+              })}
+            </p>
+          )}
+        </div>
+        <div style={{ width: "50%" }}>
+          {state.hobbieList.length !== 0 && (
+            <>
+              <h1 className="employeement-heading">Hobbies</h1>
+              {state.hobbieList.map((each) => (
+                <li
+                  key={each}
+                  style={{
+                    fontSize: "13px",
+                    wordBreak: "break-word",
+                  }}
+                >
+                  {each}
+                </li>
+              ))}
+            </>
+          )}
+        </div>
       </div>
     </div>
   )
@@ -138,22 +279,22 @@ const Template = () => {
                   marginBottom: "20px",
                 }}
               >
-                About
+                Personal Details
               </h1>
-              <Col xs={12} md={12}>
+              {/*<Col xs={12} md={12}>
                 <Form.Group className="mb-3">
                   <Form.Label>Upload a Photo</Form.Label>
                   <FormControl type="file" onChange={handleImageChange} />
                 </Form.Group>
-              </Col>
+              </Col>*/}
               <Row>
+                {/* User Details */}
                 <Col xs={12} md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label>First Name</Form.Label>
                     <Form.Control
                       type="text"
                       name="firstName"
-                      placeholder="Enter your first name"
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -164,31 +305,18 @@ const Template = () => {
                     <Form.Control
                       type="text"
                       name="lastName"
-                      placeholder="Enter your last name"
                       onChange={handleChange}
                     />
                   </Form.Group>
                 </Col>
               </Row>
               <Row>
-                <Col xs={12} md={6}>
+                <Col xs={12} md={12}>
                   <Form.Group className="mb-3">
-                    <Form.Label>Job Title</Form.Label>
+                    <Form.Label>City</Form.Label>
                     <Form.Control
                       type="text"
-                      name="title"
-                      placeholder="Enter your Job Title"
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col xs={12} md={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="address"
-                      placeholder="Enter your Address"
+                      name="city"
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -201,7 +329,6 @@ const Template = () => {
                     <Form.Control
                       type="email"
                       name="email"
-                      placeholder="Enter your email"
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -212,23 +339,150 @@ const Template = () => {
                     <Form.Control
                       type="tel"
                       name="mobileNumber"
-                      placeholder="Enter your mobile number"
                       onChange={handleChange}
                     />
                   </Form.Group>
                 </Col>
               </Row>
+              {/* Professional Summary */}
+              <Form.Group>
+                <h1
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "600",
+                    fontFamily: "Roboto",
+                    marginTop: "30px",
+                    marginBottom: "20px",
+                  }}
+                >
+                  Professional Summary
+                </h1>
+                <Col xs={12} md={12}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="title"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={12}>
+                  <Form.Group className="mb-3">
+                    <Form.Label> Description</Form.Label>
+                    <Form.Control
+                      style={{ height: "70px" }}
+                      type="text"
+                      name="description"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+              </Form.Group>
+              <Col xs={12} md={12} className="mb-3">
+                {/*<Form.Group className="mb-3">
+                  <Form.Label>Skills</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="skills"
+                    onChange={handleChange}
+                  />
+                </Form.Group>*/}
+                <CheckboxDropdown onSelectionChange={handleSelectionChange} />
+              </Col>
               <Col xs={12} md={12}>
                 <Form.Group className="mb-3">
-                  <Form.Label> Personal Details</Form.Label>
+                  <Form.Label>Projects</Form.Label>
                   <Form.Control
-                    style={{ height: "70px" }}
                     type="text"
-                    name="personDetails"
+                    name="links"
+                    placeholder="paste URL"
+                    onChange={handleChange}
+                  />
+                  <Button
+                    className="mt-3 btn btn-sm"
+                    style={{ marginRight: "10px" }}
+                    onClick={onAddLink}
+                  >
+                    Add
+                  </Button>
+                  <Button
+                    variant="outline-danger"
+                    className="mt-3 btn btn-sm"
+                    onClick={onRemoveLink}
+                  >
+                    Remove
+                  </Button>
+                </Form.Group>
+              </Col>
+              <p style={{ color: "blue", fontFamily: "Roboto" }}>Add more</p>
+              {/* Employement Details */}
+              <Form.Group>
+                <h1
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "600",
+                    fontFamily: "Roboto",
+                    marginTop: "30px",
+                    marginBottom: "20px",
+                  }}
+                >
+                  Employement
+                </h1>
+                <Col xs={12} md={12}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Job Title</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="jobTitle"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={12}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Company</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="company"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+              </Form.Group>
+              <Col xs={12} md={12}>
+                <Form.Group className="mb-3">
+                  <Form.Label>City</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="jobCity"
                     onChange={handleChange}
                   />
                 </Form.Group>
               </Col>
+              <Row>
+                <Col xs={12} md={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Start Date</Form.Label>
+                    <Form.Control
+                      type="date"
+                      name="empStartDate"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>End Date</Form.Label>
+                    <Form.Control
+                      type="date"
+                      name="empEndDate"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              {/* Eduation Details */}
               <Form.Group>
                 <h1
                   style={{
@@ -248,7 +502,6 @@ const Template = () => {
                       <Form.Control
                         type="text"
                         name="schoolName"
-                        placeholder="Enter your school name"
                         onChange={handleChange}
                       />
                     </Form.Group>
@@ -259,7 +512,6 @@ const Template = () => {
                       <Form.Control
                         type="text"
                         name="degree"
-                        placeholder="Enter your degree"
                         onChange={handleChange}
                       />
                     </Form.Group>
@@ -293,25 +545,24 @@ const Template = () => {
                       <Form.Label>City</Form.Label>
                       <Form.Control
                         type="text"
-                        name="city"
-                        placeholder="Enter your city"
+                        name="schoolCity"
                         onChange={handleChange}
                       />
                     </Form.Group>
                   </Col>
                   <Col xs={12} md={6}>
                     <Form.Group className="mb-3">
-                      <Form.Label>Description</Form.Label>
+                      <Form.Label>Branch</Form.Label>
                       <Form.Control
-                        style={{ height: "70px" }}
                         type="text"
-                        name="description"
+                        name="branch"
                         onChange={handleChange}
                       />
                     </Form.Group>
                   </Col>
                 </Row>
               </Form.Group>
+              {/* Courses */}
               <Form.Group className="mb-3">
                 <h1
                   style={{
@@ -322,15 +573,119 @@ const Template = () => {
                     marginBottom: "20px",
                   }}
                 >
-                  Skills
+                  Courses
                 </h1>
+                <Col xs={12} md={12}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Course</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="course"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={12}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Institution</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="institution"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+                <Row>
+                  <Col xs={12} md={6}>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Start Date</Form.Label>
+                      <Form.Control
+                        type="date"
+                        name="courseStartDate"
+                        onChange={handleChange}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col xs={12} md={6}>
+                    <Form.Group className="mb-3">
+                      <Form.Label>End Date</Form.Label>
+                      <Form.Control
+                        type="date"
+                        name="courseEndDate"
+                        onChange={handleChange}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
               </Form.Group>
+              {/* Hobbies */}
+              <Form.Group>
+                <h1
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "600",
+                    fontFamily: "Roboto",
+                    marginTop: "30px",
+                    marginBottom: "20px",
+                  }}
+                >
+                  Hobbies
+                </h1>
+                <Col xs={12} md={12}>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="text"
+                      name="hobbies"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+              </Form.Group>
+              <Button
+                onClick={onAddHobby}
+                className="btn btn-sm"
+                style={{
+                  marginRight: "15px",
+                }}
+              >
+                Add
+              </Button>
+              <Button
+                variant="outline-danger"
+                className="btn btn-sm"
+                onClick={onRemoveHobby}
+              >
+                Remove
+              </Button>
             </Form>
           </Card.Body>
           <div className="demo-btn-container">
             <Button variant="primary" onClick={handleShow}>
               Preview
             </Button>
+            <Button
+              variant="primary"
+              style={{ marginLeft: "10px" }}
+              onClick={handleShowTemplate}
+            >
+              Template
+            </Button>
+            <Modal show={showTemplate} onHide={handleCloseTemplate}>
+              <Modal.Header closeButton>
+                <Modal.Title>Preview</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <img
+                  src="https://res.cloudinary.com/dlpgowt5s/image/upload/v1673701789/WhatsApp_Image_2023-01-14_at_18.06.53_y90vxe.jpg"
+                  className="template-image"
+                />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseTemplate}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
 
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>

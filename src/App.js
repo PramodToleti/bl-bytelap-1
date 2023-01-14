@@ -14,6 +14,7 @@ import CandidateStep2 from "./components/CreateAccountCandidate/CandidateStep2"
 import EmployeeStep1 from "./components/CreateAccountEmployee/EmployeeStep1"
 import EmployeeStep2 from "./components/CreateAccountEmployee/EmployeeStep2"
 import CreateResume from "./components/CreateResume"
+import TemplateView from "./components/TemplateView"
 //Home
 import Home from "./components/Home"
 import EmployeeHome from "./components/EmployeeHome"
@@ -94,7 +95,16 @@ const App = () => {
           />
           {/* Create Resume */}
           <Route exact path="/create-resume" component={CreateResume} />
-          <Route exact path="/create-resume/template" component={Template} />
+          <Route
+            exact
+            path="/create-resume/template/1"
+            component={TemplateView}
+          />
+          <Route
+            exact
+            path="/create-resume/template/1/edit"
+            component={Template}
+          />
           {/* Forgot Password Routes */}
           <Route
             exact
