@@ -4,6 +4,8 @@ import Modal from "react-bootstrap/Modal"
 import { Form, Card, Row, Col, Image } from "react-bootstrap"
 
 import CheckboxDropdown from "../../CheckboxDropdowm"
+import DynamicEducationForm from "../../DynamicEducationForm"
+import DynamicEmployementForm from "../../DynamicEmployementForm"
 
 import "./index.css"
 
@@ -56,6 +58,7 @@ const Template = () => {
     hobbies: "",
     hobbieList: [],
     selectedSkills: [],
+    employementList: [],
   })
 
   const handleChange = (e) => {
@@ -73,17 +76,21 @@ const Template = () => {
   }
 
   const onAddLink = () => {
-    setState({
-      ...state,
-      linkList: [...state.linkList, state.links],
-    })
+    if (state.links !== "") {
+      setState({
+        ...state,
+        linkList: [...state.linkList, state.links],
+      })
+    }
   }
 
   const onAddHobby = () => {
-    setState({
-      ...state,
-      hobbieList: [...state.hobbieList, state.hobbies],
-    })
+    if (state.hobbies !== "") {
+      setState({
+        ...state,
+        hobbieList: [...state.hobbieList, state.hobbies],
+      })
+    }
   }
 
   const onRemoveHobby = () => {
@@ -103,6 +110,8 @@ const Template = () => {
       linkList: [...newList],
     })
   }
+
+  console.log(state.employementList)
 
   const renderResume = () => (
     <div className="preview-container">
@@ -146,7 +155,7 @@ const Template = () => {
             <>
               <p className="job-title">Skills</p>
               {state.selectedSkills.map((each) => (
-                <li key={each.value} style={{ fontSize: "12px" }}>
+                <li key={each.value} style={{ fontSize: "10px" }}>
                   {each.label}
                 </li>
               ))}
@@ -161,7 +170,7 @@ const Template = () => {
                 <a
                   key={each}
                   style={{
-                    fontSize: "10px",
+                    fontSize: "8px",
                     color: "blue",
                     textDecoration: "none",
                     wordBreak: "break-word",
@@ -415,153 +424,32 @@ const Template = () => {
                   </Button>
                 </Form.Group>
               </Col>
-              <p style={{ color: "blue", fontFamily: "Roboto" }}>Add more</p>
               {/* Employement Details */}
-              <Form.Group>
-                <h1
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: "600",
-                    fontFamily: "Roboto",
-                    marginTop: "30px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  Employement
-                </h1>
-                <Col xs={12} md={12}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Job Title</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="jobTitle"
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col xs={12} md={12}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Company</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="company"
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-              </Form.Group>
-              <Col xs={12} md={12}>
-                <Form.Group className="mb-3">
-                  <Form.Label>City</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="jobCity"
-                    onChange={handleChange}
-                  />
-                </Form.Group>
-              </Col>
-              <Row>
-                <Col xs={12} md={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Start Date</Form.Label>
-                    <Form.Control
-                      type="date"
-                      name="empStartDate"
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col xs={12} md={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>End Date</Form.Label>
-                    <Form.Control
-                      type="date"
-                      name="empEndDate"
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
+              <h1
+                style={{
+                  fontSize: "20px",
+                  fontWeight: "600",
+                  fontFamily: "Roboto",
+                  marginTop: "30px",
+                  marginBottom: "20px",
+                }}
+              >
+                Employement
+              </h1>
+              <DynamicEmployementForm handleChange={handleChange} />
               {/* Eduation Details */}
-              <Form.Group>
-                <h1
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: "600",
-                    fontFamily: "Roboto",
-                    marginTop: "30px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  Education
-                </h1>
-                <Row>
-                  <Col xs={12} md={6}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>School Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="schoolName"
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={12} md={6}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Degree</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="degree"
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={12} md={6}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Start Date</Form.Label>
-                      <Form.Control
-                        type="date"
-                        name="startDate"
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={12} md={6}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>End Date</Form.Label>
-                      <Form.Control
-                        type="date"
-                        name="endDate"
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={12} md={6}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>City</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="schoolCity"
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col xs={12} md={6}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Branch</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="branch"
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-                  </Col>
-                </Row>
-              </Form.Group>
+              <h1
+                style={{
+                  fontSize: "20px",
+                  fontWeight: "600",
+                  fontFamily: "Roboto",
+                  marginTop: "30px",
+                  marginBottom: "20px",
+                }}
+              >
+                Education
+              </h1>
+              <DynamicEducationForm handleChange={handleChange} />
               {/* Courses */}
               <Form.Group className="mb-3">
                 <h1

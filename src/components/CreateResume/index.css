@@ -63,8 +63,12 @@
   border: 0;
 }
 
+.card-item.card {
+  height: 100px;
+}
+
 @media screen and (min-width: 768px) {
-  .card-item {
+  .card-item.card {
     width: 100%;
     height: 100%;
   }

@@ -24,7 +24,7 @@ const ResumeTemplate = () => {
             </Link>
           </Col>
           <Col xs={6} md={4} className="my-4 justify-content-center">
-            <Link to="create-resume/template" className="template-navlink">
+            <Link to="create-resume/template/1" className="template-navlink">
               <Card className="card-item">
                 <Card.Body className="d-flex align-items-center justify-content-center">
                   template
@@ -36,7 +36,7 @@ const ResumeTemplate = () => {
             </Link>
           </Col>
           <Col xs={6} md={4} className="my-4 justify-content-center">
-            <Link to="create-resume/template" className="template-navlink">
+            <Link to="create-resume/template/1" className="template-navlink">
               <Card className="card-item">
                 <Card.Body className="d-flex align-items-center justify-content-center">
                   template
@@ -48,7 +48,7 @@ const ResumeTemplate = () => {
             </Link>
           </Col>
           <Col xs={6} md={4} className="my-4 justify-content-center">
-            <Link to="create-resume/template" className="template-navlink">
+            <Link to="create-resume/template/1" className="template-navlink">
               <Card className="card-item">
                 <Card.Body className="d-flex align-items-center justify-content-center">
                   template
@@ -60,7 +60,7 @@ const ResumeTemplate = () => {
             </Link>
           </Col>
           <Col xs={6} md={4} className="my-4 justify-content-center">
-            <Link to="create-resume/template" className="template-navlink">
+            <Link to="create-resume/template/1" className="template-navlink">
               <Card className="card-item">
                 <Card.Body className="d-flex align-items-center justify-content-center">
                   template
@@ -72,7 +72,7 @@ const ResumeTemplate = () => {
             </Link>
           </Col>
           <Col xs={6} md={4} className="my-4 justify-content-center">
-            <Link to="create-resume/template" className="template-navlink">
+            <Link to="create-resume/template/1" className="template-navlink">
               <Card className="card-item">
                 <Card.Body className="d-flex align-items-center justify-content-center">
                   template
