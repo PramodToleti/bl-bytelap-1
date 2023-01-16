@@ -1,0 +1,9 @@
+@media screen and (max-width: 768px) {
+  .offcanvas-styles {
+    margin-top: 200px;
+    margin-right: 12px;
+    border-radius: 5px;
+    width: 100px;
+    height: 300px;
+  }
+}

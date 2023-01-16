@@ -36,7 +36,7 @@ function EmployeeHome() {
                     Post Job
                   </Link>
                   <Link
-                    to="/employee/dashboard/internship-1"
+                    to="/employee/dashboard/active-posts"
                     className="fs-5 nav-link"
                   >
                     Dashboard
@@ -52,7 +52,7 @@ function EmployeeHome() {
                       className="nav-link"
                       style={{ marginLeft: "9px" }}
                     >
-                      Company Limited
+                      Nelson Tech
                     </Link>
                     <Link
                       to="#action3"
@@ -62,13 +62,34 @@ function EmployeeHome() {
                       Info@demo.com
                     </Link>
                     <NavDropdown.Divider />
-                    <Link
-                      to="/employee/account-setting/my-info"
-                      className="nav-link"
+                    <NavDropdown
+                      className="ml-3"
                       style={{ marginLeft: "9px" }}
+                      title={<span className="fs-7">Account Setting</span>}
+                      id={`offcanvasNavbarDropdown-expand-${expand}`}
                     >
-                      Account setting
-                    </Link>
+                      <Link
+                        to="/employee/account-setting/my-info"
+                        className="nav-link"
+                        style={{ marginLeft: "9px" }}
+                      >
+                        Edit Profile
+                      </Link>
+                      <Link
+                        to="/employee/account-setting/company-setting"
+                        className="nav-link"
+                        style={{ marginLeft: "9px" }}
+                      >
+                        Company Profile
+                      </Link>
+                      <Link
+                        to="/employee/forgot-password"
+                        className="nav-link"
+                        style={{ marginLeft: "9px" }}
+                      >
+                        Change Password
+                      </Link>
+                    </NavDropdown>
                     <Link
                       to="#action5"
                       className="nav-link"

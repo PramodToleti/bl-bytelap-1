@@ -20,6 +20,12 @@ import Home from "./components/Home"
 import EmployeeHome from "./components/EmployeeHome"
 import EmployeeDashboard from "./components/EmployeeDashboard"
 import Template from "./components/Template"
+
+//Dashboard
+import ActivePosts from "./components/Dashboard/ActivePosts"
+import CVAlerts from "./components/Dashboard/CVAlerts"
+import Subscription from "./components/Dashboard/Subscription"
+
 //Settings
 import Accountsetting from "./components/AccountSetting"
 import SavedJobs from "./components/SavedJobs"
@@ -121,6 +127,22 @@ const App = () => {
           {/* Home Route */}
           <Route exact path="/" component={Home} />
           <Route exact path="/employee" component={EmployeeHome} />
+          {/* Dashboard */}
+          <Route
+            exact
+            path="/employee/dashboard/active-posts"
+            component={ActivePosts}
+          />
+          <Route
+            exact
+            path="/employee/dashboard/cv-alerts"
+            component={CVAlerts}
+          />
+          <Route
+            exact
+            path="/employee/dashboard/subscription"
+            component={Subscription}
+          />
           {/* Employee Settings */}
           <Route
             exact

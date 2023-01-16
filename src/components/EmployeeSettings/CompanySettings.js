@@ -15,24 +15,6 @@ function CompanySettings() {
       <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
         <p className="text-start fs-5">Account Setting</p>
         <hr></hr>
-        <Nav defaultActiveKey="/home" as="ul">
-          <Nav.Item as="li">
-            <Link
-              to="/employee/account-setting/my-info"
-              className="header-nav-link"
-            >
-              My Info
-            </Link>
-          </Nav.Item>
-          <Nav.Item as="li">
-            <Link
-              to="/employee/account-setting/company-setting"
-              className="header-nav-link"
-            >
-              Company Settings
-            </Link>
-          </Nav.Item>
-        </Nav>
 
         <div className="col-lg-8 border-light mt-5 shadow-sm p-3 mb-5  bg-white rounded">
           <p className="text-center mb-5"> Comapny Setting </p>

@@ -7,12 +7,14 @@ import Dropdown from "react-bootstrap/Dropdown"
 import { Link } from "react-router-dom"
 import ChooseFile from "../../ChooseFile"
 
+import DashboardHeader from "../../components/Dashboard/DashboardHeader"
+
 function Intern1() {
   return (
     <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
       <p className="text-start fs-5">Dashboard</p>
       <hr></hr>
-      <Nav defaultActiveKey="/home" as="ul">
+      {/*<Nav defaultActiveKey="/home" as="ul">
         <Nav.Item as="li">
           <Nav.Link href="/home">CV Alerts</Nav.Link>
         </Nav.Item>
@@ -22,7 +24,10 @@ function Intern1() {
         <Nav.Item as="li">
           <Nav.Link eventKey="link-1">Create Job</Nav.Link>
         </Nav.Item>
-      </Nav>
+  </Nav>*/}
+      <div>
+        <DashboardHeader />
+      </div>
 
       <div className="col-lg-8 border-light mt-5 shadow-sm p-3 mb-5  bg-white rounded">
         <p className="text-center mb-5">
@@ -33,6 +38,7 @@ function Intern1() {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
+              1
               <Link to="/employee/dashboard/internship-1" className="nav-link">
                 Internship
               </Link>
