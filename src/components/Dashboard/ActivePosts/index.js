@@ -10,19 +10,24 @@ import Experience from "./Experience"
 
 function ActivePosts() {
   const [selectedOption, setSelectedOption] = useState("internship")
+  const [isJobCardClicked, setJobCardClick] = useState(false)
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
   }
 
+  const onJobCardClick = () => {
+    setJobCardClick(true)
+  }
+
   const renderActiveJob = () => {
     switch (selectedOption) {
       case "internship":
-        return <Internship />
+        return <Internship onJobCardClick={onJobCardClick} />
       case "fresher":
-        return <Fresher />
+        return <Fresher onJobCardClick={onJobCardClick} />
       case "experience":
-        return <Experience />
+        return <Experience onJobCardClick={onJobCardClick} />
       default:
         return null
     }
@@ -32,21 +37,23 @@ function ActivePosts() {
     <>
       <EmployeeHome />
       <div className="main-container">
-        <div className="side-bar-container mt-4">
-          <h1
-            style={{
-              fontWeight: "600",
-              fontSize: "20px",
-              marginBottom: "20px",
-            }}
-          >
-            Applied 147
-          </h1>
-          <p style={{ fontSize: "16px" }}>Interested</p>
-          <p style={{ fontSize: "16px" }}>Shortlisted</p>
-          <p style={{ fontSize: "16px" }}>Hire</p>
-          <p style={{ fontSize: "16px" }}>Not Interested</p>
-        </div>
+        {isJobCardClicked && (
+          <div className="side-bar-container mt-4">
+            <h1
+              style={{
+                fontWeight: "600",
+                fontSize: "20px",
+                marginBottom: "20px",
+              }}
+            >
+              Applied 147
+            </h1>
+            <p style={{ fontSize: "16px" }}>Interested</p>
+            <p style={{ fontSize: "16px" }}>Shortlisted</p>
+            <p style={{ fontSize: "16px" }}>Hire</p>
+            <p style={{ fontSize: "16px" }}>Not Interested</p>
+          </div>
+        )}
         <div style={{ minHeight: "600px" }} className="form-container">
           <div
             className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-1 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary"

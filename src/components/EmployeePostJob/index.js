@@ -8,7 +8,7 @@ import "./index.css"
 import Internship from "./Internship"
 
 function EmployeePostJob() {
-  const [selectedOption, setSelectedOption] = useState("")
+  const [selectedOption, setSelectedOption] = useState("internship")
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)

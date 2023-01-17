@@ -32,7 +32,7 @@ function EmployeeHome() {
                   <Link to="/login" className="fs-5 mr-5 nav-link">
                     Premium
                   </Link>
-                  <Link to="/login" className="fs-5 nav-link">
+                  <Link to="/employee/post-job" className="fs-5 nav-link">
                     Post Job
                   </Link>
                   <Link
