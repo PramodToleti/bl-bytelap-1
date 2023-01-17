@@ -1,0 +1,15 @@
+.post-job-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-job-body {
+  width: 90%;
+  max-width: 1000px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  min-height: 300px;
+  padding: 20px;
+}

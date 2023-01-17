@@ -1,18 +1,22 @@
 import React, { Component } from "react"
 import { default as ReactSelect } from "react-select"
-import "./index.css"
 import { components } from "react-select"
 import { Form } from "react-bootstrap"
 
 const skills = [
-  { value: "HTML", label: "HTML" },
-  { value: "CSS", label: "CSS" },
-  { value: "Javascript", label: "Javascript" },
-  { value: "ReactJS", label: "ReactJS" },
-  { value: "NodeJS", label: "NodeJS" },
-  { value: "ExpressJS", label: "ExpressJS" },
-  { value: "Ruby", label: "Ruby" },
-  { value: "SQL", label: "SQL" },
+  { value: "Life insurance", label: "Life insurance" },
+  { value: "Paid sick time", label: "Paid sick time" },
+  { value: "Paid sick off", label: "Paid sick off" },
+  { value: "Cell phone reimbursment", label: "Cell phone reimbursment" },
+  { value: "Commutator assistance", label: "Commutator assistance" },
+  { value: "Flexible Schedule", label: "Flexible Schedule" },
+  { value: "Provident fund", label: "Provident fund" },
+  { value: "Joining bonus", label: "Joining bonus" },
+  { value: "Food allowance", label: "Food allowance" },
+  { value: "Health insurance", label: "Health insurance" },
+  { value: "Leave", label: "Leave" },
+  { value: "Internet reimbursement", label: "Internet reimbursement" },
+  { value: "Other", label: "Other" },
 ]
 
 const Option = (props) => {
@@ -30,7 +34,7 @@ const Option = (props) => {
   )
 }
 
-class CheckboxDropdown extends Component {
+class PerksDropdown extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -48,7 +52,7 @@ class CheckboxDropdown extends Component {
   render() {
     return (
       <Form.Group controlId="formRoomType" className="mb-3 mt-2">
-        <Form.Label>Skills</Form.Label>
+        <Form.Label>Perks</Form.Label>
         <span
           className="input-field"
           data-toggle="popover"
@@ -73,4 +77,4 @@ class CheckboxDropdown extends Component {
   }
 }
 
-export default CheckboxDropdown
+export default PerksDropdown

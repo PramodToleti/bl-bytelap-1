@@ -17,7 +17,7 @@ import CreateResume from "./components/CreateResume"
 import TemplateView from "./components/TemplateView"
 //Home
 import Home from "./components/Home"
-import EmployeeHome from "./components/EmployeeHome"
+import Employee from "./components/Employee"
 import EmployeeDashboard from "./components/EmployeeDashboard"
 import Template from "./components/Template"
 
@@ -25,6 +25,9 @@ import Template from "./components/Template"
 import ActivePosts from "./components/Dashboard/ActivePosts"
 import CVAlerts from "./components/Dashboard/CVAlerts"
 import Subscription from "./components/Dashboard/Subscription"
+
+//Post job
+import EmployeePostJob from "./components/EmployeePostJob"
 
 //Settings
 import Accountsetting from "./components/AccountSetting"
@@ -126,7 +129,9 @@ const App = () => {
 
           {/* Home Route */}
           <Route exact path="/" component={Home} />
-          <Route exact path="/employee" component={EmployeeHome} />
+          <Route exact path="/employee" component={Employee} />
+          {/*Post Job*/}
+          <Route exact path="/employee/post-job" component={EmployeePostJob} />
           {/* Dashboard */}
           <Route
             exact

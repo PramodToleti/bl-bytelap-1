@@ -1,0 +1,59 @@
+.post-job {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.post-container {
+  padding: 20px;
+  width: 100%;
+  max-width: 900px;
+}
+
+@media screen and (min-width: 768px) {
+  .post-container {
+    padding: 80px;
+  }
+}
+
+.post-job-heading {
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.post-job-header {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.radio-buttons-container {
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 600px;
+}
+
+.form-check-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  transition: border 0.2s ease-in-out;
+}
+
+.form-check-input:checked {
+  border: 2px solid #007bff;
+}
+
+.form-check-label {
+  font-size: 1rem;
+}

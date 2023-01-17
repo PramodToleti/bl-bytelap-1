@@ -1,0 +1,13 @@
+.custom-date-container {
+  display: flex;
+  margin-left: 25px;
+  margin-top: 10px;
+}
+
+.hide-date {
+  display: none;
+}
+
+.show-date {
+  display: block;
+}
