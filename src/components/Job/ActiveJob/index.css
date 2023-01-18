@@ -8,6 +8,12 @@
   appearance: none;
 }
 
+@media screen and (min-width: 768px) {
+  .custom-select {
+    display: none;
+  }
+}
+
 .custom-select:hover {
   background-color: rgb(177, 174, 174);
 }
@@ -18,4 +24,14 @@
 
 .custom-select::before {
   color: blue;
+}
+
+.side-bar-container {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .side-bar-container {
+    display: block;
+  }
 }
