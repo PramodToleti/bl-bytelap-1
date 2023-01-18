@@ -8,6 +8,7 @@ import NavDropdown from "react-bootstrap/NavDropdown"
 import Row from "react-bootstrap/Row"
 import EmployeeHome from "../EmployeeHome"
 import { Link } from "react-router-dom"
+import ChooseFile from "../../ChooseFile"
 
 function CompanySetting() {
   return (
@@ -75,12 +76,21 @@ function CompanySetting() {
             className="mt-3"
             controlId="validationCustom01"
           >
-            <Stack direction="horizontal" gap={3}>
+            <Form.Label className="mt-2">Upload Logo </Form.Label>
+            <Stack
+              direction="horizontal"
+              gap={3}
+              style={{
+                marginTop: "7px",
+                display: "flex",
+                alignItems: "flex-start",
+              }}
+            >
               <input className="d-none" type="file" />
-              <button className="btn btn-outline-primary">Upload Logo</button>
+              <ChooseFile />
             </Stack>
             <Form.Control.Feedback type="invalid">
-              Upload Logo
+              Please upload company logo.
             </Form.Control.Feedback>
           </Form.Group>
 
