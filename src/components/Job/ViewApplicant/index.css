@@ -6,7 +6,7 @@
 .resume-side-heading {
   font-weight: 500;
   font-size: 21px;
-  margin-top: 35px;
+  margin-top: 45px;
 }
 
 p {
@@ -32,5 +32,22 @@ p {
 @media screen and (min-width: 768px) {
   .dashboard-options {
     display: block;
+  }
+}
+
+.interested-btn-container-applicant {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  position: fixed;
+  bottom: 70px;
+}
+
+@media screen and (min-width: 768px) {
+  .interested-btn-container-applicant {
+    margin-left: 60px;
   }
 }

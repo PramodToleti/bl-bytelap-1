@@ -1,7 +1,5 @@
 .custom-select {
-  background-color: rgb(210, 207, 207);
   border-radius: 10px;
-  color: rgb(0, 0, 240);
   font-weight: 500;
   padding: 10px;
   -webkit-appearance: none;
@@ -12,14 +10,6 @@
   .custom-select {
     display: none;
   }
-}
-
-.custom-select:hover {
-  background-color: rgb(177, 174, 174);
-}
-
-.custom-select:active {
-  background-color: #3f51b5;
 }
 
 .custom-select::before {
@@ -33,5 +23,15 @@
 @media screen and (min-width: 768px) {
   .side-bar-container {
     display: block;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .skills-header {
+    margin-left: 60px;
+  }
+
+  .portfolio-header {
+    margin-left: 40px;
   }
 }

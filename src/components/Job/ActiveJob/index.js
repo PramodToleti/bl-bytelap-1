@@ -9,7 +9,7 @@ import "./index.css"
 
 function ActiveJob() {
   return (
-    <>
+    <div>
       <EmployeeHome />
 
       <div className="col-lg-12 col-md-12 search-course-right   mb-4 p-2 bg-light text-dark  rounded container reveal  p-3 mb-5 bg-white rounded ">
@@ -21,7 +21,7 @@ function ActiveJob() {
           >
             Dashboard
           </Link>
-          {`> Active Posts`}
+          {`> CV applicant's`}
         </p>
         <div className="d-flex justify-content-around">
           <div
@@ -58,7 +58,7 @@ function ActiveJob() {
                       />
 
                       <Form.Check
-                        className="ms-auto"
+                        className=""
                         inline
                         label="Fresher"
                         name="group1"
@@ -67,7 +67,7 @@ function ActiveJob() {
                       />
 
                       <Form.Check
-                        className="ms-auto"
+                        className=""
                         inline
                         label="Experience"
                         name="group1"
@@ -116,7 +116,10 @@ function ActiveJob() {
                 <div className="mt-3">Android Developer</div>
                 <div className="mt-3">
                   Skill's:{" "}
-                  <span style={{ marginRight: "15px", marginLeft: "15px" }}>
+                  <span
+                    style={{ marginRight: "15px" }}
+                    className="skills-header"
+                  >
                     React Native
                   </span>
                   <span style={{ marginRight: "15px" }}>Node js</span>
@@ -128,10 +131,10 @@ function ActiveJob() {
                     href=""
                     style={{
                       color: "Blue",
-                      marginLeft: "15px",
                       textDecoration: "none",
                       fontWeight: "500",
                     }}
+                    className="portfolio-header"
                   >
                     https://www.project.com
                   </a>
@@ -161,22 +164,24 @@ function ActiveJob() {
                   </p>
                 </div>
                 <div className="mt-3"></div>
-                <div className="interested-btn-container">
-                  <Button variant="success" size="sm" className=" mt-3">
-                    Interested
-                  </Button>{" "}
-                  <Button variant="primary" className=" mt-3" size="sm">
-                    Shortlisted
-                  </Button>{" "}
-                  <Button variant="danger" className=" mt-3" size="sm">
-                    Not interested
-                  </Button>{" "}
-                  <Button variant="light" className=" mt-3" size="sm">
-                    Call
-                  </Button>{" "}
-                  <Button variant="link" className=" mt-3" size="sm">
-                    Resume
-                  </Button>
+                <div>
+                  <div className="interested-btn-container">
+                    <Button variant="success" size="sm" className=" mt-3">
+                      Interested
+                    </Button>{" "}
+                    <Button variant="primary" className=" mt-3" size="sm">
+                      Shortlisted
+                    </Button>{" "}
+                    <Button variant="danger" className=" mt-3" size="sm">
+                      Not interested
+                    </Button>{" "}
+                    <Button variant="light" className=" mt-3" size="sm">
+                      Call
+                    </Button>{" "}
+                    <Button variant="link" className=" mt-3" size="sm">
+                      Resume
+                    </Button>
+                  </div>
                 </div>
 
                 <div>
@@ -187,7 +192,7 @@ function ActiveJob() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

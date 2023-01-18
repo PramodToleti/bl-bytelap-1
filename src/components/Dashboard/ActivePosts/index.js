@@ -9,13 +9,18 @@ import Row from "react-bootstrap/Row"
 import { Link } from "react-router-dom"
 
 import EmployeeHome from "../../EmployeeHome"
+import { useState } from "react"
 
 function Accountsetting() {
+  const [activeFilter, setActiveFilter] = useState("internship")
+
+  const renderActiveJob = () => {}
+
   return (
     <>
       <EmployeeHome />
       <div className="col-lg-8 col-md-8 search-course-right   mb-4 mt-5 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
-        <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
+        <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-1 bg-light text-dark  border-secondary rounded container reveal  p-2 mb-5 bg-white rounded border border-secondary">
           <Form.Group className="mb-0 mt-0 fs-10" controlId="formBasicText">
             <Stack direction="horizontal" gap={3}>
               {["radio"].map((type) => (
@@ -29,7 +34,7 @@ function Accountsetting() {
                   />
 
                   <Form.Check
-                    className="ms-auto"
+                    className=""
                     inline
                     label="Fresher"
                     name="group1"
@@ -38,7 +43,7 @@ function Accountsetting() {
                   />
 
                   <Form.Check
-                    className="ms-auto"
+                    className=""
                     inline
                     label="Experience"
                     name="group1"
