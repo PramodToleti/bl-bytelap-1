@@ -3,10 +3,13 @@ import React, { useState } from "react"
 import { Button } from "react-bootstrap"
 
 const Internship = (props) => {
-  const { onJobCardClick } = props
-  const [isJobOpened, setJobOption] = useState(false)
-  const [showResume, setShowResume] = useState(false)
-
+  const {
+    setJobOption,
+    isJobOpened,
+    showResume,
+    setShowResume,
+    onJobCardClick,
+  } = props
   const renderResume = () => (
     <div>
       <h1 className="resume-username">Nilesh</h1>
@@ -91,6 +94,7 @@ const Internship = (props) => {
       <Button
         variant="outline-dark"
         style={{ width: "100%", marginBottom: "10px" }}
+        className="select-post-mobile"
       >
         Select Post
       </Button>

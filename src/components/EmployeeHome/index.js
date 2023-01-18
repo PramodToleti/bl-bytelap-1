@@ -7,8 +7,10 @@ import { Link } from "react-router-dom"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import Theme from "../../Theme"
+import { set } from "mobx"
 
-function EmployeeHome() {
+function EmployeeHome(props) {
+  const { setJobCardClick } = props
   return (
     <>
       {["sm"].map((expand) => (
@@ -29,8 +31,8 @@ function EmployeeHome() {
 
               <Offcanvas.Body>
                 <div className="justify-content-end flex-grow-1 pe-3 nav-link-container">
-                  <Link to="/login" className="fs-5 mr-5 nav-link">
-                    Premium
+                  <Link to="/employee" className="fs-5 mr-5 nav-link">
+                    Home
                   </Link>
                   <Link to="/employee/post-job" className="fs-5 nav-link">
                     Post Job

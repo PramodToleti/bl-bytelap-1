@@ -1,5 +1,5 @@
 .form-check-inline {
-  margin-right: 5px;
+  margin-right: 4px;
 }
 
 .active-job-container {
@@ -9,32 +9,29 @@
   align-self: flex-start;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 15px;
-  margin-left: 10px;
+  padding: 10px;
   margin-bottom: 15px;
 }
 
+@media screen and (min-width: 768px) {
+  .active-job-container {
+    margin-left: 10px;
+  }
+}
+
 .side-bar-container {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 25px;
   display: none;
-  font-family: "Roboto";
-  height: 100%;
 }
 
 @media screen and (min-width: 768px) {
   .side-bar-container {
     display: block;
-    width: 15%;
-    height: 100%;
-    min-height: 435px;
-    padding-left: 25px;
   }
 }
 
 .form-container {
   width: 100%;
+  max-height: 500px;
 }
 
 @media screen and (min-width: 768px) {
@@ -43,19 +40,46 @@
   }
 }
 
-.main-container {
-  align-items: flex-start;
-  gap: 20px;
+.dashboard-container {
+  border: 1px solid rgb(90, 89, 89);
 }
 
 @media screen and (min-width: 768px) {
-  .main-container {
-    margin-top: 60px;
+  .dashboard-container {
+    border: none;
   }
 }
 
 .main-container {
-  min-height: 600px;
-  padding-left: 80px;
-  padding-right: 80px;
+  align-items: flex-start;
+  gap: 20px;
+  padding-top: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .main-container {
+    min-height: 600px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+.radio-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+}
+
+.select-post {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .select-post {
+    display: block;
+    align-self: flex-start;
+    margin-left: 10px;
+    width: 230px;
+  }
 }

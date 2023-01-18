@@ -31,12 +31,6 @@
   margin-bottom: 20px;
 }
 
-.radio-buttons-container {
-  display: flex;
-  justify-content: space-evenly;
-  max-width: 600px;
-}
-
 .form-check-input {
   appearance: none;
   -webkit-appearance: none;

@@ -26,6 +26,10 @@ import ActivePosts from "./components/Dashboard/ActivePosts"
 import CVAlerts from "./components/Dashboard/CVAlerts"
 import Subscription from "./components/Dashboard/Subscription"
 
+//Active Job
+import ActiveJob from "./components/Job/ActiveJob"
+import ViewApplicant from "./components/Job/ViewApplicant"
+
 //Post job
 import EmployeePostJob from "./components/EmployeePostJob"
 
@@ -147,6 +151,17 @@ const App = () => {
             exact
             path="/employee/dashboard/subscription"
             component={Subscription}
+          />
+          {/* Active Job */}
+          <Route
+            exact
+            path="/employee/dashboard/active-posts/job"
+            component={ActiveJob}
+          />
+          <Route
+            exact
+            path="/employee/dashboard/active-posts/job/view-applicant"
+            component={ViewApplicant}
           />
           {/* Employee Settings */}
           <Route

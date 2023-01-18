@@ -1,0 +1,36 @@
+.resume-username {
+  font-weight: 500;
+  font-size: 21px;
+}
+
+.resume-side-heading {
+  font-weight: 500;
+  font-size: 21px;
+  margin-top: 35px;
+}
+
+p {
+  font-size: 17px;
+}
+
+@media screen and (min-width: 768px) {
+  .select-post-mobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dashboard-nav-mobile {
+    display: none;
+  }
+}
+
+.dashboard-options {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .dashboard-options {
+    display: block;
+  }
+}

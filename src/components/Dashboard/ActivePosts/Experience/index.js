@@ -2,7 +2,8 @@ import "./index.css"
 import React, { useState } from "react"
 import { Button } from "react-bootstrap"
 
-const Experience = () => {
+const Experience = (props) => {
+  const { onJobCardClick } = props
   const [isJobOpened, setJobOption] = useState(false)
   const [showResume, setShowResume] = useState(false)
 
@@ -256,12 +257,20 @@ const Experience = () => {
     <div
       className="application-container"
       style={{ cursor: "pointer" }}
-      onClick={() => setShowResume(true)}
+      onClick={() => {
+        setShowResume(true)
+      }}
     >
       {showResume ? renderResume() : renderApplication()}
     </div>
   ) : (
-    <div className="job-container" onClick={() => setJobOption(true)}>
+    <div
+      className="job-container"
+      onClick={() => {
+        setJobOption(true)
+        onJobCardClick()
+      }}
+    >
       <div className="job-header">
         <h1 className="job-name">Android developer</h1>
         <div className="action-btn-container">
