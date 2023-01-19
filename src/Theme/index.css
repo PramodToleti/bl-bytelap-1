@@ -1,15 +1,23 @@
+/* 1 */
 :root {
   --font-color: #333;
   --background-color: #eee;
   --link-color: cornflowerblue;
 }
 
-[data-theme="dark"] {
+/* 2 */
+html[data-theme="dark"] {
   --font-color: #eee;
   --background-color: #333;
   --link-color: lightblue;
 }
 
+html[data-theme="light"] {
+  background-color: white;
+  color: black;
+}
+
+/* 3 */
 body {
   background-color: var(--background-color);
   color: var(--font-color);
@@ -20,25 +28,15 @@ a {
 }
 
 /* Custom Dark Mode Toggle Element */
-
 .toggle-theme-wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
-  align-self: flex-end;
-  margin-top: 5px;
-  margin-left: 10px;
-}
-
-@media screen and (min-width: 768px) {
-  .toggle-theme-wrapper {
-    margin-right: 40px;
-  }
+  gap: 4px;
 }
 
 .toggle-theme-wrapper span {
   font-size: 28px;
-  margin: 0 4px;
 }
 
 .toggle-theme {
@@ -88,4 +86,14 @@ input:checked + .slider {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.dark {
+  background-color: rgb(43, 40, 40);
+  color: #ffffff;
+}
+
+.light {
+  background-color: #ffffff;
+  color: black;
 }

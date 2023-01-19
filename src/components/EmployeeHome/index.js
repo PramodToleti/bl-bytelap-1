@@ -2,19 +2,16 @@ import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
 import NavDropdown from "react-bootstrap/NavDropdown"
-
 import { Link } from "react-router-dom"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import Theme from "../../Theme"
-import { set } from "mobx"
 
-function EmployeeHome(props) {
-  const { setJobCardClick } = props
+function EmployeeHome() {
   return (
     <>
       {["sm"].map((expand) => (
-        <Navbar key={expand} bg="" expand={expand} className="mb-3 pt-3">
+        <Navbar key={expand} bg="" expand={expand} className="mb-3 pt-3 ">
           <Container>
             <p className="website-name">Website</p>{" "}
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />

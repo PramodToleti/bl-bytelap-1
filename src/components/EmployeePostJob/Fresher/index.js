@@ -12,11 +12,14 @@ import { Col } from "react-bootstrap"
 
 import "./index.css"
 import PerksDropdown from "../../../PerksDropdown"
+import SupplementaryDropdown from "../../../SupplementaryDropdown"
+import DynamicPostJob from "../../../DynamicPostJob"
 
 function Fresher() {
   const [validated, setValidated] = useState(false)
   const [jobType, setJobType] = useState("Office")
   const [salaryType, setSalaryType] = useState("")
+
   const [state, setState] = useState({
     selectedSkills: [],
   })
@@ -116,39 +119,7 @@ function Fresher() {
     >
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3">
-          <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-            <Form.Label>Job Tittle</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="software developer , digital marketing"
-            />
-          </Form.Group>
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Full time or Part time </Form.Label>
-            <Form.Select>
-              <option> Select an option </option>
-              <option> Full-Time </option>
-              <option>Part-Time</option>
-              <option>Both</option>
-            </Form.Select>
-          </Form.Group>
-
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Job Type</Form.Label>
-            <Form.Select onChange={(e) => setJobType(e.target.value)}>
-              <option> Office </option>
-              <option>Remote</option>
-            </Form.Select>
-          </Form.Group>
-
-          {jobType === "Office" && (
-            <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <ChooseCity />
-              <Form.Control.Feedback type="invalid">
-                Please enter your city.
-              </Form.Control.Feedback>
-            </Form.Group>
-          )}
+          <DynamicPostJob />
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Duration of Internship </Form.Label>
@@ -215,6 +186,8 @@ function Fresher() {
           </Row>
 
           {renderSalaryType()}
+
+          <SupplementaryDropdown />
 
           <PerksDropdown />
 

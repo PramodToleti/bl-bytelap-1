@@ -7,14 +7,13 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai"
 import { Link } from "react-router-dom"
 
 import "./index.css"
-import DashboardHeader from "../../Dashboard/DashboardHeader"
 
 function ViewApplicant() {
   return (
     <>
       <EmployeeHome />
 
-      <div className="col-lg-12 col-md-12 search-course-right   mb-4 p-2 bg-light text-dark  rounded container reveal  p-3  bg-white rounded ">
+      <div className="col-lg-12 col-md-12 search-course-right    p-2 bg-light text-dark  rounded container reveal  p-2  bg-white rounded ">
         <p style={{ display: "flex", gap: "10px" }}>
           <Link
             to="/employee/dashboard/active-posts"
@@ -26,7 +25,7 @@ function ViewApplicant() {
           <Link
             to="/employee/dashboard/active-posts/job"
             className="nav-link"
-          >{`> View Applicant's`}</Link>
+          >{`> CV Applicant's`}</Link>
           {`> Nilesh`}
         </p>
       </div>
@@ -39,7 +38,10 @@ function ViewApplicant() {
           maxWidth: "900px",
         }}
       >
-        <div style={{ overflow: "auto", maxHeight: "440px" }}>
+        <div
+          style={{ overflow: "auto", maxHeight: "440px" }}
+          className="applicant-card"
+        >
           <div>
             <h1 className="resume-username">Nilesh</h1>
             <p className="resume-job-title">Android developer</p>
@@ -160,13 +162,13 @@ function ViewApplicant() {
               <Button variant="link" className=" mt-3" size="sm">
                 Resume
               </Button>
+              <div>
+                <AiOutlineLeft className="mt-3" />
+              </div>
+              <div style={{ cursor: "pointer" }}>
+                <AiOutlineRight className="mt-3" />
+              </div>
             </div>
-          </div>
-          <div>
-            <AiOutlineLeft className="mt-3" />
-          </div>
-          <div>
-            <AiOutlineRight className="mt-3" />
           </div>
         </div>
       </div>

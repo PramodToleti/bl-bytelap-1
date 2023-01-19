@@ -1,16 +1,8 @@
-import { createContext, useState } from "react"
 import "./index.css"
+import { useState, useEffect } from "react"
+// 1
 
-const setDark = () => {
-  localStorage.setItem("theme", "dark")
-  document.documentElement.setAttribute("data-theme", "dark")
-}
-
-const setLight = () => {
-  localStorage.setItem("theme", "light")
-  document.documentElement.setAttribute("data-theme", "light")
-}
-
+// 4
 const storedTheme = localStorage.getItem("theme")
 
 const prefersDark =
@@ -19,42 +11,39 @@ const prefersDark =
 const defaultDark =
   storedTheme === "dark" || (storedTheme === null && prefersDark)
 
-if (defaultDark) {
-  setDark()
-}
+//
 
-const Theme = (props) => {
-  const { activeThemeStyles } = props
+const Theme = () => {
+  const [theme, setTheme] = useState("light")
+  useEffect(() => {
+    localStorage.setItem("theme", theme)
+    document.documentElement.setAttribute("data-theme", theme)
+  }, [theme])
 
-  const ThemeContext = createContext(null)
-  const [activeTheme, setActiveTheme] = useState(false)
   const toggleTheme = (e) => {
     if (e.target.checked) {
-      setDark()
+      setTheme("dark")
     } else {
-      setLight()
+      setTheme("light")
     }
-
-    console.log(activeTheme)
-    //activeThemeStyles(activeTheme)
   }
 
+  console.log(localStorage.getItem("theme"))
   return (
-    <ThemeContext.Provider value={{ activeTheme, toggleTheme }}>
-      <div className="toggle-theme-wrapper">
-        <span>☀️</span>
-        <label className="toggle-theme" htmlFor="checkbox">
-          <input
-            type="checkbox"
-            id="checkbox"
-            onChange={toggleTheme}
-            defaultChecked={defaultDark}
-          />
-          <div className="slider round"></div>
-        </label>
-        <span>🌒</span>
-      </div>
-    </ThemeContext.Provider>
+    <div className="toggle-theme-wrapper">
+      <span>☀️</span>
+      <label className="toggle-theme" htmlFor="checkbox">
+        <input
+          type="checkbox"
+          id="checkbox"
+          // 6
+          onChange={toggleTheme}
+          defaultChecked={defaultDark}
+        />
+        <div className="slider round"></div>
+      </label>
+      <span>🌒</span>
+    </div>
   )
 }
 
