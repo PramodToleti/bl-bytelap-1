@@ -1,6 +1,19 @@
 import "./index.css"
-import { useState, useEffect } from "react"
+import { useState } from "react"
+
 // 1
+const setDark = () => {
+  // 2
+  localStorage.setItem("theme", "dark")
+
+  // 3
+  document.documentElement.setAttribute("data-theme", "dark")
+}
+
+const setLight = () => {
+  localStorage.setItem("theme", "light")
+  document.documentElement.setAttribute("data-theme", "light")
+}
 
 // 4
 const storedTheme = localStorage.getItem("theme")
@@ -11,24 +24,27 @@ const prefersDark =
 const defaultDark =
   storedTheme === "dark" || (storedTheme === null && prefersDark)
 
-//
+if (defaultDark) {
+  setDark()
+}
+
+// 5
 
 const Theme = () => {
-  const [theme, setTheme] = useState("light")
-  useEffect(() => {
-    localStorage.setItem("theme", theme)
-    document.documentElement.setAttribute("data-theme", theme)
-  }, [theme])
+  const storedValue = localStorage.getItem("isChecked") || false
+  const [isChecked, setIsChecked] = useState(storedValue)
 
   const toggleTheme = (e) => {
+    const newValue = e.target.checked
+    setIsChecked(newValue)
+    localStorage.setItem("isChecked", newValue)
     if (e.target.checked) {
-      setTheme("dark")
+      setDark()
     } else {
-      setTheme("light")
+      setLight()
     }
   }
 
-  console.log(localStorage.getItem("theme"))
   return (
     <div className="toggle-theme-wrapper">
       <span>☀️</span>

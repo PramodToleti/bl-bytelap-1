@@ -19,8 +19,8 @@ html[data-theme="light"] {
 
 /* 3 */
 body {
-  background-color: var(--background-color);
-  color: var(--font-color);
+  background-color: var(--background-color) !important;
+  color: var(--font-color) !important;
 }
 
 a {

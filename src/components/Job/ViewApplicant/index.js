@@ -13,7 +13,10 @@ function ViewApplicant() {
     <>
       <EmployeeHome />
 
-      <div className="col-lg-12 col-md-12 search-course-right    p-2 bg-light text-dark  rounded container reveal  p-2  bg-white rounded ">
+      <div
+        className="col-lg-12 col-md-12 search-course-right  p-2  text-dark  rounded container reveal  p-2  rounded "
+        style={{ backgroundColor: "#ffffff" }}
+      >
         <p style={{ display: "flex", gap: "10px" }}>
           <Link
             to="/employee/dashboard/active-posts"
@@ -35,7 +38,6 @@ function ViewApplicant() {
           height: "550px",
           overflow: "auto",
           position: "relative",
-          maxWidth: "900px",
         }}
       >
         <div
