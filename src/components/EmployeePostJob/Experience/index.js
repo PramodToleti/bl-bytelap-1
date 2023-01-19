@@ -14,6 +14,8 @@ import "./index.css"
 import PerksDropdown from "../../../PerksDropdown"
 import SupplementaryDropdown from "../../../SupplementaryDropdown"
 import DynamicPostJob from "../../../DynamicPostJob"
+import DynamicEducationForm from "../../../DynamicEducationForm"
+import DynamicEducationJob from "../../../DynamicEducationJob"
 
 function Experience() {
   const [validated, setValidated] = useState(false)
@@ -121,19 +123,6 @@ function Experience() {
           <DynamicPostJob />
 
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>Duration of Internship </Form.Label>
-            <Form.Select>
-              <option>Select an option </option>
-              <option> 1 </option>
-              <option> 2 </option>
-              <option> 3 </option>
-              <option> 4 </option>
-              <option> 5 </option>
-              <option> 6 </option>
-            </Form.Select>
-          </Form.Group>
-
-          <Form.Group className="mb-3 mt-2">
             <Form.Label>
               What is the Shift to this experience Position
             </Form.Label>
@@ -167,12 +156,39 @@ function Experience() {
             )}
           </Form.Group>
 
+          <DynamicEducationJob />
           <CheckboxDropdown onSelectionChange={handleSelectionChange} />
 
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>Intern's responsibilities</Form.Label>
+            <Form.Label>Job description</Form.Label>
             <Form.Control as="textarea" rows="5" />
           </Form.Group>
+
+          <Row className="mb-3">
+            <Form.Label>Experience</Form.Label>
+            <Col xs={6}>
+              <Form.Group className="mb-3">
+                <Form.Select placeholder="From">
+                  {[0, 1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
+                    (each) => (
+                      <option>{each}</option>
+                    )
+                  )}
+                </Form.Select>
+              </Form.Group>
+            </Col>
+            <Col xs={6}>
+              <Form.Group className="mb-3">
+                <Form.Select placeholder="To">
+                  {[1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
+                    (each) => (
+                      <option>{each}</option>
+                    )
+                  )}
+                </Form.Select>
+              </Form.Group>
+            </Col>
+          </Row>
 
           <Row className="mb-3">
             <Form.Group as={Col} md="6" controlId="validationCustom03">

@@ -114,7 +114,7 @@ const DynamicEmployementForm = (props) => {
       })}
 
       <Row>
-        <Col className="pt-3 d-flex justify-content-between">
+        <Col className=" d-flex justify-content-between">
           <Button variant="primary" onClick={handleAddFields}>
             Add More
           </Button>

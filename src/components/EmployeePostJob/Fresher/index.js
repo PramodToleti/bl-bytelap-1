@@ -14,6 +14,8 @@ import "./index.css"
 import PerksDropdown from "../../../PerksDropdown"
 import SupplementaryDropdown from "../../../SupplementaryDropdown"
 import DynamicPostJob from "../../../DynamicPostJob"
+import DynamicEducationForm from "../../../DynamicEducationForm"
+import DynamicEducationJob from "../../../DynamicEducationJob"
 
 function Fresher() {
   const [validated, setValidated] = useState(false)
@@ -122,19 +124,6 @@ function Fresher() {
           <DynamicPostJob />
 
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>Duration of Internship </Form.Label>
-            <Form.Select>
-              <option>Select an option </option>
-              <option> 1 </option>
-              <option> 2 </option>
-              <option> 3 </option>
-              <option> 4 </option>
-              <option> 5 </option>
-              <option> 6 </option>
-            </Form.Select>
-          </Form.Group>
-
-          <Form.Group className="mb-3 mt-2">
             <Form.Label>What is the Shift to this Fresher Position</Form.Label>
             <Form.Select>
               <option>Select an option </option>
@@ -166,10 +155,11 @@ function Fresher() {
             )}
           </Form.Group>
 
+          <DynamicEducationJob />
           <CheckboxDropdown onSelectionChange={handleSelectionChange} />
 
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>Intern's responsibilities</Form.Label>
+            <Form.Label>Job description</Form.Label>
             <Form.Control as="textarea" rows="5" />
           </Form.Group>
 
@@ -186,8 +176,6 @@ function Fresher() {
           </Row>
 
           {renderSalaryType()}
-
-          <SupplementaryDropdown />
 
           <PerksDropdown />
 

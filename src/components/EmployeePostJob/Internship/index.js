@@ -185,8 +185,6 @@ function Internship() {
 
           {renderSalaryType()}
 
-          <SupplementaryDropdown />
-
           <PerksDropdown />
 
           <Form.Group className="mb-3 mt-2">

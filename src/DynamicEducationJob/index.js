@@ -4,9 +4,7 @@ import { Form, Button, Row, Col } from "react-bootstrap"
 
 import ChooseCity from "../ChooseCity"
 
-import "./index.css"
-
-const DynamicPostJob = (props) => {
+const DynamicEducationJob = (props) => {
   const [bookRoomData, setBookRoomData] = useState([
     { roomType: "", roomNumber: 0, guest: 0 },
   ])
@@ -52,49 +50,43 @@ const DynamicPostJob = (props) => {
               <hr
                 className="separator mt-2 mb-2"
                 style={{
-                  border: "0.5px solid #000000",
+                  border: "1px solid #000000",
                   backgroundColor: "#000000",
                 }}
               />
             )}
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <Form.Label>Job Tittle</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="software developer , digital marketing"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3 mt-2">
-              <Form.Label>Full time or Part time </Form.Label>
+              <Form.Label>Qualification</Form.Label>
               <Form.Select>
-                <option> Select an option </option>
-                <option> Full-Time </option>
-                <option>Part-Time</option>
-                <option>Both</option>
+                <option>None</option>
+                <option>Master's</option>
+                <option>Bachelor's</option>
+                <option>Diploma</option>
+                <option>High Secondary (12th)</option>
+                <option>Secondary (10th)</option>
+                <option>Doctorate</option>
+                <option>Other</option>
               </Form.Select>
             </Form.Group>
-
             <Form.Group className="mb-3 mt-2">
-              <Form.Label>Job Type</Form.Label>
-              <Form.Select onChange={(e) => setJobType.target.value}>
-                <option> Office </option>
-                <option>Remote</option>
+              <Form.Label>Field </Form.Label>
+              <Form.Select>
+                <option>None</option>
+                <option>Master's</option>
+                <option>Bachelor's</option>
+                <option>Diploma</option>
+                <option>High Secondary (12th)</option>
+                <option>Secondary (10th)</option>
+                <option>Doctorate</option>
+                <option>Other</option>
               </Form.Select>
             </Form.Group>
-            {jobType === "Office" && (
-              <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-                <ChooseCity />
-                <Form.Control.Feedback type="invalid">
-                  Please enter your city.
-                </Form.Control.Feedback>
-              </Form.Group>
-            )}
           </Row>
         )
       })}
 
       <Row>
-        <Col className="mb-3 d-flex justify-content-between">
+        <Col className=" mb-3 d-flex justify-content-between">
           <Button variant="primary" size="sm" onClick={handleAddFields}>
             Add More
           </Button>
@@ -120,4 +112,4 @@ const DynamicPostJob = (props) => {
   )
 }
 
-export default DynamicPostJob
+export default DynamicEducationJob
