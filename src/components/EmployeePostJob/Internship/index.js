@@ -17,6 +17,7 @@ import DynamicPostJobInternship from "../../../DynamicPostJobInternship"
 import ShiftDropdown from "../../../ShiftDropdown"
 import LanguageDropdown from "../../../LanguageDropdown"
 import LocationDropdown from "../../../LocationCheckbox"
+import ChooseJobTitle from "../../../ChooseJobTitle"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
@@ -128,7 +129,19 @@ function Internship() {
     >
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3">
-          <DynamicPostJobInternship />
+          <Form.Group className="mb-3 mt-2" controlId="formBasicText">
+            <Form.Label>Job Tittle for Internship</Form.Label>
+            <ChooseJobTitle />
+          </Form.Group>
+          <Form.Group className="mb-3 mt-2">
+            <Form.Label>Full time or Part time </Form.Label>
+            <Form.Select>
+              <option> Select an option </option>
+              <option> Full-Time </option>
+              <option>Part-Time</option>
+              <option>Both</option>
+            </Form.Select>
+          </Form.Group>
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Job Type</Form.Label>
@@ -162,7 +175,7 @@ function Internship() {
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>What is the Shift to this Job Position</Form.Label>
-            <ShiftDropdown />
+            <Form.Control type="text" placeholder="Day Shift" disabled />
           </Form.Group>
 
           <Form.Group controlId="formBasicCheckbox">
