@@ -15,11 +15,23 @@ import PerksDropdown from "../../../PerksDropdown"
 import SupplementaryDropdown from "../../../SupplementaryDropdown"
 import DynamicPostJobInternship from "../../../DynamicPostJobInternship"
 import ShiftDropdown from "../../../ShiftDropdown"
+import LanguageDropdown from "../../../LanguageDropdown"
+import LocationDropdown from "../../../LocationCheckbox"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
   const [jobType, setJobType] = useState("Office")
   const [salaryType, setSalaryType] = useState("")
+  const [startDate, setStartDate] = useState("")
+  const [endDate, setEndDate] = useState("")
+
+  const handleChange = (date) => {
+    setStartDate(date)
+  }
+
+  const handleChangeEnd = (date) => {
+    setEndDate(date)
+  }
 
   const [state, setState] = useState({
     selectedSkills: [],
@@ -58,13 +70,12 @@ function Internship() {
       case "Fixed":
         return (
           <Form.Group className="mb-3 mt-2">
-            <Form.Control type="text" placeholder="2k/Month" disabled />
+            <Form.Control type="text" placeholder="2k/Month" />
           </Form.Group>
         )
       case "Negotiable":
         return (
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Negoitable</Form.Label>
+          <Form.Group className="mb-3">
             <Row>
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
@@ -84,7 +95,6 @@ function Internship() {
       case "Performance based":
         return (
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>Performance based</Form.Label>
             <Form.Control type="number" placeholder="Min assumed amount" />
           </Form.Group>
         )
@@ -123,6 +133,7 @@ function Internship() {
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Job Type</Form.Label>
             <Form.Select onChange={(e) => setJobType(e.target.value)}>
+              <option>Select an option</option>
               <option> Office </option>
               <option>Remote</option>
             </Form.Select>
@@ -150,7 +161,7 @@ function Internship() {
           </Form.Group>
 
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>What is the Shift to this job Position</Form.Label>
+            <Form.Label>What is the Shift to this Job Position</Form.Label>
             <ShiftDropdown />
           </Form.Group>
 
@@ -160,7 +171,7 @@ function Internship() {
               type="checkbox"
               label="Immediate Joiner (within next 30 days)"
             />
-            <div className="custom-date-container">
+            {/*<div className="custom-date-container">
               <div
                 onClick={handleCustomDateClick}
                 style={{ marginRight: "10px" }}
@@ -173,7 +184,52 @@ function Internship() {
             </div>
             {showDatePicker && (
               <DatePicker selected={date} onChange={handleDateChange} inline />
-            )}
+            )}*/}
+
+            <div className="mt-3 custom-date">
+              <p style={{ marginTop: "8px" }}>Custom Date: </p>
+
+              <div style={{ display: "flex", gap: "15px" }}>
+                <div style={{ display: "flex" }}>
+                  <Form.Label
+                    style={{
+                      marginRight: "10px",
+                      marginTop: "8px",
+                      fontSize: "17px",
+                    }}
+                  >
+                    From
+                  </Form.Label>
+                  <Form.Group className="mb-3" style={{ display: "flex" }}>
+                    <DatePicker
+                      placeholderText=""
+                      className="my-custom-datepicker"
+                      selected={startDate}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </div>
+                <div style={{ display: "flex" }}>
+                  <Form.Label
+                    style={{
+                      marginRight: "10px",
+                      marginTop: "8px",
+                      fontSize: "17px",
+                    }}
+                  >
+                    To
+                  </Form.Label>
+                  <Form.Group className="mb-3" style={{ display: "flex" }}>
+                    <DatePicker
+                      placeholderText=""
+                      className="my-custom-datepicker"
+                      selected={endDate}
+                      onChange={handleChangeEnd}
+                    />
+                  </Form.Group>
+                </div>
+              </div>
+            </div>
           </Form.Group>
 
           <CheckboxDropdown onSelectionChange={handleSelectionChange} />
@@ -199,22 +255,14 @@ function Internship() {
 
           <PerksDropdown />
 
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Language's</Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
+          <LanguageDropdown />
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Number of opening</Form.Label>
             <Form.Control type="number" />
           </Form.Group>
 
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>
-              Which location do you prefer looking for intern's ? (optional)
-            </Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
+          <LocationDropdown />
         </Row>
 
         <div className="preview-container">

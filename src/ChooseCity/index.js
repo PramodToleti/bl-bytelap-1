@@ -13,7 +13,7 @@ const ChooseCity = () => {
       id="basic-example"
       onChange={setSelected}
       options={options}
-      placeholder="Choose a state..."
+      placeholder="City"
       selected={selected}
     />
   )

@@ -1,5 +1,6 @@
 import "./index.css"
 import { useState } from "react"
+import { configConsumerProps } from "antd/es/config-provider"
 
 // 1
 const setDark = () => {
@@ -31,19 +32,22 @@ if (defaultDark) {
 // 5
 
 const Theme = () => {
-  const storedValue = localStorage.getItem("isChecked") || false
+  const storedValue = Boolean(localStorage.getItem("isChecked"))
+  console.log(storedValue)
   const [isChecked, setIsChecked] = useState(storedValue)
 
   const toggleTheme = (e) => {
     const newValue = e.target.checked
     setIsChecked(newValue)
-    localStorage.setItem("isChecked", newValue)
+    localStorage.setItem("isChecked", newValue.toString())
     if (e.target.checked) {
       setDark()
     } else {
       setLight()
     }
   }
+
+  console.log(isChecked)
 
   return (
     <div className="toggle-theme-wrapper">
@@ -52,9 +56,8 @@ const Theme = () => {
         <input
           type="checkbox"
           id="checkbox"
-          checked={storedValue}
+          checked={isChecked}
           onChange={toggleTheme}
-          defaultChecked={defaultDark}
         />
         <div className="slider round"></div>
       </label>
