@@ -20,7 +20,7 @@ import LocationDropdown from "../../../LocationCheckbox"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
-  const [jobType, setJobType] = useState("Office")
+  const [jobType, setJobType] = useState("")
   const [salaryType, setSalaryType] = useState("")
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
