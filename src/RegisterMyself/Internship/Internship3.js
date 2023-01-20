@@ -26,7 +26,7 @@ function Internship3() {
   return (
     <>
       <HomeHeader />
-      <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
+      <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
         <Link to="/account-setting/my-info" className="header-nav-link">
           My Info
         </Link>
@@ -38,7 +38,7 @@ function Internship3() {
           Register Myself
         </Link>
 
-        <div className="col-lg-8 border-light mt-5 shadow-sm p-3 mb-5  bg-white rounded">
+        <div className="col-lg-8 border-light mt-5 shadow-sm p-3 mb-5    rounded">
           <p className="text-center">Step 3-3</p>
 
           <Form

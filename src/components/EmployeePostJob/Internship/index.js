@@ -13,7 +13,8 @@ import { Col } from "react-bootstrap"
 import "./index.css"
 import PerksDropdown from "../../../PerksDropdown"
 import SupplementaryDropdown from "../../../SupplementaryDropdown"
-import DynamicPostJob from "../../../DynamicPostJob"
+import DynamicPostJobInternship from "../../../DynamicPostJobInternship"
+import ShiftDropdown from "../../../ShiftDropdown"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
@@ -112,12 +113,28 @@ function Internship() {
 
   return (
     <div
-      className="col-lg-6 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary"
-      style={{ width: "100%" }}
+      className="col-lg-6 col-md-4 search-course-right   mb-4 mt-4 p-2   border-secondary rounded container reveal  p-3 mb-5 rounded border border-secondary"
+      style={{ width: "100%", background: "transparent" }}
     >
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3">
-          <DynamicPostJob />
+          <DynamicPostJobInternship />
+
+          <Form.Group className="mb-3 mt-2">
+            <Form.Label>Job Type</Form.Label>
+            <Form.Select onChange={(e) => setJobType(e.target.value)}>
+              <option> Office </option>
+              <option>Remote</option>
+            </Form.Select>
+          </Form.Group>
+          {jobType === "Office" && (
+            <Form.Group className="mb-3 mt-2" controlId="formBasicText">
+              <ChooseCity />
+              <Form.Control.Feedback type="invalid">
+                Please enter your city.
+              </Form.Control.Feedback>
+            </Form.Group>
+          )}
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Duration of Internship </Form.Label>
@@ -134,12 +151,7 @@ function Internship() {
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>What is the Shift to this job Position</Form.Label>
-            <Form.Select>
-              <option>Select an option </option>
-              <option> Day </option>
-              <option>Night </option>
-              <option>Rotational</option>
-            </Form.Select>
+            <ShiftDropdown />
           </Form.Group>
 
           <Form.Group controlId="formBasicCheckbox">

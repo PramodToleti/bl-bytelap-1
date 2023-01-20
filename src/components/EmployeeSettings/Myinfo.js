@@ -14,7 +14,7 @@ function MyInfo() {
     <>
       <EmployeeHome />
 
-      <div className="col-lg-4 col-md-4 search-course-right   mb-0 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
+      <div className="col-lg-4 col-md-4 search-course-right   mb-0 mt-4 p-2       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
         <p className="text-center mb-5 fs-3"> My info </p>
 
         <Form action="">

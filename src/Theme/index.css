@@ -1,13 +1,13 @@
 /* 1 */
 :root {
-  --font-color: #333;
+  --font-color: #333 !important;
   --background-color: #eee;
   --link-color: cornflowerblue;
 }
 
 /* 2 */
 html[data-theme="dark"] {
-  --font-color: #eee;
+  --font-color: #eee !important;
   --background-color: #333;
   --link-color: lightblue;
 }

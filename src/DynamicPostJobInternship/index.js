@@ -6,7 +6,7 @@ import ChooseCity from "../ChooseCity"
 
 import "./index.css"
 
-const DynamicPostJob = (props) => {
+const DynamicPostJobInternship = (props) => {
   const [bookRoomData, setBookRoomData] = useState([
     { roomType: "", roomNumber: 0, guest: 0 },
   ])
@@ -58,7 +58,7 @@ const DynamicPostJob = (props) => {
               />
             )}
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <Form.Label>Job Tittle</Form.Label>
+              <Form.Label>Job Tittle for Internship</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="software developer , digital marketing"
@@ -73,22 +73,6 @@ const DynamicPostJob = (props) => {
                 <option>Both</option>
               </Form.Select>
             </Form.Group>
-
-            <Form.Group className="mb-3 mt-2">
-              <Form.Label>Job Type</Form.Label>
-              <Form.Select onChange={(e) => setJobType.target.value}>
-                <option> Office </option>
-                <option>Remote</option>
-              </Form.Select>
-            </Form.Group>
-            {jobType === "Office" && (
-              <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-                <ChooseCity />
-                <Form.Control.Feedback type="invalid">
-                  Please enter your city.
-                </Form.Control.Feedback>
-              </Form.Group>
-            )}
           </Row>
         )
       })}
@@ -120,4 +104,4 @@ const DynamicPostJob = (props) => {
   )
 }
 
-export default DynamicPostJob
+export default DynamicPostJobInternship

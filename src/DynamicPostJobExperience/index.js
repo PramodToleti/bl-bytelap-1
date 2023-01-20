@@ -4,7 +4,9 @@ import { Form, Button, Row, Col } from "react-bootstrap"
 
 import ChooseCity from "../ChooseCity"
 
-const DynamicEducationJob = (props) => {
+import "./index.css"
+
+const DynamicPostJobExperience = (props) => {
   const [bookRoomData, setBookRoomData] = useState([
     { roomType: "", roomNumber: 0, guest: 0 },
   ])
@@ -50,35 +52,25 @@ const DynamicEducationJob = (props) => {
               <hr
                 className="separator mt-2 mb-2"
                 style={{
-                  border: "1px solid #000000",
+                  border: "0.5px solid #000000",
                   backgroundColor: "#000000",
                 }}
               />
             )}
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <Form.Label>Qualification</Form.Label>
-              <Form.Select>
-                <option>None</option>
-                <option>Master's</option>
-                <option>Bachelor's</option>
-                <option>Diploma</option>
-                <option>High Secondary (12th)</option>
-                <option>Secondary (10th)</option>
-                <option>Doctorate</option>
-                <option>Other</option>
-              </Form.Select>
+              <Form.Label>Job Tittle for Experience</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="software developer , digital marketing"
+              />
             </Form.Group>
             <Form.Group className="mb-3 mt-2">
-              <Form.Label>Field </Form.Label>
+              <Form.Label>Full time or Part time </Form.Label>
               <Form.Select>
-                <option>None</option>
-                <option>Master's</option>
-                <option>Bachelor's</option>
-                <option>Diploma</option>
-                <option>High Secondary (12th)</option>
-                <option>Secondary (10th)</option>
-                <option>Doctorate</option>
-                <option>Other</option>
+                <option> Select an option </option>
+                <option> Full-Time </option>
+                <option>Part-Time</option>
+                <option>Both</option>
               </Form.Select>
             </Form.Group>
           </Row>
@@ -86,9 +78,9 @@ const DynamicEducationJob = (props) => {
       })}
 
       <Row>
-        <Col className=" mb-3 d-flex justify-content-between">
+        <Col className="mb-3 d-flex justify-content-between">
           <Button variant="primary" size="sm" onClick={handleAddFields}>
-            Add More Education
+            Add More
           </Button>
           {bookRoomData.length > 1 && (
             <Button variant="danger" size="sm" onClick={handleRemoveFields}>
@@ -112,4 +104,4 @@ const DynamicEducationJob = (props) => {
   )
 }
 
-export default DynamicEducationJob
+export default DynamicPostJobExperience

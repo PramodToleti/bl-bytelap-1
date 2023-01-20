@@ -12,7 +12,7 @@ function ActiveJob() {
     <div>
       <EmployeeHome />
 
-      <div className="col-lg-12 col-md-12 search-course-right   mb-4 p-2 bg-light text-dark  rounded container reveal  p-3 mb-5 bg-white rounded ">
+      <div className="col-lg-12 col-md-12 search-course-right   mb-4 p-2       rounded container reveal  p-3 mb-5   rounded ">
         <p style={{ display: "flex", gap: "10px" }}>
           <Link
             to="/employee/dashboard/active-posts"
@@ -26,7 +26,7 @@ function ActiveJob() {
         <div className="d-flex justify-content-around">
           <div
             style={{ height: "58rem", width: "", marginRight: "13px" }}
-            className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container p-2 pl-4 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary"
+            className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container p-2 pl-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
           >
             <h5 className="mt-3">Applied 147</h5>
             <p className="mt-4">Interested</p>
@@ -42,9 +42,9 @@ function ActiveJob() {
               fontSize: "17px",
               fontWeight: "400",
             }}
-            className="col-lg-10 col-md-10 search-course-right   mb-0  p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary"
+            className="col-lg-10 col-md-10 search-course-right   mb-0  p-2       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
           >
-            <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-0 p-0 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-0 bg-secondary rounded border border-secondary">
+            <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-0 p-0       border-secondary rounded container reveal  p-3 mb-0    rounded border border-secondary">
               <Form.Group className="mb-0 mt-0 fs-10" controlId="formBasicText">
                 <Stack direction="horizontal" gap={3}>
                   {["radio"].map((type) => (
@@ -109,7 +109,7 @@ function ActiveJob() {
               to="/employee/dashboard/active-posts/job/view-applicant"
               className="nav-link"
             >
-              <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
+              <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
                 <div>
                   <h4>Nilesh</h4>
                 </div>

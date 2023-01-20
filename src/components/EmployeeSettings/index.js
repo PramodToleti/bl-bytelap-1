@@ -13,7 +13,7 @@ function EmployeeSettings() {
   return (
     <>
       <EmployeeHome />
-      <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
+      <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
         <p className="text-start fs-5">Account Setting</p>
         <hr></hr>
         <Nav defaultActiveKey="/home" as="ul">
@@ -32,7 +32,7 @@ function EmployeeSettings() {
           </Nav.Item>
         </Nav>
 
-        <div className="col-lg-8 border-light mt-5 shadow-sm p-3 mb-5  bg-white rounded">
+        <div className="col-lg-8 border-light mt-5 shadow-sm p-3 mb-5    rounded">
           <p className="text-center mb-5">
             <p className="text-center">Post job</p>
             <Dropdown>

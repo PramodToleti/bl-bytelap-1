@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button"
 function FormFloatingstep1() {
   return (
     <>
-      <div class="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal shadow-sm p-3 mb-5 bg-white rounded border border-secondary">
+      <div class="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2       border-secondary rounded container reveal shadow-sm p-3 mb-5   rounded border border-secondary">
         <h5 class="black  text-center black p-3">Step 1-2 </h5>
         <h3 class="black  text-center black p-3">Create your account. </h3>
         <FloatingLabel controlId="floatingText" label="First Name">

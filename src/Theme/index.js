@@ -52,7 +52,7 @@ const Theme = () => {
         <input
           type="checkbox"
           id="checkbox"
-          // 6
+          checked={storedValue}
           onChange={toggleTheme}
           defaultChecked={defaultDark}
         />

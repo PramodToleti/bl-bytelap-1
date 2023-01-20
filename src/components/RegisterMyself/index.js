@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col"
 
 function RegisterMyself() {
   return (
-    <div className="col-lg-8 border-light mt-5 shadow-sm p-3 mb-5  bg-white rounded">
+    <div className="col-lg-8 border-light mt-5 shadow-sm p-3 mb-5    rounded">
       <p className="text-center mb-5">
         {" "}
         <Dropdown>

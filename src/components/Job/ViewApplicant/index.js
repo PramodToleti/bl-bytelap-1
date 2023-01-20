@@ -14,7 +14,7 @@ function ViewApplicant() {
       <EmployeeHome />
 
       <div
-        className="col-lg-12 col-md-12 search-course-right  p-2  text-dark  rounded container reveal  p-2  rounded "
+        className="col-lg-12 col-md-12 search-course-right  p-2      rounded container reveal  p-2  rounded "
         style={{ backgroundColor: "#ffffff" }}
       >
         <p style={{ display: "flex", gap: "10px" }}>
@@ -33,7 +33,7 @@ function ViewApplicant() {
         </p>
       </div>
       <div
-        className="col-lg-12 col-md-12 search-course-right   mb-0 mt-2 p-4 bg-light text-dark  border-secondary rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary"
+        className="col-lg-12 col-md-12 search-course-right   mb-0 mt-2 p-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
         style={{
           height: "550px",
           overflow: "auto",
