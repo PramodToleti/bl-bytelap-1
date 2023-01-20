@@ -18,6 +18,7 @@ import ShiftDropdown from "../../../ShiftDropdown"
 import LanguageDropdown from "../../../LanguageDropdown"
 import LocationDropdown from "../../../LocationCheckbox"
 import ChooseJobTitle from "../../../ChooseJobTitle"
+import AddRemove from "../../../AddRemove"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
@@ -71,7 +72,7 @@ function Internship() {
       case "Fixed":
         return (
           <Form.Group className="mb-3 mt-2">
-            <Form.Control type="text" placeholder="2k/Month" />
+            <Form.Control type="number" placeholder="2k/Month" />
           </Form.Group>
         )
       case "Negotiable":
@@ -105,14 +106,14 @@ function Internship() {
           <Row className="mb-3">
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Label>Min</Form.Label>
-              <Form.Control type="text" placeholder="" required />
+              <Form.Control type="number" placeholder="" required />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid state.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Label>Max</Form.Label>
-              <Form.Control type="text" placeholder="" required />
+              <Form.Control type="number" placeholder="" required />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid zip.
               </Form.Control.Feedback>
@@ -276,6 +277,8 @@ function Internship() {
           </Form.Group>
 
           <LocationDropdown />
+
+          <AddRemove />
         </Row>
 
         <div className="preview-container">
