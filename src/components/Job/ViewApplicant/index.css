@@ -39,20 +39,44 @@ p {
   width: 100%;
   max-width: 500px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
   align-items: center;
-  position: fixed;
-  bottom: 14%;
+  position: sticky;
+  bottom: 0;
+  min-height: "200px";
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 @media screen and (min-width: 768px) {
   .interested-btn-container-applicant {
     margin-left: 60px;
-    bottom: 10%;
   }
 }
 
 .applicant-card::-webkit-scrollbar {
   width: 0;
+}
+
+.arrow-btns {
+  display: none;
+}
+
+.mobile-arrow-container {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 50px;
+}
+
+@media screen and (min-width: 768px) {
+  .arrow-btns {
+    display: block;
+  }
+
+  .mobile-arrow-container {
+    display: none;
+  }
 }

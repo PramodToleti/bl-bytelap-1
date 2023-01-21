@@ -4,16 +4,28 @@ import Form from "react-bootstrap/Form"
 import Col from "react-bootstrap/Col"
 import EmployeeHome from "../../EmployeeHome"
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai"
+import StickyBox from "react-sticky-box"
+
 import { Link } from "react-router-dom"
 
 import "./index.css"
 
 function ViewApplicant() {
   return (
-    <div style={{ height: "95vh", overflow: "hidden", padding: "20px" }}>
+    <div style={{ height: "118vh", padding: "15px", marginBottom: "20px" }}>
       <EmployeeHome />
 
-      <div className="col-lg-12 col-md-12 search-course-right  p-2      rounded container reveal  p-2  rounded ">
+      {/*Dashboard Header*/}
+      <div
+        className="col-lg-12 col-md-12 search-course-right pt-3 rounded container reveal   rounded "
+        style={{
+          position: "sticky",
+          top: "0",
+          paddingBottom: "10px",
+          zIndex: "1",
+          backgroundColor: "#eee",
+        }}
+      >
         <p style={{ display: "flex", gap: "10px" }}>
           <Link
             to="/employee/dashboard/active-posts"
@@ -29,14 +41,13 @@ function ViewApplicant() {
           {`> Nilesh`}
         </p>
       </div>
+      {/*Applicant*/}
       <div
-        className="col-lg-12 col-md-12 search-course-right   mb-2  p-3      border-secondary rounded container reveal  p-3   rounded border border-secondary"
-        style={{
-          height: "75%",
-        }}
+        className="col-lg-12 col-md-12 search-course-right    p-3      border-secondary rounded container reveal  p-3   rounded border border-secondary"
+        style={{ height: "75%", zIndex: "-1" }}
       >
         <div
-          style={{ overflow: "auto", height: "80%", position: "relative" }}
+          style={{ overflow: "auto", height: "100%", position: "relative" }}
           className="applicant-card"
         >
           <div>
@@ -117,6 +128,7 @@ function ViewApplicant() {
                 <p>Available for 3-Months duration for full time position</p>
               </div>
             </div>
+            <div></div>
             <div
               style={{
                 width: "100%",
@@ -142,30 +154,44 @@ function ViewApplicant() {
           <div style={{ display: "flex", justifyContent: "center" }}>
             <p style={{ textDecoration: "underline" }}>Resume</p>
           </div>
+        </div>
+      </div>
+      {/*Btns container*/}
+      <div
+        className="col-lg-12 col-md-12 search-course-right   mb-2 pb-2     border-secondary rounded container reveal    rounded border border-secondary"
+        style={{}}
+      >
+        <div className="interested-btn-container-applicant">
+          <Button variant="success" size="sm" className=" mt-3">
+            Interested
+          </Button>{" "}
+          <Button variant="primary" className=" mt-3" size="sm">
+            Shortlisted
+          </Button>{" "}
+          <Button variant="danger" className=" mt-3" size="sm">
+            Not interested
+          </Button>{" "}
+          <Button variant="light" className=" mt-3" size="sm">
+            Call
+          </Button>{" "}
+          <Button variant="link" className=" mt-3" size="sm">
+            Resume
+          </Button>
           <div>
-            <div className="interested-btn-container-applicant">
-              <Button variant="success" size="sm" className=" mt-3">
-                Interested
-              </Button>{" "}
-              <Button variant="primary" className=" mt-3" size="sm">
-                Shortlisted
-              </Button>{" "}
-              <Button variant="danger" className=" mt-3" size="sm">
-                Not interested
-              </Button>{" "}
-              <Button variant="light" className=" mt-3" size="sm">
-                Call
-              </Button>{" "}
-              <Button variant="link" className=" mt-3" size="sm">
-                Resume
-              </Button>
-              <div>
-                <AiOutlineLeft className="mt-3" />
-              </div>
-              <div style={{ cursor: "pointer" }}>
-                <AiOutlineRight className="mt-3" />
-              </div>
-            </div>
+            <AiOutlineLeft className="mt-3 arrow-btns" />
+          </div>
+          <div style={{ cursor: "pointer" }}>
+            <AiOutlineRight className="mt-3 arrow-btns" />
+          </div>
+        </div>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="mobile-arrow-container">
+          <div>
+            <AiOutlineLeft className="mt-3 " />
+          </div>
+          <div style={{ cursor: "pointer" }}>
+            <AiOutlineRight className="mt-3 " />
           </div>
         </div>
       </div>
