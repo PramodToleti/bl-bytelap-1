@@ -32,7 +32,7 @@ function ViewApplicant() {
       <div
         className="col-lg-12 col-md-12 search-course-right   mb-2  p-3      border-secondary rounded container reveal  p-3   rounded border border-secondary"
         style={{
-          height: "70%",
+          height: "75%",
         }}
       >
         <div
