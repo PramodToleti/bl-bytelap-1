@@ -8,7 +8,7 @@ import ChooseCity from "../../../ChooseCity"
 
 import React, { useState } from "react"
 import Row from "react-bootstrap/Row"
-import { Col } from "react-bootstrap"
+import { Col, FormGroup } from "react-bootstrap"
 
 import "./index.css"
 import PerksDropdown from "../../../PerksDropdown"
@@ -17,10 +17,13 @@ import DynamicEducationForm from "../../../DynamicEducationForm"
 import DynamicEducationJob from "../../../DynamicEducationJob"
 import DynamicPostJobFresher from "../../../DynamicPostJobFresher"
 import ShiftDropdown from "../../../ShiftDropdown"
+import ChooseJobTitle from "../../../ChooseJobTitle"
+import AddRemove from "../../../AddRemove"
+import LanguageDropdown from "../../../LanguageDropdown"
 
 function Fresher() {
   const [validated, setValidated] = useState(false)
-  const [jobType, setJobType] = useState("Office")
+  const [jobType, setJobType] = useState("")
   const [salaryType, setSalaryType] = useState("")
 
   const [state, setState] = useState({
@@ -59,53 +62,66 @@ function Fresher() {
 
   const renderSalaryType = () => {
     switch (salaryType) {
-      case "Fixed":
+      case "Lac":
         return (
-          <Form.Group className="mb-3 mt-2">
-            <Form.Control type="text" placeholder="2k/Month" disabled />
-          </Form.Group>
-        )
-      case "Negotiable":
-        return (
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Negoitable</Form.Label>
+          <Form.Group className="mb-3">
             <Row>
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>From</Form.Label>
-                  <Form.Control type="number" placeholder="5000" />
+                  <Form.Control type="number" placeholder="1 lac" />
                 </Form.Group>
               </Col>
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>To</Form.Label>
-                  <Form.Control type="number" placeholder="10,000/month" />
+                  <Form.Control type="number" placeholder="3 lac" />
                 </Form.Group>
               </Col>
             </Row>
           </Form.Group>
         )
-      case "Performance based":
+      case "Per Month":
         return (
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Performance based</Form.Label>
-            <Form.Control type="number" placeholder="Min assumed amount" />
+          <Form.Group className="mb-3">
+            <Row>
+              <Col xs={6}>
+                <Form.Group className="mb-3 mt-2">
+                  <Form.Label>From</Form.Label>
+                  <Form.Control type="number" placeholder="10k" />
+                </Form.Group>
+              </Col>
+              <Col xs={6}>
+                <Form.Group className="mb-3 mt-2">
+                  <Form.Label>To</Form.Label>
+                  <Form.Control type="number" placeholder="20k" />
+                </Form.Group>
+              </Col>
+            </Row>
           </Form.Group>
         )
+      case "Fixed":
+        return (
+          <Form.Group className="mb-3 mt-2">
+            <Form.Control type="number" placeholder="20k/Month" />
+          </Form.Group>
+        )
+      case "Not Disclosed":
+        return <Form.Group className="mb-3 mt-2"></Form.Group>
 
       default:
         return (
           <Row className="mb-3">
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Label>Min</Form.Label>
-              <Form.Control type="text" placeholder="" required />
+              <Form.Control type="number" placeholder="" required />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid state.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Label>Max</Form.Label>
-              <Form.Control type="text" placeholder="" required />
+              <Form.Control type="number" placeholder="" required />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid zip.
               </Form.Control.Feedback>
@@ -122,11 +138,24 @@ function Fresher() {
     >
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3">
-          <DynamicPostJobFresher />
+          <Form.Group className="mb-3 mt-2" controlId="formBasicText">
+            <Form.Label>Job Tittle for Fresher</Form.Label>
+            <ChooseJobTitle />
+          </Form.Group>
+          <Form.Group className="mb-3 mt-2">
+            <Form.Label>Full time or Part time </Form.Label>
+            <Form.Select>
+              <option> Select an option </option>
+              <option> Full-Time </option>
+              <option>Part-Time</option>
+              <option>Both</option>
+            </Form.Select>
+          </Form.Group>
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Job Type</Form.Label>
             <Form.Select onChange={(e) => setJobType(e.target.value)}>
+              <option>Select an option</option>
               <option> Office </option>
               <option>Remote</option>
             </Form.Select>
@@ -142,32 +171,18 @@ function Fresher() {
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>What is the Shift to this Fresher Position</Form.Label>
-            <ShiftDropdown />
+            <Form.Select>
+              <option>Select an option</option>
+              <option>Day</option>
+              <option>Night</option>
+              <option>Rotational</option>
+            </Form.Select>
           </Form.Group>
 
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Label>Internship Start Date</Form.Label>
-            <Form.Check
-              type="checkbox"
-              label="Immediate Joiner (within next 30 days)"
-            />
-            <div className="custom-date-container">
-              <div
-                onClick={handleCustomDateClick}
-                style={{ marginRight: "10px" }}
-              >
-                Custom Date
-              </div>
-              <div className={date ? "show-date" : "hide-date"}>
-                : {date?.toDateString()}
-              </div>
-            </div>
-            {showDatePicker && (
-              <DatePicker selected={date} onChange={handleDateChange} inline />
-            )}
+          <Form.Group className="mb-3 mt-2">
+            <AddRemove />
           </Form.Group>
 
-          <DynamicEducationJob />
           <CheckboxDropdown onSelectionChange={handleSelectionChange} />
 
           <Form.Group className="mb-3 mt-2">
@@ -180,9 +195,10 @@ function Fresher() {
               <Form.Label>Salary Range</Form.Label>
               <Form.Select onChange={(e) => setSalaryType(e.target.value)}>
                 <option>Select</option>
-                <option> Fixed </option>
-                <option>Negotiable</option>
-                <option>Performance based</option>
+                <option>Lac</option>
+                <option> Per Month </option>
+                <option>Fixed</option>
+                <option>Not Disclosed</option>
               </Form.Select>
             </Form.Group>
           </Row>
@@ -192,10 +208,7 @@ function Fresher() {
           <SupplementaryDropdown />
           <PerksDropdown />
 
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Language's</Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
+          <LanguageDropdown />
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Number of opening</Form.Label>

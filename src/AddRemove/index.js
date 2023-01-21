@@ -1,97 +1,82 @@
-import { useState } from "react"
-function AddRemove() {
-  const [inputFields, setInputFields] = useState([
-    {
-      fullName: "",
-      emailAddress: "",
-      salary: "",
-    },
+import React, { useState } from "react"
+import "bootstrap/dist/css/bootstrap.css"
+import { Form, Button, Row, Col } from "react-bootstrap"
+import ChooseField from "../ChooseField"
+
+const AddRemove = () => {
+  const [bookRoomData, setBookRoomData] = useState([
+    { roomType: "", roomNumber: 0, guest: 0 },
   ])
 
-  const addInputField = () => {
-    setInputFields([
-      ...inputFields,
-      {
-        fullName: "",
-        emailAddress: "",
-        salary: "",
-      },
-    ])
-  }
-  const removeInputFields = (index) => {
-    const rows = [...inputFields]
-    rows.splice(index, 1)
-    setInputFields(rows)
-  }
-  const handleChange = (index, evnt) => {
-    const { name, value } = evnt.target
-    const list = [...inputFields]
-    list[index][name] = value
-    setInputFields(list)
-  }
-  return (
-    <div
-      className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-secondary rounded container reveal shadow-sm p-3 mb-5 bg-white rounded border border-secondary"
-      style={{ width: "97%" }}
-    >
-      <div className="row">
-        <div className="col-sm-12">
-          {inputFields.map((data, index) => {
-            const { fullName, emailAddress, salary } = data
-            return (
-              <div className="row my-3" key={index}>
-                <div className="col-sm-12">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      onChange={(evnt) => handleChange(index, evnt)}
-                      value={fullName}
-                      name="fullName"
-                      className="form-control"
-                      placeholder="Degree"
-                    />
-                  </div>
-                </div>
-                <div className="col-sm-12 mt-3">
-                  <input
-                    type="text"
-                    onChange={(evnt) => handleChange(index, evnt)}
-                    value={salary}
-                    name="salary"
-                    className="form-control"
-                    placeholder="Field of Study"
-                  />
-                </div>
-                <div className="col mt-1">
-                  {inputFields.length !== 1 ? (
-                    <button
-                      className="btn btn-outline-danger"
-                      onClick={removeInputFields}
-                    >
-                      Remove
-                    </button>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              </div>
-            )
-          })}
+  const handleChange = (index, event) => {
+    const values = [...bookRoomData]
+    if (event.target.name === "roomType") {
+      values[index].roomType = event.target.value
+    } else if (event.target.name === "roomNumber" && event.target.value > 0) {
+      values[index].roomNumber = event.target.value
+    } else if (event.target.name === "guest" && event.target.value > 0) {
+      values[index].guest = event.target.value
+    }
 
-          <div className="row">
-            <div className="col-sm-12">
-              <button
-                className="btn btn-outline-success "
-                onClick={addInputField}
-              >
-                Add New
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-sm-4"></div>
-    </div>
+    setBookRoomData(values)
+  }
+
+  const handleAddFields = () => {
+    const values = [...bookRoomData]
+    values.push({ roomType: "", roomNumber: 0, guest: 0 })
+    setBookRoomData(values)
+  }
+
+  const handleRemoveFields = () => {
+    const values = [...bookRoomData]
+    if (values.length > 1) values.pop()
+    setBookRoomData(values)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    alert(JSON.stringify(bookRoomData, null, 2))
+  }
+
+  return (
+    <Form>
+      {bookRoomData.map((data, i) => {
+        return (
+          <Row className="" key={i}>
+            <Form.Group className="mb-3" controlId="formBasicText">
+              <Form.Label>Qualification</Form.Label>
+              <Form.Select>
+                <option>Select an option</option>
+                <option>Master's</option>
+                <option>Bachelor's</option>
+                <option>Diploma</option>
+                <option>High Secondary (12th)</option>
+                <option>Secondary (10th)</option>
+                <option>Doctorate</option>
+                <option>Other</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Field </Form.Label>
+              <ChooseField />
+            </Form.Group>
+          </Row>
+        )
+      })}
+      <Row>
+        <Col className="mb-2 d-flex justify-content-between">
+          <Button variant="outline-primary" onClick={handleAddFields}>
+            Add More Education
+          </Button>
+          {bookRoomData.length > 1 && (
+            <Button variant="danger" onClick={handleRemoveFields}>
+              Remove
+            </Button>
+          )}
+        </Col>
+      </Row>
+    </Form>
   )
 }
+
 export default AddRemove

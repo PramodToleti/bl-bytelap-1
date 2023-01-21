@@ -1,0 +1,16 @@
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.add-new-btn {
+  width: 100px;
+  margin-left: 14px;
+}
+
+.remove-new-btn {
+  width: 120px;
+  align-self: flex-end;
+  margin-left: auto;
+}

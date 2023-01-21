@@ -17,10 +17,12 @@ import DynamicEducationForm from "../../../DynamicEducationForm"
 import DynamicEducationJob from "../../../DynamicEducationJob"
 import DynamicPostJobExperience from "../../../DynamicPostJobExperience"
 import ShiftDropdown from "../../../ShiftDropdown"
+import ChooseJobTitle from "../../../ChooseJobTitle"
+import AddRemove from "../../../AddRemove"
 
 function Experience() {
   const [validated, setValidated] = useState(false)
-  const [jobType, setJobType] = useState("Office")
+  const [jobType, setJobType] = useState("")
   const [salaryType, setSalaryType] = useState("")
   const [state, setState] = useState({
     selectedSkills: [],
@@ -121,11 +123,24 @@ function Experience() {
     >
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3">
-          <DynamicPostJobExperience />
+          <Form.Group className="mb-3 mt-2" controlId="formBasicText">
+            <Form.Label>Job Tittle for Fresher</Form.Label>
+            <ChooseJobTitle />
+          </Form.Group>
+          <Form.Group className="mb-3 mt-2">
+            <Form.Label>Full time or Part time </Form.Label>
+            <Form.Select>
+              <option> Select an option </option>
+              <option> Full-Time </option>
+              <option>Part-Time</option>
+              <option>Both</option>
+            </Form.Select>
+          </Form.Group>
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Job Type</Form.Label>
             <Form.Select onChange={(e) => setJobType(e.target.value)}>
+              <option>Select an option</option>
               <option> Office </option>
               <option>Remote</option>
             </Form.Select>
@@ -141,36 +156,20 @@ function Experience() {
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>
-              What is the Shift to this experience Position
+              What is the Shift to this Experience Position
             </Form.Label>
             <Form.Select>
-              <ShiftDropdown />
+              <option>Select an option</option>
+              <option>Day</option>
+              <option>Night</option>
+              <option>Rotational</option>
             </Form.Select>
           </Form.Group>
 
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Label>Internship Start Date</Form.Label>
-            <Form.Check
-              type="checkbox"
-              label="Immediate Joiner (within next 30 days)"
-            />
-            <div className="custom-date-container">
-              <div
-                onClick={handleCustomDateClick}
-                style={{ marginRight: "10px" }}
-              >
-                Custom Date
-              </div>
-              <div className={date ? "show-date" : "hide-date"}>
-                : {date?.toDateString()}
-              </div>
-            </div>
-            {showDatePicker && (
-              <DatePicker selected={date} onChange={handleDateChange} inline />
-            )}
+          <Form.Group className="mb-3 mt-2">
+            <AddRemove />
           </Form.Group>
 
-          <DynamicEducationJob />
           <CheckboxDropdown onSelectionChange={handleSelectionChange} />
 
           <Form.Group className="mb-3 mt-2">
