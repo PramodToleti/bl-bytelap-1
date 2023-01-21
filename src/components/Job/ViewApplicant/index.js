@@ -10,13 +10,10 @@ import "./index.css"
 
 function ViewApplicant() {
   return (
-    <>
+    <div style={{ height: "95vh", overflow: "hidden", padding: "20px" }}>
       <EmployeeHome />
 
-      <div
-        className="col-lg-12 col-md-12 search-course-right  p-2      rounded container reveal  p-2  rounded "
-        style={{ backgroundColor: "#ffffff" }}
-      >
+      <div className="col-lg-12 col-md-12 search-course-right  p-2      rounded container reveal  p-2  rounded ">
         <p style={{ display: "flex", gap: "10px" }}>
           <Link
             to="/employee/dashboard/active-posts"
@@ -33,15 +30,13 @@ function ViewApplicant() {
         </p>
       </div>
       <div
-        className="col-lg-12 col-md-12 search-course-right   mb-0 mt-2 p-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
+        className="col-lg-12 col-md-12 search-course-right   mb-2  p-3      border-secondary rounded container reveal  p-3   rounded border border-secondary"
         style={{
-          height: "550px",
-          overflow: "auto",
-          position: "relative",
+          height: "70%",
         }}
       >
         <div
-          style={{ overflow: "auto", maxHeight: "440px" }}
+          style={{ overflow: "auto", height: "80%", position: "relative" }}
           className="applicant-card"
         >
           <div>
@@ -174,7 +169,7 @@ function ViewApplicant() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

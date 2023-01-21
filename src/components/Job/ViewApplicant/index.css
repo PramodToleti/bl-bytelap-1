@@ -43,13 +43,13 @@ p {
   gap: 10px;
   align-items: center;
   position: fixed;
-  bottom: 20px;
+  bottom: 16%;
 }
 
 @media screen and (min-width: 768px) {
   .interested-btn-container-applicant {
     margin-left: 60px;
-    bottom: 50px;
+    bottom: 15%;
   }
 }
 
