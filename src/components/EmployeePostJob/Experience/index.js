@@ -19,6 +19,7 @@ import DynamicPostJobExperience from "../../../DynamicPostJobExperience"
 import ShiftDropdown from "../../../ShiftDropdown"
 import ChooseJobTitle from "../../../ChooseJobTitle"
 import AddRemove from "../../../AddRemove"
+import LanguageDropdown from "../../../LanguageDropdown"
 
 function Experience() {
   const [validated, setValidated] = useState(false)
@@ -60,53 +61,66 @@ function Experience() {
 
   const renderSalaryType = () => {
     switch (salaryType) {
-      case "Fixed":
+      case "Lac":
         return (
-          <Form.Group className="mb-3 mt-2">
-            <Form.Control type="text" placeholder="2k/Month" disabled />
-          </Form.Group>
-        )
-      case "Negotiable":
-        return (
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Negoitable</Form.Label>
+          <Form.Group className="mb-3">
             <Row>
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>From</Form.Label>
-                  <Form.Control type="number" placeholder="5000" />
+                  <Form.Control type="number" placeholder="1 lac" />
                 </Form.Group>
               </Col>
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>To</Form.Label>
-                  <Form.Control type="number" placeholder="10,000/month" />
+                  <Form.Control type="number" placeholder="3 lac" />
                 </Form.Group>
               </Col>
             </Row>
           </Form.Group>
         )
-      case "Performance based":
+      case "Per Month":
         return (
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Performance based</Form.Label>
-            <Form.Control type="number" placeholder="Min assumed amount" />
+          <Form.Group className="mb-3">
+            <Row>
+              <Col xs={6}>
+                <Form.Group className="mb-3 mt-2">
+                  <Form.Label>From</Form.Label>
+                  <Form.Control type="number" placeholder="10k" />
+                </Form.Group>
+              </Col>
+              <Col xs={6}>
+                <Form.Group className="mb-3 mt-2">
+                  <Form.Label>To</Form.Label>
+                  <Form.Control type="number" placeholder="20k" />
+                </Form.Group>
+              </Col>
+            </Row>
           </Form.Group>
         )
+      case "Fixed":
+        return (
+          <Form.Group className="mb-3 mt-2">
+            <Form.Control type="number" placeholder="20k/Month" />
+          </Form.Group>
+        )
+      case "Not Disclosed":
+        return <Form.Group className="mb-3 mt-2"></Form.Group>
 
       default:
         return (
           <Row className="mb-3">
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Label>Min</Form.Label>
-              <Form.Control type="text" placeholder="" required />
+              <Form.Control type="number" placeholder="" required />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid state.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Label>Max</Form.Label>
-              <Form.Control type="text" placeholder="" required />
+              <Form.Control type="number" placeholder="" required />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid zip.
               </Form.Control.Feedback>
@@ -208,9 +222,10 @@ function Experience() {
               <Form.Label>Salary Range</Form.Label>
               <Form.Select onChange={(e) => setSalaryType(e.target.value)}>
                 <option>Select</option>
-                <option> Fixed </option>
-                <option>Negotiable</option>
-                <option>Performance based</option>
+                <option>Lac</option>
+                <option> Per Month </option>
+                <option>Fixed</option>
+                <option>Not Disclosed</option>
               </Form.Select>
             </Form.Group>
           </Row>
@@ -220,10 +235,7 @@ function Experience() {
           <SupplementaryDropdown />
           <PerksDropdown />
 
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Language's</Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
+          <LanguageDropdown />
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Number of opening</Form.Label>
