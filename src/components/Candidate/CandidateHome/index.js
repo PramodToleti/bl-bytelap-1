@@ -33,7 +33,7 @@ const HomeHeader = () => {
 
           <Offcanvas.Body>
             <div className="justify-content-end flex-grow-1 nav-link-container">
-              <Link to="/" className="fs-4 nav-link">
+              <Link to="/candidate" className="fs-4 nav-link">
                 Home
               </Link>
 
