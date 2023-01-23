@@ -18,7 +18,7 @@ function ViewApplicant() {
 
       {/*Dashboard Header*/}
       <div
-        className="col-lg-12 col-md-12 search-course-right pt-3 mb-3  rounded container reveal   rounded "
+        className="col-lg-12 col-md-12 search-course-right pt-3 mb-3 bg-light rounded container reveal   rounded "
         style={{
           position: "sticky",
           top: "0",

@@ -12,7 +12,7 @@ function ActiveJob() {
     <div>
       <EmployeeHome />
 
-      <div className="col-lg-12 col-md-12 search-course-right   mb-4 p-2       rounded container reveal  p-3 mb-5   rounded ">
+      <div className="col-lg-12 col-md-12 search-course-right   mb-4 p-2    bg-light   rounded container reveal  p-3 mb-5   rounded ">
         <p style={{ display: "flex", gap: "10px" }}>
           <Link
             to="/employee/dashboard/active-posts"

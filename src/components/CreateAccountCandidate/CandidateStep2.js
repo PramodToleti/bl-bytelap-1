@@ -21,7 +21,7 @@ function CandidateStep2() {
   }
 
   return (
-    <div className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
+    <div className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2  bg-light     border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
       <p className="text-end">Step 2-2</p>
       <p className="text-center">Graduation</p>
 

@@ -132,7 +132,7 @@ function Experience() {
 
   return (
     <div
-      className="col-lg-6 col-md-4 search-course-right   mb-4 mt-4 p-2   border-secondary rounded container reveal  p-3 mb-5 rounded border border-secondary"
+      className="col-lg-6 col-md-4 search-course-right  bg-light mb-4 mt-4 p-2    rounded container reveal  p-4 mb-5 rounded border "
       style={{ width: "100%" }}
     >
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>

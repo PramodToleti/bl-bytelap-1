@@ -19,7 +19,7 @@ function Accountsetting() {
   return (
     <>
       <EmployeeHome />
-      <div className="col-lg-8 col-md-8 search-course-right   mb-4 mt-5 p-2   border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
+      <div className="col-lg-8 col-md-8 search-course-right   mb-4 mt-5 p-2  bg-light border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
         <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-1   border-secondary rounded container reveal  p-2 mb-5   rounded border border-secondary">
           <Form.Group className="mb-0 mt-0 fs-10" controlId="formBasicText">
             <Stack direction="horizontal" gap={3}>
