@@ -152,7 +152,7 @@ function Fresher() {
           </Form.Group>
 
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>What is the Shift to this Fresher Position</Form.Label>
+            <Form.Label>What is the Shift?</Form.Label>
             <Form.Select>
               <option>Select an option</option>
               <option>Day</option>
