@@ -1,4 +1,4 @@
-import HomeHeader from "../HomeHeader"
+import HomeHeader from "./CandidateHome"
 
 import "./index.css"
 

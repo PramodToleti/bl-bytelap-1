@@ -25,11 +25,12 @@
 }
 
 .post-job-header {
-  border: 1px solid #ccc;
+  border: 1px solid rgb(227, 227, 227);
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
-  background-color: transparent;
+  background-color: white;
+  color: #000000;
 }
 
 .form-check-input {

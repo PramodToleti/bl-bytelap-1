@@ -29,7 +29,6 @@
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
-  background-color: transparent;
 }
 
 .form-check-input {
@@ -51,4 +50,16 @@
 
 .form-check-label {
   font-size: 1rem;
+}
+
+.preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.save-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
 }

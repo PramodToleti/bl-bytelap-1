@@ -1,11 +1,11 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
 //Login
 import LoginPage from "./components/LoginPage"
 import CandidateLogin from "./components/CandidateLogin"
 import EmployeeLogin from "./components/EmployeeLogin"
 import EmployeeSalesLogin from "./components/EmployeeSalesLogin"
 //Forgot Password
-import CandidateForgotPassword from "./components/CandidateForgotPassword"
+import CandidateForgotPassword from "./components/Candidate/CandidateForgotPassword"
 import EmployeeLForgotPassword from "./components/EmployeeForgotPassword"
 import NewPassword from "./components/NewPassword"
 //Create Account
@@ -16,60 +16,26 @@ import EmployeeStep2 from "./components/CreateAccountEmployee/EmployeeStep2"
 import CreateResume from "./components/CreateResume"
 import TemplateView from "./components/TemplateView"
 //Home
-import Home from "./components/Home"
+import Home from "./components/Candidate"
 import Employee from "./components/Employee"
-import EmployeeDashboard from "./components/EmployeeDashboard"
 import Template from "./components/Template"
-
 //Dashboard
 import ActivePosts from "./components/Dashboard/ActivePosts"
-import CVAlerts from "./components/Dashboard/CVAlerts"
-import Subscription from "./components/Dashboard/Subscription"
-
 //Active Job
 import ActiveJob from "./components/Job/ActiveJob"
 import ViewApplicant from "./components/Job/ViewApplicant"
-
 //Post job
 import EmployeePostJob from "./components/EmployeePostJob"
-
-//Settings
-import Accountsetting from "./components/AccountSetting"
+//Saved Jobs
 import SavedJobs from "./components/SavedJobs"
-import RegisteredInfo from "./components/RegisteredInfo"
-import RegisteredGraduation from "./components/RegisteredGraduation"
-//Internship
-import Internship2 from "./RegisterMyself/Internship/Internship2"
-import Internship3 from "./RegisterMyself/Internship/Internship3"
-//Fresher
-import Fresher1 from "./RegisterMyself/Fresher/Fresher1"
-import Fresher2 from "./RegisterMyself/Fresher/Fresher2"
-import Fresher3 from "./RegisterMyself/Fresher/Fresher3"
-//Experience
-import Experience1 from "./RegisterMyself/Experience/Experience1"
-import Experience2 from "./RegisterMyself/Experience/Experience2"
-import Experience3 from "./RegisterMyself/Experience/Experience3"
-
-//Employee Settings
-import Myinfo from "./components/EmployeeSettings/Myinfo"
+//Account Setting
+import MyInfo from "./components/EmployeeSettings/Myinfo"
 import CompanySettings from "./components/EmployeeSettings/CompanySettings"
-
-//Employee Internship
-import Intern2 from "./DashboardRegister/Internship/Intern2"
-import Intern3 from "./DashboardRegister/Internship/Intern3"
-import Intern4 from "./DashboardRegister/Internship/Intern4"
-//Employee Fresher
-import Fresh1 from "./DashboardRegister/Fresher/Fresh1"
-import Fresh2 from "./DashboardRegister/Fresher/Fresh2"
-import Fresh3 from "./DashboardRegister/Fresher/Fresh3"
-import Fresh4 from "./DashboardRegister/Fresher/Fresh4"
-//Employee Experience
-import Exp1 from "./DashboardRegister/Experience/Exp1"
-import Exp2 from "./DashboardRegister/Experience/Exp2"
-import Exp3 from "./DashboardRegister/Experience/Exp3"
-import Exp4 from "./DashboardRegister/Experience/Exp4"
+//Register Myself
+import CandidateRegistermyself from "./components/CandidateRegistermyself"
 
 import "./App.css"
+import CandidateMyinfo from "./components/Candidate/CandidateMyinfo"
 
 const App = () => {
   return (
@@ -106,6 +72,19 @@ const App = () => {
             path="/employee/create-account/step-2"
             component={EmployeeStep2}
           />
+          {/* Forgot Password Routes */}
+          <Route
+            exact
+            path="/candidate/change-password"
+            component={CandidateForgotPassword}
+          />
+
+          <Route
+            exact
+            path="/employee/forgot-password"
+            component={EmployeeLForgotPassword}
+          />
+          <Route exact path="/create-new-password" component={NewPassword} />
           {/* Create Resume */}
           <Route exact path="/create-resume" component={CreateResume} />
           <Route
@@ -118,21 +97,9 @@ const App = () => {
             path="/create-resume/template/1/edit"
             component={Template}
           />
-          {/* Forgot Password Routes */}
-          <Route
-            exact
-            path="/candidate/forgot-password"
-            component={CandidateForgotPassword}
-          />
-          <Route
-            exact
-            path="/employee/forgot-password"
-            component={EmployeeLForgotPassword}
-          />
-          <Route exact path="/create-new-password" component={NewPassword} />
 
           {/* Home Route */}
-          <Route exact path="/" component={Home} />
+          <Route exact path="/candidate" component={Home} />
           <Route exact path="/employee" component={Employee} />
           {/*Post Job*/}
           <Route exact path="/employee/post-job" component={EmployeePostJob} />
@@ -142,16 +109,7 @@ const App = () => {
             path="/employee/dashboard/active-posts"
             component={ActivePosts}
           />
-          <Route
-            exact
-            path="/employee/dashboard/cv-alerts"
-            component={CVAlerts}
-          />
-          <Route
-            exact
-            path="/employee/dashboard/subscription"
-            component={Subscription}
-          />
+
           {/* Active Job */}
           <Route
             exact
@@ -163,127 +121,32 @@ const App = () => {
             path="/employee/dashboard/active-posts/job/view-applicant"
             component={ViewApplicant}
           />
-          {/* Employee Settings */}
+
+          {/* Account Settings Routes */}
+          <Route exact path="/saved-job" component={SavedJobs} />
           <Route
             exact
             path="/employee/account-setting/my-info"
-            component={Myinfo}
+            component={MyInfo}
           />
           <Route
             exact
             path="/employee/account-setting/company-setting"
             component={CompanySettings}
           />
-          {/*Employee Internship */}
+          {/*Candidate Register Myself*/}
           <Route
             exact
-            path="/employee/dashboard/internship-1"
-            component={EmployeeDashboard}
+            path="/candidate/register-myself"
+            component={CandidateRegistermyself}
           />
+          {/* Candidate My Info */}
           <Route
             exact
-            path="/employee/dashboard/internship-2"
-            component={Intern2}
+            path="/candidate/account-setting/my-info"
+            component={CandidateMyinfo}
           />
-          <Route
-            exact
-            path="/employee/dashboard/internship-3"
-            component={Intern3}
-          />
-          <Route
-            exact
-            path="/employee/dashboard/internship-4"
-            component={Intern4}
-          />
-          {/*Employee Fresher */}
-          <Route
-            exact
-            path="/employee/dashboard/fresher-1"
-            component={Fresh1}
-          />
-          <Route
-            exact
-            path="/employee/dashboard/fresher-2"
-            component={Fresh2}
-          />
-          <Route
-            exact
-            path="/employee/dashboard/fresher-3"
-            component={Fresh3}
-          />
-          <Route
-            exact
-            path="/employee/dashboard/fresher-4"
-            component={Fresh4}
-          />
-          {/* Employee Experience */}
-          <Route
-            exact
-            path="/employee/dashboard/experience-1"
-            component={Exp1}
-          />
-          <Route
-            exact
-            path="/employee/dashboard/experience-2"
-            component={Exp2}
-          />
-          <Route
-            exact
-            path="/employee/dashboard/experience-3"
-            component={Exp3}
-          />
-          <Route
-            exact
-            path="/employee/dashboard/experience-4"
-            component={Exp4}
-          />
-
-          {/* Account Settings Routes */}
-          <Route exact path="/saved-job" component={SavedJobs} />
-          <Route
-            exact
-            path="/account-setting/internship-1"
-            component={Accountsetting}
-          />
-          <Route
-            exact
-            path="/account-setting/my-info"
-            component={RegisteredInfo}
-          />
-          <Route
-            exact
-            path="/account-setting/graduation"
-            component={RegisteredGraduation}
-          />
-
-          <Route
-            exact
-            path="/account-setting/internship-2"
-            component={Internship2}
-          />
-          <Route
-            exact
-            path="/account-setting/internship-3"
-            component={Internship3}
-          />
-          <Route exact path="/account-setting/fresher-1" component={Fresher1} />
-          <Route exact path="/account-setting/fresher-2" component={Fresher2} />
-          <Route exact path="/account-setting/fresher-3" component={Fresher3} />
-          <Route
-            exact
-            path="/account-setting/experience-1"
-            component={Experience1}
-          />
-          <Route
-            exact
-            path="/account-setting/experience-2"
-            component={Experience2}
-          />
-          <Route
-            exact
-            path="/account-setting/experience-3"
-            component={Experience3}
-          />
+          <Redirect to="/login" />
         </Switch>
       </BrowserRouter>
     </>

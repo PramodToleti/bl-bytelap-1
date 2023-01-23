@@ -8,23 +8,24 @@ import ChooseCity from "../../../ChooseCity"
 
 import React, { useState } from "react"
 import Row from "react-bootstrap/Row"
-import { Col } from "react-bootstrap"
+import { Col, FormGroup } from "react-bootstrap"
 
 import "./index.css"
 import PerksDropdown from "../../../PerksDropdown"
 import SupplementaryDropdown from "../../../SupplementaryDropdown"
 import DynamicEducationForm from "../../../DynamicEducationForm"
 import DynamicEducationJob from "../../../DynamicEducationJob"
-import DynamicPostJobExperience from "../../../DynamicPostJobExperience"
+import DynamicPostJobFresher from "../../../DynamicPostJobFresher"
 import ShiftDropdown from "../../../ShiftDropdown"
 import ChooseJobTitle from "../../../ChooseJobTitle"
 import AddRemove from "../../../AddRemove"
 import LanguageDropdown from "../../../LanguageDropdown"
 
-function Experience() {
+function Fresher() {
   const [validated, setValidated] = useState(false)
   const [jobType, setJobType] = useState("")
   const [salaryType, setSalaryType] = useState("")
+
   const [state, setState] = useState({
     selectedSkills: [],
   })
@@ -132,13 +133,13 @@ function Experience() {
 
   return (
     <div
-      className="col-lg-6 col-md-4 search-course-right   mb-4 mt-4 p-2   border-secondary rounded container reveal  p-3 mb-5 rounded border border-secondary"
+      className="col-lg-6 col-md-4 search-course-right bg-light  mb-4 mt-4 p-4  rounded container reveal mb-5  rounded border "
       style={{ width: "100%" }}
     >
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-            <Form.Label>Job Tittle for Experience</Form.Label>
+            <Form.Label>Job Tittle for Fresher</Form.Label>
             <ChooseJobTitle />
           </Form.Group>
           <Form.Group className="mb-3 mt-2">
@@ -169,9 +170,7 @@ function Experience() {
           )}
 
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>
-              What is the Shift to this Experience Position
-            </Form.Label>
+            <Form.Label>What is the Shift to this Fresher Position</Form.Label>
             <Form.Select>
               <option>Select an option</option>
               <option>Day</option>
@@ -190,32 +189,6 @@ function Experience() {
             <Form.Label>Job description</Form.Label>
             <Form.Control as="textarea" rows="5" />
           </Form.Group>
-
-          <Row className="mb-3">
-            <Form.Label>Experience</Form.Label>
-            <Col xs={6}>
-              <Form.Group className="mb-3">
-                <Form.Select placeholder="From">
-                  {[0, 1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
-                    (each) => (
-                      <option>{each}</option>
-                    )
-                  )}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-            <Col xs={6}>
-              <Form.Group className="mb-3">
-                <Form.Select placeholder="To">
-                  {[1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
-                    (each) => (
-                      <option>{each}</option>
-                    )
-                  )}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-          </Row>
 
           <Row className="mb-3">
             <Form.Group as={Col} md="6" controlId="validationCustom03">
@@ -262,4 +235,4 @@ function Experience() {
   )
 }
 
-export default Experience
+export default Fresher

@@ -1,16 +1,43 @@
 .resume-username {
   font-weight: 500;
-  font-size: 21px;
+  font-size: 24px;
 }
 
 .resume-side-heading {
   font-weight: 500;
   font-size: 21px;
-  margin-top: 45px;
+}
+
+.resume-job-title {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.skills {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.skill-name {
+  margin-left: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .skill-name {
+    margin-left: 30px;
+  }
+}
+
+.link-icon {
+  color: grey;
+  font-size: 17px;
+  margin-bottom: 4px;
+  cursor: pointer;
 }
 
 p {
   font-size: 17px;
+  margin-bottom: 10px;
 }
 
 @media screen and (min-width: 768px) {

@@ -1,4 +1,4 @@
-import HomeHeader from "../HomeHeader"
+import HomeHeader from "../Candidate/CandidateHome"
 
 function SavedJobs() {
   return <HomeHeader />

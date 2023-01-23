@@ -8,7 +8,7 @@ const setDark = () => {
   localStorage.setItem("theme", "dark")
 
   // 3
-  document.documentElement.setAttribute("data-theme", "dark")
+  //document.documentElement.setAttribute("data-theme", "dark")
 }
 
 const setLight = () => {

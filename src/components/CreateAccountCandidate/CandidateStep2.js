@@ -179,7 +179,7 @@ function CandidateStep2() {
         </Row>
 
         <div className="d-grid gap-2 mt-5">
-          <Link to="/">
+          <Link to="/candidate">
             <Button
               type="submit"
               variant="primary"

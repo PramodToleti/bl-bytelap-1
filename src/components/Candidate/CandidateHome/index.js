@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 
 import "./index.css"
 import "bootstrap/dist/css/bootstrap.min.css"
-import Theme from "../../Theme"
+import Theme from "../../../Theme"
 
 const HomeHeader = () => {
   const activeThemeStyles = (theme) => {
@@ -37,26 +37,33 @@ const HomeHeader = () => {
                 Home
               </Link>
 
+              <Link to="/saved-job" className="fs-4 nav-link">
+                Saved Job
+              </Link>
+
+              <Link to="/candidate/register-myself" className="fs-4 nav-link">
+                Register Myself
+              </Link>
+
               <NavDropdown
                 title={<span className="fs-4">Profile</span>}
                 id={`offcanvasNavbarDropdown-expand-${expand}`}
                 className="fs-4 profile-nav"
               >
-                <Link to="/saved-job" className="nav-link">
-                  Saved Job
+                <Link
+                  to="/candidate/account-setting/my-info"
+                  className="nav-link"
+                >
+                  Edit Profile
                 </Link>
-
-                <Link to="/account-setting/internship-1" className="nav-link">
-                  Register Myself
+                <Link to="/candidate/change-password" className=" nav-link">
+                  Change Password
                 </Link>
-
-                <Link to="/account-setting/internship-1" className="nav-link">
-                  Account Setting
+                <Link to="/login" className=" nav-link">
+                  Logout
                 </Link>
               </NavDropdown>
-              <Link to="/login" className="fs-4  nav-link">
-                Logout
-              </Link>
+
               <Theme activeThemeStyles={activeThemeStyles} />
             </div>
           </Offcanvas.Body>

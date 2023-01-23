@@ -1,4 +1,3 @@
-import Stack from "react-bootstrap/Stack"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import DatePicker from "react-datepicker"
@@ -12,19 +11,26 @@ import { Col } from "react-bootstrap"
 
 import "./index.css"
 import PerksDropdown from "../../../PerksDropdown"
-import SupplementaryDropdown from "../../../SupplementaryDropdown"
-import DynamicEducationForm from "../../../DynamicEducationForm"
-import DynamicEducationJob from "../../../DynamicEducationJob"
-import DynamicPostJobExperience from "../../../DynamicPostJobExperience"
-import ShiftDropdown from "../../../ShiftDropdown"
+import LanguageDropdown from "../../../LanguageDropdown"
+import LocationDropdown from "../../../LocationCheckbox"
 import ChooseJobTitle from "../../../ChooseJobTitle"
 import AddRemove from "../../../AddRemove"
-import LanguageDropdown from "../../../LanguageDropdown"
 
-function Experience() {
+function Internship() {
   const [validated, setValidated] = useState(false)
   const [jobType, setJobType] = useState("")
   const [salaryType, setSalaryType] = useState("")
+  const [startDate, setStartDate] = useState("")
+  const [endDate, setEndDate] = useState("")
+
+  const handleChange = (date) => {
+    setStartDate(date)
+  }
+
+  const handleChangeEnd = (date) => {
+    setEndDate(date)
+  }
+
   const [state, setState] = useState({
     selectedSkills: [],
   })
@@ -57,56 +63,39 @@ function Experience() {
     })
   }
 
-  console.log(salaryType)
-
   const renderSalaryType = () => {
     switch (salaryType) {
-      case "Lac":
-        return (
-          <Form.Group className="mb-3">
-            <Row>
-              <Col xs={6}>
-                <Form.Group className="mb-3 mt-2">
-                  <Form.Label>From</Form.Label>
-                  <Form.Control type="number" placeholder="1 lac" />
-                </Form.Group>
-              </Col>
-              <Col xs={6}>
-                <Form.Group className="mb-3 mt-2">
-                  <Form.Label>To</Form.Label>
-                  <Form.Control type="number" placeholder="3 lac" />
-                </Form.Group>
-              </Col>
-            </Row>
-          </Form.Group>
-        )
-      case "Per Month":
-        return (
-          <Form.Group className="mb-3">
-            <Row>
-              <Col xs={6}>
-                <Form.Group className="mb-3 mt-2">
-                  <Form.Label>From</Form.Label>
-                  <Form.Control type="number" placeholder="10k" />
-                </Form.Group>
-              </Col>
-              <Col xs={6}>
-                <Form.Group className="mb-3 mt-2">
-                  <Form.Label>To</Form.Label>
-                  <Form.Control type="number" placeholder="20k" />
-                </Form.Group>
-              </Col>
-            </Row>
-          </Form.Group>
-        )
       case "Fixed":
         return (
           <Form.Group className="mb-3 mt-2">
-            <Form.Control type="number" placeholder="20k/Month" />
+            <Form.Control type="number" placeholder="2k/Month" />
           </Form.Group>
         )
-      case "Not Disclosed":
-        return <Form.Group className="mb-3 mt-2"></Form.Group>
+      case "Negotiable":
+        return (
+          <Form.Group className="mb-3">
+            <Row>
+              <Col xs={6}>
+                <Form.Group className="mb-3 mt-2">
+                  <Form.Label>From</Form.Label>
+                  <Form.Control type="number" placeholder="5000" />
+                </Form.Group>
+              </Col>
+              <Col xs={6}>
+                <Form.Group className="mb-3 mt-2">
+                  <Form.Label>To</Form.Label>
+                  <Form.Control type="number" placeholder="10,000/month" />
+                </Form.Group>
+              </Col>
+            </Row>
+          </Form.Group>
+        )
+      case "Performance based":
+        return (
+          <Form.Group className="mb-3 mt-2">
+            <Form.Control type="number" placeholder="Min assumed amount" />
+          </Form.Group>
+        )
 
       default:
         return (
@@ -132,13 +121,13 @@ function Experience() {
 
   return (
     <div
-      className="col-lg-6 col-md-4 search-course-right   mb-4 mt-4 p-2   border-secondary rounded container reveal  p-3 mb-5 rounded border border-secondary"
+      className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-4 mt-4    rounded container reveal  p-4 mb-5 rounded border "
       style={{ width: "100%" }}
     >
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-            <Form.Label>Job Tittle for Experience</Form.Label>
+            <Form.Label>Job Tittle for Internship</Form.Label>
             <ChooseJobTitle />
           </Form.Group>
           <Form.Group className="mb-3 mt-2">
@@ -169,70 +158,111 @@ function Experience() {
           )}
 
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>
-              What is the Shift to this Experience Position
-            </Form.Label>
+            <Form.Label>Duration of Internship </Form.Label>
             <Form.Select>
-              <option>Select an option</option>
-              <option>Day</option>
-              <option>Night</option>
-              <option>Rotational</option>
+              <option>Select an option </option>
+              <option> 1 </option>
+              <option> 2 </option>
+              <option> 3 </option>
+              <option> 4 </option>
+              <option> 5 </option>
+              <option> 6 </option>
             </Form.Select>
           </Form.Group>
 
           <Form.Group className="mb-3 mt-2">
-            <AddRemove />
+            <Form.Label>What is the Shift to this Job Position</Form.Label>
+            <Form.Control type="text" placeholder="Day Shift" disabled />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicCheckbox">
+            <Form.Label>Internship Start Date</Form.Label>
+            <Form.Check
+              type="checkbox"
+              label="Immediate Joiner (within next 30 days)"
+            />
+            {/*<div className="custom-date-container">
+              <div
+                onClick={handleCustomDateClick}
+                style={{ marginRight: "10px" }}
+              >
+                Custom Date
+              </div>
+              <div className={date ? "show-date" : "hide-date"}>
+                : {date?.toDateString()}
+              </div>
+            </div>
+            {showDatePicker && (
+              <DatePicker selected={date} onChange={handleDateChange} inline />
+            )}*/}
+
+            <div className="mt-3 custom-date">
+              <p style={{ marginTop: "8px" }}>Custom Date: </p>
+
+              <div style={{ display: "flex", gap: "15px" }}>
+                <div style={{ display: "flex" }}>
+                  <Form.Label
+                    style={{
+                      marginRight: "10px",
+                      marginTop: "8px",
+                      fontSize: "17px",
+                    }}
+                  >
+                    From
+                  </Form.Label>
+                  <Form.Group className="mb-3" style={{ display: "flex" }}>
+                    <DatePicker
+                      placeholderText=""
+                      className="my-custom-datepicker"
+                      selected={startDate}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </div>
+                <div style={{ display: "flex" }}>
+                  <Form.Label
+                    style={{
+                      marginRight: "10px",
+                      marginTop: "8px",
+                      fontSize: "17px",
+                    }}
+                  >
+                    To
+                  </Form.Label>
+                  <Form.Group className="mb-3" style={{ display: "flex" }}>
+                    <DatePicker
+                      placeholderText=""
+                      className="my-custom-datepicker"
+                      selected={endDate}
+                      onChange={handleChangeEnd}
+                    />
+                  </Form.Group>
+                </div>
+              </div>
+            </div>
           </Form.Group>
 
           <CheckboxDropdown onSelectionChange={handleSelectionChange} />
 
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>Job description</Form.Label>
+            <Form.Label>Intern's responsibilities</Form.Label>
             <Form.Control as="textarea" rows="5" />
           </Form.Group>
-
-          <Row className="mb-3">
-            <Form.Label>Experience</Form.Label>
-            <Col xs={6}>
-              <Form.Group className="mb-3">
-                <Form.Select placeholder="From">
-                  {[0, 1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
-                    (each) => (
-                      <option>{each}</option>
-                    )
-                  )}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-            <Col xs={6}>
-              <Form.Group className="mb-3">
-                <Form.Select placeholder="To">
-                  {[1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
-                    (each) => (
-                      <option>{each}</option>
-                    )
-                  )}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-          </Row>
 
           <Row className="mb-3">
             <Form.Group as={Col} md="6" controlId="validationCustom03">
               <Form.Label>Salary Range</Form.Label>
               <Form.Select onChange={(e) => setSalaryType(e.target.value)}>
                 <option>Select</option>
-                <option>Lac</option>
-                <option> Per Month </option>
-                <option>Fixed</option>
-                <option>Not Disclosed</option>
+                <option> Fixed </option>
+                <option>Negotiable</option>
+                <option>Performance based</option>
               </Form.Select>
             </Form.Group>
           </Row>
 
           {renderSalaryType()}
 
-          <SupplementaryDropdown />
           <PerksDropdown />
 
           <LanguageDropdown />
@@ -242,12 +272,9 @@ function Experience() {
             <Form.Control type="number" />
           </Form.Group>
 
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>
-              Which location do you prefer looking for intern's ? (optional)
-            </Form.Label>
-            <Form.Control type="text" />
-          </Form.Group>
+          <LocationDropdown />
+
+          <AddRemove />
         </Row>
 
         <div className="preview-container">
@@ -262,4 +289,4 @@ function Experience() {
   )
 }
 
-export default Experience
+export default Internship

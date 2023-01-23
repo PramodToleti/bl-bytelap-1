@@ -1,0 +1,40 @@
+.custom-date-container {
+  display: flex;
+  margin-left: 25px;
+  margin-top: 10px;
+}
+
+.hide-date {
+  display: none;
+}
+
+.show-date {
+  display: block;
+}
+
+.my-custom-datepicker {
+  border-radius: 6px;
+  margin-top: 7px;
+  border: 1px solid #ccc;
+  height: 35px;
+  width: 120px;
+  padding: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .my-custom-datepicker {
+    width: 150px;
+  }
+}
+
+.custom-date {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .custom-date {
+    flex-direction: row;
+    gap: 13px;
+  }
+}
