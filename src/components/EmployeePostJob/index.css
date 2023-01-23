@@ -8,7 +8,7 @@
 .post-container {
   padding: 20px;
   width: 100%;
-  max-width: 900px;
+  max-width: 950px;
 }
 
 @media screen and (min-width: 768px) {
@@ -27,9 +27,11 @@
 .post-job-header {
   border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 20px;
   background-color: transparent;
+  display: flex;
+  width: 100%;
 }
 
 .form-check-input {
@@ -50,5 +52,26 @@
 }
 
 .form-check-label {
-  font-size: 1rem;
+  font-size: 16px;
+}
+
+.form-check-inline {
+  margin-right: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .form-check-inline {
+    margin-right: 18px;
+  }
+
+  .post-job-header {
+    padding: 30px;
+  }
+}
+
+.form-label {
+  font-size: 17px;
+  margin-top: 10px;
+  font-weight: 500;
+  font-family: "Roboto";
 }

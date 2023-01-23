@@ -15,6 +15,10 @@ import LanguageDropdown from "../../../LanguageDropdown"
 import LocationDropdown from "../../../LocationCheckbox"
 import ChooseJobTitle from "../../../ChooseJobTitle"
 import AddRemove from "../../../AddRemove"
+import TextArea from "antd/es/input/TextArea"
+import DynamicProjectForm from "../../../DynamicProjectForm"
+import DynamicAchievements from "../../../DynamicAchievements"
+import DynamicEducationJob from "../../../DynamicEducationJob"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
@@ -120,18 +124,25 @@ function Internship() {
   }
 
   return (
-    <div
-      className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-4 mt-4    rounded container reveal  p-4 mb-5 rounded border "
+    <Form
+      action=""
+      noValidate
+      validated={validated}
+      onSubmit={handleSubmit}
       style={{ width: "100%" }}
+      className="p-3"
     >
-      <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>
-        <Row className="mb-3">
+      <Row className="mb-3">
+        <div
+          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
+          style={{ width: "100%" }}
+        >
           <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-            <Form.Label>Job Tittle for Internship</Form.Label>
+            <Form.Label>Job Tittle</Form.Label>
             <ChooseJobTitle />
           </Form.Group>
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>Full time or Part time </Form.Label>
+            <Form.Label>Looking for Full time or Part time Job? </Form.Label>
             <Form.Select>
               <option> Select an option </option>
               <option> Full-Time </option>
@@ -141,151 +152,72 @@ function Internship() {
           </Form.Group>
 
           <Form.Group className="mb-3 mt-2">
-            <Form.Label>Job Type</Form.Label>
-            <Form.Select onChange={(e) => setJobType(e.target.value)}>
-              <option>Select an option</option>
-              <option> Office </option>
-              <option>Remote</option>
-            </Form.Select>
-          </Form.Group>
-          {jobType === "Office" && (
-            <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <ChooseCity />
-              <Form.Control.Feedback type="invalid">
-                Please enter your city.
-              </Form.Control.Feedback>
-            </Form.Group>
-          )}
-
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Duration of Internship </Form.Label>
-            <Form.Select>
-              <option>Select an option </option>
-              <option> 1 </option>
-              <option> 2 </option>
-              <option> 3 </option>
-              <option> 4 </option>
-              <option> 5 </option>
-              <option> 6 </option>
-            </Form.Select>
-          </Form.Group>
-
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>What is the Shift to this Job Position</Form.Label>
+            <Form.Label>What is the Shift?</Form.Label>
             <Form.Control type="text" placeholder="Day Shift" disabled />
           </Form.Group>
+        </div>
 
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Label>Internship Start Date</Form.Label>
-            <Form.Check
-              type="checkbox"
-              label="Immediate Joiner (within next 30 days)"
-            />
-            {/*<div className="custom-date-container">
-              <div
-                onClick={handleCustomDateClick}
-                style={{ marginRight: "10px" }}
-              >
-                Custom Date
-              </div>
-              <div className={date ? "show-date" : "hide-date"}>
-                : {date?.toDateString()}
-              </div>
-            </div>
-            {showDatePicker && (
-              <DatePicker selected={date} onChange={handleDateChange} inline />
-            )}*/}
-
-            <div className="mt-3 custom-date">
-              <p style={{ marginTop: "8px" }}>Custom Date: </p>
-
-              <div style={{ display: "flex", gap: "15px" }}>
-                <div style={{ display: "flex" }}>
-                  <Form.Label
-                    style={{
-                      marginRight: "10px",
-                      marginTop: "8px",
-                      fontSize: "17px",
-                    }}
-                  >
-                    From
-                  </Form.Label>
-                  <Form.Group className="mb-3" style={{ display: "flex" }}>
-                    <DatePicker
-                      placeholderText=""
-                      className="my-custom-datepicker"
-                      selected={startDate}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </div>
-                <div style={{ display: "flex" }}>
-                  <Form.Label
-                    style={{
-                      marginRight: "10px",
-                      marginTop: "8px",
-                      fontSize: "17px",
-                    }}
-                  >
-                    To
-                  </Form.Label>
-                  <Form.Group className="mb-3" style={{ display: "flex" }}>
-                    <DatePicker
-                      placeholderText=""
-                      className="my-custom-datepicker"
-                      selected={endDate}
-                      onChange={handleChangeEnd}
-                    />
-                  </Form.Group>
-                </div>
-              </div>
-            </div>
-          </Form.Group>
-
+        <div
+          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
+          style={{ width: "100%" }}
+        >
           <CheckboxDropdown onSelectionChange={handleSelectionChange} />
+        </div>
 
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Intern's responsibilities</Form.Label>
-            <Form.Control as="textarea" rows="5" />
-          </Form.Group>
+        <div
+          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
+          style={{ width: "100%" }}
+        >
+          <DynamicEducationJob />
+        </div>
 
-          <Row className="mb-3">
-            <Form.Group as={Col} md="6" controlId="validationCustom03">
-              <Form.Label>Salary Range</Form.Label>
-              <Form.Select onChange={(e) => setSalaryType(e.target.value)}>
-                <option>Select</option>
-                <option> Fixed </option>
-                <option>Negotiable</option>
-                <option>Performance based</option>
-              </Form.Select>
-            </Form.Group>
-          </Row>
+        <div
+          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
+          style={{ width: "100%" }}
+        >
+          <Form.Label>Cover Letter</Form.Label>
+          <TextArea rows={6} className="mb-3" />
+        </div>
 
-          {renderSalaryType()}
+        <div
+          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
+          style={{ width: "100%" }}
+        >
+          <Form.Label>About us</Form.Label>
+          <TextArea rows={6} className="mb-3" />
+        </div>
 
-          <PerksDropdown />
+        <div
+          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
+          style={{ width: "100%" }}
+        >
+          <DynamicProjectForm />
+        </div>
 
+        <div
+          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
+          style={{ width: "100%" }}
+        >
+          <DynamicAchievements />
+        </div>
+
+        <div
+          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
+          style={{ width: "100%" }}
+        >
           <LanguageDropdown />
-
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Number of opening</Form.Label>
-            <Form.Control type="number" />
-          </Form.Group>
-
-          <LocationDropdown />
-
-          <AddRemove />
-        </Row>
-
-        <div className="preview-container">
-          <Button variant="outline-primary">Preview</Button>
         </div>
-        <div className="save-container">
-          <Button variant="success">Save Draft</Button>
-          <Button variant="primary">Post Job</Button>
+
+        <div
+          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
+          style={{ width: "100%" }}
+        >
+          <p style={{ fontSize: "18px", marginBottom: "0px" }}>
+            Available - Actively looking for internships and immediate joiner
+          </p>
         </div>
-      </Form>
-    </div>
+      </Row>
+    </Form>
   )
 }
 

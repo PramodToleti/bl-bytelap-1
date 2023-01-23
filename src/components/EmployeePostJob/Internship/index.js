@@ -125,7 +125,7 @@ function Internship() {
 
   return (
     <div
-      className="col-lg-6 col-md-4 search-course-right   mb-4 mt-4 p-2   border-secondary rounded container reveal  p-3 mb-5 rounded border border-secondary"
+      className="col-lg-6 col-md-4 search-course-right   mb-4 mt-4 p-3  border-secondary rounded container reveal mb-5 rounded border border-secondary"
       style={{ width: "100%", background: "transparent" }}
     >
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>

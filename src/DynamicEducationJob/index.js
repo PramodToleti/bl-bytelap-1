@@ -43,6 +43,7 @@ const DynamicEducationJob = (props) => {
 
   return (
     <Form>
+      <Form.Label>Graduation</Form.Label>
       {bookRoomData.map((data, i) => {
         return (
           <Row key={i}>
@@ -56,7 +57,7 @@ const DynamicEducationJob = (props) => {
               />
             )}
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <Form.Label>Qualification</Form.Label>
+              <Form.Label>Degree</Form.Label>
               <Form.Select>
                 <option>None</option>
                 <option>Master's</option>
@@ -87,11 +88,15 @@ const DynamicEducationJob = (props) => {
 
       <Row>
         <Col className=" mb-3 d-flex justify-content-between">
-          <Button variant="primary" size="sm" onClick={handleAddFields}>
+          <Button variant="outline-primary" onClick={handleAddFields}>
             Add More Education
           </Button>
           {bookRoomData.length > 1 && (
-            <Button variant="danger" size="sm" onClick={handleRemoveFields}>
+            <Button
+              variant="outline-danger"
+              size="sm"
+              onClick={handleRemoveFields}
+            >
               Remove
             </Button>
           )}
