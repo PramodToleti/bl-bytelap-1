@@ -207,9 +207,9 @@ function Experience() {
             </Col>
           </Row>
 
-          {/*<Row className="mb-3">
+          <Row className="mb-3">
             <Form.Group as={Col} md="6" controlId="validationCustom03">
-              <Form.Label>Salary Range</Form.Label>
+              <Form.Label>Expected Salary</Form.Label>
               <Form.Select onChange={(e) => setSalaryType(e.target.value)}>
                 <option>Select</option>
                 <option>Lac</option>
@@ -220,15 +220,7 @@ function Experience() {
             </Form.Group>
           </Row>
 
-                    {renderSalaryType()}*/}
-          <Row>
-            <Col xsm={12} md={6}>
-              <Form.Group className="mb-3">
-                <Form.Label>Salary</Form.Label>
-                <Form.Control type="number" />
-              </Form.Group>
-            </Col>
-          </Row>
+          {renderSalaryType()}
         </div>
 
         <div

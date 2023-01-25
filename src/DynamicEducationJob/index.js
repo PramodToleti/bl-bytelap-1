@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import "bootstrap/dist/css/bootstrap.css"
-import { Form, Button, Row, Col } from "react-bootstrap"
+import { Form, Button, Row, Col, FormGroup } from "react-bootstrap"
 
 import ChooseCity from "../ChooseCity"
+import ChooseField from "../ChooseField"
 
 const DynamicEducationJob = (props) => {
   const [bookRoomData, setBookRoomData] = useState([
@@ -58,7 +59,7 @@ const DynamicEducationJob = (props) => {
             )}
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
               <Form.Label>Degree</Form.Label>
-              <Form.Select>
+              <Form.Select required>
                 <option>None</option>
                 <option>Master's</option>
                 <option>Bachelor's</option>
@@ -68,19 +69,15 @@ const DynamicEducationJob = (props) => {
                 <option>Doctorate</option>
                 <option>Other</option>
               </Form.Select>
+              <Form.Control.Feedback>
+                Please select a degree
+              </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="mb-3 mt-2">
-              <Form.Label>Field </Form.Label>
-              <Form.Select>
-                <option>None</option>
-                <option>Master's</option>
-                <option>Bachelor's</option>
-                <option>Diploma</option>
-                <option>High Secondary (12th)</option>
-                <option>Secondary (10th)</option>
-                <option>Doctorate</option>
-                <option>Other</option>
-              </Form.Select>
+            <FormGroup className="mb-3 ">
+              <ChooseField />
+            </FormGroup>
+            <Form.Group className="mb-3">
+              <ChooseCity />
             </Form.Group>
           </Row>
         )

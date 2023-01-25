@@ -2,7 +2,6 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
   padding: 20px;
   gap: 30px;
 }
@@ -29,15 +28,15 @@
   }
 }
 
-.details-container {
-  max-height: 600px;
+.details {
+  max-height: 100vh;
   overflow: auto;
 }
 
 @media screen and (min-width: 768px) {
   .details-container {
     width: 50%;
-    max-width: 600px;
+    max-width: 550px;
   }
 }
 
@@ -56,9 +55,9 @@
 /* Resume Container */
 
 .resume-container {
-  height: 600px;
+  height: 650px;
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
   border-radius: 8px;
   padding: 20px;
   padding-top: 30px;
@@ -66,6 +65,8 @@
   font-family: "Roboto";
   background-color: #ffffff;
   border: 1px solid rgb(204, 201, 201);
+  position: sticky;
+  top: 5%;
 }
 
 /* User Details */

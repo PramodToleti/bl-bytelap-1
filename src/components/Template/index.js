@@ -276,8 +276,8 @@ const Template = () => {
 
   return (
     <div className="template-container">
-      <div className="details-container">
-        <Card className="mb-3 p-3">
+      <div className="details-container" style={{ width: "100%" }}>
+        <Card className="mb-3 p-3" style={{ width: "100%" }}>
           <Card.Body>
             <Form>
               <h1

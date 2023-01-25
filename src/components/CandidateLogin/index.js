@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row"
 import { Link } from "react-router-dom"
 
 import "./index.css"
+import ShowAndHidePassword from "../../ShowAndHidePassword"
 
 function CandidateLogin() {
   const [validated, setValidated] = useState(false)
@@ -77,24 +78,7 @@ function CandidateLogin() {
               </FloatingLabel>
             </Form.Group>
 
-            <Form.Group
-              as={Col}
-              md="12"
-              className="mt-3"
-              controlId="validationCustom01"
-            >
-              <FloatingLabel controlId="floatingText" label="Password">
-                <Form.Control
-                  required
-                  type="password"
-                  placeholder="Last name"
-                  defaultValue=""
-                />
-                <Form.Control.Feedback type="invalid">
-                  Incorrect password.
-                </Form.Control.Feedback>
-              </FloatingLabel>
-            </Form.Group>
+            <ShowAndHidePassword />
             <Link
               to="/candidate/forgot-password"
               className="text-start mt-3"

@@ -22,38 +22,16 @@ import DynamicEducationJob from "../../../DynamicEducationJob"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
-  const [jobType, setJobType] = useState("")
   const [salaryType, setSalaryType] = useState("")
-  const [startDate, setStartDate] = useState("")
-  const [endDate, setEndDate] = useState("")
-
-  const handleChange = (date) => {
-    setStartDate(date)
-  }
-
-  const handleChangeEnd = (date) => {
-    setEndDate(date)
-  }
 
   const [state, setState] = useState({
     selectedSkills: [],
   })
-  const [date, setDate] = useState(null)
-  const [showDatePicker, setShowDatePicker] = useState(false)
-
-  function handleDateChange(date) {
-    setDate(date)
-    setShowDatePicker(false)
-  }
-
-  function handleCustomDateClick() {
-    setShowDatePicker(true)
-  }
 
   const handleSubmit = (event) => {
+    event.preventDefault()
     const form = event.currentTarget
     if (form.checkValidity() === false) {
-      event.preventDefault()
       event.stopPropagation()
     }
 
@@ -137,7 +115,7 @@ function Internship() {
           className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
           style={{ width: "100%" }}
         >
-          <Form.Group className="mb-3 mt-2" controlId="formBasicText">
+          <Form.Group className="mb-3 mt-2" controlId="title">
             <Form.Label>Job Tittle</Form.Label>
             <ChooseJobTitle />
           </Form.Group>
@@ -151,7 +129,7 @@ function Internship() {
             </Form.Select>
           </Form.Group>
 
-          <Form.Group className="mb-3 mt-2">
+          <Form.Group className="mb-3 mt-2" controlId="title">
             <Form.Label>What is the Shift?</Form.Label>
             <Form.Control type="text" placeholder="Day Shift" disabled />
           </Form.Group>
@@ -217,6 +195,7 @@ function Internship() {
           </p>
         </div>
       </Row>
+      <Button type="submit">Submit</Button>
     </Form>
   )
 }

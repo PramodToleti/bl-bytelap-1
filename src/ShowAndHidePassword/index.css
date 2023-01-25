@@ -1,0 +1,136 @@
+
+.form
+display: flex
+justify-content: center
+height: 90vh
+align-items: center
+flex-direction: column
+.container
+    position: relative
+    display: inline-block
+    height: 32px
+    .input
+        border-radius: 2px
+        border: none
+        height: 30px
+        outline: none
+        padding: 0 25px 0 10px
+        background-color: charcoal
+        color: white
+        font-size: 1.1em
+        &::placeholder
+            color: quick-silver
+            font-size: 0.9em
+        &:focus
+            box-shadow: 0px 1px 5px 2px electric-blue
+            ~.sup-gradient, ~.inf-gradient
+                width: 100%
+                transition: .5s
+            ~.right-gradient, ~.left-gradient
+                height: 32px
+                transition: .5s
+    .sup-gradient
+        position: absolute
+        top: 0px
+        height: 2px
+        width: 0
+        background-image: linear-gradient(to right, yellow-process, electric-blue)
+    .right-gradient
+        position: absolute
+        right: 0
+        top: 0
+        height: 0
+        width: 2px
+        background-image: linear-gradient(to bottom, electric-blue, yellow-process)
+    .inf-gradient
+        position: absolute
+        bottom: 0
+        right: 0
+        height: 2px
+        width: 0
+        background-image: linear-gradient(to right, electric-blue, yellow-process)
+    .left-gradient
+        position: absolute
+        bottom: 0
+        height: 0
+        width: 2px
+        background-image: linear-gradient(to top, electric-blue, yellow-process)
+    .icon
+        position: absolute
+        top: calc(100% - 1.6em)
+        right: 5px
+        color: white
+        cursor: pointer
+        z-index: 20
+    .info
+        width: 2em
+        height: 30px
+        background-color: #363d50
+        position: absolute
+        right: -2.5em
+        border-radius: 2px
+        top: 0
+        cursor: pointer
+        text-align: center
+        color: quick-silver
+        z-index: 50
+        &:hover
+            filter: brightness(1.2)
+            ~.info-square
+                pointer-events: all
+                transition: 1s
+                opacity: 1
+            ~.dumb-space
+                display: block
+        &::before
+            font-family: "FontAwesome"
+            content: "\f05a"
+            vertical-align: -webkit-baseline-middle
+    .info-square
+        pointer-events: none
+        opacity: 0
+        min-width: 100px
+        height: 100px
+        background-color: rgba(256,256,256, 0.6)
+        border-radius: 2px
+        position: absolute
+        top: -105px
+        right: calc((-2.5em) + (-105px))
+        cursor: pointer
+        z-index: 50
+        &:hover
+            pointer-events: all
+            background-color: rgba(256,256,256 0.8)
+            opacity: 1
+        .par {
+            font-family: 'sans'
+            font-size: 13px
+            padding: 8px
+        }
+.button {
+    background-color: #363d50
+    border: none
+    margin: 5px
+    padding: 10px 25px
+    border-radius: 2px
+    font-weight: bold
+    outline: none
+    cursor: pointer
+    color: quick-silver
+    &:hover
+        filter: brightness(1.2)
+}
+.dumb-space {
+    background-color: transparent
+    display: none
+    width: 135px
+    height: 135px
+    position: absolute
+    top: -105px
+    right: calc((-2.5em) + (-105px))
+    &:hover
+        display: block
+        ~ .info-square
+            opacity: 1
+            pointer-events: all
+}
