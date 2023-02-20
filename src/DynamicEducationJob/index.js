@@ -6,6 +6,24 @@ import ChooseCity from "../ChooseCity"
 import ChooseField from "../ChooseField"
 
 const DynamicEducationJob = (props) => {
+  const { handleDegree } = props
+  let userDegree = { degree: "", field: "", city: "" }
+
+  const onChangeDegree = (e) => {
+    userDegree.degree = e.target.value
+    console.log(userDegree)
+  }
+
+  const onChangeField = (e) => {
+    userDegree.field = e[0].label
+    console.log(userDegree)
+  }
+
+  const onChangeCity = (e) => {
+    userDegree.city = e[0].label
+    console.log(userDegree)
+  }
+
   const [bookRoomData, setBookRoomData] = useState([
     { roomType: "", roomNumber: 0, guest: 0 },
   ])
@@ -59,7 +77,7 @@ const DynamicEducationJob = (props) => {
             )}
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
               <Form.Label>Degree</Form.Label>
-              <Form.Select required>
+              <Form.Select required onChange={onChangeDegree}>
                 <option>None</option>
                 <option>Master's</option>
                 <option>Bachelor's</option>
@@ -74,10 +92,10 @@ const DynamicEducationJob = (props) => {
               </Form.Control.Feedback>
             </Form.Group>
             <FormGroup className="mb-3 ">
-              <ChooseField />
+              <ChooseField onChangeField={onChangeField} />
             </FormGroup>
             <Form.Group className="mb-3">
-              <ChooseCity />
+              <ChooseCity onChangeCity={onChangeCity} />
             </Form.Group>
           </Row>
         )

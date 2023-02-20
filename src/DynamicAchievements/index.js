@@ -5,7 +5,8 @@ import ChooseField from "../ChooseField"
 import TextArea from "antd/es/input/TextArea"
 import ChooseFile from "../ChooseFile"
 
-const DynamicAchievements = () => {
+const DynamicAchievements = (props) => {
+  const { handleAchievements } = props
   const [bookRoomData, setBookRoomData] = useState([
     { roomType: "", roomNumber: 0, guest: 0 },
   ])
@@ -40,6 +41,10 @@ const DynamicAchievements = () => {
     alert(JSON.stringify(bookRoomData, null, 2))
   }
 
+  const onChangeAchievements = (e) => {
+    handleAchievements(e)
+  }
+
   return (
     <Form>
       <Form.Label className="mb-3">Acheivements</Form.Label>
@@ -47,7 +52,11 @@ const DynamicAchievements = () => {
         return (
           <Row className="" key={i}>
             <Form.Group className="mb-3" controlId="formBasicText">
-              <Form.Control type="text" className="mb-3" />
+              <Form.Control
+                type="text"
+                className="mb-3"
+                onChange={onChangeAchievements}
+              />
             </Form.Group>
             <Form.Group className="mb-4">
               <Form.Label className="mb-3">Upload Certificate:</Form.Label>

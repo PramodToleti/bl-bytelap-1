@@ -4,7 +4,10 @@ import { Form, Button, Row, Col } from "react-bootstrap"
 import ChooseField from "../ChooseField"
 import TextArea from "antd/es/input/TextArea"
 
-const DynamicProjectForm = () => {
+const DynamicProjectForm = (props) => {
+  const { handleProject } = props
+  let projectDetails = { url: "", about: "" }
+
   const [bookRoomData, setBookRoomData] = useState([
     { roomType: "", roomNumber: 0, guest: 0 },
   ])
@@ -39,6 +42,16 @@ const DynamicProjectForm = () => {
     alert(JSON.stringify(bookRoomData, null, 2))
   }
 
+  const onChangeUrl = (e) => {
+    projectDetails.url = e.target.value
+    handleProject(projectDetails)
+  }
+
+  const onChangeAboutProject = (e) => {
+    projectDetails.about = e.target.value
+    handleProject(projectDetails)
+  }
+
   return (
     <Form>
       <Form.Label className="mb-3">Projects</Form.Label>
@@ -50,10 +63,15 @@ const DynamicProjectForm = () => {
                 type="text"
                 className="mb-3"
                 placeholder="Paste URL"
+                onChange={onChangeUrl}
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <TextArea rows={4} placeholder="Roles & Responsibility" />
+              <TextArea
+                rows={4}
+                placeholder="Roles & Responsibility"
+                onChange={onChangeAboutProject}
+              />
             </Form.Group>
           </Row>
         )

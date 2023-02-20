@@ -33,9 +33,9 @@ import MyInfo from "./components/EmployeeSettings/Myinfo"
 import CompanySettings from "./components/EmployeeSettings/CompanySettings"
 //Register Myself
 import CandidateRegistermyself from "./components/CandidateRegistermyself"
+import CandidateMyinfo from "./components/Candidate/CandidateMyinfo"
 
 import "./App.css"
-import CandidateMyinfo from "./components/Candidate/CandidateMyinfo"
 
 const App = () => {
   return (

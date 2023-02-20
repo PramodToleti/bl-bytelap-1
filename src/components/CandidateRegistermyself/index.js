@@ -32,9 +32,6 @@ function CandidateRegistermyself() {
       <CandidateHome />
       <div className="post-job">
         <div className="post-container">
-          <h1 className="post-job-heading">
-            Register my self as a Intern/Fresher/Experience
-          </h1>
           <div className="post-job-header">
             <div className="radio-buttons-container">
               <div className="form-check form-check-inline">

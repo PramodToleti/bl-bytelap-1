@@ -41,7 +41,7 @@ class LanguageDropdown extends Component {
     this.setState({
       optionSelected: selected,
     })
-    this.props.onSelectionChange(selected)
+    this.props.handleLanguages(selected)
   }
 
   render() {

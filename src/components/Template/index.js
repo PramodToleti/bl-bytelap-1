@@ -137,7 +137,7 @@ const Template = () => {
               <a
                 href="https://mail.google.com/mail/"
                 target={"_blank"}
-                className="email"
+                className="email" rel="noreferrer"
               >
                 {state.email}
               </a>

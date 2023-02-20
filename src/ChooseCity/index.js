@@ -5,13 +5,19 @@ import options from "./data"
 
 import "react-bootstrap-typeahead/css/Typeahead.css"
 
-const ChooseCity = () => {
+const ChooseCity = (props) => {
+  const { onChangeCity } = props
   const [selected, setSelected] = useState([])
+
+  const onChangeUserCity = (e) => {
+    setSelected(e)
+    onChangeCity(e)
+  }
 
   return (
     <Typeahead
       id="basic-example"
-      onChange={setSelected}
+      onChange={onChangeUserCity}
       options={options}
       placeholder="City"
       selected={selected}

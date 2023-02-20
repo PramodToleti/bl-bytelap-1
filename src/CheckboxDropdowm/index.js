@@ -43,6 +43,7 @@ class CheckboxDropdown extends Component {
       optionSelected: selected,
     })
     this.props.onSelectionChange(selected)
+    this.props.handleSkills(selected)
   }
 
   render() {
