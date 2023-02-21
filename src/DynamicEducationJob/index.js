@@ -1,28 +1,73 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "bootstrap/dist/css/bootstrap.css"
 import { Form, Button, Row, Col, FormGroup } from "react-bootstrap"
+import DatePicker from "react-datepicker"
 
 import ChooseCity from "../ChooseCity"
 import ChooseField from "../ChooseField"
 
+import "./index.css"
+
 const DynamicEducationJob = (props) => {
-  const { handleDegree } = props
-  let userDegree = { degree: "", field: "", city: "" }
+  const [startDate, setStartDate] = useState("")
+  const [endDate, setEndDate] = useState("")
+  const [checkbox, toggleCheckbox] = useState(false)
+  const [degree, setDegree] = useState({
+    degree: "",
+    field: "",
+    city: "",
+    startDate: "",
+    endDate: "",
+  })
+
+  const handleChangeStart = (date) => {
+    setStartDate(date)
+    setDegree((prevState) => ({
+      ...prevState,
+      startDate: date,
+    }))
+  }
+
+  const handleChangeEnd = (date) => {
+    setEndDate(date)
+    setDegree((prevState) => ({
+      ...prevState,
+      endDate: date,
+    }))
+  }
 
   const onChangeDegree = (e) => {
-    userDegree.degree = e.target.value
-    console.log(userDegree)
+    setDegree((prevState) => ({
+      ...prevState,
+      degree: e.target.value,
+    }))
   }
 
   const onChangeField = (e) => {
-    userDegree.field = e[0].label
-    console.log(userDegree)
+    setDegree((prevState) => ({
+      ...prevState,
+      field: e[0].label,
+    }))
   }
 
   const onChangeCity = (e) => {
-    userDegree.city = e[0].label
-    console.log(userDegree)
+    setDegree((prevState) => ({
+      ...prevState,
+      city: e[0].label,
+    }))
   }
+
+  useEffect(() => {
+    if (
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== ""
+    ) {
+      props.handleDegree(degree)
+    }
+  }, [degree, props])
 
   const [bookRoomData, setBookRoomData] = useState([
     { roomType: "", roomNumber: 0, guest: 0 },
@@ -62,23 +107,12 @@ const DynamicEducationJob = (props) => {
 
   return (
     <Form>
-      <Form.Label>Graduation</Form.Label>
       {bookRoomData.map((data, i) => {
         return (
           <Row key={i}>
-            {bookRoomData.length > 1 && (
-              <hr
-                className="separator mt-2 mb-2"
-                style={{
-                  border: "1px solid #000000",
-                  backgroundColor: "#000000",
-                }}
-              />
-            )}
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <Form.Label>Degree</Form.Label>
               <Form.Select required onChange={onChangeDegree}>
-                <option>None</option>
+                <option>Degree</option>
                 <option>Master's</option>
                 <option>Bachelor's</option>
                 <option>Diploma</option>
@@ -97,6 +131,57 @@ const DynamicEducationJob = (props) => {
             <Form.Group className="mb-3">
               <ChooseCity onChangeCity={onChangeCity} />
             </Form.Group>
+
+            <Form.Group className="mb-3" style={{ width: "100%" }}>
+              <Form.Label style={{ marginBottom: "0px" }}>
+                Year of Completion
+              </Form.Label>
+              <div className="mt-3 custom-date">
+                <div className="date-container">
+                  <DatePicker
+                    placeholderText=""
+                    className="year-date mb-3"
+                    selected={startDate}
+                    onChange={handleChangeStart}
+                  />
+
+                  {checkbox ? (
+                    <DatePicker
+                      placeholderText="Present"
+                      className="year-date mb-3"
+                      selected={endDate}
+                      onChange={handleChangeEnd}
+                      disabled
+                    />
+                  ) : (
+                    <DatePicker
+                      placeholderText=""
+                      className="year-date mb-3"
+                      selected={endDate}
+                      onChange={handleChangeEnd}
+                    />
+                  )}
+
+                  <Form.Check
+                    type="checkbox"
+                    label="Present"
+                    id="checkbox"
+                    className="custom-control-input ml-1 mb-3"
+                    checked={checkbox}
+                    onChange={() => toggleCheckbox(!checkbox)}
+                  />
+                </div>
+              </div>
+            </Form.Group>
+            {bookRoomData.length > 1 && i !== bookRoomData.length - 1 && (
+              <hr
+                className="separator mt-4 mb-4"
+                style={{
+                  border: "1px solid #000000",
+                  backgroundColor: "#000000",
+                }}
+              />
+            )}
           </Row>
         )
       })}

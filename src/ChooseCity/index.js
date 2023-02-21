@@ -19,7 +19,7 @@ const ChooseCity = (props) => {
       id="basic-example"
       onChange={onChangeUserCity}
       options={options}
-      placeholder="City"
+      placeholder="Location"
       selected={selected}
     />
   )

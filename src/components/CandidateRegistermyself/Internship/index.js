@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form"
 import "react-datepicker/dist/react-datepicker.css"
 import CheckboxDropdown from "../../../CheckboxDropdowm"
 
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Row from "react-bootstrap/Row"
 import { Col } from "react-bootstrap"
 import ProgressBar from "react-bootstrap/ProgressBar"
@@ -15,6 +15,7 @@ import TextArea from "antd/es/input/TextArea"
 import DynamicProjectForm from "../../../DynamicProjectForm"
 import DynamicAchievements from "../../../DynamicAchievements"
 import DynamicEducationJob from "../../../DynamicEducationJob"
+import DynamicTraining from "../../../DynamicTraining"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
@@ -22,26 +23,61 @@ function Internship() {
   //Input data
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
-  const [shift, setShift] = useState("Day Shift")
+  const [jobType, setJobType] = useState("")
+
   const [skills, setSkills] = useState([])
-  const [degree, setDegree] = useState({})
+  const [degree, setDegree] = useState({
+    degree: "",
+    field: "",
+    city: "",
+    startDate: "",
+    endDate: "",
+  })
   const [coverLetter, setCoverLetter] = useState("")
-  const [aboutUs, setAboutUs] = useState("")
-  const [projects, setProjects] = useState({})
-  const [acheivements, setAcheivements] = useState("")
+  const [projectDetails, setProjectDetails] = useState({
+    url: "",
+    about: "",
+  })
+  const [training, setTraining] = useState({
+    training: "",
+    startDate: "",
+    endDate: "",
+    file: null,
+  })
+  const [achievements, setAchievements] = useState({
+    achievements: "",
+    file: null,
+  })
   const [languages, setLanguages] = useState([])
+  const [availability, setAvailability] = useState("")
+  const [isFilled, setIsFilled] = useState(true)
+
+  {
+    /*const [isFixed, setIsFixed] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsFixed(window.pageYOffset > progressRef.current.offsetTop)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+const progressRef = useRef(null)*/
+  }
 
   const handleTitle = (e) => {
     setJobTitle(e)
-    console.log(jobTitle)
   }
 
   const handleJobTime = (e) => {
     if (e.target.value !== "Select an option") setJobTime(e.target.value)
   }
 
-  const handleShift = (e) => {
-    setShift(e.target.value)
+  const handleJobtype = (e) => {
+    setJobType(e.target.value)
   }
 
   const handleSkills = (e) => {
@@ -58,16 +94,16 @@ function Internship() {
     setCoverLetter(e.target.value)
   }
 
-  const handleAboutUs = (e) => {
-    setAboutUs(e.target.value)
+  const handleProject = (projectDetails) => {
+    setProjectDetails(projectDetails)
   }
 
-  const handleProject = (e) => {
-    setProjects(e)
+  const handleTraining = (training) => {
+    setTraining(training)
   }
 
-  const handleAchievements = (e) => {
-    setAcheivements(e.target.value)
+  const handleAchievements = (achievements) => {
+    setAchievements(achievements)
   }
 
   const handleLanguages = (e) => {
@@ -97,125 +133,166 @@ function Internship() {
     })
   }
 
-  const renderSalaryType = () => {
-    switch (salaryType) {
-      case "Fixed":
-        return (
-          <Form.Group className="mb-3 mt-2">
-            <Form.Control type="number" placeholder="2k/Month" />
-          </Form.Group>
-        )
-      case "Negotiable":
-        return (
-          <Form.Group className="mb-3">
-            <Row>
-              <Col xs={6}>
-                <Form.Group className="mb-3 mt-2">
-                  <Form.Label>From</Form.Label>
-                  <Form.Control type="number" placeholder="5000" />
-                </Form.Group>
-              </Col>
-              <Col xs={6}>
-                <Form.Group className="mb-3 mt-2">
-                  <Form.Label>To</Form.Label>
-                  <Form.Control type="number" placeholder="10,000/month" />
-                </Form.Group>
-              </Col>
-            </Row>
-          </Form.Group>
-        )
-      case "Performance based":
-        return (
-          <Form.Group className="mb-3 mt-2">
-            <Form.Control type="number" placeholder="Min assumed amount" />
-          </Form.Group>
-        )
-
-      default:
-        return (
-          <Row className="mb-3">
-            <Form.Group as={Col} md="3" controlId="validationCustom03">
-              <Form.Label>Min</Form.Label>
-              <Form.Control type="number" placeholder="" required />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid state.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group as={Col} md="3" controlId="validationCustom03">
-              <Form.Label>Max</Form.Label>
-              <Form.Control type="number" placeholder="" required />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid zip.
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Row>
-        )
-    }
-  }
-
   let now = 0
   function progressBar() {
-    if (jobTitle !== "" && jobTime !== "" && shift !== "") now = 10
     if (
       jobTitle !== "" &&
       jobTime !== "" &&
-      shift !== "" &&
-      skills.length !== 0
+      skills.length !== 0 &&
+      jobType !== ""
     )
       now = 20
     if (
       jobTitle !== "" &&
       jobTime !== "" &&
-      shift !== "" &&
-      skills.length !== 0 &&
-      degree.degree !== "" &&
-      degree.field &&
-      degree.city !== ""
-    )
-      now = 30
-    if (
-      jobTitle !== "" &&
-      jobTime !== "" &&
-      shift !== "" &&
+      jobType !== "" &&
       skills.length !== 0 &&
       coverLetter !== ""
     )
-      now = 40
+      now = 30
+
     if (
       jobTitle !== "" &&
       jobTime !== "" &&
-      shift !== "" &&
+      jobType !== "" &&
       skills.length !== 0 &&
       coverLetter !== "" &&
-      aboutUs !== ""
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== ""
     )
       now = 50
     if (
       jobTitle !== "" &&
       jobTime !== "" &&
-      shift !== "" &&
+      jobType !== "" &&
       skills.length !== 0 &&
       coverLetter !== "" &&
-      aboutUs !== "" &&
-      acheivements !== ""
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== "" &&
+      projectDetails.url !== "" &&
+      projectDetails.about !== ""
     )
-      now = 70
+      now = 60
     if (
       jobTitle !== "" &&
       jobTime !== "" &&
-      shift !== "" &&
+      jobType !== "" &&
       skills.length !== 0 &&
       coverLetter !== "" &&
-      aboutUs !== "" &&
-      acheivements !== "" &&
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== "" &&
+      projectDetails.url !== "" &&
+      projectDetails.about !== "" &&
+      training.training !== "" &&
+      training.startDate !== "" &&
+      training.endDate !== "" &&
+      training.file !== null
+    )
+      now = 70
+
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      jobType !== "" &&
+      skills.length !== 0 &&
+      coverLetter !== "" &&
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== "" &&
+      projectDetails.url !== "" &&
+      projectDetails.about !== "" &&
+      training.training !== "" &&
+      training.startDate !== "" &&
+      training.endDate !== "" &&
+      training.file !== null &&
+      achievements.achievements !== "" &&
+      achievements.file !== null
+    )
+      now = 80
+
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      jobType !== "" &&
+      skills.length !== 0 &&
+      coverLetter !== "" &&
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== "" &&
+      projectDetails.url !== "" &&
+      projectDetails.about !== "" &&
+      training.training !== "" &&
+      training.startDate !== "" &&
+      training.endDate !== "" &&
+      training.file !== null &&
+      achievements.achievements !== "" &&
+      achievements.file !== null &&
       languages.length !== 0
     )
       now = 90
-    if (now > 0)
-      return (
-        <ProgressBar now={now} label={`${now}%`} style={{ height: "25px" }} />
-      )
-    return null
+
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      jobType !== "" &&
+      skills.length !== 0 &&
+      coverLetter !== "" &&
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== "" &&
+      projectDetails.url !== "" &&
+      projectDetails.about !== "" &&
+      training.training !== "" &&
+      training.startDate !== "" &&
+      training.endDate !== "" &&
+      training.file !== null &&
+      achievements.achievements !== "" &&
+      achievements.file !== null &&
+      languages.length !== 0 &&
+      availability !== ""
+    )
+      now = 100
+
+    {
+      /*const progressBarStyle = {
+      width: isFixed ? "90%" : "100%",
+      maxWidth: "790px",
+      position: isFixed ? "fixed" : "relative",
+      top: isFixed ? "20px" : null,
+      zIndex: 999,
+      transition: "all 0.2s ease-out",
+    }*/
+    }
+
+    return (
+      <>
+        {/*} <div style={{ position: "relative" }}>
+        <div ref={progressRef} style={{ height: "25px" }} />
+        <div style={{ display: isFixed ? "block" : "none", height: "25px" }} />
+        <ProgressBar now={now} label={`${now}%`} style={progressBarStyle} />
+    </div> */}
+        <ProgressBar
+          now={now}
+          label={`${now}%`}
+          style={{ height: "25px", position: "sticky" }}
+        />
+      </>
+    )
   }
 
   return (
@@ -235,11 +312,15 @@ function Internship() {
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <Form.Group className="mb-3 mt-2" controlId="title">
-              <Form.Label>Job Tittle</Form.Label>
+              <Form.Label>
+                Job Tittle <span style={{ color: "red" }}>*</span>
+              </Form.Label>
               <ChooseJobTitle handleTitle={handleTitle} />
             </Form.Group>
             <Form.Group className="mb-3 mt-2">
-              <Form.Label>Looking for Full time or Part time Job? </Form.Label>
+              <Form.Label>
+                Looking for Full time or Part time Internship?{" "}
+              </Form.Label>
               <Form.Select onChange={handleJobTime}>
                 <option> Select an option </option>
                 <option> Full-Time </option>
@@ -249,20 +330,10 @@ function Internship() {
             </Form.Group>
 
             <Form.Group className="mb-3 mt-2" controlId="title">
-              <Form.Label>What is the Shift?</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Day Shift"
-                disabled
-                onChange={handleShift}
-              />
+              <Form.Label>Internship Job Type</Form.Label>
+              <Form.Control type="text" onChange={handleJobtype} />
             </Form.Group>
-          </div>
 
-          <div
-            className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
-            style={{ width: "100%" }}
-          >
             <CheckboxDropdown
               onSelectionChange={handleSelectionChange}
               handleSkills={handleSkills}
@@ -270,59 +341,118 @@ function Internship() {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
-            style={{ width: "100%" }}
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border-dark   rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
           >
-            <DynamicEducationJob handleDegree={handleDegree} />
-          </div>
-
-          <div
-            className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-4 border-dark   rounded container reveal  p-4  rounded border "
-            style={{ width: "100%" }}
-          >
-            <Form.Label>Cover Letter</Form.Label>
+            <Form.Label>
+              Cover Letter <span style={{ color: "red" }}>*</span>
+            </Form.Label>
             <TextArea rows={6} className="mb-3" onChange={handleCoverLetter} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-4 border-dark   rounded container reveal  p-4  rounded border "
-            style={{ width: "100%" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
           >
-            <Form.Label>About us</Form.Label>
-            <TextArea rows={6} className="mb-3" onChange={handleAboutUs} />
+            <Form.Label>
+              Graduation <span style={{ color: "red" }}>*</span>
+            </Form.Label>
+            <DynamicEducationJob handleDegree={handleDegree} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
-            style={{ width: "100%" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
           >
             <DynamicProjectForm handleProject={handleProject} />
           </div>
 
+          {/*<div
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4 border-dark   rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <Form.Label>About us</Form.Label>
+            <TextArea rows={6} className="mb-3" onChange={handleAboutUs} />
+          </div>*/}
+
           <div
-            className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
-            style={{ width: "100%" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <DynamicTraining handleTraining={handleTraining} />
+          </div>
+
+          <div
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
           >
             <DynamicAchievements handleAchievements={handleAchievements} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
-            style={{ width: "100%" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
           >
             <LanguageDropdown handleLanguages={handleLanguages} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
-            style={{ width: "100%" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
           >
-            <p style={{ fontSize: "18px", marginBottom: "0px" }}>
-              Available - Actively looking for internships and immediate joiner
-            </p>
+            <Form.Label>
+              Availability <span style={{ color: "red" }}>*</span>
+            </Form.Label>
+            {availability ? (
+              <Form.Select className="mb-3" disabled>
+                <option>Select</option>
+                <option>
+                  I am immediate joiner & Available For Full Time. I can join
+                  within one or two week . lam available for Full Time From 1
+                  Jan 2022 to 28 March 2022
+                </option>
+              </Form.Select>
+            ) : (
+              <Form.Select
+                className="mb-3"
+                onChange={(e) => setAvailability(e.target.value)}
+              >
+                <option>Select</option>
+                <option>
+                  I am immediate joiner & Available For Full Time. I can join
+                  within one or two week . lam available for Full Time From 1
+                  Jan 2022 to 28 March 2022
+                </option>
+              </Form.Select>
+            )}
+            <Form.Control
+              type="text"
+              placeholder="Custom"
+              className="mb-3"
+              onChange={(e) => setAvailability(e.target.value)}
+            />
           </div>
         </Row>
-        <Button type="submit">Submit</Button>
+        {isFilled ? null : (
+          <>
+            <span
+              style={{
+                color: "red",
+                fontFamily: "Roboto",
+              }}
+            >
+              *Fill all the required field to submit
+            </span>
+            <br />
+          </>
+        )}
+        <Button
+          type="submit"
+          onClick={() => (now === 100 ? setIsFilled(true) : setIsFilled(false))}
+          className="mt-3"
+        >
+          Submit
+        </Button>
       </Form>
     </>
   )

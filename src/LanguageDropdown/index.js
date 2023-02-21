@@ -47,7 +47,9 @@ class LanguageDropdown extends Component {
   render() {
     return (
       <Form.Group controlId="formRoomType" className="mb-3 mt-2">
-        <Form.Label>Language's</Form.Label>
+        <Form.Label>
+          Languages <span style={{ color: "red" }}>*</span>
+        </Form.Label>
         <span
           className="input-field"
           data-toggle="popover"

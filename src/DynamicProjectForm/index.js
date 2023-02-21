@@ -1,12 +1,14 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "bootstrap/dist/css/bootstrap.css"
 import { Form, Button, Row, Col } from "react-bootstrap"
 import ChooseField from "../ChooseField"
 import TextArea from "antd/es/input/TextArea"
 
 const DynamicProjectForm = (props) => {
-  const { handleProject } = props
-  let projectDetails = { url: "", about: "" }
+  const [projectDetails, setProjectDetails] = useState({
+    url: "",
+    about: "",
+  })
 
   const [bookRoomData, setBookRoomData] = useState([
     { roomType: "", roomNumber: 0, guest: 0 },
@@ -43,14 +45,24 @@ const DynamicProjectForm = (props) => {
   }
 
   const onChangeUrl = (e) => {
-    projectDetails.url = e.target.value
-    handleProject(projectDetails)
+    setProjectDetails((prevState) => ({
+      ...prevState,
+      url: e.target.value,
+    }))
   }
 
   const onChangeAboutProject = (e) => {
-    projectDetails.about = e.target.value
-    handleProject(projectDetails)
+    setProjectDetails((prevState) => ({
+      ...prevState,
+      about: e.target.value,
+    }))
   }
+
+  useEffect(() => {
+    if (projectDetails.url !== "" && projectDetails.about !== "") {
+      props.handleProject(projectDetails)
+    }
+  }, [projectDetails, props])
 
   return (
     <Form>
@@ -77,16 +89,32 @@ const DynamicProjectForm = (props) => {
         )
       })}
       <Row>
-        <Col className="mb-2 d-flex justify-content-between">
-          <Button variant="outline-primary" onClick={handleAddFields}>
-            Add More Projects
-          </Button>
-          {bookRoomData.length > 1 && (
+        {bookRoomData.length < 2 && (
+          <Col className="mb-2 d-flex justify-content-end">
+            <Button
+              variant="outline-primary"
+              className="ml-auto"
+              onClick={handleAddFields}
+            >
+              Add More
+            </Button>
+          </Col>
+        )}
+        {bookRoomData.length > 1 && (
+          <Col className="mb-2 d-flex justify-content-between">
             <Button variant="danger" onClick={handleRemoveFields}>
               Remove
             </Button>
-          )}
-        </Col>
+
+            <Button
+              variant="outline-primary"
+              className="ml-auto"
+              onClick={handleAddFields}
+            >
+              Add More
+            </Button>
+          </Col>
+        )}
       </Row>
     </Form>
   )
