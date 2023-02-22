@@ -3,94 +3,134 @@ import "bootstrap/dist/css/bootstrap.css"
 import TextArea from "antd/es/input/TextArea"
 import { Form, Button, Row, Col } from "react-bootstrap"
 import DatePicker from "react-datepicker"
+import { propsWithBsClassName } from "react-bootstrap-typeahead/types/utils"
 
-const DynamicEmployementHistory = () => {
-  const [startDate, setStartDate] = useState("")
-  const [endDate, setEndDate] = useState("")
+const DynamicEmployementHistory = (props) => {
   const [checkbox, toggleCheckbox] = useState(false)
 
-  const handleChangeStart = (date) => {
-    setStartDate(date)
-  }
-
-  const handleChangeEnd = (date) => {
-    setEndDate(date)
-  }
-
-  {
-    /*useEffect(() => {
-    if (
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== ""
-    ) {
-      props.handleDegree(degree)
-    }
-  }, [degree, props])*/
-  }
-
-  const [bookRoomData, setBookRoomData] = useState([
-    { roomType: "", roomNumber: 0, guest: 0 },
+  const [employmentHistory, setEmploymentHistory] = useState([
+    {
+      profile: "",
+      company: "",
+      location: "",
+      startDate: "",
+      endDate: "",
+      responsibilities: "",
+    },
   ])
 
-  const handleChange = (index, event) => {
-    const values = [...bookRoomData]
-    if (event.target.name === "roomType") {
-      values[index].roomType = event.target.value
-    } else if (event.target.name === "roomNumber" && event.target.value > 0) {
-      values[index].roomNumber = event.target.value
-    } else if (event.target.name === "guest" && event.target.value > 0) {
-      values[index].guest = event.target.value
-    }
-
-    setBookRoomData(values)
-  }
-
   const handleAddFields = () => {
-    const values = [...bookRoomData]
-    values.push({ roomType: "", roomNumber: 0, guest: 0 })
-    setBookRoomData(values)
+    const values = [...employmentHistory]
+    values.push({
+      profile: "",
+      company: "",
+      location: "",
+      startDate: "",
+      endDate: "",
+      responsibilities: "",
+    })
+    setEmploymentHistory(values)
   }
 
-  const handleRemoveFields = () => {
-    const values = [...bookRoomData]
-    if (values.length > 1) values.pop()
-    setBookRoomData(values)
+  const handleRemoveFields = (index) => {
+    const values = [...employmentHistory]
+    values.splice(index, 1)
+    setEmploymentHistory(values)
   }
+
+  const onChangeProfile = (e, index) => {
+    const list = [...employmentHistory]
+    list[index].profile = e.target.value
+    setEmploymentHistory(list)
+  }
+
+  const onChangeCompany = (e, index) => {
+    const list = [...employmentHistory]
+    list[index].company = e.target.value
+    setEmploymentHistory(list)
+  }
+
+  const onChangeLocation = (e, index) => {
+    const list = [...employmentHistory]
+    list[index].location = e.target.value
+    setEmploymentHistory(list)
+  }
+
+  const onChangeStart = (date, index) => {
+    const list = [...employmentHistory]
+    list[index].startDate = date
+    setEmploymentHistory(list)
+  }
+
+  const onChangeEnd = (date, index) => {
+    const list = [...employmentHistory]
+    list[index].endDate = date
+    setEmploymentHistory(list)
+  }
+
+  const onChangeResponsibilities = (e, index) => {
+    const list = [...employmentHistory]
+    list[index].responsibilities = e.target.value
+    setEmploymentHistory(list)
+  }
+
+  useEffect(() => {
+    employmentHistory.every((each) => {
+      if (
+        each.profile !== "" &&
+        each.company !== "" &&
+        each.location &&
+        each.startDate !== "" &&
+        each.endDate !== "" &&
+        each.responsibilities !== ""
+      )
+        props.handleHistory(employmentHistory)
+    })
+  }, [employmentHistory, props])
 
   return (
     <Form>
-      {bookRoomData.map((data, i) => {
+      <h5>Employment History</h5>
+      {employmentHistory.map((data, i) => {
         return (
           <Row key={i}>
-            <h5>Employement History</h5>
-            <Form.Group controlId="employement-profile" className="mb-3">
+            <Form.Group controlId={`jobProfile-${i}`} className="mb-3">
               <Form.Label>Job Profile</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Eg. PHP Developer"
                 required
+                value={data.profile}
+                onChange={(e) => onChangeProfile(e, i)}
+                name="profile"
               />
               <Form.Control.Feedback type="invalid">
                 Please enter a valid job profile
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId="employement-company" className="mb-3">
+            <Form.Group controlId={`company-${i}`} className="mb-3">
               <Form.Label>Company</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Eg. Bytelap Technologies"
                 required
+                value={data.company}
+                onChange={(e) => onChangeCompany(e, i)}
+                name="company"
               />
               <Form.Control.Feedback type="invalid">
                 Please enter a valid company
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId="employement-location" className="mb-3">
+            <Form.Group controlId={`location-${i}`} className="mb-3">
               <Form.Label>Location</Form.Label>
-              <Form.Control type="text" required />
+              <Form.Control
+                type="text"
+                required
+                value={data.location}
+                name="location"
+                onChange={(e) => onChangeLocation(e, i)}
+              />
               <Form.Control.Feedback type="invalid">
                 Please enter a valid location
               </Form.Control.Feedback>
@@ -102,26 +142,26 @@ const DynamicEmployementHistory = () => {
                 <DatePicker
                   placeholderText=""
                   className="year-date mb-3"
-                  selected={startDate}
-                  onChange={handleChangeStart}
+                  selected={data.startDate}
+                  onChange={(date) => onChangeStart(date, i, "startDate")}
                 />
               </Form.Group>
               <Form.Group className="mb-3 col-sm-4">
                 <Form.Label>To</Form.Label>
-                {checkbox ? (
+                {data.present ? (
                   <DatePicker
-                    placeholderText="Present"
+                    placeholderText=""
                     className="year-date mb-3"
-                    selected={endDate}
-                    onChange={handleChangeEnd}
+                    selected={data.endDate}
+                    onChange={(date) => onChangeEnd(date, i, "endDate")}
                     disabled
                   />
                 ) : (
                   <DatePicker
                     placeholderText=""
                     className="year-date mb-3"
-                    selected={endDate}
-                    onChange={handleChangeEnd}
+                    selected={data.endDate}
+                    onChange={(date) => onChangeEnd(date, i, "endDate")}
                   />
                 )}
               </Form.Group>
@@ -129,27 +169,33 @@ const DynamicEmployementHistory = () => {
                 <Form.Check
                   type="checkbox"
                   label="Present"
-                  id="checkbox"
+                  id={`present-${i}`}
                   className="custom-control-input ml-1 mb-3"
-                  checked={checkbox}
-                  onChange={() => toggleCheckbox(!checkbox)}
+                  checked={data.present}
+                  onChange={(e) => toggleCheckbox(!checkbox)}
                 />
               </Form.Group>
             </div>
 
-            <Form.Group controlId="responsibilities" className="mb-3">
+            <Form.Group controlId={`responsibilities-${i}`} className="mb-3">
               <Form.Label>Key Responsibilities (Optional)</Form.Label>
-              <TextArea rows={7} />
-            </Form.Group>
-            {bookRoomData.length > 1 && i !== bookRoomData.length - 1 && (
-              <hr
-                className="separator mt-4 mb-4"
-                style={{
-                  border: "1px solid #000000",
-                  backgroundColor: "#000000",
-                }}
+              <TextArea
+                rows={7}
+                value={data.responsibilities}
+                onChange={(e) => onChangeResponsibilities(e, i)}
+                name="responsibilities"
               />
-            )}
+            </Form.Group>
+            {employmentHistory.length > 1 &&
+              i !== employmentHistory.length - 1 && (
+                <hr
+                  className="separator mt-4 mb-4"
+                  style={{
+                    border: "1px solid #000000",
+                    backgroundColor: "#000000",
+                  }}
+                />
+              )}
           </Row>
         )
       })}
@@ -159,7 +205,7 @@ const DynamicEmployementHistory = () => {
           <Button variant="outline-primary" onClick={handleAddFields}>
             Add More
           </Button>
-          {bookRoomData.length > 1 && (
+          {employmentHistory.length > 1 && (
             <Button
               variant="outline-danger"
               size="sm"

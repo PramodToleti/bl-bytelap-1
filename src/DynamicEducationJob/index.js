@@ -9,109 +9,91 @@ import ChooseField from "../ChooseField"
 import "./index.css"
 
 const DynamicEducationJob = (props) => {
-  const [startDate, setStartDate] = useState("")
-  const [endDate, setEndDate] = useState("")
-  const [checkbox, toggleCheckbox] = useState(false)
-  const [degree, setDegree] = useState({
-    degree: "",
-    field: "",
-    city: "",
-    startDate: "",
-    endDate: "",
-  })
+  const [degreeList, setDegreeList] = useState([
+    {
+      degree: "",
+      field: "",
+      city: "",
+      startDate: "",
+      endDate: "",
+    },
+  ])
 
-  const handleChangeStart = (date) => {
-    setStartDate(date)
-    setDegree((prevState) => ({
-      ...prevState,
-      startDate: date,
-    }))
+  const handleChangeStart = (date, index) => {
+    const list = [...degreeList]
+    list[index].startDate = date
+    setDegreeList(list)
   }
 
-  const handleChangeEnd = (date) => {
-    setEndDate(date)
-    setDegree((prevState) => ({
-      ...prevState,
-      endDate: date,
-    }))
+  const handleChangeEnd = (date, index) => {
+    const list = [...degreeList]
+    list[index].endDate = date
+    setDegreeList(list)
   }
 
-  const onChangeDegree = (e) => {
-    setDegree((prevState) => ({
-      ...prevState,
-      degree: e.target.value,
-    }))
+  const onChangeDegree = (e, index) => {
+    const list = [...degreeList]
+    list[index].degree = e.target.value
+    setDegreeList(list)
   }
 
-  const onChangeField = (e) => {
-    setDegree((prevState) => ({
-      ...prevState,
-      field: e[0].label,
-    }))
+  const onChangeField = (e, index) => {
+    const list = [...degreeList]
+    list[index].field = e[0].label
+    setDegreeList(list)
   }
 
-  const onChangeCity = (e) => {
-    setDegree((prevState) => ({
-      ...prevState,
-      city: e[0].label,
-    }))
+  const onChangeCity = (e, index) => {
+    const list = [...degreeList]
+    list[index].city = e[0].label
+    setDegreeList(list)
+  }
+
+  const handleAddFields = () => {
+    setDegreeList([
+      ...degreeList,
+      {
+        degree: "",
+        field: "",
+        city: "",
+        startDate: "",
+        endDate: "",
+      },
+    ])
+  }
+
+  const handleRemoveFields = (index) => {
+    const list = [...degreeList]
+    list.splice(index, 1)
+    setDegreeList(list)
   }
 
   useEffect(() => {
     if (
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== ""
+      degreeList.every(
+        (value) =>
+          value.degree !== "" &&
+          value.field !== "" &&
+          value.city !== "" &&
+          value.startDate !== "" &&
+          value.endDate !== ""
+      )
     ) {
-      props.handleDegree(degree)
+      props.handleDegree(degreeList)
     }
-  }, [degree, props])
-
-  const [bookRoomData, setBookRoomData] = useState([
-    { roomType: "", roomNumber: 0, guest: 0 },
-  ])
-
-  const [jobType, setJobType] = useState("Office")
-
-  const handleChange = (index, event) => {
-    const values = [...bookRoomData]
-    if (event.target.name === "roomType") {
-      values[index].roomType = event.target.value
-    } else if (event.target.name === "roomNumber" && event.target.value > 0) {
-      values[index].roomNumber = event.target.value
-    } else if (event.target.name === "guest" && event.target.value > 0) {
-      values[index].guest = event.target.value
-    }
-
-    setBookRoomData(values)
-  }
-
-  const handleAddFields = () => {
-    const values = [...bookRoomData]
-    values.push({ roomType: "", roomNumber: 0, guest: 0 })
-    setBookRoomData(values)
-  }
-
-  const handleRemoveFields = () => {
-    const values = [...bookRoomData]
-    if (values.length > 1) values.pop()
-    setBookRoomData(values)
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    alert(JSON.stringify(bookRoomData, null, 2))
-  }
+  }, [degreeList, props])
 
   return (
     <Form>
-      {bookRoomData.map((data, i) => {
+      {degreeList.map((data, i) => {
         return (
           <Row key={i}>
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <Form.Select required onChange={onChangeDegree}>
+              <Form.Select
+                required
+                onChange={(e) => onChangeDegree(e, i)}
+                value={data.degree}
+              >
                 <option>Degree</option>
                 <option>Master's</option>
                 <option>Bachelor's</option>
@@ -126,12 +108,17 @@ const DynamicEducationJob = (props) => {
               </Form.Control.Feedback>
             </Form.Group>
             <FormGroup className="mb-3 ">
-              <ChooseField onChangeField={onChangeField} />
+              <ChooseField
+                onChangeField={(e) => onChangeField(e, i)}
+                value={data.field}
+              />
             </FormGroup>
             <Form.Group className="mb-3">
-              <ChooseCity onChangeCity={onChangeCity} />
+              <ChooseCity
+                onChangeCity={(e) => onChangeCity(e, i)}
+                value={data.city}
+              />
             </Form.Group>
-
             <Form.Group className="mb-3" style={{ width: "100%" }}>
               <Form.Label style={{ marginBottom: "0px" }}>
                 Year of Completion
@@ -141,24 +128,24 @@ const DynamicEducationJob = (props) => {
                   <DatePicker
                     placeholderText=""
                     className="year-date mb-3"
-                    selected={startDate}
-                    onChange={handleChangeStart}
+                    selected={data.startDate}
+                    onChange={(date) => handleChangeStart(date, i)}
                   />
 
-                  {checkbox ? (
+                  {data.present ? (
                     <DatePicker
                       placeholderText="Present"
                       className="year-date mb-3"
-                      selected={endDate}
-                      onChange={handleChangeEnd}
+                      selected={null}
+                      onChange={() => {}}
                       disabled
                     />
                   ) : (
                     <DatePicker
                       placeholderText=""
                       className="year-date mb-3"
-                      selected={endDate}
-                      onChange={handleChangeEnd}
+                      selected={data.endDate}
+                      onChange={(date) => handleChangeEnd(date, i)}
                     />
                   )}
 
@@ -167,13 +154,13 @@ const DynamicEducationJob = (props) => {
                     label="Present"
                     id="checkbox"
                     className="custom-control-input ml-1 mb-3"
-                    checked={checkbox}
-                    onChange={() => toggleCheckbox(!checkbox)}
+                    checked={data.present}
+                    onChange={() => togglePresent(i)}
                   />
                 </div>
               </div>
             </Form.Group>
-            {bookRoomData.length > 1 && i !== bookRoomData.length - 1 && (
+            {degreeList.length > 1 && i !== degreeList.length - 1 && (
               <hr
                 className="separator mt-4 mb-4"
                 style={{
@@ -191,7 +178,7 @@ const DynamicEducationJob = (props) => {
           <Button variant="outline-primary" onClick={handleAddFields}>
             Add More Education
           </Button>
-          {bookRoomData.length > 1 && (
+          {degreeList.length > 1 && (
             <Button
               variant="outline-danger"
               size="sm"

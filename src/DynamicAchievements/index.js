@@ -4,100 +4,90 @@ import { Form, Button, Row, Col } from "react-bootstrap"
 import ChooseFileAchievement from "./ChooseFileAchievement"
 
 const DynamicAchievements = (props) => {
-  const [bookRoomData, setBookRoomData] = useState([
-    { roomType: "", roomNumber: 0, guest: 0 },
+  const [achievements, setAchievements] = useState([
+    {
+      achievement: "",
+      file: null,
+    },
   ])
-  const [achievements, setAchievements] = useState({
-    achievements: "",
-    file: null,
-  })
-  const [file, setFile] = useState(null)
 
-  const handleChange = (index, event) => {
-    const values = [...bookRoomData]
-    if (event.target.name === "roomType") {
-      values[index].roomType = event.target.value
-    } else if (event.target.name === "roomNumber" && event.target.value > 0) {
-      values[index].roomNumber = event.target.value
-    } else if (event.target.name === "guest" && event.target.value > 0) {
-      values[index].guest = event.target.value
-    }
-
-    setBookRoomData(values)
-  }
+  const [fileInputs, setFileInputs] = useState([null])
 
   const handleAddFields = () => {
-    const values = [...bookRoomData]
-    values.push({ roomType: "", roomNumber: 0, guest: 0 })
-    setBookRoomData(values)
+    setAchievements([
+      ...achievements,
+      {
+        achievement: "",
+        file: null,
+      },
+    ])
   }
 
-  const handleRemoveFields = () => {
-    const values = [...bookRoomData]
-    if (values.length > 1) values.pop()
-    setBookRoomData(values)
+  const handleRemoveFields = (index) => {
+    const values = [...achievements]
+    values.splice(index, 1)
+    setAchievements(values)
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    alert(JSON.stringify(bookRoomData, null, 2))
+  const onChangeAchievements = (e, index) => {
+    const values = [...achievements]
+    values[index].achievement = e.target.value
+    setAchievements(values)
   }
 
-  const onChangeAchievements = (e) => {
-    setAchievements((prevState) => ({
-      ...prevState,
-      achievements: e.target.value,
-    }))
-  }
+  const handleFileUpload = (event, index) => {
+    const newFileInputs = [...fileInputs]
+    newFileInputs[index] = event.target.files[0]
+    setFileInputs(newFileInputs)
 
-  const handleFileUpload = (event) => {
-    setFile(event.target.files[0])
-    setAchievements((prevState) => ({
-      ...prevState,
-      file: event.target.files[0],
-    }))
+    const newAchievements = [...achievements]
+    newAchievements[index].file = event.target.files[0]
+    setAchievements(newAchievements)
   }
-
-  console.log(achievements)
 
   useEffect(() => {
-    if (achievements.achievements !== "" && achievements.file !== null) {
-      props.handleAchievements(achievements)
-    }
-  }, [achievements, file, props])
+    achievements.every((achievement) => {
+      if (achievement.achievement !== "" && achievement.file !== null) {
+        props.handleAchievements(achievements)
+      }
+    })
+  }, [achievements, props])
 
   return (
     <Form>
       <Form.Label className="mb-3">
         Acheivements / Awards & Recognition
       </Form.Label>
-      {bookRoomData.map((data, i) => {
-        return (
-          <Row className="" key={i}>
-            <Form.Group className="mb-3" controlId="formBasicText">
-              <Form.Control
-                type="text"
-                onChange={onChangeAchievements}
-                placeholder="Eg. First Prize in Quiz Competition"
-              />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <ChooseFileAchievement handleFileUpload={handleFileUpload} />
-            </Form.Group>
-            {bookRoomData.length > 1 && i !== bookRoomData.length - 1 && (
-              <hr
-                className="separator mt-4 mb-4"
-                style={{
-                  border: "1px solid black",
-                  backgroundColor: "black",
-                }}
-              />
-            )}
-          </Row>
-        )
-      })}
+      {achievements.map((data, index) => (
+        <Row className="" key={index}>
+          <Form.Group className="mb-3" controlId="formBasicText">
+            <Form.Control
+              type="text"
+              value={data.achievement}
+              onChange={(e) => onChangeAchievements(e, index)}
+              placeholder="Eg. First Prize in Quiz Competition"
+            />
+          </Form.Group>
+          <Form.Group className="mb-2">
+            <ChooseFileAchievement
+              handleFileUpload={handleFileUpload}
+              index={index}
+            />
+          </Form.Group>
+
+          {achievements.length > 1 && index !== achievements.length - 1 && (
+            <hr
+              className="separator mt-4 mb-4"
+              style={{
+                border: "1px solid black",
+                backgroundColor: "black",
+              }}
+            />
+          )}
+        </Row>
+      ))}
       <Row>
-        {bookRoomData.length < 2 && (
+        {achievements.length < 2 && (
           <Col className="mb-2 d-flex justify-content-end">
             <Button
               variant="outline-primary"
@@ -108,7 +98,7 @@ const DynamicAchievements = (props) => {
             </Button>
           </Col>
         )}
-        {bookRoomData.length > 1 && (
+        {achievements.length > 1 && (
           <Col className="mb-2  mt-4 d-flex justify-content-between">
             <Button variant="danger" onClick={handleRemoveFields}>
               Remove

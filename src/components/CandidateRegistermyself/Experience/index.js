@@ -26,10 +26,6 @@ function Experience() {
   const [salaryType, setSalaryType] = useState("")
   const [date, setDate] = useState(null)
   const [showDatePicker, setShowDatePicker] = useState(false)
-  const [salaryRange, setSalaryRange] = useState({
-    from: "",
-    to: "",
-  })
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
   const [checkbox, toggleCheckbox] = useState(false)
@@ -38,31 +34,17 @@ function Experience() {
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
-  const [shift, setShift] = useState("")
   const [skills, setSkills] = useState([])
-  const [degree, setDegree] = useState({
-    degree: "",
-    field: "",
-    city: "",
-    startDate: "",
-    endDate: "",
-  })
+  const [shift, setShift] = useState("")
+  const [degree, setDegree] = useState([])
   const [coverLetter, setCoverLetter] = useState("")
-  const [projectDetails, setProjectDetails] = useState({
-    url: "",
-    about: "",
-  })
-  const [training, setTraining] = useState({
-    training: "",
-    startDate: "",
-    endDate: "",
-    file: null,
-  })
-  const [achievements, setAchievements] = useState({
-    achievements: "",
-    file: null,
-  })
+  const [projectDetails, setProjectDetails] = useState([])
+  const [training, setTraining] = useState([])
+  const [achievements, setAchievements] = useState([])
   const [preferredLocation, setPreferredLocation] = useState("")
+  const [employmentHistory, setEmploymentHistory] = useState([])
+  const [experience, setExperience] = useState({ years: "", months: "" })
+  const [ctc, setCTC] = useState({ lacs: "", thousand: "" })
   const [languages, setLanguages] = useState([])
   const [availability, setAvailability] = useState("")
   const [isFilled, setIsFilled] = useState(true)
@@ -119,26 +101,13 @@ function Experience() {
     setLanguages(languages)
   }
 
+  const handleHistory = (e) => {
+    setEmploymentHistory(e)
+  }
+
   const [state, setState] = useState({
     selectedSkills: [],
   })
-
-  const handleChangeStart = (date) => {
-    setStartDate(date)
-  }
-
-  const handleChangeEnd = (date) => {
-    setEndDate(date)
-  }
-
-  function handleDateChange(date) {
-    setDate(date)
-    setShowDatePicker(false)
-  }
-
-  function handleCustomDateClick() {
-    setShowDatePicker(true)
-  }
 
   const handleSubmit = (event) => {
     const form = event.currentTarget
@@ -184,11 +153,7 @@ function Experience() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== ""
+      degree.length !== 0
     )
       now = 50
     if (
@@ -198,13 +163,8 @@ function Experience() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== ""
+      degree.length !== 0 &&
+      projectDetails.length !== 0
     )
       now = 60
     if (
@@ -214,17 +174,9 @@ function Experience() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0
     )
       now = 70
 
@@ -235,19 +187,10 @@ function Experience() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null &&
-      achievements.achievements !== "" &&
-      achievements.file !== null
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0 &&
+      achievements.length !== 0
     )
       now = 80
 
@@ -258,20 +201,12 @@ function Experience() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null &&
-      achievements.achievements !== "" &&
-      achievements.file !== null &&
-      languages.length !== 0
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0 &&
+      achievements.length !== 0 &&
+      languages.length !== 0 &&
+      employmentHistory.length !== 0
     )
       now = 90
     if (
@@ -281,27 +216,42 @@ function Experience() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null &&
-      achievements.achievements !== "" &&
-      achievements.file !== null &&
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0 &&
+      achievements.length !== 0 &&
       languages.length !== 0 &&
+      employmentHistory.length !== 0 &&
       availability !== "" &&
-      salaryType !== "" &&
-      salaryRange.from !== "" &&
-      salaryRange.to !== "" &&
-      preferredLocation !== ""
+      preferredLocation !== "" &&
+      experience.years !== "" &&
+      experience.months !== "" &&
+      ctc.lacs !== "" &&
+      ctc.thousand !== ""
     )
       now = 100
+
+    console.log(
+      jobTitle,
+      jobTime,
+      skills,
+      jobType,
+      shift,
+      coverLetter,
+      degree,
+      projectDetails,
+      training,
+      achievements,
+      languages,
+      employmentHistory,
+      availability,
+      languages,
+      employmentHistory,
+      availability,
+      preferredLocation,
+      experience,
+      ctc
+    )
 
     return (
       <ProgressBar
@@ -488,14 +438,34 @@ function Experience() {
   {renderSalaryType()}*/}
             <Row>
               <Form.Label>Experience</Form.Label>
-              <Form.Group controlId="experience" className="col-sm-5 mb-2">
-                <Form.Control type="number" placeholder="Years" required />
+              <Form.Group
+                controlId="experience-years"
+                className="col-sm-5 mb-2"
+              >
+                <Form.Control
+                  type="number"
+                  placeholder="Years"
+                  required
+                  onChange={(e) =>
+                    setExperience({ ...experience, years: e.target.value })
+                  }
+                />
                 <Form.Control.Feedback type="invalid">
                   Please Enter a valid year
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group controlId="experience" className="col-sm-5 mb-2">
-                <Form.Control type="number" placeholder="Months" required />
+              <Form.Group
+                controlId="experience-months"
+                className="col-sm-5 mb-2"
+              >
+                <Form.Control
+                  type="number"
+                  placeholder="Months"
+                  required
+                  onChange={(e) =>
+                    setExperience({ ...experience, months: e.target.value })
+                  }
+                />
                 <Form.Control.Feedback type="invalid">
                   Please Enter a valid month
                 </Form.Control.Feedback>
@@ -506,14 +476,24 @@ function Experience() {
               <Form.Label>Current CTC</Form.Label>
               <Form.Group controlId="experience" className="col-sm-5 mb-3">
                 <Form.Label>From</Form.Label>
-                <Form.Control type="number" placeholder="Lac" required />
+                <Form.Control
+                  type="number"
+                  placeholder="Lac"
+                  required
+                  onChange={(e) => setCTC({ ...ctc, lacs: e.target.value })}
+                />
                 <Form.Control.Feedback type="invalid">
                   Please Enter a valid Amount
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group controlId="experience" className="col-sm-5 mb-3">
                 <Form.Label>To</Form.Label>
-                <Form.Control type="number" placeholder="Thousand" required />
+                <Form.Control
+                  type="number"
+                  placeholder="Thousand"
+                  required
+                  onChange={(e) => setCTC({ ...ctc, thousand: e.target.value })}
+                />
                 <Form.Control.Feedback type="invalid">
                   Please Enter a valid Amount
                 </Form.Control.Feedback>
@@ -550,7 +530,7 @@ function Experience() {
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
-            <DynamicEmployementHistory />
+            <DynamicEmployementHistory handleHistory={handleHistory} />
           </div>
 
           <div

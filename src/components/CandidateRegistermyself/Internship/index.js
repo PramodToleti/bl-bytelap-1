@@ -19,35 +19,16 @@ import DynamicTraining from "../../../DynamicTraining"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
-  const [salaryType, setSalaryType] = useState("")
   //Input data
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
-
   const [skills, setSkills] = useState([])
-  const [degree, setDegree] = useState({
-    degree: "",
-    field: "",
-    city: "",
-    startDate: "",
-    endDate: "",
-  })
+  const [degree, setDegree] = useState([])
   const [coverLetter, setCoverLetter] = useState("")
-  const [projectDetails, setProjectDetails] = useState({
-    url: "",
-    about: "",
-  })
-  const [training, setTraining] = useState({
-    training: "",
-    startDate: "",
-    endDate: "",
-    file: null,
-  })
-  const [achievements, setAchievements] = useState({
-    achievements: "",
-    file: null,
-  })
+  const [projectDetails, setProjectDetails] = useState([])
+  const [training, setTraining] = useState([])
+  const [achievements, setAchievements] = useState([])
   const [languages, setLanguages] = useState([])
   const [availability, setAvailability] = useState("")
   const [isFilled, setIsFilled] = useState(true)
@@ -103,6 +84,7 @@ const progressRef = useRef(null)*/
   }
 
   const handleAchievements = (achievements) => {
+    console.log(achievements)
     setAchievements(achievements)
   }
 
@@ -157,11 +139,7 @@ const progressRef = useRef(null)*/
       jobType !== "" &&
       skills.length !== 0 &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== ""
+      degree.length !== 0
     )
       now = 50
     if (
@@ -170,13 +148,8 @@ const progressRef = useRef(null)*/
       jobType !== "" &&
       skills.length !== 0 &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== ""
+      degree.length !== 0 &&
+      projectDetails.length !== 0
     )
       now = 60
     if (
@@ -185,17 +158,9 @@ const progressRef = useRef(null)*/
       jobType !== "" &&
       skills.length !== 0 &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0
     )
       now = 70
 
@@ -205,19 +170,10 @@ const progressRef = useRef(null)*/
       jobType !== "" &&
       skills.length !== 0 &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null &&
-      achievements.achievements !== "" &&
-      achievements.file !== null
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0 &&
+      achievements.length !== 0
     )
       now = 80
 
@@ -227,19 +183,10 @@ const progressRef = useRef(null)*/
       jobType !== "" &&
       skills.length !== 0 &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null &&
-      achievements.achievements !== "" &&
-      achievements.file !== null &&
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0 &&
+      achievements.length !== 0 &&
       languages.length !== 0
     )
       now = 90
@@ -250,19 +197,10 @@ const progressRef = useRef(null)*/
       jobType !== "" &&
       skills.length !== 0 &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null &&
-      achievements.achievements !== "" &&
-      achievements.file !== null &&
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0 &&
+      achievements.length !== 0 &&
       languages.length !== 0 &&
       availability !== ""
     )

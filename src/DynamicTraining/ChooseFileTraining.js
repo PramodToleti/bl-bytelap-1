@@ -5,7 +5,7 @@ function ChooseFileTraining(props) {
   const [inputFile, setInputFile] = useState(null)
 
   useEffect(() => {
-    setInputFile(document.getElementById("input-file-training"))
+    setInputFile(document.getElementById(`input-file-training-${props.index}`))
   }, [])
 
   const handleUpload = (event) => {
@@ -15,7 +15,7 @@ function ChooseFileTraining(props) {
 
   const handleDisplayFileDetails = (e) => {
     inputFile?.files && setUploadedFileName(inputFile.files[0].name)
-    props.handleFile(e)
+    props.handleFile(e, props.index)
   }
 
   //Delete uploaded file
@@ -28,7 +28,7 @@ function ChooseFileTraining(props) {
     <>
       <div className="upload-container">
         <input
-          id="input-file-training"
+          id={`input-file-training-${props.index}`}
           onChange={handleDisplayFileDetails}
           className="d-none"
           type="file"

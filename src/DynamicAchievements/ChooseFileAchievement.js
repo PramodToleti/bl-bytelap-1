@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
 
-function ChooseFileAchievement(props) {
+function ChooseFileTraining(props) {
   const [uploadedFileName, setUploadedFileName] = useState(null)
   const [inputFile, setInputFile] = useState(null)
 
   useEffect(() => {
-    setInputFile(document.getElementById("input-file"))
+    setInputFile(document.getElementById(`input-file-${props.index}`))
   }, [])
 
   const handleUpload = (event) => {
@@ -15,7 +15,7 @@ function ChooseFileAchievement(props) {
 
   const handleDisplayFileDetails = (e) => {
     inputFile?.files && setUploadedFileName(inputFile.files[0].name)
-    props.handleFileUpload(e)
+    props.handleFileUpload(e, props.index)
   }
 
   //Delete uploaded file
@@ -28,7 +28,7 @@ function ChooseFileAchievement(props) {
     <>
       <div className="upload-container">
         <input
-          id="input-file"
+          id={`input-file-${props.index}`}
           onChange={handleDisplayFileDetails}
           className="d-none"
           type="file"
@@ -54,4 +54,4 @@ function ChooseFileAchievement(props) {
   )
 }
 
-export default ChooseFileAchievement
+export default ChooseFileTraining

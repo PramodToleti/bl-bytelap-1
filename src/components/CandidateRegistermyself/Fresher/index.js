@@ -34,33 +34,16 @@ function Fresher() {
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
-  const [shift, setShift] = useState("")
   const [skills, setSkills] = useState([])
-  const [degree, setDegree] = useState({
-    degree: "",
-    field: "",
-    city: "",
-    startDate: "",
-    endDate: "",
-  })
+  const [shift, setShift] = useState("")
+  const [degree, setDegree] = useState([])
   const [coverLetter, setCoverLetter] = useState("")
-  const [projectDetails, setProjectDetails] = useState({
-    url: "",
-    about: "",
-  })
-  const [training, setTraining] = useState({
-    training: "",
-    startDate: "",
-    endDate: "",
-    file: null,
-  })
-  const [achievements, setAchievements] = useState({
-    achievements: "",
-    file: null,
-  })
-  const [preferredLocation, setPreferredLocation] = useState("")
+  const [projectDetails, setProjectDetails] = useState([])
+  const [training, setTraining] = useState([])
+  const [achievements, setAchievements] = useState([])
   const [languages, setLanguages] = useState([])
   const [availability, setAvailability] = useState("")
+  const [preferredLocation, setPreferredLocation] = useState("")
   const [isFilled, setIsFilled] = useState(true)
 
   const handleTitle = (e) => {
@@ -182,11 +165,7 @@ function Fresher() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== ""
+      degree.length !== 0
     )
       now = 50
     if (
@@ -196,13 +175,8 @@ function Fresher() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== ""
+      degree.length !== 0 &&
+      projectDetails.length !== 0
     )
       now = 60
     if (
@@ -212,17 +186,9 @@ function Fresher() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0
     )
       now = 70
 
@@ -233,19 +199,10 @@ function Fresher() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null &&
-      achievements.achievements !== "" &&
-      achievements.file !== null
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0 &&
+      achievements.length !== 0
     )
       now = 80
 
@@ -256,19 +213,10 @@ function Fresher() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null &&
-      achievements.achievements !== "" &&
-      achievements.file !== null &&
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0 &&
+      achievements.length !== 0 &&
       languages.length !== 0
     )
       now = 90
@@ -279,19 +227,10 @@ function Fresher() {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.degree !== "" &&
-      degree.field !== "" &&
-      degree.city !== "" &&
-      degree.startDate !== "" &&
-      degree.endDate !== "" &&
-      projectDetails.url !== "" &&
-      projectDetails.about !== "" &&
-      training.training !== "" &&
-      training.startDate !== "" &&
-      training.endDate !== "" &&
-      training.file !== null &&
-      achievements.achievements !== "" &&
-      achievements.file !== null &&
+      degree.length !== 0 &&
+      projectDetails.length !== 0 &&
+      training.length !== 0 &&
+      achievements.length !== 0 &&
       languages.length !== 0 &&
       availability !== "" &&
       salaryType !== "" &&
@@ -490,20 +429,18 @@ function Fresher() {
             className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border-dark   rounded container reveal  p-4  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
-            <Form.Control controlId="cover-letter">
-              <Form.Label>
-                Cover Letter <span style={{ color: "red" }}>*</span>
-              </Form.Label>
-              <TextArea
-                rows={6}
-                className="mb-3"
-                onChange={handleCoverLetter}
-                required
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a cover letter
-              </Form.Control.Feedback>
-            </Form.Control>
+            <Form.Label>
+              Cover Letter <span style={{ color: "red" }}>*</span>
+            </Form.Label>
+            <TextArea
+              rows={6}
+              className="mb-3"
+              onChange={handleCoverLetter}
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Please provide a cover letter
+            </Form.Control.Feedback>
           </div>
 
           <div

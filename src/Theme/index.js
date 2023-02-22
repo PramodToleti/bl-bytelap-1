@@ -47,8 +47,6 @@ const Theme = () => {
     }
   }
 
-  console.log(isChecked)
-
   return (
     <div className="toggle-theme-wrapper">
       <span>☀️</span>
