@@ -2,6 +2,8 @@ import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+import ProgressBar from "react-bootstrap/ProgressBar"
+
 import CheckboxDropdown from "../../../CheckboxDropdowm"
 import ChooseCity from "../../../ChooseCity"
 
@@ -10,36 +12,124 @@ import Row from "react-bootstrap/Row"
 import { Col } from "react-bootstrap"
 
 import "./index.css"
-import PerksDropdown from "../../../PerksDropdown"
 import LanguageDropdown from "../../../LanguageDropdown"
-import LocationDropdown from "../../../LocationCheckbox"
 import ChooseJobTitle from "../../../ChooseJobTitle"
-import AddRemove from "../../../AddRemove"
 import TextArea from "antd/es/input/TextArea"
 import DynamicProjectForm from "../../../DynamicProjectForm"
 import DynamicAchievements from "../../../DynamicAchievements"
 import DynamicEducationJob from "../../../DynamicEducationJob"
+import DynamicTraining from "../../../DynamicTraining"
+import DynamicEmployementHistory from "../../../DynamicEmployementHistory/DynamicEmployementHistory"
 
 function Experience() {
   const [validated, setValidated] = useState(false)
-  const [jobType, setJobType] = useState("")
   const [salaryType, setSalaryType] = useState("")
+  const [date, setDate] = useState(null)
+  const [showDatePicker, setShowDatePicker] = useState(false)
+  const [salaryRange, setSalaryRange] = useState({
+    from: "",
+    to: "",
+  })
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
+  const [checkbox, toggleCheckbox] = useState(false)
 
-  const handleChange = (date) => {
+  //Input data
+  const [jobTitle, setJobTitle] = useState("")
+  const [jobTime, setJobTime] = useState("")
+  const [jobType, setJobType] = useState("")
+  const [shift, setShift] = useState("")
+  const [skills, setSkills] = useState([])
+  const [degree, setDegree] = useState({
+    degree: "",
+    field: "",
+    city: "",
+    startDate: "",
+    endDate: "",
+  })
+  const [coverLetter, setCoverLetter] = useState("")
+  const [projectDetails, setProjectDetails] = useState({
+    url: "",
+    about: "",
+  })
+  const [training, setTraining] = useState({
+    training: "",
+    startDate: "",
+    endDate: "",
+    file: null,
+  })
+  const [achievements, setAchievements] = useState({
+    achievements: "",
+    file: null,
+  })
+  const [preferredLocation, setPreferredLocation] = useState("")
+  const [languages, setLanguages] = useState([])
+  const [availability, setAvailability] = useState("")
+  const [isFilled, setIsFilled] = useState(true)
+
+  const handleTitle = (e) => {
+    setJobTitle(e)
+  }
+
+  const handleJobTime = (e) => {
+    if (e.target.value !== "Select an option") setJobTime(e.target.value)
+  }
+
+  const handleJobtype = (e) => {
+    setJobType(e.target.value)
+  }
+
+  const handleSkills = (e) => {
+    let skills = []
+    e.map((each) => skills.push(each.value))
+    setSkills(skills)
+  }
+
+  const handleDegree = (e) => {
+    setDegree(e)
+  }
+
+  const handleShift = (e) => {
+    setShift(e.target.value)
+  }
+
+  const handleCoverLetter = (e) => {
+    setCoverLetter(e.target.value)
+  }
+
+  const handleProject = (projectDetails) => {
+    setProjectDetails(projectDetails)
+  }
+
+  const handleTraining = (training) => {
+    setTraining(training)
+  }
+
+  const handleAchievements = (achievements) => {
+    setAchievements(achievements)
+  }
+
+  const onChangeCity = (city) => {
+    setPreferredLocation(city)
+  }
+
+  const handleLanguages = (e) => {
+    let languages = []
+    e.map((each) => languages.push(each.value))
+    setLanguages(languages)
+  }
+
+  const [state, setState] = useState({
+    selectedSkills: [],
+  })
+
+  const handleChangeStart = (date) => {
     setStartDate(date)
   }
 
   const handleChangeEnd = (date) => {
     setEndDate(date)
   }
-
-  const [state, setState] = useState({
-    selectedSkills: [],
-  })
-  const [date, setDate] = useState(null)
-  const [showDatePicker, setShowDatePicker] = useState(false)
 
   function handleDateChange(date) {
     setDate(date)
@@ -67,6 +157,161 @@ function Experience() {
     })
   }
 
+  let now = 0
+  function progressBar() {
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      skills.length !== 0 &&
+      jobType !== "" &&
+      shift !== ""
+    )
+      now = 20
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      skills.length !== 0 &&
+      jobType !== "" &&
+      shift !== "" &&
+      coverLetter !== ""
+    )
+      now = 30
+
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      skills.length !== 0 &&
+      jobType !== "" &&
+      shift !== "" &&
+      coverLetter !== "" &&
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== ""
+    )
+      now = 50
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      skills.length !== 0 &&
+      jobType !== "" &&
+      shift !== "" &&
+      coverLetter !== "" &&
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== "" &&
+      projectDetails.url !== "" &&
+      projectDetails.about !== ""
+    )
+      now = 60
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      skills.length !== 0 &&
+      jobType !== "" &&
+      shift !== "" &&
+      coverLetter !== "" &&
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== "" &&
+      projectDetails.url !== "" &&
+      projectDetails.about !== "" &&
+      training.training !== "" &&
+      training.startDate !== "" &&
+      training.endDate !== "" &&
+      training.file !== null
+    )
+      now = 70
+
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      skills.length !== 0 &&
+      jobType !== "" &&
+      shift !== "" &&
+      coverLetter !== "" &&
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== "" &&
+      projectDetails.url !== "" &&
+      projectDetails.about !== "" &&
+      training.training !== "" &&
+      training.startDate !== "" &&
+      training.endDate !== "" &&
+      training.file !== null &&
+      achievements.achievements !== "" &&
+      achievements.file !== null
+    )
+      now = 80
+
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      skills.length !== 0 &&
+      jobType !== "" &&
+      shift !== "" &&
+      coverLetter !== "" &&
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== "" &&
+      projectDetails.url !== "" &&
+      projectDetails.about !== "" &&
+      training.training !== "" &&
+      training.startDate !== "" &&
+      training.endDate !== "" &&
+      training.file !== null &&
+      achievements.achievements !== "" &&
+      achievements.file !== null &&
+      languages.length !== 0
+    )
+      now = 90
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      skills.length !== 0 &&
+      jobType !== "" &&
+      shift !== "" &&
+      coverLetter !== "" &&
+      degree.degree !== "" &&
+      degree.field !== "" &&
+      degree.city !== "" &&
+      degree.startDate !== "" &&
+      degree.endDate !== "" &&
+      projectDetails.url !== "" &&
+      projectDetails.about !== "" &&
+      training.training !== "" &&
+      training.startDate !== "" &&
+      training.endDate !== "" &&
+      training.file !== null &&
+      achievements.achievements !== "" &&
+      achievements.file !== null &&
+      languages.length !== 0 &&
+      availability !== "" &&
+      salaryType !== "" &&
+      salaryRange.from !== "" &&
+      salaryRange.to !== "" &&
+      preferredLocation !== ""
+    )
+      now = 100
+
+    return (
+      <ProgressBar
+        now={now}
+        label={`${now}%`}
+        style={{ height: "25px", position: "sticky" }}
+      />
+    )
+  }
+
   const renderSalaryType = () => {
     switch (salaryType) {
       case "Lac":
@@ -76,41 +321,71 @@ function Experience() {
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>From</Form.Label>
-                  <Form.Control type="number" placeholder="1 lac" />
+                  <Form.Control
+                    type="number"
+                    placeholder="1 lac"
+                    onChange={(e) =>
+                      setSalaryRange((prev) => ({
+                        ...prev,
+                        from: e.target.value,
+                      }))
+                    }
+                  />
                 </Form.Group>
               </Col>
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>To</Form.Label>
-                  <Form.Control type="number" placeholder="3 lac" />
+                  <Form.Control
+                    type="number"
+                    placeholder="3 lac"
+                    onChange={(e) =>
+                      setSalaryRange((prev) => ({
+                        ...prev,
+                        to: e.target.value,
+                      }))
+                    }
+                  />
                 </Form.Group>
               </Col>
             </Row>
           </Form.Group>
         )
-      case "Per Month":
+      case "Negotiable":
         return (
           <Form.Group className="mb-3">
             <Row>
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>From</Form.Label>
-                  <Form.Control type="number" placeholder="10k" />
+                  <Form.Control
+                    type="number"
+                    placeholder="5000"
+                    onChange={(e) =>
+                      setSalaryRange((prev) => ({
+                        ...prev,
+                        from: e.target.value,
+                      }))
+                    }
+                  />
                 </Form.Group>
               </Col>
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>To</Form.Label>
-                  <Form.Control type="number" placeholder="20k" />
+                  <Form.Control
+                    type="number"
+                    placeholder="10,000/month"
+                    onChange={(e) =>
+                      setSalaryRange((prev) => ({
+                        ...prev,
+                        to: e.target.value,
+                      }))
+                    }
+                  />
                 </Form.Group>
               </Col>
             </Row>
-          </Form.Group>
-        )
-      case "Fixed":
-        return (
-          <Form.Group className="mb-3 mt-2">
-            <Form.Control type="number" placeholder="20k/Month" />
           </Form.Group>
         )
       case "Not Disclosed":
@@ -139,151 +414,243 @@ function Experience() {
   }
 
   return (
-    <Form
-      action=""
-      noValidate
-      validated={validated}
-      onSubmit={handleSubmit}
-      style={{ width: "100%" }}
-      className="p-3"
-    >
-      <Row className="mb-3">
-        <div
-          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%" }}
-        >
-          <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-            <Form.Label>Job Tittle</Form.Label>
-            <ChooseJobTitle />
-          </Form.Group>
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>Looking for Full time or Part time Job? </Form.Label>
-            <Form.Select>
-              <option> Select an option </option>
-              <option> Full-Time </option>
-              <option>Part-Time</option>
-              <option>Both</option>
-            </Form.Select>
-          </Form.Group>
+    <>
+      {progressBar()}
+      <Form
+        action=""
+        noValidate
+        validated={validated}
+        onSubmit={handleSubmit}
+        style={{ width: "100%" }}
+        className="p-3"
+      >
+        <Row>
+          <div
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border-dark   rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <h5>
+              Job Info <span style={{ color: "red" }}>*</span>
+            </h5>
+            <Form.Group className="mb-3 mt-2" controlId="title">
+              <Form.Label>Job Tittle</Form.Label>
+              <ChooseJobTitle handleTitle={handleTitle} />
+            </Form.Group>
+            <Form.Group className="mb-3 mt-2">
+              <Form.Label>
+                Looking for Full time or Part time Internship?{" "}
+              </Form.Label>
+              <Form.Select onChange={handleJobTime}>
+                <option> Select an option </option>
+                <option> Full-Time </option>
+                <option>Part-Time</option>
+                <option>Both</option>
+              </Form.Select>
+            </Form.Group>
 
-          <Form.Group className="mb-3 mt-2">
-            <Form.Label>What is the Shift?</Form.Label>
-            <Form.Select>
-              <option>Select an option</option>
-              <option>Day</option>
-              <option>Night</option>
-              <option>Rotational</option>
-            </Form.Select>
-          </Form.Group>
-        </div>
+            <Form.Group className="mb-3 mt-2" controlId="title">
+              <Form.Label>Job Type</Form.Label>
+              <Form.Control type="text" onChange={handleJobtype} />
+            </Form.Group>
 
-        <div
-          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%" }}
-        >
-          <Row className="mb-3">
-            <Form.Label>Experience</Form.Label>
-            <Col xs={6}>
-              <Form.Group className="mb-3">
-                <Form.Select placeholder="From">
-                  {[0, 1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
-                    (each) => (
-                      <option>{each}</option>
-                    )
-                  )}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-            <Col xs={6}>
-              <Form.Group className="mb-3">
-                <Form.Select placeholder="To">
-                  {[1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
-                    (each) => (
-                      <option>{each}</option>
-                    )
-                  )}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-          </Row>
+            <Form.Group className="mb-3 mt-2">
+              <Form.Label>What is the Shift?</Form.Label>
+              <Form.Select onChange={handleShift}>
+                <option>Select an option</option>
+                <option>Day</option>
+                <option>Night</option>
+                <option>Rotational</option>
+              </Form.Select>
+            </Form.Group>
 
-          <Row className="mb-3">
-            <Form.Group as={Col} md="6" controlId="validationCustom03">
+            <CheckboxDropdown
+              onSelectionChange={handleSelectionChange}
+              handleSkills={handleSkills}
+            />
+          </div>
+
+          <div
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <h5 className="mb-3">
+              Experience & Current CTC <span style={{ color: "red" }}>*</span>
+            </h5>
+            {/*<Form.Group>
               <Form.Label>Expected Salary</Form.Label>
               <Form.Select onChange={(e) => setSalaryType(e.target.value)}>
                 <option>Select</option>
                 <option>Lac</option>
-                <option> Per Month </option>
-                <option>Fixed</option>
+                <option>Negotiable</option>
                 <option>Not Disclosed</option>
               </Form.Select>
             </Form.Group>
-          </Row>
+  {renderSalaryType()}*/}
+            <Row>
+              <Form.Label>Experience</Form.Label>
+              <Form.Group controlId="experience" className="col-sm-5 mb-2">
+                <Form.Control type="number" placeholder="Years" required />
+                <Form.Control.Feedback type="invalid">
+                  Please Enter a valid year
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group controlId="experience" className="col-sm-5 mb-2">
+                <Form.Control type="number" placeholder="Months" required />
+                <Form.Control.Feedback type="invalid">
+                  Please Enter a valid month
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
 
-          {renderSalaryType()}
-        </div>
+            <Row>
+              <Form.Label>Current CTC</Form.Label>
+              <Form.Group controlId="experience" className="col-sm-5 mb-3">
+                <Form.Label>From</Form.Label>
+                <Form.Control type="number" placeholder="Lac" required />
+                <Form.Control.Feedback type="invalid">
+                  Please Enter a valid Amount
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group controlId="experience" className="col-sm-5 mb-3">
+                <Form.Label>To</Form.Label>
+                <Form.Control type="number" placeholder="Thousand" required />
+                <Form.Control.Feedback type="invalid">
+                  Please Enter a valid Amount
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
 
-        <div
-          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%" }}
+            <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
+              <Form.Label>Not Disclosed</Form.Label>
+              <Form.Check />
+            </div>
+          </div>
+
+          <div
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border-dark   rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <Form.Label>
+              Cover Letter <span style={{ color: "red" }}>*</span>
+            </Form.Label>
+            <TextArea rows={6} className="mb-3" onChange={handleCoverLetter} />
+          </div>
+
+          <div
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <Form.Label>
+              Graduation <span style={{ color: "red" }}>*</span>
+            </Form.Label>
+            <DynamicEducationJob handleDegree={handleDegree} />
+          </div>
+
+          <div
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <DynamicEmployementHistory />
+          </div>
+
+          <div
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <DynamicProjectForm handleProject={handleProject} />
+          </div>
+
+          <div
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <Form.Label className="mb-3">
+              Internship Training / Course (Optional)
+            </Form.Label>
+            <DynamicTraining handleTraining={handleTraining} />
+          </div>
+
+          <div
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <DynamicAchievements handleAchievements={handleAchievements} />
+          </div>
+
+          <div
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <Form.Label>Select Prefered Location</Form.Label>
+            <ChooseCity onChangeCity={onChangeCity} />
+          </div>
+
+          <div
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <LanguageDropdown handleLanguages={handleLanguages} />
+          </div>
+
+          <div
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            <Form.Label>
+              Availability <span style={{ color: "red" }}>*</span>
+            </Form.Label>
+            {availability ? (
+              <Form.Select className="mb-3" disabled>
+                <option>Select</option>
+                <option>
+                  45 days notice period. Actively looking for a job. I'm on
+                  notice period till 1-01-2023. I can join within 1 or 2 weeks.
+                  I can join immediatly.
+                </option>
+              </Form.Select>
+            ) : (
+              <Form.Select
+                className="mb-3"
+                onChange={(e) => setAvailability(e.target.value)}
+              >
+                <option>Select</option>
+                <option>
+                  45 days notice period. Actively looking for a job. I'm on
+                  notice period till 1-01-2023. I can join within 1 or 2 weeks.
+                  I can join immediatly.
+                </option>
+              </Form.Select>
+            )}
+            <Form.Control
+              type="text"
+              placeholder="Custom"
+              className="mb-3"
+              onChange={(e) => setAvailability(e.target.value)}
+            />
+          </div>
+        </Row>
+        {isFilled ? null : (
+          <>
+            <span
+              style={{
+                color: "red",
+                fontFamily: "Roboto",
+              }}
+            >
+              *Fill all the required field to submit
+            </span>
+            <br />
+          </>
+        )}
+        <Button
+          type="submit"
+          onClick={() => (now === 100 ? setIsFilled(true) : setIsFilled(false))}
+          className="mt-3"
         >
-          <CheckboxDropdown onSelectionChange={handleSelectionChange} />
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%" }}
-        >
-          <DynamicEducationJob />
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%" }}
-        >
-          <Form.Label>Cover Letter</Form.Label>
-          <TextArea rows={6} className="mb-3" />
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%" }}
-        >
-          <Form.Label>About us</Form.Label>
-          <TextArea rows={6} className="mb-3" />
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%" }}
-        >
-          <DynamicProjectForm />
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%" }}
-        >
-          <DynamicAchievements />
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%" }}
-        >
-          <LanguageDropdown />
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right bg-light text-dark  mb-3    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%" }}
-        >
-          <p style={{ fontSize: "18px", marginBottom: "0px" }}>
-            Notice Period - Actively looking for internship and immediate joiner
-          </p>
-        </div>
-      </Row>
-    </Form>
+          Submit
+        </Button>
+      </Form>
+    </>
   )
 }
 

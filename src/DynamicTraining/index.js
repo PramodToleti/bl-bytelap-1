@@ -92,7 +92,6 @@ const DynamicTraining = (props) => {
 
   return (
     <Form>
-      <Form.Label className="mb-3">Training / Course</Form.Label>
       {bookRoomData.map((data, i) => {
         return (
           <Row className="" key={i}>

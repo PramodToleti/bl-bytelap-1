@@ -490,10 +490,20 @@ function Fresher() {
             className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border-dark   rounded container reveal  p-4  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
-            <Form.Label>
-              Cover Letter <span style={{ color: "red" }}>*</span>
-            </Form.Label>
-            <TextArea rows={6} className="mb-3" onChange={handleCoverLetter} />
+            <Form.Control controlId="cover-letter">
+              <Form.Label>
+                Cover Letter <span style={{ color: "red" }}>*</span>
+              </Form.Label>
+              <TextArea
+                rows={6}
+                className="mb-3"
+                onChange={handleCoverLetter}
+                required
+              />
+              <Form.Control.Feedback type="invalid">
+                Please provide a cover letter
+              </Form.Control.Feedback>
+            </Form.Control>
           </div>
 
           <div
@@ -517,6 +527,9 @@ function Fresher() {
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
+            <Form.Label className="mb-3">
+              Internship Training / Course
+            </Form.Label>
             <DynamicTraining handleTraining={handleTraining} />
           </div>
 

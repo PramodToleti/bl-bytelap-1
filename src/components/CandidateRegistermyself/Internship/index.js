@@ -379,6 +379,7 @@ const progressRef = useRef(null)*/
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
+            <Form.Label className="mb-3">Training / Course</Form.Label>
             <DynamicTraining handleTraining={handleTraining} />
           </div>
 
