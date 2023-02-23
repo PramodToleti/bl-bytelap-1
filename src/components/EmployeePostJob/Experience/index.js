@@ -1,43 +1,96 @@
-import Stack from "react-bootstrap/Stack"
-import Button from "react-bootstrap/Button"
-import Form from "react-bootstrap/Form"
-import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css"
-import CheckboxDropdown from "../../../CheckboxDropdowm"
-import ChooseCity from "../../../ChooseCity"
-
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Row from "react-bootstrap/Row"
 import { Col } from "react-bootstrap"
+import Button from "react-bootstrap/Button"
+import Form from "react-bootstrap/Form"
 
-import "./index.css"
+import CheckboxDropdown from "../../../CheckboxDropdowm"
+import ChooseCity from "../../../ChooseCity"
 import PerksDropdown from "../../../PerksDropdown"
 import SupplementaryDropdown from "../../../SupplementaryDropdown"
-import DynamicEducationForm from "../../../DynamicEducationForm"
-import DynamicEducationJob from "../../../DynamicEducationJob"
-import DynamicPostJobExperience from "../../../DynamicPostJobExperience"
-import ShiftDropdown from "../../../ShiftDropdown"
 import ChooseJobTitle from "../../../ChooseJobTitle"
 import AddRemove from "../../../AddRemove"
 import LanguageDropdown from "../../../LanguageDropdown"
 
+import "./index.css"
+import "react-datepicker/dist/react-datepicker.css"
+
 function Experience() {
   const [validated, setValidated] = useState(false)
+  //Input data
+  const [jobTitle, setJobTitle] = useState("")
+  const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
-  const [salaryType, setSalaryType] = useState("")
-  const [state, setState] = useState({
-    selectedSkills: [],
+  const [city, setCity] = useState([])
+  const [shift, setShift] = useState("")
+  const [skills, setSkills] = useState([])
+  const [jobDescription, setDescription] = useState("")
+  const [experience, setExperience] = useState({
+    years: "",
+    month: "",
   })
-  const [date, setDate] = useState(null)
-  const [showDatePicker, setShowDatePicker] = useState(false)
+  const [salaryType, setSalaryType] = useState("")
+  const [salaryRange, setSalaryRange] = useState({ from: "", to: "" })
+  const [supplementary, setSupplemantary] = useState([])
+  const [perks, setPerks] = useState([])
+  const [languages, setLanguages] = useState([])
+  const [openings, setOpenings] = useState("")
+  const [location, setLocation] = useState([])
+  const [education, setEducation] = useState([])
 
-  function handleDateChange(date) {
-    setDate(date)
-    setShowDatePicker(false)
+  const data = {
+    jobTitle,
+    jobTime,
+    jobType,
+    city,
+    shift,
+    skills,
+    jobDescription,
+    experience,
+    salaryType,
+    salaryRange,
+    supplementary,
+    perks,
+    languages,
+    openings,
+    location,
+    education,
   }
 
-  function handleCustomDateClick() {
-    setShowDatePicker(true)
+  const handleTitle = (e) => {
+    setJobTitle(e)
+  }
+
+  const onChangeCity = (e) => {
+    setCity(e)
+  }
+
+  const handleSkills = (e) => {
+    let skills = []
+    e.map((each) => skills.push(each.value))
+    setSkills(skills)
+  }
+
+  const handleSupplementary = (e) => {
+    setSupplemantary(e)
+  }
+
+  const handlePerks = (e) => {
+    setPerks(e)
+  }
+
+  const handleLanguages = (e) => {
+    let languages = []
+    e.map((each) => languages.push(each.value))
+    setLanguages(languages)
+  }
+
+  const handleLocation = (e) => {
+    setLocation(e.target.value)
+  }
+
+  const handleEducation = (e) => {
+    setEducation(e)
   }
 
   const handleSubmit = (event) => {
@@ -50,15 +103,6 @@ function Experience() {
     setValidated(true)
   }
 
-  const handleSelectionChange = (selected) => {
-    setState({
-      ...state,
-      selectedSkills: selected,
-    })
-  }
-
-  console.log(salaryType)
-
   const renderSalaryType = () => {
     switch (salaryType) {
       case "Lac":
@@ -68,13 +112,25 @@ function Experience() {
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>From</Form.Label>
-                  <Form.Control type="number" placeholder="1 lac" />
+                  <Form.Control
+                    type="number"
+                    placeholder="1 lac"
+                    onChange={(e) =>
+                      setSalaryRange({ ...salaryRange, from: e.target.value })
+                    }
+                  />
                 </Form.Group>
               </Col>
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>To</Form.Label>
-                  <Form.Control type="number" placeholder="3 lac" />
+                  <Form.Control
+                    type="number"
+                    placeholder="3 lac"
+                    onChange={(e) =>
+                      setSalaryRange({ ...salaryRange, to: e.target.value })
+                    }
+                  />
                 </Form.Group>
               </Col>
             </Row>
@@ -87,13 +143,25 @@ function Experience() {
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>From</Form.Label>
-                  <Form.Control type="number" placeholder="10k" />
+                  <Form.Control
+                    type="number"
+                    placeholder="10k"
+                    onChange={(e) =>
+                      setSalaryRange({ ...salaryRange, from: e.target.value })
+                    }
+                  />
                 </Form.Group>
               </Col>
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>To</Form.Label>
-                  <Form.Control type="number" placeholder="20k" />
+                  <Form.Control
+                    type="number"
+                    placeholder="20k"
+                    onChange={(e) =>
+                      setSalaryRange({ ...salaryRange, to: e.target.value })
+                    }
+                  />
                 </Form.Group>
               </Col>
             </Row>
@@ -102,7 +170,11 @@ function Experience() {
       case "Fixed":
         return (
           <Form.Group className="mb-3 mt-2">
-            <Form.Control type="number" placeholder="20k/Month" />
+            <Form.Control
+              type="number"
+              placeholder="20k/Month"
+              onChange={(e) => setSalaryRange(e.target.value)}
+            />
           </Form.Group>
         )
       case "Not Disclosed":
@@ -113,14 +185,28 @@ function Experience() {
           <Row className="mb-3">
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Label>Min</Form.Label>
-              <Form.Control type="number" placeholder="" required />
+              <Form.Control
+                type="number"
+                placeholder=""
+                required
+                onChange={(e) =>
+                  setSalaryRange({ ...salaryRange, from: e.target.value })
+                }
+              />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid state.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Label>Max</Form.Label>
-              <Form.Control type="number" placeholder="" required />
+              <Form.Control
+                type="number"
+                placeholder=""
+                required
+                onChange={(e) =>
+                  setSalaryRange({ ...salaryRange, to: e.target.value })
+                }
+              />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid zip.
               </Form.Control.Feedback>
@@ -139,11 +225,11 @@ function Experience() {
         <Row className="mb-3">
           <Form.Group className="mb-3 mt-2" controlId="formBasicText">
             <Form.Label>Job Tittle for Experience</Form.Label>
-            <ChooseJobTitle />
+            <ChooseJobTitle handleTitle={handleTitle} />
           </Form.Group>
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Full time or Part time </Form.Label>
-            <Form.Select>
+            <Form.Select onChange={(e) => setJobTime(e.target.value)}>
               <option> Select an option </option>
               <option> Full-Time </option>
               <option>Part-Time</option>
@@ -161,7 +247,7 @@ function Experience() {
           </Form.Group>
           {jobType === "Office" && (
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <ChooseCity />
+              <ChooseCity onChangeCity={onChangeCity} />
               <Form.Control.Feedback type="invalid">
                 Please enter your city.
               </Form.Control.Feedback>
@@ -172,7 +258,7 @@ function Experience() {
             <Form.Label>
               What is the Shift to this Experience Position
             </Form.Label>
-            <Form.Select>
+            <Form.Select onChange={(e) => setShift(e.target.value)}>
               <option>Select an option</option>
               <option>Day</option>
               <option>Night</option>
@@ -181,21 +267,30 @@ function Experience() {
           </Form.Group>
 
           <Form.Group className="mb-3 mt-2">
-            <AddRemove />
+            <AddRemove handleEducation={handleEducation} />
           </Form.Group>
 
-          <CheckboxDropdown onSelectionChange={handleSelectionChange} />
+          <CheckboxDropdown handleSkills={handleSkills} />
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Job description</Form.Label>
-            <Form.Control as="textarea" rows="5" />
+            <Form.Control
+              as="textarea"
+              rows="5"
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </Form.Group>
 
           <Row className="mb-3">
             <Form.Label>Experience</Form.Label>
             <Col xs={6}>
               <Form.Group className="mb-3">
-                <Form.Select placeholder="From">
+                <Form.Select
+                  placeholder="From"
+                  onChange={(e) =>
+                    setExperience({ ...experience, years: e.target.value })
+                  }
+                >
                   {[0, 1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
                     (each) => (
                       <option>{each}</option>
@@ -206,7 +301,12 @@ function Experience() {
             </Col>
             <Col xs={6}>
               <Form.Group className="mb-3">
-                <Form.Select placeholder="To">
+                <Form.Select
+                  placeholder="To"
+                  onChange={(e) =>
+                    setExperience({ ...experience, month: e.target.value })
+                  }
+                >
                   {[1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
                     (each) => (
                       <option>{each}</option>
@@ -232,21 +332,24 @@ function Experience() {
 
           {renderSalaryType()}
 
-          <SupplementaryDropdown />
-          <PerksDropdown />
+          <SupplementaryDropdown handleSupplementary={handleSupplementary} />
+          <PerksDropdown handlePerks={handlePerks} />
 
-          <LanguageDropdown />
+          <LanguageDropdown handleLanguages={handleLanguages} />
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Number of opening</Form.Label>
-            <Form.Control type="number" />
+            <Form.Control
+              type="number"
+              onChange={(e) => setOpenings(e.target.value)}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>
               Which location do you prefer looking for intern's ? (optional)
             </Form.Label>
-            <Form.Control type="text" />
+            <Form.Control type="text" onChange={(e) => handleLocation(e)} />
           </Form.Group>
         </Row>
 

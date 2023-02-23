@@ -33,7 +33,6 @@ if (defaultDark) {
 
 const Theme = () => {
   const storedValue = Boolean(localStorage.getItem("isChecked"))
-  console.log(storedValue)
   const [isChecked, setIsChecked] = useState(storedValue)
 
   const toggleTheme = (e) => {

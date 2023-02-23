@@ -41,7 +41,7 @@ class SupplementaryDropdown extends Component {
     this.setState({
       optionSelected: selected,
     })
-    this.props.onSelectionChange(selected)
+    this.props.handleSupplementary(selected)
   }
 
   render() {

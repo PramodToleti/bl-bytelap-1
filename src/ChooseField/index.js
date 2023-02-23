@@ -6,12 +6,11 @@ import options from "./data"
 import "react-bootstrap-typeahead/css/Typeahead.css"
 
 const ChooseField = (props) => {
-  const { onChangeField } = props
   const [selected, setSelected] = useState([])
 
   const onChangeUserField = (e) => {
     setSelected(e)
-    onChangeField(e)
+    props.onChangeField(e)
   }
 
   return (

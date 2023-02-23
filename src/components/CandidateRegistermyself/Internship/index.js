@@ -1,38 +1,38 @@
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import "react-datepicker/dist/react-datepicker.css";
-import CheckboxDropdown from "../../../CheckboxDropdowm";
+import Button from "react-bootstrap/Button"
+import Form from "react-bootstrap/Form"
+import "react-datepicker/dist/react-datepicker.css"
+import CheckboxDropdown from "../../../CheckboxDropdowm"
 
-import React, { useState, useEffect } from "react";
-import Row from "react-bootstrap/Row";
-import { Col } from "react-bootstrap";
-import ProgressBar from "react-bootstrap/ProgressBar";
+import React, { useState, useEffect } from "react"
+import Row from "react-bootstrap/Row"
+import { Col } from "react-bootstrap"
+import ProgressBar from "react-bootstrap/ProgressBar"
 
-import "./index.css";
-import LanguageDropdown from "../../../LanguageDropdown";
-import ChooseJobTitle from "../../../ChooseJobTitle";
-import TextArea from "antd/es/input/TextArea";
-import DynamicProjectForm from "../../../DynamicProjectForm";
-import DynamicAchievements from "../../../DynamicAchievements";
-import DynamicEducationJob from "../../../DynamicEducationJob";
-import DynamicTraining from "../../../DynamicTraining";
-import InternshipPreview from "../../../CandidateRegisterPreview/InternshipPreview";
+import "./index.css"
+import LanguageDropdown from "../../../LanguageDropdown"
+import ChooseJobTitle from "../../../ChooseJobTitle"
+import TextArea from "antd/es/input/TextArea"
+import DynamicProjectForm from "../../../DynamicProjectForm"
+import DynamicAchievements from "../../../DynamicAchievements"
+import DynamicEducationJob from "../../../DynamicEducationJob"
+import DynamicTraining from "../../../DynamicTraining"
+import InternshipPreview from "../../../CandidateRegisterPreview/InternshipPreview"
 
 function Internship() {
-  const [validated, setValidated] = useState(false);
+  const [validated, setValidated] = useState(false)
   //Input data
-  const [jobTitle, setJobTitle] = useState("");
-  const [jobTime, setJobTime] = useState("");
-  const [jobType, setJobType] = useState("");
-  const [skills, setSkills] = useState([]);
-  const [degree, setDegree] = useState([]);
-  const [coverLetter, setCoverLetter] = useState("");
-  const [projectDetails, setProjectDetails] = useState([]);
-  const [training, setTraining] = useState([]);
-  const [achievements, setAchievements] = useState([]);
-  const [languages, setLanguages] = useState([]);
-  const [availability, setAvailability] = useState("");
-  const [isFilled, setIsFilled] = useState(true);
+  const [jobTitle, setJobTitle] = useState("")
+  const [jobTime, setJobTime] = useState("")
+  const [jobType, setJobType] = useState("")
+  const [skills, setSkills] = useState([])
+  const [degree, setDegree] = useState([])
+  const [coverLetter, setCoverLetter] = useState("")
+  const [projectDetails, setProjectDetails] = useState([])
+  const [training, setTraining] = useState([])
+  const [achievements, setAchievements] = useState([])
+  const [languages, setLanguages] = useState([])
+  const [availability, setAvailability] = useState("")
+  const [isFilled, setIsFilled] = useState(true)
 
   const data = {
     jobTitle,
@@ -46,7 +46,7 @@ function Internship() {
     achievements,
     languages,
     availability,
-  };
+  }
 
   {
     /*const [isFixed, setIsFixed] = useState(false)
@@ -65,71 +65,71 @@ const progressRef = useRef(null)*/
   }
 
   const handleTitle = (e) => {
-    setJobTitle(e);
-  };
+    setJobTitle(e)
+  }
 
   const handleJobTime = (e) => {
-    if (e.target.value !== "Select an option") setJobTime(e.target.value);
-  };
+    if (e.target.value !== "Select an option") setJobTime(e.target.value)
+  }
 
   const handleJobtype = (e) => {
-    setJobType(e.target.value);
-  };
+    setJobType(e.target.value)
+  }
 
   const handleSkills = (e) => {
-    let skills = [];
-    e.map((each) => skills.push(each.value));
-    setSkills(skills);
-  };
+    let skills = []
+    e.map((each) => skills.push(each.value))
+    setSkills(skills)
+  }
 
   const handleDegree = (e) => {
-    setDegree(e);
-  };
+    setDegree(e)
+  }
 
   const handleCoverLetter = (e) => {
-    setCoverLetter(e.target.value);
-  };
+    setCoverLetter(e.target.value)
+  }
 
   const handleProject = (projectDetails) => {
-    setProjectDetails(projectDetails);
-  };
+    setProjectDetails(projectDetails)
+  }
 
   const handleTraining = (training) => {
-    setTraining(training);
-  };
+    setTraining(training)
+  }
 
   const handleAchievements = (achievements) => {
-    setAchievements(achievements);
-  };
+    setAchievements(achievements)
+  }
 
   const handleLanguages = (e) => {
-    let languages = [];
-    e.map((each) => languages.push(each.value));
-    setLanguages(languages);
-  };
+    let languages = []
+    e.map((each) => languages.push(each.value))
+    setLanguages(languages)
+  }
 
   const [state, setState] = useState({
     selectedSkills: [],
-  });
+  })
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
+    event.preventDefault()
+    const form = event.currentTarget
     if (form.checkValidity() === false) {
-      event.stopPropagation();
+      event.stopPropagation()
     }
 
-    setValidated(true);
-  };
+    setValidated(true)
+  }
 
   const handleSelectionChange = (selected) => {
     setState({
       ...state,
       selectedSkills: selected,
-    });
-  };
+    })
+  }
 
-  let now = 0;
+  let now = 0
   function progressBar() {
     if (
       jobTitle !== "" &&
@@ -137,7 +137,7 @@ const progressRef = useRef(null)*/
       skills.length !== 0 &&
       jobType !== ""
     )
-      now = 20;
+      now = 20
     if (
       jobTitle !== "" &&
       jobTime !== "" &&
@@ -145,7 +145,7 @@ const progressRef = useRef(null)*/
       skills.length !== 0 &&
       coverLetter !== ""
     )
-      now = 30;
+      now = 30
 
     if (
       jobTitle !== "" &&
@@ -155,7 +155,7 @@ const progressRef = useRef(null)*/
       coverLetter !== "" &&
       degree.length !== 0
     )
-      now = 50;
+      now = 50
     if (
       jobTitle !== "" &&
       jobTime !== "" &&
@@ -165,7 +165,7 @@ const progressRef = useRef(null)*/
       degree.length !== 0 &&
       projectDetails.length !== 0
     )
-      now = 60;
+      now = 60
     if (
       jobTitle !== "" &&
       jobTime !== "" &&
@@ -176,7 +176,7 @@ const progressRef = useRef(null)*/
       projectDetails.length !== 0 &&
       training.length !== 0
     )
-      now = 70;
+      now = 70
 
     if (
       jobTitle !== "" &&
@@ -189,7 +189,7 @@ const progressRef = useRef(null)*/
       training.length !== 0 &&
       achievements.length !== 0
     )
-      now = 80;
+      now = 80
 
     if (
       jobTitle !== "" &&
@@ -203,7 +203,7 @@ const progressRef = useRef(null)*/
       achievements.length !== 0 &&
       languages.length !== 0
     )
-      now = 90;
+      now = 90
 
     if (
       jobTitle !== "" &&
@@ -218,7 +218,7 @@ const progressRef = useRef(null)*/
       languages.length !== 0 &&
       availability !== ""
     )
-      now = 100;
+      now = 100
 
     {
       /*const progressBarStyle = {
@@ -244,7 +244,7 @@ const progressRef = useRef(null)*/
           style={{ height: "25px", position: "sticky" }}
         />
       </>
-    );
+    )
   }
 
   return (
@@ -394,7 +394,7 @@ const progressRef = useRef(null)*/
                 fontFamily: "Roboto",
               }}
             >
-              *Fill all the required field to submit
+              *Fill all the required field to save
             </span>
             <br />
           </>
@@ -414,7 +414,7 @@ const progressRef = useRef(null)*/
         </Row>
       </Form>
     </>
-  );
+  )
 }
 
-export default Internship;
+export default Internship

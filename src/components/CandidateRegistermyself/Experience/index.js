@@ -613,7 +613,7 @@ function Experience() {
                 fontFamily: "Roboto",
               }}
             >
-              *Fill all the required field to submit
+              *Fill all the required field to save
             </span>
             <br />
           </>

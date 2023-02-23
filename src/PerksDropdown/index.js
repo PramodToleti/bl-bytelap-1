@@ -46,7 +46,7 @@ class PerksDropdown extends Component {
     this.setState({
       optionSelected: selected,
     })
-    this.props.onSelectionChange(selected)
+    this.props.handlePerks(selected)
   }
 
   render() {

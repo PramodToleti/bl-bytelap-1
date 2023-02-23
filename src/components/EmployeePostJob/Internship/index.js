@@ -1,31 +1,67 @@
-import Stack from "react-bootstrap/Stack"
+import React, { useEffect, useState } from "react"
+import Row from "react-bootstrap/Row"
+import { Col } from "react-bootstrap"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css"
-import CheckboxDropdown from "../../../CheckboxDropdowm"
-import ChooseCity from "../../../ChooseCity"
 
-import React, { useState } from "react"
-import Row from "react-bootstrap/Row"
-import { Col } from "react-bootstrap"
-
-import "./index.css"
 import PerksDropdown from "../../../PerksDropdown"
-import SupplementaryDropdown from "../../../SupplementaryDropdown"
-import DynamicPostJobInternship from "../../../DynamicPostJobInternship"
-import ShiftDropdown from "../../../ShiftDropdown"
 import LanguageDropdown from "../../../LanguageDropdown"
 import LocationDropdown from "../../../LocationCheckbox"
 import ChooseJobTitle from "../../../ChooseJobTitle"
 import AddRemove from "../../../AddRemove"
+import CheckboxDropdown from "../../../CheckboxDropdowm"
+import ChooseCity from "../../../ChooseCity"
+
+import "react-datepicker/dist/react-datepicker.css"
+import "./index.css"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
+  //Input data
+  const [jobTitle, setJobTitle] = useState("")
+  const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
-  const [salaryType, setSalaryType] = useState("")
+  const [city, setCity] = useState([])
+  const [duration, setDuration] = useState("")
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
+  const [skills, setSkills] = useState([])
+  const [responsibilities, setResponsibilities] = useState("")
+  const [salaryType, setSalaryType] = useState("")
+  const [salaryRange, setSalaryRange] = useState({ from: "", to: "" })
+  const [perks, setPerks] = useState([])
+  const [languages, setLanguages] = useState([])
+  const [openings, setOpenings] = useState("")
+  const [location, setLocation] = useState([])
+  const [education, setEducation] = useState([])
+
+  const data = {
+    jobTitle,
+    jobTime,
+    jobType,
+    city,
+    duration,
+    startDate,
+    endDate,
+    skills,
+    responsibilities,
+    salaryType,
+    salaryRange,
+    perks,
+    languages,
+    openings,
+    location,
+    education,
+  }
+
+  const handleTitle = (e) => {
+    setJobTitle(e)
+  }
+
+  const onChangeCity = (e) => {
+    setCity(e)
+  }
 
   const handleChange = (date) => {
     setStartDate(date)
@@ -35,20 +71,37 @@ function Internship() {
     setEndDate(date)
   }
 
+  const handleSkills = (e) => {
+    let skills = []
+    e.map((each) => skills.push(each.value))
+    setSkills(skills)
+  }
+
+  const handlePerks = (e) => {
+    setPerks(e)
+  }
+
+  const handleLanguages = (e) => {
+    let languages = []
+    e.map((each) => languages.push(each.value))
+    setLanguages(languages)
+  }
+
+  const handleLocation = (e) => {
+    setLocation(e)
+  }
+
+  const handleEducation = (e) => {
+    setEducation(e)
+  }
+
+  useEffect(() => {
+    if (salaryType === "Fixed") setSalaryRange("5k")
+  }, [salaryType])
+
   const [state, setState] = useState({
     selectedSkills: [],
   })
-  const [date, setDate] = useState(null)
-  const [showDatePicker, setShowDatePicker] = useState(false)
-
-  function handleDateChange(date) {
-    setDate(date)
-    setShowDatePicker(false)
-  }
-
-  function handleCustomDateClick() {
-    setShowDatePicker(true)
-  }
 
   const handleSubmit = (event) => {
     const form = event.currentTarget
@@ -60,19 +113,12 @@ function Internship() {
     setValidated(true)
   }
 
-  const handleSelectionChange = (selected) => {
-    setState({
-      ...state,
-      selectedSkills: selected,
-    })
-  }
-
   const renderSalaryType = () => {
     switch (salaryType) {
       case "Fixed":
         return (
           <Form.Group className="mb-3 mt-2">
-            <Form.Control type="number" placeholder="2k/Month" />
+            <Form.Control type="number" placeholder="5k/Month" />
           </Form.Group>
         )
       case "Negotiable":
@@ -82,13 +128,25 @@ function Internship() {
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>From</Form.Label>
-                  <Form.Control type="number" placeholder="5000" />
+                  <Form.Control
+                    type="number"
+                    placeholder="5000"
+                    onChange={(e) =>
+                      setSalaryRange({ ...salaryRange, from: e.target.value })
+                    }
+                  />
                 </Form.Group>
               </Col>
               <Col xs={6}>
                 <Form.Group className="mb-3 mt-2">
                   <Form.Label>To</Form.Label>
-                  <Form.Control type="number" placeholder="10,000/month" />
+                  <Form.Control
+                    type="number"
+                    placeholder="10,000/month"
+                    onChange={(e) =>
+                      setSalaryRange({ ...salaryRange, to: e.target.value })
+                    }
+                  />
                 </Form.Group>
               </Col>
             </Row>
@@ -97,7 +155,11 @@ function Internship() {
       case "Performance based":
         return (
           <Form.Group className="mb-3 mt-2">
-            <Form.Control type="number" placeholder="Min assumed amount" />
+            <Form.Control
+              type="number"
+              placeholder="Min assumed amount"
+              onChange={(e) => setSalaryRange(e.target.value)}
+            />
           </Form.Group>
         )
 
@@ -106,14 +168,24 @@ function Internship() {
           <Row className="mb-3">
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Label>Min</Form.Label>
-              <Form.Control type="number" placeholder="" required />
+              <Form.Control
+                type="number"
+                placeholder=""
+                required
+                onChange={(e) => setSalaryRange({ from: e.target.value })}
+              />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid state.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="3" controlId="validationCustom03">
               <Form.Label>Max</Form.Label>
-              <Form.Control type="number" placeholder="" required />
+              <Form.Control
+                type="number"
+                placeholder=""
+                required
+                onChange={(e) => setSalaryRange({ to: e.target.value })}
+              />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid zip.
               </Form.Control.Feedback>
@@ -132,11 +204,11 @@ function Internship() {
         <Row className="mb-3">
           <Form.Group className="mb-3 mt-2" controlId="formBasicText">
             <Form.Label>Job Tittle for Internship</Form.Label>
-            <ChooseJobTitle />
+            <ChooseJobTitle handleTitle={handleTitle} />
           </Form.Group>
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Full time or Part time </Form.Label>
-            <Form.Select>
+            <Form.Select onChange={(e) => setJobTime(e.target.value)}>
               <option> Select an option </option>
               <option> Full-Time </option>
               <option>Part-Time</option>
@@ -154,7 +226,7 @@ function Internship() {
           </Form.Group>
           {jobType === "Office" && (
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <ChooseCity />
+              <ChooseCity onChangeCity={onChangeCity} />
               <Form.Control.Feedback type="invalid">
                 Please enter your city.
               </Form.Control.Feedback>
@@ -163,7 +235,7 @@ function Internship() {
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Duration of Internship </Form.Label>
-            <Form.Select>
+            <Form.Select onChange={(e) => setDuration(e.target.value)}>
               <option>Select an option </option>
               <option> 1 </option>
               <option> 2 </option>
@@ -246,11 +318,15 @@ function Internship() {
             </div>
           </Form.Group>
 
-          <CheckboxDropdown onSelectionChange={handleSelectionChange} />
+          <CheckboxDropdown handleSkills={handleSkills} />
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Intern's responsibilities</Form.Label>
-            <Form.Control as="textarea" rows="5" />
+            <Form.Control
+              as="textarea"
+              rows="5"
+              onChange={(e) => setResponsibilities(e.target.value)}
+            />
           </Form.Group>
 
           <Row className="mb-3">
@@ -267,18 +343,21 @@ function Internship() {
 
           {renderSalaryType()}
 
-          <PerksDropdown />
+          <PerksDropdown handlePerks={handlePerks} />
 
-          <LanguageDropdown />
+          <LanguageDropdown handleLanguages={handleLanguages} />
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Number of opening</Form.Label>
-            <Form.Control type="number" />
+            <Form.Control
+              type="number"
+              onChange={(e) => setOpenings(e.target.value)}
+            />
           </Form.Group>
 
-          <LocationDropdown />
+          <LocationDropdown handleLocation={handleLocation} />
 
-          <AddRemove />
+          <AddRemove handleEducation={handleEducation} />
         </Row>
 
         <div className="preview-container">

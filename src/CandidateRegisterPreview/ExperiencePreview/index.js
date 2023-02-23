@@ -9,14 +9,7 @@ import "./index.css"
 
 function ExperiencePreview(props) {
   const { data } = props
-  const values = [true]
-  const [fullscreen, setFullscreen] = useState(true)
-  const [show, setShow] = useState(false)
-
-  function handleShow(breakpoint) {
-    setFullscreen(breakpoint)
-    setShow(true)
-  }
+  const [lgShow, setLgShow] = useState(false)
 
   function renderPreview() {
     return (
@@ -233,20 +226,21 @@ function ExperiencePreview(props) {
 
   return (
     <>
-      {values.map((v, idx) => (
-        <Button
-          key={idx}
-          className="me-2 mt-2 col-sm-2"
-          variant="secondary"
-          onClick={() => handleShow(v)}
-        >
-          Preview
-          {typeof v === "string" && `below ${v.split("-")[0]}`}
-        </Button>
-      ))}
-      <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
+      <Button
+        variant="secondary"
+        className="col-sm-2 mx-4 mt-2"
+        onClick={() => setLgShow(true)}
+      >
+        Preview
+      </Button>
+      <Modal
+        size="lg"
+        show={lgShow}
+        onHide={() => setLgShow(false)}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
         <Modal.Header closeButton>
-          <h5>Preview</h5>
+          <Modal.Title id="example-modal-sizes-title-lg">Preview</Modal.Title>
         </Modal.Header>
         <Modal.Body>{renderPreview()}</Modal.Body>
       </Modal>

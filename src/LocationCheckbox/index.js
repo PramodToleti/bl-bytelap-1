@@ -58,7 +58,7 @@ class LocationDropdown extends Component {
     this.setState({
       optionSelected: selected,
     })
-    this.props.onSelectionChange(selected)
+    this.props.handleLocation(selected)
   }
 
   render() {

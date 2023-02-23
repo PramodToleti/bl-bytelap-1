@@ -1,51 +1,55 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "bootstrap/dist/css/bootstrap.css"
 import { Form, Button, Row, Col } from "react-bootstrap"
 import ChooseField from "../ChooseField"
 
-const AddRemove = () => {
-  const [bookRoomData, setBookRoomData] = useState([
-    { roomType: "", roomNumber: 0, guest: 0 },
+const AddRemove = (props) => {
+  const [education, setEducation] = useState([
+    {
+      qualification: "",
+      field: "",
+    },
   ])
 
-  const handleChange = (index, event) => {
-    const values = [...bookRoomData]
-    if (event.target.name === "roomType") {
-      values[index].roomType = event.target.value
-    } else if (event.target.name === "roomNumber" && event.target.value > 0) {
-      values[index].roomNumber = event.target.value
-    } else if (event.target.name === "guest" && event.target.value > 0) {
-      values[index].guest = event.target.value
-    }
-
-    setBookRoomData(values)
-  }
-
   const handleAddFields = () => {
-    const values = [...bookRoomData]
-    values.push({ roomType: "", roomNumber: 0, guest: 0 })
-    setBookRoomData(values)
+    const values = [...education]
+    values.push({ qualification: "", field: "" })
+    setEducation(values)
   }
 
   const handleRemoveFields = () => {
-    const values = [...bookRoomData]
+    const values = [...education]
     if (values.length > 1) values.pop()
-    setBookRoomData(values)
+    setEducation(values)
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    alert(JSON.stringify(bookRoomData, null, 2))
+  const onChangeQualification = (e, i) => {
+    const list = [...education]
+    list[i].qualification = e.target.value
+    setEducation(list)
   }
+
+  const onChangeField = (e, i) => {
+    const list = [...education]
+    list[i].field = e[0].label
+    setEducation(list)
+  }
+
+  useEffect(() => {
+    education.every((each) => {
+      if (each.qualification !== "" && each.field !== "")
+        props.handleEducation(education)
+    })
+  }, [education, props])
 
   return (
     <Form>
-      {bookRoomData.map((data, i) => {
+      {education.map((data, i) => {
         return (
           <Row className="" key={i}>
             <Form.Group className="mb-3" controlId="formBasicText">
               <Form.Label>Qualification</Form.Label>
-              <Form.Select>
+              <Form.Select onChange={(e) => onChangeQualification(e, i)}>
                 <option>Select an option</option>
                 <option>Master's</option>
                 <option>Bachelor's</option>
@@ -58,17 +62,17 @@ const AddRemove = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Field </Form.Label>
-              <ChooseField />
+              <ChooseField onChangeField={(e) => onChangeField(e, i)} />
             </Form.Group>
           </Row>
         )
       })}
       <Row>
-        <Col className="mb-2 d-flex justify-content-between">
+        <Col className="mb-4 d-flex justify-content-between">
           <Button variant="outline-primary" onClick={handleAddFields}>
             Add More Education
           </Button>
-          {bookRoomData.length > 1 && (
+          {education.length > 1 && (
             <Button variant="danger" onClick={handleRemoveFields}>
               Remove
             </Button>
