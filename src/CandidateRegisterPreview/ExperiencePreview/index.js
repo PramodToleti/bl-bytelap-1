@@ -67,7 +67,7 @@ function ExperiencePreview(props) {
           <div>
             {data.employmentHistory.map((each) => (
               <>
-                <div className="date-container">
+                <div className="preview-date-container">
                   <h6>{each.profile}</h6>
                   <p style={{ fontSize: "15px", marginBottom: "10px" }}>
                     {each.startDate.toLocaleString("default", {
@@ -82,7 +82,11 @@ function ExperiencePreview(props) {
                   </p>
                 </div>
                 <p>{each.company}</p>
-                <p>{each.responsibilities}</p>
+                <p>
+                  {each.responsibilities.split("\n").map((each) => (
+                    <li>{each}</li>
+                  ))}
+                </p>
               </>
             ))}
           </div>
