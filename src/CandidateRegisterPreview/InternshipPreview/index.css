@@ -1,0 +1,41 @@
+.preview-skills {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  max-width: 200px;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.projects-list {
+  list-style-type: disc;
+}
+
+.achievements-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.languages-list {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  max-width: 400px;
+}
+
+@media screen and (min-width: 768px) {
+  .skills-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 670px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .preview-date-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+  }
+}

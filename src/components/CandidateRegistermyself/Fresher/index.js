@@ -542,13 +542,16 @@ function Fresher() {
             <br />
           </>
         )}
+        <Row className="justify-content-center">
+        <Button type="button" variant="secondary" className="col-sm-2 mx-4 mt-2">Preview</Button>
         <Button
           type="submit"
           onClick={() => (now === 100 ? setIsFilled(true) : setIsFilled(false))}
-          className="mt-3"
+          className="col-sm-2 mt-2"
         >
-          Submit
+          Save
         </Button>
+        </Row>
       </Form>
     </>
   )

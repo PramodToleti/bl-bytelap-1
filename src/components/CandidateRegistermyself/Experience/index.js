@@ -217,7 +217,7 @@ function Experience() {
       shift !== "" &&
       coverLetter !== "" &&
       degree.length !== 0 &&
-      projectDetails.length !== 0 &&
+      projectDetails.length !== 0 &&     
       training.length !== 0 &&
       achievements.length !== 0 &&
       languages.length !== 0 &&
@@ -231,27 +231,7 @@ function Experience() {
     )
       now = 100
 
-    console.log(
-      jobTitle,
-      jobTime,
-      skills,
-      jobType,
-      shift,
-      coverLetter,
-      degree,
-      projectDetails,
-      training,
-      achievements,
-      languages,
-      employmentHistory,
-      availability,
-      languages,
-      employmentHistory,
-      availability,
-      preferredLocation,
-      experience,
-      ctc
-    )
+    
 
     return (
       <ProgressBar
@@ -622,13 +602,16 @@ function Experience() {
             <br />
           </>
         )}
+        <Row className="justify-content-center">
+        <Button type="button" variant="secondary" className="col-sm-2 mx-4 mt-2">Preview</Button>
         <Button
           type="submit"
           onClick={() => (now === 100 ? setIsFilled(true) : setIsFilled(false))}
-          className="mt-3"
+          className="col-sm-2 mt-2"
         >
-          Submit
+          Save
         </Button>
+        </Row>
       </Form>
     </>
   )

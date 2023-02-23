@@ -13,6 +13,7 @@ const DynamicEducationJob = (props) => {
     {
       degree: "",
       field: "",
+      institute: "",
       city: "",
       startDate: "",
       endDate: "",
@@ -46,6 +47,12 @@ const DynamicEducationJob = (props) => {
   const onChangeCity = (e, index) => {
     const list = [...degreeList]
     list[index].city = e[0].label
+    setDegreeList(list)
+  }
+
+  const onChangeInstitute = (e, index) => {
+    const list = [...degreeList]
+    list[index].institute = e.target.value
     setDegreeList(list)
   }
 
@@ -112,6 +119,17 @@ const DynamicEducationJob = (props) => {
                 onChangeField={(e) => onChangeField(e, i)}
                 value={data.field}
               />
+              <Form.Group className="mt-3" controlId="collegeName">
+                <Form.Control
+                  type="text"
+                  placeholder="Institute Name"
+                  required
+                  onChange={(e) => onChangeInstitute(e, i)}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please enter your Institute
+                </Form.Control.Feedback>
+              </Form.Group>
             </FormGroup>
             <Form.Group className="mb-3">
               <ChooseCity
