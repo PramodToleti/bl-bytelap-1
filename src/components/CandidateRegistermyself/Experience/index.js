@@ -20,6 +20,7 @@ import DynamicAchievements from "../../../DynamicAchievements"
 import DynamicEducationJob from "../../../DynamicEducationJob"
 import DynamicTraining from "../../../DynamicTraining"
 import DynamicEmployementHistory from "../../../DynamicEmployementHistory/DynamicEmployementHistory"
+import ExperiencePreview from "../../../CandidateRegisterPreview/ExperiencePreview"
 
 function Experience() {
   const [validated, setValidated] = useState(false)
@@ -48,6 +49,23 @@ function Experience() {
   const [languages, setLanguages] = useState([])
   const [availability, setAvailability] = useState("")
   const [isFilled, setIsFilled] = useState(true)
+
+  const data = {
+    jobTitle,
+    jobTime,
+    jobType,
+    skills,
+    degree,
+    coverLetter,
+    projectDetails,
+    training,
+    achievements,
+    languages,
+    availability,
+    employmentHistory,
+    experience,
+    ctc,
+  }
 
   const handleTitle = (e) => {
     setJobTitle(e)
@@ -217,7 +235,7 @@ function Experience() {
       shift !== "" &&
       coverLetter !== "" &&
       degree.length !== 0 &&
-      projectDetails.length !== 0 &&     
+      projectDetails.length !== 0 &&
       training.length !== 0 &&
       achievements.length !== 0 &&
       languages.length !== 0 &&
@@ -230,8 +248,6 @@ function Experience() {
       ctc.thousand !== ""
     )
       now = 100
-
-    
 
     return (
       <ProgressBar
@@ -603,14 +619,16 @@ function Experience() {
           </>
         )}
         <Row className="justify-content-center">
-        <Button type="button" variant="secondary" className="col-sm-2 mx-4 mt-2">Preview</Button>
-        <Button
-          type="submit"
-          onClick={() => (now === 100 ? setIsFilled(true) : setIsFilled(false))}
-          className="col-sm-2 mt-2"
-        >
-          Save
-        </Button>
+          <ExperiencePreview data={data} />
+          <Button
+            type="submit"
+            onClick={() =>
+              now === 100 ? setIsFilled(true) : setIsFilled(false)
+            }
+            className="col-sm-2 mt-2"
+          >
+            Save
+          </Button>
         </Row>
       </Form>
     </>

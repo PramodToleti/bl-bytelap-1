@@ -19,6 +19,7 @@ import DynamicProjectForm from "../../../DynamicProjectForm"
 import DynamicAchievements from "../../../DynamicAchievements"
 import DynamicEducationJob from "../../../DynamicEducationJob"
 import DynamicTraining from "../../../DynamicTraining"
+import FresherPreview from "../../../CandidateRegisterPreview/FresherPreview"
 
 function Fresher() {
   const [validated, setValidated] = useState(false)
@@ -45,6 +46,22 @@ function Fresher() {
   const [availability, setAvailability] = useState("")
   const [preferredLocation, setPreferredLocation] = useState("")
   const [isFilled, setIsFilled] = useState(true)
+
+  const data = {
+    jobTitle,
+    jobTime,
+    jobType,
+    skills,
+    salaryType,
+    degree,
+    coverLetter,
+    projectDetails,
+    training,
+    achievements,
+    languages,
+    availability,
+    preferredLocation,
+  }
 
   const handleTitle = (e) => {
     setJobTitle(e)
@@ -543,14 +560,16 @@ function Fresher() {
           </>
         )}
         <Row className="justify-content-center">
-        <Button type="button" variant="secondary" className="col-sm-2 mx-4 mt-2">Preview</Button>
-        <Button
-          type="submit"
-          onClick={() => (now === 100 ? setIsFilled(true) : setIsFilled(false))}
-          className="col-sm-2 mt-2"
-        >
-          Save
-        </Button>
+          <FresherPreview data={data} />
+          <Button
+            type="submit"
+            onClick={() =>
+              now === 100 ? setIsFilled(true) : setIsFilled(false)
+            }
+            className="col-sm-2 mt-2"
+          >
+            Save
+          </Button>
         </Row>
       </Form>
     </>
