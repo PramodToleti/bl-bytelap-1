@@ -9,6 +9,35 @@ import "./index.css"
 function InternshipPreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
+  const [click, setClicked] = useState(false)
+
+  const handleClick = () => {
+    if (
+      data.jobTitle !== "" &&
+      data.jobTime !== "" &&
+      data.jobType !== "" &&
+      data.city !== "" &&
+      data.duration !== "" &&
+      data.checked !== "" &&
+      data.startDate !== "" &&
+      data.endDate !== "" &&
+      data.skills !== "" &&
+      data.responsibilities !== "" &&
+      data.salaryType !== "" &&
+      data.salaryRange !== "" &&
+      data.perks !== "" &&
+      data.languages !== "" &&
+      data.openings !== "" &&
+      data.location !== "" &&
+      data.education
+    ) {
+      setLgShow(true)
+      setClicked(false)
+    } else {
+      setLgShow(false)
+      setClicked(true)
+    }
+  }
 
   function renderPreview() {
     return (
@@ -182,10 +211,19 @@ function InternshipPreview(props) {
 
   return (
     <>
+      {click ? (
+        <p style={{ color: "red" }}>
+          *Please fill all the fields to view the preview
+        </p>
+      ) : (
+        ""
+      )}
       <Button
         variant="secondary"
         className="col-sm-2 mx-4 mt-2"
-        onClick={() => setLgShow(true)}
+        onClick={() => {
+          handleClick()
+        }}
       >
         Preview
       </Button>

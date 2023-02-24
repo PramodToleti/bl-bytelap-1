@@ -17,6 +17,34 @@ import "./index.css"
 function ExperiencePostPreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
+  const [click, setClicked] = useState(false)
+
+  const handleClick = () => {
+    if (
+      data.jobTitle !== "" &&
+      data.jobTime !== "" &&
+      data.jobType !== "" &&
+      data.city !== "" &&
+      data.shift !== "" &&
+      data.skills !== "" &&
+      data.jobDescription !== "" &&
+      data.experience !== "" &&
+      data.salaryType !== "" &&
+      data.salaryRange !== "" &&
+      data.supplementary !== "" &&
+      data.perks !== "" &&
+      data.languages !== "" &&
+      data.openings !== "" &&
+      data.location !== "" &&
+      data.education
+    ) {
+      setLgShow(true)
+      setClicked(false)
+    } else {
+      setLgShow(false)
+      setClicked(true)
+    }
+  }
 
   function renderPreview() {
     return (
@@ -188,11 +216,20 @@ function ExperiencePostPreview(props) {
   return (
     <>
       <div className="row justify-content-center w-100">
+        {click ? (
+          <p style={{ color: "red" }}>
+            *Please fill all the fields to view the preview
+          </p>
+        ) : (
+          ""
+        )}
         <Button
           variant="secondary"
           className="mt-2"
           style={{ width: "110px" }}
-          onClick={() => setLgShow(true)}
+          onClick={() => {
+            handleClick()
+          }}
         >
           Preview
         </Button>

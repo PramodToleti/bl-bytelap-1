@@ -16,7 +16,35 @@ import "./index.css"
 function InternshipPostPreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
-  const [preview, setPreview] = useState(false)
+  const [click, setClicked] = useState(false)
+
+  const handleClick = () => {
+    if (
+      data.jobTitle !== "" &&
+      data.jobTime !== "" &&
+      data.jobType !== "" &&
+      data.city !== "" &&
+      data.duration !== "" &&
+      data.checked !== "" &&
+      data.startDate !== "" &&
+      data.endDate !== "" &&
+      data.skills !== "" &&
+      data.responsibilities !== "" &&
+      data.salaryType !== "" &&
+      data.salaryRange !== "" &&
+      data.perks !== "" &&
+      data.languages !== "" &&
+      data.openings !== "" &&
+      data.location !== "" &&
+      data.education
+    ) {
+      setLgShow(true)
+      setClicked(false)
+    } else {
+      setLgShow(false)
+      setClicked(true)
+    }
+  }
 
   function renderPreview() {
     return (
@@ -165,14 +193,25 @@ function InternshipPostPreview(props) {
     )
   }
 
+  console.log(lgShow)
+
   return (
     <>
       <div className="row justify-content-center">
+        {click ? (
+          <p style={{ color: "red" }}>
+            *Please fill all the fields to view the preview
+          </p>
+        ) : (
+          ""
+        )}
         <Button
           variant="secondary"
           className="mt-2"
           style={{ width: "110px" }}
-          onClick={() => setLgShow(true)}
+          onClick={() => {
+            handleClick()
+          }}
         >
           Preview
         </Button>
