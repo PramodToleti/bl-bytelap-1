@@ -78,11 +78,15 @@ function FresherPostPreview(props) {
             <div className="job-card-container">
               <FaHome className="icon-styles" />
               <p className="details-heading">
-                {data.jobType === "Remote"
-                  ? "Work from Home"
-                  : data.city.length !== 0
-                  ? `${data.jobType}, ${data.city[0].label}`
-                  : data.jobType}
+                {data.jobType === "Work from Home" ? (
+                  "Work from Home"
+                ) : data.city.length !== 0 ? (
+                  <>
+                    {data.jobType}, <MdLocationOn /> {data.city[0].label}
+                  </>
+                ) : (
+                  data.jobType
+                )}
               </p>
             </div>
 
