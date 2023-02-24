@@ -283,7 +283,11 @@ const progressRef = useRef(null)*/
 
             <Form.Group className="mb-3 mt-2" controlId="title">
               <Form.Label>Internship Job Type</Form.Label>
-              <Form.Control type="text" onChange={handleJobtype} />
+              <Form.Select onChange={handleJobtype}>
+                <option>Select</option>
+                <option>Office</option>
+                <option>Work from Home</option>
+              </Form.Select>
             </Form.Group>
 
             <CheckboxDropdown
@@ -359,11 +363,6 @@ const progressRef = useRef(null)*/
             {availability ? (
               <Form.Select className="mb-3" disabled>
                 <option>Select</option>
-                <option>
-                  I am immediate joiner & Available For Full Time. I can join
-                  within one or two week . lam available for Full Time From 1
-                  Jan 2022 to 28 March 2022
-                </option>
               </Form.Select>
             ) : (
               <Form.Select

@@ -17,6 +17,7 @@ const DynamicEducationJob = (props) => {
       city: "",
       startDate: "",
       endDate: "",
+      present: false,
     },
   ])
 
@@ -32,9 +33,16 @@ const DynamicEducationJob = (props) => {
     setDegreeList(list)
   }
 
+  const handlePresent = (e, i) => {
+    const list = [...degreeList]
+    list[i].present = e.target.checked
+    setDegreeList(list)
+  }
+
   const onChangeDegree = (e, index) => {
     const list = [...degreeList]
     list[index].degree = e.target.value
+
     setDegreeList(list)
   }
 
@@ -65,6 +73,7 @@ const DynamicEducationJob = (props) => {
         city: "",
         startDate: "",
         endDate: "",
+        present: false,
       },
     ])
   }
@@ -82,8 +91,7 @@ const DynamicEducationJob = (props) => {
           value.degree !== "" &&
           value.field !== "" &&
           value.city !== "" &&
-          value.startDate !== "" &&
-          value.endDate !== ""
+          value.startDate !== ""
       )
     ) {
       props.handleDegree(degreeList)
@@ -151,11 +159,10 @@ const DynamicEducationJob = (props) => {
                   />
 
                   {data.present ? (
-                    <DatePicker
-                      placeholderText="Present"
+                    <Form.Control
+                      type="text"
                       className="year-date mb-3"
-                      selected={null}
-                      onChange={() => {}}
+                      placeholder="Present"
                       disabled
                     />
                   ) : (
@@ -173,7 +180,7 @@ const DynamicEducationJob = (props) => {
                     id="checkbox"
                     className="custom-control-input ml-1 mb-3"
                     checked={data.present}
-                    onChange={() => togglePresent(i)}
+                    onChange={(e) => handlePresent(e, i)}
                   />
                 </div>
               </div>

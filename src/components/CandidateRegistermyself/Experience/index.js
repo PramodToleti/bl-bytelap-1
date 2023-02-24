@@ -395,8 +395,12 @@ function Experience() {
             </Form.Group>
 
             <Form.Group className="mb-3 mt-2" controlId="title">
-              <Form.Label>Job Type</Form.Label>
-              <Form.Control type="text" onChange={handleJobtype} />
+              <Form.Label>Internship Job Type</Form.Label>
+              <Form.Select onChange={handleJobtype}>
+                <option>Select</option>
+                <option>Office</option>
+                <option>Work from Home</option>
+              </Form.Select>
             </Form.Group>
 
             <Form.Group className="mb-3 mt-2">

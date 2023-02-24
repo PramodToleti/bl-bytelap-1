@@ -4,17 +4,25 @@ import { Form, Button, Row, Col } from "react-bootstrap"
 import TextArea from "antd/es/input/TextArea"
 
 const DynamicProjectForm = (props) => {
-  const [projectDetails, setProjectDetails] = useState([{ url: "", about: "" }])
+  const [projectDetails, setProjectDetails] = useState([
+    { title: "", url: "", about: "" },
+  ])
 
   const handleAddFields = () => {
     const values = [...projectDetails]
-    values.push({ url: "", about: "" })
+    values.push({ title: "", url: "", about: "" })
     setProjectDetails(values)
   }
 
   const handleRemoveFields = (index) => {
     const values = [...projectDetails]
     values.splice(index, 1)
+    setProjectDetails(values)
+  }
+
+  const onChangeTitle = (e, index) => {
+    const values = [...projectDetails]
+    values[index].title = e.target.value
     setProjectDetails(values)
   }
 
@@ -32,7 +40,9 @@ const DynamicProjectForm = (props) => {
 
   useEffect(() => {
     if (
-      projectDetails.every((value) => value.url !== "" && value.about !== "")
+      projectDetails.every(
+        (value) => value.title !== "" && value.url !== "" && value.about !== ""
+      )
     ) {
       props.handleProject(projectDetails)
     }
@@ -45,6 +55,17 @@ const DynamicProjectForm = (props) => {
         return (
           <div key={i}>
             <Row className="">
+              <Form.Group className="mb-3" controlId="projetcTitle">
+                <Form.Control
+                  type="text"
+                  placeholder="Project Title"
+                  required
+                  onChange={(e) => onChangeTitle(e, i)}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please enter the project name
+                </Form.Control.Feedback>
+              </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicText">
                 <Form.Control
                   type="url"

@@ -10,6 +10,31 @@ import "./index.css"
 function ExperiencePreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
+  const [click, setClicked] = useState(false)
+
+  const handleClick = () => {
+    if (
+      data.jobTitle !== "" &&
+      data.jobTime !== "" &&
+      data.jobType !== "" &&
+      data.skills !== "" &&
+      data.degree !== "" &&
+      data.coverLetter !== "" &&
+      data.projectDetails !== "" &&
+      data.training !== "" &&
+      data.achievements !== "" &&
+      data.languages !== "" &&
+      data.employmentHistory !== "" &&
+      data.experience !== "" &&
+      data.ctc
+    ) {
+      setLgShow(true)
+      setClicked(false)
+    } else {
+      setLgShow(false)
+      setClicked(true)
+    }
+  }
 
   function renderPreview() {
     return (
@@ -95,7 +120,7 @@ function ExperiencePreview(props) {
               <>
                 <li>
                   <a href={each.url} style={{ textDecoration: "none" }}>
-                    {each.url}
+                    {each.title}
                   </a>
                   <HiOutlineExternalLink style={{ color: "grey" }} />
                 </li>
@@ -186,12 +211,14 @@ function ExperiencePreview(props) {
                   {each.startDate.toLocaleString("default", {
                     month: "short",
                     year: "numeric",
-                  })}{" "}
-                  -{" "}
-                  {each.endDate.toLocaleString("default", {
-                    month: "short",
-                    year: "numeric",
                   })}
+                  -
+                  {each.endDate === ""
+                    ? "Present"
+                    : each.endDate.toLocaleString("default", {
+                        month: "short",
+                        year: "numeric",
+                      })}
                 </p>
               </div>
               <p>{each.institute}</p>
@@ -226,10 +253,19 @@ function ExperiencePreview(props) {
 
   return (
     <>
+      {click ? (
+        <p style={{ color: "red" }}>
+          *Please fill all the fields to view the preview
+        </p>
+      ) : (
+        ""
+      )}
       <Button
         variant="secondary"
         className="col-sm-2 mx-4 mt-2"
-        onClick={() => setLgShow(true)}
+        onClick={() => {
+          handleClick()
+        }}
       >
         Preview
       </Button>

@@ -16,20 +16,14 @@ function InternshipPreview(props) {
       data.jobTitle !== "" &&
       data.jobTime !== "" &&
       data.jobType !== "" &&
-      data.city !== "" &&
-      data.duration !== "" &&
-      data.checked !== "" &&
-      data.startDate !== "" &&
-      data.endDate !== "" &&
       data.skills !== "" &&
-      data.responsibilities !== "" &&
-      data.salaryType !== "" &&
-      data.salaryRange !== "" &&
-      data.perks !== "" &&
-      data.languages !== "" &&
-      data.openings !== "" &&
-      data.location !== "" &&
-      data.education
+      data.degree !== "" &&
+      data.coverLetter !== "" &&
+      data.projectDetails !== "" &&
+      data.training !== "" &&
+      data.achievement !== "" &&
+      data.availability !== "" &&
+      data.languages
     ) {
       setLgShow(true)
       setClicked(false)
@@ -80,7 +74,7 @@ function InternshipPreview(props) {
               <>
                 <li>
                   <a href={each.url} style={{ textDecoration: "none" }}>
-                    {each.url}
+                    {each.title}
                   </a>
                   <HiOutlineExternalLink style={{ color: "grey" }} />
                 </li>
@@ -171,12 +165,14 @@ function InternshipPreview(props) {
                   {each.startDate.toLocaleString("default", {
                     month: "short",
                     year: "numeric",
-                  })}{" "}
-                  -{" "}
-                  {each.endDate.toLocaleString("default", {
-                    month: "short",
-                    year: "numeric",
                   })}
+                  -
+                  {each.endDate === ""
+                    ? "Present"
+                    : each.endDate.toLocaleString("default", {
+                        month: "short",
+                        year: "numeric",
+                      })}
                 </p>
               </div>
               <p>{each.institute}</p>

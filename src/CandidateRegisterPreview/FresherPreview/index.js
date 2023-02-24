@@ -10,6 +10,31 @@ import "./index.css"
 function FresherPreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
+  const [click, setClicked] = useState(false)
+
+  const handleClick = () => {
+    if (
+      data.jobTitle !== "" &&
+      data.jobTime !== "" &&
+      data.jobType !== "" &&
+      data.skills !== "" &&
+      data.salaryType !== "" &&
+      data.degree !== "" &&
+      data.coverLetter !== "" &&
+      data.projectDetails !== "" &&
+      data.training !== "" &&
+      data.achievements !== "" &&
+      data.languages !== "" &&
+      data.availability !== "" &&
+      data.preferredLocation
+    ) {
+      setLgShow(true)
+      setClicked(false)
+    } else {
+      setLgShow(false)
+      setClicked(true)
+    }
+  }
 
   function renderPreview() {
     return (
@@ -62,7 +87,7 @@ function FresherPreview(props) {
               <>
                 <li>
                   <a href={each.url} style={{ textDecoration: "none" }}>
-                    {each.url}
+                    {each.title}
                   </a>
                   <HiOutlineExternalLink style={{ color: "grey" }} />
                 </li>
@@ -84,16 +109,18 @@ function FresherPreview(props) {
               <li className="mb-3" style={{ width: "100%" }}>
                 <div className="preview-date-container">
                   <h6 style={{ fontSize: "18px" }}>{each.training}</h6>
-                  <p style={{ fontSize: "15px", marginBottom: "10px" }}>
+                  <p style={{ fontSize: "15px" }}>
                     {each.startDate.toLocaleString("default", {
                       month: "short",
                       year: "numeric",
-                    })}{" "}
-                    -{" "}
-                    {each.endDate.toLocaleString("default", {
-                      month: "short",
-                      year: "numeric",
                     })}
+                    -
+                    {each.endDate === ""
+                      ? "Present"
+                      : each.endDate.toLocaleString("default", {
+                          month: "short",
+                          year: "numeric",
+                        })}
                   </p>
                 </div>
                 <a
@@ -193,10 +220,19 @@ function FresherPreview(props) {
 
   return (
     <>
+      {click ? (
+        <p style={{ color: "red" }}>
+          *Please fill all the fields to view the preview
+        </p>
+      ) : (
+        ""
+      )}
       <Button
         variant="secondary"
         className="col-sm-2 mx-4 mt-2"
-        onClick={() => setLgShow(true)}
+        onClick={() => {
+          handleClick()
+        }}
       >
         Preview
       </Button>
