@@ -11,6 +11,7 @@ import SupplementaryDropdown from "../../../SupplementaryDropdown"
 import ChooseJobTitle from "../../../ChooseJobTitle"
 import AddRemove from "../../../AddRemove"
 import LanguageDropdown from "../../../LanguageDropdown"
+import FresherPostPreview from "../../../EmployeePostPreview/FresherPostPreview"
 
 import "./index.css"
 import "react-datepicker/dist/react-datepicker.css"
@@ -315,9 +316,7 @@ function Fresher() {
           </Form.Group>
         </Row>
 
-        <div className="preview-container">
-          <Button variant="outline-primary">Preview</Button>
-        </div>
+        <FresherPostPreview data={data} />
         <div className="save-container">
           <Button variant="success">Save Draft</Button>
           <Button variant="primary">Post Job</Button>

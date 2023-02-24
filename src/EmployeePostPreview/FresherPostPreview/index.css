@@ -1,0 +1,14 @@
+.languages {
+  display: flex;
+  gap: 20px;
+}
+
+.apply-button {
+  color: #ffffff;
+  height: 40px;
+  width: 130px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(135, 105, 226);
+  font-family: "Roboto";
+}

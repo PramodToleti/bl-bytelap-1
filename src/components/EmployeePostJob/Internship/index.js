@@ -12,6 +12,7 @@ import ChooseJobTitle from "../../../ChooseJobTitle"
 import AddRemove from "../../../AddRemove"
 import CheckboxDropdown from "../../../CheckboxDropdowm"
 import ChooseCity from "../../../ChooseCity"
+import InternshipPostPreview from "../../../EmployeePostPreview/InternshipPostPreview"
 
 import "react-datepicker/dist/react-datepicker.css"
 import "./index.css"
@@ -35,6 +36,7 @@ function Internship() {
   const [openings, setOpenings] = useState("")
   const [location, setLocation] = useState([])
   const [education, setEducation] = useState([])
+  const [checked, setChecked] = useState(false)
 
   const data = {
     jobTitle,
@@ -42,6 +44,7 @@ function Internship() {
     jobType,
     city,
     duration,
+    checked,
     startDate,
     endDate,
     skills,
@@ -96,12 +99,8 @@ function Internship() {
   }
 
   useEffect(() => {
-    if (salaryType === "Fixed") setSalaryRange("5k")
+    if (salaryType === "Fixed") setSalaryRange("5k/month")
   }, [salaryType])
-
-  const [state, setState] = useState({
-    selectedSkills: [],
-  })
 
   const handleSubmit = (event) => {
     const form = event.currentTarget
@@ -118,7 +117,11 @@ function Internship() {
       case "Fixed":
         return (
           <Form.Group className="mb-3 mt-2">
-            <Form.Control type="number" placeholder="5k/Month" />
+            <Form.Control
+              type="number"
+              placeholder="5k/Month"
+              onChange={(e) => setSalaryRange(e.target.value)}
+            />
           </Form.Group>
         )
       case "Negotiable":
@@ -256,6 +259,10 @@ function Internship() {
             <Form.Check
               type="checkbox"
               label="Immediate Joiner (within next 30 days)"
+              checked={checked}
+              onChange={(e) => {
+                setChecked(e.target.checked)
+              }}
             />
             {/*<div className="custom-date-container">
               <div
@@ -360,9 +367,7 @@ function Internship() {
           <AddRemove handleEducation={handleEducation} />
         </Row>
 
-        <div className="preview-container">
-          <Button variant="outline-primary">Preview</Button>
-        </div>
+        <InternshipPostPreview data={data} />
         <div className="save-container">
           <Button variant="success">Save Draft</Button>
           <Button variant="primary">Post Job</Button>

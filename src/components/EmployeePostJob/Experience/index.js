@@ -11,6 +11,7 @@ import SupplementaryDropdown from "../../../SupplementaryDropdown"
 import ChooseJobTitle from "../../../ChooseJobTitle"
 import AddRemove from "../../../AddRemove"
 import LanguageDropdown from "../../../LanguageDropdown"
+import ExperiencePostPreview from "../../../EmployeePostPreview/ExperiencePostPreview"
 
 import "./index.css"
 import "react-datepicker/dist/react-datepicker.css"
@@ -353,9 +354,7 @@ function Experience() {
           </Form.Group>
         </Row>
 
-        <div className="preview-container">
-          <Button variant="outline-primary">Preview</Button>
-        </div>
+        <ExperiencePostPreview data={data} />
         <div className="save-container">
           <Button variant="success">Save Draft</Button>
           <Button variant="primary">Post Job</Button>

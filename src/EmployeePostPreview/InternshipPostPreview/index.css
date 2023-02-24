@@ -1,0 +1,47 @@
+.icon-styles {
+  color: grey;
+  font-size: 30px;
+}
+
+.job-details-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media screen and (min-width: 768px) {
+  .job-details-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+.job-card-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 22px;
+  width: 130px;
+  height: 30px;
+  border-right: 1px solid #ccc;
+  margin-right: 15px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.details-heading {
+  color: grey;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.details-heading-2 {
+  color: grey;
+  margin-top: 30px;
+  font-size: 18px;
+}
+
+.languages {
+  display: flex;
+  gap: 20px;
+}
