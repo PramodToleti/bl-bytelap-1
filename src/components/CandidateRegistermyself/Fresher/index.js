@@ -35,6 +35,7 @@ function Fresher() {
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
+  const [city, setCity] = useState("")
   const [skills, setSkills] = useState([])
   const [shift, setShift] = useState("")
   const [degree, setDegree] = useState([])
@@ -107,6 +108,7 @@ function Fresher() {
 
   const onChangeCity = (city) => {
     setPreferredLocation(city)
+    setCity(e)
   }
 
   const handleLanguages = (e) => {
@@ -410,6 +412,14 @@ function Fresher() {
                 <option>Work from Home</option>
               </Form.Select>
             </Form.Group>
+            {jobType === "Office" && (
+              <Form.Group className="mb-3 mt-2" controlId="formBasicText">
+                <ChooseCity onChangeCity={onChangeCity} />
+                <Form.Control.Feedback type="invalid">
+                  Please enter your city.
+                </Form.Control.Feedback>
+              </Form.Group>
+            )}
 
             <Form.Group className="mb-3 mt-2">
               <Form.Label>What is the Shift?</Form.Label>

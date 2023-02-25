@@ -53,17 +53,24 @@ const AddRemove = (props) => {
                 <option>Select an option</option>
                 <option>Master's</option>
                 <option>Bachelor's</option>
+                <option>Bsc</option>
                 <option>Diploma</option>
                 <option>High Secondary (12th)</option>
                 <option>Secondary (10th)</option>
-                <option>Doctorate</option>
-                <option>Other</option>
+                <option>Any Graduate</option>
+                <option>Any Post Graduate</option>
+                <option>None</option>
               </Form.Select>
             </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Field </Form.Label>
-              <ChooseField onChangeField={(e) => onChangeField(e, i)} />
-            </Form.Group>
+            {(data.qualification === "Master's" ||
+              data.qualification === "Bachelor's" ||
+              data.qualification === "Bsc" ||
+              data.qualification === "Diploma") && (
+              <Form.Group className="mb-3">
+                <Form.Label>Field </Form.Label>
+                <ChooseField onChangeField={(e) => onChangeField(e, i)} />
+              </Form.Group>
+            )}
           </Row>
         )
       })}

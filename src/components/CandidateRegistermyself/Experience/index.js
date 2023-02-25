@@ -35,6 +35,7 @@ function Experience() {
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
+  const [city, setCity] = useState("")
   const [skills, setSkills] = useState([])
   const [shift, setShift] = useState("")
   const [degree, setDegree] = useState([])
@@ -111,6 +112,7 @@ function Experience() {
 
   const onChangeCity = (city) => {
     setPreferredLocation(city)
+    setCity(e)
   }
 
   const handleLanguages = (e) => {
@@ -402,6 +404,14 @@ function Experience() {
                 <option>Work from Home</option>
               </Form.Select>
             </Form.Group>
+            {jobType === "Office" && (
+              <Form.Group className="mb-3 mt-2" controlId="formBasicText">
+                <ChooseCity onChangeCity={onChangeCity} />
+                <Form.Control.Feedback type="invalid">
+                  Please enter your city.
+                </Form.Control.Feedback>
+              </Form.Group>
+            )}
 
             <Form.Group className="mb-3 mt-2">
               <Form.Label>What is the Shift?</Form.Label>
@@ -579,14 +589,9 @@ function Experience() {
             <Form.Label>
               Availability <span style={{ color: "red" }}>*</span>
             </Form.Label>
-            {availability ? (
+            {availability !== "" ? (
               <Form.Select className="mb-3" disabled>
                 <option>Select</option>
-                <option>
-                  45 days notice period. Actively looking for a job. I'm on
-                  notice period till 1-01-2023. I can join within 1 or 2 weeks.
-                  I can join immediatly.
-                </option>
               </Form.Select>
             ) : (
               <Form.Select
@@ -594,11 +599,11 @@ function Experience() {
                 onChange={(e) => setAvailability(e.target.value)}
               >
                 <option>Select</option>
-                <option>
-                  45 days notice period. Actively looking for a job. I'm on
-                  notice period till 1-01-2023. I can join within 1 or 2 weeks.
-                  I can join immediatly.
-                </option>
+                <option>45 days notice period</option>
+                <option>Actively looking for a job </option>
+                <option>I'm on notice period till 1-01-2023</option>
+                <option>I can join within 1 or 2 weeks</option>
+                <option>I can join immediatly</option>
               </Form.Select>
             )}
             <Form.Control

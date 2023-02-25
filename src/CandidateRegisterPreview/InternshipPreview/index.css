@@ -1,3 +1,6 @@
+.modal-body {
+  padding: 6px;
+}
 .preview-skills {
   border: 1px solid #ccc;
   border-radius: 8px;

@@ -296,7 +296,7 @@ function Internship() {
                   <Form.Group className="mb-3" style={{ display: "flex" }}>
                     <DatePicker
                       placeholderText=""
-                      className="my-custom-datepicker"
+                      className="year-date"
                       selected={startDate}
                       onChange={handleChange}
                     />
@@ -315,7 +315,7 @@ function Internship() {
                   <Form.Group className="mb-3" style={{ display: "flex" }}>
                     <DatePicker
                       placeholderText=""
-                      className="my-custom-datepicker"
+                      className="year-date"
                       selected={endDate}
                       onChange={handleChangeEnd}
                     />

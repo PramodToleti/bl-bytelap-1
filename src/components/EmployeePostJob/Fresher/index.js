@@ -242,7 +242,7 @@ function Fresher() {
             <Form.Select onChange={(e) => setJobType(e.target.value)}>
               <option>Select an option</option>
               <option> Office </option>
-              <option>Remote</option>
+              <option>Work from Home</option>
             </Form.Select>
           </Form.Group>
           {jobType === "Office" && (

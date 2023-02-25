@@ -62,11 +62,11 @@ function InternshipPostPreview(props) {
             />
           </div>
           <div style={{ display: "flex", gap: "8px" }} className="mb-4">
-            <FaBuilding style={{ color: "grey", fontSize: "25px" }} />
+            <FaBuilding style={{ color: "grey", fontSize: "22px" }} />
             <p style={{ color: "grey" }}>Wiro Tech Limited</p>
           </div>
 
-          <div className="job-details-container">
+          <div className="job-details-container-2">
             <div className="job-card-container">
               <MdShoppingBag className="icon-styles" />
               <p className="details-heading">{data.jobTime}</p>
@@ -77,20 +77,31 @@ function InternshipPostPreview(props) {
               <p className="details-heading">Day Shift</p>
             </div>
 
-            <div className="job-card-container">
+            {data.jobType === "Office" && <br className="break-line" />}
+
+            <div
+              className={`job-card-container ${
+                data.jobType === "Office" ? "location-style" : ""
+              }`}
+            >
               <FaHome className="icon-styles" />
               <p className="details-heading">
                 {data.jobType === "Work from Home" ? (
                   "Work from Home"
                 ) : data.city.length !== 0 ? (
                   <>
-                    {data.jobType}, <MdLocationOn /> {data.city[0].label}
+                    {data.jobType},{" "}
+                    <MdLocationOn style={{ fontSize: "22px" }} />{" "}
+                    {data.city[0].label}
                   </>
                 ) : (
                   data.jobType
                 )}
               </p>
             </div>
+
+            {data.jobType === "Office" && <br className="break-line" />}
+            {data.jobType === "Office" && <p className="empty-element"></p>}
 
             <div className="job-card-container">
               <AiFillYoutube className="icon-styles" />
@@ -133,19 +144,22 @@ function InternshipPostPreview(props) {
             </div>
           </div>
           <hr />
-          <div className="mb-1">
-            {data.skills.map((each) => (
-              <h6 className="preview-skills" key={each}>
-                {each}
-              </h6>
-            ))}
+          <div className="job-skill-container">
+            <div className="mb-1">
+              {data.skills.map((each) => (
+                <h6 className="preview-skills" key={each}>
+                  {each}
+                </h6>
+              ))}
+            </div>
+            <div style={{ fontSize: "11px", color: "grey" }}>
+              <CiStar style={{ color: "grey", fontSize: "16px" }} /> are
+              preffered keyskill
+            </div>
+
+            <hr style={{ marginBottom: "8px" }} />
+            <p style={{ fontSize: "12px" }}>Posted : 1 day ago</p>
           </div>
-          <div style={{ fontSize: "11px", color: "grey" }}>
-            <CiStar style={{ color: "grey", fontSize: "16px" }} /> are preffered
-            keyskill
-          </div>
-          <hr style={{ marginBottom: "8px" }} />
-          <p style={{ fontSize: "12px" }}>Posted : 1 day ago</p>
         </div>
 
         <div
@@ -197,8 +211,6 @@ function InternshipPostPreview(props) {
       </>
     )
   }
-
-  console.log(lgShow)
 
   return (
     <>

@@ -48,10 +48,10 @@ function ExperiencePreview(props) {
           <div className="experience-container mb-3">
             <h4>Experience: </h4>
             <div style={{ display: "flex", gap: "20px" }}>
-              <h5>{data.experience.years}</h5>
+              <h5>{data.experience.years} Years</h5>
               <div style={{ display: "flex", gap: "4px" }}>
                 <BiRupee style={{ color: "grey", fontSize: "25px" }} />
-                <p>{data.ctc.lacs} LPA</p>
+                <p style={{ fontSize: "17px" }}>{data.ctc.lacs} LPA</p>
               </div>
             </div>
           </div>
@@ -93,10 +93,12 @@ function ExperiencePreview(props) {
                       year: "numeric",
                     })}{" "}
                     -{" "}
-                    {each.endDate.toLocaleString("default", {
-                      month: "short",
-                      year: "numeric",
-                    })}
+                    {each.endDate === ""
+                      ? "Present"
+                      : each.endDate.toLocaleString("default", {
+                          month: "short",
+                          year: "numeric",
+                        })}
                   </p>
                 </div>
                 <p>{each.company}</p>

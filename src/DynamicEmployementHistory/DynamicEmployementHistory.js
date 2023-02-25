@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.css"
 import TextArea from "antd/es/input/TextArea"
 import { Form, Button, Row, Col } from "react-bootstrap"
 import DatePicker from "react-datepicker"
-import { propsWithBsClassName } from "react-bootstrap-typeahead/types/utils"
 
 const DynamicEmployementHistory = (props) => {
   const [checkbox, toggleCheckbox] = useState(false)
@@ -16,6 +15,7 @@ const DynamicEmployementHistory = (props) => {
       startDate: "",
       endDate: "",
       responsibilities: "",
+      present: false,
     },
   ])
 
@@ -28,6 +28,7 @@ const DynamicEmployementHistory = (props) => {
       startDate: "",
       endDate: "",
       responsibilities: "",
+      present: "",
     })
     setEmploymentHistory(values)
   }
@@ -68,6 +69,12 @@ const DynamicEmployementHistory = (props) => {
     setEmploymentHistory(list)
   }
 
+  const handlePresent = (e, i) => {
+    const list = [...employmentHistory]
+    list[i].present = e.target.checked
+    setEmploymentHistory(list)
+  }
+
   const onChangeResponsibilities = (e, index) => {
     const list = [...employmentHistory]
     list[index].responsibilities = e.target.value
@@ -81,7 +88,6 @@ const DynamicEmployementHistory = (props) => {
         each.company !== "" &&
         each.location &&
         each.startDate !== "" &&
-        each.endDate !== "" &&
         each.responsibilities !== ""
       )
         props.handleHistory(employmentHistory)
@@ -149,11 +155,10 @@ const DynamicEmployementHistory = (props) => {
               <Form.Group className="mb-3 col-sm-4">
                 <Form.Label>To</Form.Label>
                 {data.present ? (
-                  <DatePicker
-                    placeholderText=""
+                  <Form.Control
+                    type="text"
                     className="year-date mb-3"
-                    selected={data.endDate}
-                    onChange={(date) => onChangeEnd(date, i, "endDate")}
+                    placeholder="Present"
                     disabled
                   />
                 ) : (
@@ -161,7 +166,7 @@ const DynamicEmployementHistory = (props) => {
                     placeholderText=""
                     className="year-date mb-3"
                     selected={data.endDate}
-                    onChange={(date) => onChangeEnd(date, i, "endDate")}
+                    onChange={(date) => onChangeEnd(date, i)}
                   />
                 )}
               </Form.Group>
@@ -172,7 +177,7 @@ const DynamicEmployementHistory = (props) => {
                   id={`present-${i}`}
                   className="custom-control-input ml-1 mb-3"
                   checked={data.present}
-                  onChange={(e) => toggleCheckbox(!checkbox)}
+                  onChange={(e) => handlePresent(e, i)}
                 />
               </Form.Group>
             </div>

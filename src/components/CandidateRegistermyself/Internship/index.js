@@ -17,6 +17,7 @@ import DynamicAchievements from "../../../DynamicAchievements"
 import DynamicEducationJob from "../../../DynamicEducationJob"
 import DynamicTraining from "../../../DynamicTraining"
 import InternshipPreview from "../../../CandidateRegisterPreview/InternshipPreview"
+import ChooseCity from "../../../ChooseCity"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
@@ -24,6 +25,7 @@ function Internship() {
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
+  const [city, setCity] = useState("")
   const [skills, setSkills] = useState([])
   const [degree, setDegree] = useState([])
   const [coverLetter, setCoverLetter] = useState("")
@@ -80,6 +82,10 @@ const progressRef = useRef(null)*/
     let skills = []
     e.map((each) => skills.push(each.value))
     setSkills(skills)
+  }
+
+  const onChangeCity = (e) => {
+    setCity(e)
   }
 
   const handleDegree = (e) => {
@@ -289,6 +295,14 @@ const progressRef = useRef(null)*/
                 <option>Work from Home</option>
               </Form.Select>
             </Form.Group>
+            {jobType === "Office" && (
+              <Form.Group className="mb-3 mt-2" controlId="formBasicText">
+                <ChooseCity onChangeCity={onChangeCity} />
+                <Form.Control.Feedback type="invalid">
+                  Please enter your city.
+                </Form.Control.Feedback>
+              </Form.Group>
+            )}
 
             <CheckboxDropdown
               onSelectionChange={handleSelectionChange}
