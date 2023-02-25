@@ -1,19 +1,18 @@
 .icon-styles {
   color: grey;
-  font-size: 22px;
-  width: 25px;
+  font-size: 20px;
 }
 
 .job-details-container-1 {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px;
 }
 
 .job-details-container-2 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -24,7 +23,7 @@
 
 .job-card-container {
   display: flex;
-  gap: 8px;
+  gap: 5px;
   align-items: center;
   font-size: 22px;
   height: 30px;
@@ -35,14 +34,22 @@
 
 .details-heading {
   color: grey;
-  font-size: 15px;
+  font-size: 13px;
   margin-top: 10px;
 }
 
 .details-heading-2 {
   color: grey;
   margin-top: 30px;
-  font-size: 15px;
+  font-size: 13px;
+}
+
+.home-heading {
+  font-size: 10px;
+  color: grey;
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
 }
 
 @media screen and (min-width: 768px) {
@@ -66,4 +73,39 @@
   .job-skill-container {
     display: none;
   }
+}
+
+@media screen and (min-width: 768px) {
+  .perks-mobile {
+    display: none;
+  }
+
+  .perks-desktop {
+    display: block;
+  }
+
+  .div-card {
+    padding: 30px !important;
+  }
+}
+
+.perks-desktop {
+  display: none;
+}
+
+.preview-perks {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  max-width: 250px;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 15px;
+  font-size: 12px;
+}
+
+.perks-mobile {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }

@@ -51,7 +51,7 @@ function InternshipPostPreview(props) {
     return (
       <>
         <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border div-card   rounded container reveal  p-2  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <div className="header">
@@ -84,15 +84,31 @@ function InternshipPostPreview(props) {
                 data.jobType === "Office" ? "location-style" : ""
               }`}
             >
-              <FaHome className="icon-styles" />
-              <p className="details-heading">
+              <p
+                className={` ${
+                  data.jobType !== "Office" ? "home-heading" : "details-heading"
+                }`}
+              >
                 {data.jobType === "Work from Home" ? (
-                  "Work from Home"
+                  <>
+                    <FaHome
+                      className="icon-styles"
+                      style={{ marginTop: "8px" }}
+                    />
+                    <p
+                      style={{
+                        marginTop: "10px",
+                        fontSize: "10px",
+                        color: "grey",
+                      }}
+                    >
+                      Work from Home
+                    </p>
+                  </>
                 ) : data.city.length !== 0 ? (
                   <>
-                    {data.jobType},{" "}
-                    <MdLocationOn style={{ fontSize: "22px" }} />{" "}
-                    {data.city[0].label}
+                    <MdLocationOn style={{ fontSize: "20px", color: "grey" }} />
+                    {data.jobType}, {data.city[0].label}
                   </>
                 ) : (
                   data.jobType
@@ -108,7 +124,7 @@ function InternshipPostPreview(props) {
               <p className="details-heading-2">
                 Start Date
                 <br />
-                <p style={{ fontSize: "14px" }}>
+                <p style={{ fontSize: "10px" }}>
                   {data.checked
                     ? "Immediate"
                     : data.startDate.toLocaleString("default", {
@@ -124,7 +140,7 @@ function InternshipPostPreview(props) {
               <p className="details-heading-2">
                 Duration
                 <br />
-                <p style={{ fontSize: "14px" }}>{data.duration} Months</p>
+                <p style={{ fontSize: "10px" }}>{data.duration} Months</p>
               </p>
             </div>
 
@@ -133,7 +149,7 @@ function InternshipPostPreview(props) {
               <p className="details-heading-2">
                 Salary
                 <br />
-                <p style={{ fontSize: "14px" }}>
+                <p style={{ fontSize: "10px" }}>
                   {data.salaryRange.from === undefined
                     ? `${Math.floor(data.salaryRange / 1000)}k/month`
                     : `${Math.floor(
@@ -143,7 +159,15 @@ function InternshipPostPreview(props) {
               </p>
             </div>
           </div>
-          <hr />
+
+          <div className="perks-mobile">
+            {data.perks.map((each, i) => (
+              <h6 className="preview-perks" key={each}>
+                {each.value}
+              </h6>
+            ))}
+          </div>
+
           <div className="job-skill-container">
             <div className="mb-1">
               {data.skills.map((each) => (
@@ -163,7 +187,7 @@ function InternshipPostPreview(props) {
         </div>
 
         <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border  div-card  rounded container reveal  p-2  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <h4 className="mb-3">Job Description</h4>
@@ -177,9 +201,9 @@ function InternshipPostPreview(props) {
               ))}
             </p>
           )}
-          <hr />
 
-          <div>
+          <div className="perks-desktop">
+            <hr />
             <h4 className="mb-3">Perks & Benefits</h4>
             {data.perks.map((each, i) => (
               <h6 className="preview-skills" key={each}>
