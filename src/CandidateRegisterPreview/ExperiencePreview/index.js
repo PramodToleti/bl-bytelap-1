@@ -26,7 +26,12 @@ function ExperiencePreview(props) {
       data.languages !== "" &&
       data.employmentHistory !== "" &&
       data.experience !== "" &&
-      data.ctc
+      ((data.checkbox === true &&
+        data.ctc.lacs === "" &&
+        data.ctc.thousand === "") ||
+        (data.ctc.lacs !== "" &&
+          data.ctc.thousand !== "" &&
+          data.checkbox === false))
     ) {
       setLgShow(true)
       setClicked(false)
@@ -40,18 +45,38 @@ function ExperiencePreview(props) {
     return (
       <>
         <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <h2 className="mb-4">Nilesh</h2>
           <h4 className="mb-3">{data.jobTitle}</h4>
           <div className="experience-container mb-3">
             <h4>Experience: </h4>
-            <div style={{ display: "flex", gap: "20px" }}>
-              <h5>{data.experience.years} Years</h5>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <h5
+                style={{
+                  fontSize: "16px",
+                  marginBottom: "0px",
+                  marginTop: "2px",
+                }}
+              >
+                {data.experience.years} Years
+              </h5>
               <div style={{ display: "flex", gap: "4px" }}>
                 <BiRupee style={{ color: "grey", fontSize: "25px" }} />
-                <p style={{ fontSize: "17px" }}>{data.ctc.lacs} LPA</p>
+                {data.ctc.lacs === "" && data.ctc.thousand === "" ? (
+                  <h6
+                    style={{
+                      fontSize: " 14px",
+                      marginBottom: "0px",
+                      marginTop: "4px",
+                    }}
+                  >
+                    Not Disclosed
+                  </h6>
+                ) : (
+                  <p style={{ fontSize: "14px" }}>{data.ctc.lacs} LPA</p>
+                )}
               </div>
             </div>
           </div>
@@ -70,7 +95,7 @@ function ExperiencePreview(props) {
         </div>
 
         <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <h4 className="mb-4">Cover Letter:</h4>
@@ -78,7 +103,7 @@ function ExperiencePreview(props) {
         </div>
 
         <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <h4 className="mb-3">Experience</h4>
@@ -113,7 +138,7 @@ function ExperiencePreview(props) {
         </div>
 
         <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <h4 className="mb-4">Projects: </h4>
@@ -135,7 +160,7 @@ function ExperiencePreview(props) {
         </div>
 
         <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <h4 className="mb-4">Internship Training / Course</h4>
@@ -172,7 +197,7 @@ function ExperiencePreview(props) {
         </div>
 
         <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <h4 className="mb-4">Achievements / Awards & Recognition</h4>
@@ -199,7 +224,7 @@ function ExperiencePreview(props) {
         </div>
 
         <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <h4 className="mb-3">Education:</h4>
@@ -229,7 +254,7 @@ function ExperiencePreview(props) {
         </div>
 
         <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <h4 className="mb-3">Languages:</h4>
@@ -241,7 +266,7 @@ function ExperiencePreview(props) {
         </div>
 
         <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <div>

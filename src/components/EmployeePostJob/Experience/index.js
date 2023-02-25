@@ -219,8 +219,8 @@ function Experience() {
 
   return (
     <div
-      className="col-lg-6 col-md-4 search-course-right  bg-light mb-4 mt-4 p-2    rounded container reveal  p-4 mb-5 rounded border "
-      style={{ width: "100%" }}
+      className="col-lg-6 col-md-4 search-course-right  mb-4 mt-4 p-2    rounded container reveal  p-4 mb-5 rounded border "
+      style={{ width: "100%", background: "white" }}
     >
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3">
@@ -234,7 +234,6 @@ function Experience() {
               <option> Select an option </option>
               <option> Full-Time </option>
               <option>Part-Time</option>
-              <option>Both</option>
             </Form.Select>
           </Form.Group>
 
@@ -243,7 +242,7 @@ function Experience() {
             <Form.Select onChange={(e) => setJobType(e.target.value)}>
               <option>Select an option</option>
               <option> Office </option>
-              <option>Remote</option>
+              <option>Work from Home</option>
             </Form.Select>
           </Form.Group>
           {jobType === "Office" && (

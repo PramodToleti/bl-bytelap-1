@@ -21,6 +21,7 @@ import DynamicEducationJob from "../../../DynamicEducationJob"
 import DynamicTraining from "../../../DynamicTraining"
 import DynamicEmployementHistory from "../../../DynamicEmployementHistory/DynamicEmployementHistory"
 import ExperiencePreview from "../../../CandidateRegisterPreview/ExperiencePreview"
+import DynamicEducationExperience from "../../../DynamicEducationExperience"
 
 function Experience() {
   const [validated, setValidated] = useState(false)
@@ -29,7 +30,6 @@ function Experience() {
   const [showDatePicker, setShowDatePicker] = useState(false)
   const [startDate, setStartDate] = useState("")
   const [endDate, setEndDate] = useState("")
-  const [checkbox, toggleCheckbox] = useState(false)
 
   //Input data
   const [jobTitle, setJobTitle] = useState("")
@@ -50,6 +50,8 @@ function Experience() {
   const [languages, setLanguages] = useState([])
   const [availability, setAvailability] = useState("")
   const [isFilled, setIsFilled] = useState(true)
+  const [custom, setCustom] = useState("")
+  const [checkbox, toggleCheckbox] = useState(false)
 
   const data = {
     jobTitle,
@@ -66,6 +68,7 @@ function Experience() {
     employmentHistory,
     experience,
     ctc,
+    checkbox,
   }
 
   const handleTitle = (e) => {
@@ -112,7 +115,7 @@ function Experience() {
 
   const onChangeCity = (city) => {
     setPreferredLocation(city)
-    setCity(e)
+    setCity(city)
   }
 
   const handleLanguages = (e) => {
@@ -246,8 +249,8 @@ function Experience() {
       preferredLocation !== "" &&
       experience.years !== "" &&
       experience.months !== "" &&
-      ctc.lacs !== "" &&
-      ctc.thousand !== ""
+      ((checkbox === true && ctc.lacs === "" && ctc.thousand === "") ||
+        (ctc.lacs !== "" && ctc.thousand !== "" && checkbox === false))
     )
       now = 100
 
@@ -392,7 +395,6 @@ function Experience() {
                 <option> Select an option </option>
                 <option> Full-Time </option>
                 <option>Part-Time</option>
-                <option>Both</option>
               </Form.Select>
             </Form.Group>
 
@@ -484,35 +486,59 @@ function Experience() {
 
             <Row>
               <Form.Label>Current CTC</Form.Label>
-              <Form.Group controlId="experience" className="col-sm-5 mb-3">
-                <Form.Label>From</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="Lac"
-                  required
-                  onChange={(e) => setCTC({ ...ctc, lacs: e.target.value })}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Please Enter a valid Amount
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group controlId="experience" className="col-sm-5 mb-3">
-                <Form.Label>To</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="Thousand"
-                  required
-                  onChange={(e) => setCTC({ ...ctc, thousand: e.target.value })}
-                />
-                <Form.Control.Feedback type="invalid">
-                  Please Enter a valid Amount
-                </Form.Control.Feedback>
-              </Form.Group>
+              {checkbox ? (
+                <>
+                  <Form.Group controlId="experience" className="col-sm-5 mb-3">
+                    <Form.Label>From</Form.Label>
+                    <Form.Control type="number" placeholder="Lac" disabled />
+                  </Form.Group>
+                  <Form.Group controlId="experience" className="col-sm-5 mb-3">
+                    <Form.Label>To</Form.Label>
+                    <Form.Control
+                      type="number"
+                      placeholder="Thousand"
+                      disabled
+                    />
+                  </Form.Group>
+                </>
+              ) : (
+                <>
+                  <Form.Group controlId="experience" className="col-sm-5 mb-3">
+                    <Form.Label>From</Form.Label>
+                    <Form.Control
+                      type="number"
+                      placeholder="Lac"
+                      required
+                      onChange={(e) => setCTC({ ...ctc, lacs: e.target.value })}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Please Enter a valid Amount
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group controlId="experience" className="col-sm-5 mb-3">
+                    <Form.Label>To</Form.Label>
+                    <Form.Control
+                      type="number"
+                      placeholder="Thousand"
+                      required
+                      onChange={(e) =>
+                        setCTC({ ...ctc, thousand: e.target.value })
+                      }
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Please Enter a valid Amount
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </>
+              )}
             </Row>
 
             <div style={{ display: "flex", gap: "14px", alignItems: "center" }}>
               <Form.Label>Not Disclosed</Form.Label>
-              <Form.Check />
+              <Form.Check
+                type="checkbox"
+                onChange={(e) => toggleCheckbox(e.target.checked)}
+              />
             </div>
           </div>
 
@@ -533,7 +559,7 @@ function Experience() {
             <Form.Label>
               Graduation <span style={{ color: "red" }}>*</span>
             </Form.Label>
-            <DynamicEducationJob handleDegree={handleDegree} />
+            <DynamicEducationExperience handleDegree={handleDegree} />
           </div>
 
           <div
@@ -589,14 +615,16 @@ function Experience() {
             <Form.Label>
               Availability <span style={{ color: "red" }}>*</span>
             </Form.Label>
-            {availability !== "" ? (
+            {custom !== "" ? (
               <Form.Select className="mb-3" disabled>
                 <option>Select</option>
               </Form.Select>
             ) : (
               <Form.Select
                 className="mb-3"
-                onChange={(e) => setAvailability(e.target.value)}
+                onChange={(e) => {
+                  setAvailability(e.target.value)
+                }}
               >
                 <option>Select</option>
                 <option>45 days notice period</option>
@@ -610,7 +638,10 @@ function Experience() {
               type="text"
               placeholder="Custom"
               className="mb-3"
-              onChange={(e) => setAvailability(e.target.value)}
+              onChange={(e) => {
+                setCustom(e.target.value)
+                setAvailability(e.target.value)
+              }}
             />
           </div>
         </Row>

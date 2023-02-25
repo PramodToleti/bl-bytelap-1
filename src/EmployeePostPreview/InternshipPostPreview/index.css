@@ -73,6 +73,10 @@
   .job-skill-container {
     display: none;
   }
+
+  .perks-desktop {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -89,10 +93,6 @@
   }
 }
 
-.perks-desktop {
-  display: none;
-}
-
 .preview-perks {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -104,8 +104,10 @@
   font-size: 12px;
 }
 
-.perks-mobile {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+@media screen and (max-width: 768px) {
+  .perks-mobile {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
 }

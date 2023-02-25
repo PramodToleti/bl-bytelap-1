@@ -6,9 +6,7 @@ import DatePicker from "react-datepicker"
 import ChooseCity from "../ChooseCity"
 import ChooseField from "../ChooseField"
 
-import "./index.css"
-
-const DynamicEducationJob = (props) => {
+const DynamicEducationExperience = (props) => {
   const [degreeList, setDegreeList] = useState([
     {
       degree: "",
@@ -17,7 +15,6 @@ const DynamicEducationJob = (props) => {
       city: "",
       startDate: "",
       endDate: "",
-      present: false,
     },
   ])
 
@@ -31,17 +28,6 @@ const DynamicEducationJob = (props) => {
     const list = [...degreeList]
     list[index].endDate = date
     setDegreeList(list)
-  }
-
-  const handlePresent = (e, i) => {
-    const list = [...degreeList]
-    list[i].present = e.target.checked
-    setDegreeList(list)
-    const values = [...degreeList]
-    if (values[i].present === true) {
-      values[i].endDate = ""
-      setDegreeList(values)
-    }
   }
 
   const onChangeDegree = (e, index) => {
@@ -78,7 +64,6 @@ const DynamicEducationJob = (props) => {
         city: "",
         startDate: "",
         endDate: "",
-        present: false,
       },
     ])
   }
@@ -96,7 +81,8 @@ const DynamicEducationJob = (props) => {
           value.degree !== "" &&
           value.field !== "" &&
           value.city !== "" &&
-          value.startDate !== ""
+          value.startDate !== "" &&
+          value.endDate !== ""
       )
     ) {
       props.handleDegree(degreeList)
@@ -179,14 +165,6 @@ const DynamicEducationJob = (props) => {
                     />
                   )}
                 </div>
-                <Form.Check
-                  type="checkbox"
-                  label="Present"
-                  id="checkbox"
-                  className="custom-control-input ml-1 mb-3"
-                  checked={data.present}
-                  onChange={(e) => handlePresent(e, i)}
-                />
               </div>
             </Form.Group>
             {degreeList.length > 1 && i !== degreeList.length - 1 && (
@@ -233,4 +211,4 @@ const DynamicEducationJob = (props) => {
   )
 }
 
-export default DynamicEducationJob
+export default DynamicEducationExperience

@@ -47,6 +47,7 @@ function Fresher() {
   const [availability, setAvailability] = useState("")
   const [preferredLocation, setPreferredLocation] = useState("")
   const [isFilled, setIsFilled] = useState(true)
+  const [custom, setCustom] = useState("")
 
   const data = {
     jobTitle,
@@ -108,7 +109,7 @@ function Fresher() {
 
   const onChangeCity = (city) => {
     setPreferredLocation(city)
-    setCity(e)
+    setCity(city)
   }
 
   const handleLanguages = (e) => {
@@ -400,7 +401,6 @@ function Fresher() {
                 <option> Select an option </option>
                 <option> Full-Time </option>
                 <option>Part-Time</option>
-                <option>Both</option>
               </Form.Select>
             </Form.Group>
 
@@ -530,7 +530,7 @@ function Fresher() {
             <Form.Label>
               Availability <span style={{ color: "red" }}>*</span>
             </Form.Label>
-            {availability ? (
+            {custom !== "" ? (
               <Form.Select className="mb-3" disabled>
                 <option>Select</option>
                 <option>
@@ -542,13 +542,16 @@ function Fresher() {
             ) : (
               <Form.Select
                 className="mb-3"
-                onChange={(e) => setAvailability(e.target.value)}
+                onChange={(e) => {
+                  setAvailability(e.target.value)
+                }}
               >
                 <option>Select</option>
+                <option>Actively looking for job.</option>
+                <option> Actively looking for job & Immediate joiner. </option>
+                <option>I can join within one or two week. </option>
                 <option>
-                  Actively looking for job. Actively looking for job & Immediate
-                  joiner. I can join within one or two week. Actively looking
-                  for job & can join from March 2022
+                  Actively looking for job & can join from March 2022.
                 </option>
               </Form.Select>
             )}
@@ -556,7 +559,10 @@ function Fresher() {
               type="text"
               placeholder="Custom"
               className="mb-3"
-              onChange={(e) => setAvailability(e.target.value)}
+              onChange={(e) => {
+                setCustom(e.target.value)
+                setAvailability(e.target.value)
+              }}
             />
           </div>
         </Row>

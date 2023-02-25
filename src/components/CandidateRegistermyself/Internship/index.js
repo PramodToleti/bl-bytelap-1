@@ -35,6 +35,7 @@ function Internship() {
   const [languages, setLanguages] = useState([])
   const [availability, setAvailability] = useState("")
   const [isFilled, setIsFilled] = useState(true)
+  const [custom, setCustom] = useState("")
 
   const data = {
     jobTitle,
@@ -283,7 +284,6 @@ const progressRef = useRef(null)*/
                 <option> Select an option </option>
                 <option> Full-Time </option>
                 <option>Part-Time</option>
-                <option>Both</option>
               </Form.Select>
             </Form.Group>
 
@@ -374,8 +374,8 @@ const progressRef = useRef(null)*/
             <Form.Label>
               Availability <span style={{ color: "red" }}>*</span>
             </Form.Label>
-            {availability ? (
-              <Form.Select className="mb-3" disabled>
+            {custom !== "" ? (
+              <Form.Select className="mb-3" disabled value={availability}>
                 <option>Select</option>
               </Form.Select>
             ) : (
@@ -385,9 +385,11 @@ const progressRef = useRef(null)*/
               >
                 <option>Select</option>
                 <option>
-                  I am immediate joiner & Available For Full Time. I can join
-                  within one or two week . lam available for Full Time From 1
-                  Jan 2022 to 28 March 2022
+                  I am immediate joiner & Available For Full Time.
+                </option>
+                <option>I can join within one or two week . </option>
+                <option>
+                  I am available for Full Time From 1 Jan 2022 to 28 March 2022
                 </option>
               </Form.Select>
             )}
@@ -395,7 +397,10 @@ const progressRef = useRef(null)*/
               type="text"
               placeholder="Custom"
               className="mb-3"
-              onChange={(e) => setAvailability(e.target.value)}
+              onChange={(e) => {
+                setCustom(e.target.value)
+                setAvailability(e.target.value)
+              }}
             />
           </div>
         </Row>

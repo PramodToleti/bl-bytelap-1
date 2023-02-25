@@ -11,6 +11,7 @@ import { HiOutlineExternalLink } from "react-icons/hi"
 import { MdLocationOn } from "react-icons/md"
 import { BsFillShareFill } from "react-icons/bs"
 import { FaHome } from "react-icons/fa"
+import { AiFillYoutube } from "react-icons/ai"
 
 import "./index.css"
 
@@ -64,7 +65,7 @@ function FresherPostPreview(props) {
             <p style={{ color: "grey" }}>Wiro Tech Limited</p>
           </div>
 
-          <div className="job-details-container">
+          <div className="job-details-container-2">
             <div className="job-card-container">
               <MdShoppingBag className="icon-styles" />
               <p className="details-heading">{data.jobTime}</p>
@@ -72,23 +73,50 @@ function FresherPostPreview(props) {
 
             <div className="job-card-container">
               <BsFillSunFill className="icon-styles" />
-              <p className="details-heading">{data.shift}</p>
+              <p className="details-heading">Day Shift</p>
             </div>
 
-            <div className="job-card-container">
-              <FaHome className="icon-styles" />
-              <p className="details-heading">
+            {data.jobType === "Office" && <br className="break-line" />}
+
+            <div
+              className={`job-card-container ${
+                data.jobType === "Office" ? "location-style" : ""
+              }`}
+            >
+              <p
+                className={` ${
+                  data.jobType !== "Office" ? "home-heading" : "details-heading"
+                }`}
+              >
                 {data.jobType === "Work from Home" ? (
-                  "Work from Home"
+                  <>
+                    <FaHome
+                      className="icon-styles"
+                      style={{ marginTop: "8px" }}
+                    />
+                    <p
+                      style={{
+                        marginTop: "10px",
+                        fontSize: "10px",
+                        color: "grey",
+                      }}
+                    >
+                      Work from Home
+                    </p>
+                  </>
                 ) : data.city.length !== 0 ? (
                   <>
-                    {data.jobType}, <MdLocationOn /> {data.city[0].label}
+                    <MdLocationOn style={{ fontSize: "20px", color: "grey" }} />
+                    {data.jobType}, {data.city[0].label}
                   </>
                 ) : (
                   data.jobType
                 )}
               </p>
             </div>
+
+            {data.jobType === "Office" && <br className="break-line" />}
+            {data.jobType === "Office" && <p className="empty-element"></p>}
 
             <div className="job-card-container">
               <RiShoppingBagFill className="icon-styles" />
@@ -125,13 +153,8 @@ function FresherPostPreview(props) {
           style={{ width: "100%", backgroundColor: "white" }}
         >
           <h4 className="mb-3">Qualification:</h4>
-          <div className="mb-3">
-            <div className="languages">
-              {data.education.length !== 0 &&
-                data.education.map((each) => <h5>{each.qualification},</h5>)}
-            </div>
-          </div>
-
+          <p>BE, ME, BSC, MSC</p>
+          <hr />
           <h4 className="mb-3">Job Description</h4>
           <p style={{ fontSize: "16px" }}>
             Selected intern's day-to-day responsibilities include:

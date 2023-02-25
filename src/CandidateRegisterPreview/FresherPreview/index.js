@@ -182,10 +182,12 @@ function FresherPreview(props) {
                     year: "numeric",
                   })}{" "}
                   -{" "}
-                  {each.endDate.toLocaleString("default", {
-                    month: "short",
-                    year: "numeric",
-                  })}
+                  {each.endDate === ""
+                    ? "Present"
+                    : each.endDate.toLocaleString("default", {
+                        month: "short",
+                        year: "numeric",
+                      })}
                 </p>
               </div>
               <p>{each.institute}</p>

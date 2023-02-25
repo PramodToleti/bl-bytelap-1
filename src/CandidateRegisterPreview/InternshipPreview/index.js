@@ -17,7 +17,7 @@ function InternshipPreview(props) {
       data.jobTime !== "" &&
       data.jobType !== "" &&
       data.skills !== "" &&
-      data.degree !== "" &&
+      data.degree.length !== 0 &&
       data.coverLetter !== "" &&
       data.projectDetails !== "" &&
       data.training !== "" &&
@@ -32,6 +32,8 @@ function InternshipPreview(props) {
       setClicked(true)
     }
   }
+
+  console.log(data.degree)
 
   function renderPreview() {
     return (
