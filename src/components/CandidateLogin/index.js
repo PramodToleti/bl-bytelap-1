@@ -24,8 +24,11 @@ function CandidateLogin() {
   }
 
   return (
-    <div className="candidate-login-container">
-      <div className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2    bg-light   border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
+    <div className="candidate-login-container p-2">
+      <div
+        className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2     border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
+        style={{ backgroundColor: "white" }}
+      >
         <Form.Group className="mb-3 mt-2" controlId="formBasicText">
           <Stack direction="horizontal" gap={4}>
             {["radio"].map((type) => (
@@ -80,9 +83,9 @@ function CandidateLogin() {
 
             <ShowAndHidePassword />
             <Link
-              to="/candidate/forgot-password"
+              to="/candidate/change-password"
               className="text-start mt-3"
-              style={{ color: "blue", textDecoration: "none" }}
+              style={{ color: "blue", textDecoration: "none", width: "150px" }}
             >
               Forget Password?
             </Link>

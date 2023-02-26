@@ -25,7 +25,7 @@ function EmployeeLogin() {
   }
 
   return (
-    <div className="employee-login-container">
+    <div className="employee-login-container p-2">
       <div className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
         <Form.Group className="mb-3 mt-2" controlId="formBasicText">
           <Stack direction="horizontal" gap={4}>

@@ -349,7 +349,7 @@ function Experience() {
             <Form.Label>
               Which location do you prefer looking for intern's ? (optional)
             </Form.Label>
-            <Form.Control type="text" onChange={(e) => handleLocation(e)} />
+            <ChooseCity onChange={(e) => handleLocation(e)} />
           </Form.Group>
         </Row>
 

@@ -86,9 +86,9 @@ const ShowAndHidePassword = () => {
             <i onClick={Eye}>
               {" "}
               {eye ? (
-                <AiFillEye style={{ fontSize: "20px" }} />
-              ) : (
                 <AiFillEyeInvisible style={{ fontSize: "20px" }} />
+              ) : (
+                <AiFillEye style={{ fontSize: "20px" }} />
               )}
             </i>
           </form>

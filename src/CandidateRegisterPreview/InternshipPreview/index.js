@@ -45,14 +45,15 @@ function InternshipPreview(props) {
           <h2 className="mb-4">Nilesh</h2>
           <h4 className="mb-3">{data.jobTitle}</h4>
           <div className="skills-container">
-            <h4 className="mb-3">Skill's: </h4>
-            <div className="mb-3">
-              {data.skills.map((each) => (
-                <h6 className="preview-skills" key={each}>
-                  {each}
-                </h6>
-              ))}
-            </div>
+            <h4 className="mb-3" style={{ width: "100px" }}>
+              Skill's:{" "}
+            </h4>
+
+            {data.skills.map((each) => (
+              <h6 className="preview-skills" key={each}>
+                {each}
+              </h6>
+            ))}
           </div>
           <MdLocationOn style={{ color: "grey", fontSize: "30px" }} />{" "}
           <span style={{ color: "grey" }}>Indore, MP</span>
