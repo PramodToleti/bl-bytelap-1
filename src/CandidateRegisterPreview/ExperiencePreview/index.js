@@ -18,7 +18,7 @@ function ExperiencePreview(props) {
           data.experience.years !== "" ||
           data.ctc.lacs !== "" ||
           data.ctc.thousand !== "" ||
-          data.checkbox !== true) && (
+          data.checkbox !== false) && (
           <div
             className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
@@ -33,7 +33,7 @@ function ExperiencePreview(props) {
                     style={{
                       fontSize: "16px",
                       marginBottom: "0px",
-                      marginTop: "5px",
+                      marginTop: "7px",
                     }}
                   >
                     {data.experience.years}.{data.experience.months} Years
@@ -44,7 +44,13 @@ function ExperiencePreview(props) {
                   <div
                     style={{ display: "flex", gap: "4px", marginTop: "2px" }}
                   >
-                    <BiRupee style={{ color: "grey", fontSize: "25px" }} />
+                    <BiRupee
+                      style={{
+                        color: "grey",
+                        fontSize: "22px",
+                        marginTop: "3px",
+                      }}
+                    />
 
                     {data.checkbox ? (
                       <h6
@@ -57,7 +63,9 @@ function ExperiencePreview(props) {
                         Not Disclosed
                       </h6>
                     ) : (
-                      <p style={{ fontSize: "14px" }}>{data.ctc.lacs} LPA</p>
+                      <h5 style={{ fontSize: "16px", marginTop: "5px" }}>
+                        {data.ctc.lacs}L PA
+                      </h5>
                     )}
                   </div>
                 )}
@@ -208,10 +216,12 @@ function ExperiencePreview(props) {
             <ul className="internships-list">
               {data.achievements.map((each) => (
                 <li className="mb-3">
-                  <div className="achievements-container">
+                  <div
+                    className="achievements-container"
+                    style={{ maxWidth: "100%", wordBreak: "break-all" }}
+                  >
                     <h6>{each.achievement}</h6>
                   </div>
-
                   <a
                     key={each}
                     style={{ textDecoration: "none", color: "blue" }}
@@ -230,7 +240,7 @@ function ExperiencePreview(props) {
 
         {data.degree.length !== 0 && (
           <div
-            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <h4 className="mb-3">Education:</h4>
@@ -245,8 +255,8 @@ function ExperiencePreview(props) {
                     {each.startDate.toLocaleString("default", {
                       month: "short",
                       year: "numeric",
-                    })}
-                    -
+                    })}{" "}
+                    -{" "}
                     {each.endDate === ""
                       ? "Present"
                       : each.endDate.toLocaleString("default", {

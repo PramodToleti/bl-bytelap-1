@@ -79,20 +79,6 @@
   }
 }
 
-@media screen and (min-width: 768px) {
-  .perks-mobile {
-    display: none;
-  }
-
-  .perks-desktop {
-    display: block;
-  }
-
-  .div-card {
-    padding: 30px !important;
-  }
-}
-
 .preview-perks {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -109,5 +95,19 @@
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .perks-mobile {
+    display: none;
+  }
+
+  .perks-desktop {
+    display: block;
+  }
+
+  .div-card {
+    padding: 30px !important;
   }
 }

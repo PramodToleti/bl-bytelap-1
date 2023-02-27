@@ -399,9 +399,7 @@ function Fresher() {
               <ChooseJobTitle handleTitle={handleTitle} />
             </Form.Group>
             <Form.Group className="mb-3 mt-2">
-              <Form.Label>
-                Looking for Full time or Part time Internship?{" "}
-              </Form.Label>
+              <Form.Label>Looking for Full time or Part time? </Form.Label>
               <Form.Select onChange={handleJobTime}>
                 <option> Select an option </option>
                 <option> Full-Time </option>

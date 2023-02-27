@@ -63,7 +63,7 @@ const DynamicAchievements = (props) => {
         <Row className="" key={index}>
           <Form.Group className="mb-3" controlId="formBasicText">
             <TextArea
-              rows={5}
+              rows={3}
               value={data.achievement}
               onChange={(e) => onChangeAchievements(e, index)}
               placeholder="Eg. First Prize in Quiz Competition"

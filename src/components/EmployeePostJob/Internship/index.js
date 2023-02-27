@@ -125,7 +125,9 @@ function Internship() {
           </Form.Group>
         )
       case "Negotiable":
-        return (
+        return null
+        {
+          /*(
           <Form.Group className="mb-3">
             <Row>
               <Col xs={6}>
@@ -154,7 +156,8 @@ function Internship() {
               </Col>
             </Row>
           </Form.Group>
-        )
+                  )*/
+        }
       case "Performance based":
         return (
           <Form.Group className="mb-3 mt-2">
@@ -324,6 +327,8 @@ function Internship() {
             </div>
           </Form.Group>
 
+          <AddRemove handleEducation={handleEducation} />
+
           <CheckboxDropdown handleSkills={handleSkills} />
 
           <Form.Group className="mb-3 mt-2">
@@ -367,8 +372,6 @@ function Internship() {
             </Form.Label>
             <LocationDropdown handleLocation={handleLocation} />
           </Form.Group>
-
-          <AddRemove handleEducation={handleEducation} />
         </Row>
 
         <InternshipPostPreview data={data} />

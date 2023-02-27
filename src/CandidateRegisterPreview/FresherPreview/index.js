@@ -154,7 +154,10 @@ function FresherPreview(props) {
             <ul className="internships-list">
               {data.achievements.map((each) => (
                 <li className="mb-3">
-                  <div className="achievements-container">
+                  <div
+                    className="achievements-container"
+                    style={{ maxWidth: "100%", wordBreak: "break-all" }}
+                  >
                     <h6>{each.achievement}</h6>
                   </div>
                   {each.file !== null && (
