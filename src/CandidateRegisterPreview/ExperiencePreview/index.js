@@ -10,36 +10,6 @@ import "./index.css"
 function ExperiencePreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
-  const [click, setClicked] = useState(false)
-
-  const handleClick = () => {
-    if (
-      data.jobTitle !== "" &&
-      data.jobTime !== "" &&
-      data.jobType !== "" &&
-      data.skills !== "" &&
-      data.degree !== "" &&
-      data.coverLetter !== "" &&
-      data.projectDetails !== "" &&
-      data.training !== "" &&
-      data.achievements !== "" &&
-      data.languages !== "" &&
-      data.employmentHistory !== "" &&
-      data.experience !== "" &&
-      ((data.checkbox === true &&
-        data.ctc.lacs === "" &&
-        data.ctc.thousand === "") ||
-        (data.ctc.lacs !== "" &&
-          data.ctc.thousand !== "" &&
-          data.checkbox === false))
-    ) {
-      setLgShow(true)
-      setClicked(false)
-    } else {
-      setLgShow(false)
-      setClicked(true)
-    }
-  }
 
   function renderPreview() {
     return (
@@ -48,22 +18,25 @@ function ExperiencePreview(props) {
           className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
           style={{ width: "100%", backgroundColor: "white" }}
         >
-          <h2 className="mb-4">Nilesh</h2>
+          {data.jobTitle !== "" && <h2 className="mb-4">Nilesh</h2>}
           <h4 className="mb-3">{data.jobTitle}</h4>
           <div className="experience-container mb-3">
-            <h4>Experience: </h4>
+            {data.experience.years !== "" && <h4>Experience: </h4>}
             <div style={{ display: "flex", gap: "10px" }}>
-              <h5
-                style={{
-                  fontSize: "16px",
-                  marginBottom: "0px",
-                  marginTop: "2px",
-                }}
-              >
-                {data.experience.years} Years
-              </h5>
+              {data.experience.years !== "" && (
+                <h5
+                  style={{
+                    fontSize: "16px",
+                    marginBottom: "0px",
+                    marginTop: "2px",
+                  }}
+                >
+                  {data.experience.years} Years
+                </h5>
+              )}
               <div style={{ display: "flex", gap: "4px" }}>
                 <BiRupee style={{ color: "grey", fontSize: "25px" }} />
+
                 {data.ctc.lacs === "" && data.ctc.thousand === "" ? (
                   <h6
                     style={{
@@ -280,19 +253,10 @@ function ExperiencePreview(props) {
 
   return (
     <>
-      {click ? (
-        <p style={{ color: "red" }}>
-          *Please fill all the fields to view the preview
-        </p>
-      ) : (
-        ""
-      )}
       <Button
         variant="secondary"
         className="col-sm-2 mx-4 mt-2"
-        onClick={() => {
-          handleClick()
-        }}
+        onClick={() => setLgShow(true)}
       >
         Preview
       </Button>

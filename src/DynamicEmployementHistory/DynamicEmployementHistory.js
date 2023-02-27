@@ -35,7 +35,7 @@ const DynamicEmployementHistory = (props) => {
 
   const handleRemoveFields = (index) => {
     const values = [...employmentHistory]
-    values.splice(index, 1)
+    values.pop()
     setEmploymentHistory(values)
   }
 

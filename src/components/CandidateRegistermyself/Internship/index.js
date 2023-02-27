@@ -293,16 +293,9 @@ const progressRef = useRef(null)*/
                 <option>Select</option>
                 <option>Office</option>
                 <option>Work from Home</option>
+                <option>Any</option>
               </Form.Select>
             </Form.Group>
-            {jobType === "Office" && (
-              <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-                <ChooseCity onChangeCity={onChangeCity} />
-                <Form.Control.Feedback type="invalid">
-                  Please enter your city.
-                </Form.Control.Feedback>
-              </Form.Group>
-            )}
 
             <CheckboxDropdown
               onSelectionChange={handleSelectionChange}

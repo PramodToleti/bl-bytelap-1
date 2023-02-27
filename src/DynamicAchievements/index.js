@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import "bootstrap/dist/css/bootstrap.css"
 import { Form, Button, Row, Col } from "react-bootstrap"
 import ChooseFileAchievement from "./ChooseFileAchievement"
+import TextArea from "antd/es/input/TextArea"
 
 const DynamicAchievements = (props) => {
   const [achievements, setAchievements] = useState([
@@ -25,7 +26,7 @@ const DynamicAchievements = (props) => {
 
   const handleRemoveFields = (index) => {
     const values = [...achievements]
-    values.splice(index, 1)
+    values.pop()
     setAchievements(values)
   }
 
@@ -61,8 +62,8 @@ const DynamicAchievements = (props) => {
       {achievements.map((data, index) => (
         <Row className="" key={index}>
           <Form.Group className="mb-3" controlId="formBasicText">
-            <Form.Control
-              type="text"
+            <TextArea
+              rows={5}
               value={data.achievement}
               onChange={(e) => onChangeAchievements(e, index)}
               placeholder="Eg. First Prize in Quiz Competition"

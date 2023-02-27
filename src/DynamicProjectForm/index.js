@@ -16,7 +16,7 @@ const DynamicProjectForm = (props) => {
 
   const handleRemoveFields = (index) => {
     const values = [...projectDetails]
-    values.splice(index, 1)
+    values.pop()
     setProjectDetails(values)
   }
 
@@ -60,6 +60,7 @@ const DynamicProjectForm = (props) => {
                   type="text"
                   placeholder="Project Title"
                   required
+                  value={data.title}
                   onChange={(e) => onChangeTitle(e, i)}
                 />
                 <Form.Control.Feedback type="invalid">

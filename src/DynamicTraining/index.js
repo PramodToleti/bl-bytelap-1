@@ -6,13 +6,19 @@ import ChooseFileTraining from "./ChooseFileTraining"
 
 const DynamicTraining = (props) => {
   const [trainings, setTrainings] = useState([
-    { training: "", startDate: "", endDate: "", file: null },
+    { title: "", institute: "", startDate: "", endDate: "", file: null },
   ])
   const [fileInputs, setFileInputs] = useState([null])
 
-  const onChangeTraining = (e, index) => {
+  const handleTitle = (e, index) => {
     const newTrainings = [...trainings]
-    newTrainings[index].training = e.target.value
+    newTrainings[index].title = e.target.value
+    setTrainings(newTrainings)
+  }
+
+  const handleInstitute = (e, index) => {
+    const newTrainings = [...trainings]
+    newTrainings[index].institute = e.target.value
     setTrainings(newTrainings)
   }
 
@@ -41,25 +47,26 @@ const DynamicTraining = (props) => {
   const handleAddFields = () => {
     setTrainings([
       ...trainings,
-      { training: "", startDate: "", endDate: "", file: null },
+      { title: "", institute: "", startDate: "", endDate: "", file: null },
     ])
     setFileInputs([...fileInputs, null])
   }
 
-  const handleRemoveFields = (index) => {
+  const handleRemoveFields = () => {
     const newTrainings = [...trainings]
-    newTrainings.splice(index, 1)
+    newTrainings.pop()
     setTrainings(newTrainings)
 
     const newFileInputs = [...fileInputs]
-    newFileInputs.splice(index, 1)
+    newFileInputs.pop()
     setFileInputs(newFileInputs)
   }
 
   useEffect(() => {
     trainings.every((each) => {
       if (
-        each.training !== "" &&
+        each.title !== "" &&
+        each.institute !== "" &&
         each.startDate !== "" &&
         each.endDate !== "" &&
         each.file !== null
@@ -75,9 +82,17 @@ const DynamicTraining = (props) => {
           <Form.Group className="mb-3" controlId="formBasicText">
             <Form.Control
               type="text"
-              value={training.training}
-              onChange={(e) => onChangeTraining(e, index)}
-              placeholder="Eg. React JS at Coderclub Institute"
+              value={training.title}
+              onChange={(e) => handleTitle(e, index)}
+              placeholder="Profile"
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="institute">
+            <Form.Control
+              type="text"
+              value={training.institute}
+              onChange={(e) => handleInstitute(e, index)}
+              placeholder="Company / Institute name"
             />
           </Form.Group>
           <Form.Group className="mb-2">

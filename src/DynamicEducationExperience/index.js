@@ -70,7 +70,7 @@ const DynamicEducationExperience = (props) => {
 
   const handleRemoveFields = (index) => {
     const list = [...degreeList]
-    list.splice(index, 1)
+    list.pop()
     setDegreeList(list)
   }
 
