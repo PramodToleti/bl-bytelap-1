@@ -17,19 +17,15 @@ import ChooseJobTitle from "../../../ChooseJobTitle"
 import TextArea from "antd/es/input/TextArea"
 import DynamicProjectForm from "../../../DynamicProjectForm"
 import DynamicAchievements from "../../../DynamicAchievements"
-import DynamicEducationJob from "../../../DynamicEducationJob"
 import DynamicTraining from "../../../DynamicTraining"
 import DynamicEmployementHistory from "../../../DynamicEmployementHistory/DynamicEmployementHistory"
 import ExperiencePreview from "../../../CandidateRegisterPreview/ExperiencePreview"
 import DynamicEducationExperience from "../../../DynamicEducationExperience"
+import LocationCheckbox from "../../../LocationCheckbox"
 
 function Experience() {
   const [validated, setValidated] = useState(false)
   const [salaryType, setSalaryType] = useState("")
-  const [date, setDate] = useState(null)
-  const [showDatePicker, setShowDatePicker] = useState(false)
-  const [startDate, setStartDate] = useState("")
-  const [endDate, setEndDate] = useState("")
 
   //Input data
   const [jobTitle, setJobTitle] = useState("")
@@ -113,7 +109,7 @@ function Experience() {
     setAchievements(achievements)
   }
 
-  const onChangeCity = (city) => {
+  const handleLocation = (city) => {
     setPreferredLocation(city)
     setCity(city)
   }
@@ -399,21 +395,13 @@ function Experience() {
             </Form.Group>
 
             <Form.Group className="mb-3 mt-2" controlId="title">
-              <Form.Label>Internship Job Type</Form.Label>
+              <Form.Label> Job Type</Form.Label>
               <Form.Select onChange={handleJobtype}>
                 <option>Select</option>
                 <option>Office</option>
                 <option>Work from Home</option>
               </Form.Select>
             </Form.Group>
-            {jobType === "Office" && (
-              <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-                <ChooseCity onChangeCity={onChangeCity} />
-                <Form.Control.Feedback type="invalid">
-                  Please enter your city.
-                </Form.Control.Feedback>
-              </Form.Group>
-            )}
 
             <Form.Group className="mb-3 mt-2">
               <Form.Label>What is the Shift?</Form.Label>
@@ -598,7 +586,7 @@ function Experience() {
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <Form.Label>Select Prefered Location</Form.Label>
-            <ChooseCity onChangeCity={onChangeCity} />
+            <LocationCheckbox handleLocation={handleLocation} />
           </div>
 
           <div

@@ -66,7 +66,9 @@ function FresherPreview(props) {
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <h4 className="mb-4">Cover Letter:</h4>
-            <p className="mb-3">{data.coverLetter}</p>
+            <p className="mb-3" style={{ overflowWrap: "break-word" }}>
+              {data.coverLetter}
+            </p>
           </div>
         )}
 
@@ -85,7 +87,13 @@ function FresherPreview(props) {
                     </a>
                     <HiOutlineExternalLink style={{ color: "grey" }} />
                   </li>
-                  <p style={{ fontSize: "15px", marginTop: "14px" }}>
+                  <p
+                    style={{
+                      fontSize: "15px",
+                      marginTop: "14px",
+                      overflowWrap: "break-word",
+                    }}
+                  >
                     {each.about}
                   </p>
                 </>
@@ -119,16 +127,18 @@ function FresherPreview(props) {
                           })}
                     </p>
                   </div>
-                  <a
-                    key={each}
-                    style={{ textDecoration: "none", color: "blue" }}
-                    onClick={() => {
-                      const fileUrl = URL.createObjectURL(each.file)
-                      window.open(fileUrl, "_blank")
-                    }}
-                  >
-                    View Certificate
-                  </a>
+                  {each.file !== null && (
+                    <a
+                      key={each}
+                      style={{ textDecoration: "none", color: "blue" }}
+                      onClick={() => {
+                        const fileUrl = URL.createObjectURL(each.file)
+                        window.open(fileUrl, "_blank")
+                      }}
+                    >
+                      View Certificate
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -147,17 +157,18 @@ function FresherPreview(props) {
                   <div className="achievements-container">
                     <h6>{each.achievement}</h6>
                   </div>
-
-                  <a
-                    key={each}
-                    style={{ textDecoration: "none", color: "blue" }}
-                    onClick={() => {
-                      const fileUrl = URL.createObjectURL(each.file)
-                      window.open(fileUrl, "_blank")
-                    }}
-                  >
-                    View Certificate
-                  </a>
+                  {each.file !== null && (
+                    <a
+                      key={each}
+                      style={{ textDecoration: "none", color: "blue" }}
+                      onClick={() => {
+                        const fileUrl = URL.createObjectURL(each.file)
+                        window.open(fileUrl, "_blank")
+                      }}
+                    >
+                      View Certificate
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -176,6 +187,7 @@ function FresherPreview(props) {
                   <h6>
                     {each.degree}, {each.field}
                   </h6>
+                  <p>{each.institute}</p>
                   <p style={{ fontSize: "15px" }}>
                     {each.startDate.toLocaleString("default", {
                       month: "short",
@@ -190,7 +202,6 @@ function FresherPreview(props) {
                         })}
                   </p>
                 </div>
-                <p>{each.institute}</p>
               </div>
             ))}
           </div>

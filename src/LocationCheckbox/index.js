@@ -64,9 +64,6 @@ class LocationDropdown extends Component {
   render() {
     return (
       <Form.Group controlId="formRoomType" className="mb-3 mt-2">
-        <Form.Label>
-          Which location do you prefer looking for intern's ? (optional)
-        </Form.Label>
         <span
           className="input-field"
           data-toggle="popover"

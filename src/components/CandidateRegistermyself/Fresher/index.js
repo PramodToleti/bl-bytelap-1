@@ -20,6 +20,7 @@ import DynamicAchievements from "../../../DynamicAchievements"
 import DynamicEducationJob from "../../../DynamicEducationJob"
 import DynamicTraining from "../../../DynamicTraining"
 import FresherPreview from "../../../CandidateRegisterPreview/FresherPreview"
+import LocationCheckbox from "../../../LocationCheckbox"
 
 function Fresher() {
   const [validated, setValidated] = useState(false)
@@ -107,7 +108,7 @@ function Fresher() {
     setAchievements(achievements)
   }
 
-  const onChangeCity = (city) => {
+  const handleLocation = (city) => {
     setPreferredLocation(city)
     setCity(city)
   }
@@ -309,7 +310,9 @@ function Fresher() {
           </Form.Group>
         )
       case "Negotiable":
-        return (
+        return null
+        {
+          /*(
           <Form.Group className="mb-3">
             <Row>
               <Col xs={6}>
@@ -344,7 +347,9 @@ function Fresher() {
               </Col>
             </Row>
           </Form.Group>
-        )
+                  )*/
+        }
+
       case "Not Disclosed":
         return <Form.Group className="mb-3 mt-2"></Form.Group>
 
@@ -405,21 +410,13 @@ function Fresher() {
             </Form.Group>
 
             <Form.Group className="mb-3 mt-2" controlId="title">
-              <Form.Label>Internship Job Type</Form.Label>
+              <Form.Label>Job Type</Form.Label>
               <Form.Select onChange={handleJobtype}>
                 <option>Select</option>
                 <option>Office</option>
                 <option>Work from Home</option>
               </Form.Select>
             </Form.Group>
-            {jobType === "Office" && (
-              <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-                <ChooseCity onChangeCity={onChangeCity} />
-                <Form.Control.Feedback type="invalid">
-                  Please enter your city.
-                </Form.Control.Feedback>
-              </Form.Group>
-            )}
 
             <Form.Group className="mb-3 mt-2">
               <Form.Label>What is the Shift?</Form.Label>
@@ -513,7 +510,7 @@ function Fresher() {
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <Form.Label>Select Prefered Location</Form.Label>
-            <ChooseCity onChangeCity={onChangeCity} />
+            <LocationCheckbox handleLocation={handleLocation} />
           </div>
 
           <div

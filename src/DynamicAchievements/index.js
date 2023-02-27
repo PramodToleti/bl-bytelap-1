@@ -48,7 +48,7 @@ const DynamicAchievements = (props) => {
 
   useEffect(() => {
     achievements.every((achievement) => {
-      if (achievement.achievement !== "" && achievement.file !== null) {
+      if (achievement.achievement !== "" || achievement.file !== null) {
         props.handleAchievements(achievements)
       }
     })

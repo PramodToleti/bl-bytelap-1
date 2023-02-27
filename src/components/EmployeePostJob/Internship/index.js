@@ -361,7 +361,12 @@ function Internship() {
             />
           </Form.Group>
 
-          <LocationDropdown handleLocation={handleLocation} />
+          <Form.Group className="mb-3">
+            <Form.Label>
+              Which location do you prefer looking for intern's ? (optional)
+            </Form.Label>
+            <LocationDropdown handleLocation={handleLocation} />
+          </Form.Group>
 
           <AddRemove handleEducation={handleEducation} />
         </Row>

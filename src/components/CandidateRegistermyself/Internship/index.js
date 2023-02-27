@@ -270,10 +270,11 @@ const progressRef = useRef(null)*/
             className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border-dark   rounded container reveal  p-4  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
+            <h5>
+              Job Info <span style={{ color: "red" }}>*</span>
+            </h5>
             <Form.Group className="mb-3 mt-2" controlId="title">
-              <Form.Label>
-                Job Tittle <span style={{ color: "red" }}>*</span>
-              </Form.Label>
+              <Form.Label>Job Tittle</Form.Label>
               <ChooseJobTitle handleTitle={handleTitle} />
             </Form.Group>
             <Form.Group className="mb-3 mt-2">
@@ -288,7 +289,7 @@ const progressRef = useRef(null)*/
             </Form.Group>
 
             <Form.Group className="mb-3 mt-2" controlId="title">
-              <Form.Label>Internship Job Type</Form.Label>
+              <Form.Label> Job Type</Form.Label>
               <Form.Select onChange={handleJobtype}>
                 <option>Select</option>
                 <option>Office</option>
