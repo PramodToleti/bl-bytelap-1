@@ -2,18 +2,19 @@ import React, { useEffect, useState } from "react"
 import "bootstrap/dist/css/bootstrap.css"
 import { Form, Button, Row, Col } from "react-bootstrap"
 import ChooseField from "../ChooseField"
+import FieldCheckbox from "../FieldCheckbox"
 
 const AddRemove = (props) => {
   const [education, setEducation] = useState([
     {
       qualification: "",
-      field: "",
+      field: [],
     },
   ])
 
   const handleAddFields = () => {
     const values = [...education]
-    values.push({ qualification: "", field: "" })
+    values.push({ qualification: "", field: [] })
     setEducation(values)
   }
 
@@ -26,18 +27,19 @@ const AddRemove = (props) => {
   const onChangeQualification = (e, i) => {
     const list = [...education]
     list[i].qualification = e.target.value
+    list[i].field = []
     setEducation(list)
   }
 
-  const onChangeField = (e, i) => {
+  const handleLocation = (e, i) => {
     const list = [...education]
-    list[i].field = e[0].label
+    list[i].field.push(e[0].label)
     setEducation(list)
   }
 
   useEffect(() => {
     education.every((each) => {
-      if (each.qualification !== "" && each.field !== "")
+      if (each.qualification !== "" || each.field.length !== 0)
         props.handleEducation(education)
     })
   }, [education, props])
@@ -68,7 +70,7 @@ const AddRemove = (props) => {
               data.qualification === "Diploma") && (
               <Form.Group className="mb-3">
                 <Form.Label>Field </Form.Label>
-                <ChooseField onChangeField={(e) => onChangeField(e, i)} />
+                <FieldCheckbox handleLocation={(e) => handleLocation(e, i)} />
               </Form.Group>
             )}
           </Row>

@@ -140,13 +140,15 @@ function InternshipPostPreview(props) {
                     Salary
                     <br />
                     <p className="details-text">
-                      {data.salaryRange.from === undefined
-                        ? `${Math.floor(data.salaryRange / 1000)}k/month`
-                        : `${Math.floor(
-                            data.salaryRange.from / 1000
-                          )}k - ${Math.floor(
-                            data.salaryRange.to / 1000
-                          )}k /month`}
+                      {data.salaryType === "Fixed"
+                        ? data.salaryRange.from === undefined
+                          ? `${Math.floor(data.salaryRange / 1000)}k/month`
+                          : `${Math.floor(
+                              data.salaryRange.from / 1000
+                            )}k - ${Math.floor(
+                              data.salaryRange.to / 1000
+                            )}k /month`
+                        : data.salaryType}
                     </p>
                   </p>
                 </div>

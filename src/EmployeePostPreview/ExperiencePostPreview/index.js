@@ -21,193 +21,298 @@ function ExperiencePostPreview(props) {
   function renderPreview() {
     return (
       <>
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <div className="header">
-            <h4 className="mb-3">{data.jobTitle}</h4>
-            <img
-              src="https://res.cloudinary.com/dlpgowt5s/image/upload/v1677222848/Screenshot_20230224_124108_e09oie.png"
-              className="company-image"
-            />
-          </div>
-          <div style={{ display: "flex", gap: "8px" }} className="mb-4">
-            <FaBuilding style={{ color: "grey", fontSize: "25px" }} />
-            <p style={{ color: "grey" }}>Wiro Tech Limited</p>
-          </div>
-
+        {(data.jobTitle !== "" ||
+          data.jobTime !== "" ||
+          data.jobType !== "" ||
+          data.experience.years !== "" ||
+          data.experience.month !== "" ||
+          data.salaryType !== "") && (
           <div
-            className="job-details-container-2"
-            style={{ marginBottom: "0px" }}
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
           >
-            <div className="job-card-container">
-              <MdShoppingBag className="icon-styles" />
-              <p className="details-heading">{data.jobTime}</p>
-            </div>
+            {data.jobTitle !== "" && (
+              <>
+                <div className="header">
+                  <h4 className="mb-3">{data.jobTitle}</h4>
+                  <img
+                    src="https://res.cloudinary.com/dlpgowt5s/image/upload/v1677222848/Screenshot_20230224_124108_e09oie.png"
+                    className="company-image"
+                  />
+                </div>
 
-            <div className="job-card-container">
-              <BsFillSunFill className="icon-styles" />
-              <p className="details-heading">Day Shift</p>
-            </div>
-
-            {data.jobType === "Office" && <br className="break-line" />}
+                <div style={{ display: "flex", gap: "8px" }} className="mb-4">
+                  <FaBuilding style={{ color: "grey", fontSize: "25px" }} />
+                  <p style={{ color: "grey" }}>Wiro Tech Limited</p>
+                </div>
+              </>
+            )}
 
             <div
-              className={`job-card-container ${
-                data.jobType === "Office" ? "location-style" : ""
-              }`}
+              className="job-details-container-2"
+              style={{ marginBottom: "0px" }}
             >
-              <p
-                className={` ${
-                  data.jobType !== "Office" ? "home-heading" : "details-heading"
-                }`}
-              >
-                {data.jobType === "Work from Home" ? (
-                  <>
-                    <FaHome
-                      className="icon-styles"
-                      style={{ marginTop: "8px" }}
-                    />
-                    <p
-                      style={{
-                        marginTop: "10px",
-                        fontSize: "10px",
-                        color: "grey",
-                      }}
-                    >
-                      Work from Home
+              {data.jobTime !== "" && (
+                <>
+                  <div className="job-card-container">
+                    <MdShoppingBag className="icon-styles" />
+                    <p className="details-heading">{data.jobTime}</p>
+                  </div>
+
+                  <div className="job-card-container">
+                    <BsFillSunFill className="icon-styles" />
+                    <p className="details-heading">Day Shift</p>
+                  </div>
+                </>
+              )}
+
+              {data.jobType === "Office" && <br className="break-line" />}
+
+              {data.jobType !== "" && (
+                <div
+                  className={`job-card-container ${
+                    data.jobType === "Office" ? "location-style" : ""
+                  }`}
+                >
+                  <p
+                    className={` ${
+                      data.jobType !== "Office"
+                        ? "home-heading"
+                        : "details-heading"
+                    }`}
+                  >
+                    {data.jobType === "Work from Home" ? (
+                      <>
+                        <FaHome
+                          className="icon-styles"
+                          style={{ marginTop: "8px" }}
+                        />
+                        <p
+                          style={{
+                            marginTop: "10px",
+                            fontSize: "10px",
+                            color: "grey",
+                          }}
+                        >
+                          Work from Home
+                        </p>
+                      </>
+                    ) : data.city.length !== 0 ? (
+                      <>
+                        <MdLocationOn
+                          style={{ fontSize: "20px", color: "grey" }}
+                        />
+                        {data.jobType}, {data.city[0].label}
+                      </>
+                    ) : (
+                      <>
+                        <MdLocationOn
+                          style={{ fontSize: "20px", color: "grey" }}
+                        />
+                        data.jobType
+                      </>
+                    )}
+                  </p>
+                </div>
+              )}
+
+              {data.jobType === "Office" && <br className="break-line" />}
+              {data.jobType === "Office" && <p className="empty-element"></p>}
+
+              {data.experience.years !== "" ||
+                (data.experience.month !== "" && (
+                  <div className="job-card-container">
+                    <RiShoppingBagFill className="icon-styles" />
+                    <p className="details-heading">{`${data.experience.years} - ${data.experience.month} Yrs`}</p>
+                  </div>
+                ))}
+
+              {data.salaryType !== "" && (
+                <div className="job-card-container">
+                  <p className="details-heading">
+                    <BiRupee className="icon-styles" />
+                    {data.salaryType === "Lac"
+                      ? `${Math.floor(data.salaryRange.from)}L - ${Math.floor(
+                          data.salaryRange.to
+                        )}L PA`
+                      : data.salaryType === "Per Month"
+                      ? `${Math.floor(
+                          data.salaryRange.from / 1000
+                        )}k - ${Math.floor(
+                          data.salaryRange.to / 1000
+                        )}k / month`
+                      : data.salaryType === "Fixed"
+                      ? `${Math.floor(data.salaryRange)}k / month`
+                      : data.salaryType}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {data.skills.length !== 0 && (
+              <>
+                <hr />
+                <div className="mb-1">
+                  {data.skills.map((each) => (
+                    <h6 className="preview-skills" key={each}>
+                      {each}
+                    </h6>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        )}
+
+        {(data.education.length !== 0 ||
+          data.jobDescription !== "" ||
+          data.perks.length !== 0 ||
+          data.supplementary.length !== 0 ||
+          data.languages.length !== 0 ||
+          data.openings !== "") && (
+          <div
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            {data.education.length !== 0 && (
+              <>
+                <h4 className="mb-3">Qualification:</h4>
+                {data.education.map((each) => (
+                  <p>
+                    UG :{" "}
+                    {each.field.length !== 0
+                      ? `${each.qualification} in
+                        (${each.field.map((each) => `${each}, `)})`
+                      : each.qualification}
+                  </p>
+                ))}
+                <hr />
+              </>
+            )}
+
+            {data.jobDescription !== "" && (
+              <>
+                <h4 className="mb-3">Job Description</h4>
+                <div>
+                  {data.jobDescription !== "" && (
+                    <p style={{ overflowWrap: "break-word" }}>
+                      {data.jobDescription}
                     </p>
-                  </>
-                ) : data.city.length !== 0 ? (
-                  <>
-                    <MdLocationOn style={{ fontSize: "20px", color: "grey" }} />
-                    {data.jobType}, {data.city[0].label}
-                  </>
-                ) : (
-                  <>
-                    <MdLocationOn style={{ fontSize: "20px", color: "grey" }} />
-                    data.jobType
-                  </>
-                )}
-              </p>
-            </div>
+                  )}
+                </div>
+                <hr />
+              </>
+            )}
 
-            {data.jobType === "Office" && <br className="break-line" />}
-            {data.jobType === "Office" && <p className="empty-element"></p>}
+            {data.perks.length !== 0 && (
+              <>
+                <div>
+                  <h4 className="mb-3">Perks & Benefits:</h4>
+                  {data.perks.map((each, i) => (
+                    <h6 className="preview-skills" key={each}>
+                      {each.value}
+                    </h6>
+                  ))}
+                </div>
+                <hr />
+              </>
+            )}
 
-            <div className="job-card-container">
-              <RiShoppingBagFill className="icon-styles" />
-              <p className="details-heading">{`${data.experience.years} - ${data.experience.month} Yrs`}</p>
-            </div>
+            {data.supplementary.length !== 0 && (
+              <>
+                <div>
+                  <h4 className="mb-3">Supplemental Pay:</h4>
+                  {data.supplementary.map((each, i) => (
+                    <h6 className="preview-skills" key={each}>
+                      {each.value}
+                    </h6>
+                  ))}
+                </div>
+                <hr />
+              </>
+            )}
 
-            <div className="job-card-container">
-              <p className="details-heading">
-                <BiRupee className="icon-styles" />
-                {`${Math.floor(data.salaryRange.from)}L - ${Math.floor(
-                  data.salaryRange.to
-                )}LPA`}
-              </p>
-            </div>
+            {data.languages.length !== 0 && (
+              <>
+                <div>
+                  <h4 className="mb-3">Languages</h4>
+                  <div className="languages">
+                    {data.languages.map((each) => (
+                      <h5>{each}</h5>
+                    ))}
+                  </div>
+                </div>
+                <hr />
+              </>
+            )}
+
+            {data.openings !== "" && (
+              <div>
+                <h4 className="mb-3">Number of openings:</h4>
+                <h5>{data.openings !== "" && `${data.openings}+`}</h5>
+              </div>
+            )}
           </div>
-          <hr />
-          <div className="mb-1">
-            {data.skills.map((each) => (
-              <h6 className="preview-skills" key={each}>
-                {each}
-              </h6>
-            ))}
-          </div>
-        </div>
+        )}
 
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <h4 className="mb-3">Qualification:</h4>
+        {data.education.length !== 0 ||
+          data.jobDescription !== "" ||
+          data.perks.length !== "" ||
+          data.supplementary.length !== "" ||
+          data.languages.length !== "" ||
+          data.openings !== "" ||
+          ((data.jobTitle !== "" ||
+            data.jobTime !== "" ||
+            data.jobType !== "" ||
+            data.experience.years !== "" ||
+            data.experience.month !== "" ||
+            data.salaryType !== "") && (
+            <>
+              <div className="row justify-content-center mb-4">
+                <button type="button" className="apply-button">
+                  Apply
+                </button>
+              </div>
 
-          <p>Bachelor's in CS</p>
+              <div
+                className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+                style={{ width: "100%", backgroundColor: "white" }}
+              >
+                <div
+                  style={{ display: "flex", gap: "16px", alignItems: "center" }}
+                >
+                  <h4>About</h4>
+                  <div style={{ fontSize: "16px", fontFamily: "Roboto" }}>
+                    Wiro Tech Limited{" "}
+                    <HiOutlineExternalLink
+                      style={{ color: "grey", fontSize: "18px" }}
+                    />
+                  </div>
+                </div>
+                <div className="mb-3">
+                  <MdLocationOn style={{ color: "grey", fontSize: "18px" }} />{" "}
+                  Pune, MH
+                </div>
+                <p style={{ fontFamily: "Roboto" }}>
+                  Wiro Tech Limited is the best IT company in Indore. Wiro Tech
+                  Limited is the fastest growing and best IT company in Indore.
+                  We are the top-rated developers in technology....
+                </p>
+              </div>
 
-          <hr />
-
-          <h4 className="mb-3">Job Description</h4>
-          <div>
-            {data.jobDescription !== "" && <p>{data.jobDescription}</p>}
-          </div>
-          <hr />
-
-          <div>
-            <h4 className="mb-3">Perks & Benefits:</h4>
-            {data.perks.map((each, i) => (
-              <h6 className="preview-skills" key={each}>
-                {each.value}
-              </h6>
-            ))}
-          </div>
-          <hr />
-
-          <div>
-            <h4 className="mb-3">Supplemental Pay:</h4>
-            {data.supplementary.map((each, i) => (
-              <h6 className="preview-skills" key={each}>
-                {each.value}
-              </h6>
-            ))}
-          </div>
-          <hr />
-
-          <div>
-            <h4 className="mb-3">Languages</h4>
-            <div className="languages">
-              {data.languages.map((each) => (
-                <h5>{each}</h5>
-              ))}
-            </div>
-          </div>
-          <hr />
-          <div>
-            <h4 className="mb-3">Number of openings:</h4>
-            <h5>{data.openings !== "" && `${data.openings}+`}</h5>
-          </div>
-        </div>
-
-        <div className="row justify-content-center mb-4">
-          <button type="button" className="apply-button">
-            Apply
-          </button>
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-            <h4>About</h4>
-            <div style={{ fontSize: "16px", fontFamily: "Roboto" }}>
-              Wiro Tech Limited{" "}
-              <HiOutlineExternalLink
-                style={{ color: "grey", fontSize: "18px" }}
-              />
-            </div>
-          </div>
-          <div className="mb-3">
-            <MdLocationOn style={{ color: "grey", fontSize: "18px" }} /> Pune,
-            MH
-          </div>
-          <p style={{ fontFamily: "Roboto" }}>
-            Wiro Tech Limited is the best IT company in Indore. Wiro Tech
-            Limited is the fastest growing and best IT company in Indore. We are
-            the top-rated developers in technology....
-          </p>
-        </div>
-
-        <div className="row justify-content-end mb-3 mt-3">
-          <div className="col-auto">
-            <BsFillShareFill
-              style={{ color: "grey", fontSize: "18px", marginRight: "5px" }}
-            />
-          </div>
-        </div>
+              <div className="row justify-content-end mb-3 mt-3">
+                <div className="col-auto">
+                  <BsFillShareFill
+                    style={{
+                      color: "grey",
+                      fontSize: "18px",
+                      marginRight: "5px",
+                    }}
+                  />
+                </div>
+              </div>
+            </>
+          ))}
       </>
     )
   }
