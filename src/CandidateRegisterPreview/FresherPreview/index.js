@@ -112,19 +112,22 @@ function FresherPreview(props) {
               {data.training.map((each) => (
                 <li className="mb-3" style={{ width: "100%" }}>
                   <div className="preview-date-container">
-                    <h6 style={{ fontSize: "18px" }}>{each.training}</h6>
+                    <div>
+                      <h6 style={{ fontSize: "18px" }}>{each.title}</h6>
+                      <p>{each.institute}</p>
+                    </div>
                     <p style={{ fontSize: "15px" }}>
                       {each.startDate.toLocaleString("default", {
                         month: "short",
                         year: "numeric",
                       })}
-                      -
+
                       {each.endDate === ""
-                        ? "Present"
-                        : each.endDate.toLocaleString("default", {
+                        ? " - Present"
+                        : ` - ${each.endDate.toLocaleString("default", {
                             month: "short",
                             year: "numeric",
-                          })}
+                          })}`}
                     </p>
                   </div>
                   {each.file !== null && (
@@ -187,10 +190,14 @@ function FresherPreview(props) {
             {data.degree.map((each) => (
               <div>
                 <div className="preview-date-container">
-                  <h6>
-                    {each.degree}, {each.field}
-                  </h6>
-                  <p>{each.institute}</p>
+                  <div>
+                    <h6>
+                      {each.degree}, {each.field}
+                    </h6>
+                    <p>
+                      {each.institute}, {each.city}
+                    </p>
+                  </div>
                   <p style={{ fontSize: "15px" }}>
                     {each.startDate.toLocaleString("default", {
                       month: "short",

@@ -25,7 +25,6 @@ function InternshipPostPreview(props) {
         {(data.jobTitle !== "" ||
           data.jobTime !== "" ||
           data.jobType !== "" ||
-          data.startDate !== "" ||
           data.duration !== "" ||
           data.salaryRange.from !== "" ||
           data.perks.length !== 0 ||
@@ -84,14 +83,13 @@ function InternshipPostPreview(props) {
                       <>
                         <FaHome
                           className="icon-styles"
-                          style={{ marginTop: "8px" }}
+                          style={{ marginTop: "4px" }}
                         />
                         <p
                           style={{
-                            marginTop: "10px",
-                            fontSize: "10px",
                             color: "grey",
                           }}
+                          className="home-text"
                         >
                           Work from Home
                         </p>
@@ -113,18 +111,16 @@ function InternshipPostPreview(props) {
               {data.jobType === "Office" && <br className="break-line" />}
               {data.jobType === "Office" && <p className="empty-element"></p>}
 
-              {data.startDate !== "" && (
-                <div className="job-card-container">
-                  <AiFillYoutube className="icon-styles" />
-                  <p className="details-heading-2">
-                    Start Date
-                    <br />
-                    <p style={{ fontSize: "10px" }}>
-                      {data.checked ? "Immediate" : "Immediate"}
-                    </p>
+              <div className="job-card-container">
+                <AiFillYoutube className="icon-styles" />
+                <p className="details-heading-2">
+                  Start Date
+                  <br />
+                  <p className="details-text">
+                    {data.checked ? "Immediate" : "Immediate"}
                   </p>
-                </div>
-              )}
+                </p>
+              </div>
 
               {data.duration !== "" && (
                 <div className="job-card-container">
@@ -132,7 +128,7 @@ function InternshipPostPreview(props) {
                   <p className="details-heading-2">
                     Duration
                     <br />
-                    <p style={{ fontSize: "10px" }}>{data.duration} Months</p>
+                    <p className="details-text">{data.duration} Months</p>
                   </p>
                 </div>
               )}
@@ -143,7 +139,7 @@ function InternshipPostPreview(props) {
                   <p className="details-heading-2">
                     Salary
                     <br />
-                    <p style={{ fontSize: "10px" }}>
+                    <p className="details-text">
                       {data.salaryRange.from === undefined
                         ? `${Math.floor(data.salaryRange / 1000)}k/month`
                         : `${Math.floor(
@@ -156,6 +152,12 @@ function InternshipPostPreview(props) {
                 </div>
               )}
             </div>
+
+            {(data.perks.length !== 0 ||
+              data.skills.length !== 0 ||
+              data.jobType !== "" ||
+              data.duration !== "" ||
+              data.jobTime !== "") && <hr style={{ marginTop: "0px" }} />}
 
             <div className="perks-mobile">
               {data.perks.map((each, i) => (
@@ -173,13 +175,6 @@ function InternshipPostPreview(props) {
                   </h6>
                 ))}
               </div>
-              <div style={{ fontSize: "11px", color: "grey" }}>
-                <CiStar style={{ color: "grey", fontSize: "16px" }} /> are
-                preffered keyskill
-              </div>
-
-              <hr style={{ marginBottom: "8px" }} />
-              <p style={{ fontSize: "12px" }}>Posted : 1 day ago</p>
             </div>
           </div>
         )}
@@ -273,7 +268,6 @@ function InternshipPostPreview(props) {
           data.jobTitle !== "" ||
           data.jobTime !== "" ||
           data.jobType !== "" ||
-          data.startDate !== "" ||
           data.duration !== "" ||
           data.salaryRange.from !== "" ||
           data.perks.length !== 0 ||
@@ -313,7 +307,13 @@ function InternshipPostPreview(props) {
 
             <div className="row justify-content-end mb-3 mt-3">
               <div className="col-auto">
-                <BsFillShareFill style={{ color: "grey", fontSize: "18px" }} />
+                <BsFillShareFill
+                  style={{
+                    color: "grey",
+                    fontSize: "18px",
+                    marginRight: "5px",
+                  }}
+                />
               </div>
             </div>
           </>

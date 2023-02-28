@@ -104,8 +104,8 @@ function ExperiencePostPreview(props) {
             <div className="job-card-container">
               <p className="details-heading">
                 <BiRupee className="icon-styles" />
-                {`${Math.floor(data.salaryRange.from / 1000)}L - ${Math.floor(
-                  data.salaryRange.to / 1000
+                {`${Math.floor(data.salaryRange.from)}L - ${Math.floor(
+                  data.salaryRange.to
                 )}LPA`}
               </p>
             </div>
@@ -118,12 +118,6 @@ function ExperiencePostPreview(props) {
               </h6>
             ))}
           </div>
-          <div style={{ fontSize: "11px", color: "grey" }}>
-            <CiStar style={{ color: "grey", fontSize: "16px" }} /> are preffered
-            keyskill
-          </div>
-          <hr style={{ marginBottom: "8px" }} />
-          <p style={{ fontSize: "12px" }}>Posted : 1 day ago</p>
         </div>
 
         <div
@@ -209,7 +203,9 @@ function ExperiencePostPreview(props) {
 
         <div className="row justify-content-end mb-3 mt-3">
           <div className="col-auto">
-            <BsFillShareFill style={{ color: "grey", fontSize: "18px" }} />
+            <BsFillShareFill
+              style={{ color: "grey", fontSize: "18px", marginRight: "5px" }}
+            />
           </div>
         </div>
       </>

@@ -21,6 +21,7 @@ import DynamicEducationJob from "../../../DynamicEducationJob"
 import DynamicTraining from "../../../DynamicTraining"
 import FresherPreview from "../../../CandidateRegisterPreview/FresherPreview"
 import LocationCheckbox from "../../../LocationCheckbox"
+import DynamicEducationExperience from "../../../DynamicEducationExperience"
 
 function Fresher() {
   const [validated, setValidated] = useState(false)
@@ -354,24 +355,7 @@ function Fresher() {
         return <Form.Group className="mb-3 mt-2"></Form.Group>
 
       default:
-        return (
-          <Row className="mb-3">
-            <Form.Group as={Col} md="3" controlId="validationCustom03">
-              <Form.Label>Min</Form.Label>
-              <Form.Control type="number" placeholder="" required />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid state.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group as={Col} md="3" controlId="validationCustom03">
-              <Form.Label>Max</Form.Label>
-              <Form.Control type="number" placeholder="" required />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid zip.
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Row>
-        )
+        return null
     }
   }
 
@@ -476,7 +460,7 @@ function Fresher() {
             <Form.Label>
               Graduation <span style={{ color: "red" }}>*</span>
             </Form.Label>
-            <DynamicEducationJob handleDegree={handleDegree} />
+            <DynamicEducationExperience handleDegree={handleDegree} />
           </div>
 
           <div

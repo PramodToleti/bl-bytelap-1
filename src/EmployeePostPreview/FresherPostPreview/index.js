@@ -11,7 +11,6 @@ import { HiOutlineExternalLink } from "react-icons/hi"
 import { MdLocationOn } from "react-icons/md"
 import { BsFillShareFill } from "react-icons/bs"
 import { FaHome } from "react-icons/fa"
-import { AiFillYoutube } from "react-icons/ai"
 
 import "./index.css"
 
@@ -65,14 +64,13 @@ function FresherPostPreview(props) {
                   <>
                     <FaHome
                       className="icon-styles"
-                      style={{ marginTop: "8px" }}
+                      style={{ marginTop: "4px" }}
                     />
                     <p
                       style={{
-                        marginTop: "10px",
-                        fontSize: "10px",
                         color: "grey",
                       }}
+                      className="home-text"
                     >
                       Work from Home
                     </p>
@@ -99,9 +97,9 @@ function FresherPostPreview(props) {
             <div className="job-card-container">
               <p className="details-heading">
                 <BiRupee className="icon-styles" />
-                {`${Math.floor(data.salaryRange.from / 1000)}L - ${Math.floor(
-                  data.salaryRange.to / 1000
-                )}LPA`}
+                {`${Math.floor(data.salaryRange.from)}L - ${Math.floor(
+                  data.salaryRange.to
+                )}L PA`}
               </p>
             </div>
           </div>
@@ -113,12 +111,6 @@ function FresherPostPreview(props) {
               </h6>
             ))}
           </div>
-          <div style={{ fontSize: "11px", color: "grey" }}>
-            <CiStar style={{ color: "grey", fontSize: "16px" }} /> are preffered
-            keyskill
-          </div>
-          <hr style={{ marginBottom: "8px" }} />
-          <p style={{ fontSize: "12px" }}>Posted : 1 day ago</p>
         </div>
 
         <div
@@ -208,7 +200,9 @@ function FresherPostPreview(props) {
 
         <div className="row justify-content-end mb-3 mt-3">
           <div className="col-auto">
-            <BsFillShareFill style={{ color: "grey", fontSize: "18px" }} />
+            <BsFillShareFill
+              style={{ color: "grey", fontSize: "18px", marginRight: "5px" }}
+            />
           </div>
         </div>
       </>

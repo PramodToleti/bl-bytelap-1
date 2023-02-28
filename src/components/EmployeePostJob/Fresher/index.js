@@ -12,6 +12,7 @@ import ChooseJobTitle from "../../../ChooseJobTitle"
 import AddRemove from "../../../AddRemove"
 import LanguageDropdown from "../../../LanguageDropdown"
 import FresherPostPreview from "../../../EmployeePostPreview/FresherPostPreview"
+import LocationDropdown from "../../../LocationCheckbox"
 
 import "./index.css"
 import "react-datepicker/dist/react-datepicker.css"
@@ -181,38 +182,7 @@ function Fresher() {
         return <Form.Group className="mb-3 mt-2"></Form.Group>
 
       default:
-        return (
-          <Row className="mb-3">
-            <Form.Group as={Col} md="3" controlId="validationCustom03">
-              <Form.Label>Min</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder=""
-                required
-                onChange={(e) =>
-                  setSalaryRange({ ...salaryRange, from: e.target.value })
-                }
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid state.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group as={Col} md="3" controlId="validationCustom03">
-              <Form.Label>Max</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder=""
-                required
-                onChange={(e) =>
-                  setSalaryRange({ ...salaryRange, to: e.target.value })
-                }
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid zip.
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Row>
-        )
+        return null
     }
   }
 
@@ -311,7 +281,7 @@ function Fresher() {
             <Form.Label>
               Which location do you prefer looking for intern's ? (optional)
             </Form.Label>
-            <ChooseCity onChange={(e) => handleLocation(e)} />
+            <LocationDropdown handleLocation={handleLocation} />
           </Form.Group>
         </Row>
 

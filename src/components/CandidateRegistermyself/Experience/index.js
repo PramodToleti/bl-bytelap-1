@@ -483,6 +483,8 @@ function Experience() {
                     <Form.Control
                       type="number"
                       placeholder="Thousand"
+                      min="0"
+                      max="99999"
                       disabled
                     />
                   </Form.Group>
@@ -507,9 +509,14 @@ function Experience() {
                       type="number"
                       placeholder="Thousand"
                       required
-                      onChange={(e) =>
+                      min="0"
+                      max="99999"
+                      onChange={(e) => {
+                        if (e.target.value < 0 || e.target.value > 99999) {
+                          alert("Please enter a value between 0 and 99999")
+                        }
                         setCTC({ ...ctc, thousand: e.target.value })
-                      }
+                      }}
                     />
                     <Form.Control.Feedback type="invalid">
                       Please Enter a valid Amount

@@ -64,7 +64,8 @@ function ExperiencePreview(props) {
                       </h6>
                     ) : (
                       <h5 style={{ fontSize: "16px", marginTop: "5px" }}>
-                        {data.ctc.lacs}L PA
+                        {data.ctc.lacs}.{parseInt(data.ctc.thousand / 10000)}L
+                        PA
                       </h5>
                     )}
                   </div>
@@ -178,7 +179,10 @@ function ExperiencePreview(props) {
               {data.training.map((each) => (
                 <li className="mb-3" style={{ width: "100%" }}>
                   <div className="preview-date-container">
-                    <h6 style={{ fontSize: "18px" }}>{each.training}</h6>
+                    <div>
+                      <h6 style={{ fontSize: "18px" }}>{each.title}</h6>
+                      <p>{each.institute}</p>
+                    </div>
                     <p style={{ fontSize: "15px", marginBottom: "10px" }}>
                       {each.startDate.toLocaleString("default", {
                         month: "short",
@@ -247,22 +251,25 @@ function ExperiencePreview(props) {
             {data.degree.map((each) => (
               <div>
                 <div className="preview-date-container">
-                  <h6>
-                    {each.degree}, {each.field}
-                  </h6>
-                  <p>{each.institute}</p>
+                  <div>
+                    <h6>
+                      {each.degree}, {each.field}
+                    </h6>
+                    <p>
+                      {each.institute}, {each.city}
+                    </p>
+                  </div>
                   <p style={{ fontSize: "15px" }}>
                     {each.startDate.toLocaleString("default", {
                       month: "short",
                       year: "numeric",
                     })}{" "}
-                    -{" "}
                     {each.endDate === ""
-                      ? "Present"
-                      : each.endDate.toLocaleString("default", {
+                      ? " - Present"
+                      : ` - ${each.endDate.toLocaleString("default", {
                           month: "short",
                           year: "numeric",
-                        })}
+                        })}`}
                   </p>
                 </div>
               </div>

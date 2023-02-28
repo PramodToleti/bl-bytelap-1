@@ -96,8 +96,10 @@ function InternshipPreview(props) {
               {data.training.map((each) => (
                 <li className="mb-3" style={{ width: "100%" }}>
                   <div className="preview-date-container">
-                    <h6 style={{ fontSize: "18px" }}>{each.title}</h6>
-                    <p style={{}}>{each.institute}</p>
+                    <div>
+                      <h6 style={{ fontSize: "18px" }}>{each.title}</h6>
+                      <p>{each.institute}</p>
+                    </div>
                     <p style={{ fontSize: "15px", marginBottom: "10px" }}>
                       {each.startDate.toLocaleString("default", {
                         month: "short",
@@ -167,33 +169,40 @@ function InternshipPreview(props) {
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <h4 className="mb-3">Education:</h4>
-            {data.degree.map((each) => (
-              <div>
-                <div className="preview-date-container">
-                  <h6>
-                    {each.degree}, {each.field}
-                  </h6>
-                  <p>{each.institute}</p>
-                  <p style={{ fontSize: "15px" }}>
-                    {each.startDate.toLocaleString("default", {
-                      month: "short",
-                      year: "numeric",
-                    })}
+            <ul>
+              {data.degree.map((each) => (
+                <li>
+                  <div className="preview-date-container">
+                    <div>
+                      <h6>
+                        {each.degree}, {each.field}
+                      </h6>
+                      <p>
+                        {each.institute}, {each.city}
+                      </p>
+                    </div>
 
-                    {each.endDate === "" &&
-                    (each.degree === "Master's" ||
-                      each.degree === "Bachelor's" ||
-                      each.degree === "Diploma" ||
-                      each.degree === "Doctorate")
-                      ? " - Present"
-                      : each.endDate.toLocaleString("default", {
-                          month: "short",
-                          year: "numeric",
-                        })}
-                  </p>
-                </div>
-              </div>
-            ))}
+                    <p style={{ fontSize: "15px" }}>
+                      {each.startDate.toLocaleString("default", {
+                        month: "short",
+                        year: "numeric",
+                      })}
+
+                      {each.endDate === "" &&
+                      (each.degree === "Master's" ||
+                        each.degree === "Bachelor's" ||
+                        each.degree === "Diploma" ||
+                        each.degree === "Doctorate")
+                        ? " - Present"
+                        : ` - ${each.endDate.toLocaleString("default", {
+                            month: "short",
+                            year: "numeric",
+                          })}`}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 

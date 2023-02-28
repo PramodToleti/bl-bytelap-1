@@ -25,8 +25,6 @@ function Internship() {
   const [jobType, setJobType] = useState("")
   const [city, setCity] = useState([])
   const [duration, setDuration] = useState("")
-  const [startDate, setStartDate] = useState("")
-  const [endDate, setEndDate] = useState("")
   const [skills, setSkills] = useState([])
   const [responsibilities, setResponsibilities] = useState("")
   const [salaryType, setSalaryType] = useState("")
@@ -45,8 +43,6 @@ function Internship() {
     city,
     duration,
     checked,
-    startDate,
-    endDate,
     skills,
     responsibilities,
     salaryType,
@@ -64,14 +60,6 @@ function Internship() {
 
   const onChangeCity = (e) => {
     setCity(e)
-  }
-
-  const handleChange = (date) => {
-    setStartDate(date)
-  }
-
-  const handleChangeEnd = (date) => {
-    setEndDate(date)
   }
 
   const handleSkills = (e) => {
@@ -170,34 +158,7 @@ function Internship() {
         )
 
       default:
-        return (
-          <Row className="mb-3">
-            <Form.Group as={Col} md="3" controlId="validationCustom03">
-              <Form.Label>Min</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder=""
-                required
-                onChange={(e) => setSalaryRange({ from: e.target.value })}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid state.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group as={Col} md="3" controlId="validationCustom03">
-              <Form.Label>Max</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder=""
-                required
-                onChange={(e) => setSalaryRange({ to: e.target.value })}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid zip.
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Row>
-        )
+        return null
     }
   }
 
@@ -262,26 +223,13 @@ function Internship() {
               type="checkbox"
               label="Immediate Joiner (within next 30 days)"
               checked={checked}
+              className="mb-3"
               onChange={(e) => {
                 setChecked(e.target.checked)
               }}
             />
-            {/*<div className="custom-date-container">
-              <div
-                onClick={handleCustomDateClick}
-                style={{ marginRight: "10px" }}
-              >
-                Custom Date
-              </div>
-              <div className={date ? "show-date" : "hide-date"}>
-                : {date?.toDateString()}
-              </div>
-            </div>
-            {showDatePicker && (
-              <DatePicker selected={date} onChange={handleDateChange} inline />
-            )}*/}
 
-            <div className="mt-3 custom-date">
+            {/* <div className="mt-3 custom-date">
               <p style={{ marginTop: "8px" }}>Custom Date: </p>
 
               <div style={{ display: "flex", gap: "15px" }}>
@@ -323,8 +271,10 @@ function Internship() {
                     />
                   </Form.Group>
                 </div>
-              </div>
+                 
+                  </div>
             </div>
+            */}
           </Form.Group>
 
           <AddRemove handleEducation={handleEducation} />

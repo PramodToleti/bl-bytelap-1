@@ -54,13 +54,18 @@
 
 @media screen and (min-width: 768px) {
   .details-heading,
-  .details-heading-2 {
+  .details-heading-2,
+  .home-text {
     font-size: 18px;
   }
 
   .break-line,
   .empty-element {
     display: none;
+  }
+
+  .details-text {
+    font-size: 14px;
   }
 }
 
@@ -76,6 +81,15 @@
 
   .perks-desktop {
     display: none;
+  }
+
+  .home-text {
+    font-size: 10px;
+    margin-top: 8px;
+  }
+
+  .details-text {
+    font-size: 11px;
   }
 }
 
