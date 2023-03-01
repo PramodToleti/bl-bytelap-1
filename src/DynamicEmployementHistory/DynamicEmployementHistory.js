@@ -5,7 +5,7 @@ import { Form, Button, Row, Col } from "react-bootstrap"
 import DatePicker from "react-datepicker"
 
 const DynamicEmployementHistory = (props) => {
-  const [checkbox, toggleCheckbox] = useState(false)
+  const [showHiddenFields, setShowHiddenFields] = useState(false)
 
   const [employmentHistory, setEmploymentHistory] = useState([
     {
@@ -16,8 +16,23 @@ const DynamicEmployementHistory = (props) => {
       endDate: "",
       responsibilities: "",
       present: false,
+      hidden: false,
     },
   ])
+
+  const handleHideFields = (index) => {
+    const list = [...employmentHistory]
+    list[index].hidden = true
+    setEmploymentHistory(list)
+    setShowHiddenFields(true)
+  }
+
+  const handleShowFields = (index) => {
+    const list = [...employmentHistory]
+    list[index].hidden = false
+    setEmploymentHistory(list)
+    setShowHiddenFields(false)
+  }
 
   const handleAddFields = () => {
     const values = [...employmentHistory]
@@ -29,6 +44,7 @@ const DynamicEmployementHistory = (props) => {
       endDate: "",
       responsibilities: "",
       present: "",
+      hidden: false,
     })
     setEmploymentHistory(values)
   }
@@ -114,87 +130,95 @@ const DynamicEmployementHistory = (props) => {
                 Please enter a valid job profile
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId={`company-${i}`} className="mb-3">
-              <Form.Label>Company</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Eg. Bytelap Technologies"
-                required
-                value={data.company}
-                onChange={(e) => onChangeCompany(e, i)}
-                name="company"
-              />
-              <Form.Control.Feedback type="invalid">
-                Please enter a valid company
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group controlId={`location-${i}`} className="mb-3">
-              <Form.Label>Location</Form.Label>
-              <Form.Control
-                type="text"
-                required
-                value={data.location}
-                name="location"
-                onChange={(e) => onChangeLocation(e, i)}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please enter a valid location
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-              <Form.Group className="mb-3 col-sm-4">
-                <Form.Label>From</Form.Label>
-                <DatePicker
-                  placeholderText="MM / YYYY"
-                  dateFormat="MMM yyyy"
-                  showMonthYearPicker={true}
-                  className="year-date mb-3"
-                  selected={data.startDate}
-                  onChange={(date) => onChangeStart(date, i, "startDate")}
+            {!data.hidden && (
+              <Form.Group controlId={`company-${i}`} className="mb-3">
+                <Form.Label>Company</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Eg. Bytelap Technologies"
+                  required
+                  value={data.company}
+                  onChange={(e) => onChangeCompany(e, i)}
+                  name="company"
                 />
+                <Form.Control.Feedback type="invalid">
+                  Please enter a valid company
+                </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className="mb-3 col-sm-4">
-                <Form.Label>To</Form.Label>
-                {data.present ? (
-                  <Form.Control
-                    type="text"
-                    className="year-date mb-3"
-                    placeholder="Present"
-                    disabled
-                  />
-                ) : (
+            )}
+            {!data.hidden && (
+              <Form.Group controlId={`location-${i}`} className="mb-3">
+                <Form.Label>Location</Form.Label>
+                <Form.Control
+                  type="text"
+                  required
+                  value={data.location}
+                  name="location"
+                  onChange={(e) => onChangeLocation(e, i)}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please enter a valid location
+                </Form.Control.Feedback>
+              </Form.Group>
+            )}
+            {!data.hidden && (
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "14px" }}
+              >
+                <Form.Group className="mb-3 col-sm-4">
+                  <Form.Label>From</Form.Label>
                   <DatePicker
                     placeholderText="MM / YYYY"
                     dateFormat="MMM yyyy"
                     showMonthYearPicker={true}
                     className="year-date mb-3"
-                    selected={data.endDate}
-                    onChange={(date) => onChangeEnd(date, i)}
+                    selected={data.startDate}
+                    onChange={(date) => onChangeStart(date, i, "startDate")}
                   />
-                )}
-              </Form.Group>
-              <Form.Group className="mt-4">
-                <Form.Check
-                  type="checkbox"
-                  label="Present"
-                  id={`present-${i}`}
-                  className="custom-control-input ml-1 mb-3"
-                  checked={data.present}
-                  onChange={(e) => handlePresent(e, i)}
+                </Form.Group>
+                <Form.Group className="mb-3 col-sm-4">
+                  <Form.Label>To</Form.Label>
+                  {data.present ? (
+                    <Form.Control
+                      type="text"
+                      className="year-date mb-3"
+                      placeholder="Present"
+                      disabled
+                    />
+                  ) : (
+                    <DatePicker
+                      placeholderText="MM / YYYY"
+                      dateFormat="MMM yyyy"
+                      showMonthYearPicker={true}
+                      className="year-date mb-3"
+                      selected={data.endDate}
+                      onChange={(date) => onChangeEnd(date, i)}
+                    />
+                  )}
+                </Form.Group>
+                <Form.Group className="mt-4">
+                  <Form.Check
+                    type="checkbox"
+                    label="Present"
+                    id={`present-${i}`}
+                    className="custom-control-input ml-1 mb-3"
+                    checked={data.present}
+                    onChange={(e) => handlePresent(e, i)}
+                  />
+                </Form.Group>
+              </div>
+            )}
+            {!data.hidden && (
+              <Form.Group controlId={`responsibilities-${i}`} className="mb-3">
+                <Form.Label>Key Responsibilities (Optional)</Form.Label>
+                <TextArea
+                  rows={7}
+                  value={data.responsibilities}
+                  onChange={(e) => onChangeResponsibilities(e, i)}
+                  name="responsibilities"
                 />
               </Form.Group>
-            </div>
-
-            <Form.Group controlId={`responsibilities-${i}`} className="mb-3">
-              <Form.Label>Key Responsibilities (Optional)</Form.Label>
-              <TextArea
-                rows={7}
-                value={data.responsibilities}
-                onChange={(e) => onChangeResponsibilities(e, i)}
-                name="responsibilities"
-              />
-            </Form.Group>
+            )}
             {employmentHistory.length > 1 &&
               i !== employmentHistory.length - 1 && (
                 <hr
@@ -215,13 +239,31 @@ const DynamicEmployementHistory = (props) => {
             Add More
           </Button>
           {employmentHistory.length > 1 && (
-            <Button
-              variant="outline-danger"
-              size="sm"
-              onClick={handleRemoveFields}
-            >
-              Remove
-            </Button>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <Button
+                variant="outline-danger"
+                size="sm"
+                onClick={handleRemoveFields}
+              >
+                Remove
+              </Button>
+              {!showHiddenFields && (
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => handleHideFields(employmentHistory.length - 1)}
+                >
+                  Hide
+                </Button>
+              )}
+              {showHiddenFields && (
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => handleShowFields(employmentHistory.length - 1)}
+                >
+                  Show
+                </Button>
+              )}
+            </div>
           )}
         </Col>
       </Row>

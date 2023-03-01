@@ -118,19 +118,23 @@ function ExperiencePreview(props) {
                   <div className="preview-date-container">
                     <h6>{each.profile}</h6>
                     <p>{each.company}</p>
-                    <p style={{ fontSize: "15px", marginBottom: "10px" }}>
-                      {each.startDate.toLocaleString("default", {
-                        month: "short",
-                        year: "numeric",
-                      })}{" "}
-                      -{" "}
-                      {each.endDate === ""
-                        ? "Present"
-                        : each.endDate.toLocaleString("default", {
-                            month: "short",
-                            year: "numeric",
-                          })}
-                    </p>
+                    {(each.profile !== "" ||
+                      each.company !== "" ||
+                      each.startDate !== "") && (
+                      <p style={{ fontSize: "15px", marginBottom: "10px" }}>
+                        {each.startDate.toLocaleString("default", {
+                          month: "short",
+                          year: "numeric",
+                        })}{" "}
+                        -{" "}
+                        {each.endDate === ""
+                          ? "Present"
+                          : each.endDate.toLocaleString("default", {
+                              month: "short",
+                              year: "numeric",
+                            })}
+                      </p>
+                    )}
                   </div>
 
                   <p>{each.responsibilities}</p>
