@@ -1,6 +1,7 @@
 import "./index.css"
 import React, { useState } from "react"
 import { Button } from "react-bootstrap"
+import InternshipPostPreview from "../../../../EmployeePostPreview/InternshipPostPreview"
 
 const Internship = (props) => {
   const {
@@ -10,6 +11,7 @@ const Internship = (props) => {
     setShowResume,
     onJobCardClick,
   } = props
+
   const renderResume = () => (
     <div>
       <h1 className="resume-username">Nilesh</h1>

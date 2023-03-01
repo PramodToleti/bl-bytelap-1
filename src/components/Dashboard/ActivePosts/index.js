@@ -14,7 +14,22 @@ import { useState } from "react"
 function Accountsetting() {
   const [activeFilter, setActiveFilter] = useState("internship")
 
-  const renderActiveJob = () => {}
+  const handleOptionChange = (event) => {
+    setActiveFilter(event.target.value)
+  }
+
+  const renderActiveJob = () => {
+    switch (activeFilter) {
+      case "internship":
+        return <Internship />
+      case "fresher":
+        return <Fresher />
+      case "experience":
+        return <Experience />
+      default:
+        return null
+    }
+  }
 
   return (
     <>
@@ -31,6 +46,8 @@ function Accountsetting() {
                     name="group1"
                     type={type}
                     id={`inline-${type}-1`}
+                    checked={activeFilter === "Internship"}
+                    onChange={handleOptionChange}
                   />
 
                   <Form.Check
@@ -40,6 +57,8 @@ function Accountsetting() {
                     name="group1"
                     type={type}
                     id={`inline-${type}-2`}
+                    checked={activeFilter === "Fresher"}
+                    onChange={handleOptionChange}
                   />
 
                   <Form.Check
@@ -49,6 +68,8 @@ function Accountsetting() {
                     name="group1"
                     type={type}
                     id={`inline-${type}-2`}
+                    checked={activeFilter === "Experience"}
+                    onChange={handleOptionChange}
                   />
                 </div>
               ))}
