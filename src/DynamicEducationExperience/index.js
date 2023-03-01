@@ -106,6 +106,7 @@ const DynamicEducationExperience = (props) => {
     const list = [...degreeList]
     list.pop()
     setDegreeList(list)
+    setShowHiddenFields(false)
   }
 
   useEffect(() => {
@@ -231,7 +232,11 @@ const DynamicEducationExperience = (props) => {
 
       <Row>
         <Col className=" mb-3 d-flex justify-content-between">
-          <Button variant="outline-primary" onClick={handleAddFields}>
+          <Button
+            variant="outline-primary"
+            style={{ marginRight: "8px" }}
+            onClick={handleAddFields}
+          >
             Add More Education
           </Button>
           <div style={{ display: "flex", gap: "10px" }}>

@@ -33,7 +33,10 @@ function FresherPreview(props) {
                 {data.salaryType !== "" && (
                   <div style={{ display: "flex", gap: "10px" }}>
                     <BiRupee style={{ color: "grey", fontSize: "25px" }} />
-                    <p>{data.salaryType}</p>
+                    <p>
+                      {data.salaryRange.from} - {data.salaryRange.to}{" "}
+                      {data.salaryType}
+                    </p>
                   </div>
                 )}
               </div>

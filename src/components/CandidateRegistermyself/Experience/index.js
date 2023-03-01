@@ -440,14 +440,16 @@ function Experience() {
                 controlId="experience-years"
                 className="col-sm-5 mb-2"
               >
-                <Form.Control
-                  type="number"
-                  placeholder="Years"
-                  required
+                <Form.Select
                   onChange={(e) =>
                     setExperience({ ...experience, years: e.target.value })
                   }
-                />
+                >
+                  <option>Years</option>
+                  {Array.from({ length: 15 }, (_, index) => (
+                    <option key={index}>{index + 1}</option>
+                  ))}
+                </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   Please Enter a valid year
                 </Form.Control.Feedback>
@@ -456,14 +458,16 @@ function Experience() {
                 controlId="experience-months"
                 className="col-sm-5 mb-2"
               >
-                <Form.Control
-                  type="number"
-                  placeholder="Months"
-                  required
+                <Form.Select
                   onChange={(e) =>
                     setExperience({ ...experience, months: e.target.value })
                   }
-                />
+                >
+                  <option>Months</option>
+                  {Array.from({ length: 12 }, (_, index) => (
+                    <option key={index}>{index + 1}</option>
+                  ))}
+                </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   Please Enter a valid month
                 </Form.Control.Feedback>
@@ -476,7 +480,12 @@ function Experience() {
                 <>
                   <Form.Group controlId="experience" className="col-sm-5 mb-3">
                     <Form.Label>From</Form.Label>
-                    <Form.Control type="number" placeholder="Lac" disabled />
+                    <Form.Control
+                      type="number"
+                      value=""
+                      placeholder="Lac"
+                      disabled
+                    />
                   </Form.Group>
                   <Form.Group controlId="experience" className="col-sm-5 mb-3">
                     <Form.Label>To</Form.Label>
@@ -484,6 +493,7 @@ function Experience() {
                       type="number"
                       placeholder="Thousand"
                       min="0"
+                      value=""
                       max="99999"
                       disabled
                     />

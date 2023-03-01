@@ -193,32 +193,24 @@ function InternshipPostPreview(props) {
             className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border  div-card  rounded container reveal  p-2  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
-            {data.jobTitle !== "" && (
-              <div className="mb-3">
-                <h4 className="mb-3">Graduation:</h4>
-                <div className="mb-3" style={{ fontSize: "18px" }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    <p style={{ fontWeight: "600" }}>UG:</p>
-                    <p>Any Graduate</p>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    <p style={{ fontWeight: "600" }}>PG:</p>
-                    <p>Any Post Graduate</p>
-                  </div>
-                </div>
-              </div>
+            {data.education.length !== 0 && (
+              <>
+                <h4 className="mb-3">Qualification:</h4>
+                {data.education.map((each) => (
+                  <p>
+                    {each.qualification === "Any Graduate"
+                      ? "UG : "
+                      : each.qualification === "Any Post Graduate"
+                      ? "PG : "
+                      : ""}
+                    {each.field.length !== 0
+                      ? `${each.qualification} in
+                        (${each.field.map((each) => `${each}, `)})`
+                      : each.qualification}
+                  </p>
+                ))}
+                <hr />
+              </>
             )}
 
             {data.responsibilities !== "" && (

@@ -1,7 +1,7 @@
 import Stack from "react-bootstrap/Stack"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
-
+import DatePicker from "react-datepicker"
 import React, { useState } from "react"
 import Row from "react-bootstrap/Row"
 
@@ -21,7 +21,10 @@ function CandidateStep2() {
   }
 
   return (
-    <div className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2  bg-light     border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
+    <div
+      className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2      border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
+      style={{ backgroundColor: "white" }}
+    >
       <p className="text-end">Step 2-2</p>
       <p className="text-center">Graduation</p>
 
@@ -83,89 +86,27 @@ function CandidateStep2() {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-            <Stack direction="horizontal" gap={3}>
-              <input className="d-none" type="file" />
-              <Form.Label>From </Form.Label>
-              <Form.Select>
-                <option> Year </option>
-                <option>2010</option>
-                <option>2011</option>
-                <option>2012</option>
-                <option>2013</option>
-                <option>2014</option>
-                <option>2015</option>
-                <option>2016</option>
-                <option>2017</option>
-                <option>2018</option>
-                <option>2019</option>
-                <option>2020</option>
-                <option>2021</option>
-                <option>2022</option>
-                <option>2023</option>
-                <option>2024</option>
-                <option>2025</option>
-              </Form.Select>
-              <Form.Label> </Form.Label>
-              <Form.Select>
-                <option> Month </option>
-                <option> Month </option>
-                <option>January</option>
-                <option>Fabruary</option>
-                <option>March</option>
-                <option>April</option>
-                <option>May</option>
-                <option>June</option>
-                <option>July</option>
-                <option>August</option>
-                <option>September</option>
-                <option>Octomber</option>
-                <option>November</option>
-                <option>December</option>
-              </Form.Select>
-            </Stack>
-          </Form.Group>
-
-          <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-            <Stack direction="horizontal" gap={3}>
-              <input className="d-none" type="file" />
-              <Form.Label>To </Form.Label>
-              <Form.Select className="mx-3">
-                <option> Year </option>
-                <option>2010</option>
-                <option>2011</option>
-                <option>2012</option>
-                <option>2013</option>
-                <option>2014</option>
-                <option>2015</option>
-                <option>2016</option>
-                <option>2017</option>
-                <option>2018</option>
-                <option>2019</option>
-                <option>2020</option>
-                <option>2021</option>
-                <option>2022</option>
-                <option>2023</option>
-                <option>2024</option>
-                <option>2025</option>
-              </Form.Select>
-              <Form.Label> </Form.Label>
-              <Form.Select>
-                <option> Month </option>
-                <option>January</option>
-                <option>Fabruary</option>
-                <option>March</option>
-                <option>April</option>
-                <option>May</option>
-                <option>June</option>
-                <option>July</option>
-                <option>August</option>
-                <option>September</option>
-                <option>Octomber</option>
-                <option>November</option>
-                <option>December</option>
-              </Form.Select>
-            </Stack>
+          <Form.Group className="mb-2">
+            <Form.Group className="mb-3" style={{ width: "100%" }}>
+              <div className="mt-3 custom-date">
+                <div className="date-container">
+                  <Form.Label className="mt-3">From</Form.Label>
+                  <DatePicker
+                    className="year-date"
+                    dateFormat="MMM yyyy"
+                    placeholderText="MM / YYYY"
+                    showMonthYearPicker={true}
+                  />
+                  <Form.Label className="mt-3">To</Form.Label>
+                  <DatePicker
+                    className="year-date"
+                    dateFormat="MMM yyyy"
+                    placeholderText="MM / YYYY"
+                    showMonthYearPicker={true}
+                  />
+                </div>
+              </div>
+            </Form.Group>
           </Form.Group>
 
           <Form.Group className="mb-3">

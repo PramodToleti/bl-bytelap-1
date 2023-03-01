@@ -188,9 +188,7 @@ function FresherPostPreview(props) {
             {data.jobDescription !== "" && (
               <>
                 <h4 className="mb-3">Job Description</h4>
-                <p style={{ fontSize: "16px" }}>
-                  Selected intern's day-to-day responsibilities include:
-                </p>
+
                 {data.jobDescription !== "" && (
                   <p style={{ overflowWrap: "break-word" }}>
                     {data.jobDescription}

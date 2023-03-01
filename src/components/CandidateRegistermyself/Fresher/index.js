@@ -57,6 +57,7 @@ function Fresher() {
     jobType,
     skills,
     salaryType,
+    salaryRange,
     degree,
     coverLetter,
     projectDetails,

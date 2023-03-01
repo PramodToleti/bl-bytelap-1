@@ -4,6 +4,8 @@ import TextArea from "antd/es/input/TextArea"
 import { Form, Button, Row, Col } from "react-bootstrap"
 import DatePicker from "react-datepicker"
 
+import ChooseCity from "../ChooseCity"
+
 const DynamicEmployementHistory = (props) => {
   const [showHiddenFields, setShowHiddenFields] = useState(false)
 
@@ -19,6 +21,7 @@ const DynamicEmployementHistory = (props) => {
       hidden: false,
     },
   ])
+  console.log(employmentHistory[0].location)
 
   const handleHideFields = (index) => {
     const list = [...employmentHistory]
@@ -67,9 +70,9 @@ const DynamicEmployementHistory = (props) => {
     setEmploymentHistory(list)
   }
 
-  const onChangeLocation = (e, index) => {
+  const onChangeCity = (e, index) => {
     const list = [...employmentHistory]
-    list[index].location = e.target.value
+    list[index].location = e
     setEmploymentHistory(list)
   }
 
@@ -149,12 +152,9 @@ const DynamicEmployementHistory = (props) => {
             {!data.hidden && (
               <Form.Group controlId={`location-${i}`} className="mb-3">
                 <Form.Label>Location</Form.Label>
-                <Form.Control
-                  type="text"
-                  required
+                <ChooseCity
+                  onChangeCity={(e) => onChangeCity(e, i)}
                   value={data.location}
-                  name="location"
-                  onChange={(e) => onChangeLocation(e, i)}
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter a valid location

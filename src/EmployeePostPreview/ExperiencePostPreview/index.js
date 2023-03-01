@@ -118,13 +118,13 @@ function ExperiencePostPreview(props) {
               {data.jobType === "Office" && <br className="break-line" />}
               {data.jobType === "Office" && <p className="empty-element"></p>}
 
-              {data.experience.years !== "" ||
-                (data.experience.month !== "" && (
-                  <div className="job-card-container">
-                    <RiShoppingBagFill className="icon-styles" />
-                    <p className="details-heading">{`${data.experience.years} - ${data.experience.month} Yrs`}</p>
-                  </div>
-                ))}
+              {(data.experience.years !== "" ||
+                data.experience.month !== "") && (
+                <div className="job-card-container">
+                  <RiShoppingBagFill className="icon-styles" />
+                  <p className="details-heading">{`${data.experience.years} - ${data.experience.month} Yrs`}</p>
+                </div>
+              )}
 
               {data.salaryType !== "" && (
                 <div className="job-card-container">

@@ -31,10 +31,9 @@ function ExperiencePreview(props) {
                 {data.experience.years !== "" && (
                   <h5
                     style={{
-                      fontSize: "16px",
                       marginBottom: "0px",
-                      marginTop: "7px",
                     }}
+                    className="experience-text"
                   >
                     {data.experience.years}.{data.experience.months} Years
                   </h5>
@@ -137,7 +136,9 @@ function ExperiencePreview(props) {
                     )}
                   </div>
 
-                  <p>{each.responsibilities}</p>
+                  <p style={{ overflowWrap: "break-word" }}>
+                    {each.responsibilities}
+                  </p>
                 </>
               ))}
             </div>

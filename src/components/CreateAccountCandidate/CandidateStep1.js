@@ -23,7 +23,10 @@ function CandidateStep1() {
   }
 
   return (
-    <div className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light      border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
+    <div
+      className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2     border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary "
+      style={{ backgroundColor: "white" }}
+    >
       <p className="text-end">Step 1-2</p>
       <p className="text-center">Create account</p>
       <p className="text-center">My Info</p>

@@ -174,12 +174,21 @@ function InternshipPreview(props) {
                 <li>
                   <div className="preview-date-container">
                     <div>
-                      <h6>
-                        {each.degree}, {each.field}
-                      </h6>
-                      <p>
-                        {each.institute}, {each.city}
-                      </p>
+                      {each.degree === "Master's" ||
+                      each.degree === "Bachelor's" ||
+                      each.degree === "Diploma" ||
+                      each.degree === "Doctorate" ? (
+                        <>
+                          <h6>
+                            {each.degree}, {each.field}
+                          </h6>
+                          <p>
+                            {each.institute}, {each.city}
+                          </p>{" "}
+                        </>
+                      ) : (
+                        <h6>{each.degree}</h6>
+                      )}
                     </div>
 
                     <p style={{ fontSize: "15px" }}>
@@ -194,10 +203,12 @@ function InternshipPreview(props) {
                         each.degree === "Diploma" ||
                         each.degree === "Doctorate")
                         ? " - Present"
-                        : ` - ${each.endDate.toLocaleString("default", {
+                        : each.endDate !== ""
+                        ? ` - ${each.endDate.toLocaleString("default", {
                             month: "short",
                             year: "numeric",
-                          })}`}
+                          })}`
+                        : ""}
                     </p>
                   </div>
                 </li>
