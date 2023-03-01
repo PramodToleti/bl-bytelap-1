@@ -73,15 +73,15 @@ function ExperiencePreview(props) {
               </div>
             </div>
             {data.skills.length !== 0 && (
-              <div className="skills-container">
-                <h4 className="mb-3">Skill's: </h4>
-                <div className="mb-3">
-                  {data.skills.map((each) => (
-                    <h6 className="preview-skills" key={each}>
-                      {each}
-                    </h6>
-                  ))}
-                </div>
+              <div className="skills-container mb-3">
+                <h4 className="mb-3" style={{ marginRight: "20px" }}>
+                  Skill's:{" "}
+                </h4>
+                {data.skills.map((each) => (
+                  <h6 className="preview-skills" key={each}>
+                    {each}
+                  </h6>
+                ))}
               </div>
             )}
 
@@ -117,6 +117,7 @@ function ExperiencePreview(props) {
                 <>
                   <div className="preview-date-container">
                     <h6>{each.profile}</h6>
+                    <p>{each.company}</p>
                     <p style={{ fontSize: "15px", marginBottom: "10px" }}>
                       {each.startDate.toLocaleString("default", {
                         month: "short",
@@ -131,7 +132,7 @@ function ExperiencePreview(props) {
                           })}
                     </p>
                   </div>
-                  <p>{each.company}</p>
+
                   <p>{each.responsibilities}</p>
                 </>
               ))}

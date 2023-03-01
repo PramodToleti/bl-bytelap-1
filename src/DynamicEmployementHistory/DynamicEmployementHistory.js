@@ -146,7 +146,9 @@ const DynamicEmployementHistory = (props) => {
               <Form.Group className="mb-3 col-sm-4">
                 <Form.Label>From</Form.Label>
                 <DatePicker
-                  placeholderText="Date"
+                  placeholderText="MM / YYYY"
+                  dateFormat="MMM yyyy"
+                  showMonthYearPicker={true}
                   className="year-date mb-3"
                   selected={data.startDate}
                   onChange={(date) => onChangeStart(date, i, "startDate")}
@@ -163,7 +165,9 @@ const DynamicEmployementHistory = (props) => {
                   />
                 ) : (
                   <DatePicker
-                    placeholderText="Date"
+                    placeholderText="MM / YYYY"
+                    dateFormat="MMM yyyy"
+                    showMonthYearPicker={true}
                     className="year-date mb-3"
                     selected={data.endDate}
                     onChange={(date) => onChangeEnd(date, i)}

@@ -4,9 +4,24 @@ import { Form, Button, Row, Col } from "react-bootstrap"
 import TextArea from "antd/es/input/TextArea"
 
 const DynamicProjectForm = (props) => {
+  const [showHiddenFields, setShowHiddenFields] = useState(false)
   const [projectDetails, setProjectDetails] = useState([
-    { title: "", url: "", about: "" },
+    { title: "", url: "", about: "", hidden: false },
   ])
+
+  const handleHideFields = (index) => {
+    const list = [...projectDetails]
+    list[index].hidden = true
+    setProjectDetails(list)
+    setShowHiddenFields(true)
+  }
+
+  const handleShowFields = (index) => {
+    const list = [...projectDetails]
+    list[index].hidden = false
+    setProjectDetails(list)
+    setShowHiddenFields(false)
+  }
 
   const handleAddFields = () => {
     const values = [...projectDetails]
@@ -67,26 +82,40 @@ const DynamicProjectForm = (props) => {
                   Please enter the project name
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicText">
-                <Form.Control
-                  type="url"
-                  className="mb-3"
-                  placeholder="Paste URL"
-                  value={data.url}
-                  onChange={(e) => onChangeUrl(e, i)}
+              {!data.hidden && (
+                <Form.Group className="mb-3" controlId="formBasicText">
+                  <Form.Control
+                    type="url"
+                    className="mb-3"
+                    placeholder="Paste URL"
+                    value={data.url}
+                    onChange={(e) => onChangeUrl(e, i)}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please Enter a Valid URL
+                  </Form.Control.Feedback>
+                </Form.Group>
+              )}
+              {!data.hidden && (
+                <Form.Group className="mb-3">
+                  <TextArea
+                    rows={4}
+                    placeholder="Roles & Responsibility"
+                    value={data.about}
+                    onChange={(e) => onChangeAboutProject(e, i)}
+                  />
+                </Form.Group>
+              )}
+
+              {projectDetails.length > 1 && i !== projectDetails.length - 1 && (
+                <hr
+                  className="separator mt-4 mb-4"
+                  style={{
+                    border: "1px solid #000000",
+                    backgroundColor: "#000000",
+                  }}
                 />
-                <Form.Control.Feedback type="invalid">
-                  Please Enter a Valid URL
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <TextArea
-                  rows={4}
-                  placeholder="Roles & Responsibility"
-                  value={data.about}
-                  onChange={(e) => onChangeAboutProject(e, i)}
-                />
-              </Form.Group>
+              )}
             </Row>
           </div>
         )
@@ -105,9 +134,27 @@ const DynamicProjectForm = (props) => {
         )}
         {projectDetails.length > 1 && (
           <Col className="mb-2 d-flex justify-content-between">
-            <Button variant="danger" onClick={handleRemoveFields}>
-              Remove
-            </Button>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <Button variant="danger" onClick={handleRemoveFields}>
+                Remove
+              </Button>
+              {!showHiddenFields && (
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => handleHideFields(projectDetails.length - 1)}
+                >
+                  Hide
+                </Button>
+              )}
+              {showHiddenFields && (
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => handleShowFields(projectDetails.length - 1)}
+                >
+                  Show
+                </Button>
+              )}
+            </div>
 
             <Button
               variant="outline-primary"

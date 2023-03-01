@@ -14,51 +14,51 @@ function FresherPreview(props) {
   function renderPreview() {
     return (
       <>
-        {data.jobTitle !== "" ||
+        {(data.jobTitle !== "" ||
           data.skills.length !== 0 ||
-          (data.salaryType !== "" && (
-            <div
-              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
-              style={{ width: "100%", backgroundColor: "white" }}
-            >
-              {data.jobTitle !== "" && (
-                <>
-                  <h2 className="mb-4">Nilesh</h2>
-                  <h4 className="mb-3">{data.jobTitle}</h4>
-                </>
-              )}
-              <div className="role-container mb-3">
-                {data.jobTitle !== "" && <h4>Role: </h4>}
-                <div style={{ display: "flex", gap: "20px" }}>
-                  {data.jobTitle !== "" && <h5>Fresher</h5>}
-                  {data.salaryType !== "" && (
-                    <div style={{ display: "flex", gap: "10px" }}>
-                      <BiRupee style={{ color: "grey", fontSize: "25px" }} />
-                      <p>{data.salaryType}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-              {data.skills.length !== 0 && (
-                <div className="skills-container">
-                  <h4 className="mb-3">Skill's: </h4>
-                  <div className="mb-3">
-                    {data.skills.map((each) => (
-                      <h6 className="preview-skills" key={each}>
-                        {each}
-                      </h6>
-                    ))}
+          data.salaryType !== "") && (
+          <div
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            {data.jobTitle !== "" && (
+              <>
+                <h2 className="mb-4">Nilesh</h2>
+                <h4 className="mb-3">{data.jobTitle}</h4>
+              </>
+            )}
+            <div className="role-container mb-3">
+              {data.jobTitle !== "" && <h4>Role: </h4>}
+              <div style={{ display: "flex", gap: "20px" }}>
+                {data.jobTitle !== "" && <h5>Fresher</h5>}
+                {data.salaryType !== "" && (
+                  <div style={{ display: "flex", gap: "10px" }}>
+                    <BiRupee style={{ color: "grey", fontSize: "25px" }} />
+                    <p>{data.salaryType}</p>
                   </div>
-                </div>
-              )}
-              {data.jobTitle !== "" && (
-                <>
-                  <MdLocationOn style={{ color: "grey", fontSize: "30px" }} />{" "}
-                  <span style={{ color: "grey" }}>Indore, MP</span>
-                </>
-              )}
+                )}
+              </div>
             </div>
-          ))}
+            {data.skills.length !== 0 && (
+              <div className="skills-container mb-3">
+                <h4 className="mb-3" style={{ marginRight: "20px" }}>
+                  Skill's:{" "}
+                </h4>
+                {data.skills.map((each) => (
+                  <h6 className="preview-skills" key={each}>
+                    {each}
+                  </h6>
+                ))}
+              </div>
+            )}
+            {data.jobTitle !== "" && (
+              <>
+                <MdLocationOn style={{ color: "grey", fontSize: "30px" }} />{" "}
+                <span style={{ color: "grey" }}>Indore, MP</span>
+              </>
+            )}
+          </div>
+        )}
 
         {data.coverLetter !== "" && (
           <div

@@ -26,6 +26,7 @@ function Internship() {
   const [city, setCity] = useState([])
   const [duration, setDuration] = useState("")
   const [skills, setSkills] = useState([])
+  const [startDate, setStartDate] = useState("")
   const [responsibilities, setResponsibilities] = useState("")
   const [salaryType, setSalaryType] = useState("")
   const [salaryRange, setSalaryRange] = useState({ from: "", to: "" })
@@ -44,6 +45,7 @@ function Internship() {
     duration,
     checked,
     skills,
+    startDate,
     responsibilities,
     salaryType,
     salaryRange,
@@ -84,6 +86,10 @@ function Internship() {
 
   const handleEducation = (e) => {
     setEducation(e)
+  }
+
+  const handleChangeDate = (e) => {
+    setStartDate(e)
   }
 
   useEffect(() => {
@@ -229,52 +235,31 @@ function Internship() {
               }}
             />
 
-            {/* <div className="mt-3 custom-date">
+            <div className="mt-3 custom-date">
               <p style={{ marginTop: "8px" }}>Custom Date: </p>
 
               <div style={{ display: "flex", gap: "15px" }}>
-                <div style={{ display: "flex" }}>
-                  <Form.Label
-                    style={{
-                      marginRight: "10px",
-                      marginTop: "8px",
-                      fontSize: "17px",
-                    }}
-                  >
-                    From
-                  </Form.Label>
-                  <Form.Group className="mb-3" style={{ display: "flex" }}>
+                {!checked ? (
+                  <Form.Group className="mb-3">
                     <DatePicker
-                      placeholderText=""
-                      className="year-date"
+                      placeholderText="Date"
                       selected={startDate}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </div>
-                <div style={{ display: "flex" }}>
-                  <Form.Label
-                    style={{
-                      marginRight: "10px",
-                      marginTop: "8px",
-                      fontSize: "17px",
-                    }}
-                  >
-                    To
-                  </Form.Label>
-                  <Form.Group className="mb-3" style={{ display: "flex" }}>
-                    <DatePicker
-                      placeholderText=""
                       className="year-date"
-                      selected={endDate}
-                      onChange={handleChangeEnd}
+                      onChange={(e) => handleChangeDate(e)}
                     />
                   </Form.Group>
-                </div>
-                 
-                  </div>
+                ) : (
+                  <Form.Group className="mb-3">
+                    <DatePicker
+                      placeholderText="Date"
+                      selected={startDate}
+                      className="year-date"
+                      disabled={true}
+                    />
+                  </Form.Group>
+                )}
+              </div>
             </div>
-            */}
           </Form.Group>
 
           <AddRemove handleEducation={handleEducation} />

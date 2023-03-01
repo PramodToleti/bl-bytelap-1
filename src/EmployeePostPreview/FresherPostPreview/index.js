@@ -17,142 +17,144 @@ function FresherPostPreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
 
+  console.log(data)
+
   function renderPreview() {
     return (
       <>
-        {data.jobTitle !== "" ||
+        {(data.jobTitle !== "" ||
           data.jobTime !== "" ||
           data.jobType !== "" ||
           data.salaryType !== "" ||
-          (data.skills.length !== 0 && (
-            <div
-              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
-              style={{ width: "100%", backgroundColor: "white" }}
-            >
-              {data.jobTitle !== "" && (
+          data.skills.length !== 0) && (
+          <div
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+            style={{ width: "100%", backgroundColor: "white" }}
+          >
+            {data.jobTitle !== "" && (
+              <>
+                <div className="header">
+                  <h4 className="mb-3">{data.jobTitle}</h4>
+                  <img
+                    src="https://res.cloudinary.com/dlpgowt5s/image/upload/v1677222848/Screenshot_20230224_124108_e09oie.png"
+                    className="company-image"
+                  />
+                </div>
+
+                <div style={{ display: "flex", gap: "8px" }} className="mb-4">
+                  <FaBuilding style={{ color: "grey", fontSize: "25px" }} />
+                  <p style={{ color: "grey" }}>Wiro Tech Limited</p>
+                </div>
+              </>
+            )}
+
+            <div className="job-details-container-2">
+              {data.jobTime !== "" && (
                 <>
-                  <div className="header">
-                    <h4 className="mb-3">{data.jobTitle}</h4>
-                    <img
-                      src="https://res.cloudinary.com/dlpgowt5s/image/upload/v1677222848/Screenshot_20230224_124108_e09oie.png"
-                      className="company-image"
-                    />
+                  <div className="job-card-container">
+                    <MdShoppingBag className="icon-styles" />
+                    <p className="details-heading">{data.jobTime}</p>
                   </div>
 
-                  <div style={{ display: "flex", gap: "8px" }} className="mb-4">
-                    <FaBuilding style={{ color: "grey", fontSize: "25px" }} />
-                    <p style={{ color: "grey" }}>Wiro Tech Limited</p>
+                  <div className="job-card-container">
+                    <BsFillSunFill className="icon-styles" />
+                    <p className="details-heading">Day Shift</p>
                   </div>
                 </>
               )}
 
-              <div className="job-details-container-2">
-                {data.jobTime !== "" && (
-                  <>
-                    <div className="job-card-container">
-                      <MdShoppingBag className="icon-styles" />
-                      <p className="details-heading">{data.jobTime}</p>
-                    </div>
+              {data.jobType === "Office" && <br className="break-line" />}
 
-                    <div className="job-card-container">
-                      <BsFillSunFill className="icon-styles" />
-                      <p className="details-heading">Day Shift</p>
-                    </div>
-                  </>
-                )}
-
-                {data.jobType === "Office" && <br className="break-line" />}
-
-                {data.jobType !== "" && (
-                  <>
-                    <div
-                      className={`job-card-container ${
-                        data.jobType === "Office" ? "location-style" : ""
+              {data.jobType !== "" && (
+                <>
+                  <div
+                    className={`job-card-container ${
+                      data.jobType === "Office" ? "location-style" : ""
+                    }`}
+                  >
+                    <p
+                      className={` ${
+                        data.jobType !== "Office"
+                          ? "home-heading"
+                          : "details-heading"
                       }`}
                     >
-                      <p
-                        className={` ${
-                          data.jobType !== "Office"
-                            ? "home-heading"
-                            : "details-heading"
-                        }`}
-                      >
-                        {data.jobType === "Work from Home" ? (
-                          <>
-                            <FaHome
-                              className="icon-styles"
-                              style={{ marginTop: "4px" }}
-                            />
-                            <p
-                              style={{
-                                color: "grey",
-                              }}
-                              className="home-text"
-                            >
-                              Work from Home
-                            </p>
-                          </>
-                        ) : data.city.length !== 0 ? (
-                          <>
-                            <MdLocationOn
-                              style={{ fontSize: "20px", color: "grey" }}
-                            />
-                            {data.jobType}, {data.city[0].label}
-                          </>
-                        ) : (
-                          data.jobType
-                        )}
-                      </p>
-                    </div>
-
-                    {data.jobType === "Office" && <br className="break-line" />}
-                    {data.jobType === "Office" && (
-                      <p className="empty-element"></p>
-                    )}
-
-                    <div className="job-card-container">
-                      <RiShoppingBagFill className="icon-styles" />
-                      <p className="details-heading">Fresher</p>
-                    </div>
-                  </>
-                )}
-
-                {data.salaryType !== "" && (
-                  <div className="job-card-container">
-                    <p className="details-heading">
-                      <BiRupee className="icon-styles" />
-                      {data.salaryType === "Lac"
-                        ? `${Math.floor(data.salaryRange.from)}L - ${Math.floor(
-                            data.salaryRange.to
-                          )}L PA`
-                        : data.salaryType === "Per Month"
-                        ? `${Math.floor(
-                            data.salaryRange.from / 1000
-                          )}k - ${Math.floor(
-                            data.salaryRange.to / 1000
-                          )}k / month`
-                        : data.salaryType === "Fixed"
-                        ? `${Math.floor(data.salaryRange)}k / month`
-                        : data.salaryType}
+                      {data.jobType === "Work from Home" ? (
+                        <>
+                          <FaHome
+                            className="icon-styles"
+                            style={{ marginTop: "4px" }}
+                          />
+                          <p
+                            style={{
+                              color: "grey",
+                            }}
+                            className="home-text"
+                          >
+                            Work from Home
+                          </p>
+                        </>
+                      ) : data.city.length !== 0 ? (
+                        <>
+                          <MdLocationOn
+                            style={{ fontSize: "20px", color: "grey" }}
+                          />
+                          {data.jobType}, {data.city[0].label}
+                        </>
+                      ) : (
+                        data.jobType
+                      )}
                     </p>
                   </div>
-                )}
-              </div>
 
-              {data.skills.length !== 0 && (
-                <>
-                  <hr />
-                  <div className="mb-1">
-                    {data.skills.map((each) => (
-                      <h6 className="preview-skills" key={each}>
-                        {each}
-                      </h6>
-                    ))}
+                  {data.jobType === "Office" && <br className="break-line" />}
+                  {data.jobType === "Office" && (
+                    <p className="empty-element"></p>
+                  )}
+
+                  <div className="job-card-container">
+                    <RiShoppingBagFill className="icon-styles" />
+                    <p className="details-heading">Fresher</p>
                   </div>
                 </>
               )}
+
+              {data.salaryType !== "" && (
+                <div className="job-card-container">
+                  <p className="details-heading">
+                    <BiRupee className="icon-styles" />
+                    {data.salaryType === "Lac"
+                      ? `${Math.floor(data.salaryRange.from)}L - ${Math.floor(
+                          data.salaryRange.to
+                        )}L PA`
+                      : data.salaryType === "Per Month"
+                      ? `${Math.floor(
+                          data.salaryRange.from / 1000
+                        )}k - ${Math.floor(
+                          data.salaryRange.to / 1000
+                        )}k / month`
+                      : data.salaryType === "Fixed"
+                      ? `${Math.floor(data.salaryRange)}k / month`
+                      : data.salaryType}
+                  </p>
+                </div>
+              )}
             </div>
-          ))}
+
+            {data.skills.length !== 0 && (
+              <>
+                <hr />
+                <div className="mb-1">
+                  {data.skills.map((each) => (
+                    <h6 className="preview-skills" key={each}>
+                      {each}
+                    </h6>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        )}
 
         {(data.education.length !== 0 ||
           data.jobDescription !== "" ||
@@ -169,7 +171,11 @@ function FresherPostPreview(props) {
                 <h4 className="mb-3">Qualification:</h4>
                 {data.education.map((each) => (
                   <p>
-                    UG :{" "}
+                    {each.qualification === "Any Graduate"
+                      ? "UG : "
+                      : each.qualification === "Any Post Graduate"
+                      ? "PG : "
+                      : ""}
                     {each.field.length !== 0
                       ? `${each.qualification} in
                         (${each.field.map((each) => `${each}, `)})`

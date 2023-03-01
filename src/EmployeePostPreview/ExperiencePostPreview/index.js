@@ -85,14 +85,13 @@ function ExperiencePostPreview(props) {
                       <>
                         <FaHome
                           className="icon-styles"
-                          style={{ marginTop: "8px" }}
+                          style={{ marginTop: "4px" }}
                         />
                         <p
                           style={{
-                            marginTop: "10px",
-                            fontSize: "10px",
                             color: "grey",
                           }}
+                          className="home-text"
                         >
                           Work from Home
                         </p>
@@ -179,7 +178,11 @@ function ExperiencePostPreview(props) {
                 <h4 className="mb-3">Qualification:</h4>
                 {data.education.map((each) => (
                   <p>
-                    UG :{" "}
+                    {each.qualification === "Any Graduate"
+                      ? "UG : "
+                      : each.qualification === "Any Post Graduate"
+                      ? "PG : "
+                      : ""}
                     {each.field.length !== 0
                       ? `${each.qualification} in
                         (${each.field.map((each) => `${each}, `)})`

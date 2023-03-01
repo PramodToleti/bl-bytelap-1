@@ -27,7 +27,9 @@ function InternshipPostPreview(props) {
           data.duration !== "" ||
           data.salaryRange.from !== "" ||
           data.perks.length !== 0 ||
-          data.salaryRange.to !== "") && (
+          data.salaryRange.to !== "" ||
+          data.checked !== false ||
+          data.startDate !== "") && (
           <div
             className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border div-card   rounded container reveal  p-2  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
@@ -116,7 +118,12 @@ function InternshipPostPreview(props) {
                   Start Date
                   <br />
                   <p className="details-text">
-                    {data.checked ? "Immediate" : "Immediate"}
+                    {data.checked && data.startDate === ""
+                      ? "Immediate"
+                      : data.startDate.toLocaleString("default", {
+                          month: "short",
+                          year: "numeric",
+                        })}
                   </p>
                 </p>
               </div>

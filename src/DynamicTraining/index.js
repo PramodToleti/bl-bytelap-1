@@ -101,15 +101,19 @@ const DynamicTraining = (props) => {
                 <div className="date-container">
                   <Form.Label className="mt-3">From</Form.Label>
                   <DatePicker
-                    placeholderText="Date"
                     className="year-date"
                     selected={training.startDate}
                     onChange={(date) => handleChangeStart(date, index)}
+                    dateFormat="MMM yyyy"
+                    placeholderText="MM / YYYY"
+                    showMonthYearPicker={true}
                   />
                   <Form.Label className="mt-3">To</Form.Label>
                   <DatePicker
-                    placeholderText="Date"
                     className="year-date"
+                    dateFormat="MMM yyyy"
+                    placeholderText="MM / YYYY"
+                    showMonthYearPicker={true}
                     selected={training.endDate}
                     onChange={(date) => handleChangeEnd(date, index)}
                   />

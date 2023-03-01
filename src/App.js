@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
 //Login
 import LoginPage from "./components/LoginPage"
@@ -38,6 +39,12 @@ import CandidateMyinfo from "./components/Candidate/CandidateMyinfo"
 import "./App.css"
 
 const App = () => {
+  const [data, setData] = useState({})
+
+  const handleData = (data) => {
+    setData(data)
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -138,7 +145,9 @@ const App = () => {
           <Route
             exact
             path="/candidate/register-myself"
-            component={CandidateRegistermyself}
+            render={(props) => (
+              <CandidateRegistermyself {...props} handleData={handleData} />
+            )}
           />
           {/* Candidate My Info */}
           <Route

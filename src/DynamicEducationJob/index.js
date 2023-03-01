@@ -172,11 +172,13 @@ const DynamicEducationJob = (props) => {
                   <div className="mt-3 custom-date">
                     <div className="date-container">
                       <DatePicker
-                        placeholderText="Year"
+                        dateFormat="MMM yyyy"
                         className="year-date mb-3"
                         selected={data.startDate}
                         value={data.startDate}
                         onChange={(date) => handleChangeStart(date, i)}
+                        showMonthYearPicker={true}
+                        placeholderText="MM / YYYY"
                       />
 
                       {data.present ? (
@@ -188,7 +190,9 @@ const DynamicEducationJob = (props) => {
                         />
                       ) : (
                         <DatePicker
-                          placeholderText="Year"
+                          dateFormat="MMM yyyy"
+                          placeholderText="MM / YYYY"
+                          showMonthYearPicker={true}
                           className="year-date mb-3"
                           selected={data.endDate}
                           value={data.endDate}
@@ -200,7 +204,7 @@ const DynamicEducationJob = (props) => {
                       type="checkbox"
                       label="Present"
                       id="checkbox"
-                      className="custom-control-input ml-1 mb-3"
+                      className="custom-control-input ml-1 mt-2"
                       checked={data.present}
                       onChange={(e) => handlePresent(e, i)}
                     />

@@ -19,7 +19,7 @@ import DynamicTraining from "../../../DynamicTraining"
 import InternshipPreview from "../../../CandidateRegisterPreview/InternshipPreview"
 import ChooseCity from "../../../ChooseCity"
 
-function Internship() {
+function Internship(props) {
   const [validated, setValidated] = useState(false)
   //Input data
   const [jobTitle, setJobTitle] = useState("")
@@ -50,6 +50,10 @@ function Internship() {
     languages,
     availability,
   }
+
+  useEffect(() => {
+    //Callback function
+  }, [data])
 
   {
     /*const [isFixed, setIsFixed] = useState(false)

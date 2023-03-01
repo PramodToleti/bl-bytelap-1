@@ -7,6 +7,8 @@ import ChooseCity from "../ChooseCity"
 import ChooseField from "../ChooseField"
 
 const DynamicEducationExperience = (props) => {
+  const [showHiddenFields, setShowHiddenFields] = useState(false)
+
   const [degreeList, setDegreeList] = useState([
     {
       degree: "",
@@ -15,8 +17,23 @@ const DynamicEducationExperience = (props) => {
       city: "",
       startDate: "",
       endDate: "",
+      hidden: false,
     },
   ])
+
+  const handleHideFields = (index) => {
+    const list = [...degreeList]
+    list[index].hidden = true
+    setDegreeList(list)
+    setShowHiddenFields(true)
+  }
+
+  const handleShowFields = (index) => {
+    const list = [...degreeList]
+    list[index].hidden = false
+    setDegreeList(list)
+    setShowHiddenFields(false)
+  }
 
   const handleChangeStart = (date, index) => {
     const list = [...degreeList]
@@ -79,8 +96,10 @@ const DynamicEducationExperience = (props) => {
         institute: "",
         startDate: "",
         endDate: "",
+        hidden: false,
       },
     ])
+    setShowHiddenFields(false)
   }
 
   const handleRemoveFields = () => {
@@ -130,58 +149,70 @@ const DynamicEducationExperience = (props) => {
                     onChangeField={(e) => onChangeField(e, i)}
                     value={data.field}
                   />
-                  <Form.Group className="mt-3" controlId="collegeName">
-                    <Form.Control
-                      type="text"
-                      placeholder="Institute Name"
-                      required
-                      value={data.institute}
-                      onChange={(e) => onChangeInstitute(e, i)}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      Please enter your Institute
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                </FormGroup>
-                <Form.Group className="mb-3">
-                  <ChooseCity
-                    onChangeCity={(e) => onChangeCity(e, i)}
-                    value={data.city}
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3" style={{ width: "100%" }}>
-                  <Form.Label style={{ marginBottom: "0px" }}>
-                    Year of Completion
-                  </Form.Label>
-                  <div className="mt-3 custom-date">
-                    <div className="date-container">
-                      <DatePicker
-                        placeholderText="Year"
-                        className="year-date mb-3"
-                        selected={data.startDate}
-                        value={data.startDate}
-                        onChange={(date) => handleChangeStart(date, i)}
+                  {!data.hidden && (
+                    <Form.Group className="mt-3" controlId="collegeName">
+                      <Form.Control
+                        type="text"
+                        placeholder="Institute Name"
+                        required
+                        value={data.institute}
+                        onChange={(e) => onChangeInstitute(e, i)}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        Please enter your Institute
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  )}
+                </FormGroup>
 
-                      {data.present ? (
-                        <Form.Control
-                          type="text"
-                          className="year-date mb-3"
-                          placeholder="Present"
-                          disabled
-                        />
-                      ) : (
+                {!data.hidden && (
+                  <Form.Group className="mb-3">
+                    <ChooseCity
+                      onChangeCity={(e) => onChangeCity(e, i)}
+                      value={data.city}
+                    />
+                  </Form.Group>
+                )}
+
+                {!data.hidden && (
+                  <Form.Group className="mb-3" style={{ width: "100%" }}>
+                    <Form.Label style={{ marginBottom: "0px" }}>
+                      Year of Completion
+                    </Form.Label>
+                    <div className="mt-3 custom-date">
+                      <div className="date-container">
                         <DatePicker
-                          placeholderText="Year"
+                          placeholderText="MM / YYYY"
+                          dateFormat="MMM yyyy"
+                          showMonthYearPicker={true}
                           className="year-date mb-3"
-                          selected={data.endDate}
-                          value={data.endDate}
-                          onChange={(date) => handleChangeEnd(date, i)}
+                          selected={data.startDate}
+                          value={data.startDate}
+                          onChange={(date) => handleChangeStart(date, i)}
                         />
-                      )}
+
+                        {data.present ? (
+                          <Form.Control
+                            type="text"
+                            className="year-date mb-3"
+                            placeholder="Present"
+                            disabled
+                          />
+                        ) : (
+                          <DatePicker
+                            placeholderText="MM / YYYY"
+                            className="year-date mb-3"
+                            selected={data.endDate}
+                            value={data.endDate}
+                            onChange={(date) => handleChangeEnd(date, i)}
+                            showMonthYearPicker={true}
+                            dateFormat="MMM yyyy"
+                          />
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </Form.Group>
+                  </Form.Group>
+                )}
               </>
             )}
 
@@ -203,28 +234,37 @@ const DynamicEducationExperience = (props) => {
           <Button variant="outline-primary" onClick={handleAddFields}>
             Add More Education
           </Button>
-          {degreeList.length > 1 && (
-            <Button
-              variant="outline-danger"
-              size="sm"
-              onClick={handleRemoveFields}
-            >
-              Remove
-            </Button>
-          )}
+          <div style={{ display: "flex", gap: "10px" }}>
+            {degreeList.length > 1 && (
+              <>
+                <Button
+                  variant="outline-danger"
+                  size="sm"
+                  onClick={handleRemoveFields}
+                >
+                  Remove
+                </Button>
+                {!showHiddenFields && (
+                  <Button
+                    variant="outline-secondary"
+                    onClick={() => handleHideFields(degreeList.length - 1)}
+                  >
+                    Hide
+                  </Button>
+                )}
+                {showHiddenFields && (
+                  <Button
+                    variant="outline-secondary"
+                    onClick={() => handleShowFields(degreeList.length - 1)}
+                  >
+                    Show
+                  </Button>
+                )}
+              </>
+            )}
+          </div>
         </Col>
       </Row>
-
-      {/*<div className="submit-container">
-        <Button
-          className="mt-5 "
-          variant="primary"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
-      </div>*/}
     </Form>
   )
 }
