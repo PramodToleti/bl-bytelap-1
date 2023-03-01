@@ -28,8 +28,7 @@ function FresherPreview(props) {
               </>
             )}
             <div className="role-container mb-3">
-              {data.jobTitle !== "" && <h4>Role: </h4>}
-              <div style={{ display: "flex", gap: "20px" }}>
+              <div style={{ display: "flex", gap: "20px" }} className="mt-2">
                 {data.jobTitle !== "" && <h5>Fresher</h5>}
                 {data.salaryType !== "" && (
                   <div style={{ display: "flex", gap: "10px" }}>
