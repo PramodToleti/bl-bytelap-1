@@ -23,7 +23,7 @@ function Internship() {
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
-  const [city, setCity] = useState([])
+  const [city, setCity] = useState("")
   const [duration, setDuration] = useState("")
   const [skills, setSkills] = useState([])
   const [startDate, setStartDate] = useState("")
@@ -114,6 +114,11 @@ function Internship() {
             <Form.Control
               type="number"
               placeholder="5k/Month"
+              onKeyDown={(e) => {
+                if (e.target.value.length > 4) {
+                  e.preventDefault()
+                }
+              }}
               onChange={(e) => setSalaryRange(e.target.value)}
             />
           </Form.Group>
@@ -157,6 +162,11 @@ function Internship() {
           <Form.Group className="mb-3 mt-2">
             <Form.Control
               type="number"
+              onKeyDown={(e) => {
+                if (e.target.value.length > 4) {
+                  e.preventDefault()
+                }
+              }}
               placeholder="Min assumed amount"
               onChange={(e) => setSalaryRange(e.target.value)}
             />
@@ -192,13 +202,13 @@ function Internship() {
             <Form.Label>Job Type</Form.Label>
             <Form.Select onChange={(e) => setJobType(e.target.value)}>
               <option>Select an option</option>
-              <option> Office </option>
+              <option>Office</option>
               <option>Work from Home</option>
             </Form.Select>
           </Form.Group>
           {jobType === "Office" && (
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <ChooseCity onChangeCity={onChangeCity} />
+              <ChooseCity onChangeCity={onChangeCity} value={city} />
               <Form.Control.Feedback type="invalid">
                 Please enter your city.
               </Form.Control.Feedback>
@@ -231,6 +241,7 @@ function Internship() {
               checked={checked}
               className="mb-3"
               onChange={(e) => {
+                setStartDate("")
                 setChecked(e.target.checked)
               }}
             />

@@ -17,7 +17,7 @@ const ChooseCity = (props) => {
   return (
     <Typeahead
       id="basic-example"
-      onChange={onChangeUserCity}
+      onChange={(e) => onChangeUserCity(e)}
       options={options}
       placeholder="Location"
       selected={selected}

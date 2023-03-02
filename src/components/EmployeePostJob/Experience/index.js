@@ -23,7 +23,7 @@ function Experience() {
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
-  const [city, setCity] = useState([])
+  const [city, setCity] = useState("")
   const [shift, setShift] = useState("")
   const [skills, setSkills] = useState([])
   const [jobDescription, setDescription] = useState("")
@@ -217,7 +217,7 @@ function Experience() {
           </Form.Group>
           {jobType === "Office" && (
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <ChooseCity onChangeCity={onChangeCity} />
+              <ChooseCity onChangeCity={onChangeCity} value={city} />
               <Form.Control.Feedback type="invalid">
                 Please enter your city.
               </Form.Control.Feedback>

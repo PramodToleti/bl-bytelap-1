@@ -27,14 +27,9 @@ function ExperiencePreview(props) {
             <h4 className="mb-3">{data.jobTitle}</h4>
             <div className="experience-container mb-3">
               {data.experience.years !== "" && <h4>Experience: </h4>}
-              <div style={{ display: "flex", gap: "10px" }}>
+              <div style={{ display: "flex", gap: "10px", marginTop: "2px" }}>
                 {data.experience.years !== "" && (
-                  <h5
-                    style={{
-                      marginBottom: "0px",
-                    }}
-                    className="experience-text"
-                  >
+                  <h5 className="experience-text">
                     {data.experience.years}.{data.experience.months} Years
                   </h5>
                 )}
@@ -62,9 +57,9 @@ function ExperiencePreview(props) {
                         Not Disclosed
                       </h6>
                     ) : (
-                      <h5 style={{ fontSize: "16px", marginTop: "5px" }}>
-                        {data.ctc.lacs}.{parseInt(data.ctc.thousand / 10000)}L
-                        PA
+                      <h5 style={{ fontSize: "14px", marginTop: "5px" }}>
+                        {data.ctc.lacs.substring(0, 2)}.
+                        {parseInt(data.ctc.thousand / 10000)}L PA
                       </h5>
                     )}
                   </div>
@@ -116,7 +111,9 @@ function ExperiencePreview(props) {
                 <>
                   <div className="preview-date-container">
                     <h6>{each.profile}</h6>
-                    <p>{each.company}</p>
+
+                    <p className="mobile-company">{each.company}</p>
+
                     {(each.profile !== "" ||
                       each.company !== "" ||
                       each.startDate !== "") && (
@@ -126,7 +123,7 @@ function ExperiencePreview(props) {
                           year: "numeric",
                         })}{" "}
                         -{" "}
-                        {each.endDate === ""
+                        {each.endDate === "" && each.present === true
                           ? "Present"
                           : each.endDate.toLocaleString("default", {
                               month: "short",
@@ -135,6 +132,7 @@ function ExperiencePreview(props) {
                       </p>
                     )}
                   </div>
+                  <p className="desktop-company">{each.company}</p>
 
                   <p style={{ overflowWrap: "break-word" }}>
                     {each.responsibilities}
@@ -258,25 +256,69 @@ function ExperiencePreview(props) {
               <div>
                 <div className="preview-date-container">
                   <div>
-                    <h6>
-                      {each.degree}, {each.field}
-                    </h6>
-                    <p>
-                      {each.institute}, {each.city}
-                    </p>
+                    {each.degree === "Master's" ||
+                    each.degree === "Bachelor's" ||
+                    each.degree === "Diploma" ||
+                    each.degree === "Doctorate" ? (
+                      <>
+                        <h6>
+                          {each.degree}, {each.field}
+                        </h6>
+                        <p>
+                          {each.institute}, {each.city}
+                        </p>{" "}
+                      </>
+                    ) : (
+                      <h6>{each.degree}</h6>
+                    )}
                   </div>
+
+                  <div className="desktop-date">
+                    {(each.degree === "High Secondary (12th)" ||
+                      each.degree === "Secondary (10th)") && (
+                      <p>
+                        {each.yearOfCompletion.toLocaleString("default", {
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </p>
+                    )}
+                  </div>
+
                   <p style={{ fontSize: "15px" }}>
                     {each.startDate.toLocaleString("default", {
                       month: "short",
                       year: "numeric",
-                    })}{" "}
-                    {each.endDate === ""
+                    })}
+
+                    {each.endDate === "" &&
+                    (each.degree === "Master's" ||
+                      each.degree === "Bachelor's" ||
+                      each.degree === "Diploma" ||
+                      each.degree === "Doctorate")
                       ? " - Present"
-                      : ` - ${each.endDate.toLocaleString("default", {
+                      : each.endDate !== ""
+                      ? ` - ${each.endDate.toLocaleString("default", {
                           month: "short",
                           year: "numeric",
-                        })}`}
+                        })}`
+                      : ""}
                   </p>
+                </div>
+                {(each.degree === "High Secondary (12th)" ||
+                  each.degree === "Secondary (10th)") && (
+                  <p>{each.schoolName}</p>
+                )}
+                <div className="mobile-date">
+                  {(each.degree === "High Secondary (12th)" ||
+                    each.degree === "Secondary (10th)") && (
+                    <p>
+                      {each.yearOfCompletion.toLocaleString("default", {
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
@@ -291,7 +333,7 @@ function ExperiencePreview(props) {
             <h4 className="mb-3">Languages:</h4>
             <div className="languages-list">
               {data.languages.map((each) => (
-                <h5>{each}</h5>
+                <p>{each}</p>
               ))}
             </div>
           </div>

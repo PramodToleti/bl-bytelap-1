@@ -15,6 +15,8 @@ const DynamicEducationExperience = (props) => {
       field: "",
       institute: "",
       city: "",
+      yearOfCompletion: "",
+      schoolName: "",
       startDate: "",
       endDate: "",
       hidden: false,
@@ -86,6 +88,18 @@ const DynamicEducationExperience = (props) => {
     setDegreeList(list)
   }
 
+  const onChangeSchool = (e, index) => {
+    const list = [...degreeList]
+    list[index].schoolName = e.target.value
+    setDegreeList(list)
+  }
+
+  const onChangeCompletion = (date, index) => {
+    const list = [...degreeList]
+    list[index].yearOfCompletion = date
+    setDegreeList(list)
+  }
+
   const handleAddFields = () => {
     setDegreeList([
       ...degreeList,
@@ -93,6 +107,8 @@ const DynamicEducationExperience = (props) => {
         degree: "",
         field: "",
         city: "",
+        yearOfCompletion: "",
+        schoolName: "",
         institute: "",
         startDate: "",
         endDate: "",
@@ -138,6 +154,37 @@ const DynamicEducationExperience = (props) => {
                 Please select a degree
               </Form.Control.Feedback>
             </Form.Group>
+
+            {(data.degree === "High Secondary (12th)" ||
+              data.degree === "Secondary (10th)") && (
+              <>
+                <Form.Group controlId="schoolName" className="mb-3">
+                  <Form.Control
+                    type="text"
+                    placeholder="School Name/State Board/CBSE"
+                    required
+                    onChange={(e) => onChangeSchool(e, i)}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please provide a school name
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label className="mb-1">Year of Completion</Form.Label>
+                  <div style={{ maxWidth: "200px" }}>
+                    <DatePicker
+                      dateFormat="MMM yyyy"
+                      className="year-date mb-3"
+                      placeholderText="MM / YYYY"
+                      selected={data.yearOfCompletion}
+                      showMonthYearPicker={true}
+                      value={data.yearOfCompletion}
+                      onChange={(e) => onChangeCompletion(e, i)}
+                    />
+                  </div>
+                </Form.Group>
+              </>
+            )}
 
             {(data.degree === "Master's" ||
               data.degree === "Bachelor's" ||

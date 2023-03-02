@@ -23,7 +23,7 @@ function Fresher() {
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
-  const [city, setCity] = useState([])
+  const [city, setCity] = useState("")
   const [shift, setShift] = useState("")
   const [skills, setSkills] = useState([])
   const [jobDescription, setDescription] = useState("")
@@ -116,6 +116,11 @@ function Fresher() {
                   <Form.Control
                     type="number"
                     placeholder="1 lac"
+                    onKeyDown={(e) => {
+                      if (e.target.value.length > 1) {
+                        e.preventDefault()
+                      }
+                    }}
                     onChange={(e) =>
                       setSalaryRange({ ...salaryRange, from: e.target.value })
                     }
@@ -128,6 +133,11 @@ function Fresher() {
                   <Form.Control
                     type="number"
                     placeholder="3 lac"
+                    onKeyDown={(e) => {
+                      if (e.target.value.length > 1) {
+                        e.preventDefault()
+                      }
+                    }}
                     onChange={(e) =>
                       setSalaryRange({ ...salaryRange, to: e.target.value })
                     }
@@ -147,6 +157,11 @@ function Fresher() {
                   <Form.Control
                     type="number"
                     placeholder="10k"
+                    onKeyDown={(e) => {
+                      if (e.target.value.length > 1) {
+                        e.preventDefault()
+                      }
+                    }}
                     onChange={(e) =>
                       setSalaryRange({ ...salaryRange, from: e.target.value })
                     }
@@ -159,6 +174,11 @@ function Fresher() {
                   <Form.Control
                     type="number"
                     placeholder="20k"
+                    onKeyDown={(e) => {
+                      if (e.target.value.length > 1) {
+                        e.preventDefault()
+                      }
+                    }}
                     onChange={(e) =>
                       setSalaryRange({ ...salaryRange, to: e.target.value })
                     }
@@ -174,6 +194,11 @@ function Fresher() {
             <Form.Control
               type="number"
               placeholder="20k/Month"
+              onKeyDown={(e) => {
+                if (e.target.value.length > 4) {
+                  e.preventDefault()
+                }
+              }}
               onChange={(e) => setSalaryRange(e.target.value)}
             />
           </Form.Group>
@@ -216,7 +241,7 @@ function Fresher() {
           </Form.Group>
           {jobType === "Office" && (
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <ChooseCity onChangeCity={onChangeCity} />
+              <ChooseCity onChangeCity={onChangeCity} value={city} />
               <Form.Control.Feedback type="invalid">
                 Please enter your city.
               </Form.Control.Feedback>

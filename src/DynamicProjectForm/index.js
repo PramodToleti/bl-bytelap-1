@@ -3,11 +3,15 @@ import "bootstrap/dist/css/bootstrap.css"
 import { Form, Button, Row, Col } from "react-bootstrap"
 import TextArea from "antd/es/input/TextArea"
 
+import "./index.css"
+
 const DynamicProjectForm = (props) => {
   const [showHiddenFields, setShowHiddenFields] = useState(false)
   const [projectDetails, setProjectDetails] = useState([
-    { title: "", url: "", about: "", hidden: false },
+    { title: "", url: "", about: "", hidden: false, isValid: true },
   ])
+
+  console.log(projectDetails)
 
   const handleHideFields = (index) => {
     const list = [...projectDetails]
@@ -29,7 +33,7 @@ const DynamicProjectForm = (props) => {
     setProjectDetails(values)
   }
 
-  const handleRemoveFields = (index) => {
+  const handleRemoveFields = () => {
     const values = [...projectDetails]
     values.pop()
     setProjectDetails(values)
@@ -44,6 +48,9 @@ const DynamicProjectForm = (props) => {
   const onChangeUrl = (e, index) => {
     const values = [...projectDetails]
     values[index].url = e.target.value
+    const regexUrlPattern = /^(?:(?:https?):\/\/)?(?:www\.)?[^\s/$.?#].[^\s]*$/i
+
+    values[index].isValid = regexUrlPattern.test(e.target.value)
     setProjectDetails(values)
   }
 
@@ -86,14 +93,15 @@ const DynamicProjectForm = (props) => {
                 <Form.Group className="mb-3" controlId="formBasicText">
                   <Form.Control
                     type="url"
-                    className="mb-3"
+                    className={data.isValid ? "" : "danger"}
                     placeholder="Paste URL"
                     value={data.url}
                     onChange={(e) => onChangeUrl(e, i)}
+                    isInvalid={!data.isValid}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    Please Enter a Valid URL
-                  </Form.Control.Feedback>
+                  {!data.isValid && (
+                    <p className="err-msg">* Please Provide a Valid URL</p>
+                  )}
                 </Form.Group>
               )}
               {!data.hidden && (

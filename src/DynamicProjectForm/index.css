@@ -1,0 +1,10 @@
+.err-msg {
+  color: red;
+  font-family: "Roboto";
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.danger {
+  border: 1px solid red;
+}

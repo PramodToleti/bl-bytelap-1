@@ -191,6 +191,18 @@ function InternshipPreview(props) {
                       )}
                     </div>
 
+                    <div className="desktop-date">
+                      {(each.degree === "High Secondary (12th)" ||
+                        each.degree === "Secondary (10th)") && (
+                        <p>
+                          {each.yearOfCompletion.toLocaleString("default", {
+                            month: "short",
+                            year: "numeric",
+                          })}
+                        </p>
+                      )}
+                    </div>
+
                     <p style={{ fontSize: "15px" }}>
                       {each.startDate.toLocaleString("default", {
                         month: "short",
@@ -211,6 +223,21 @@ function InternshipPreview(props) {
                         : ""}
                     </p>
                   </div>
+                  {(each.degree === "High Secondary (12th)" ||
+                    each.degree === "Secondary (10th)") && (
+                    <p>{each.schoolName}</p>
+                  )}
+                  <div className="mobile-date">
+                    {(each.degree === "High Secondary (12th)" ||
+                      each.degree === "Secondary (10th)") && (
+                      <p>
+                        {each.yearOfCompletion.toLocaleString("default", {
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </p>
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>
@@ -225,7 +252,7 @@ function InternshipPreview(props) {
             <h4 className="mb-3">Languages:</h4>
             <div className="languages-list">
               {data.languages.map((each) => (
-                <h5>{each}</h5>
+                <p>{each}</p>
               ))}
             </div>
           </div>

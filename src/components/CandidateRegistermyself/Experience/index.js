@@ -398,6 +398,7 @@ function Experience() {
                 <option>Select</option>
                 <option>Office</option>
                 <option>Work from Home</option>
+                <option>Any</option>
               </Form.Select>
             </Form.Group>
 
@@ -507,6 +508,9 @@ function Experience() {
                       type="number"
                       placeholder="Lac"
                       required
+                      onKeyDown={(e) => {
+                        if (e.target.value.length >= 2) e.preventDefault()
+                      }}
                       onChange={(e) => setCTC({ ...ctc, lacs: e.target.value })}
                     />
                     <Form.Control.Feedback type="invalid">

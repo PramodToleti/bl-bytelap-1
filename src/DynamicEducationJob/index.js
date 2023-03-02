@@ -15,6 +15,8 @@ const DynamicEducationJob = (props) => {
       field: "",
       institute: "",
       city: "",
+      yearOfCompletion: "",
+      schoolName: "",
       startDate: "",
       endDate: "",
       present: false,
@@ -78,6 +80,18 @@ const DynamicEducationJob = (props) => {
     setDegreeList(list)
   }
 
+  const onChangeSchool = (e, index) => {
+    const list = [...degreeList]
+    list[index].schoolName = e.target.value
+    setDegreeList(list)
+  }
+
+  const onChangeCompletion = (date, index) => {
+    const list = [...degreeList]
+    list[index].yearOfCompletion = date
+    setDegreeList(list)
+  }
+
   const onChangeInstitute = (e, index) => {
     const list = [...degreeList]
     list[index].institute = e.target.value
@@ -91,6 +105,8 @@ const DynamicEducationJob = (props) => {
         degree: "",
         field: "",
         city: "",
+        schoolName: "",
+        yearOfCompletion: "",
         institute: "",
         startDate: "",
         endDate: "",
@@ -134,6 +150,37 @@ const DynamicEducationJob = (props) => {
                 Please select a degree
               </Form.Control.Feedback>
             </Form.Group>
+
+            {(data.degree === "High Secondary (12th)" ||
+              data.degree === "Secondary (10th)") && (
+              <>
+                <Form.Group controlId="schoolName" className="mb-3">
+                  <Form.Control
+                    type="text"
+                    placeholder="School Name/State Board/CBSE"
+                    required
+                    onChange={(e) => onChangeSchool(e, i)}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please provide a school name
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label className="mb-1">Year of Completion</Form.Label>
+                  <div style={{ maxWidth: "200px" }}>
+                    <DatePicker
+                      dateFormat="MMM yyyy"
+                      className="year-date mb-3"
+                      placeholderText="MM / YYYY"
+                      selected={data.yearOfCompletion}
+                      showMonthYearPicker={true}
+                      value={data.yearOfCompletion}
+                      onChange={(e) => onChangeCompletion(e, i)}
+                    />
+                  </div>
+                </Form.Group>
+              </>
+            )}
 
             {(data.degree === "Master's" ||
               data.degree === "Bachelor's" ||
@@ -242,17 +289,6 @@ const DynamicEducationJob = (props) => {
           )}
         </Col>
       </Row>
-
-      {/*<div className="submit-container">
-        <Button
-          className="mt-5 "
-          variant="primary"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
-      </div>*/}
     </Form>
   )
 }

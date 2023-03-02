@@ -22,9 +22,11 @@
 
 .languages-list {
   display: flex;
-  justify-content: space-between;
-  width: 70%;
+  gap: 15px;
+  flex-wrap: wrap;
+  width: 100%;
   max-width: 400px;
+  font-weight: 400;
 }
 
 .skills-container {
@@ -37,6 +39,30 @@
   .preview-date-container {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .school-container {
+    display: flex;
+    justify-content: space-between;
     width: 80%;
+    max-width: 500px;
+  }
+
+  .desktop-date {
+    display: block;
+  }
+
+  .mobile-date {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .desktop-date {
+    display: none;
   }
 }

@@ -65,10 +65,10 @@ const DynamicTraining = (props) => {
   useEffect(() => {
     trainings.every((each) => {
       if (
-        each.title !== "" &&
-        each.institute !== "" &&
-        each.startDate !== "" &&
-        each.endDate !== "" &&
+        each.title !== "" ||
+        each.institute !== "" ||
+        each.startDate !== "" ||
+        each.endDate !== "" ||
         each.file !== null
       )
         props.handleTraining(trainings)

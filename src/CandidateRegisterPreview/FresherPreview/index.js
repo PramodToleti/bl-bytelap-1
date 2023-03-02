@@ -34,8 +34,13 @@ function FresherPreview(props) {
                   <div style={{ display: "flex", gap: "10px" }}>
                     <BiRupee style={{ color: "grey", fontSize: "25px" }} />
                     <p>
-                      {data.salaryRange.from} - {data.salaryRange.to}{" "}
-                      {data.salaryType}
+                      {data.salaryRange.from !== "" &&
+                        data.salaryRange.to !== "" &&
+                        `${data.salaryRange.from.substring(
+                          0,
+                          2
+                        )} - ${data.salaryRange.to.substring(0, 2)}`}
+                      {data.salaryType === "Lac" ? "L PA" : data.salaryType}
                     </p>
                   </div>
                 )}
@@ -193,26 +198,69 @@ function FresherPreview(props) {
               <div>
                 <div className="preview-date-container">
                   <div>
-                    <h6>
-                      {each.degree}, {each.field}
-                    </h6>
-                    <p>
-                      {each.institute}, {each.city}
-                    </p>
+                    {each.degree === "Master's" ||
+                    each.degree === "Bachelor's" ||
+                    each.degree === "Diploma" ||
+                    each.degree === "Doctorate" ? (
+                      <>
+                        <h6>
+                          {each.degree}, {each.field}
+                        </h6>
+                        <p>
+                          {each.institute}, {each.city}
+                        </p>{" "}
+                      </>
+                    ) : (
+                      <h6>{each.degree}</h6>
+                    )}
                   </div>
+
+                  <div className="desktop-date">
+                    {(each.degree === "High Secondary (12th)" ||
+                      each.degree === "Secondary (10th)") && (
+                      <p>
+                        {each.yearOfCompletion.toLocaleString("default", {
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </p>
+                    )}
+                  </div>
+
                   <p style={{ fontSize: "15px" }}>
                     {each.startDate.toLocaleString("default", {
                       month: "short",
                       year: "numeric",
-                    })}{" "}
-                    -{" "}
-                    {each.endDate === ""
-                      ? "Present"
-                      : each.endDate.toLocaleString("default", {
+                    })}
+
+                    {each.endDate === "" &&
+                    (each.degree === "Master's" ||
+                      each.degree === "Bachelor's" ||
+                      each.degree === "Diploma" ||
+                      each.degree === "Doctorate")
+                      ? " - Present"
+                      : each.endDate !== ""
+                      ? ` - ${each.endDate.toLocaleString("default", {
                           month: "short",
                           year: "numeric",
-                        })}
+                        })}`
+                      : ""}
                   </p>
+                </div>
+                {(each.degree === "High Secondary (12th)" ||
+                  each.degree === "Secondary (10th)") && (
+                  <p>{each.schoolName}</p>
+                )}
+                <div className="mobile-date">
+                  {(each.degree === "High Secondary (12th)" ||
+                    each.degree === "Secondary (10th)") && (
+                    <p>
+                      {each.yearOfCompletion.toLocaleString("default", {
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
@@ -227,7 +275,7 @@ function FresherPreview(props) {
             <h4 className="mb-3">Languages:</h4>
             <div className="languages-list">
               {data.languages.map((each) => (
-                <h5>{each}</h5>
+                <p>{each}</p>
               ))}
             </div>
           </div>

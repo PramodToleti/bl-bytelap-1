@@ -17,7 +17,7 @@ function FresherPostPreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
 
-  console.log(data)
+  console.log(data.education[0])
 
   function renderPreview() {
     return (
@@ -123,7 +123,7 @@ function FresherPostPreview(props) {
                 <div className="job-card-container">
                   <p className="details-heading">
                     <BiRupee className="icon-styles" />
-                    {data.salaryType === "Lac"
+                    {/*{data.salaryType === "Lac"
                       ? `${Math.floor(data.salaryRange.from)}L - ${Math.floor(
                           data.salaryRange.to
                         )}L PA`
@@ -135,6 +135,13 @@ function FresherPostPreview(props) {
                         )}k / month`
                       : data.salaryType === "Fixed"
                       ? `${Math.floor(data.salaryRange)}k / month`
+                        : data.salaryType}*/}
+                    {data.salaryType === "Lac"
+                      ? `${data.salaryRange.from}L - ${data.salaryRange.to}L PA`
+                      : data.salaryType === "Per Month"
+                      ? `${data.salaryRange.from}k - ${data.salaryRange.to}k / month`
+                      : data.salaryType === "Fixed"
+                      ? `${data.salaryRange}k / month`
                       : data.salaryType}
                   </p>
                 </div>
@@ -231,9 +238,9 @@ function FresherPostPreview(props) {
               <>
                 <div>
                   <h4 className="mb-3">Languages</h4>
-                  <div className="languages">
+                  <div className="languages-list">
                     {data.languages.map((each) => (
-                      <h5>{each}</h5>
+                      <p>{each}</p>
                     ))}
                   </div>
                 </div>
@@ -263,46 +270,44 @@ function FresherPostPreview(props) {
                 Apply
               </button>
             </div>
-
-            <div
-              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
-              style={{ width: "100%", backgroundColor: "white" }}
-            >
-              <div
-                style={{ display: "flex", gap: "16px", alignItems: "center" }}
-              >
-                <h4>About</h4>
-                <div style={{ fontSize: "16px", fontFamily: "Roboto" }}>
-                  Wiro Tech Limited{" "}
-                  <HiOutlineExternalLink
-                    style={{ color: "grey", fontSize: "18px" }}
-                  />
-                </div>
-              </div>
-              <div className="mb-3">
-                <MdLocationOn style={{ color: "grey", fontSize: "18px" }} />{" "}
-                Indore, MP
-              </div>
-              <p style={{ fontFamily: "Roboto" }}>
-                Wiro Tech Limited is the best IT company in Indore. Wiro Tech
-                Limited is the fastest growing and best IT company in Indore. We
-                are the top-rated developers in technology....
-              </p>
-            </div>
-
-            <div className="row justify-content-end mb-3 mt-3">
-              <div className="col-auto">
-                <BsFillShareFill
-                  style={{
-                    color: "grey",
-                    fontSize: "18px",
-                    marginRight: "5px",
-                  }}
-                />
-              </div>
-            </div>
           </>
         )}
+
+        <div
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+          style={{ width: "100%", backgroundColor: "white" }}
+        >
+          <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+            <h4>About</h4>
+            <div style={{ fontSize: "16px", fontFamily: "Roboto" }}>
+              Wiro Tech Limited{" "}
+              <HiOutlineExternalLink
+                style={{ color: "grey", fontSize: "18px" }}
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <MdLocationOn style={{ color: "grey", fontSize: "18px" }} /> Indore,
+            MP
+          </div>
+          <p style={{ fontFamily: "Roboto" }}>
+            Wiro Tech Limited is the best IT company in Indore. Wiro Tech
+            Limited is the fastest growing and best IT company in Indore. We are
+            the top-rated developers in technology....
+          </p>
+        </div>
+
+        <div className="row justify-content-end mb-3 mt-3">
+          <div className="col-auto">
+            <BsFillShareFill
+              style={{
+                color: "grey",
+                fontSize: "18px",
+                marginRight: "5px",
+              }}
+            />
+          </div>
+        </div>
       </>
     )
   }

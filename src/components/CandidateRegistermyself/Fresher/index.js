@@ -284,6 +284,9 @@ function Fresher() {
                   <Form.Control
                     type="number"
                     placeholder="1 lac"
+                    onKeyPress={(e) => {
+                      if (e.target.value.length >= 2) e.preventDefault()
+                    }}
                     onChange={(e) =>
                       setSalaryRange((prev) => ({
                         ...prev,
@@ -299,6 +302,9 @@ function Fresher() {
                   <Form.Control
                     type="number"
                     placeholder="3 lac"
+                    onKeyDown={(e) => {
+                      if (e.target.value.length >= 2) e.preventDefault()
+                    }}
                     onChange={(e) =>
                       setSalaryRange((prev) => ({
                         ...prev,
@@ -398,6 +404,7 @@ function Fresher() {
                 <option>Select</option>
                 <option>Office</option>
                 <option>Work from Home</option>
+                <option>Any</option>
               </Form.Select>
             </Form.Group>
 
@@ -426,7 +433,12 @@ function Fresher() {
             </h5>
             <Form.Group>
               <Form.Label>Expected Salary</Form.Label>
-              <Form.Select onChange={(e) => setSalaryType(e.target.value)}>
+              <Form.Select
+                onChange={(e) => {
+                  setSalaryRange({ from: "", to: "" })
+                  setSalaryType(e.target.value)
+                }}
+              >
                 <option>Select</option>
                 <option>Lac</option>
                 <option>Negotiable</option>

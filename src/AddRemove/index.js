@@ -33,7 +33,11 @@ const AddRemove = (props) => {
 
   const handleLocation = (e, i) => {
     const list = [...education]
-    list[i].field.push(e[0].label)
+    const newList = []
+    e.map((each) => {
+      newList.push(each.label)
+    })
+    list[i].field = newList
     setEducation(list)
   }
 

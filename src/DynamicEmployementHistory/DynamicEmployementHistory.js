@@ -91,6 +91,7 @@ const DynamicEmployementHistory = (props) => {
   const handlePresent = (e, i) => {
     const list = [...employmentHistory]
     list[i].present = e.target.checked
+    list[i].endDate = ""
     setEmploymentHistory(list)
   }
 

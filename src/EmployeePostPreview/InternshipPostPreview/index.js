@@ -52,17 +52,17 @@ function InternshipPostPreview(props) {
 
             <div className="job-details-container-2">
               {data.jobTime !== "" && (
-                <>
-                  <div className="job-card-container">
-                    <MdShoppingBag className="icon-styles" />
-                    <p className="details-heading">{data.jobTime}</p>
-                  </div>
+                <div className="job-card-container">
+                  <MdShoppingBag className="icon-styles" />
+                  <p className="details-heading">{data.jobTime}</p>
+                </div>
+              )}
 
-                  <div className="job-card-container">
-                    <BsFillSunFill className="icon-styles" />
-                    <p className="details-heading">Day Shift</p>
-                  </div>
-                </>
+              {data.jobType !== "" && data.jobTime !== "" && (
+                <div className="job-card-container">
+                  <BsFillSunFill className="icon-styles" />
+                  <p className="details-heading">Day Shift</p>
+                </div>
               )}
 
               {data.jobType === "Office" && <br className="break-line" />}
@@ -112,21 +112,18 @@ function InternshipPostPreview(props) {
               {data.jobType === "Office" && <br className="break-line" />}
               {data.jobType === "Office" && <p className="empty-element"></p>}
 
-              <div className="job-card-container">
-                <AiFillYoutube className="icon-styles" />
-                <p className="details-heading-2">
-                  Start Date
-                  <br />
-                  <p className="details-text">
-                    {data.checked && data.startDate === ""
-                      ? "Immediate"
-                      : data.startDate.toLocaleString("default", {
-                          month: "short",
-                          year: "numeric",
-                        })}
+              {data.startDate !== "" && (
+                <div className="job-card-container">
+                  <AiFillYoutube className="icon-styles" />
+                  <p className="details-heading-2">
+                    Start Date
+                    <br />
+                    <p className="details-text">
+                      {data.checked && data.startDate === "" ? "Immediate" : ""}
+                    </p>
                   </p>
-                </p>
-              </div>
+                </div>
+              )}
 
               {data.duration !== "" && (
                 <div className="job-card-container">
@@ -188,6 +185,7 @@ function InternshipPostPreview(props) {
         )}
         {(data.responsibilities !== "" ||
           data.languages.length !== 0 ||
+          data.education.length !== 0 ||
           data.openings !== "") && (
           <div
             className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border  div-card  rounded container reveal  p-2  rounded border "
@@ -236,16 +234,16 @@ function InternshipPostPreview(props) {
                     {each.value}
                   </h6>
                 ))}
+                <hr />
               </div>
             )}
 
             {data.languages.length !== 0 && (
               <div>
-                <hr />
                 <h4 className="mb-3">Languages</h4>
-                <div className="languages">
+                <div className="languages-list">
                   {data.languages.map((each) => (
-                    <h5>{each}</h5>
+                    <p>{each}</p>
                   ))}
                 </div>
                 <hr />
@@ -278,46 +276,44 @@ function InternshipPostPreview(props) {
                 Apply
               </button>
             </div>
-
-            <div
-              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
-              style={{ width: "100%", backgroundColor: "white" }}
-            >
-              <div
-                style={{ display: "flex", gap: "16px", alignItems: "center" }}
-              >
-                <h4>About</h4>
-                <div style={{ fontSize: "16px", fontFamily: "Roboto" }}>
-                  Wiro Tech Limited{" "}
-                  <HiOutlineExternalLink
-                    style={{ color: "grey", fontSize: "18px" }}
-                  />
-                </div>
-              </div>
-              <div className="mb-3">
-                <MdLocationOn style={{ color: "grey", fontSize: "18px" }} />{" "}
-                Indore, MP
-              </div>
-              <p style={{ fontFamily: "Roboto" }}>
-                Wiro Tech Limited is the best IT company in Indore. Wiro Tech
-                Limited is the fastest growing and best IT company in Indore. We
-                are the top-rated developers in technology....
-              </p>
-            </div>
-
-            <div className="row justify-content-end mb-3 mt-3">
-              <div className="col-auto">
-                <BsFillShareFill
-                  style={{
-                    color: "grey",
-                    fontSize: "18px",
-                    marginRight: "5px",
-                  }}
-                />
-              </div>
-            </div>
           </>
         )}
+
+        <div
+          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+          style={{ width: "100%", backgroundColor: "white" }}
+        >
+          <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+            <h4>About</h4>
+            <div style={{ fontSize: "16px", fontFamily: "Roboto" }}>
+              Wiro Tech Limited{" "}
+              <HiOutlineExternalLink
+                style={{ color: "grey", fontSize: "18px" }}
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <MdLocationOn style={{ color: "grey", fontSize: "18px" }} /> Indore,
+            MP
+          </div>
+          <p style={{ fontFamily: "Roboto" }}>
+            Wiro Tech Limited is the best IT company in Indore. Wiro Tech
+            Limited is the fastest growing and best IT company in Indore. We are
+            the top-rated developers in technology....
+          </p>
+        </div>
+
+        <div className="row justify-content-end mb-3 mt-3">
+          <div className="col-auto">
+            <BsFillShareFill
+              style={{
+                color: "grey",
+                fontSize: "18px",
+                marginRight: "5px",
+              }}
+            />
+          </div>
+        </div>
       </>
     )
   }
