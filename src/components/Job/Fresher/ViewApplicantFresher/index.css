@@ -1,0 +1,109 @@
+.resume-username {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.resume-side-heading {
+  font-weight: 500;
+  font-size: 21px;
+}
+
+.resume-job-title {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.skills {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.skill-name {
+  margin-left: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .skill-name {
+    margin-left: 30px;
+  }
+}
+
+.link-icon {
+  color: grey;
+  font-size: 17px;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+p {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .select-post-mobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dashboard-nav-mobile {
+    display: none;
+  }
+}
+
+.dashboard-options {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .dashboard-options {
+    display: block;
+  }
+}
+
+.interested-btn-container-applicant {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  min-height: "200px";
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .interested-btn-container-applicant {
+    margin-left: 60px;
+  }
+}
+
+.applicant-card::-webkit-scrollbar {
+  width: 0;
+}
+
+.arrow-btns {
+  display: none;
+}
+
+.mobile-arrow-container {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 50px;
+}
+
+@media screen and (min-width: 768px) {
+  .arrow-btns {
+    display: block;
+  }
+
+  .mobile-arrow-container {
+    display: none;
+  }
+}

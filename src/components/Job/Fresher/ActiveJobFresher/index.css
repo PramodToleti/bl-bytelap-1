@@ -1,0 +1,97 @@
+.custom-select {
+  border-radius: 10px;
+  font-weight: 500;
+  padding: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+@media screen and (min-width: 768px) {
+  .custom-select {
+    display: none;
+  }
+}
+
+.custom-select::before {
+  color: blue;
+}
+
+.side-bar-container {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .side-bar-container {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .skills-header {
+    margin-left: 60px;
+  }
+
+  .portfolio-header {
+    margin-left: 40px;
+  }
+
+  .availability-header {
+    margin-left: 23px;
+  }
+}
+
+.activeType {
+  font-weight: 500;
+}
+
+@media screen and (max-width: 767px) {
+  .location {
+    font-size: 12px;
+  }
+
+  .interested-btn-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .interested-btn-container-desktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .interested-btn-container {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .interested-btn-container-desktop {
+    display: flex;
+    justify-content: space-between;
+    max-width: 80%;
+  }
+}
+
+.btns-container {
+  display: flex;
+  justify-content: space-between;
+  min-width: 70%;
+}
+
+.training-header {
+  display: flex;
+  gap: 20px;
+}
+
+.portfolio-header-application {
+  display: flex;
+  gap: 20px;
+}
+
+.location-header {
+  display: flex;
+  gap: 20px;
+}

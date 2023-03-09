@@ -22,9 +22,16 @@ import Employee from "./components/Employee"
 import Template from "./components/Template"
 //Dashboard
 import ActivePosts from "./components/Dashboard/ActivePosts"
-//Active Job
-import ActiveJob from "./components/Job/ActiveJob"
-import ViewApplicant from "./components/Job/ViewApplicant"
+//Active Job -> Internship
+import ActiveJobIntern from "./components/Job/Internship/ActiveJobIntern"
+import ViewApplicantIntern from "./components/Job/Internship/ViewApplicantIntern"
+//Active Job -> Fresher
+import ActiveJobFresher from "./components/Job/Fresher/ActiveJobFresher"
+import ViewApplicantFresher from "./components/Job/Fresher/ViewApplicantFresher"
+//Active Job -> Experience
+import ActiveJobExp from "./components/Job/Experience/ActiveJobExp"
+import ViewApplicantExp from "./components/Job/Experience/ViewApplicantExp"
+
 //Post job
 import EmployeePostJob from "./components/EmployeePostJob"
 //Saved Jobs
@@ -120,13 +127,38 @@ const App = () => {
           {/* Active Job */}
           <Route
             exact
-            path="/employee/dashboard/active-posts/job"
-            component={ActiveJob}
+            path="/employee/dashboard/active-posts/job/internship"
+            component={ActiveJobIntern}
           />
+
           <Route
             exact
-            path="/employee/dashboard/active-posts/job/view-applicant"
-            component={ViewApplicant}
+            path="/employee/dashboard/active-posts/job/fresher"
+            component={ActiveJobFresher}
+          />
+
+          <Route
+            exact
+            path="/employee/dashboard/active-posts/job/experience"
+            component={ActiveJobExp}
+          />
+
+          {/* View Applicant */}
+
+          <Route
+            exact
+            path="/employee/dashboard/active-posts/job/internship/view-applicant"
+            component={ViewApplicantIntern}
+          />
+
+          <Route
+            path="/employee/dashboard/active-posts/job/fresher/view-applicant"
+            component={ViewApplicantFresher}
+          />
+
+          <Route
+            path="/employee/dashboard/active-posts/job/experience/view-applicant"
+            component={ViewApplicantExp}
           />
 
           {/* Account Settings Routes */}

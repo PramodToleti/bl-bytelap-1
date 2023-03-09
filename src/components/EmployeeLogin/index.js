@@ -2,12 +2,12 @@ import FloatingLabel from "react-bootstrap/FloatingLabel"
 import Stack from "react-bootstrap/Stack"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
-
 import React, { useState } from "react"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
-
 import { Link } from "react-router-dom"
+
+import ShowAndHidePassword from "../../ShowAndHidePassword"
 
 import "./index.css"
 
@@ -98,24 +98,7 @@ function EmployeeLogin() {
               </FloatingLabel>
             </Form.Group>
 
-            <Form.Group
-              as={Col}
-              md="12"
-              className="mt-3"
-              controlId="validationCustom01"
-            >
-              <FloatingLabel controlId="floatingText" label="Password">
-                <Form.Control
-                  required
-                  type="password"
-                  placeholder="Last name"
-                  defaultValue=""
-                />
-                <Form.Control.Feedback type="invalid">
-                  Incorrect password.
-                </Form.Control.Feedback>
-              </FloatingLabel>
-            </Form.Group>
+            <ShowAndHidePassword />
           </Row>
           <Link
             to="/employee/forgot-password"
