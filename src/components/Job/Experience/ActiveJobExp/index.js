@@ -27,11 +27,12 @@ function ActiveJobIntern() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        overflow: "hidden",
       }}
     >
       <EmployeeHome />
       <div style={{ padding: "10px" }}>
-        <div className="col-lg-12 col-md-12   mb-4 p-2   p-3 mb-5   rounded ">
+        <div className="col-lg-12 col-md-12  p-2   p-3    rounded ">
           <p style={{ display: "flex", gap: "10px" }}>
             <Link
               to="/employee/dashboard/active-posts"
@@ -44,8 +45,8 @@ function ActiveJobIntern() {
           </p>
           <div className="d-flex justify-content-around">
             <div
-              style={{ height: "58rem", width: "", marginRight: "13px" }}
-              className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container p-2 pl-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
+              style={{ height: "35rem", width: "", marginRight: "13px" }}
+              className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container p-2 pl-4       border-secondary rounded container reveal  p-3    rounded border border-secondary"
             >
               <h5 className="mt-3">Applied 147</h5>
               <p
@@ -79,8 +80,9 @@ function ActiveJobIntern() {
               style={{
                 fontSize: "17px",
                 fontWeight: "400",
+                height: "35rem",
               }}
-              className="col-lg-10 col-md-10 search-course-right   mb-0  p-2       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
+              className="col-lg-10 col-md-10 search-course-right   mb-0  p-2       border-secondary rounded container reveal  p-3   rounded border border-secondary"
             >
               <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-0 p-0       border-secondary rounded container reveal  p-3 mb-0    rounded border border-secondary">
                 <Form.Group
@@ -156,7 +158,10 @@ function ActiveJobIntern() {
                 </Form.Select>
               </Form.Group>
 
-              <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
+              <div
+                style={{ overflow: "scroll", maxHeight: "340px" }}
+                className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
+              >
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
@@ -210,7 +215,7 @@ function ActiveJobIntern() {
 
                 <div className="card-container-mobile">
                   <div className="mt-3">
-                    Skill's:{" "}
+                    <span style={{ fontWeight: "300" }}>Skill's: </span>
                     <span
                       style={{ marginRight: "15px" }}
                       className="skills-header"
@@ -224,16 +229,20 @@ function ActiveJobIntern() {
                   <div className="mt-3">
                     <div>
                       <p>
-                        Cover Letter: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I have all
-                        the desired skills and I have very strong back-end
-                        knowledge also . I am quick learner , positive attitude
-                        , highly dedicated positive .I am Eager and passionate
-                        about the new as well with challenges task.
+                        <span style={{ fontWeight: "300" }}>Cover Letter:</span>{" "}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I have all the desired
+                        skills and I have very strong back-end knowledge also .
+                        I am quick learner , positive attitude , highly
+                        dedicated positive .I am Eager and passionate about the
+                        new as well with challenges task.
                       </p>
                     </div>
                   </div>
 
-                  <div className="mt-3 company-header">
+                  <div
+                    className="mt-3 company-header"
+                    style={{ fontWeight: "300" }}
+                  >
                     Current Company:
                     <div>
                       <h6>Senior React js Developer at Bytelap Technologies</h6>
@@ -249,7 +258,10 @@ function ActiveJobIntern() {
                     </div>
                   </div>
 
-                  <div className="mt-3 company-header">
+                  <div
+                    className="mt-3 company-header"
+                    style={{ fontWeight: "300" }}
+                  >
                     Previous Company:
                     <div>
                       <h6>
@@ -271,19 +283,26 @@ function ActiveJobIntern() {
                     className="mt-3"
                     style={{ display: "flex", gap: "20px" }}
                   >
-                    Notice Period:
+                    <span style={{ fontWeight: "300" }}>Notice Period: </span>
                     <div>My notice period is 45 days.</div>
                   </div>
                 </div>
 
                 <div className="card-container">
-                  <div className="skill-header-e">Skills</div>
+                  <div className="skill-header-e" style={{ fontWeight: "300" }}>
+                    Skills
+                  </div>
                   <div className="colon">:</div>
                   <div className="react-e">
                     React JS &nbsp;&nbsp;&nbsp; Node JS &nbsp;&nbsp;&nbsp; SQL
                   </div>
 
-                  <div className="letter-header-e">Cover Letter</div>
+                  <div
+                    className="letter-header-e"
+                    style={{ fontWeight: "300" }}
+                  >
+                    Cover Letter
+                  </div>
                   <div>:</div>
                   <div className="letter">
                     I have all the desired skills and I have very strong
@@ -292,7 +311,9 @@ function ActiveJobIntern() {
                     passionate about the new as well with challenges task.
                   </div>
 
-                  <div className="current-e">Current Company</div>
+                  <div className="current-e" style={{ fontWeight: "300" }}>
+                    Current Company
+                  </div>
                   <div>:</div>
                   <div className="current-company">
                     <div>
@@ -309,7 +330,9 @@ function ActiveJobIntern() {
                     </div>
                   </div>
 
-                  <div className="previous-e">Previous Company</div>
+                  <div className="previous-e" style={{ fontWeight: "300" }}>
+                    Previous Company
+                  </div>
                   <div>:</div>
                   <div className="previous-company">
                     <div>
@@ -328,7 +351,9 @@ function ActiveJobIntern() {
                     </div>
                   </div>
 
-                  <div className="notice-e">Notice Period</div>
+                  <div className="notice-e" style={{ fontWeight: "300" }}>
+                    Notice Period
+                  </div>
                   <div>:</div>
                   <div className="notice-period">
                     My notice period is 45 days.

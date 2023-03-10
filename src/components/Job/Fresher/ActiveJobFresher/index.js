@@ -25,11 +25,12 @@ function ActiveJobFresher() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        overflow: "hidden",
       }}
     >
       <EmployeeHome />
       <div style={{ padding: "10px" }}>
-        <div className="col-lg-12 col-md-12   mb-4 p-2   p-3 mb-5   rounded ">
+        <div className="col-lg-12 col-md-12    p-2   p-3  rounded ">
           <p style={{ display: "flex", gap: "10px" }}>
             <Link
               to="/employee/dashboard/active-posts"
@@ -42,8 +43,8 @@ function ActiveJobFresher() {
           </p>
           <div className="d-flex justify-content-around">
             <div
-              style={{ height: "58rem", width: "", marginRight: "13px" }}
-              className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container p-2 pl-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
+              style={{ height: "35rem", width: "", marginRight: "13px" }}
+              className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container p-2 pl-4       border-secondary rounded container reveal  p-3   rounded border border-secondary"
             >
               <h5 className="mt-3">Applied 147</h5>
               <p
@@ -77,8 +78,9 @@ function ActiveJobFresher() {
               style={{
                 fontSize: "17px",
                 fontWeight: "400",
+                height: "35rem",
               }}
-              className="col-lg-10 col-md-10 search-course-right   mb-0  p-2       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
+              className="col-lg-10 col-md-10 search-course-right   mb-0  p-2       border-secondary rounded container reveal  p-3   rounded border border-secondary"
             >
               <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-0 p-0       border-secondary rounded container reveal  p-3 mb-0    rounded border border-secondary">
                 <Form.Group
@@ -154,7 +156,10 @@ function ActiveJobFresher() {
                 </Form.Select>
               </Form.Group>
 
-              <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
+              <div
+                style={{ overflow: "scroll", maxHeight: "340px" }}
+                className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3    rounded border border-secondary"
+              >
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
@@ -173,18 +178,19 @@ function ActiveJobFresher() {
                 <div className="mt-3">
                   <div>
                     <p>
-                      Cover Letter : &nbsp;&nbsp;&nbsp; I have all the desired
-                      skills and I have very strong back-end knowledge also . I
-                      am quick learner , positive attitude , highly dedicated
-                      positive .I am Eager and passionate about the new as well
-                      with challenges task.
+                      <span style={{ fontWeight: "300" }}>Cover Letter</span> :
+                      &nbsp;&nbsp;&nbsp; I have all the desired skills and I
+                      have very strong back-end knowledge also . I am quick
+                      learner , positive attitude , highly dedicated positive .I
+                      am Eager and passionate about the new as well with
+                      challenges task.
                     </p>
                   </div>
                 </div>
 
                 <div className="card-container-mobile">
                   <div style={{ display: "flex", flexWrap: "wrap" }}>
-                    <p style={{ marginRight: "10px" }}>
+                    <p style={{ marginRight: "10px", fontWeight: "300" }}>
                       Training/Certified&nbsp;&nbsp;:
                       <div className="mt-1">
                         <h6>React js internship at Bytelap Technologies</h6>
@@ -197,7 +203,7 @@ function ActiveJobFresher() {
                     style={{ display: "flex", flexWrap: "wrap" }}
                     className="mb-1"
                   >
-                    <p style={{ marginRight: "10px" }}>
+                    <p style={{ marginRight: "10px", fontWeight: 300 }}>
                       Portfolio &nbsp;&nbsp;&nbsp;:
                     </p>
                     <a
@@ -231,15 +237,17 @@ function ActiveJobFresher() {
                     className="mb-3"
                     style={{ display: "flex", flexWrap: "wrap" }}
                   >
-                    Preferred Location : &nbsp;Indore, Pune, Mumbai, Bangalore,
-                    Chennai, Thane
+                    <span style={{ fontWeight: "300" }}>
+                      Preferred Location
+                    </span>{" "}
+                    : &nbsp;Indore, Pune, Mumbai, Bangalore, Chennai, Thane
                   </div>
 
                   <div
                     style={{ display: "flex", flexWrap: "wrap" }}
                     className="mb-3"
                   >
-                    <p style={{ marginRight: "10px" }}>
+                    <p style={{ marginRight: "10px", fontWeight: "300" }}>
                       Skills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                     </p>
                     <p className="preview-skills">React JS</p>
@@ -253,13 +261,17 @@ function ActiveJobFresher() {
                     style={{ display: "flex", flexWrap: "wrap" }}
                     className="mb-3"
                   >
-                    <p style={{ marginRight: "10px" }}>Availability :</p>
+                    <p style={{ marginRight: "10px", fontWeight: "300" }}>
+                      Availability :
+                    </p>
                     <p>Immediate Joiner</p>
                   </div>
                 </div>
 
                 <div className="card-container">
-                  <div className="training-f">Training/Certified</div>
+                  <div className="training-f" style={{ fontWeight: "300" }}>
+                    Training/Certified
+                  </div>
                   <div>:</div>
                   <div className="course-f">
                     <div className="mt-1">
@@ -267,12 +279,19 @@ function ActiveJobFresher() {
                       <p style={{ fontSize: "14px" }}>Jan 2023 - Mar 2023</p>
                     </div>
                   </div>
-                  <div className="skill-header-f">Skills</div>
+                  <div
+                    className="skill-header-f"
+                    style={{ fontWeight: "300", fontWeight: "300" }}
+                  >
+                    Skills
+                  </div>
                   <div className="colon">:</div>
                   <div className="react-f">
                     React JS &nbsp;&nbsp;&nbsp; Node JS &nbsp;&nbsp;&nbsp; SQL
                   </div>
-                  <div className="portfolio-f">Portfolio</div>
+                  <div className="portfolio-f" style={{ fontWeight: "300" }}>
+                    Portfolio
+                  </div>
                   <div className="colon">:</div>
                   <div className="ekart-f">
                     <a
@@ -302,12 +321,16 @@ function ActiveJobFresher() {
                     </a>{" "}
                   </div>
 
-                  <div className="preferred-f">Preferred Location</div>
+                  <div className="preferred-f" style={{ fontWeight: "300" }}>
+                    Preferred Location
+                  </div>
                   <div className="colon">:</div>
                   <div className="location-f">
                     Indore, Pune, Mumbai, Bangalore, Chennai, Thane
                   </div>
-                  <div className="available-f">Available</div>
+                  <div className="available-f" style={{ fontWeight: "300" }}>
+                    Available
+                  </div>
                   <div className="colon">:</div>
                   <div className="yes-f">Immediate Joiner</div>
                 </div>

@@ -27,11 +27,12 @@ function ActiveJobIntern() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        overflow: "hidden",
       }}
     >
       <EmployeeHome />
       <div style={{ padding: "10px" }}>
-        <div className="col-lg-12 col-md-12   mb-4 p-2   p-3 mb-5   rounded ">
+        <div className="col-lg-12 col-md-12  px-2   rounded ">
           <p style={{ display: "flex", gap: "10px" }}>
             <Link
               to="/employee/dashboard/active-posts"
@@ -44,8 +45,8 @@ function ActiveJobIntern() {
           </p>
           <div className="d-flex justify-content-around">
             <div
-              style={{ height: "58rem", width: "", marginRight: "13px" }}
-              className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container p-2 pl-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
+              style={{ height: "35rem", width: "", marginRight: "13px" }}
+              className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container p-2 pl-4       border-secondary rounded container reveal  p-3    rounded border border-secondary"
             >
               <h5 className="mt-3">Applied 147</h5>
               <p
@@ -79,8 +80,9 @@ function ActiveJobIntern() {
               style={{
                 fontSize: "17px",
                 fontWeight: "400",
+                height: "35rem",
               }}
-              className="col-lg-10 col-md-10 search-course-right   mb-0  p-2       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
+              className="col-lg-10 col-md-10 search-course-right   mb-0  p-2       border-secondary rounded container reveal  p-3    rounded border border-secondary"
             >
               <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-0 p-0       border-secondary rounded container reveal  p-3 mb-0    rounded border border-secondary">
                 <Form.Group
@@ -144,7 +146,7 @@ function ActiveJobIntern() {
               <Form.Group
                 as={Col}
                 md="3"
-                className="mb-3 mt-4"
+                className=" mb -3 mt-4"
                 style={{ width: "120px" }}
               >
                 <Form.Select className="custom-select">
@@ -156,7 +158,10 @@ function ActiveJobIntern() {
                 </Form.Select>
               </Form.Group>
 
-              <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
+              <div
+                className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3  rounded border border-secondary"
+                style={{ overflow: "scroll", maxHeight: "340px" }}
+              >
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
@@ -174,11 +179,12 @@ function ActiveJobIntern() {
                 <div className="mt-3">
                   <div>
                     <p>
-                      Cover Letter: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I have all the
-                      desired skills and I have very strong back-end knowledge
-                      also . I am quick learner , positive attitude , highly
-                      dedicated positive .I am Eager and passionate about the
-                      new as well with challenges task.
+                      <span style={{ fontWeight: "300" }}>Cover Letter:</span>{" "}
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I have all the desired
+                      skills and I have very strong back-end knowledge also . I
+                      am quick learner , positive attitude , highly dedicated
+                      positive .I am Eager and passionate about the new as well
+                      with challenges task.
                     </p>
                   </div>
                 </div>
@@ -188,7 +194,7 @@ function ActiveJobIntern() {
                     style={{ display: "flex", flexWrap: "wrap" }}
                     className="mb-3"
                   >
-                    <p style={{ marginRight: "10px" }}>
+                    <p style={{ marginRight: "10px", fontWeight: "300" }}>
                       Skills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                     </p>
                     <p className="preview-skills">React JS</p>
@@ -198,11 +204,8 @@ function ActiveJobIntern() {
                     <p className="preview-skills">Redux</p>
                   </div>
 
-                  <div
-                    style={{ display: "flex", flexWrap: "wrap" }}
-                    className="mb-3"
-                  >
-                    <p style={{ marginRight: "10px" }}>
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    <p style={{ marginRight: "10px", fontWeight: "300" }}>
                       Portfolio &nbsp;&nbsp;&nbsp;:
                     </p>
                     <a
@@ -232,21 +235,26 @@ function ActiveJobIntern() {
                     </a>
                   </div>
 
-                  <div
-                    style={{ display: "flex", flexWrap: "wrap" }}
-                    className="mb-3"
-                  >
-                    <p style={{ marginRight: "10px" }}>Availability :</p>
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    <p style={{ marginRight: "10px", fontWeight: "300" }}>
+                      Availability :
+                    </p>
                     <p>Immediate Joiner</p>
                   </div>
                 </div>
                 <div className="card-container">
-                  <div className="skill-header">Skills</div>
+                  <div className="skill-header" style={{ fontWeight: "300" }}>
+                    Skills
+                  </div>
                   <div className="colon">:</div>
                   <div className="react">
-                    React JS &nbsp;&nbsp;&nbsp; Node JS &nbsp;&nbsp;&nbsp; SQL
+                    <p className="preview-skills">React JS</p>{" "}
+                    &nbsp;&nbsp;&nbsp; <p className="preview-skills">Node JS</p>{" "}
+                    &nbsp;&nbsp;&nbsp; <p className="preview-skills">SQL</p>
                   </div>
-                  <div className="portfolio">Portfolio</div>
+                  <div className="portfolio" style={{ fontWeight: "300" }}>
+                    Portfolio
+                  </div>
                   <div className="colon">:</div>
                   <div className="ekart">
                     <a
@@ -275,7 +283,9 @@ function ActiveJobIntern() {
                       Wekart
                     </a>{" "}
                   </div>
-                  <div className="available">Available</div>
+                  <div className="available" style={{ fontWeight: "300" }}>
+                    Available
+                  </div>
                   <div className="colon">:</div>
                   <div className="yes">Immediate Joiner</div>
                 </div>
