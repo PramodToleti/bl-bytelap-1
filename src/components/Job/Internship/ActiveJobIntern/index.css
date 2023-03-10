@@ -80,3 +80,67 @@
   justify-content: space-between;
   min-width: 70%;
 }
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr 20px 4fr;
+  grid-template-rows: repeat(3, auto);
+  gap: 10px;
+}
+
+.skill-header {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.react {
+  grid-row: 1;
+  grid-column: 3;
+}
+
+.card-container {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .card-container-mobile {
+    display: none;
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: 1fr 20px 4fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 20px;
+  }
+
+  .skill-header {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .react {
+    grid-row: 1;
+    grid-column: 3;
+  }
+
+  .portfolio {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .ekart {
+    grid-row: 2;
+    grid-column: 3;
+  }
+
+  .available {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  .yes {
+    grid-row: 3;
+    grid-column: 3;
+  }
+}

@@ -95,3 +95,66 @@
   display: flex;
   gap: 20px;
 }
+
+@media screen and (min-width: 768px) {
+  .card-container-mobile {
+    display: none;
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: 1fr 20px 4fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 20px;
+  }
+
+  .training-f {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .course-f {
+    grid-row: 1;
+    grid-column: 3;
+  }
+
+  .skill-header-f {
+    grid-row: 4;
+    grid-column: 1;
+  }
+
+  .react-f {
+    grid-row: 4;
+    grid-column: 3;
+  }
+
+  .portfolio-f {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .ekart-f {
+    grid-row: 2;
+    grid-column: 3;
+  }
+
+  .preferred-f {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  .location-f {
+    grid-row: 3;
+    grid-column: 3;
+  }
+
+  .available-f {
+    grid-row: 5;
+    grid-column: 1;
+  }
+
+  .yes-f {
+    grid-row: 5;
+    grid-column: 3;
+  }
+}

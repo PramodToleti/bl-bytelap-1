@@ -208,65 +208,131 @@ function ActiveJobIntern() {
                   </div>
                 </div>
 
-                <div className="mt-3">
-                  Skill's:{" "}
-                  <span
-                    style={{ marginRight: "15px" }}
-                    className="skills-header"
+                <div className="card-container-mobile">
+                  <div className="mt-3">
+                    Skill's:{" "}
+                    <span
+                      style={{ marginRight: "15px" }}
+                      className="skills-header"
+                    >
+                      React Native
+                    </span>
+                    <span style={{ marginRight: "15px" }}>Node js</span>
+                    <span style={{ marginRight: "13px" }}>SQL</span>
+                  </div>
+
+                  <div className="mt-3">
+                    <div>
+                      <p>
+                        Cover Letter: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I have all
+                        the desired skills and I have very strong back-end
+                        knowledge also . I am quick learner , positive attitude
+                        , highly dedicated positive .I am Eager and passionate
+                        about the new as well with challenges task.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 company-header">
+                    Current Company:
+                    <div>
+                      <h6>Senior React js Developer at Bytelap Technologies</h6>
+                      Jan 2020 - Present &nbsp;&nbsp;&nbsp;
+                      <ImLocation
+                        style={{
+                          fontSize: "16px",
+                          color: "grey",
+                          marginBottom: "5px",
+                        }}
+                      />{" "}
+                      Indore, MP
+                    </div>
+                  </div>
+
+                  <div className="mt-3 company-header">
+                    Previous Company:
+                    <div>
+                      <h6>
+                        Junior React js Developer at Creative Web Solution
+                      </h6>
+                      Jan 2019 - Jan 2020 &nbsp;&nbsp;&nbsp;
+                      <ImLocation
+                        style={{
+                          fontSize: "16px",
+                          color: "grey",
+                          marginBottom: "5px",
+                        }}
+                      />{" "}
+                      Pune, Maharashtra
+                    </div>
+                  </div>
+
+                  <div
+                    className="mt-3"
+                    style={{ display: "flex", gap: "20px" }}
                   >
-                    React Native
-                  </span>
-                  <span style={{ marginRight: "15px" }}>Node js</span>
-                  <span style={{ marginRight: "13px" }}>SQL</span>
-                </div>
-
-                <div className="mt-3">
-                  <div>
-                    <p>
-                      Cover Letter: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I have all the
-                      desired skills and I have very strong back-end knowledge
-                      also . I am quick learner , positive attitude , highly
-                      dedicated positive .I am Eager and passionate about the
-                      new as well with challenges task.
-                    </p>
+                    Notice Period:
+                    <div>My notice period is 45 days.</div>
                   </div>
                 </div>
 
-                <div className="mt-3 company-header">
-                  Current Company:
-                  <div>
-                    <h6>Senior React js Developer at Bytelap Technologies</h6>
-                    Jan 2020 - Present &nbsp;&nbsp;&nbsp;
-                    <ImLocation
-                      style={{
-                        fontSize: "16px",
-                        color: "grey",
-                        marginBottom: "5px",
-                      }}
-                    />{" "}
-                    Indore, MP
+                <div className="card-container">
+                  <div className="skill-header-e">Skills</div>
+                  <div className="colon">:</div>
+                  <div className="react-e">
+                    React JS &nbsp;&nbsp;&nbsp; Node JS &nbsp;&nbsp;&nbsp; SQL
                   </div>
-                </div>
 
-                <div className="mt-3 company-header">
-                  Previous Company:
-                  <div>
-                    <h6>Junior React js Developer at Creative Web Solution</h6>
-                    Jan 2019 - Jan 2020 &nbsp;&nbsp;&nbsp;
-                    <ImLocation
-                      style={{
-                        fontSize: "16px",
-                        color: "grey",
-                        marginBottom: "5px",
-                      }}
-                    />{" "}
-                    Pune, Maharashtra
+                  <div className="letter-header-e">Cover Letter</div>
+                  <div>:</div>
+                  <div className="letter">
+                    I have all the desired skills and I have very strong
+                    back-end knowledge also . I am quick learner , positive
+                    attitude , highly dedicated positive .I am Eager and
+                    passionate about the new as well with challenges task.
                   </div>
-                </div>
 
-                <div className="mt-3" style={{ display: "flex", gap: "20px" }}>
-                  Notice Period:
-                  <div>My notice period is 45 days.</div>
+                  <div className="current-e">Current Company</div>
+                  <div>:</div>
+                  <div className="current-company">
+                    <div>
+                      <h6>Senior React js Developer at Bytelap Technologies</h6>
+                      Jan 2020 - Present &nbsp;&nbsp;&nbsp;
+                      <ImLocation
+                        style={{
+                          fontSize: "16px",
+                          color: "grey",
+                          marginBottom: "5px",
+                        }}
+                      />{" "}
+                      Indore, MP
+                    </div>
+                  </div>
+
+                  <div className="previous-e">Previous Company</div>
+                  <div>:</div>
+                  <div className="previous-company">
+                    <div>
+                      <h6>
+                        Junior React js Developer at Creative Web Solution
+                      </h6>
+                      Jan 2019 - Jan 2020 &nbsp;&nbsp;&nbsp;
+                      <ImLocation
+                        style={{
+                          fontSize: "16px",
+                          color: "grey",
+                          marginBottom: "5px",
+                        }}
+                      />{" "}
+                      Pune, Maharashtra
+                    </div>
+                  </div>
+
+                  <div className="notice-e">Notice Period</div>
+                  <div>:</div>
+                  <div className="notice-period">
+                    My notice period is 45 days.
+                  </div>
                 </div>
 
                 <div className="mt-3"></div>

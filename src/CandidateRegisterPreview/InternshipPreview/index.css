@@ -4,6 +4,7 @@
 .preview-skills {
   border: 1px solid #ccc;
   border-radius: 8px;
+  height: 25px;
   padding: 8px;
   max-width: 250px;
   display: inline-flex;

@@ -182,68 +182,136 @@ function ActiveJobFresher() {
                   </div>
                 </div>
 
-                <div className="mt-3 training-header">
-                  Trained/Certified:
-                  <div>
-                    <h6>React js internship at Bytelap Technologies</h6>
-                    <p style={{ fontSize: "14px" }}>Jan 2023 - Mar 2023</p>
+                <div className="card-container-mobile">
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    <p style={{ marginRight: "10px" }}>
+                      Training/Certified&nbsp;&nbsp;:
+                      <div className="mt-1">
+                        <h6>React js internship at Bytelap Technologies</h6>
+                        <p style={{ fontSize: "14px" }}>Jan 2023 - Mar 2023</p>
+                      </div>
+                    </p>
+                  </div>
+
+                  <div
+                    style={{ display: "flex", flexWrap: "wrap" }}
+                    className="mb-1"
+                  >
+                    <p style={{ marginRight: "10px" }}>
+                      Portfolio &nbsp;&nbsp;&nbsp;:
+                    </p>
+                    <a
+                      href=""
+                      style={{
+                        color: "Blue",
+                        textDecoration: "none",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Ekart
+                    </a>{" "}
+                    &nbsp;&nbsp;&nbsp;
+                    <a
+                      href=""
+                      style={{
+                        color: "Blue",
+                        marginBottom: "15px",
+                        marginTop: "0",
+                        marginLeft: "15px",
+                        textDecoration: "none",
+                        fontWeight: "500",
+                      }}
+                    >
+                      {" "}
+                      Wekart
+                    </a>
+                  </div>
+
+                  <div
+                    className="mb-3"
+                    style={{ display: "flex", flexWrap: "wrap" }}
+                  >
+                    Preferred Location : &nbsp;Indore, Pune, Mumbai, Bangalore,
+                    Chennai, Thane
+                  </div>
+
+                  <div
+                    style={{ display: "flex", flexWrap: "wrap" }}
+                    className="mb-3"
+                  >
+                    <p style={{ marginRight: "10px" }}>
+                      Skills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                    </p>
+                    <p className="preview-skills">React JS</p>
+                    <p className="preview-skills">Node JS</p>
+                    <p className="preview-skills">SQL</p>
+                    <p className="preview-skills">MongoDB</p>
+                    <p className="preview-skills">Redux</p>
+                  </div>
+
+                  <div
+                    style={{ display: "flex", flexWrap: "wrap" }}
+                    className="mb-3"
+                  >
+                    <p style={{ marginRight: "10px" }}>Availability :</p>
+                    <p>Immediate Joiner</p>
                   </div>
                 </div>
 
-                <div className="mt-3 portfolio-header-application">
-                  Portfolio:{" "}
-                  <a
-                    href=""
-                    style={{
-                      color: "Blue",
-                      textDecoration: "none",
-                      fontWeight: "500",
-                    }}
-                    className="portfolio-header"
-                  >
-                    Ekart
-                  </a>
-                  <a
-                    href=""
-                    style={{
-                      color: "Blue",
-                      marginBottom: "15px",
-                      marginTop: "0",
-                      marginLeft: "15px",
-                      textDecoration: "none",
-                      fontWeight: "500",
-                    }}
-                  >
-                    {" "}
-                    Wekart
-                  </a>
+                <div className="card-container">
+                  <div className="training-f">Training/Certified</div>
+                  <div>:</div>
+                  <div className="course-f">
+                    <div className="mt-1">
+                      <h6>React js internship at Bytelap Technologies</h6>
+                      <p style={{ fontSize: "14px" }}>Jan 2023 - Mar 2023</p>
+                    </div>
+                  </div>
+                  <div className="skill-header-f">Skills</div>
+                  <div className="colon">:</div>
+                  <div className="react-f">
+                    React JS &nbsp;&nbsp;&nbsp; Node JS &nbsp;&nbsp;&nbsp; SQL
+                  </div>
+                  <div className="portfolio-f">Portfolio</div>
+                  <div className="colon">:</div>
+                  <div className="ekart-f">
+                    <a
+                      href=""
+                      style={{
+                        color: "Blue",
+                        textDecoration: "none",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Ekart
+                    </a>{" "}
+                    &nbsp;&nbsp;&nbsp;
+                    <a
+                      href=""
+                      style={{
+                        color: "Blue",
+                        marginBottom: "15px",
+                        marginTop: "0",
+                        marginLeft: "15px",
+                        textDecoration: "none",
+                        fontWeight: "500",
+                      }}
+                    >
+                      {" "}
+                      Wekart
+                    </a>{" "}
+                  </div>
+
+                  <div className="preferred-f">Preferred Location</div>
+                  <div className="colon">:</div>
+                  <div className="location-f">
+                    Indore, Pune, Mumbai, Bangalore, Chennai, Thane
+                  </div>
+                  <div className="available-f">Available</div>
+                  <div className="colon">:</div>
+                  <div className="yes-f">Immediate Joiner</div>
                 </div>
 
-                <div className="mt-3 location-header">
-                  Preferred Location:
-                  <div>Indore, Pune, Mumbai, Bangalore, Chennai, Thane</div>
-                </div>
-
-                <div className="mt-3">
-                  Skill's:{" "}
-                  <span
-                    style={{ marginRight: "15px" }}
-                    className="skills-header"
-                  >
-                    React Native
-                  </span>
-                  <span style={{ marginRight: "15px" }}>Node js</span>
-                  <span style={{ marginRight: "13px" }}>SQL</span>
-                </div>
-
-                <div className="mt-3">
-                  <p className="availability">
-                    Availability:{" "}
-                    <span className="availability-header">
-                      I can join immediately within a week
-                    </span>
-                  </p>
-                </div>
                 <div className="mt-3"></div>
                 <div>
                   <div className="interested-btn-container">

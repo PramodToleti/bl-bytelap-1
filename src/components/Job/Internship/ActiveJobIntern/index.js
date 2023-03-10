@@ -171,7 +171,6 @@ function ActiveJobIntern() {
                     </p>
                   </div>
                 </div>
-
                 <div className="mt-3">
                   <div>
                     <p>
@@ -184,53 +183,103 @@ function ActiveJobIntern() {
                   </div>
                 </div>
 
-                <div className="mt-3">
-                  Skill's:{" "}
-                  <span
-                    style={{ marginRight: "15px" }}
-                    className="skills-header"
+                <div className="card-container-mobile">
+                  <div
+                    style={{ display: "flex", flexWrap: "wrap" }}
+                    className="mb-3"
                   >
-                    React Native
-                  </span>
-                  <span style={{ marginRight: "15px" }}>Node js</span>
-                  <span style={{ marginRight: "13px" }}>SQL</span>
-                </div>
-                <div className="mt-3">
-                  Portfolio:{" "}
-                  <a
-                    href=""
-                    style={{
-                      color: "Blue",
-                      textDecoration: "none",
-                      fontWeight: "500",
-                    }}
-                    className="portfolio-header"
+                    <p style={{ marginRight: "10px" }}>
+                      Skills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                    </p>
+                    <p className="preview-skills">React JS</p>
+                    <p className="preview-skills">Node JS</p>
+                    <p className="preview-skills">SQL</p>
+                    <p className="preview-skills">MongoDB</p>
+                    <p className="preview-skills">Redux</p>
+                  </div>
+
+                  <div
+                    style={{ display: "flex", flexWrap: "wrap" }}
+                    className="mb-3"
                   >
-                    Ekart
-                  </a>
-                  <a
-                    href=""
-                    style={{
-                      color: "Blue",
-                      marginBottom: "15px",
-                      marginTop: "0",
-                      marginLeft: "15px",
-                      textDecoration: "none",
-                      fontWeight: "500",
-                    }}
+                    <p style={{ marginRight: "10px" }}>
+                      Portfolio &nbsp;&nbsp;&nbsp;:
+                    </p>
+                    <a
+                      href=""
+                      style={{
+                        color: "Blue",
+                        textDecoration: "none",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Ekart
+                    </a>{" "}
+                    &nbsp;&nbsp;&nbsp;
+                    <a
+                      href=""
+                      style={{
+                        color: "Blue",
+                        marginBottom: "15px",
+                        marginTop: "0",
+                        marginLeft: "15px",
+                        textDecoration: "none",
+                        fontWeight: "500",
+                      }}
+                    >
+                      {" "}
+                      Wekart
+                    </a>
+                  </div>
+
+                  <div
+                    style={{ display: "flex", flexWrap: "wrap" }}
+                    className="mb-3"
                   >
-                    {" "}
-                    Wekart
-                  </a>
+                    <p style={{ marginRight: "10px" }}>Availability :</p>
+                    <p>Immediate Joiner</p>
+                  </div>
                 </div>
-                <div className="mt-3">
-                  <p className="availability">
-                    Availability:{" "}
-                    <span className="availability-header">
-                      Immediate Joiner
-                    </span>
-                  </p>
+                <div className="card-container">
+                  <div className="skill-header">Skills</div>
+                  <div className="colon">:</div>
+                  <div className="react">
+                    React JS &nbsp;&nbsp;&nbsp; Node JS &nbsp;&nbsp;&nbsp; SQL
+                  </div>
+                  <div className="portfolio">Portfolio</div>
+                  <div className="colon">:</div>
+                  <div className="ekart">
+                    <a
+                      href=""
+                      style={{
+                        color: "Blue",
+                        textDecoration: "none",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Ekart
+                    </a>{" "}
+                    &nbsp;&nbsp;&nbsp;
+                    <a
+                      href=""
+                      style={{
+                        color: "Blue",
+                        marginBottom: "15px",
+                        marginTop: "0",
+                        marginLeft: "15px",
+                        textDecoration: "none",
+                        fontWeight: "500",
+                      }}
+                    >
+                      {" "}
+                      Wekart
+                    </a>{" "}
+                  </div>
+                  <div className="available">Available</div>
+                  <div className="colon">:</div>
+                  <div className="yes">Immediate Joiner</div>
                 </div>
+
                 <div className="mt-3"></div>
                 <div>
                   <div className="interested-btn-container">
@@ -279,7 +328,6 @@ function ActiveJobIntern() {
                     </Button>
                   </div>
                 </div>
-
                 <div>
                   <div className="interested-btn-container-desktop">
                     <div className="btns-container">
@@ -331,7 +379,6 @@ function ActiveJobIntern() {
                     </div>
                   </div>
                 </div>
-
                 <Link
                   to="/employee/dashboard/active-posts/job/internship/view-applicant"
                   className="nav-link"

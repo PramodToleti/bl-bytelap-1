@@ -85,3 +85,76 @@
   display: flex;
   gap: 20px;
 }
+
+@media screen and (min-width: 768px) {
+  .card-container-mobile {
+    display: none;
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: 1fr 20px 4fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 20px;
+  }
+
+  .skill-header-e {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .react-e {
+    grid-row: 1;
+    grid-column: 3;
+  }
+
+  .letter-header-e {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .letter {
+    grid-row: 2;
+    grid-column: 3;
+  }
+
+  .current-e {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  .current-company {
+    grid-row: 3;
+    grid-column: 3;
+  }
+
+  .previous-e {
+    grid-row: 4;
+    grid-column: 1;
+  }
+
+  .previous-company {
+    grid-row: 4;
+    grid-column: 3;
+  }
+
+  .notice-e {
+    grid-row: 5;
+    grid-column: 1;
+  }
+
+  .notice-period {
+    grid-row: 5;
+    grid-column: 3;
+  }
+
+  .available-e {
+    grid-row: 5;
+    grid-column: 1;
+  }
+
+  .yes-e {
+    grid-row: 5;
+    grid-column: 3;
+  }
+}
