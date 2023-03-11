@@ -1,5 +1,8 @@
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import { toast } from "react-toastify"
 import "react-datepicker/dist/react-datepicker.css"
 import CheckboxDropdown from "../../../CheckboxDropdowm"
 
@@ -37,7 +40,7 @@ function Internship(props) {
   const [isFilled, setIsFilled] = useState(true)
   const [custom, setCustom] = useState("")
 
-  const data = {
+  let data = {
     jobTitle,
     jobTime,
     jobType,
@@ -50,10 +53,6 @@ function Internship(props) {
     languages,
     availability,
   }
-
-  useEffect(() => {
-    //Callback function
-  }, [data])
 
   {
     /*const [isFixed, setIsFixed] = useState(false)
@@ -223,11 +222,45 @@ const progressRef = useRef(null)*/
       skills.length !== 0 &&
       coverLetter !== "" &&
       degree.length !== 0 &&
+      degree.every((degree) => {
+        return (
+          degree.degree !== "" &&
+          (((degree.endDate !== "" || degree.present !== false) &&
+            degree.institute !== "" &&
+            degree.field !== "" &&
+            degree.city !== "" &&
+            degree.startYear !== "") ||
+            (degree.schoolName !== "" && degree.yearOfCompletion !== ""))
+        )
+      }) &&
       projectDetails.length !== 0 &&
+      projectDetails.every((projectDetails) => {
+        return (
+          projectDetails.title !== "" &&
+          projectDetails.about !== "" &&
+          projectDetails.url !== ""
+        )
+      }) &&
       training.length !== 0 &&
+      training.every((training) => {
+        return (
+          training.title !== "" &&
+          training.institute !== "" &&
+          training.file !== null &&
+          training.startDate !== "" &&
+          training.endDate !== ""
+        )
+      }) &&
       achievements.length !== 0 &&
-      languages.length !== 0 &&
-      availability !== ""
+      achievements.every((achievements) => {
+        return (
+          achievements.achievement !== "" &&
+          achievements.file !== null &&
+          languages.length !== 0
+        )
+      }) &&
+      availability !== "" &&
+      languages.length !== 0
     )
       now = 100
 
@@ -258,8 +291,29 @@ const progressRef = useRef(null)*/
     )
   }
 
+  const showSaveMessage = () => {
+    if (now === 100 && isFilled === true) {
+      props.handleInternData(data)
+      toast.success("Data saved successfully!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
+      })
+
+      data = Object.entries(data).reduce((acc, [key, value]) => {
+        acc[key] = Array.isArray(value) ? [] : ""
+        return acc
+      }, {})
+    }
+    now === 100 ? setIsFilled(true) : setIsFilled(false)
+  }
+
+  console.log(data)
+
   return (
     <>
+      <ToastContainer />
       {progressBar()}
       <Form
         action=""
@@ -420,9 +474,10 @@ const progressRef = useRef(null)*/
           <InternshipPreview data={data} />
           <Button
             type="submit"
-            onClick={() =>
+            onClick={() => {
+              showSaveMessage()
               now === 100 ? setIsFilled(true) : setIsFilled(false)
-            }
+            }}
             className="col-sm-2 mt-2"
           >
             Save

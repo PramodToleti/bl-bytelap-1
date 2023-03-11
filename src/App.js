@@ -46,10 +46,44 @@ import CandidateMyinfo from "./components/Candidate/CandidateMyinfo"
 import "./App.css"
 
 const App = () => {
-  const [data, setData] = useState({})
+  const [registerData, setData] = useState({
+    internship: [],
+    fresher: [],
+    experience: [],
+  })
 
-  const handleData = (data) => {
-    setData(data)
+  const getDataFromStorage = JSON.parse(localStorage.getItem("registerData"))
+
+  console.log(getDataFromStorage)
+
+  const handleInternData = (data) => {
+    if (
+      JSON.stringify(data) !==
+      JSON.stringify(
+        registerData.internship[registerData.internship.length - 1]
+      )
+    ) {
+      const list = registerData.internship
+      list.push(data)
+      setData({ ...registerData, internship: list })
+      localStorage.setItem("registerData", JSON.stringify(registerData))
+    }
+  }
+
+  const handleFresherData = (data) => {
+    if (JSON.stringify(data) !== JSON.stringify(registerData)) {
+      const list = registerData.fresher
+      list.push(data)
+      setData({ ...registerData, fresher: list })
+    }
+  }
+
+  const handleExperienceData = (data) => {
+    if (JSON.stringify(data) !== JSON.stringify(registerData)) {
+      const list = registerData.experience
+      list.push(data)
+      setData({ ...registerData, experience: list })
+    }
   }
 
   return (
@@ -128,7 +162,12 @@ const App = () => {
           <Route
             exact
             path="/employee/dashboard/active-posts/job/internship"
-            component={ActiveJobIntern}
+            render={(props) => (
+              <ActiveJobIntern
+                {...props}
+                internData={registerData.internship}
+              />
+            )}
           />
 
           <Route
@@ -148,7 +187,12 @@ const App = () => {
           <Route
             exact
             path="/employee/dashboard/active-posts/job/internship/view-applicant"
-            component={ViewApplicantIntern}
+            render={(props) => (
+              <ViewApplicantIntern
+                {...props}
+                internData={registerData.internship}
+              />
+            )}
           />
 
           <Route
@@ -178,7 +222,12 @@ const App = () => {
             exact
             path="/candidate/register-myself"
             render={(props) => (
-              <CandidateRegistermyself {...props} handleData={handleData} />
+              <CandidateRegistermyself
+                {...props}
+                handleInternData={handleInternData}
+                handleFresherData={handleFresherData}
+                handleExperienceData={handleExperienceData}
+              />
             )}
           />
           {/* Candidate My Info */}

@@ -11,8 +11,6 @@ const DynamicProjectForm = (props) => {
     { title: "", url: "", about: "", hidden: false, isValid: true },
   ])
 
-  console.log(projectDetails)
-
   const handleHideFields = (index) => {
     const list = [...projectDetails]
     list[index].hidden = true

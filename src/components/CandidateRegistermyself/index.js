@@ -8,7 +8,7 @@ import "./index.css"
 import Internship from "./Internship"
 
 function CandidateRegistermyself(props) {
-  const { handleData } = props
+  const { handleInternData } = props
   const [selectedOption, setSelectedOption] = useState("internship")
 
   const handleOptionChange = (event) => {
@@ -18,11 +18,11 @@ function CandidateRegistermyself(props) {
   const renderForm = () => {
     switch (selectedOption) {
       case "internship":
-        return <Internship handleData={handleData} />
+        return <Internship handleInternData={handleInternData} />
       case "fresher":
-        return <Fresher handleData={handleData} />
+        return <Fresher handleFresherData={handleFresherData} />
       case "experience":
-        return <Experience handleData={handleData} />
+        return <Experience handleExperienceData={handleExperienceData} />
       default:
         return null
     }

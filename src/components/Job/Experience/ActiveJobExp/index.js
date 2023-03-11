@@ -92,22 +92,32 @@ function ActiveJobIntern() {
                   <Stack direction="horizontal" gap={3}>
                     {["radio"].map((type) => (
                       <div key={`inline-${type}`} className="mb-0">
-                        <Form.Check
-                          inline
-                          label="Internship"
-                          name="group1"
-                          type={type}
-                          id={`inline-${type}-1`}
-                        />
+                        <Link
+                          to="/employee/dashboard/active-posts/job/internship"
+                          style={{ color: "#333333", cursor: "pointer" }}
+                        >
+                          <Form.Check
+                            inline
+                            label="Internship"
+                            name="group1"
+                            type={type}
+                            id={`inline-${type}-1`}
+                          />
+                        </Link>
 
-                        <Form.Check
-                          className=""
-                          inline
-                          label="Fresher"
-                          name="group1"
-                          type={type}
-                          id={`inline-${type}-2`}
-                        />
+                        <Link
+                          to="/employee/dashboard/active-posts/job/fresher"
+                          style={{ color: "#333333", cursor: "pointer" }}
+                        >
+                          <Form.Check
+                            className=""
+                            inline
+                            label="Fresher"
+                            name="group1"
+                            type={type}
+                            id={`inline-${type}-2`}
+                          />
+                        </Link>
 
                         <Form.Check
                           className=""
@@ -160,262 +170,223 @@ function ActiveJobIntern() {
 
               <div
                 style={{ overflow: "scroll", maxHeight: "340px" }}
-                className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
+                className="application"
               >
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <div>
-                    <h4>Nilesh</h4>
-                    <p>React JS Developer</p>
-                  </div>
-                </div>
-
-                <div
-                  className="mt-3"
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    maxWidth: "400px",
-                  }}
-                >
-                  <div>
-                    <BsBagFill
-                      style={{
-                        color: "grey",
-                        fontSize: "20px",
-                        marginBottom: "5px",
-                      }}
-                    />
-                    <span className="location"> 3 years</span>
-                  </div>
-                  <div>
-                    <BiRupee
-                      style={{
-                        color: "grey",
-                        fontSize: "20px",
-                        marginBottom: "5px",
-                      }}
-                    />
-                    <span className="location"> 3 LPA</span>
-                  </div>
-                  <div>
-                    <p className="location">
-                      <ImLocation
-                        style={{
-                          fontSize: "20px",
-                          color: "grey",
-                          marginBottom: "5px",
-                        }}
-                      />{" "}
-                      Indore, MP
-                    </p>
-                  </div>
-                </div>
-
-                <div className="card-container-mobile">
-                  <div className="mt-3">
-                    <span style={{ fontWeight: "300" }}>Skill's: </span>
-                    <span
-                      style={{ marginRight: "15px" }}
-                      className="skills-header"
-                    >
-                      React Native
-                    </span>
-                    <span style={{ marginRight: "15px" }}>Node js</span>
-                    <span style={{ marginRight: "13px" }}>SQL</span>
-                  </div>
-
-                  <div className="mt-3">
-                    <div>
-                      <p>
-                        <span style={{ fontWeight: "300" }}>Cover Letter:</span>{" "}
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I have all the desired
-                        skills and I have very strong back-end knowledge also .
-                        I am quick learner , positive attitude , highly
-                        dedicated positive .I am Eager and passionate about the
-                        new as well with challenges task.
-                      </p>
-                    </div>
-                  </div>
-
+                <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
                   <div
-                    className="mt-3 company-header"
-                    style={{ fontWeight: "300" }}
+                    style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    Current Company:
                     <div>
-                      <h6>Senior React js Developer at Bytelap Technologies</h6>
-                      Jan 2020 - Present &nbsp;&nbsp;&nbsp;
-                      <ImLocation
-                        style={{
-                          fontSize: "16px",
-                          color: "grey",
-                          marginBottom: "5px",
-                        }}
-                      />{" "}
-                      Indore, MP
-                    </div>
-                  </div>
-
-                  <div
-                    className="mt-3 company-header"
-                    style={{ fontWeight: "300" }}
-                  >
-                    Previous Company:
-                    <div>
-                      <h6>
-                        Junior React js Developer at Creative Web Solution
-                      </h6>
-                      Jan 2019 - Jan 2020 &nbsp;&nbsp;&nbsp;
-                      <ImLocation
-                        style={{
-                          fontSize: "16px",
-                          color: "grey",
-                          marginBottom: "5px",
-                        }}
-                      />{" "}
-                      Pune, Maharashtra
+                      <h4>Nilesh</h4>
+                      <p>React JS Developer</p>
                     </div>
                   </div>
 
                   <div
                     className="mt-3"
-                    style={{ display: "flex", gap: "20px" }}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      maxWidth: "400px",
+                    }}
                   >
-                    <span style={{ fontWeight: "300" }}>Notice Period: </span>
-                    <div>My notice period is 45 days.</div>
-                  </div>
-                </div>
-
-                <div className="card-container">
-                  <div className="skill-header-e" style={{ fontWeight: "300" }}>
-                    Skills
-                  </div>
-                  <div className="colon">:</div>
-                  <div className="react-e">
-                    React JS &nbsp;&nbsp;&nbsp; Node JS &nbsp;&nbsp;&nbsp; SQL
-                  </div>
-
-                  <div
-                    className="letter-header-e"
-                    style={{ fontWeight: "300" }}
-                  >
-                    Cover Letter
-                  </div>
-                  <div>:</div>
-                  <div className="letter">
-                    I have all the desired skills and I have very strong
-                    back-end knowledge also . I am quick learner , positive
-                    attitude , highly dedicated positive .I am Eager and
-                    passionate about the new as well with challenges task.
-                  </div>
-
-                  <div className="current-e" style={{ fontWeight: "300" }}>
-                    Current Company
-                  </div>
-                  <div>:</div>
-                  <div className="current-company">
                     <div>
-                      <h6>Senior React js Developer at Bytelap Technologies</h6>
-                      Jan 2020 - Present &nbsp;&nbsp;&nbsp;
-                      <ImLocation
+                      <BsBagFill
                         style={{
-                          fontSize: "16px",
                           color: "grey",
+                          fontSize: "20px",
                           marginBottom: "5px",
                         }}
-                      />{" "}
-                      Indore, MP
+                      />
+                      <span className="location"> 3 years</span>
+                    </div>
+                    <div>
+                      <BiRupee
+                        style={{
+                          color: "grey",
+                          fontSize: "20px",
+                          marginBottom: "5px",
+                        }}
+                      />
+                      <span className="location"> 3 LPA</span>
+                    </div>
+                    <div>
+                      <p className="location">
+                        <ImLocation
+                          style={{
+                            fontSize: "20px",
+                            color: "grey",
+                            marginBottom: "5px",
+                          }}
+                        />{" "}
+                        Indore, MP
+                      </p>
                     </div>
                   </div>
 
-                  <div className="previous-e" style={{ fontWeight: "300" }}>
-                    Previous Company
-                  </div>
-                  <div>:</div>
-                  <div className="previous-company">
-                    <div>
-                      <h6>
-                        Junior React js Developer at Creative Web Solution
-                      </h6>
-                      Jan 2019 - Jan 2020 &nbsp;&nbsp;&nbsp;
-                      <ImLocation
-                        style={{
-                          fontSize: "16px",
-                          color: "grey",
-                          marginBottom: "5px",
-                        }}
-                      />{" "}
-                      Pune, Maharashtra
+                  <div className="card-container-mobile">
+                    <div className="mt-3">
+                      <span style={{ fontWeight: "300" }}>Skill's: </span>
+                      <span
+                        style={{ marginRight: "15px" }}
+                        className="skills-header"
+                      >
+                        React Native
+                      </span>
+                      <span style={{ marginRight: "15px" }}>Node js</span>
+                      <span style={{ marginRight: "13px" }}>SQL</span>
+                    </div>
+
+                    <div className="mt-3">
+                      <div>
+                        <p>
+                          <span style={{ fontWeight: "300" }}>
+                            Cover Letter:
+                          </span>{" "}
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I have all the desired
+                          skills and I have very strong back-end knowledge also
+                          . I am quick learner , positive attitude , highly
+                          dedicated positive .I am Eager and passionate about
+                          the new as well with challenges task.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div
+                      className="mt-3 company-header"
+                      style={{ fontWeight: "300" }}
+                    >
+                      Current Company:
+                      <div>
+                        <h6>
+                          Senior React js Developer at Bytelap Technologies
+                        </h6>
+                        Jan 2020 - Present &nbsp;&nbsp;&nbsp;
+                        <ImLocation
+                          style={{
+                            fontSize: "16px",
+                            color: "grey",
+                            marginBottom: "5px",
+                          }}
+                        />{" "}
+                        Indore, MP
+                      </div>
+                    </div>
+
+                    <div
+                      className="mt-3 company-header"
+                      style={{ fontWeight: "300" }}
+                    >
+                      Previous Company:
+                      <div>
+                        <h6>
+                          Junior React js Developer at Creative Web Solution
+                        </h6>
+                        Jan 2019 - Jan 2020 &nbsp;&nbsp;&nbsp;
+                        <ImLocation
+                          style={{
+                            fontSize: "16px",
+                            color: "grey",
+                            marginBottom: "5px",
+                          }}
+                        />{" "}
+                        Pune, Maharashtra
+                      </div>
+                    </div>
+
+                    <div
+                      className="mt-3"
+                      style={{ display: "flex", gap: "20px" }}
+                    >
+                      <span style={{ fontWeight: "300" }}>Notice Period: </span>
+                      <div>My notice period is 45 days.</div>
                     </div>
                   </div>
 
-                  <div className="notice-e" style={{ fontWeight: "300" }}>
-                    Notice Period
-                  </div>
-                  <div>:</div>
-                  <div className="notice-period">
-                    My notice period is 45 days.
-                  </div>
-                </div>
+                  <div className="card-container">
+                    <div
+                      className="skill-header-e"
+                      style={{ fontWeight: "300" }}
+                    >
+                      Skills
+                    </div>
+                    <div className="colon">:</div>
+                    <div className="react-e">
+                      React JS &nbsp;&nbsp;&nbsp; Node JS &nbsp;&nbsp;&nbsp; SQL
+                    </div>
 
-                <div className="mt-3"></div>
-                <div>
-                  <div className="interested-btn-container">
-                    <Button
-                      variant="success"
-                      size="sm"
-                      className=" mt-3"
-                      onClick={(e) => handleActiveType(e)}
+                    <div
+                      className="letter-header-e"
+                      style={{ fontWeight: "300" }}
                     >
-                      Interested
-                    </Button>{" "}
-                    <Button
-                      variant="primary"
-                      className=" mt-3"
-                      size="sm"
-                      onClick={(e) => handleActiveType(e)}
-                    >
-                      Shortlisted
-                    </Button>
-                    <Button
-                      variant="primary"
-                      className=" mt-3"
-                      size="sm"
-                      onClick={(e) => handleActiveType(e)}
-                    >
-                      Hire
-                    </Button>{" "}
-                    <Button
-                      variant="danger"
-                      className=" mt-3"
-                      size="sm"
-                      onClick={(e) => handleActiveType(e)}
-                    >
-                      Not Interested
-                    </Button>{" "}
-                    <Button variant="light" className=" mt-3" size="sm">
-                      Call
-                    </Button>{" "}
-                    <Button
-                      variant="link"
-                      className=" mt-3"
-                      size="sm"
-                      onClick={() => setLgShow(true)}
-                    >
-                      View Resume
-                    </Button>
-                  </div>
-                </div>
+                      Cover Letter
+                    </div>
+                    <div>:</div>
+                    <div className="letter">
+                      I have all the desired skills and I have very strong
+                      back-end knowledge also . I am quick learner , positive
+                      attitude , highly dedicated positive .I am Eager and
+                      passionate about the new as well with challenges task.
+                    </div>
 
-                <div>
-                  <div className="interested-btn-container-desktop">
-                    <div className="btns-container">
+                    <div className="current-e" style={{ fontWeight: "300" }}>
+                      Current Company
+                    </div>
+                    <div>:</div>
+                    <div className="current-company">
+                      <div>
+                        <h6>
+                          Senior React js Developer at Bytelap Technologies
+                        </h6>
+                        Jan 2020 - Present &nbsp;&nbsp;&nbsp;
+                        <ImLocation
+                          style={{
+                            fontSize: "16px",
+                            color: "grey",
+                            marginBottom: "5px",
+                          }}
+                        />{" "}
+                        Indore, MP
+                      </div>
+                    </div>
+
+                    <div className="previous-e" style={{ fontWeight: "300" }}>
+                      Previous Company
+                    </div>
+                    <div>:</div>
+                    <div className="previous-company">
+                      <div>
+                        <h6>
+                          Junior React js Developer at Creative Web Solution
+                        </h6>
+                        Jan 2019 - Jan 2020 &nbsp;&nbsp;&nbsp;
+                        <ImLocation
+                          style={{
+                            fontSize: "16px",
+                            color: "grey",
+                            marginBottom: "5px",
+                          }}
+                        />{" "}
+                        Pune, Maharashtra
+                      </div>
+                    </div>
+
+                    <div className="notice-e" style={{ fontWeight: "300" }}>
+                      Notice Period
+                    </div>
+                    <div>:</div>
+                    <div className="notice-period">
+                      My notice period is 45 days.
+                    </div>
+                  </div>
+
+                  <div className="mt-3"></div>
+                  <div>
+                    <div className="interested-btn-container">
                       <Button
                         variant="success"
                         size="sm"
-                        className="mt-3"
+                        className=" mt-3"
                         onClick={(e) => handleActiveType(e)}
                       >
                         Interested
@@ -427,7 +398,7 @@ function ActiveJobIntern() {
                         onClick={(e) => handleActiveType(e)}
                       >
                         Shortlisted
-                      </Button>{" "}
+                      </Button>
                       <Button
                         variant="primary"
                         className=" mt-3"
@@ -435,7 +406,7 @@ function ActiveJobIntern() {
                         onClick={(e) => handleActiveType(e)}
                       >
                         Hire
-                      </Button>
+                      </Button>{" "}
                       <Button
                         variant="danger"
                         className=" mt-3"
@@ -444,8 +415,6 @@ function ActiveJobIntern() {
                       >
                         Not Interested
                       </Button>{" "}
-                    </div>
-                    <div>
                       <Button variant="light" className=" mt-3" size="sm">
                         Call
                       </Button>{" "}
@@ -459,18 +428,70 @@ function ActiveJobIntern() {
                       </Button>
                     </div>
                   </div>
-                </div>
 
-                <Link
-                  to="/employee/dashboard/active-posts/job/experience/view-applicant"
-                  className="nav-link"
-                >
-                  <div style={{ display: "flex", justifyContent: "end" }}>
-                    <p className="mt-4" style={{ color: "blue" }}>
-                      View Application
-                    </p>
+                  <div>
+                    <div className="interested-btn-container-desktop">
+                      <div className="btns-container">
+                        <Button
+                          variant="success"
+                          size="sm"
+                          className="mt-3"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Interested
+                        </Button>{" "}
+                        <Button
+                          variant="primary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Shortlisted
+                        </Button>{" "}
+                        <Button
+                          variant="primary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Hire
+                        </Button>
+                        <Button
+                          variant="danger"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Not Interested
+                        </Button>{" "}
+                      </div>
+                      <div>
+                        <Button variant="light" className=" mt-3" size="sm">
+                          Call
+                        </Button>{" "}
+                        <Button
+                          variant="link"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={() => setLgShow(true)}
+                        >
+                          View Resume
+                        </Button>
+                      </div>
+                    </div>
                   </div>
-                </Link>
+
+                  <Link
+                    to="/employee/dashboard/active-posts/job/experience/view-applicant"
+                    className="nav-link"
+                  >
+                    <div style={{ display: "flex", justifyContent: "end" }}>
+                      <p className="mt-4" style={{ color: "blue" }}>
+                        View Application
+                      </p>
+                    </div>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

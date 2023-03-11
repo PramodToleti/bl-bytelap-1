@@ -144,3 +144,10 @@
     grid-column: 3;
   }
 }
+
+.no-applications {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+}
