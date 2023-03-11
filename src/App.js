@@ -56,19 +56,22 @@ const App = () => {
 
   console.log(getDataFromStorage)
 
-  const handleInternData = (data) => {
+  const handleInternData = async (data) => {
     if (
       JSON.stringify(data) !==
       JSON.stringify(
         registerData.internship[registerData.internship.length - 1]
       )
     ) {
-      const list = registerData.internship
-      list.push(data)
-      setData({ ...registerData, internship: list })
+      setData({
+        ...registerData,
+        internship: [...registerData.internship, data],
+      })
       localStorage.setItem("registerData", JSON.stringify(registerData))
     }
   }
+
+  console.log(registerData)
 
   const handleFresherData = (data) => {
     if (JSON.stringify(data) !== JSON.stringify(registerData)) {

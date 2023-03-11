@@ -170,10 +170,11 @@ function ActiveJobIntern(props) {
 
               <div style={{ maxHeight: "350px", overflow: "scroll" }}>
                 {internData.length !== 0 ? (
-                  internData.map((data) => (
+                  internData.map((data, index) => (
                     <div
                       style={{ overflow: "scroll", maxHeight: "340px" }}
                       className="application"
+                      key={index}
                     >
                       <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3  rounded border border-secondary">
                         <div
@@ -403,6 +404,7 @@ function ActiveJobIntern(props) {
                         <Link
                           to="/employee/dashboard/active-posts/job/internship/view-applicant"
                           className="nav-link"
+                          onClick={console.log(index)}
                         >
                           <div
                             style={{ display: "flex", justifyContent: "end" }}

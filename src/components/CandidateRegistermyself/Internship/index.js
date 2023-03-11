@@ -303,19 +303,13 @@ const progressRef = useRef(null)*/
         hideProgressBar: true,
         style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
       })
-
-      data = Object.entries(data).reduce((acc, [key, value]) => {
-        acc[key] = Array.isArray(value) ? [] : ""
-        return acc
-      }, {})
-
-      formRef.current.reset()
+      window.location.reload()
     }
 
     now === 100 ? setIsFilled(true) : setIsFilled(false)
   }
 
-  console.log(data)
+  console.log(now)
 
   return (
     <>

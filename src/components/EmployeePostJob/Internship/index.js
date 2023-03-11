@@ -4,6 +4,8 @@ import { Col } from "react-bootstrap"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import DatePicker from "react-datepicker"
+import "react-toastify/dist/ReactToastify.css"
+import { toast } from "react-toastify"
 
 import PerksDropdown from "../../../PerksDropdown"
 import LanguageDropdown from "../../../LanguageDropdown"
@@ -16,6 +18,7 @@ import InternshipPostPreview from "../../../EmployeePostPreview/InternshipPostPr
 
 import "react-datepicker/dist/react-datepicker.css"
 import "./index.css"
+import { ToastContainer } from "react-toastify"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
@@ -106,6 +109,41 @@ function Internship() {
     setValidated(true)
   }
 
+  console.log(data)
+
+  const handlePostJob = () => {
+    if (
+      jobTitle !== "" &&
+      jobTime !== "" &&
+      (jobType !== "" || city.length !== 0) &&
+      duration !== "" &&
+      (checked !== false || startDate !== "") &&
+      skills.length !== 0 &&
+      responsibilities !== "" &&
+      (salaryType !== "" || salaryRange !== "") &&
+      perks.length !== 0 &&
+      languages.length !== 0 &&
+      openings !== "" &&
+      location.length !== 0 &&
+      education.length !== 0
+    ) {
+      toast.success("Job Posted successfully!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
+      })
+      const jobData = JSON.parse(localStorage.getItem("internshipJob"))
+      if (jobData === null) {
+        localStorage.setItem("internshipJob", JSON.stringify([data]))
+      } else {
+        jobData.push(data)
+        localStorage.setItem("internshipJob", JSON.stringify(jobData))
+      }
+      window.location.reload()
+    }
+  }
+
   const renderSalaryType = () => {
     switch (salaryType) {
       case "Fixed":
@@ -183,6 +221,7 @@ function Internship() {
       className="col-lg-6 col-md-4 search-course-right   mb-4 mt-4 p-4  rounded container reveal mb-5 rounded border "
       style={{ width: "100%", background: "white" }}
     >
+      <ToastContainer />
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group className="mb-3 mt-2" controlId="formBasicText">
@@ -323,7 +362,9 @@ function Internship() {
         <InternshipPostPreview data={data} />
         <div className="save-container">
           <Button variant="success">Save Draft</Button>
-          <Button variant="primary">Post Job</Button>
+          <Button variant="primary" onClick={handlePostJob}>
+            Post Job
+          </Button>
         </div>
       </Form>
     </div>
