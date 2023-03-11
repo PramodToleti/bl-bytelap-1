@@ -21,6 +21,7 @@ const ChooseJobTitle = (props) => {
       placeholder="Software developer , Digital marketing"
       selected={selected}
       onChange={onChangeTitle}
+      value={props.value}
     />
   )
 }

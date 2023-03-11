@@ -6,7 +6,7 @@ import { toast } from "react-toastify"
 import "react-datepicker/dist/react-datepicker.css"
 import CheckboxDropdown from "../../../CheckboxDropdowm"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useRef } from "react"
 import Row from "react-bootstrap/Row"
 import { Col } from "react-bootstrap"
 import ProgressBar from "react-bootstrap/ProgressBar"
@@ -53,6 +53,8 @@ function Internship(props) {
     languages,
     availability,
   }
+
+  const formRef = useRef(null)
 
   {
     /*const [isFixed, setIsFixed] = useState(false)
@@ -291,7 +293,8 @@ const progressRef = useRef(null)*/
     )
   }
 
-  const showSaveMessage = () => {
+  const onSubmitForm = (event) => {
+    event.preventDefault()
     if (now === 100 && isFilled === true) {
       props.handleInternData(data)
       toast.success("Data saved successfully!", {
@@ -305,7 +308,10 @@ const progressRef = useRef(null)*/
         acc[key] = Array.isArray(value) ? [] : ""
         return acc
       }, {})
+
+      formRef.current.reset()
     }
+
     now === 100 ? setIsFilled(true) : setIsFilled(false)
   }
 
@@ -319,9 +325,10 @@ const progressRef = useRef(null)*/
         action=""
         noValidate
         validated={validated}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmitForm}
         style={{ width: "100%" }}
         className="p-3"
+        ref={formRef}
       >
         <Row className="mb-3">
           <div
@@ -472,14 +479,7 @@ const progressRef = useRef(null)*/
         <Row className="justify-content-center">
           {/*<Button type="button" variant="secondary" className="col-sm-2 mx-4 mt-2">Preview</Button>*/}
           <InternshipPreview data={data} />
-          <Button
-            type="submit"
-            onClick={() => {
-              showSaveMessage()
-              now === 100 ? setIsFilled(true) : setIsFilled(false)
-            }}
-            className="col-sm-2 mt-2"
-          >
+          <Button type="submit" className="col-sm-2 mt-2">
             Save
           </Button>
         </Row>
