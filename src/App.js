@@ -56,8 +56,6 @@ const App = () => {
 
   const getDataFromStorage = JSON.parse(localStorage.getItem("registerData"))
 
-  console.log(getDataFromStorage)
-
   const handleInternData = async (data) => {
     if (
       JSON.stringify(data) !==
