@@ -37,10 +37,6 @@ const HomeHeader = () => {
                 Home
               </Link>
 
-              <Link to="/saved-job" className="fs-4 nav-link">
-                Saved Job
-              </Link>
-
               <Link to="/candidate/register-myself" className="fs-4 nav-link">
                 Register Myself
               </Link>

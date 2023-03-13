@@ -6,6 +6,7 @@ import { AiFillYoutube } from "react-icons/ai"
 import { MdDateRange } from "react-icons/md"
 import { BiRupee } from "react-icons/bi"
 import { FaHome } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 const CandidateJobs = (props) => {
   const { checkedJobTypes, activeShifts, activeSchedule } = props
@@ -15,6 +16,8 @@ const CandidateJobs = (props) => {
   console.log(checkedJobTypes)
 
   const internJobs = JSON.parse(localStorage.getItem("internshipJob"))
+
+  console.log(internJobs)
 
   return internJobs.map((data, index) => (
     <div className="d-flex flex-row container justify-content-start">
@@ -150,19 +153,20 @@ const CandidateJobs = (props) => {
         </div>
         <div className="d-flex flex-row justify-content-between mt-3">
           <p style={{ fontSize: "12px" }}>Just Now</p>
-          <button
-            type="button"
-            style={{
-              border: "0",
-              background: "transparent",
-              color: "blue",
-              cursor: "pointer",
-            }}
-            key={index}
-            onClick={() => console.log(index)}
-          >
-            View Details
-          </button>
+          <Link to={`/candidate/job-details/${index + 1}`}>
+            <button
+              type="button"
+              style={{
+                border: "0",
+                background: "transparent",
+                color: "blue",
+                cursor: "pointer",
+              }}
+              key={index}
+            >
+              View Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>

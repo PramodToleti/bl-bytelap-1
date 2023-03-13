@@ -31,7 +31,6 @@ import ViewApplicantFresher from "./components/Job/Fresher/ViewApplicantFresher"
 //Active Job -> Experience
 import ActiveJobExp from "./components/Job/Experience/ActiveJobExp"
 import ViewApplicantExp from "./components/Job/Experience/ViewApplicantExp"
-
 //Post job
 import EmployeePostJob from "./components/EmployeePostJob"
 //Saved Jobs
@@ -42,8 +41,11 @@ import CompanySettings from "./components/EmployeeSettings/CompanySettings"
 //Register Myself
 import CandidateRegistermyself from "./components/CandidateRegistermyself"
 import CandidateMyinfo from "./components/Candidate/CandidateMyinfo"
+//Candidate -> Job Details
+import CandidateJobDetails from "./components/Candidate/CandidateJobDetails"
 
 import "./App.css"
+import EmployeeUnregistered from "./components/Employee/EmployeeUnregistered"
 
 const App = () => {
   const [registerData, setData] = useState({
@@ -70,8 +72,6 @@ const App = () => {
       localStorage.setItem("registerData", JSON.stringify(registerData))
     }
   }
-
-  console.log(registerData)
 
   const handleFresherData = (data) => {
     if (JSON.stringify(data) !== JSON.stringify(registerData)) {
@@ -123,6 +123,7 @@ const App = () => {
             path="/employee/create-account/step-2"
             component={EmployeeStep2}
           />
+          <Route exact path="/employee/home" component={EmployeeUnregistered} />
           {/* Forgot Password Routes */}
           <Route
             exact
@@ -238,6 +239,12 @@ const App = () => {
             exact
             path="/candidate/account-setting/my-info"
             component={CandidateMyinfo}
+          />
+
+          <Route
+            exact
+            path="/candidate/job-details/:id"
+            component={CandidateJobDetails}
           />
           <Redirect to="/login" />
         </Switch>
