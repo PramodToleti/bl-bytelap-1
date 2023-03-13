@@ -25,7 +25,7 @@ function Home() {
     <>
       <HomeHeader />
       <div style={{ paddingLeft: "7px" }}>
-        <div className="col-lg-12 col-md-4 search-course-right   mb-4 mt-4 p-2 bg-light text-dark  border-white rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
+        <div className="col-lg-12 col-md-4 search-course-right   mb-2 mt-4 p-2 bg-light text-dark  border-white rounded container reveal  p-3 mb-5 bg-white rounded border border-secondary">
           <Row className="mb-4">
             <Form.Group
               as={Col}
