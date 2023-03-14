@@ -1,0 +1,207 @@
+/*
+ * Variables
+ */
+
+:root {
+  --card-padding: 24px;
+  --card-height: 200px;
+  --card-skeleton: linear-gradient(lightgrey var(--card-height), transparent 0);
+
+  --avatar-size: 32px;
+  --avatar-position: var(--card-padding) var(--card-padding);
+  --avatar-skeleton: radial-gradient(
+    circle 16px at center,
+    white 99%,
+    transparent 0
+  );
+
+  --title-height: 32px;
+  --title-width: 200px;
+  --title-position: var(--card-padding) 150px;
+  --title-skeleton: linear-gradient(white var(--title-height), transparent 0);
+
+  --desc-line-height: 16px;
+  --desc-line-skeleton: linear-gradient(
+    white var(--desc-line-height),
+    transparent 0
+  );
+  --desc-line-1-width: 230px;
+  --desc-line-1-position: var(--card-padding) 120px;
+  --desc-line-2-width: 180px;
+  --desc-line-2-position: var(--card-padding) 80px;
+
+  --footer-height: 0px;
+  --footer-position: 0 calc(var(--card-height) - var(--footer-height));
+  --footer-skeleton: linear-gradient(white var(--footer-height), transparent 0);
+
+  --blur-width: 200px;
+  --blur-size: var(--blur-width) calc(var(--card-height) - var(--footer-height));
+}
+
+/*
+ * Card Skeleton for Loading
+ */
+
+.card {
+  width: 280px;
+  height: var(--card-height);
+  margin: var(--card-padding);
+  &:empty::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    box-shadow: 0 10px 45px rgba(0, 0, 0, 0.1);
+
+    background-image: linear-gradient(
+        90deg,
+        rgba(lightgrey, 0) 0,
+        rgba(lightgrey, 0.8) 50%,
+        rgba(lightgrey, 0) 100%
+      ),
+      //animation blur
+      var(--title-skeleton),
+      //title
+      var(--desc-line-skeleton),
+      //desc1
+      var(--desc-line-skeleton),
+      //desc2
+      var(--avatar-skeleton),
+      //avatar
+      var(--footer-skeleton),
+      //footer bar
+      var(--card-skeleton) //card
+;
+
+    background-size: var(--blur-size), var(--title-width) var(--title-height),
+      var(--desc-line-1-width) var(--desc-line-height),
+      var(--desc-line-2-width) var(--desc-line-height),
+      var(--avatar-size) var(--avatar-size), 100% var(--footer-height),
+      100% 100%;
+
+    background-position: -150% 0,
+      //animation
+      var(--title-position),
+      //title
+      var(--desc-line-1-position),
+      //desc1
+      var(--desc-line-2-position),
+      //desc2
+      var(--avatar-position),
+      //avatar
+      var(--footer-position),
+      //footer bar
+      0 0 //card
+;
+
+    background-repeat: no-repeat;
+    animation: loading 1.5s infinite;
+  }
+}
+
+@keyframes loading {
+  to {
+    background-position: 350% 0, var(--title-position),
+      var(--desc-line-1-position), var(--desc-line-2-position),
+      var(--avatar-position), var(--footer-position), 0 0;
+  }
+}
+
+/* 
+ * Demo Stuff
+ */
+
+.button--full {
+  padding: 17px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.card-grid {
+  display: flex;
+}
+
+.card--content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--card-padding) var(--card-padding) 0 var(--card-padding);
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 6px;
+  box-shadow: 0 10px 45px rgba(0, 0, 0, 0.1);
+  background-image: url(https://images.unsplash.com/photo-1535082237804-f25137037270?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=92df1e550df7819b1cd23ebcb9e01d66&auto=format&fit=crop&w=1000&q=80);
+  background-size: cover;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.card-content--top {
+  text-shadow: 1px 1px #000000;
+}
+
+.card-avatar {
+  display: flex;
+  align-items: center;
+}
+
+.card-avatar--image {
+  height: var(--avatar-size);
+  width: var(--avatar-size);
+  border-radius: 15px;
+  margin-right: 5px;
+}
+
+.card--info {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-copy--title {
+  font-size: var(--title-height);
+  line-height: 1;
+}
+
+.card-copy--description {
+  font-size: var(--desc-line-height);
+  line-height: 1.5;
+}
+
+.card-icon {
+  display: flex;
+  align-items: center;
+  margin-right: var(--card-padding);
+  color: black;
+}
+
+.card-icon--svg {
+  height: 18px;
+  width: 18px;
+  margin-right: 7px;
+}
+
+.card--info {
+  background-color: white;
+  padding: 11px 25px;
+  margin: 0 -25px;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: 400px;
+  }
+}

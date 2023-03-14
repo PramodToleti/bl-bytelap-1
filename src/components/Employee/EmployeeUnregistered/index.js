@@ -36,6 +36,7 @@ import TermsAndConditions from "../FooterLinks/TermsAndConditions"
 import ChooseFile from "../../../ChooseFile"
 
 import "./index.css"
+import SkeletonContainer from "../../../SkeletonContainer"
 
 function EmployeeUnregistered() {
   const [isNext, setIsNext] = useState(false)
@@ -323,7 +324,7 @@ function EmployeeUnregistered() {
       default:
         return (
           <>
-            <div className="post-job-content mb-5">
+            <div className="post-job-content">
               <Popup
                 trigger={<Button>Post a Job</Button>}
                 position="center center"
@@ -350,6 +351,34 @@ function EmployeeUnregistered() {
                   <h4>3</h4>
                   <h6>Select Resume's & Hire</h6>
                 </div>
+              </div>
+            </div>
+
+            <div className="landing-page-content container mb-5 p-5">
+              <h2>Haven't found the perfect candidate yet?</h2>
+              <p>Perfect Post for the Perfect Candidate.</p>
+              <div className="skeleton-content mb-4">
+                <div>
+                  <h5>Intern's Candidate</h5>
+                  <p>Get intern candidates</p>
+                </div>
+                <SkeletonContainer />
+              </div>
+
+              <div className="skeleton-content mb-4">
+                <SkeletonContainer />
+                <div>
+                  <h5>Fresher Candidates</h5>
+                  <p>Get Trained/Certified & Fresher candidates</p>
+                </div>
+              </div>
+
+              <div className="skeleton-content mb-4">
+                <div>
+                  <h5>Experience Candidates</h5>
+                  <p>Select Experience candidate's with Advance Filter</p>
+                </div>
+                <SkeletonContainer />
               </div>
             </div>
 
