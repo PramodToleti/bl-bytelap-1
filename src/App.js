@@ -44,8 +44,9 @@ import CandidateMyinfo from "./components/Candidate/CandidateMyinfo"
 //Candidate -> Job Details
 import CandidateJobDetails from "./components/Candidate/CandidateJobDetails"
 
-import "./App.css"
 import EmployeeUnregistered from "./components/Employee/EmployeeUnregistered"
+
+import "./App.css"
 
 const App = () => {
   const [registerData, setData] = useState({

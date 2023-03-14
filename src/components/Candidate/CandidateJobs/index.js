@@ -11,13 +11,11 @@ import { Link } from "react-router-dom"
 const CandidateJobs = (props) => {
   const { checkedJobTypes, activeShifts, activeSchedule } = props
 
-  let jobsData
-
-  console.log(checkedJobTypes)
-
   const internJobs = JSON.parse(localStorage.getItem("internshipJob"))
 
-  console.log(internJobs)
+  if (internJobs === null) {
+    return null
+  }
 
   return internJobs.map((data, index) => (
     <div className="d-flex flex-row container justify-content-start">
