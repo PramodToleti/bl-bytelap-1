@@ -29,6 +29,7 @@
     "react-slick": "^0.29.0",
     "react-sticky-box": "^1.0.2",
     "react-toastify": "^9.1.1",
+    "reactjs-popup": "^2.0.5",
     "reactstrap": "^9.1.5",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
