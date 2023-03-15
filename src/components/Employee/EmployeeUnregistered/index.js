@@ -18,7 +18,6 @@ import Form from "react-bootstrap/Form"
 import Stack from "react-bootstrap/Stack"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
-import { toast } from "react-toastify"
 
 import "reactjs-popup/dist/index.css"
 import "react-toastify/dist/ReactToastify.css"
@@ -33,6 +32,8 @@ import ContactUs from "../FooterLinks/ContactUs"
 import Media from "../FooterLinks/Media"
 import PrivacyPolicy from "../FooterLinks/PrivacyPolicy"
 import TermsAndConditions from "../FooterLinks/TermsAndConditions"
+import Startup from "../FooterLinks/Startup"
+import Enterprise from "../FooterLinks/Enterprise"
 import ChooseFile from "../../../ChooseFile"
 
 import "./index.css"
@@ -320,6 +321,10 @@ function EmployeeUnregistered() {
         return <PrivacyPolicy />
       case "Terms & Condition":
         return <TermsAndConditions />
+      case "Startup Hiring":
+        return <Startup />
+      case "Enterprise Hiring":
+        return <Enterprise />
 
       default:
         return (
@@ -619,8 +624,18 @@ function EmployeeUnregistered() {
           <ul className="footer-sub-container">
             <h5 className="footer-heading">Sales & Enquires</h5>
             <li className="footer-link">Sales@demo.com</li>
-            <li className="footer-link">Startup Hiring</li>
-            <li className="footer-link">Enterprise Hiring</li>
+            <li
+              className="footer-link"
+              onClick={(e) => setActiveLink(e.target.textContent)}
+            >
+              Startup Hiring
+            </li>
+            <li
+              className="footer-link"
+              onClick={(e) => setActiveLink(e.target.textContent)}
+            >
+              Enterprise Hiring
+            </li>
             <li className="footer-link">91-8888-8888-88</li>
           </ul>
 
