@@ -358,27 +358,35 @@ function EmployeeUnregistered() {
               <h2>Haven't found the perfect candidate yet?</h2>
               <p>Perfect Post for the Perfect Candidate.</p>
               <div className="skeleton-content mb-4">
-                <div>
+                <div className="desktop-text">
                   <h5>Intern's Candidate</h5>
                   <p>Get intern candidates</p>
                 </div>
                 <SkeletonContainer />
+                <div className="mobile-text">
+                  <h5>Intern's Candidate</h5>
+                  <p>Get intern candidates</p>
+                </div>
               </div>
 
               <div className="skeleton-content mb-4">
                 <SkeletonContainer />
-                <div>
+                <div style={{ textAlign: "center" }}>
                   <h5>Fresher Candidates</h5>
                   <p>Get Trained/Certified & Fresher candidates</p>
                 </div>
               </div>
 
               <div className="skeleton-content mb-4">
-                <div>
+                <div className="desktop-text">
                   <h5>Experience Candidates</h5>
                   <p>Select Experience candidate's with Advance Filter</p>
                 </div>
                 <SkeletonContainer />
+                <div className="mobile-text">
+                  <h5>Experience Candidates</h5>
+                  <p>Select Experience candidate's with Advance Filter</p>
+                </div>
               </div>
             </div>
 
