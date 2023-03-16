@@ -44,6 +44,10 @@ const Blog = (props) => {
     )
   }
 
+  {
+    /* Post View */
+  }
+
   if (props.isPostActive) {
     return (
       <div className="blog-container container mb-5">
