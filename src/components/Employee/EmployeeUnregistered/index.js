@@ -52,6 +52,11 @@ function EmployeeUnregistered() {
   }
 
   const [activeLink, setActiveLink] = useState(null)
+  const [isPostActive, setIsPostActive] = useState(false)
+
+  const onClickPost = () => {
+    setIsPostActive(true)
+  }
 
   const renderSteps = () => {
     if (!isNext) {
@@ -312,7 +317,9 @@ function EmployeeUnregistered() {
       case "About us":
         return <AboutUs />
       case "Blog":
-        return <Blog />
+        return (
+          <Blog setIsPostActive={setIsPostActive} isPostActive={isPostActive} />
+        )
       case "Contact us":
         return <ContactUs />
       case "Media":
@@ -585,37 +592,74 @@ function EmployeeUnregistered() {
             <h5 className="footer-heading">Product</h5>
             <li
               className="footer-link"
-              onClick={(e) => setActiveLink(e.target.textContent)}
+              onClick={(e) => {
+                setActiveLink(e.target.textContent)
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                })
+              }}
             >
               About us
             </li>
             <li
               className="footer-link"
-              onClick={(e) => setActiveLink(e.target.textContent)}
+              onClick={(e) => {
+                setActiveLink(e.target.textContent)
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                })
+              }}
             >
               Media
             </li>
             <li
               className="footer-link"
-              onClick={(e) => setActiveLink(e.target.textContent)}
+              onClick={(e) => {
+                setActiveLink(e.target.textContent)
+                setIsPostActive(false)
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                })
+              }}
             >
               Blog
             </li>
             <li
               className="footer-link"
-              onClick={(e) => setActiveLink(e.target.textContent)}
+              onClick={(e) => {
+                setActiveLink(e.target.textContent)
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                })
+              }}
             >
               Privacy Policy
             </li>
             <li
               className="footer-link"
-              onClick={(e) => setActiveLink(e.target.textContent)}
+              onClick={(e) => {
+                setActiveLink(e.target.textContent)
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                })
+              }}
             >
               Terms & Condition
             </li>
             <li
               className="footer-link"
-              onClick={(e) => setActiveLink(e.target.textContent)}
+              onClick={(e) => {
+                setActiveLink(e.target.textContent)
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                })
+              }}
             >
               Contact us
             </li>
@@ -626,13 +670,25 @@ function EmployeeUnregistered() {
             <li className="footer-link">Sales@demo.com</li>
             <li
               className="footer-link"
-              onClick={(e) => setActiveLink(e.target.textContent)}
+              onClick={(e) => {
+                setActiveLink(e.target.textContent)
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                })
+              }}
             >
               Startup Hiring
             </li>
             <li
               className="footer-link"
-              onClick={(e) => setActiveLink(e.target.textContent)}
+              onClick={(e) => {
+                setActiveLink(e.target.textContent)
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                })
+              }}
             >
               Enterprise Hiring
             </li>

@@ -1,59 +1,125 @@
 .blog-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 20px;
 }
 
-.blog-main-container {
-  display: flex;
-  gap: 18px;
-  justify-content: space-between;
-  max-width: 900px;
-}
-
-.blog-content {
-  width: 70%;
-}
-
-.blog-cells {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.blog-cell {
-  border: 1px solid #dad9d9;
-  min-height: 70px;
-  min-width: 100px;
-  border-radius: 10px;
-  width: 46%;
-}
-
-.blog-side-container {
-  border: 1px solid #dad9d9;
-  width: 30%;
-  border-radius: 10px;
-  height: 620px;
-}
-
 .recent-post-main {
-  border: 1px solid #dad9d9;
-  border-radius: 10px;
-  padding: 10px;
-  min-height: 130px;
+  width: 100%;
 }
 
-.recent-post {
-  border: 1px solid #dad9d9;
-  border-radius: 10px;
-  padding: 10px;
-  min-height: 80px;
+.recent-post-image {
+  width: 100%;
+  max-height: 450px;
 }
 
-.controller-btns {
+@media screen and (max-width: 767px) {
+  .recent-post-sub-main {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .recent-post-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .post-image {
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .recent-post-sub {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .recent-post-sub-main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 30%;
+    max-width: 350px;
+  }
+
+  .recent-post-description {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}
+
+.recent-post-controllers-btn {
+  border: 0;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.recent-post-controllers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  width: 200px;
+}
+
+.edit-all-btn {
   border: none;
   background: transparent;
   outline: none;
   cursor: pointer;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.add-container {
+  min-height: 310px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.add-container:hover,
+.edit-container:hover {
+  border: 1px solid #000;
+}
+
+.edit-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .edit-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .add-container {
+    width: 30%;
+    max-width: 350px;
+  }
+}
+
+.edit-btn {
+  border: none;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  align-self: flex-start;
+  margin-bottom: 15px;
 }

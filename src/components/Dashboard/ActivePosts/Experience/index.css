@@ -1,0 +1,50 @@
+.job-container {
+  width: 100%;
+  cursor: pointer;
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Roboto";
+}
+
+.action-btn-container {
+  width: 33%;
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 6px;
+}
+
+.job-name {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.view-applicants {
+  font-size: 17px;
+  font-weight: 500;
+  color: blue;
+  font-family: "Roboto";
+  cursor: pointer;
+}
+
+.time {
+  font-family: "Roboto";
+  font-size: 12px;
+}
+
+.action-btn {
+  border: 0;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .select-post-mobile {
+    display: none;
+  }
+}

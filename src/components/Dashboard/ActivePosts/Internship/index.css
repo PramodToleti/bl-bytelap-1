@@ -1,0 +1,114 @@
+.job-container {
+  width: 100%;
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Roboto";
+}
+
+.action-btn-container {
+  width: 33%;
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 6px;
+}
+
+.application-container {
+  font-weight: "Roboto";
+}
+
+.job-name {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.view-applicants {
+  font-size: 17px;
+  font-weight: 500;
+  color: blue;
+  font-family: "Roboto";
+  cursor: pointer;
+}
+
+.time {
+  font-family: "Roboto";
+  font-size: 12px;
+}
+
+.action-btn {
+  border: 0;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.application {
+  font-family: "Roboto";
+}
+
+.user-name {
+  margin-bottom: 15px;
+  font-weight: 600;
+  margin-top: 25px;
+}
+
+.job-title {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.skills {
+  font-size: 16px;
+}
+
+.portfolio {
+  font-size: 16px;
+}
+
+.availability {
+  font-size: 16px;
+}
+
+.interested-btn-container {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  gap: 15px;
+}
+
+.call-container {
+  display: flex;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+/* Resume */
+
+.resume-username {
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.resume-side-heading {
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 45px;
+}
+
+p {
+  font-size: 17px;
+}
+
+@media screen and (min-width: 768px) {
+  .select-post-mobile {
+    display: none;
+  }
+}
