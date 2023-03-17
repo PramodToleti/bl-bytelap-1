@@ -17,6 +17,7 @@
   .recent-post-sub-main {
     display: flex;
     gap: 10px;
+    justify-content: flex-start;
     align-items: center;
   }
 

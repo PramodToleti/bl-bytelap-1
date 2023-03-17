@@ -9,9 +9,9 @@ import "react-toastify/dist/ReactToastify.css"
 
 const EditPost = (props) => {
   const { index } = props
-  console.log(data[index])
 
   const [editDetails, setEditDetails] = useState({
+    id: data[index]?.id || 0,
     imageUrl: data[index]?.imageUrl || "",
     heading: data[index]?.heading || "",
     description: data[index]?.description || "",
@@ -21,6 +21,7 @@ const EditPost = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     data[index] = editDetails
+    localStorage.setItem("data", JSON.stringify(data))
     toast.success("Post Updated Successfully", {
       style: {
         backgroundColor: "#000",
@@ -41,6 +42,12 @@ const EditPost = (props) => {
       className="container"
       onSubmit={handleSubmit}
     >
+      <p
+        onClick={() => props.setEditClicked(false)}
+        style={{ cursor: "pointer", marginBottom: "10px" }}
+      >
+        &lt; Back
+      </p>
       {data[index] !== undefined ? (
         <img
           src={data[index].imageUrl}
@@ -107,18 +114,24 @@ const EditPost = (props) => {
   )
 }
 
-const EditAll = () => {
+const EditAll = (props) => {
   const [editOption, setEditOption] = useState(null)
   const [isEditClicked, setEditClicked] = useState(false)
 
   if (isEditClicked) {
-    return <EditPost index={editOption} />
+    return <EditPost index={editOption} setEditClicked={setEditClicked} />
   }
 
   return (
     <div className="blog-container container mb-5">
       <h3 align="end">Category</h3>
       <p>Career Guidence</p>
+      <p
+        onClick={() => props.setEditClicked(false)}
+        style={{ cursor: "pointer", marginBottom: "10px" }}
+      >
+        &lt; Back
+      </p>
       <div className="edit-cards">
         <div className="add-container" onClick={() => setEditClicked(true)}>
           Add

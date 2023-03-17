@@ -1,5 +1,3 @@
-import blogData from "./blogData"
-
 import { useState } from "react"
 
 import "./index.css"
@@ -10,6 +8,9 @@ const Blog = (props) => {
   const [recentPost, setRecentPost] = useState(0)
   const [isEditClicked, setEditClicked] = useState(false)
 
+  const mainPosts = data.slice(0, 4)
+  const relatedPostData = data.slice(4)
+
   const renderRelatedPosts = () => {
     return (
       <div className="related-post-container">
@@ -17,13 +18,13 @@ const Blog = (props) => {
           Related Posts
         </h3>
         <div className="recent-post-sub">
-          {data.map((e, i) => (
+          {relatedPostData.map((e, i) => (
             <div
               className="recent-post-sub-main edit-container"
               key={i}
               style={{ cursor: "pointer" }}
               onClick={() => {
-                setRecentPost(i)
+                setRecentPost(i + 4)
                 props.setIsPostActive(true)
               }}
             >
@@ -64,23 +65,14 @@ const Blog = (props) => {
         <div className="recent-post-container mb-5">
           <div className="recent-post-main mb-5">
             <img
-              src={blogData[0].imageUrl}
+              src={data[recentPost].imageUrl}
               alt="recent post"
               className="recent-post-image"
             />
-            <h1 className="mb-4">{blogData[0].title}</h1>
-            <p className="recent-post-description">{blogData[0].header}</p>
-
-            <div className="recent-post-body" style={{ paddingLeft: "20px" }}>
-              {blogData[0].body.map((item) => {
-                return Object.keys(item).map((key) => {
-                  return (
-                    <p className="recent-post-description mb-4">{item[key]}</p>
-                  )
-                })
-              })}
-            </div>
-            <p className="recent-post-description">{blogData[0].footer}</p>
+            <h1 className="mb-4 mt-3">{data[recentPost].heading}</h1>
+            {data[recentPost].description.split("\n").map((each) => (
+              <p className="recent-post-description">{each}</p>
+            ))}
           </div>
         </div>
         {renderRelatedPosts()}
@@ -89,7 +81,7 @@ const Blog = (props) => {
   }
 
   if (isEditClicked === true) {
-    return <EditAll />
+    return <EditAll setEditClicked={setEditClicked} />
   }
 
   return (
@@ -109,13 +101,11 @@ const Blog = (props) => {
           }}
         >
           <img
-            src="https://res.cloudinary.com/dlpgowt5s/image/upload/v1678971110/WP-ERP_odzh6t.jpg"
+            src={mainPosts[0].imageUrl}
             alt="recent post"
             className="recent-post-image"
           />
-          <p className="recent-post-description">
-            The Importance of Nonverbal Communication and How to Master It
-          </p>
+          <p className="recent-post-description">{mainPosts[0].heading}</p>
         </div>
         <div className="recent-post-sub ">
           <div
@@ -125,13 +115,8 @@ const Blog = (props) => {
               props.setIsPostActive(true)
             }}
           >
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCDvgnZjgcxSSlR0nMtbfoFAYD3uQ2UH7rwv8H0NL-&s"
-              className="mb-3"
-            />
-            <p>
-              The Importance of Nonverbal Communication and How to Master It
-            </p>
+            <img src={mainPosts[1].imageUrl} className="mb-3" />
+            <p>{mainPosts[1].heading}</p>
           </div>
 
           <div
@@ -141,13 +126,8 @@ const Blog = (props) => {
               props.setIsPostActive(true)
             }}
           >
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCDvgnZjgcxSSlR0nMtbfoFAYD3uQ2UH7rwv8H0NL-&s"
-              className="mb-3"
-            />
-            <p>
-              The Importance of Nonverbal Communication and How to Master It
-            </p>
+            <img src={mainPosts[2].imageUrl} className="mb-3" />
+            <p>{mainPosts[2].heading}</p>
           </div>
 
           <div
@@ -157,13 +137,8 @@ const Blog = (props) => {
               props.setIsPostActive(true)
             }}
           >
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCDvgnZjgcxSSlR0nMtbfoFAYD3uQ2UH7rwv8H0NL-&s"
-              className="mb-3"
-            />
-            <p>
-              The Importance of Nonverbal Communication and How to Master It
-            </p>
+            <img src={mainPosts[3].imageUrl} className="mb-3" />
+            <p>{mainPosts[3].heading}</p>
           </div>
         </div>
         <div className="d-flex  flex-row justify-content-end">
