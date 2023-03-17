@@ -35,9 +35,9 @@
 @media screen and (min-width: 768px) {
   .recent-post-sub {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 30px;
     justify-content: space-between;
+    overflow: hidden;
   }
 
   .recent-post-sub-main {
@@ -123,4 +123,9 @@
   font-size: 20px;
   align-self: flex-start;
   margin-bottom: 15px;
+}
+
+.controller-btns {
+  display: flex;
+  gap: 20px;
 }

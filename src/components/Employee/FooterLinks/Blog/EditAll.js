@@ -8,8 +8,8 @@ import { toast, ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
 const EditPost = (props) => {
-  const { index } = props
-
+  const { index, handleAddPost } = props
+  const [showImageUrlInput, setShowImageUrlInput] = useState(false)
   const [editDetails, setEditDetails] = useState({
     id: data[index]?.id || 0,
     imageUrl: data[index]?.imageUrl || "",
@@ -18,10 +18,18 @@ const EditPost = (props) => {
     category: data[index]?.category || "",
   })
 
-  const handleSubmit = (e) => {
+  const handleRemoveImageUrl = () => {
+    setEditDetails({ ...editDetails, imageUrl: "" })
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    data[index] = editDetails
-    localStorage.setItem("data", JSON.stringify(data))
+    if (editDetails.id === 0) {
+      handleAddPost(editDetails)
+    } else {
+      data[index] = editDetails
+      localStorage.setItem("data", JSON.stringify(data))
+    }
     toast.success("Post Updated Successfully", {
       style: {
         backgroundColor: "#000",
@@ -39,7 +47,7 @@ const EditPost = (props) => {
   return (
     <Form
       style={{ width: "100%" }}
-      className="container"
+      className="container mt-4"
       onSubmit={handleSubmit}
     >
       <p
@@ -63,14 +71,34 @@ const EditPost = (props) => {
       )}
       <ToastContainer />
       <div style={{ display: "flex", gap: "15px" }}>
-        <p style={{ cursor: "pointer" }}>Add</p>
-        <p
-          style={{ cursor: "pointer" }}
-          onClick={() => setEditDetails({ ...editDetails, imageUrl: "" })}
-        >
-          Remove
-        </p>
+        {editDetails.imageUrl === "" ? (
+          <p
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowImageUrlInput(true)}
+          >
+            Add
+          </p>
+        ) : (
+          <p style={{ cursor: "pointer" }} onClick={handleRemoveImageUrl}>
+            Remove
+          </p>
+        )}
       </div>
+      {showImageUrlInput && (
+        <Form.Group className="mb-4">
+          <Form.Label>Image URL</Form.Label>
+          <Form.Control
+            type="text"
+            value={editDetails.imageUrl}
+            onChange={(e) =>
+              setEditDetails({ ...editDetails, imageUrl: e.target.value })
+            }
+          />
+          <Form.Control.Feedback type="invalid">
+            Please enter a valid image URL.
+          </Form.Control.Feedback>
+        </Form.Group>
+      )}
       <Form.Group className="mb-4">
         <Form.Label>Heading</Form.Label>
         <Form.Control
@@ -114,48 +142,89 @@ const EditPost = (props) => {
   )
 }
 
-const EditAll = (props) => {
+const EditAll = () => {
   const [editOption, setEditOption] = useState(null)
   const [isEditClicked, setEditClicked] = useState(false)
+  const [postData, setData] = useState(data)
+
+  const handleRemove = (index) => {
+    const newData = [...postData]
+    newData.splice(index, 1)
+    setData(newData)
+    localStorage.setItem("data", JSON.stringify(newData))
+  }
+
+  const handleAddPost = (newPost) => {
+    const newData = [...postData, newPost]
+    setData(newData)
+    localStorage.setItem("data", JSON.stringify(newData))
+  }
 
   if (isEditClicked) {
-    return <EditPost index={editOption} setEditClicked={setEditClicked} />
+    return (
+      <EditPost
+        index={editOption}
+        setEditClicked={setEditClicked}
+        handleAddPost={handleAddPost}
+      />
+    )
   }
 
   return (
     <div className="blog-container container mb-5">
       <h3 align="end">Category</h3>
       <p>Career Guidence</p>
-      <p
-        onClick={() => props.setEditClicked(false)}
-        style={{ cursor: "pointer", marginBottom: "10px" }}
-      >
-        &lt; Back
-      </p>
       <div className="edit-cards">
         <div className="add-container" onClick={() => setEditClicked(true)}>
           Add
         </div>
-        {data.map((e, i) => (
+        {postData.map((e, i) => (
           <div
             className="recent-post-sub-main"
             key={i}
             style={{ cursor: "pointer" }}
           >
             <img src={e.imageUrl} className="mb-3 post-image" />
-            <p>{e.heading}</p>
 
-            <button
-              className="edit-btn"
-              onClick={() => {
-                setEditOption(i)
-                setEditClicked(true)
-              }}
-            >
-              Edit
-            </button>
+            <div className="controller-btns">
+              <button
+                className="edit-btn"
+                onClick={() => {
+                  setEditOption(i)
+                  setEditClicked(true)
+                }}
+              >
+                Edit
+              </button>
+
+              <button className="edit-btn" onClick={() => handleRemove(i)}>
+                Remove
+              </button>
+            </div>
           </div>
         ))}
+      </div>
+      <div className="d-flex flex-row justify-content-center mb-5">
+        <h4
+          onClick={() => {
+            localStorage.setItem("data", JSON.stringify(postData))
+            toast.success("Post Updated Successfully", {
+              style: {
+                backgroundColor: "#000",
+                color: "#fff",
+              },
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              progress: undefined,
+            })
+          }}
+          style={{ cursor: "pointer" }}
+        >
+          Save Changes
+        </h4>
       </div>
     </div>
   )

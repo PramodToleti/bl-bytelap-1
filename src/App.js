@@ -47,6 +47,7 @@ import CandidateJobDetails from "./components/Candidate/CandidateJobDetails"
 import EmployeeUnregistered from "./components/Employee/EmployeeUnregistered"
 
 import "./App.css"
+import EditAll from "./components/Employee/FooterLinks/Blog/EditAll"
 
 const App = () => {
   const [registerData, setData] = useState({
@@ -245,6 +246,8 @@ const App = () => {
             path="/candidate/job-details/:id"
             component={CandidateJobDetails}
           />
+
+          <Route exact path="/employee/admin-blog" component={EditAll} />
           <Redirect to="/login" />
         </Switch>
       </BrowserRouter>
