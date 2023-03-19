@@ -1,0 +1,51 @@
+@media screen and (max-width: 767px) {
+  .details-heading,
+  .details-heading-2,
+  .details-text {
+    font-size: 14px !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .details-heading,
+  .details-heading-2,
+  .details-text,
+  .home-text {
+    font-size: 14px !important;
+  }
+
+  .home-text {
+    margin-top: 6px;
+  }
+}
+
+.icon-styles {
+  font-size: 15px !important;
+}
+
+.home-details {
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .home-text,
+  .details-heading {
+    font-size: 14px !important;
+  }
+}
+
+.preview-skills {
+  font-size: 12px !important;
+}
+
+.popup-button {
+  background: transparent;
+  border-radius: 100%;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+  font-size: 15px;
+}

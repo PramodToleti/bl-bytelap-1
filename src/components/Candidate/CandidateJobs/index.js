@@ -7,6 +7,10 @@ import { MdDateRange } from "react-icons/md"
 import { BiRupee } from "react-icons/bi"
 import { FaHome } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import Popup from "reactjs-popup"
+
+import "./index.css"
+import "reactjs-popup/dist/index.css"
 
 const CandidateJobs = (props) => {
   const { checkedJobTypes, activeShifts, activeSchedule } = props
@@ -20,9 +24,9 @@ const CandidateJobs = (props) => {
   return internJobs.map((data, index) => (
     <div className="d-flex flex-row container justify-content-start">
       <div
-        className="text-dark mb-4   div-card rounded container reveal p-2 rounded "
+        className="text-dark mb-3   div-card rounded container reveal p-2 rounded "
         style={{
-          maxWidth: "500px",
+          maxWidth: "450px",
           backgroundColor: "white",
           border: "1px solid grey",
           margin: "0px",
@@ -36,103 +40,128 @@ const CandidateJobs = (props) => {
               className="company-image"
             />
           </div>
-          <div style={{ display: "flex", gap: "8px" }} className="mb-4">
-            <FaBuilding style={{ color: "grey", fontSize: "22px" }} />
+          <div style={{ display: "flex", gap: "8px" }} className="mb-1">
+            <FaBuilding
+              style={{ color: "grey", fontSize: "18px", marginTop: "4px" }}
+            />
             <p style={{ color: "grey" }}>Wiro Tech Limited</p>
           </div>
         </>
 
         <div className="job-details-container-2">
-          <div className="job-card-container">
-            <MdShoppingBag className="icon-styles" />
-            <p className="details-heading">{data.jobTime}</p>
-          </div>
+          {data.jobTime !== "" && (
+            <div className="job-card-container">
+              <MdShoppingBag className="icon-styles" />
+              <p className="details-heading">{data.jobTime}</p>
+            </div>
+          )}
 
-          <div className="job-card-container">
-            <BsFillSunFill className="icon-styles" />
-            <p className="details-heading">Day Shift</p>
-          </div>
+          {data.jobType !== "" && data.jobTime !== "" && (
+            <div className="job-card-container">
+              <BsFillSunFill className="icon-styles" />
+              <p className="details-heading">Day Shift</p>
+            </div>
+          )}
 
-          {data.jobType === "Office" && <br className="break-line" />}
-
-          <div
-            className={`job-card-container ${
-              data.jobType === "Office" ? "location-style" : ""
-            }`}
-          >
-            <p
-              className={` ${
-                data.jobType !== "Office" ? "home-heading" : "details-heading"
+          {data.jobType !== "" && (
+            <div
+              className={`job-card-container ${
+                data.jobType === "Office" ? "location-style" : ""
               }`}
             >
-              {data.jobType === "Work from Home" ? (
-                <>
-                  <FaHome
-                    className="icon-styles"
-                    style={{ marginTop: "4px" }}
-                  />
-                  <p
-                    style={{
-                      color: "grey",
-                    }}
-                    className="home-text"
-                  >
-                    Work from Home
-                  </p>
-                </>
-              ) : data.city.length !== 0 ? (
-                <>
-                  <MdLocationOn style={{ fontSize: "20px", color: "grey" }} />
-                  {data.jobType}, {data.city[0].label}
-                </>
-              ) : (
-                data.jobType
-              )}
-            </p>
-          </div>
-
-          {data.jobType === "Office" && <br className="break-line" />}
-          {data.jobType === "Office" && <p className="empty-element"></p>}
-
-          <div className="job-card-container">
-            <AiFillYoutube className="icon-styles" />
-            <p className="details-heading-2">
-              Start Date
-              <br />
-              <p className="details-text">
-                {data.checked && data.startDate === "" ? "Immediate" : ""}
+              <p
+                className={` ${
+                  data.jobType !== "Office" ? "home-heading" : "details-heading"
+                }`}
+              >
+                {data.jobType === "Work from Home" ? (
+                  <>
+                    <FaHome
+                      className="icon-styles"
+                      style={{ marginTop: "9px" }}
+                    />
+                    <p
+                      style={{
+                        color: "grey",
+                      }}
+                      className="home-text"
+                    >
+                      Work from Home
+                    </p>
+                  </>
+                ) : data.city.length !== 0 ? (
+                  <>
+                    <MdLocationOn style={{ fontSize: "19px", color: "grey" }} />
+                    {`${data.jobType}, ${data.city[0].label}`}
+                  </>
+                ) : (
+                  data.jobType
+                )}
               </p>
-            </p>
-          </div>
+            </div>
+          )}
 
-          <div className="job-card-container">
-            <MdDateRange className="icon-styles" />
-            <p className="details-heading-2">
-              Duration
-              <br />
-              <p className="details-text">{data.duration} Months</p>
-            </p>
-          </div>
-
-          <div className="job-card-container">
-            <BiRupee className="icon-styles" />
-            <p className="details-heading-2">
-              Salary
-              <br />
-              <p className="details-text">
-                {data.salaryType === "Fixed"
-                  ? data.salaryRange.from === undefined
-                    ? `${Math.floor(data.salaryRange / 1000)}k/month`
-                    : `${Math.floor(
-                        data.salaryRange.from / 1000
-                      )}k - ${Math.floor(data.salaryRange.to / 1000)}k /month`
-                  : data.salaryType}
+          {(data.startDate !== "" || data.checked === true) && (
+            <div className="job-card-container">
+              <AiFillYoutube className="icon-styles" />
+              <p className="details-heading-2">
+                <p className="details-text">
+                  {data.checked && data.startDate === ""
+                    ? "Start Immediately"
+                    : new Date(data.startDate).toLocaleString("en-US", {
+                        month: "short",
+                        year: "numeric",
+                      })}
+                </p>
               </p>
-            </p>
-          </div>
+            </div>
+          )}
+
+          {data.duration !== "" && (
+            <div className="job-card-container">
+              <MdDateRange className="icon-styles" />
+              <p className="details-heading-2">
+                <p className="details-text">{data.duration} Months</p>
+              </p>
+              <br />
+            </div>
+          )}
+
+          {((data.salaryRange.from !== "" && data.salaryRange.to !== "") ||
+            data.salaryType !== "") && (
+            <div className="job-card-container">
+              <BiRupee className="icon-styles" />
+              <p className="details-heading-2">
+                <p className="details-text">
+                  {data.salaryType === "Fixed"
+                    ? data.salaryRange.from === undefined
+                      ? `${Math.floor(data.salaryRange / 1000)}k/month`
+                      : `${Math.floor(
+                          data.salaryRange.from / 1000
+                        )}k - ${Math.floor(data.salaryRange.to / 1000)}k /month`
+                    : data.salaryType}
+                  {data.incentives && (
+                    <>
+                      " + Incentives"
+                      <Popup
+                        trigger={<button className="popup-button"> ?</button>}
+                        position="right center"
+                      >
+                        <p>
+                          This is a performance-based internship. In addition to
+                          the minimum-assured stipend, you will also be paid a
+                          performance-linked incentive{" "}
+                          {`(₹ ${data.incentivesValue}
+                          per sale)`}
+                        </p>
+                      </Popup>
+                    </>
+                  )}
+                </p>
+              </p>
+            </div>
+          )}
         </div>
-
-        <hr style={{ marginTop: "0px" }} />
 
         <div className="perks-mobile">
           {data.perks.map((each, i) => (
@@ -142,14 +171,15 @@ const CandidateJobs = (props) => {
           ))}
         </div>
 
-        <div className="perks-desktop">
+        <div className="perks-desktop ">
           {data.perks.map((each, i) => (
             <h6 className="preview-skills" key={each}>
               {each.value}
             </h6>
           ))}
         </div>
-        <div className="d-flex flex-row justify-content-between mt-3">
+
+        <div className="d-flex flex-row justify-content-between mt-2">
           <p style={{ fontSize: "12px" }}>Just Now</p>
           <Link to={`/candidate/job-details/${index + 1}`}>
             <button
@@ -159,6 +189,7 @@ const CandidateJobs = (props) => {
                 background: "transparent",
                 color: "blue",
                 cursor: "pointer",
+                marginBottom: "0px",
               }}
               key={index}
             >

@@ -65,7 +65,7 @@ function Home() {
             >
               <div className="d-grid gap-3">
                 <Button variant="primary" size="md">
-                  Find Job
+                  Search
                 </Button>
               </div>
             </Form.Group>

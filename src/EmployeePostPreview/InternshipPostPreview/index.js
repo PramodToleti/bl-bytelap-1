@@ -43,7 +43,7 @@ function InternshipPostPreview(props) {
                     className="company-image"
                   />
                 </div>
-                <div style={{ display: "flex", gap: "8px" }} className="mb-4">
+                <div style={{ display: "flex", gap: "8px" }} className="mb-2">
                   <FaBuilding style={{ color: "grey", fontSize: "22px" }} />
                   <p style={{ color: "grey" }}>Wiro Tech Limited</p>
                 </div>
@@ -65,8 +65,6 @@ function InternshipPostPreview(props) {
                 </div>
               )}
 
-              {data.jobType === "Office" && <br className="break-line" />}
-
               {data.jobType !== "" && (
                 <div
                   className={`job-card-container ${
@@ -84,7 +82,7 @@ function InternshipPostPreview(props) {
                       <>
                         <FaHome
                           className="icon-styles"
-                          style={{ marginTop: "4px" }}
+                          style={{ marginTop: "6px" }}
                         />
                         <p
                           style={{
@@ -100,7 +98,7 @@ function InternshipPostPreview(props) {
                         <MdLocationOn
                           style={{ fontSize: "20px", color: "grey" }}
                         />
-                        {data.jobType}, {data.city[0].label}
+                        {`${data.jobType}, ${data.city[0].label}`}
                       </>
                     ) : (
                       data.jobType
@@ -109,17 +107,14 @@ function InternshipPostPreview(props) {
                 </div>
               )}
 
-              {data.jobType === "Office" && <br className="break-line" />}
-              {data.jobType === "Office" && <p className="empty-element"></p>}
-
-              {data.startDate !== "" && (
+              {(data.startDate !== "" || data.checked === true) && (
                 <div className="job-card-container">
                   <AiFillYoutube className="icon-styles" />
                   <p className="details-heading-2">
-                    Start Date
-                    <br />
                     <p className="details-text">
-                      {data.checked && data.startDate === "" ? "Immediate" : ""}
+                      {data.checked && data.startDate === ""
+                        ? "Start Immediately"
+                        : data.startDate}
                     </p>
                   </p>
                 </div>
@@ -129,19 +124,17 @@ function InternshipPostPreview(props) {
                 <div className="job-card-container">
                   <MdDateRange className="icon-styles" />
                   <p className="details-heading-2">
-                    Duration
-                    <br />
                     <p className="details-text">{data.duration} Months</p>
                   </p>
+                  <br />
                 </div>
               )}
 
-              {data.salaryRange.from !== "" && data.salaryRange.to !== "" && (
+              {((data.salaryRange.from !== "" && data.salaryRange.to !== "") ||
+                data.salaryType !== "") && (
                 <div className="job-card-container">
                   <BiRupee className="icon-styles" />
                   <p className="details-heading-2">
-                    Salary
-                    <br />
                     <p className="details-text">
                       {data.salaryType === "Fixed"
                         ? data.salaryRange.from === undefined
@@ -152,6 +145,7 @@ function InternshipPostPreview(props) {
                               data.salaryRange.to / 1000
                             )}k /month`
                         : data.salaryType}
+                      {data.incentives && " + Incentives"}
                     </p>
                   </p>
                 </div>

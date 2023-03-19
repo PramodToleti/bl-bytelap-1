@@ -33,6 +33,8 @@ function Internship() {
   const [responsibilities, setResponsibilities] = useState("")
   const [salaryType, setSalaryType] = useState("")
   const [salaryRange, setSalaryRange] = useState({ from: "", to: "" })
+  const [incentives, setIncentives] = useState("")
+  const [incentivesValue, setIncentivesValue] = useState("")
   const [perks, setPerks] = useState([])
   const [languages, setLanguages] = useState([])
   const [openings, setOpenings] = useState("")
@@ -52,6 +54,8 @@ function Internship() {
     responsibilities,
     salaryType,
     salaryRange,
+    incentives,
+    incentivesValue,
     perks,
     languages,
     openings,
@@ -108,8 +112,6 @@ function Internship() {
 
     setValidated(true)
   }
-
-  console.log(data)
 
   const handlePostJob = () => {
     if (
@@ -332,12 +334,31 @@ function Internship() {
                 <option>Select</option>
                 <option> Fixed </option>
                 <option>Negotiable</option>
-                <option>Performance based</option>
               </Form.Select>
             </Form.Group>
           </Row>
 
           {renderSalaryType()}
+
+          <Form.Group
+            style={{ display: "flex", gap: "10px", alignItems: "center" }}
+          >
+            <Form.Check
+              onChange={() => {
+                setIncentives(!incentives)
+              }}
+            />
+            <Form.Label>Incentives</Form.Label>
+          </Form.Group>
+
+          {incentives && (
+            <Form.Group className="mb-3 mt-2">
+              <Form.Control
+                type="number"
+                onChange={(e) => setIncentivesValue(e.target.value)}
+              />
+            </Form.Group>
+          )}
 
           <PerksDropdown handlePerks={handlePerks} />
 
