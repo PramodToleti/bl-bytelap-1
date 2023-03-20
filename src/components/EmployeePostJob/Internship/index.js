@@ -4,6 +4,7 @@ import { Col } from "react-bootstrap"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import DatePicker from "react-datepicker"
+import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { toast } from "react-toastify"
 
@@ -18,7 +19,6 @@ import InternshipPostPreview from "../../../EmployeePostPreview/InternshipPostPr
 
 import "react-datepicker/dist/react-datepicker.css"
 import "./index.css"
-import { ToastContainer } from "react-toastify"
 
 function Internship() {
   const [validated, setValidated] = useState(false)
@@ -142,7 +142,16 @@ function Internship() {
         jobData.push(data)
         localStorage.setItem("internshipJob", JSON.stringify(jobData))
       }
-      window.location.reload()
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
+    } else {
+      toast.error("Please fill all the fields!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: { border: "2px solid #ff0000", backgroundColor: "#fff" },
+      })
     }
   }
 
@@ -249,7 +258,7 @@ function Internship() {
           </Form.Group>
           {jobType === "Office" && (
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <ChooseCity onChangeCity={onChangeCity} value={city} />
+              <ChooseCity onChangeCity={onChangeCity} />
               <Form.Control.Feedback type="invalid">
                 Please enter your city.
               </Form.Control.Feedback>
@@ -340,16 +349,18 @@ function Internship() {
 
           {renderSalaryType()}
 
-          <Form.Group
-            style={{ display: "flex", gap: "10px", alignItems: "center" }}
-          >
-            <Form.Check
-              onChange={() => {
-                setIncentives(!incentives)
-              }}
-            />
-            <Form.Label>Incentives</Form.Label>
-          </Form.Group>
+          {salaryType === "Fixed" && (
+            <Form.Group
+              style={{ display: "flex", gap: "10px", alignItems: "center" }}
+            >
+              <Form.Check
+                onChange={() => {
+                  setIncentives(!incentives)
+                }}
+              />
+              <Form.Label>Incentives</Form.Label>
+            </Form.Group>
+          )}
 
           {incentives && (
             <Form.Group className="mb-3 mt-2">

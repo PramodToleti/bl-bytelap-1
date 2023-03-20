@@ -42,12 +42,15 @@ import CompanySettings from "./components/EmployeeSettings/CompanySettings"
 import CandidateRegistermyself from "./components/CandidateRegistermyself"
 import CandidateMyinfo from "./components/Candidate/CandidateMyinfo"
 //Candidate -> Job Details
-import CandidateJobDetails from "./components/Candidate/CandidateJobDetails"
+import CandidateJobDetails from "./components/Candidate/CandidateJobDetails/InternshipJobDetails"
 
 import EmployeeUnregistered from "./components/Employee/EmployeeUnregistered"
 
 import "./App.css"
 import EditAll from "./components/Employee/FooterLinks/Blog/EditAll"
+import InternshipJobDetails from "./components/Candidate/CandidateJobDetails/InternshipJobDetails"
+import FresherJobDetails from "./components/Candidate/CandidateJobDetails/FresherJobDetails"
+import ExperienceJobDetails from "./components/Candidate/CandidateJobDetails/ExperienceJobDetails"
 
 const App = () => {
   const [registerData, setData] = useState({
@@ -243,8 +246,20 @@ const App = () => {
 
           <Route
             exact
-            path="/candidate/job-details/:id"
-            component={CandidateJobDetails}
+            path="/candidate/job-details/internship/:id"
+            component={InternshipJobDetails}
+          />
+
+          <Route
+            exact
+            path="/candidate/job-details/fresher/:id"
+            component={FresherJobDetails}
+          />
+
+          <Route
+            exact
+            path="/candidate/job-details/experience/:id"
+            component={ExperienceJobDetails}
           />
 
           <Route exact path="/employee/admin-blog" component={EditAll} />

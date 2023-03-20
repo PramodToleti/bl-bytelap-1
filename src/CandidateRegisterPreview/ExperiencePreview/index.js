@@ -51,7 +51,7 @@ function ExperiencePreview(props) {
                         style={{
                           fontSize: " 14px",
                           marginBottom: "0px",
-                          marginTop: "4px",
+                          marginTop: "5px",
                         }}
                       >
                         Not Disclosed

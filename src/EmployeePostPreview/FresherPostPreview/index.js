@@ -17,8 +17,6 @@ function FresherPostPreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
 
-  console.log(data.education[0])
-
   function renderPreview() {
     return (
       <>
@@ -48,15 +46,15 @@ function FresherPostPreview(props) {
               </>
             )}
 
-            <div className="job-details-container-2">
+            <div className="job-details-container-fresher-2">
               {data.jobTime !== "" && (
                 <>
-                  <div className="job-card-container">
+                  <div className="job-card-container-fresher">
                     <MdShoppingBag className="icon-styles" />
                     <p className="details-heading">{data.jobTime}</p>
                   </div>
 
-                  <div className="job-card-container">
+                  <div className="job-card-container-fresher">
                     <BsFillSunFill className="icon-styles" />
                     <p className="details-heading">Day Shift</p>
                   </div>
@@ -68,7 +66,7 @@ function FresherPostPreview(props) {
               {data.jobType !== "" && (
                 <>
                   <div
-                    className={`job-card-container ${
+                    className={`job-card-container-fresher ${
                       data.jobType === "Office" ? "location-style" : ""
                     }`}
                   >
@@ -81,10 +79,7 @@ function FresherPostPreview(props) {
                     >
                       {data.jobType === "Work from Home" ? (
                         <>
-                          <FaHome
-                            className="icon-styles"
-                            style={{ marginTop: "4px" }}
-                          />
+                          <FaHome className="icon-styles" style={{}} />
                           <p
                             style={{
                               color: "grey",
@@ -112,7 +107,7 @@ function FresherPostPreview(props) {
                     <p className="empty-element"></p>
                   )}
 
-                  <div className="job-card-container">
+                  <div className="job-card-container-fresher">
                     <RiShoppingBagFill className="icon-styles" />
                     <p className="details-heading">Fresher</p>
                   </div>
@@ -120,7 +115,7 @@ function FresherPostPreview(props) {
               )}
 
               {data.salaryType !== "" && (
-                <div className="job-card-container">
+                <div className="job-card-container-fresher">
                   <p className="details-heading">
                     <BiRupee className="icon-styles" />
                     {/*{data.salaryType === "Lac"

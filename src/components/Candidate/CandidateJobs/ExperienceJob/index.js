@@ -1,0 +1,207 @@
+import { FaBuilding } from "react-icons/fa"
+import { MdShoppingBag } from "react-icons/md"
+import { BsFillSunFill } from "react-icons/bs"
+import { BiRupee } from "react-icons/bi"
+import { RiShoppingBagFill } from "react-icons/ri"
+import { MdLocationOn } from "react-icons/md"
+import { FaHome } from "react-icons/fa"
+import { Link } from "react-router-dom"
+import Popup from "reactjs-popup"
+
+const ExperienceJob = () => {
+  const experienceJobs = JSON.parse(localStorage.getItem("experienceJob"))
+
+  if (experienceJobs === null) {
+    return null
+  }
+
+  return experienceJobs.map((data, index) => (
+    <div className="d-flex flex-row container justify-content-start">
+      <div
+        className="text-dark mb-3   div-card rounded container reveal p-2 rounded "
+        style={{
+          maxWidth: "500px",
+          backgroundColor: "white",
+          border: "1px solid grey",
+          margin: "0px",
+        }}
+      >
+        <>
+          <div className="header">
+            <h4 className="mb-3">{data.jobTitle}</h4>
+            <img
+              src="https://res.cloudinary.com/dlpgowt5s/image/upload/v1677222848/Screenshot_20230224_124108_e09oie.png"
+              className="company-image"
+            />
+          </div>
+          <div style={{ display: "flex", gap: "8px" }} className="mb-1">
+            <FaBuilding style={{ color: "grey", fontSize: "18px" }} />
+            <p style={{ color: "grey" }}>Wiro Tech Limited</p>
+          </div>
+        </>
+
+        <div className="job-details-container-experience-2">
+          {data.jobTime !== "" && (
+            <div className="job-card-container-experience">
+              <MdShoppingBag className="icon-styles" />
+              <p className="details-heading">{data.jobTime}</p>
+            </div>
+          )}
+
+          {data.jobType !== "" && data.jobTime !== "" && (
+            <div className="job-card-container-experience">
+              <BsFillSunFill className="icon-styles" />
+              <p className="details-heading">Day Shift</p>
+            </div>
+          )}
+
+          {data.jobType !== "" && (
+            <div
+              className={`job-card-container-experience ${
+                data.jobType === "Office" ? "location-style" : ""
+              }`}
+            >
+              <p
+                className={` ${
+                  data.jobType !== "Office" ? "home-heading" : "details-heading"
+                }`}
+              >
+                {data.jobType === "Work from Home" ? (
+                  <>
+                    <FaHome
+                      className="icon-styles"
+                      style={{ marginTop: "9px" }}
+                    />
+                    <p
+                      style={{
+                        color: "grey",
+                      }}
+                      className="home-text"
+                    >
+                      Work from Home
+                    </p>
+                  </>
+                ) : data.city.length !== 0 ? (
+                  <>
+                    <MdLocationOn style={{ fontSize: "19px", color: "grey" }} />
+                    {`${data.jobType}, ${data.city[0].label}`}
+                  </>
+                ) : (
+                  data.jobType
+                )}
+              </p>
+            </div>
+          )}
+
+          {(data.experience.years !== "" || data.experience.month !== "") && (
+            <div className="job-card-container-experience">
+              <RiShoppingBagFill className="icon-styles" />
+              <p className="details-heading">{`${data.experience.years} - ${data.experience.month} Yrs`}</p>
+            </div>
+          )}
+
+          {data.salaryType !== "" && (
+            <div className="job-card-container-experience">
+              <p className="details-heading">
+                <BiRupee className="icon-styles" />
+                {/*{data.salaryType === "Lac"
+                      ? `${Math.floor(data.salaryRange.from)}L - ${Math.floor(
+                          data.salaryRange.to
+                        )}L PA`
+                      : data.salaryType === "Per Month"
+                      ? `${Math.floor(
+                          data.salaryRange.from / 1000
+                        )}k - ${Math.floor(
+                          data.salaryRange.to / 1000
+                        )}k / month`
+                      : data.salaryType === "Fixed"
+                      ? `${Math.floor(data.salaryRange)}k / month`
+                        : data.salaryType}*/}
+                {data.salaryType === "Lac"
+                  ? `${data.salaryRange.from}L - ${data.salaryRange.to}L PA`
+                  : data.salaryType === "Per Month"
+                  ? `${data.salaryRange.from}k - ${data.salaryRange.to}k / month`
+                  : data.salaryType === "Fixed"
+                  ? `${data.salaryRange}k / month`
+                  : data.salaryType}
+              </p>
+              {data.incentives && data.salaryType === "Fixed" && (
+                <>
+                  {" "}
+                  <p
+                    className="details-text"
+                    style={{
+                      color: "grey",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    {" "}
+                    + Incentives{" "}
+                    <Popup
+                      trigger={
+                        <button
+                          className="popup-button mt-1"
+                          style={{ marginLeft: "0px" }}
+                        >
+                          {" "}
+                          ?
+                        </button>
+                      }
+                      position="right center"
+                    >
+                      <p>
+                        This is a performance-based internship. In addition to
+                        the minimum-assured stipend, you will also be paid a
+                        performance-linked incentive{" "}
+                        {`(₹ ${data.incentivesValue}
+                          per sale)`}
+                      </p>
+                    </Popup>
+                  </p>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className="perks-mobile">
+          {data.perks.map((each, i) => (
+            <h6 className="preview-perks" key={each}>
+              {each.value}
+            </h6>
+          ))}
+        </div>
+
+        <div className="perks-desktop ">
+          {data.perks.map((each, i) => (
+            <h6 className="preview-skills" key={each}>
+              {each.value}
+            </h6>
+          ))}
+        </div>
+
+        <div className="d-flex flex-row justify-content-between mt-2">
+          <p style={{ fontSize: "12px" }}>Just Now</p>
+          <Link to={`/candidate/job-details/experience/${index + 1}`}>
+            <button
+              type="button"
+              style={{
+                border: "0",
+                background: "transparent",
+                color: "blue",
+                cursor: "pointer",
+                marginBottom: "0px",
+              }}
+              key={index}
+            >
+              View Details
+            </button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  ))
+}
+
+export default ExperienceJob

@@ -309,8 +309,6 @@ const progressRef = useRef(null)*/
     now === 100 ? setIsFilled(true) : setIsFilled(false)
   }
 
-  console.log(now)
-
   return (
     <>
       <ToastContainer />

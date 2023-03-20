@@ -1,21 +1,22 @@
 import React, { useState } from "react"
-import Button from "react-bootstrap/Button"
-import Modal from "react-bootstrap/Modal"
 import { FaBuilding } from "react-icons/fa"
 import { MdShoppingBag } from "react-icons/md"
 import { BsFillSunFill } from "react-icons/bs"
-import { BiRupee } from "react-icons/bi"
-import { RiShoppingBagFill } from "react-icons/ri"
-import { HiOutlineExternalLink } from "react-icons/hi"
-import { MdLocationOn } from "react-icons/md"
-import { BsFillShareFill } from "react-icons/bs"
 import { FaHome } from "react-icons/fa"
+import { AiFillYoutube } from "react-icons/ai"
+import { MdDateRange } from "react-icons/md"
+import { BiRupee } from "react-icons/bi"
+import { BsFillShareFill } from "react-icons/bs"
+import { MdLocationOn } from "react-icons/md"
+import { HiOutlineExternalLink } from "react-icons/hi"
 
-import "./index.css"
+function InternshipJobDetails(props) {
+  const internJobs = JSON.parse(localStorage.getItem("internshipJob"))
 
-function ExperiencePostPreview(props) {
-  const { data } = props
-  const [lgShow, setLgShow] = useState(false)
+  const { match } = props
+  const { id } = match.params
+
+  const data = internJobs[id - 1]
 
   function renderPreview() {
     return (
@@ -23,11 +24,14 @@ function ExperiencePostPreview(props) {
         {(data.jobTitle !== "" ||
           data.jobTime !== "" ||
           data.jobType !== "" ||
-          data.experience.years !== "" ||
-          data.experience.month !== "" ||
-          data.salaryType !== "") && (
+          data.duration !== "" ||
+          data.salaryRange.from !== "" ||
+          data.perks.length !== 0 ||
+          data.salaryRange.to !== "" ||
+          data.checked !== false ||
+          data.startDate !== "") && (
           <div
-            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border div-card   rounded container reveal  p-2  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             {data.jobTitle !== "" && (
@@ -39,18 +43,14 @@ function ExperiencePostPreview(props) {
                     className="company-image"
                   />
                 </div>
-
                 <div style={{ display: "flex", gap: "8px" }} className="mb-4">
-                  <FaBuilding style={{ color: "grey", fontSize: "25px" }} />
+                  <FaBuilding style={{ color: "grey", fontSize: "22px" }} />
                   <p style={{ color: "grey" }}>Wiro Tech Limited</p>
                 </div>
               </>
             )}
 
-            <div
-              className="job-details-container-2"
-              style={{ marginBottom: "0px" }}
-            >
+            <div className="job-details-container-2">
               {data.jobTime !== "" && (
                 <div className="job-card-container">
                   <MdShoppingBag className="icon-styles" />
@@ -58,10 +58,10 @@ function ExperiencePostPreview(props) {
                 </div>
               )}
 
-              {data.shift !== "" && (
+              {data.jobType !== "" && data.jobTime !== "" && (
                 <div className="job-card-container">
                   <BsFillSunFill className="icon-styles" />
-                  <p className="details-heading">{data.shift}</p>
+                  <p className="details-heading">Day Shift</p>
                 </div>
               )}
 
@@ -100,12 +100,7 @@ function ExperiencePostPreview(props) {
                         {data.jobType}, {data.city[0].label}
                       </>
                     ) : (
-                      <>
-                        <MdLocationOn
-                          style={{ fontSize: "20px", color: "grey" }}
-                        />
-                        {data.jobType}
-                      </>
+                      data.jobType
                     )}
                   </p>
                 </div>
@@ -114,59 +109,83 @@ function ExperiencePostPreview(props) {
               {data.jobType === "Office" && <br className="break-line" />}
               {data.jobType === "Office" && <p className="empty-element"></p>}
 
-              {(data.experience.years !== "" ||
-                data.experience.month !== "") && (
+              {data.startDate !== "" && (
                 <div className="job-card-container">
-                  <RiShoppingBagFill className="icon-styles" />
-                  <p className="details-heading">{`${data.experience.years} - ${data.experience.month} Yrs`}</p>
+                  <AiFillYoutube className="icon-styles" />
+                  <p className="details-heading-2">
+                    Start Date
+                    <br />
+                    <p className="details-text">
+                      {data.checked && data.startDate === "" ? "Immediate" : ""}
+                    </p>
+                  </p>
                 </div>
               )}
 
-              {data.salaryType !== "" && (
+              {data.duration !== "" && (
                 <div className="job-card-container">
-                  <p className="details-heading">
-                    <BiRupee className="icon-styles" />
-                    {data.salaryType === "Lac"
-                      ? `${Math.floor(data.salaryRange.from)}L - ${Math.floor(
-                          data.salaryRange.to
-                        )}L PA`
-                      : data.salaryType === "Per Month"
-                      ? `${Math.floor(
-                          data.salaryRange.from / 1000
-                        )}k - ${Math.floor(
-                          data.salaryRange.to / 1000
-                        )}k / month`
-                      : data.salaryType === "Fixed"
-                      ? `${Math.floor(data.salaryRange)}k / month`
-                      : data.salaryType}
+                  <MdDateRange className="icon-styles" />
+                  <p className="details-heading-2">
+                    Duration
+                    <br />
+                    <p className="details-text">{data.duration} Months</p>
+                  </p>
+                </div>
+              )}
+
+              {data.salaryRange.from !== "" && data.salaryRange.to !== "" && (
+                <div className="job-card-container">
+                  <BiRupee className="icon-styles" />
+                  <p className="details-heading-2">
+                    Salary
+                    <br />
+                    <p className="details-text">
+                      {data.salaryType === "Fixed"
+                        ? data.salaryRange.from === undefined
+                          ? `${Math.floor(data.salaryRange / 1000)}k/month`
+                          : `${Math.floor(
+                              data.salaryRange.from / 1000
+                            )}k - ${Math.floor(
+                              data.salaryRange.to / 1000
+                            )}k /month`
+                        : data.salaryType}
+                    </p>
                   </p>
                 </div>
               )}
             </div>
 
-            {data.skills.length !== 0 && (
-              <>
-                <hr />
-                <div className="mb-1">
-                  {data.skills.map((each) => (
-                    <h6 className="preview-skills" key={each}>
-                      {each}
-                    </h6>
-                  ))}
-                </div>
-              </>
-            )}
+            {(data.perks.length !== 0 ||
+              data.skills.length !== 0 ||
+              data.jobType !== "" ||
+              data.duration !== "" ||
+              data.jobTime !== "") && <hr style={{ marginTop: "0px" }} />}
+
+            <div className="perks-mobile">
+              {data.perks.map((each, i) => (
+                <h6 className="preview-perks" key={each}>
+                  {each.value}
+                </h6>
+              ))}
+            </div>
+
+            <div className="job-skill-container">
+              <div className="mb-1">
+                {data.skills.map((each) => (
+                  <h6 className="preview-skills" key={each}>
+                    {each}
+                  </h6>
+                ))}
+              </div>
+            </div>
           </div>
         )}
-
-        {(data.education.length !== 0 ||
-          data.jobDescription !== "" ||
-          data.perks.length !== 0 ||
-          data.supplementary.length !== 0 ||
+        {(data.responsibilities !== "" ||
           data.languages.length !== 0 ||
+          data.education.length !== 0 ||
           data.openings !== "") && (
           <div
-            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border  div-card  rounded container reveal  p-2  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             {data.education.length !== 0 && (
@@ -189,60 +208,43 @@ function ExperiencePostPreview(props) {
               </>
             )}
 
-            {data.jobDescription !== "" && (
+            {data.responsibilities !== "" && (
               <>
                 <h4 className="mb-3">Job Description</h4>
-                <div>
-                  {data.jobDescription !== "" && (
-                    <p style={{ overflowWrap: "break-word" }}>
-                      {data.jobDescription}
-                    </p>
-                  )}
-                </div>
-                <hr />
+                <p style={{ fontSize: "16px" }}>
+                  Selected intern's day-to-day responsibilities include:
+                </p>
+                {data.responsibilities !== "" && (
+                  <p style={{ overflowWrap: "break-word" }}>
+                    {data.responsibilities}
+                  </p>
+                )}
               </>
             )}
 
             {data.perks.length !== 0 && (
-              <>
-                <div>
-                  <h4 className="mb-3">Perks & Benefits:</h4>
-                  {data.perks.map((each, i) => (
-                    <h6 className="preview-skills" key={each}>
-                      {each.value}
-                    </h6>
-                  ))}
-                </div>
+              <div className="perks-desktop">
                 <hr />
-              </>
-            )}
-
-            {data.supplementary.length !== 0 && (
-              <>
-                <div>
-                  <h4 className="mb-3">Supplemental Pay:</h4>
-                  {data.supplementary.map((each, i) => (
-                    <h6 className="preview-skills" key={each}>
-                      {each.value}
-                    </h6>
-                  ))}
-                </div>
+                <h4 className="mb-3">Perks & Benefits</h4>
+                {data.perks.map((each, i) => (
+                  <h6 className="preview-skills" key={each}>
+                    {each.value}
+                  </h6>
+                ))}
                 <hr />
-              </>
+              </div>
             )}
 
             {data.languages.length !== 0 && (
-              <>
-                <div>
-                  <h4 className="mb-3">Languages</h4>
-                  <div className="languages-list">
-                    {data.languages.map((each) => (
-                      <p>{each}</p>
-                    ))}
-                  </div>
+              <div>
+                <h4 className="mb-3">Languages</h4>
+                <div className="languages-list">
+                  {data.languages.map((each) => (
+                    <p>{each}</p>
+                  ))}
                 </div>
                 <hr />
-              </>
+              </div>
             )}
 
             {data.openings !== "" && (
@@ -254,26 +256,25 @@ function ExperiencePostPreview(props) {
           </div>
         )}
 
-        {data.education.length !== 0 ||
-          data.jobDescription !== "" ||
-          data.perks.length !== "" ||
-          data.supplementary.length !== "" ||
-          data.languages.length !== "" ||
+        {(data.responsibilities !== "" ||
+          data.perks.length !== 0 ||
+          data.languages.length !== 0 ||
           data.openings !== "" ||
-          ((data.jobTitle !== "" ||
-            data.jobTime !== "" ||
-            data.jobType !== "" ||
-            data.experience.years !== "" ||
-            data.experience.month !== "" ||
-            data.salaryType !== "") && (
-            <>
-              <div className="row justify-content-center mb-4">
-                <button type="button" className="apply-button">
-                  Apply
-                </button>
-              </div>
-            </>
-          ))}
+          data.jobTitle !== "" ||
+          data.jobTime !== "" ||
+          data.jobType !== "" ||
+          data.duration !== "" ||
+          data.salaryRange.from !== "" ||
+          data.perks.length !== 0 ||
+          data.salaryRange.to !== "") && (
+          <>
+            <div className="row justify-content-center mb-4">
+              <button type="button" className="apply-button">
+                Apply
+              </button>
+            </div>
+          </>
+        )}
 
         <div
           className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
@@ -289,8 +290,8 @@ function ExperiencePostPreview(props) {
             </div>
           </div>
           <div className="mb-3">
-            <MdLocationOn style={{ color: "grey", fontSize: "18px" }} /> Pune,
-            MH
+            <MdLocationOn style={{ color: "grey", fontSize: "18px" }} /> Indore,
+            MP
           </div>
           <p style={{ fontFamily: "Roboto" }}>
             Wiro Tech Limited is the best IT company in Indore. Wiro Tech
@@ -316,29 +317,9 @@ function ExperiencePostPreview(props) {
 
   return (
     <>
-      <div className="row justify-content-center w-100">
-        <Button
-          variant="secondary"
-          className="mt-2"
-          style={{ width: "110px" }}
-          onClick={() => setLgShow(true)}
-        >
-          Preview
-        </Button>
-      </div>
-      <Modal
-        size="lg"
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">Preview</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{renderPreview()}</Modal.Body>
-      </Modal>
+      <div className="p-3">{renderPreview()}</div>
     </>
   )
 }
 
-export default ExperiencePostPreview
+export default InternshipJobDetails

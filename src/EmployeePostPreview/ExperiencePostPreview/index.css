@@ -7,3 +7,71 @@
 .company-image {
   width: 100px;
 }
+
+.job-details-container-experience-2 {
+  display: grid;
+  grid-template-rows: repeat(4, auto);
+  grid-row-gap: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .job-details-container-experience-2 {
+    grid-template-columns: repeat(3, minmax(0, 100px));
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .job-details-container-experience-2 {
+    grid-template-columns: repeat(3, minmax(0, 200px));
+  }
+}
+
+.job-card-container-experience:nth-child(1) {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+}
+
+.job-card-container-experience:nth-child(2) {
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 1;
+}
+
+@media screen and (max-width: 767px) {
+  .job-card-container-experience:nth-child(3) {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 3;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .job-card-container-experience:nth-child(3) {
+    grid-row: 1 / span 1;
+    grid-column: 3 / span 1;
+  }
+}
+
+.job-card-container-experience:nth-child(4) {
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 1;
+  width: 100px;
+}
+
+.job-card-container-experience:nth-child(5) {
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 2;
+  white-space: nowrap;
+}
+
+.job-card-container-experience {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  height: 30px;
+  width: 100%;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+}
+
+.details-text {
+  margin-bottom: 0;
+}

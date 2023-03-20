@@ -41,11 +41,27 @@
 .popup-button {
   background: transparent;
   border-radius: 100%;
-  border: 1px solid #ccc;
+  border: none;
   outline: none;
   cursor: pointer;
   width: 24px;
   height: 24px;
   margin-left: 10px;
   font-size: 15px;
+  color: grey;
+}
+
+.home-heading {
+  display: flex;
+  align-items: center !important;
+}
+
+.home-text {
+  margin-top: 15px !important;
+}
+
+@media screen and (max-width: 767px) {
+  .hr-line {
+    display: none;
+  }
 }
