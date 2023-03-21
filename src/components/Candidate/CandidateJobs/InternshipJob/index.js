@@ -21,10 +21,11 @@ const InternshipJob = () => {
       <div
         className="text-dark mb-3   div-card rounded container reveal p-2 rounded "
         style={{
-          maxWidth: "500px",
+          maxWidth: "620px",
           backgroundColor: "white",
           border: "1px solid grey",
           margin: "0px",
+          fontFamily: "Roboto",
         }}
       >
         <>
@@ -147,16 +148,9 @@ const InternshipJob = () => {
                   {data.incentives && data.salaryType === "Fixed" && (
                     <>
                       {" "}
-                      <p
-                        className="details-text"
-                        style={{
-                          color: "grey",
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
+                      <p className="details-text">
                         {" "}
-                        + Incentives{" "}
+                        <span className="incentives-text">+ Incentives </span>
                         <Popup
                           trigger={
                             <button className="popup-button mt-1"> ?</button>
@@ -179,6 +173,8 @@ const InternshipJob = () => {
             </div>
           )}
         </div>
+
+        <hr className="hr-line" style={{ marginTop: "0px" }} />
 
         <div className="perks-mobile">
           {data.perks.length > 3 ? (

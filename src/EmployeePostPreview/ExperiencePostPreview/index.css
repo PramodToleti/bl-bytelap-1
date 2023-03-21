@@ -20,12 +20,6 @@
   }
 }
 
-@media screen and (min-width: 768px) {
-  .job-details-container-experience-2 {
-    grid-template-columns: repeat(3, minmax(0, 200px));
-  }
-}
-
 .job-card-container-experience:nth-child(1) {
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;

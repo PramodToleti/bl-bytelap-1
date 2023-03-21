@@ -15,19 +15,14 @@
 
 .job-details-container-fresher-2 {
   display: grid;
-  grid-template-rows: repeat(4, auto);
+  grid-template-rows: repeat(3, auto);
   grid-row-gap: 10px;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 767px) {
   .job-details-container-fresher-2 {
     grid-template-columns: repeat(3, minmax(0, 100px));
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .job-details-container-fresher-2 {
-    grid-template-columns: repeat(3, minmax(0, 200px));
   }
 }
 
@@ -58,12 +53,11 @@
 .job-card-container-fresher:nth-child(4) {
   grid-row: 3 / span 1;
   grid-column: 1 / span 1;
-  width: 100px;
 }
 
 .job-card-container-fresher:nth-child(5) {
   grid-row: 3 / span 1;
-  grid-column: 2 / span 2;
+  grid-column: 2 / span 1;
   white-space: nowrap;
 }
 
@@ -79,4 +73,15 @@
 
 .details-text {
   margin-bottom: 0;
+}
+
+.incentives-text {
+  color: #272b2e !important;
+}
+
+@media screen and (min-width: 768px) {
+  .incentives-text {
+    font-size: 12px !important;
+    margin-bottom: 5px;
+  }
 }

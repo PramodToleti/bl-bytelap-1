@@ -9,9 +9,11 @@ import { BiRupee } from "react-icons/bi"
 import { BsFillShareFill } from "react-icons/bs"
 import { MdLocationOn } from "react-icons/md"
 import { HiOutlineExternalLink } from "react-icons/hi"
+import Popup from "reactjs-popup"
 
 function InternshipJobDetails(props) {
   const internJobs = JSON.parse(localStorage.getItem("internshipJob"))
+  const [fullText, setFullText] = useState(false)
 
   const { match } = props
   const { id } = match.params
@@ -43,33 +45,31 @@ function InternshipJobDetails(props) {
                     className="company-image"
                   />
                 </div>
-                <div style={{ display: "flex", gap: "8px" }} className="mb-4">
+                <div style={{ display: "flex", gap: "8px" }} className="mb-2">
                   <FaBuilding style={{ color: "grey", fontSize: "22px" }} />
                   <p style={{ color: "grey" }}>Wiro Tech Limited</p>
                 </div>
               </>
             )}
 
-            <div className="job-details-container-2">
+            <div className="job-details-container-preview">
               {data.jobTime !== "" && (
-                <div className="job-card-container">
+                <div className="job-card-container-preview">
                   <MdShoppingBag className="icon-styles" />
-                  <p className="details-heading">{data.jobTime}</p>
+                  <p className="details-heading-preview">{data.jobTime}</p>
                 </div>
               )}
 
               {data.jobType !== "" && data.jobTime !== "" && (
-                <div className="job-card-container">
+                <div className="job-card-container-preview">
                   <BsFillSunFill className="icon-styles" />
-                  <p className="details-heading">Day Shift</p>
+                  <p className="details-heading-preview">Day Shift</p>
                 </div>
               )}
 
-              {data.jobType === "Office" && <br className="break-line" />}
-
               {data.jobType !== "" && (
                 <div
-                  className={`job-card-container ${
+                  className={`job-card-container-preview ${
                     data.jobType === "Office" ? "location-style" : ""
                   }`}
                 >
@@ -77,17 +77,26 @@ function InternshipJobDetails(props) {
                     className={` ${
                       data.jobType !== "Office"
                         ? "home-heading"
-                        : "details-heading"
+                        : "details-heading-preview"
                     }`}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                      wordBreak: "break-word",
+                    }}
                   >
                     {data.jobType === "Work from Home" ? (
                       <>
-                        <FaHome className="icon-styles" style={{}} />
+                        <FaHome
+                          className="icon-styles"
+                          style={{ marginTop: "9px" }}
+                        />
                         <p
                           style={{
                             color: "grey",
                           }}
-                          className="home-text"
+                          className="home-text details-heading-preview"
                         >
                           Work from Home
                         </p>
@@ -95,9 +104,43 @@ function InternshipJobDetails(props) {
                     ) : data.city.length !== 0 ? (
                       <>
                         <MdLocationOn
-                          style={{ fontSize: "20px", color: "grey" }}
+                          style={{ fontSize: "19px", color: "grey" }}
+                          className="preview-icons"
                         />
-                        {data.jobType}, {data.city[0].label}
+                        <div style={{ wordBreak: "break-word" }}>
+                          {data.city.length > 3 && !fullText ? (
+                            <div
+                              style={{
+                                wordBreak: "break-word",
+                                maxWidth: "295px",
+                              }}
+                            >
+                              {`${data.city[0].label}, ${data.city[1].label}, ${data.city[2].label} ...`}
+                              {!fullText && (
+                                <span
+                                  style={{
+                                    color: "blue",
+                                    fontSize: "12px",
+                                    margin: "0px",
+                                    cursor: "pointer",
+                                    marginTop: "4px",
+                                    marginLeft: "4px",
+                                  }}
+                                  onClick={() => setFullText(true)}
+                                >
+                                  View More{" "}
+                                </span>
+                              )}
+                            </div>
+                          ) : (
+                            data.city.map((each, index) => (
+                              <span key={index}>
+                                {each.label}
+                                {index !== data.city.length - 1 ? ", " : ""}
+                              </span>
+                            ))
+                          )}
+                        </div>
                       </>
                     ) : (
                       data.jobType
@@ -106,50 +149,102 @@ function InternshipJobDetails(props) {
                 </div>
               )}
 
-              {data.jobType === "Office" && <br className="break-line" />}
-              {data.jobType === "Office" && <p className="empty-element"></p>}
-
-              {data.startDate !== "" && (
-                <div className="job-card-container">
+              {(data.startDate !== "" || data.checked === true) && (
+                <div className="job-card-container-preview">
                   <AiFillYoutube className="icon-styles" />
                   <p className="details-heading-2">
-                    Start Date
-                    <br />
-                    <p className="details-text">
-                      {data.checked && data.startDate === "" ? "Immediate" : ""}
+                    <p className="sub-headings details-heading-preview">
+                      Start Date
+                    </p>
+                    <p className="details-text details-text-preview">
+                      {data.checked && data.startDate === ""
+                        ? "Immediate"
+                        : new Date(data.startDate).toLocaleString("en-US", {
+                            month: "short",
+                            year: "numeric",
+                          })}
                     </p>
                   </p>
                 </div>
               )}
 
               {data.duration !== "" && (
-                <div className="job-card-container">
+                <div className="job-card-container-preview">
                   <MdDateRange className="icon-styles" />
                   <p className="details-heading-2">
-                    Duration
-                    <br />
-                    <p className="details-text">{data.duration} Months</p>
+                    <p className="sub-headings details-heading-preview">
+                      Duration
+                    </p>
+                    <p className="details-text details-text-preview">
+                      {data.duration} Months
+                    </p>
                   </p>
+                  <br />
                 </div>
               )}
 
-              {data.salaryRange.from !== "" && data.salaryRange.to !== "" && (
-                <div className="job-card-container">
+              {((data.salaryRange.from !== "" && data.salaryRange.to !== "") ||
+                data.salaryType !== "") && (
+                <div className="job-card-container-preview">
                   <BiRupee className="icon-styles" />
                   <p className="details-heading-2">
-                    Salary
-                    <br />
-                    <p className="details-text">
-                      {data.salaryType === "Fixed"
-                        ? data.salaryRange.from === undefined
-                          ? `${Math.floor(data.salaryRange / 1000)}k/month`
-                          : `${Math.floor(
-                              data.salaryRange.from / 1000
-                            )}k - ${Math.floor(
-                              data.salaryRange.to / 1000
-                            )}k /month`
-                        : data.salaryType}
+                    <p className="sub-headings details-heading-preview">
+                      Salary
                     </p>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                      }}
+                    >
+                      <p className="details-text details-text-preview">
+                        {data.salaryType === "Fixed"
+                          ? data.salaryRange.from === undefined
+                            ? `${Math.floor(data.salaryRange / 1000)}k/month `
+                            : `${Math.floor(
+                                data.salaryRange.from / 1000
+                              )}k - ${Math.floor(
+                                data.salaryRange.to / 1000
+                              )}k /month `
+                          : data.salaryType}
+                      </p>
+                      {data.incentives && data.salaryType === "Fixed" && (
+                        <>
+                          {" "}
+                          <p
+                            className="details-text"
+                            style={{
+                              color: "grey",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            {" "}
+                            <span className="incentives-text">
+                              + Incentives{" "}
+                            </span>
+                            <Popup
+                              trigger={
+                                <button className="popup-button mt-1">
+                                  {" "}
+                                  ?
+                                </button>
+                              }
+                              position="right center"
+                            >
+                              <p>
+                                This is a performance-based internship. In
+                                addition to the minimum-assured stipend, you
+                                will also be paid a performance-linked incentive{" "}
+                                {`(₹ ${data.incentivesValue}
+                          per sale)`}
+                              </p>
+                            </Popup>
+                          </p>
+                        </>
+                      )}
+                    </div>
                   </p>
                 </div>
               )}
@@ -178,6 +273,8 @@ function InternshipJobDetails(props) {
                 ))}
               </div>
             </div>
+
+            <p className="posted-text">Posted: 1 day ago</p>
           </div>
         )}
         {(data.responsibilities !== "" ||

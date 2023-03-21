@@ -1,3 +1,4 @@
+import React, { useState } from "react"
 import { FaHome } from "react-icons/fa"
 import { FaBuilding } from "react-icons/fa"
 import { MdShoppingBag } from "react-icons/md"
@@ -7,9 +8,11 @@ import { RiShoppingBagFill } from "react-icons/ri"
 import { HiOutlineExternalLink } from "react-icons/hi"
 import { MdLocationOn } from "react-icons/md"
 import { BsFillShareFill } from "react-icons/bs"
+import Popup from "reactjs-popup"
 
 const FresherJobDetails = (props) => {
   const fresherJobs = JSON.parse(localStorage.getItem("fresherJob"))
+  const [fullText, setFullText] = useState(false)
 
   const { match } = props
   const { id } = match.params
@@ -38,98 +41,116 @@ const FresherJobDetails = (props) => {
                   />
                 </div>
 
-                <div style={{ display: "flex", gap: "8px" }} className="mb-4">
+                <div style={{ display: "flex", gap: "8px" }} className="mb-1">
                   <FaBuilding style={{ color: "grey", fontSize: "25px" }} />
                   <p style={{ color: "grey" }}>Wiro Tech Limited</p>
                 </div>
               </>
             )}
 
-            <div className="job-details-container-2">
+            <div className="job-details-container-preview">
               {data.jobTime !== "" && (
-                <>
-                  <div className="job-card-container">
-                    <MdShoppingBag className="icon-styles" />
-                    <p className="details-heading">{data.jobTime}</p>
-                  </div>
-
-                  <div className="job-card-container">
-                    <BsFillSunFill className="icon-styles" />
-                    <p className="details-heading">Day Shift</p>
-                  </div>
-                </>
+                <div className="job-card-container-preview">
+                  <MdShoppingBag className="icon-styles" />
+                  <p className="details-heading-preview">{data.jobTime}</p>
+                </div>
               )}
 
-              {data.jobType === "Office" && <br className="break-line" />}
+              {data.jobType !== "" && data.jobTime !== "" && (
+                <div className="job-card-container-preview">
+                  <BsFillSunFill className="icon-styles" />
+                  <p className="details-heading-preview">Day Shift</p>
+                </div>
+              )}
 
               {data.jobType !== "" && (
-                <>
-                  <div
-                    className={`job-card-container ${
-                      data.jobType === "Office" ? "location-style" : ""
+                <div
+                  className={`job-card-container-preview ${
+                    data.jobType === "Office" ? "location-style" : ""
+                  }`}
+                >
+                  <p
+                    className={` ${
+                      data.jobType !== "Office"
+                        ? "home-heading"
+                        : "details-heading-preview"
                     }`}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                    }}
                   >
-                    <p
-                      className={` ${
-                        data.jobType !== "Office"
-                          ? "home-heading"
-                          : "details-heading"
-                      }`}
-                    >
-                      {data.jobType === "Work from Home" ? (
-                        <>
-                          <FaHome className="icon-styles" style={{}} />
-                          <p
+                    {data.jobType === "Work from Home" ? (
+                      <>
+                        <FaHome
+                          className="icon-styles"
+                          style={{ marginTop: "9px" }}
+                        />
+                        <p
+                          style={{
+                            color: "grey",
+                          }}
+                          className="home-text details-heading-preview"
+                        >
+                          Work from Home
+                        </p>
+                      </>
+                    ) : data.city.length !== 0 ? (
+                      <>
+                        <MdLocationOn
+                          style={{ fontSize: "19px", color: "grey" }}
+                          className="preview-icons"
+                        />
+                        {data.city.length > 3 && !fullText ? (
+                          <div
                             style={{
-                              color: "grey",
+                              wordBreak: "break-word",
+                              maxWidth: "288px",
                             }}
-                            className="home-text"
                           >
-                            Work from Home
-                          </p>
-                        </>
-                      ) : data.city.length !== 0 ? (
-                        <>
-                          <MdLocationOn
-                            style={{ fontSize: "20px", color: "grey" }}
-                          />
-                          {data.jobType}, {data.city[0].label}
-                        </>
-                      ) : (
-                        data.jobType
-                      )}
-                    </p>
-                  </div>
-
-                  {data.jobType === "Office" && <br className="break-line" />}
-                  {data.jobType === "Office" && (
-                    <p className="empty-element"></p>
-                  )}
-
-                  <div className="job-card-container">
-                    <RiShoppingBagFill className="icon-styles" />
-                    <p className="details-heading">Fresher</p>
-                  </div>
-                </>
+                            {`${data.city[0].label}, ${data.city[1].label}, ${data.city[2].label} ...`}
+                            {!fullText && (
+                              <span
+                                style={{
+                                  color: "blue",
+                                  fontSize: "12px",
+                                  margin: "0px",
+                                  cursor: "pointer",
+                                  marginTop: "4px",
+                                  marginLeft: "4px",
+                                }}
+                                onClick={() => setFullText(true)}
+                              >
+                                View More{" "}
+                              </span>
+                            )}
+                          </div>
+                        ) : (
+                          data.city.map((each, index) => (
+                            <span key={index}>
+                              {each.label}
+                              {index !== data.city.length - 1 ? ", " : ""}
+                            </span>
+                          ))
+                        )}
+                      </>
+                    ) : (
+                      data.jobType
+                    )}
+                  </p>
+                </div>
               )}
 
+              <div className="job-card-container-fresher">
+                <RiShoppingBagFill className="icon-styles" />
+                <p className="details-heading-preview">Fresher</p>
+              </div>
+
               {data.salaryType !== "" && (
-                <div className="job-card-container">
-                  <p className="details-heading">
+                <div className="job-card-container-fresher">
+                  <p className="details-heading-preview">
                     <BiRupee className="icon-styles" />
-                    {/*{data.salaryType === "Lac"
-                            ? `${Math.floor(data.salaryRange.from)}L - ${Math.floor(
-                                data.salaryRange.to
-                              )}L PA`
-                            : data.salaryType === "Per Month"
-                            ? `${Math.floor(
-                                data.salaryRange.from / 1000
-                              )}k - ${Math.floor(
-                                data.salaryRange.to / 1000
-                              )}k / month`
-                            : data.salaryType === "Fixed"
-                            ? `${Math.floor(data.salaryRange)}k / month`
-                              : data.salaryType}*/}
                     {data.salaryType === "Lac"
                       ? `${data.salaryRange.from}L - ${data.salaryRange.to}L PA`
                       : data.salaryType === "Per Month"
@@ -138,6 +159,37 @@ const FresherJobDetails = (props) => {
                       ? `${data.salaryRange}k / month`
                       : data.salaryType}
                   </p>
+                  {data.incentives && data.salaryType === "Fixed" && (
+                    <>
+                      {" "}
+                      <p
+                        className="details-text"
+                        style={{
+                          color: "grey",
+                          display: "flex",
+                          alignItems: "center",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        {" "}
+                        <span className="incentives-text">+ Incentives </span>
+                        <Popup
+                          trigger={
+                            <button className="popup-button mt-1"> ?</button>
+                          }
+                          position="right center"
+                        >
+                          <p>
+                            This is a performance-based internship. In addition
+                            to the minimum-assured stipend, you will also be
+                            paid a performance-linked incentive{" "}
+                            {`(₹ ${data.incentivesValue}
+                          per sale)`}
+                          </p>
+                        </Popup>
+                      </p>
+                    </>
+                  )}
                 </div>
               )}
             </div>

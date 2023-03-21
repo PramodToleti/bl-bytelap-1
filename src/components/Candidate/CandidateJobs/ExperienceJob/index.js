@@ -20,7 +20,7 @@ const ExperienceJob = () => {
       <div
         className="text-dark mb-3   div-card rounded container reveal p-2 rounded "
         style={{
-          maxWidth: "500px",
+          maxWidth: "620px",
           backgroundColor: "white",
           border: "1px solid grey",
           margin: "0px",
@@ -84,7 +84,9 @@ const ExperienceJob = () => {
                 ) : data.city.length !== 0 ? (
                   <>
                     <MdLocationOn style={{ fontSize: "19px", color: "grey" }} />
-                    {`${data.jobType}, ${data.city[0].label}`}
+                    {data.city.length > 3
+                      ? `${data.city[0].label}, ${data.city[1].label}, ${data.city[2].label}  ...`
+                      : data.city.map((each) => each.label)}
                   </>
                 ) : (
                   data.jobType
@@ -137,7 +139,7 @@ const ExperienceJob = () => {
                     }}
                   >
                     {" "}
-                    + Incentives{" "}
+                    <span className="incentives-text">+ Incentives </span>
                     <Popup
                       trigger={
                         <button
@@ -165,22 +167,39 @@ const ExperienceJob = () => {
           )}
         </div>
 
+        <hr className="hr-line" style={{ marginTop: "0px" }} />
+
         <div className="perks-mobile">
-          {data.perks.map((each, i) => (
-            <h6 className="preview-perks" key={each}>
-              {each.value}
-            </h6>
-          ))}
+          {data.perks.length > 3 ? (
+            <>
+              <h6 className="preview-perks">{data.perks[0].value}</h6>
+              <h6 className="preview-perks">{data.perks[1].value}</h6>
+              <h6 className="preview-perks">{data.perks[2].value} </h6> ...
+            </>
+          ) : (
+            data.perks.map((each, i) => (
+              <h6 className="preview-perks" key={i}>
+                {each.value}
+              </h6>
+            ))
+          )}
         </div>
 
         <div className="perks-desktop ">
-          {data.perks.map((each, i) => (
-            <h6 className="preview-skills" key={each}>
-              {each.value}
-            </h6>
-          ))}
+          {data.perks.length > 3 ? (
+            <>
+              <h6 className="preview-perks">{data.perks[0].value}</h6>
+              <h6 className="preview-perks">{data.perks[1].value}</h6>
+              <h6 className="preview-perks">{data.perks[2].value} </h6> ...
+            </>
+          ) : (
+            data.perks.map((each, i) => (
+              <h6 className="preview-perks" key={i}>
+                {each.value}
+              </h6>
+            ))
+          )}
         </div>
-
         <div className="d-flex flex-row justify-content-between mt-2">
           <p style={{ fontSize: "12px" }}>Just Now</p>
           <Link to={`/candidate/job-details/experience/${index + 1}`}>
