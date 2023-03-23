@@ -55,7 +55,10 @@ const ShowAndHidePassword = () => {
   return (
     <>
       <div className="container">
-        <div className="card mt-3 p-2" style={{ height: "55px" }}>
+        <div
+          className="card mt-3 p-2"
+          style={{ height: "55px", margin: "0px", width: "100%" }}
+        >
           <form
             onSubmit={submitForm}
             style={{
