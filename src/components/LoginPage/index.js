@@ -10,12 +10,15 @@ import InputGroup from "react-bootstrap/InputGroup"
 import Dropdown from "react-bootstrap/Dropdown"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { Oval } from "react-loader-spinner"
 
-import "bootstrap/dist/css/bootstrap.min.css"
 import Theme from "../../Theme"
 import CandidateJobs from "../Candidate/CandidateJobs"
 import JobSearchField from "../../JobSearchField"
 import JobLocationField from "../../JobLocationField"
+
+import "./index.css"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 function LoginPage() {
   const [activeSearch, setActiveSearch] = useState("")
@@ -24,6 +27,7 @@ function LoginPage() {
   const [activeSchedule, setActiveSchedule] = useState([])
   const [checkedShifts, setCheckedShifts] = useState([])
   const [checkedJobTypes, setCheckedJobTypes] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const [searchDetails, setSearchDetails] = useState({
     search: "",
@@ -41,6 +45,11 @@ function LoginPage() {
   useEffect(() => {
     setActiveShifts(checkedShifts)
   }, [checkedShifts])
+
+  isLoading &&
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 200)
 
   return (
     <>
@@ -177,12 +186,14 @@ function LoginPage() {
                             ...checkedJobTypes,
                             e.target.name,
                           ])
+                          setIsLoading(true)
                         } else {
                           setCheckedJobTypes(
                             checkedJobTypes.filter(
                               (type) => type !== e.target.name
                             )
                           )
+                          setIsLoading(true)
                         }
                       }}
                     />
@@ -198,12 +209,14 @@ function LoginPage() {
                             ...checkedJobTypes,
                             e.target.name,
                           ])
+                          setIsLoading(true)
                         } else {
                           setCheckedJobTypes(
                             checkedJobTypes.filter(
                               (type) => type !== e.target.name
                             )
                           )
+                          setIsLoading(true)
                         }
                       }}
                     />
@@ -219,12 +232,14 @@ function LoginPage() {
                             ...checkedJobTypes,
                             e.target.name,
                           ])
+                          setIsLoading(true)
                         } else {
                           setCheckedJobTypes(
                             checkedJobTypes.filter(
                               (type) => type !== e.target.name
                             )
                           )
+                          setIsLoading(true)
                         }
                       }}
                     />
@@ -405,12 +420,29 @@ function LoginPage() {
           <hr className="mb-3 mt-4" />
         </div>
 
-        <CandidateJobs
-          searchDetails={searchDetails}
-          activeSchedule={activeSchedule}
-          checkedJobTypes={checkedJobTypes}
-          activeShifts={activeShifts}
-        />
+        {isLoading ? (
+          <div className="loader-container">
+            <Oval
+              height={50}
+              width={50}
+              color="blue"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+              ariaLabel="oval-loading"
+              secondaryColor="lightblue"
+              strokeWidth={2}
+              strokeWidthSecondary={2}
+            />
+          </div>
+        ) : (
+          <CandidateJobs
+            searchDetails={searchDetails}
+            activeSchedule={activeSchedule}
+            checkedJobTypes={checkedJobTypes}
+            activeShifts={activeShifts}
+          />
+        )}
       </div>
     </>
   )
