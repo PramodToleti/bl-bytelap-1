@@ -188,7 +188,10 @@ function InternshipJobDetails(props) {
                 <div className="job-card-container-preview">
                   <BiRupee className="icon-styles" />
                   <p className="details-heading-2">
-                    <p className="sub-headings details-heading-preview">
+                    <p
+                      className="sub-headings details-heading-preview"
+                      style={{ marginBottom: "0px" }}
+                    >
                       Salary
                     </p>
                     <div

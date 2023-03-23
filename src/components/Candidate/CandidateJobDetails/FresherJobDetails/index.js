@@ -87,12 +87,7 @@ const FresherJobDetails = (props) => {
                           className="icon-styles"
                           style={{ marginTop: "9px" }}
                         />
-                        <p
-                          style={{
-                            color: "grey",
-                          }}
-                          className="home-text details-heading-preview"
-                        >
+                        <p className="home-text details-heading-preview">
                           Work from Home
                         </p>
                       </>

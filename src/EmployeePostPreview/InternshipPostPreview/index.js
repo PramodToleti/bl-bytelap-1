@@ -17,6 +17,7 @@ import "./index.css"
 function InternshipPostPreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
+  const [fullText, setFullText] = useState(false)
 
   function renderPreview() {
     return (
@@ -67,7 +68,7 @@ function InternshipPostPreview(props) {
 
               {data.jobType !== "" && (
                 <div
-                  className={`job-card-container ${
+                  className={`job-card-container-preview ${
                     data.jobType === "Office" ? "location-style" : ""
                   }`}
                 >
@@ -75,23 +76,68 @@ function InternshipPostPreview(props) {
                     className={` ${
                       data.jobType !== "Office"
                         ? "home-heading"
-                        : "details-heading"
+                        : "details-heading-preview"
                     }`}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                      wordBreak: "break-word",
+                    }}
                   >
                     {data.jobType === "Work from Home" ? (
                       <>
                         <FaHome
                           className="icon-styles"
-                          style={{ marginTop: "6px" }}
+                          style={{ marginTop: "9px" }}
                         />
-                        <p className="home-text">Work from Home</p>
+                        <p className="home-text details-heading-preview">
+                          Work from Home
+                        </p>
                       </>
                     ) : data.city.length !== 0 ? (
                       <>
                         <MdLocationOn
-                          style={{ fontSize: "20px", color: "grey" }}
+                          style={{ fontSize: "19px", color: "grey" }}
+                          className="preview-icons"
                         />
-                        {`${data.jobType}, ${data.city[0].label}`}
+                        <div
+                          style={{ wordBreak: "break-word" }}
+                          className="details-heading"
+                        >
+                          {data.city.length > 3 && !fullText ? (
+                            <div
+                              style={{
+                                wordBreak: "break-word",
+                                maxWidth: "295px",
+                              }}
+                            >
+                              {`${data.city[0].label}, ${data.city[1].label}, ${data.city[2].label} ...`}
+                              {!fullText && (
+                                <span
+                                  style={{
+                                    color: "blue",
+                                    fontSize: "12px",
+                                    margin: "0px",
+                                    cursor: "pointer",
+                                    marginTop: "4px",
+                                    marginLeft: "4px",
+                                  }}
+                                  onClick={() => setFullText(true)}
+                                >
+                                  View More{" "}
+                                </span>
+                              )}
+                            </div>
+                          ) : (
+                            data.city.map((each, index) => (
+                              <span key={index}>
+                                {each.label}
+                                {index !== data.city.length - 1 ? ", " : ""}
+                              </span>
+                            ))
+                          )}
+                        </div>
                       </>
                     ) : (
                       data.jobType

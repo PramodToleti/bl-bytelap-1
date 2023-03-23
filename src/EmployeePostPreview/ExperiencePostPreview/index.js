@@ -16,6 +16,7 @@ import "./index.css"
 function ExperiencePostPreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
+  const [fullText, setFullText] = useState(false)
 
   function renderPreview() {
     return (
@@ -47,29 +48,24 @@ function ExperiencePostPreview(props) {
               </>
             )}
 
-            <div
-              className="job-details-container-2"
-              style={{ marginBottom: "0px" }}
-            >
+            <div className="job-details-container-preview">
               {data.jobTime !== "" && (
-                <div className="job-card-container">
+                <div className="job-card-container-preview">
                   <MdShoppingBag className="icon-styles" />
                   <p className="details-heading">{data.jobTime}</p>
                 </div>
               )}
 
-              {data.shift !== "" && (
-                <div className="job-card-container">
+              {data.jobType !== "" && data.jobTime !== "" && (
+                <div className="job-card-container-preview">
                   <BsFillSunFill className="icon-styles" />
-                  <p className="details-heading">{data.shift}</p>
+                  <p className="details-heading">Day Shift</p>
                 </div>
               )}
 
-              {data.jobType === "Office" && <br className="break-line" />}
-
               {data.jobType !== "" && (
                 <div
-                  className={`job-card-container ${
+                  className={`job-card-container-preview ${
                     data.jobType === "Office" ? "location-style" : ""
                   }`}
                 >
@@ -79,44 +75,83 @@ function ExperiencePostPreview(props) {
                         ? "home-heading"
                         : "details-heading"
                     }`}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                    }}
                   >
                     {data.jobType === "Work from Home" ? (
                       <>
-                        <FaHome className="icon-styles" style={{}} />
-                        <p className="home-text">Work from Home</p>
+                        <FaHome
+                          className="icon-styles"
+                          style={{ marginTop: "9px" }}
+                        />
+                        <p
+                          style={{
+                            color: "grey",
+                          }}
+                          className="home-text details-heading"
+                        >
+                          Work from Home
+                        </p>
                       </>
                     ) : data.city.length !== 0 ? (
                       <>
                         <MdLocationOn
-                          style={{ fontSize: "20px", color: "grey" }}
+                          style={{ fontSize: "19px", color: "grey" }}
+                          className="preview-icons"
                         />
-                        {data.jobType}, {data.city[0].label}
+                        {data.city.length > 3 && !fullText ? (
+                          <div
+                            style={{
+                              wordBreak: "break-word",
+                              maxWidth: "295px",
+                            }}
+                          >
+                            {`${data.city[0].label}, ${data.city[1].label}, ${data.city[2].label} ...`}
+                            {!fullText && (
+                              <span
+                                style={{
+                                  color: "blue",
+                                  fontSize: "12px",
+                                  margin: "0px",
+                                  cursor: "pointer",
+                                  marginTop: "4px",
+                                  marginLeft: "4px",
+                                }}
+                                onClick={() => setFullText(true)}
+                              >
+                                View More{" "}
+                              </span>
+                            )}
+                          </div>
+                        ) : (
+                          data.city.map((each, index) => (
+                            <span key={index}>
+                              {each.label}
+                              {index !== data.city.length - 1 ? ", " : ""}
+                            </span>
+                          ))
+                        )}
                       </>
                     ) : (
-                      <>
-                        <MdLocationOn
-                          style={{ fontSize: "20px", color: "grey" }}
-                        />
-                        {data.jobType}
-                      </>
+                      data.jobType
                     )}
                   </p>
                 </div>
               )}
 
-              {data.jobType === "Office" && <br className="break-line" />}
-              {data.jobType === "Office" && <p className="empty-element"></p>}
-
               {(data.experience.years !== "" ||
                 data.experience.month !== "") && (
-                <div className="job-card-container">
+                <div className="job-card-container-experience">
                   <RiShoppingBagFill className="icon-styles" />
                   <p className="details-heading">{`${data.experience.years} - ${data.experience.month} Yrs`}</p>
                 </div>
               )}
 
               {data.salaryType !== "" && (
-                <div className="job-card-container">
+                <div className="job-card-container-experience">
                   <p className="details-heading">
                     <BiRupee className="icon-styles" />
                     {data.salaryType === "Lac"

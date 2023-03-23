@@ -16,6 +16,7 @@ import "./index.css"
 function FresherPostPreview(props) {
   const { data } = props
   const [lgShow, setLgShow] = useState(false)
+  const [fullText, setFullText] = useState(false)
 
   function renderPreview() {
     return (
@@ -46,84 +47,104 @@ function FresherPostPreview(props) {
               </>
             )}
 
-            <div className="job-details-container-fresher-2">
+            <div className="job-details-container-preview">
               {data.jobTime !== "" && (
-                <>
-                  <div className="job-card-container-fresher">
-                    <MdShoppingBag className="icon-styles" />
-                    <p className="details-heading">{data.jobTime}</p>
-                  </div>
-
-                  <div className="job-card-container-fresher">
-                    <BsFillSunFill className="icon-styles" />
-                    <p className="details-heading">Day Shift</p>
-                  </div>
-                </>
+                <div className="job-card-container-preview">
+                  <MdShoppingBag className="icon-styles" />
+                  <p className="details-heading">{data.jobTime}</p>
+                </div>
               )}
 
-              {data.jobType === "Office" && <br className="break-line" />}
+              {data.jobType !== "" && data.jobTime !== "" && (
+                <div className="job-card-container-preview">
+                  <BsFillSunFill className="icon-styles" />
+                  <p className="details-heading">Day Shift</p>
+                </div>
+              )}
 
               {data.jobType !== "" && (
-                <>
-                  <div
-                    className={`job-card-container-fresher ${
-                      data.jobType === "Office" ? "location-style" : ""
+                <div
+                  className={`job-card-container-preview ${
+                    data.jobType === "Office" ? "location-style" : ""
+                  }`}
+                >
+                  <p
+                    className={` ${
+                      data.jobType !== "Office"
+                        ? "home-heading"
+                        : "details-heading"
                     }`}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                    }}
                   >
-                    <p
-                      className={` ${
-                        data.jobType !== "Office"
-                          ? "home-heading"
-                          : "details-heading"
-                      }`}
-                    >
-                      {data.jobType === "Work from Home" ? (
-                        <>
-                          <FaHome className="icon-styles" style={{}} />
-                          <p className="home-text">Work from Home</p>
-                        </>
-                      ) : data.city.length !== 0 ? (
-                        <>
-                          <MdLocationOn
-                            style={{ fontSize: "20px", color: "grey" }}
-                          />
-                          {data.jobType}, {data.city[0].label}
-                        </>
-                      ) : (
-                        data.jobType
-                      )}
-                    </p>
-                  </div>
-
-                  {data.jobType === "Office" && <br className="break-line" />}
-                  {data.jobType === "Office" && (
-                    <p className="empty-element"></p>
-                  )}
-
-                  <div className="job-card-container-fresher">
-                    <RiShoppingBagFill className="icon-styles" />
-                    <p className="details-heading">Fresher</p>
-                  </div>
-                </>
+                    {data.jobType === "Work from Home" ? (
+                      <>
+                        <FaHome
+                          className="icon-styles"
+                          style={{ marginTop: "9px" }}
+                        />
+                        <p className="home-text details-heading">
+                          Work from Home
+                        </p>
+                      </>
+                    ) : data.city.length !== 0 ? (
+                      <>
+                        <MdLocationOn
+                          style={{ fontSize: "19px", color: "grey" }}
+                          className="preview-icons"
+                        />
+                        {data.city.length > 3 && !fullText ? (
+                          <div
+                            style={{
+                              wordBreak: "break-word",
+                              maxWidth: "288px",
+                            }}
+                          >
+                            {`${data.city[0].label}, ${data.city[1].label}, ${data.city[2].label} ...`}
+                            {!fullText && (
+                              <span
+                                style={{
+                                  color: "blue",
+                                  fontSize: "12px",
+                                  margin: "0px",
+                                  cursor: "pointer",
+                                  marginTop: "4px",
+                                  marginLeft: "4px",
+                                }}
+                                onClick={() => setFullText(true)}
+                              >
+                                View More{" "}
+                              </span>
+                            )}
+                          </div>
+                        ) : (
+                          data.city.map((each, index) => (
+                            <span key={index}>
+                              {each.label}
+                              {index !== data.city.length - 1 ? ", " : ""}
+                            </span>
+                          ))
+                        )}
+                      </>
+                    ) : (
+                      data.jobType
+                    )}
+                  </p>
+                </div>
               )}
+
+              <div className="job-card-container-fresher">
+                <RiShoppingBagFill className="icon-styles" />
+                <p className="details-heading">Fresher</p>
+              </div>
 
               {data.salaryType !== "" && (
                 <div className="job-card-container-fresher">
                   <p className="details-heading">
                     <BiRupee className="icon-styles" />
-                    {/*{data.salaryType === "Lac"
-                      ? `${Math.floor(data.salaryRange.from)}L - ${Math.floor(
-                          data.salaryRange.to
-                        )}L PA`
-                      : data.salaryType === "Per Month"
-                      ? `${Math.floor(
-                          data.salaryRange.from / 1000
-                        )}k - ${Math.floor(
-                          data.salaryRange.to / 1000
-                        )}k / month`
-                      : data.salaryType === "Fixed"
-                      ? `${Math.floor(data.salaryRange)}k / month`
-                        : data.salaryType}*/}
                     {data.salaryType === "Lac"
                       ? `${data.salaryRange.from}L - ${data.salaryRange.to}L PA`
                       : data.salaryType === "Per Month"
@@ -135,7 +156,6 @@ function FresherPostPreview(props) {
                 </div>
               )}
             </div>
-
             {data.skills.length !== 0 && (
               <>
                 <hr />

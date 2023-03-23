@@ -153,6 +153,7 @@ function LoginPage() {
                       search: activeSearch,
                       location: activeLocation,
                     })
+                    setIsLoading(true)
                   }}
                 >
                   Search

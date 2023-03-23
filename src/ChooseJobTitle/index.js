@@ -10,8 +10,15 @@ const ChooseJobTitle = (props) => {
   const [selected, setSelected] = useState([])
 
   const onChangeTitle = (e) => {
-    handleTitle(e[0].label)
+    e[0] !== undefined && handleTitle(e[0].label)
     setSelected(e)
+  }
+
+  const onInputChange = (inputValue) => {
+    if (!inputValue) {
+      setSelected([])
+      handleTitle("")
+    }
   }
 
   return (
@@ -22,6 +29,7 @@ const ChooseJobTitle = (props) => {
       selected={selected}
       onChange={onChangeTitle}
       value={props.value}
+      onInputChange={onInputChange}
     />
   )
 }

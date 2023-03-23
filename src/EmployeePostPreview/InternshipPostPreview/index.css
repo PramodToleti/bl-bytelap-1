@@ -26,7 +26,7 @@
 
 @media screen and (min-width: 768px) {
   .job-details-container-preview {
-    margin-bottom: 35px;
+    margin-bottom: 15px;
     grid-row-gap: 10px;
     grid-template-columns: repeat(3, minmax(0, 180px));
   }
@@ -258,7 +258,7 @@
   }
 
   .details-text {
-    font-size: 14px;
+    font-size: 14px !important;
   }
 }
 

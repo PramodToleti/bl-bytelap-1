@@ -235,7 +235,7 @@ function Internship() {
       className="col-lg-6 col-md-4 search-course-right   mb-4 mt-4 p-4  rounded container reveal mb-5 rounded border "
       style={{ width: "100%", background: "white" }}
     >
-      <ToastContainer />
+      <ToastContainer style={{ padding: "15px" }} />
       <Form action="" noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group className="mb-3 mt-2" controlId="formBasicText">
