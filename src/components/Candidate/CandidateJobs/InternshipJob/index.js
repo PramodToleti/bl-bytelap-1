@@ -9,8 +9,8 @@ import { FaHome } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import Popup from "reactjs-popup"
 
-const InternshipJob = () => {
-  const internJobs = JSON.parse(localStorage.getItem("internshipJob"))
+const InternshipJob = (props) => {
+  const internJobs = props.jobs
 
   if (internJobs === null) {
     return null
@@ -174,7 +174,7 @@ const InternshipJob = () => {
           )}
         </div>
 
-        <hr className="hr-line" style={{ marginTop: "0px" }} />
+        <hr className="hr-line" style={{ marginTop: "25px" }} />
 
         <div className="perks-mobile">
           {data.perks.length > 3 ? (

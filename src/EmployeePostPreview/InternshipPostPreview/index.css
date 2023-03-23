@@ -124,7 +124,7 @@
 @media screen and (min-width: 768px) {
   .job-details-container-2 {
     grid-template-columns: repeat(3, minmax(0, 130px));
-    margin-bottom: 30px;
+    margin-bottom: 5px;
   }
 }
 

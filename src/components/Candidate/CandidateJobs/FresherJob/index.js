@@ -8,8 +8,8 @@ import { FaHome } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import Popup from "reactjs-popup"
 
-const FresherJob = () => {
-  const fresherJobs = JSON.parse(localStorage.getItem("fresherJob"))
+const FresherJob = (props) => {
+  const fresherJobs = props.jobs
 
   if (fresherJobs === null) {
     return null
@@ -172,8 +172,8 @@ const FresherJob = () => {
           {data.skills.length > 3 ? (
             <>
               <h6 className="preview-perks">{data.skills[0]}</h6>
-              <h6 className="preview-perks">{data.perks[1]}</h6>
-              <h6 className="preview-perks">{data.perks[2]} </h6> ...
+              <h6 className="preview-perks">{data.skills[1]}</h6>
+              <h6 className="preview-perks">{data.skills[2]} </h6> ...
             </>
           ) : (
             data.skills.map((each, i) => (

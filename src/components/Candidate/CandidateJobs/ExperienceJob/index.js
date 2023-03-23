@@ -8,8 +8,8 @@ import { FaHome } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import Popup from "reactjs-popup"
 
-const ExperienceJob = () => {
-  const experienceJobs = JSON.parse(localStorage.getItem("experienceJob"))
+const ExperienceJob = (props) => {
+  const experienceJobs = props.jobs
 
   if (experienceJobs === null) {
     return null

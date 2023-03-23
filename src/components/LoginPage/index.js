@@ -14,12 +14,29 @@ import { Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import Theme from "../../Theme"
 import CandidateJobs from "../Candidate/CandidateJobs"
+import JobSearchField from "../../JobSearchField"
+import JobLocationField from "../../JobLocationField"
 
 function LoginPage() {
+  const [activeSearch, setActiveSearch] = useState("")
+  const [activeLocation, setActiveLocation] = useState("")
   const [activeShifts, setActiveShifts] = useState([])
   const [activeSchedule, setActiveSchedule] = useState([])
   const [checkedShifts, setCheckedShifts] = useState([])
   const [checkedJobTypes, setCheckedJobTypes] = useState([])
+
+  const [searchDetails, setSearchDetails] = useState({
+    search: "",
+    location: "",
+  })
+
+  const handleSearch = (e) => {
+    setActiveSearch(e)
+  }
+
+  const handleLocation = (e) => {
+    setActiveLocation(e)
+  }
 
   useEffect(() => {
     setActiveShifts(checkedShifts)
@@ -99,12 +116,7 @@ function LoginPage() {
               controlId="validationCustom03"
             >
               <InputGroup size="md">
-                <Form.Control
-                  className="border border-secondary"
-                  aria-label="Large"
-                  aria-describedby="inputGroup-sizing-sm"
-                  placeholder="Search"
-                />
+                <JobSearchField handleSearch={handleSearch} />
               </InputGroup>
             </Form.Group>
             <Form.Group
@@ -114,12 +126,7 @@ function LoginPage() {
               controlId="validationCustom04"
             >
               <InputGroup size="md">
-                <Form.Control
-                  className="border border-secondary"
-                  aria-label="Large"
-                  aria-describedby="inputGroup-sizing-sm"
-                  placeholder="Location"
-                />
+                <JobLocationField handleLocation={handleLocation} />
               </InputGroup>
             </Form.Group>
             <Form.Group
@@ -129,7 +136,16 @@ function LoginPage() {
               controlId="validationCustom04"
             >
               <div className="d-grid gap-3">
-                <Button variant="primary" size="md">
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={() => {
+                    setSearchDetails({
+                      search: activeSearch,
+                      location: activeLocation,
+                    })
+                  }}
+                >
                   Search
                 </Button>
               </div>
@@ -390,6 +406,7 @@ function LoginPage() {
         </div>
 
         <CandidateJobs
+          searchDetails={searchDetails}
           activeSchedule={activeSchedule}
           checkedJobTypes={checkedJobTypes}
           activeShifts={activeShifts}
