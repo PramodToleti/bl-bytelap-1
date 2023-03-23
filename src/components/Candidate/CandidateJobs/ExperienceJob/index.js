@@ -7,6 +7,7 @@ import { MdLocationOn } from "react-icons/md"
 import { FaHome } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import Popup from "reactjs-popup"
+import PostTime from "../../../../PostTime"
 
 const ExperienceJob = (props) => {
   const experienceJobs = props.jobs
@@ -201,7 +202,9 @@ const ExperienceJob = (props) => {
           )}
         </div>
         <div className="d-flex flex-row justify-content-between mt-2">
-          <p style={{ fontSize: "12px" }}>Just Now</p>
+          <p style={{ fontSize: "11px", marginBottom: "0px" }}>
+            <PostTime time={data.time} />
+          </p>
           <Link to={`/candidate/job-details/experience/${index + 1}`}>
             <button
               type="button"

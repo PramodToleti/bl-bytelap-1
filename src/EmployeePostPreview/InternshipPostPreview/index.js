@@ -43,7 +43,7 @@ function InternshipPostPreview(props) {
                     className="company-image"
                   />
                 </div>
-                <div style={{ display: "flex", gap: "8px" }} className="mb-2">
+                <div style={{ display: "flex", gap: "8px" }} className="mb-1">
                   <FaBuilding style={{ color: "grey", fontSize: "22px" }} />
                   <p style={{ color: "grey" }}>Wiro Tech Limited</p>
                 </div>
@@ -84,14 +84,7 @@ function InternshipPostPreview(props) {
                           className="icon-styles"
                           style={{ marginTop: "6px" }}
                         />
-                        <p
-                          style={{
-                            color: "grey",
-                          }}
-                          className="home-text"
-                        >
-                          Work from Home
-                        </p>
+                        <p className="home-text">Work from Home</p>
                       </>
                     ) : data.city.length !== 0 ? (
                       <>

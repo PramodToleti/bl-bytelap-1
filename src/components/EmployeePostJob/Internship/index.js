@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { toast } from "react-toastify"
+import moment from "moment/moment"
 
 import PerksDropdown from "../../../PerksDropdown"
 import LanguageDropdown from "../../../LanguageDropdown"
@@ -61,6 +62,7 @@ function Internship() {
     openings,
     location,
     education,
+    time: moment(),
   }
 
   const handleTitle = (e) => {
@@ -142,6 +144,7 @@ function Internship() {
         jobData.push(data)
         localStorage.setItem("internshipJob", JSON.stringify(jobData))
       }
+      window.scrollTo(0, 0)
       setTimeout(() => {
         window.location.reload()
       }, 1000)

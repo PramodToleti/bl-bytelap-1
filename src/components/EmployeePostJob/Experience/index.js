@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import { ToastContainer } from "react-toastify"
 import { toast } from "react-toastify"
+import moment from "moment/moment"
 
 import CheckboxDropdown from "../../../CheckboxDropdowm"
 import ChooseCity from "../../../ChooseCity"
@@ -64,6 +65,7 @@ function Experience() {
     openings,
     location,
     education,
+    time: moment(),
   }
 
   const handlePostJob = () => {
@@ -97,6 +99,7 @@ function Experience() {
         jobData.push(data)
         localStorage.setItem("experienceJob", JSON.stringify(jobData))
       }
+      window.scrollTo(0, 0)
       setTimeout(() => {
         window.location.reload()
       }, 1000)

@@ -39,7 +39,7 @@ function FresherPostPreview(props) {
                   />
                 </div>
 
-                <div style={{ display: "flex", gap: "8px" }} className="mb-4">
+                <div style={{ display: "flex", gap: "8px" }} className="mb-1">
                   <FaBuilding style={{ color: "grey", fontSize: "25px" }} />
                   <p style={{ color: "grey" }}>Wiro Tech Limited</p>
                 </div>
@@ -80,14 +80,7 @@ function FresherPostPreview(props) {
                       {data.jobType === "Work from Home" ? (
                         <>
                           <FaHome className="icon-styles" style={{}} />
-                          <p
-                            style={{
-                              color: "grey",
-                            }}
-                            className="home-text"
-                          >
-                            Work from Home
-                          </p>
+                          <p className="home-text">Work from Home</p>
                         </>
                       ) : data.city.length !== 0 ? (
                         <>

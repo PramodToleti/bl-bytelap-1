@@ -13,14 +13,11 @@ const CandidateJobs = (props) => {
   const activeSearchStr = search
   const activeLocationStr = location
 
-  console.log("activeSearchStr", activeSearchStr)
-  console.log("activeLocationStr", activeLocationStr)
-
   const internshipJobs = JSON.parse(localStorage.getItem("internshipJob"))
   const fresherJobs = JSON.parse(localStorage.getItem("fresherJob"))
   const experienceJobs = JSON.parse(localStorage.getItem("experienceJob"))
 
-  const filteredJobsIntern = internshipJobs.filter((eachJob) => {
+  const filteredJobsIntern = (internshipJobs || []).filter((eachJob) => {
     if (
       (activeSearchStr === "" ||
         eachJob.jobTitle
@@ -35,7 +32,7 @@ const CandidateJobs = (props) => {
     }
   })
 
-  const filteredJobsFresher = fresherJobs.filter((eachJob) => {
+  const filteredJobsFresher = (fresherJobs || []).filter((eachJob) => {
     if (
       (activeSearchStr === "" ||
         eachJob.jobTitle
@@ -50,7 +47,7 @@ const CandidateJobs = (props) => {
     }
   })
 
-  const filteredJobsExperience = experienceJobs.filter((eachJob) => {
+  const filteredJobsExperience = (experienceJobs || []).filter((eachJob) => {
     if (
       (activeSearchStr === "" ||
         eachJob.jobTitle

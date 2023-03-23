@@ -13,6 +13,7 @@
     "mdb-react-ui-kit": "^5.1.0",
     "mobx": "^6.7.0",
     "mobx-react-lite": "^3.4.0",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-bootstrap-typeahead": "^6.0.0",

@@ -8,6 +8,7 @@ import { BiRupee } from "react-icons/bi"
 import { FaHome } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import Popup from "reactjs-popup"
+import PostTime from "../../../../PostTime"
 
 const InternshipJob = (props) => {
   const internJobs = props.jobs
@@ -209,7 +210,9 @@ const InternshipJob = (props) => {
         </div>
 
         <div className="d-flex flex-row justify-content-between mt-2">
-          <p style={{ fontSize: "12px" }}>Just Now</p>
+          <p style={{ fontSize: "11px", marginBottom: "0px" }}>
+            <PostTime time={data.time} />
+          </p>
           <Link to={`/candidate/job-details/internship/${index + 1}`}>
             <button
               type="button"
