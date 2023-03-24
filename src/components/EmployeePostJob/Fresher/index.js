@@ -258,6 +258,38 @@ function Fresher() {
       case "Not Disclosed":
         return <Form.Group className="mb-3 mt-2"></Form.Group>
 
+      case "Negotiable":
+        return (
+          <Form.Group className="mb-3">
+            <Row>
+              <Col xs={6}>
+                <Form.Group className="mb-3 mt-2">
+                  <Form.Label>From</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="5000"
+                    onChange={(e) =>
+                      setSalaryRange({ ...salaryRange, from: e.target.value })
+                    }
+                  />
+                </Form.Group>
+              </Col>
+              <Col xs={6}>
+                <Form.Group className="mb-3 mt-2">
+                  <Form.Label>To</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="10,000/month"
+                    onChange={(e) =>
+                      setSalaryRange({ ...salaryRange, to: e.target.value })
+                    }
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+          </Form.Group>
+        )
+
       default:
         return null
     }
@@ -335,6 +367,7 @@ function Fresher() {
                 <option> Per Month </option>
                 <option>Fixed</option>
                 <option>Not Disclosed</option>
+                <option>Negotiable</option>
               </Form.Select>
             </Form.Group>
           </Row>

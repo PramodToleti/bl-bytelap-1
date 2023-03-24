@@ -176,9 +176,7 @@ function Internship() {
           </Form.Group>
         )
       case "Negotiable":
-        return null
-        {
-          /*(
+        return (
           <Form.Group className="mb-3">
             <Row>
               <Col xs={6}>
@@ -206,22 +204,6 @@ function Internship() {
                 </Form.Group>
               </Col>
             </Row>
-          </Form.Group>
-                  )*/
-        }
-      case "Performance based":
-        return (
-          <Form.Group className="mb-3 mt-2">
-            <Form.Control
-              type="number"
-              onKeyDown={(e) => {
-                if (e.target.value.length > 4) {
-                  e.preventDefault()
-                }
-              }}
-              placeholder="Min assumed amount"
-              onChange={(e) => setSalaryRange(e.target.value)}
-            />
           </Form.Group>
         )
 

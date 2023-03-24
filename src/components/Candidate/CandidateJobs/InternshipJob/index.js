@@ -139,7 +139,7 @@ const InternshipJob = (props) => {
                           )}k - ${Math.floor(
                             data.salaryRange.to / 1000
                           )}k /month `
-                      : data.salaryType}
+                      : `${data.salaryRange.from} - ${data.salaryRange.to} /month`}
                   </p>
                   {data.incentives && data.salaryType === "Fixed" && (
                     <>

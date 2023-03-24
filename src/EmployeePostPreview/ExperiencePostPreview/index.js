@@ -166,6 +166,8 @@ function ExperiencePostPreview(props) {
                         )}k / month`
                       : data.salaryType === "Fixed"
                       ? `${Math.floor(data.salaryRange)}k / month`
+                      : data.salaryType === "Negotiable"
+                      ? `${data.salaryRange.from} - ${data.salaryRange.to} /month`
                       : data.salaryType}
                   </p>
                 </div>

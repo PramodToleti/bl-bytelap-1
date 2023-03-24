@@ -121,6 +121,8 @@ const FresherJob = (props) => {
                   ? `${data.salaryRange.from}k - ${data.salaryRange.to}k / month`
                   : data.salaryType === "Fixed"
                   ? `${data.salaryRange}k / month`
+                  : data.salaryType === "Negotiable"
+                  ? `${data.salaryRange.from} - ${data.salaryRange.to} /month`
                   : data.salaryType}
               </p>
               {data.incentives && data.salaryType === "Fixed" && (

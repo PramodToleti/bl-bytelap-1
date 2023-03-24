@@ -103,25 +103,14 @@ const ExperienceJob = (props) => {
             <div className="job-card-container-experience">
               <p className="details-heading">
                 <BiRupee className="icon-styles" />
-                {/*{data.salaryType === "Lac"
-                      ? `${Math.floor(data.salaryRange.from)}L - ${Math.floor(
-                          data.salaryRange.to
-                        )}L PA`
-                      : data.salaryType === "Per Month"
-                      ? `${Math.floor(
-                          data.salaryRange.from / 1000
-                        )}k - ${Math.floor(
-                          data.salaryRange.to / 1000
-                        )}k / month`
-                      : data.salaryType === "Fixed"
-                      ? `${Math.floor(data.salaryRange)}k / month`
-                        : data.salaryType}*/}
                 {data.salaryType === "Lac"
                   ? `${data.salaryRange.from}L - ${data.salaryRange.to}L PA`
                   : data.salaryType === "Per Month"
                   ? `${data.salaryRange.from}k - ${data.salaryRange.to}k / month`
                   : data.salaryType === "Fixed"
                   ? `${data.salaryRange}k / month`
+                  : data.salaryType === "Negotiable"
+                  ? `${data.salaryRange.from} - ${data.salaryRange.to} /month`
                   : data.salaryType}
               </p>
               {data.incentives && data.salaryType === "Fixed" && (

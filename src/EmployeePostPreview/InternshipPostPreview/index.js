@@ -183,7 +183,7 @@ function InternshipPostPreview(props) {
                             )}k - ${Math.floor(
                               data.salaryRange.to / 1000
                             )}k /month`
-                        : data.salaryType}
+                        : `${data.salaryRange.from} - ${data.salaryRange.to} /month`}
                       {data.incentives && " + Incentives"}
                     </p>
                   </p>
