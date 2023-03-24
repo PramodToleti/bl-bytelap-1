@@ -11,6 +11,7 @@ import { BiRupee } from "react-icons/bi"
 import { BsFillShareFill } from "react-icons/bs"
 import { MdLocationOn } from "react-icons/md"
 import { HiOutlineExternalLink } from "react-icons/hi"
+import numeral from "numeral"
 
 import "./index.css"
 
@@ -177,13 +178,21 @@ function InternshipPostPreview(props) {
                     <p className="details-text">
                       {data.salaryType === "Fixed"
                         ? data.salaryRange.from === undefined
-                          ? `${Math.floor(data.salaryRange / 1000)}k/month`
-                          : `${Math.floor(
-                              data.salaryRange.from / 1000
-                            )}k - ${Math.floor(
-                              data.salaryRange.to / 1000
-                            )}k /month`
-                        : `${data.salaryRange.from} - ${data.salaryRange.to} /month`}
+                          ? `${numeral(data.salaryRange).format(0, 0)} /month `
+                          : `${numeral(data.salaryRange.from * 1000).format(
+                              0,
+                              0
+                            )} - ${numeral(data.salaryRange.to * 1000).format(
+                              0,
+                              0
+                            )} /month `
+                        : `${numeral(data.salaryRange.from).format(
+                            0,
+                            0
+                          )} - ${numeral(data.salaryRange.to).format(
+                            0,
+                            0
+                          )} /month`}
                       {data.incentives && " + Incentives"}
                     </p>
                   </p>

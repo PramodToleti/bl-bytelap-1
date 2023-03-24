@@ -10,6 +10,7 @@ import { HiOutlineExternalLink } from "react-icons/hi"
 import { MdLocationOn } from "react-icons/md"
 import { BsFillShareFill } from "react-icons/bs"
 import { FaHome } from "react-icons/fa"
+import numeral from "numeral"
 
 import "./index.css"
 
@@ -151,25 +152,62 @@ function ExperiencePostPreview(props) {
               )}
 
               {data.salaryType !== "" && (
-                <div className="job-card-container-experience">
-                  <p className="details-heading">
+                <div className="job-card-container-fresher">
+                  <p className="details-heading-preview">
                     <BiRupee className="icon-styles" />
                     {data.salaryType === "Lac"
-                      ? `${Math.floor(data.salaryRange.from)}L - ${Math.floor(
-                          data.salaryRange.to
-                        )}L PA`
+                      ? `${data.salaryRange.from}L - ${data.salaryRange.to}L PA`
                       : data.salaryType === "Per Month"
-                      ? `${Math.floor(
-                          data.salaryRange.from / 1000
-                        )}k - ${Math.floor(
-                          data.salaryRange.to / 1000
-                        )}k / month`
+                      ? `${numeral(data.salaryRange.from * 1000).format(
+                          0,
+                          0
+                        )} - ${numeral(data.salaryRange.to * 1000).format(
+                          0,
+                          0
+                        )} / month`
                       : data.salaryType === "Fixed"
-                      ? `${Math.floor(data.salaryRange)}k / month`
+                      ? `${numeral(data.salaryRange).format(0, 0)} / month`
                       : data.salaryType === "Negotiable"
-                      ? `${data.salaryRange.from} - ${data.salaryRange.to} /month`
+                      ? `${numeral(data.salaryRange.from).format(
+                          0,
+                          0
+                        )} - ${numeral(data.salaryRange.to).format(
+                          0,
+                          0
+                        )} /month`
                       : data.salaryType}
                   </p>
+                  {data.incentives && data.salaryType === "Fixed" && (
+                    <>
+                      {" "}
+                      <p
+                        className="details-text"
+                        style={{
+                          color: "grey",
+                          display: "flex",
+                          alignItems: "center",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        {" "}
+                        <span className="incentives-text">+ Incentives </span>
+                        <Popup
+                          trigger={
+                            <button className="popup-button mt-1"> ?</button>
+                          }
+                          position="right center"
+                        >
+                          <p>
+                            This is a performance-based internship. In addition
+                            to the minimum-assured stipend, you will also be
+                            paid a performance-linked incentive{" "}
+                            {`(₹ ${data.incentivesValue}
+                          per sale)`}
+                          </p>
+                        </Popup>
+                      </p>
+                    </>
+                  )}
                 </div>
               )}
             </div>

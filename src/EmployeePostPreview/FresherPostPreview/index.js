@@ -10,6 +10,7 @@ import { HiOutlineExternalLink } from "react-icons/hi"
 import { MdLocationOn } from "react-icons/md"
 import { BsFillShareFill } from "react-icons/bs"
 import { FaHome } from "react-icons/fa"
+import numeral from "numeral"
 
 import "./index.css"
 
@@ -148,11 +149,23 @@ function FresherPostPreview(props) {
                     {data.salaryType === "Lac"
                       ? `${data.salaryRange.from}L - ${data.salaryRange.to}L PA`
                       : data.salaryType === "Per Month"
-                      ? `${data.salaryRange.from}k - ${data.salaryRange.to}k / month`
+                      ? `${numeral(data.salaryRange.from * 1000).format(
+                          0,
+                          0
+                        )} - ${numeral(data.salaryRange.to * 1000).format(
+                          0,
+                          0
+                        )} / month`
                       : data.salaryType === "Fixed"
-                      ? `${data.salaryRange}k / month`
+                      ? `${numeral(data.salaryRange).format(0, 0)} / month`
                       : data.salaryType === "Negotiable"
-                      ? `${data.salaryRange.from} - ${data.salaryRange.to} /month`
+                      ? `${numeral(data.salaryRange.from).format(
+                          0,
+                          0
+                        )} - ${numeral(data.salaryRange.to).format(
+                          0,
+                          0
+                        )} /month`
                       : data.salaryType}
                   </p>
                 </div>

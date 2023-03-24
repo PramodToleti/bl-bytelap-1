@@ -8,6 +8,8 @@ import { BiRupee } from "react-icons/bi"
 import { FaHome } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import Popup from "reactjs-popup"
+import numeral from "numeral"
+
 import PostTime from "../../../../PostTime"
 
 const InternshipJob = (props) => {
@@ -133,13 +135,21 @@ const InternshipJob = (props) => {
                   <p className="details-text">
                     {data.salaryType === "Fixed"
                       ? data.salaryRange.from === undefined
-                        ? `${Math.floor(data.salaryRange / 1000)}k/month `
-                        : `${Math.floor(
-                            data.salaryRange.from / 1000
-                          )}k - ${Math.floor(
-                            data.salaryRange.to / 1000
-                          )}k /month `
-                      : `${data.salaryRange.from} - ${data.salaryRange.to} /month`}
+                        ? `${numeral(data.salaryRange).format(0, 0)} /month `
+                        : `${numeral(data.salaryRange.from).format(
+                            0,
+                            0
+                          )} - ${numeral(data.salaryRange.to).format(
+                            0,
+                            0
+                          )} / month`
+                      : `${numeral(data.salaryRange.from).format(
+                          0,
+                          0
+                        )} - ${numeral(data.salaryRange.to).format(
+                          0,
+                          0
+                        )} /month`}
                   </p>
                   {data.incentives && data.salaryType === "Fixed" && (
                     <>
