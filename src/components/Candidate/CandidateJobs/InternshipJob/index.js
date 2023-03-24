@@ -75,12 +75,7 @@ const InternshipJob = (props) => {
                       className="icon-styles"
                       style={{ marginTop: "9px" }}
                     />
-                    <p
-                      style={{
-                        color: "grey",
-                      }}
-                      className="home-text"
-                    >
+                    <p style={{ marginTop: "20px", fontSize: "14px" }}>
                       Work from Home
                     </p>
                   </>

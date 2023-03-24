@@ -27,6 +27,7 @@ function EmployeeStep1() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        margin: "5px",
       }}
     >
       <div className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2      border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
@@ -73,12 +74,24 @@ function EmployeeStep1() {
             </Form.Group>
           </Row>
 
-          <button className=" mt-1 text-center btn btn-outline-primary">
-            Get Code
-          </button>
-          <button className=" mt-1 mx-1 text-center btn btn-outline-secondary">
-            Enter Code
-          </button>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button className=" mt-1 text-center btn btn-outline-primary">
+              Get Code
+            </button>
+
+            <Form.Group className="mt-1" controlId="formBasicEmail">
+              <Form.Control
+                type="text"
+                placeholder="Enter Code"
+                defaultValue=""
+                style={{
+                  maxWidth: "110px",
+                  maxHeight: "40px",
+                  border: "1px solid grey",
+                }}
+              />
+            </Form.Group>
+          </div>
           <p className="text-start mt-1">
             {" "}
             <Link to="" style={{ textDecoration: "none", color: "blue" }}>

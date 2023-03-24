@@ -26,7 +26,7 @@ function LoginPage() {
   const [activeShifts, setActiveShifts] = useState([])
   const [activeSchedule, setActiveSchedule] = useState([])
   const [checkedShifts, setCheckedShifts] = useState([])
-  const [checkedJobTypes, setCheckedJobTypes] = useState([])
+  const [checkedJobTypes, setCheckedJobTypes] = useState(["Internship"])
   const [isLoading, setIsLoading] = useState(false)
 
   const [searchDetails, setSearchDetails] = useState({
@@ -181,6 +181,7 @@ function LoginPage() {
                       type="checkbox"
                       label="Internship"
                       name="Internship"
+                      checked={checkedJobTypes.includes("Internship")}
                       onChange={(e) => {
                         if (e.target.checked) {
                           setCheckedJobTypes([
@@ -204,6 +205,7 @@ function LoginPage() {
                       type="checkbox"
                       label="Fresher"
                       name="Fresher"
+                      checked={checkedJobTypes.includes("Fresher")}
                       onChange={(e) => {
                         if (e.target.checked) {
                           setCheckedJobTypes([
@@ -227,6 +229,7 @@ function LoginPage() {
                       type="checkbox"
                       label="Experience"
                       name="Experience"
+                      checked={checkedJobTypes.includes("Experience")}
                       onChange={(e) => {
                         if (e.target.checked) {
                           setCheckedJobTypes([
