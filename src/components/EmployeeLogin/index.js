@@ -113,7 +113,7 @@ function EmployeeLogin() {
               <Button
                 type="submit"
                 style={{ width: "100%" }}
-                variant="outline-secondary"
+                variant="primary"
                 size="lg"
               >
                 Login

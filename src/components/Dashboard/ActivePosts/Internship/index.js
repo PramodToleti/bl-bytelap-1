@@ -5,6 +5,28 @@ import { NavDropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 const Internship = () => {
+  const internData = JSON.parse(localStorage.getItem("registerData"))
+
+  if (internData === null) {
+    return (
+      <div style={{ display: "grid", placeItems: "center" }}>
+        <p>
+          Not Jobs Available. Please{" "}
+          <Link
+            to="/employee"
+            style={{
+              color: "blue",
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+          >
+            Go Back
+          </Link>
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div className="col-lg-6 col-md-6 search-course-right   mb-0 mt-0 p-2       border-secondary rounded  p-3 mb-0   rounded border border-secondary">
       <Form.Group

@@ -11,13 +11,22 @@ import Theme from "../../../Theme"
 const HomeHeader = () => {
   const activeThemeStyles = (theme) => {
     const darkTheme = theme ? "dark-theme" : "light-theme"
-    console.log(darkTheme)
   }
 
   return ["sm"].map((expand) => (
     <Navbar key={expand} bg="" expand={expand} className="mb-3">
       <Container>
-        <p className="website-name">Website</p>
+        <p
+          className="website-name"
+          style={{
+            textDecoration: "none",
+            color: "#333333",
+            marginTop: "8px",
+            fontSize: "18px",
+          }}
+        >
+          Website
+        </p>
 
         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
         <Navbar.Offcanvas
@@ -26,23 +35,65 @@ const HomeHeader = () => {
           placement="end"
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+            <Offcanvas.Title
+              id={`offcanvasNavbarLabel-expand-${expand}`}
+              style={{
+                textDecoration: "none",
+                marginRight: "5px",
+                color: "#333333",
+                marginTop: "8px",
+                fontSize: "18px",
+              }}
+            >
               Website
             </Offcanvas.Title>
           </Offcanvas.Header>
 
           <Offcanvas.Body>
             <div className="justify-content-end flex-grow-1 nav-link-container">
-              <Link to="/candidate" className="fs-4 nav-link">
+              <Link
+                to="/candidate"
+                className="nav-link"
+                style={{
+                  textDecoration: "none",
+                  marginRight: "5px",
+                  color: "#333333",
+                  marginTop: "8px",
+                  fontSize: "18px",
+                }}
+              >
                 Home
               </Link>
 
-              <Link to="/candidate/register-myself" className="fs-4 nav-link">
+              <Link
+                to="/candidate/register-myself"
+                className=" nav-link"
+                style={{
+                  textDecoration: "none",
+                  marginRight: "5px",
+                  color: "#333333",
+                  marginTop: "8px",
+                  fontSize: "18px",
+                }}
+              >
                 Register Myself
               </Link>
 
               <NavDropdown
-                title={<span className="fs-4">Profile</span>}
+                title={
+                  <span
+                    className=""
+                    style={{
+                      textDecoration: "none",
+                      marginRight: "5px",
+                      color: "#333333",
+                      marginTop: "8px",
+                      fontSize: "18px",
+                    }}
+                  >
+                    Profile
+                  </span>
+                }
                 id={`offcanvasNavbarDropdown-expand-${expand}`}
                 className="fs-4 profile-nav"
               >

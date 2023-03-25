@@ -13,7 +13,32 @@ function EmployeeHome() {
       {["sm"].map((expand) => (
         <Navbar key={expand} bg="" expand={expand} className="mb-3 pt-3 ">
           <Container>
-            <p className="website-name">Website</p>{" "}
+            <p
+              className="website-name"
+              style={{
+                textDecoration: "none",
+                marginRight: "5px",
+                color: "#333333",
+                marginTop: "18px",
+                fontSize: "18px",
+              }}
+            >
+              Website
+            </p>{" "}
+            <Link
+              to="/employee/find-resume"
+              className="website-name"
+              style={{
+                marginLeft: "20px",
+                cursor: "pointer",
+                fontSize: "18px",
+                textDecoration: "none",
+                color: "#333333",
+                marginTop: "8px",
+              }}
+            >
+              Find Resume
+            </Link>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -21,29 +46,76 @@ function EmployeeHome() {
               placement="end"
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                <Offcanvas.Title
+                  id={`offcanvasNavbarLabel-expand-${expand}`}
+                  style={{
+                    textDecoration: "none",
+                    marginRight: "5px",
+                    color: "#333333",
+                    marginTop: "8px",
+                    fontSize: "18px",
+                  }}
+                >
                   Website
                 </Offcanvas.Title>
               </Offcanvas.Header>
 
               <Offcanvas.Body>
                 <div className="justify-content-end flex-grow-1 pe-3 nav-link-container">
-                  <Link to="/employee" className="fs-5 mr-5 nav-link">
+                  <Link
+                    to="/employee"
+                    className=" mr-5 nav-link"
+                    style={{
+                      textDecoration: "none",
+                      marginRight: "5px",
+                      color: "#333333",
+                      marginTop: "8px",
+                      fontSize: "18px",
+                    }}
+                  >
                     Home
                   </Link>
-                  <Link to="/employee/post-job" className="fs-5 nav-link">
+                  <Link
+                    to="/employee/post-job"
+                    className=" nav-link"
+                    style={{
+                      textDecoration: "none",
+                      marginRight: "5px",
+                      color: "#333333",
+                      marginTop: "8px",
+                      fontSize: "18px",
+                    }}
+                  >
                     Post Job
                   </Link>
                   <Link
                     to="/employee/dashboard/active-posts"
-                    className="fs-5 nav-link"
+                    className=" nav-link"
+                    style={{
+                      textDecoration: "none",
+                      marginRight: "5px",
+                      color: "#333333",
+                      marginTop: "8px",
+                      fontSize: "18px",
+                    }}
                   >
                     Dashboard
                   </Link>
 
                   <NavDropdown
-                    className="fs-5"
-                    title={<span className="fs-5">Profile</span>}
+                    style={{ marginTop: "8px" }}
+                    title={
+                      <span
+                        style={{
+                          textDecoration: "none",
+                          marginRight: "5px",
+                          color: "#333333",
+                          fontSize: "18px",
+                        }}
+                      >
+                        Profile
+                      </span>
+                    }
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
                     <Link

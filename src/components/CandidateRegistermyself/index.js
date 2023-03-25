@@ -7,8 +7,47 @@ import Fresher from "./Fresher"
 import "./index.css"
 import Internship from "./Internship"
 
-function CandidateRegistermyself(props) {
-  const { handleInternData } = props
+function CandidateRegistermyself() {
+  let registerData = JSON.parse(localStorage.getItem("registerData"))
+
+  if (!registerData) {
+    registerData = {
+      internship: [],
+      fresher: [],
+      experience: [],
+    }
+    localStorage.setItem("registerData", JSON.stringify(registerData))
+  }
+
+  const handleInternData = (data) => {
+    console.log(data)
+    if (
+      JSON.stringify(data) !==
+      JSON.stringify(
+        registerData.internship[registerData.internship.length - 1]
+      )
+    ) {
+      registerData.internship = [data]
+      localStorage.setItem("registerData", JSON.stringify(registerData))
+    }
+  }
+
+  const handleFresherData = (data) => {
+    if (JSON.stringify(data) !== JSON.stringify(registerData)) {
+      const list = registerData.fresher
+      list.push(data)
+      localStorage.setItem("registerData", JSON.stringify(list))
+    }
+  }
+
+  const handleExperienceData = (data) => {
+    if (JSON.stringify(data) !== JSON.stringify(registerData)) {
+      const list = registerData.experience
+      list.push(data)
+      localStorage.setItem("registerData", JSON.stringify(list))
+    }
+  }
+
   const [selectedOption, setSelectedOption] = useState("internship")
 
   const handleOptionChange = (event) => {

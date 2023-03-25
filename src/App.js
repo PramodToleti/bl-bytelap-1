@@ -51,17 +51,11 @@ import EditAll from "./components/Employee/FooterLinks/Blog/EditAll"
 import InternshipJobDetails from "./components/Candidate/CandidateJobDetails/InternshipJobDetails"
 import FresherJobDetails from "./components/Candidate/CandidateJobDetails/FresherJobDetails"
 import ExperienceJobDetails from "./components/Candidate/CandidateJobDetails/ExperienceJobDetails"
+import EmployeeFindResume from "./EmployeeFindResume"
 
 const App = () => {
-  const [registerData, setData] = useState({
-    internship: [],
-    fresher: [],
-    experience: [],
-  })
-
-  const getDataFromStorage = JSON.parse(localStorage.getItem("registerData"))
-
-  const handleInternData = async (data) => {
+  const handleInternData = (data) => {
+    console.log(data)
     if (
       JSON.stringify(data) !==
       JSON.stringify(
@@ -165,16 +159,19 @@ const App = () => {
             component={ActivePosts}
           />
 
+          {/* Find Resume */}
+
+          <Route
+            exact
+            path="/employee/find-resume"
+            component={EmployeeFindResume}
+          />
+
           {/* Active Job */}
           <Route
             exact
             path="/employee/dashboard/active-posts/job/internship"
-            render={(props) => (
-              <ActiveJobIntern
-                {...props}
-                internData={registerData.internship}
-              />
-            )}
+            render={(props) => <ActiveJobIntern {...props} />}
           />
 
           <Route
@@ -194,12 +191,7 @@ const App = () => {
           <Route
             exact
             path="/employee/dashboard/active-posts/job/internship/view-applicant"
-            render={(props) => (
-              <ViewApplicantIntern
-                {...props}
-                internData={registerData.internship}
-              />
-            )}
+            render={(props) => <ViewApplicantIntern {...props} />}
           />
 
           <Route
@@ -228,14 +220,7 @@ const App = () => {
           <Route
             exact
             path="/candidate/register-myself"
-            render={(props) => (
-              <CandidateRegistermyself
-                {...props}
-                handleInternData={handleInternData}
-                handleFresherData={handleFresherData}
-                handleExperienceData={handleExperienceData}
-              />
-            )}
+            render={(props) => <CandidateRegistermyself {...props} />}
           />
           {/* Candidate My Info */}
           <Route

@@ -19,7 +19,30 @@ function ActiveJobIntern(props) {
     setActiveType(e.target.textContent)
   }
 
-  const internData = JSON.parse(localStorage.getItem("registerData")).internship
+  let internData = JSON.parse(localStorage.getItem("registerData"))
+
+  if (internData === null) {
+    return (
+      <>
+        <EmployeeHome />
+        <p>
+          Not Jobs Available. Please{" "}
+          <Link
+            to="/employee"
+            style={{
+              color: "black",
+              textDecoration: "none",
+              cursor: "pointer",
+            }}
+          >
+            Go Back
+          </Link>
+        </p>
+      </>
+    )
+  } else {
+    internData = internData.internship
+  }
 
   return (
     <div

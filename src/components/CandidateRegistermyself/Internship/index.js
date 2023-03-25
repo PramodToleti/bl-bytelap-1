@@ -124,16 +124,6 @@ const progressRef = useRef(null)*/
     selectedSkills: [],
   })
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.stopPropagation()
-    }
-
-    setValidated(true)
-  }
-
   const handleSelectionChange = (selected) => {
     setState({
       ...state,

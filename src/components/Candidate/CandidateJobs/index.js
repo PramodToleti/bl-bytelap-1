@@ -8,10 +8,13 @@ import "reactjs-popup/dist/index.css"
 const CandidateJobs = (props) => {
   const { searchDetails, checkedJobTypes, activeShifts, activeSchedule } = props
 
-  const { search, location } = searchDetails
+  const { search = "", location = "" } = searchDetails || {}
 
-  const activeSearchStr = search
-  const activeLocationStr = location
+  const shiftDetails = activeShifts || ""
+  const scheduleDetails = activeSchedule || ""
+
+  const activeSearchStr = search || ""
+  const activeLocationStr = location || ""
 
   const internshipJobs = JSON.parse(localStorage.getItem("internshipJob"))
   const fresherJobs = JSON.parse(localStorage.getItem("fresherJob"))
