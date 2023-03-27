@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import Theme from "../../Theme"
+import "./index.css"
 
 function EmployeeHome() {
   return (
@@ -27,7 +28,7 @@ function EmployeeHome() {
             </p>{" "}
             <Link
               to="/employee/find-resume"
-              className="website-name"
+              className="website-name find-resume"
               style={{
                 marginLeft: "20px",
                 cursor: "pointer",

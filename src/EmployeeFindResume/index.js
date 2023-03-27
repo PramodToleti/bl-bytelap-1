@@ -1,4 +1,3 @@
-import Stack from "react-bootstrap/Stack"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import Col from "react-bootstrap/Col"
@@ -8,7 +7,10 @@ import Modal from "react-bootstrap/Modal"
 import Row from "react-bootstrap/Row"
 import InputGroup from "react-bootstrap/InputGroup"
 import { useState } from "react"
-import Popup from "reactjs-popup"
+import Container from "react-bootstrap/Container"
+import Nav from "react-bootstrap/Nav"
+import Navbar from "react-bootstrap/Navbar"
+import NavDropdown from "react-bootstrap/NavDropdown"
 
 import JobSearchField from "../JobSearchField"
 import JobLocationField from "../JobLocationField"
@@ -58,21 +60,12 @@ const EmployeeFindResume = () => {
       case "Internship":
         return (
           <>
-            <p
-              style={{
-                marginBottom: "5px",
-                marginTop: "5px",
-                fontSize: "14px",
-              }}
-            >
-              89 applications
-            </p>
-            <div style={{ maxHeight: "350px", overflow: "scroll" }}>
+            <hr className="desktop-resume-count" />
+            <div style={{ maxWidth: "680px" }}>
               {internData.length !== 0 ? (
                 internData.map((data, index) => (
                   <div
-                    style={{ overflow: "scroll", maxHeight: "340px" }}
-                    className="application col-lg-12 col-md-12 search-course-right   mb-0 mt-2 p-4       border-secondary rounded container reveal  p-3  rounded border border-secondary"
+                    className="application col-lg-12 col-md-12 search-course-right   mb-0 mt-2 p-3       border-secondary rounded container reveal  p-3  rounded border border-secondary"
                     key={index}
                   >
                     <div className="">
@@ -109,14 +102,33 @@ const EmployeeFindResume = () => {
                       <div className="card-container-mobile">
                         <div
                           style={{ display: "flex", flexWrap: "wrap" }}
-                          className="mb-3"
+                          className="mb-1"
                         >
                           <p style={{ marginRight: "10px", fontWeight: "300" }}>
                             Skills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                           </p>
-                          {data.skills.map((each) => (
-                            <p className="preview-skills">{each}</p>
-                          ))}
+                          <div className="perks-mobile">
+                            {data.skills.length > 3 ? (
+                              <>
+                                <h6 className="preview-perks">
+                                  {data.skills[0]}
+                                </h6>
+                                <h6 className="preview-perks">
+                                  {data.skills[1]}
+                                </h6>
+                                <h6 className="preview-perks">
+                                  {data.skills[2]}{" "}
+                                </h6>{" "}
+                                ...
+                              </>
+                            ) : (
+                              data.skills.map((each, i) => (
+                                <h6 className="preview-perks" key={i}>
+                                  {each}
+                                </h6>
+                              ))
+                            )}
+                          </div>
                         </div>
 
                         <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -140,9 +152,8 @@ const EmployeeFindResume = () => {
 
                         <div style={{ display: "flex", flexWrap: "wrap" }}>
                           <p style={{ marginRight: "10px", fontWeight: "300" }}>
-                            Availability :
+                            Availability : &nbsp; {data.availability}
                           </p>
-                          <p>{data.availability}</p>
                         </div>
                       </div>
                       <div className="card-container">
@@ -195,7 +206,7 @@ const EmployeeFindResume = () => {
                       <div>
                         <div className="interested-btn-container">
                           <Button
-                            variant="success"
+                            variant="outline-success"
                             size="sm"
                             className=" mt-3"
                             onClick={(e) => handleActiveType(e)}
@@ -203,7 +214,7 @@ const EmployeeFindResume = () => {
                             Interested
                           </Button>{" "}
                           <Button
-                            variant="primary"
+                            variant="outline-primary"
                             className=" mt-3"
                             size="sm"
                             onClick={(e) => handleActiveType(e)}
@@ -211,7 +222,7 @@ const EmployeeFindResume = () => {
                             Shortlisted
                           </Button>
                           <Button
-                            variant="primary"
+                            variant="outline-secondary"
                             className=" mt-3"
                             size="sm"
                             onClick={(e) => handleActiveType(e)}
@@ -219,7 +230,7 @@ const EmployeeFindResume = () => {
                             Hire
                           </Button>{" "}
                           <Button
-                            variant="danger"
+                            variant="outline-secondary"
                             className=" mt-3"
                             size="sm"
                             onClick={(e) => handleActiveType(e)}
@@ -243,7 +254,7 @@ const EmployeeFindResume = () => {
                         <div className="interested-btn-container-desktop">
                           <div className="btns-container">
                             <Button
-                              variant="success"
+                              variant="outline-success"
                               size="sm"
                               className="mt-3"
                               onClick={(e) => handleActiveType(e)}
@@ -251,7 +262,7 @@ const EmployeeFindResume = () => {
                               Interested
                             </Button>{" "}
                             <Button
-                              variant="primary"
+                              variant="outline-primary"
                               className=" mt-3"
                               size="sm"
                               onClick={(e) => handleActiveType(e)}
@@ -259,7 +270,7 @@ const EmployeeFindResume = () => {
                               Shortlisted
                             </Button>{" "}
                             <Button
-                              variant="primary"
+                              variant="outline-secondary"
                               className=" mt-3"
                               size="sm"
                               onClick={(e) => handleActiveType(e)}
@@ -267,7 +278,7 @@ const EmployeeFindResume = () => {
                               Hire
                             </Button>
                             <Button
-                              variant="danger"
+                              variant="outline-secondary"
                               className=" mt-3"
                               size="sm"
                               onClick={(e) => handleActiveType(e)}
@@ -296,11 +307,17 @@ const EmployeeFindResume = () => {
                         onClick={console.log(index)}
                       >
                         <div style={{ display: "flex", justifyContent: "end" }}>
-                          <p className="mt-4" style={{ color: "blue" }}>
+                          <p
+                            className="mt-4"
+                            style={{ color: "blue", marginBottom: "0px" }}
+                          >
                             View Application
                           </p>
                         </div>
                       </Link>
+                      <p style={{ fontSize: "12px", margin: "0px" }}>
+                        Update: 1 day ago
+                      </p>
                     </div>
                   </div>
                 ))
@@ -325,166 +342,208 @@ const EmployeeFindResume = () => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        overflow: "hidden",
-      }}
-    >
-      <div style={{ padding: "10px" }} className="container mt-2">
-        <div className="search-filter-container container">
-          <div className="search-container">
-            <Row className="mb-4">
-              <Form.Group
-                as={Col}
-                md="4"
-                className="mt-3"
-                controlId="validationCustom03"
-              >
-                <InputGroup size="md">
-                  <JobSearchField />
-                </InputGroup>
-              </Form.Group>
-              <Form.Group
-                as={Col}
-                md="4"
-                className="mt-3"
-                controlId="validationCustom04"
-              >
-                <InputGroup size="md">
-                  <JobLocationField />
-                </InputGroup>
-              </Form.Group>
-              <Form.Group
-                as={Col}
-                md="2"
-                className="mt-3"
-                controlId="validationCustom04"
-              >
-                <div className="d-grid gap-3">
-                  <Button variant="primary" size="md">
-                    Search
-                  </Button>
-                </div>
-              </Form.Group>
-            </Row>
-          </div>
-          <Form.Group
-            as={Col}
-            md="4"
-            className="mb-3 mt-4 "
-            style={{
-              display: "flex",
-              gap: "15px",
-              alignItems: "center",
-            }}
-          >
-            <Form.Select
-              style={{ maxWidth: "150px" }}
-              onChange={(e) => setActiveResume(e.target.value)}
-            >
-              <option>Internship</option>
-              <option>Fresher</option>
-              <option>Experience</option>
-            </Form.Select>
-
-            <h6> Advanced Filter</h6>
-          </Form.Group>
-        </div>
-
-        <div className="col-lg-12 col-md-12  p-3  rounded ">
-          <div className="d-flex justify-content-around">
-            <div
-              style={{ height: "35rem", width: "", marginRight: "13px" }}
-              className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container pl-4       border-secondary rounded container reveal  p-3    rounded border border-secondary"
-            >
-              <p
-                className={activeType === "Interested" ? "activeType" : ""}
-                style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
-              >
-                Interested
-              </p>
-              <p
-                className={
-                  activeType === "Shortlisted" ? "activeType mt-4" : "mt-4"
-                }
-                style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
-              >
-                Shortlisted
-              </p>
-              <p
-                className={activeType === "Hire" ? "activeType mt-4" : "mt-4"}
-                style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
-              >
-                Hire
-              </p>
-              <p
-                className={
-                  activeType === "Not Interested" ? "activeType mt-4" : "mt-4"
-                }
-                style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
-              >
-                Not Interested
-              </p>
-              <hr />
-              <p className="pl-2">Team</p>
-            </div>
-
-            <div
-              style={{
-                fontSize: "17px",
-                fontWeight: "400",
-                height: "35rem",
-              }}
-              className="col-lg-10 col-md-10 search-course-right   mb-0        border-secondary rounded container reveal  p-3    rounded border border-secondary"
-            >
-              <div className="custom-select">
-                <Popup
-                  trigger={
-                    <button
-                      style={{
-                        background: "transparent",
-                        border: "0",
-                      }}
-                    >
-                      {" "}
-                      Sort{" "}
-                    </button>
-                  }
-                  position="bottom left"
-                  offset={[0, 10]}
+    <>
+      <EmployeeHome />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          overflow: "hidden",
+        }}
+      >
+        <div className=" mt-2">
+          <div className="search-filter-container container">
+            <div className="search-container">
+              <Row className="mb-4">
+                <Form.Group
+                  as={Col}
+                  md="4"
+                  className="mt-3"
+                  controlId="validationCustom03"
                 >
-                  <p>Interested</p>
-                  <p>Shortlisted</p>
-                  <p>Hire</p>
-                  <p>Not Interested</p>
-                </Popup>
+                  <InputGroup size="md">
+                    <JobSearchField />
+                  </InputGroup>
+                </Form.Group>
+                <Form.Group
+                  as={Col}
+                  md="4"
+                  className="mt-3"
+                  controlId="validationCustom04"
+                >
+                  <InputGroup size="md">
+                    <JobLocationField />
+                  </InputGroup>
+                </Form.Group>
+                <Form.Group
+                  as={Col}
+                  md="2"
+                  className="mt-3"
+                  controlId="validationCustom04"
+                >
+                  <div className="d-grid gap-3">
+                    <Button variant="primary" size="md">
+                      Search CV
+                    </Button>
+                  </div>
+                </Form.Group>
+              </Row>
+            </div>
+            <Form.Group
+              as={Col}
+              md="4"
+              className="mb-3 mt-4 "
+              style={{
+                display: "flex",
+                gap: "15px",
+                alignItems: "center",
+              }}
+            >
+              <Form.Select
+                style={{ maxWidth: "150px" }}
+                onChange={(e) => setActiveResume(e.target.value)}
+              >
+                <option>Internship</option>
+                <option>Fresher</option>
+                <option>Experience</option>
+              </Form.Select>
+
+              <h6 style={{ color: "blue", cursor: "pointer" }}>
+                {" "}
+                Advanced Filter
+              </h6>
+            </Form.Group>
+          </div>
+
+          <div className="col-lg-12 col-md-12    rounded ">
+            <div className="main-resume-container">
+              <div
+                style={{ height: "35rem", width: "" }}
+                className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container pl-4       border-secondary rounded container reveal  p-3    rounded border border-secondary"
+              >
+                <p
+                  className={activeType === "Interested" ? "activeType" : ""}
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => handleActiveType(e)}
+                >
+                  Interested
+                </p>
+                <p
+                  className={
+                    activeType === "Shortlisted" ? "activeType mt-4" : "mt-4"
+                  }
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => handleActiveType(e)}
+                >
+                  Shortlisted
+                </p>
+                <p
+                  className={activeType === "Hire" ? "activeType mt-4" : "mt-4"}
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => handleActiveType(e)}
+                >
+                  Hire
+                </p>
+                <p
+                  className={
+                    activeType === "Not Interested" ? "activeType mt-4" : "mt-4"
+                  }
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => handleActiveType(e)}
+                >
+                  Not Interested
+                </p>
+                <hr />
+                <p className="pl-2">Team</p>
               </div>
 
-              {renderActiveResume()}
+              <div className="custom-select">
+                <Navbar bg="light" expand="lg">
+                  <Container>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                      <Nav className="me-auto p-2 pt-3">
+                        <p
+                          onClick={(e) => handleActiveType(e)}
+                          className={
+                            activeType === "Interested" ? "activeType" : ""
+                          }
+                          style={{ cursor: "pointer", fontWeight: "400" }}
+                        >
+                          Interested
+                        </p>
+                        <p
+                          onClick={(e) => handleActiveType(e)}
+                          className={
+                            activeType === "Shortlisted" ? "activeType " : ""
+                          }
+                          style={{ cursor: "pointer", fontWeight: "400" }}
+                        >
+                          Shortlisted
+                        </p>
+                        <p
+                          onClick={(e) => handleActiveType(e)}
+                          className={activeType === "Hire" ? "activeType" : ""}
+                          style={{ cursor: "pointer", fontWeight: "400" }}
+                        >
+                          Hire
+                        </p>
+                        <p
+                          onClick={(e) => handleActiveType(e)}
+                          className={
+                            activeType === "Not Interested" ? "activeType" : ""
+                          }
+                          style={{ cursor: "pointer", fontWeight: "400" }}
+                        >
+                          Not Interested
+                        </p>
+                      </Nav>
+                    </Navbar.Collapse>
+                  </Container>
+                </Navbar>
+
+                <p
+                  style={{
+                    marginBottom: "5px",
+                    marginTop: "5px",
+                    fontSize: "14px",
+                  }}
+                  className="p-2"
+                >
+                  2038 resumes
+                </p>
+              </div>
+
+              <div
+                style={{
+                  fontSize: "17px",
+                  fontWeight: "400",
+                  height: "35rem",
+                  overflow: "scroll",
+                }}
+                className="col-lg-10 col-md-10 search-course-right   mb-0        border-secondary rounded container reveal  p-1    rounded border border-secondary"
+              >
+                <p className="desktop-resume-count">2038 resumes</p>
+                {renderActiveResume()}
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <Modal
-        size="lg"
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">Resume</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>...</Modal.Body>
-      </Modal>
-    </div>
+        <Modal
+          size="lg"
+          show={lgShow}
+          onHide={() => setLgShow(false)}
+          aria-labelledby="example-modal-sizes-title-lg"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="example-modal-sizes-title-lg">Resume</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>...</Modal.Body>
+        </Modal>
+      </div>
+    </>
   )
 }
 

@@ -25,7 +25,7 @@ const JobSearchField = (props) => {
     <Typeahead
       id="basic-example"
       options={options}
-      placeholder="Search"
+      placeholder="Job Profile"
       selected={selected}
       onChange={onChangeTitle}
       value={selected}

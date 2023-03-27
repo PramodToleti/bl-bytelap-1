@@ -1,7 +1,7 @@
 @media screen and (min-width: 768px) {
   .search-filter-container {
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 90px;
+    margin-right: 90px;
   }
 }
 
@@ -11,4 +11,18 @@
 
 .popup-content {
   padding: 15px;
+}
+
+.desktop-resume-count {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .main-resume-container {
+    display: flex;
+  }
+
+  .desktop-resume-count {
+    display: block;
+  }
 }
