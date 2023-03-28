@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 
 import ChooseFile from "../../ChooseFile"
 
-function CandidateStep1() {
+function CandidateStep1(props) {
   const [validated, setValidated] = useState(false)
 
   const handleSubmit = (event) => {
@@ -22,13 +22,7 @@ function CandidateStep1() {
   }
 
   const handleFileUpload = (e) => {
-    const file = e
-    console.log(file)
-    const reader = new FileReader()
-    reader.onload = (event) => {
-      localStorage.setItem("pdfFile", event.target.result)
-    }
-    reader.readAsDataURL(file)
+    props.handleResume(e)
   }
 
   return (

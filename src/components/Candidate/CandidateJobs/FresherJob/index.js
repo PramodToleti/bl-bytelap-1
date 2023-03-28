@@ -21,13 +21,15 @@ const FresherJob = (props) => {
   return fresherJobs.map((data, index) => (
     <div className="d-flex flex-row container justify-content-start">
       <div
-        className="text-dark mb-3   div-card rounded container reveal p-2  pt-3 rounded "
+        className="text-dark mb-3   div-card container reveal p-2  pt-3  "
         style={{
           maxWidth: "620px",
           backgroundColor: "white",
-          border: "1px solid grey",
+          border: "1px solid #D8D8D8",
+          borderRadius: "15px",
           margin: "0px",
           fontFamily: "Roboto",
+          boxShadow: "3px 3px 3px 3px whitesmoke",
         }}
       >
         <>

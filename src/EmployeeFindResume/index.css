@@ -27,20 +27,6 @@
   }
 }
 
-.card-container {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  overflow-y: auto;
-  width: 300px;
-  background-color: #fff;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
-}
-
 .message-card {
   width: 12rem;
   height: 80%;
@@ -60,4 +46,51 @@
 
 .popup-content {
   border-radius: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .application {
+    margin-left: 10px;
+  }
+}
+
+.text-right {
+  text-align: right;
+  color: blue;
+  font-size: 16px;
+}
+.font-sizec {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.card-size {
+  font-size: 14px;
+  border: 1px solid #d8d8d8;
+  border-radius: 15px;
+  box-shadow: 3px 3px 3px 3px whitesmoke;
+}
+.update-size {
+  font-size: 9px;
+}
+
+.main-details-card {
+  width: 100%;
+  margin: 0px;
+}
+
+.perks-desktop {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .card-size {
+    width: 680px;
+    margin-left: 10px;
+  }
+
+  .perks-desktop {
+    margin-top: 15px;
+    display: block;
+  }
 }

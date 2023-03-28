@@ -54,36 +54,10 @@ import ExperienceJobDetails from "./components/Candidate/CandidateJobDetails/Exp
 import EmployeeFindResume from "./EmployeeFindResume"
 
 const App = () => {
-  const handleInternData = (data) => {
-    console.log(data)
-    if (
-      JSON.stringify(data) !==
-      JSON.stringify(
-        registerData.internship[registerData.internship.length - 1]
-      )
-    ) {
-      setData({
-        ...registerData,
-        internship: [...registerData.internship, data],
-      })
-      localStorage.setItem("registerData", JSON.stringify(registerData))
-    }
-  }
+  const [userResume, setResume] = useState(null)
 
-  const handleFresherData = (data) => {
-    if (JSON.stringify(data) !== JSON.stringify(registerData)) {
-      const list = registerData.fresher
-      list.push(data)
-      setData({ ...registerData, fresher: list })
-    }
-  }
-
-  const handleExperienceData = (data) => {
-    if (JSON.stringify(data) !== JSON.stringify(registerData)) {
-      const list = registerData.experience
-      list.push(data)
-      setData({ ...registerData, experience: list })
-    }
+  const handleResume = (e) => {
+    setResume(e)
   }
 
   return (
@@ -103,7 +77,9 @@ const App = () => {
           <Route
             exact
             path="/candidate/create-account/step-1"
-            component={CandidateStep1}
+            render={(props) => (
+              <CandidateStep1 {...props} handleResume={handleResume} />
+            )}
           />
           <Route
             exact
@@ -164,7 +140,9 @@ const App = () => {
           <Route
             exact
             path="/employee/find-resume"
-            component={EmployeeFindResume}
+            render={(props) => (
+              <EmployeeFindResume {...props} userResume={userResume} />
+            )}
           />
 
           {/* Active Job */}
