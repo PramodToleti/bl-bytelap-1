@@ -6,11 +6,13 @@ import { ImLocation } from "react-icons/im"
 import Modal from "react-bootstrap/Modal"
 import Row from "react-bootstrap/Row"
 import InputGroup from "react-bootstrap/InputGroup"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import Container from "react-bootstrap/Container"
-import Nav from "react-bootstrap/Nav"
-import Navbar from "react-bootstrap/Navbar"
-import NavDropdown from "react-bootstrap/NavDropdown"
+import { Card } from "react-bootstrap"
+import { FaTimes } from "react-icons/fa"
+import { RxHamburgerMenu } from "react-icons/rx"
+import Popup from "reactjs-popup"
+import { Document, Page } from "react-pdf"
 
 import JobSearchField from "../JobSearchField"
 import JobLocationField from "../JobLocationField"
@@ -24,13 +26,27 @@ const EmployeeFindResume = () => {
   const [lgShow, setLgShow] = useState(false)
   const [activeResume, setActiveResume] = useState("Internship")
 
-  console.log(activeResume)
+  const [showCard, setShowCard] = useState(false)
+
+  const handleCardClose = () => {
+    setShowCard(false)
+  }
 
   const handleActiveType = (e) => {
     setActiveType(e.target.textContent)
   }
 
   let internData = JSON.parse(localStorage.getItem("registerData"))
+
+  const pdfFile = localStorage.getItem("pdfFile")
+  console.log(pdfFile)
+  const pdfRef = useRef()
+
+  useEffect(() => {
+    if (pdfRef.current) {
+      pdfRef.current.data = pdfFile
+    }
+  }, [pdfFile])
 
   if (internData === null) {
     return (
@@ -455,53 +471,150 @@ const EmployeeFindResume = () => {
                   Not Interested
                 </p>
                 <hr />
-                <p className="pl-2">Team</p>
+                <Popup
+                  trigger={
+                    <p className="pl-2" style={{ cursor: "pointer" }}>
+                      {" "}
+                      Team{" "}
+                    </p>
+                  }
+                  modal
+                  nested
+                >
+                  <div className="container p-4">
+                    <div classname="container">
+                      <div className="d-flex justify-content-center">
+                        <p>Team Access</p>
+                      </div>
+                      <Form.Group className="mt-3 mb-4">
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter Email ID"
+                        />
+                      </Form.Group>
+                      <div className="d-flex justify-content-end">
+                        <Button variant="primary">Invite</Button>
+                      </div>
+                    </div>
+                  </div>
+                </Popup>
               </div>
 
               <div className="custom-select">
-                <Navbar bg="light" expand="lg">
-                  <Container>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                      <Nav className="me-auto p-2 pt-3">
-                        <p
-                          onClick={(e) => handleActiveType(e)}
-                          className={
-                            activeType === "Interested" ? "activeType" : ""
-                          }
-                          style={{ cursor: "pointer", fontWeight: "400" }}
+                <Container>
+                  <Row>
+                    <Col>
+                      <div className="d-flex justify-content-start">
+                        <Button
+                          variant="light"
+                          onClick={() => setShowCard(true)}
                         >
-                          Interested
-                        </p>
-                        <p
-                          onClick={(e) => handleActiveType(e)}
-                          className={
-                            activeType === "Shortlisted" ? "activeType " : ""
-                          }
-                          style={{ cursor: "pointer", fontWeight: "400" }}
-                        >
-                          Shortlisted
-                        </p>
-                        <p
-                          onClick={(e) => handleActiveType(e)}
-                          className={activeType === "Hire" ? "activeType" : ""}
-                          style={{ cursor: "pointer", fontWeight: "400" }}
-                        >
-                          Hire
-                        </p>
-                        <p
-                          onClick={(e) => handleActiveType(e)}
-                          className={
-                            activeType === "Not Interested" ? "activeType" : ""
-                          }
-                          style={{ cursor: "pointer", fontWeight: "400" }}
-                        >
-                          Not Interested
-                        </p>
-                      </Nav>
-                    </Navbar.Collapse>
-                  </Container>
-                </Navbar>
+                          <div
+                            style={{
+                              border: "1px solid grey",
+                              borderRadius: "5px",
+                              padding: "5px",
+                              cursor: "pointer",
+                              width: "50px",
+                            }}
+                          >
+                            <RxHamburgerMenu size={24} color="grey" />
+                          </div>
+                        </Button>
+                      </div>
+                      <Card
+                        className={
+                          showCard ? "message-card" : "hide-message-card"
+                        }
+                      >
+                        <Card.Header>
+                          <div className="d-flex justify-content-end">
+                            <Button variant="light" onClick={handleCardClose}>
+                              <FaTimes size={24} />
+                            </Button>
+                          </div>
+                        </Card.Header>
+                        <Card.Body>
+                          <Card.Text>
+                            <p
+                              className={
+                                activeType === "Interested" ? "activeType" : ""
+                              }
+                              style={{ cursor: "pointer" }}
+                              onClick={(e) => handleActiveType(e)}
+                            >
+                              Interested
+                            </p>
+                            <p
+                              className={
+                                activeType === "Shortlisted"
+                                  ? "activeType mt-4"
+                                  : "mt-4"
+                              }
+                              style={{ cursor: "pointer" }}
+                              onClick={(e) => handleActiveType(e)}
+                            >
+                              Shortlisted
+                            </p>
+                            <p
+                              className={
+                                activeType === "Hire"
+                                  ? "activeType mt-4"
+                                  : "mt-4"
+                              }
+                              style={{ cursor: "pointer" }}
+                              onClick={(e) => handleActiveType(e)}
+                            >
+                              Hire
+                            </p>
+                            <p
+                              className={
+                                activeType === "Not Interested"
+                                  ? "activeType mt-4"
+                                  : "mt-4"
+                              }
+                              style={{ cursor: "pointer" }}
+                              onClick={(e) => handleActiveType(e)}
+                            >
+                              Not Interested
+                            </p>
+                            <hr />
+                            <Popup
+                              trigger={
+                                <p
+                                  className="pl-2"
+                                  style={{ cursor: "pointer" }}
+                                >
+                                  {" "}
+                                  Team{" "}
+                                </p>
+                              }
+                              modal
+                              nested
+                            >
+                              <div className="container p-3">
+                                <div classname="container">
+                                  <div className="d-flex justify-content-center">
+                                    <p>Team Access</p>
+                                  </div>
+                                  <Form.Group className="mt-3 mb-4">
+                                    <Form.Control
+                                      type="text"
+                                      placeholder="Enter Email ID"
+                                    />
+                                  </Form.Group>
+                                  <div className="d-flex justify-content-end">
+                                    <Button variant="primary">Invite</Button>
+                                  </div>
+                                </div>
+                              </div>
+                            </Popup>
+                          </Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </Row>
+                </Container>
 
                 <p
                   style={{
@@ -540,7 +653,18 @@ const EmployeeFindResume = () => {
           <Modal.Header closeButton>
             <Modal.Title id="example-modal-sizes-title-lg">Resume</Modal.Title>
           </Modal.Header>
-          <Modal.Body>...</Modal.Body>
+          <Modal.Body>
+            <div>
+              <object
+                ref={pdfRef}
+                type="application/pdf"
+                width="100%"
+                height="100%"
+              >
+                <p>PDF could not be displayed.</p>
+              </object>
+            </div>
+          </Modal.Body>
         </Modal>
       </div>
     </>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 
 import "./index.css"
 
-function ChooseFile() {
+function ChooseFile(props) {
   const [uploadedFileName, setUploadedFileName] = useState(null)
   const [inputFile, setInputFile] = useState(null)
   useEffect(() => {
@@ -13,8 +13,10 @@ function ChooseFile() {
     event.preventDefault()
     inputFile?.click()
   }
-  const handleDisplayFileDetails = () => {
+  const handleDisplayFileDetails = (e) => {
     inputFile?.files && setUploadedFileName(inputFile.files[0].name)
+    props.handleFileUpload !== undefined &&
+      props.handleFileUpload(e.target.files[0])
   }
 
   //Delete uploaded file
@@ -33,9 +35,10 @@ function ChooseFile() {
         )}
         <input
           id="input-file"
-          onChange={handleDisplayFileDetails}
+          onChange={(e) => handleDisplayFileDetails(e)}
           className="d-none"
           type="file"
+          accept=".pdf"
         />
         <button
           onClick={handleUpload}

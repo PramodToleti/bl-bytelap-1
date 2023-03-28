@@ -18,8 +18,17 @@ function CandidateStep1() {
       event.preventDefault()
       event.stopPropagation()
     }
-
     setValidated(true)
+  }
+
+  const handleFileUpload = (e) => {
+    const file = e
+    console.log(file)
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      localStorage.setItem("pdfFile", event.target.result)
+    }
+    reader.readAsDataURL(file)
   }
 
   return (
@@ -140,7 +149,7 @@ function CandidateStep1() {
                 }}
               >
                 <input className="d-none" type="file" />
-                <ChooseFile />
+                <ChooseFile handleFileUpload={handleFileUpload} />
                 <div className="or-container">
                   {" "}
                   <p
