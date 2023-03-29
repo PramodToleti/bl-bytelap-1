@@ -118,14 +118,14 @@ function ExperiencePreview(props) {
                       each.company !== "" ||
                       each.startDate !== "") && (
                       <p style={{ fontSize: "15px", marginBottom: "10px" }}>
-                        {each.startDate.toLocaleString("default", {
+                        {new Date(each.startDate).toLocaleString("default", {
                           month: "short",
                           year: "numeric",
                         })}{" "}
                         -{" "}
-                        {each.endDate === "" && each.present === true
+                        {new Date(each.endDate) === "" && each.present === true
                           ? "Present"
-                          : each.endDate.toLocaleString("default", {
+                          : new Date(each.endDate).toLocaleString("default", {
                               month: "short",
                               year: "numeric",
                             })}
@@ -188,12 +188,12 @@ function ExperiencePreview(props) {
                       <p>{each.institute}</p>
                     </div>
                     <p style={{ fontSize: "15px", marginBottom: "10px" }}>
-                      {each.startDate.toLocaleString("default", {
+                      {new Date(each.startDate).toLocaleString("default", {
                         month: "short",
                         year: "numeric",
                       })}{" "}
                       -{" "}
-                      {each.endDate.toLocaleString("default", {
+                      {new Date(each.endDate).toLocaleString("default", {
                         month: "short",
                         year: "numeric",
                       })}
@@ -277,16 +277,19 @@ function ExperiencePreview(props) {
                     {(each.degree === "High Secondary (12th)" ||
                       each.degree === "Secondary (10th)") && (
                       <p>
-                        {each.yearOfCompletion.toLocaleString("default", {
-                          month: "short",
-                          year: "numeric",
-                        })}
+                        {new Date(each.yearOfCompletion).toLocaleString(
+                          "default",
+                          {
+                            month: "short",
+                            year: "numeric",
+                          }
+                        )}
                       </p>
                     )}
                   </div>
 
                   <p style={{ fontSize: "15px" }}>
-                    {each.startDate.toLocaleString("default", {
+                    {new Date(each.startDate).toLocaleString("default", {
                       month: "short",
                       year: "numeric",
                     })}
@@ -298,7 +301,7 @@ function ExperiencePreview(props) {
                       each.degree === "Doctorate")
                       ? " - Present"
                       : each.endDate !== ""
-                      ? ` - ${each.endDate.toLocaleString("default", {
+                      ? ` - ${new Date(each.endDate).toLocaleString("default", {
                           month: "short",
                           year: "numeric",
                         })}`

@@ -8,6 +8,12 @@ import { Button } from "react-bootstrap"
 import "./index.css"
 
 function ViewApplicantExperience() {
+  const experienceData = JSON.parse(
+    localStorage.getItem("registerData")
+  ).experience
+
+  const data = experienceData[0]
+
   return (
     <div style={{ padding: "15px", marginBottom: "20px" }}>
       <EmployeeHome />
@@ -35,246 +41,353 @@ function ViewApplicantExperience() {
         </p>
       </div>
       {/*Applicant*/}
-      <div>
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <h2 className="mb-4">Nilesh</h2>
-          <h4 className="mb-3">React JS Developer</h4>
-          <div className="role-container mb-3">
-            <div style={{ display: "flex", gap: "20px" }} className="mt-2">
-              <h5>Experience: </h5>
+      {data !== undefined && (
+        <>
+          {(data.jobTitle !== "" ||
+            data.experience.years !== "" ||
+            data.ctc.lacs !== "" ||
+            data.ctc.thousand !== "" ||
+            data.checkbox !== false) && (
+            <div
+              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+              style={{ width: "100%", backgroundColor: "white" }}
+            >
+              {data.jobTitle !== "" && <h2 className="mb-4">Nilesh</h2>}
+              <h4 className="mb-3">{data.jobTitle}</h4>
+              <div className="experience-container mb-3">
+                {data.experience.years !== "" && <h4>Experience: </h4>}
+                <div style={{ display: "flex", gap: "10px", marginTop: "2px" }}>
+                  {data.experience.years !== "" && (
+                    <h5 className="experience-text">
+                      {data.experience.years}.{data.experience.months} Years
+                    </h5>
+                  )}
+                  {((data.ctc.lacs !== "" && data.ctc.thousand !== "") ||
+                    data.checkbox !== false) && (
+                    <div
+                      style={{ display: "flex", gap: "4px", marginTop: "2px" }}
+                    >
+                      <BiRupee
+                        style={{
+                          color: "grey",
+                          fontSize: "22px",
+                          marginTop: "3px",
+                        }}
+                      />
 
-              <p>4.5 Years</p>
+                      {data.checkbox ? (
+                        <h6
+                          style={{
+                            fontSize: " 14px",
+                            marginBottom: "0px",
+                            marginTop: "5px",
+                          }}
+                        >
+                          Not Disclosed
+                        </h6>
+                      ) : (
+                        <h5 style={{ fontSize: "14px", marginTop: "5px" }}>
+                          {data.ctc.lacs.substring(0, 2)}.
+                          {parseInt(data.ctc.thousand / 10000)}L PA
+                        </h5>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+              {data.skills.length !== 0 && (
+                <div className="skills-container mb-3">
+                  <h4 className="mb-3" style={{ marginRight: "20px" }}>
+                    Skill's:{" "}
+                  </h4>
+                  {data.skills.map((each) => (
+                    <h6 className="preview-skills" key={each}>
+                      {each}
+                    </h6>
+                  ))}
+                </div>
+              )}
 
-              <div style={{ display: "flex", gap: "10px" }}>
-                <BiRupee style={{ color: "grey", fontSize: "25px" }} />
-                <p>6 LPA</p>
+              {data.jobTitle !== "" && (
+                <>
+                  <MdLocationOn style={{ color: "grey", fontSize: "30px" }} />{" "}
+                  <span style={{ color: "grey" }}>Indore, MP</span>
+                </>
+              )}
+            </div>
+          )}
+
+          {data.coverLetter !== "" && (
+            <div
+              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+              style={{ width: "100%", backgroundColor: "white" }}
+            >
+              <h4 className="mb-4">Cover Letter:</h4>
+              <p className="mb-3" style={{ overflowWrap: "break-word" }}>
+                {data.coverLetter}
+              </p>
+            </div>
+          )}
+
+          {data.employmentHistory.length !== 0 && (
+            <div
+              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+              style={{ width: "100%", backgroundColor: "white" }}
+            >
+              <h4 className="mb-3">Experience</h4>
+              <div>
+                {data.employmentHistory.map((each) => (
+                  <>
+                    <div className="preview-date-container">
+                      <h6>{each.profile}</h6>
+
+                      <p className="mobile-company">{each.company}</p>
+
+                      {(each.profile !== "" ||
+                        each.company !== "" ||
+                        each.startDate !== "") && (
+                        <p style={{ fontSize: "15px", marginBottom: "10px" }}>
+                          {new Date(each.startDate).toLocaleString("default", {
+                            month: "short",
+                            year: "numeric",
+                          })}{" "}
+                          -{" "}
+                          {new Date(each.endDate) === "" &&
+                          each.present === true
+                            ? "Present"
+                            : new Date(each.endDate).toLocaleString("default", {
+                                month: "short",
+                                year: "numeric",
+                              })}
+                        </p>
+                      )}
+                    </div>
+                    <p className="desktop-company">{each.company}</p>
+
+                    <p style={{ overflowWrap: "break-word" }}>
+                      {each.responsibilities}
+                    </p>
+                  </>
+                ))}
               </div>
             </div>
-          </div>
-          <div className="skills-container mb-3">
-            <h4 className="mb-3" style={{ marginRight: "20px" }}>
-              Skill's:{" "}
-            </h4>
+          )}
 
-            <h6 className="preview-skills">React Native</h6>
-
-            <h6 className="preview-skills">Node JS</h6>
-
-            <h6 className="preview-skills">SQL</h6>
-          </div>
-          <MdLocationOn style={{ color: "grey", fontSize: "30px" }} />{" "}
-          <span style={{ color: "grey" }}>Indore, MP</span>
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <h4 className="mb-4">Cover Letter:</h4>
-          <p className="mb-3" style={{ overflowWrap: "break-word" }}>
-            Eager and passionate marketing professional with a background in
-            branding, digital marketing and advertising. Driven team player with
-            strong. Ihave enough skils to grab this position . I have done
-            multiple projects .
-          </p>
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <h4 className="mb-4">Experience</h4>
-          <ul>
-            <li>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>
-                  <h5>Senior Web Developer</h5>
-                  <p>Bytelap Technologies, Indore</p>
-                </div>
-                <div>January 2019 - Present</div>
-              </div>
-              <div>
-                <p>
-                  Design the reliable offline apps for the field forces for
-                  their daily reporting task Managing Play Store Account & bug
-                  fixing with play storebeta testing & bug reports play
-                  storebeta testing & bug reports play ..
-                </p>
-                <p>* Development of Java apis for the mobile application,</p>
-                <p> * Recently completed A Android App with Kotlin .</p>
-                <p> *Meanwhile worked on some React Native and Flutter apps.</p>
-              </div>
-            </li>
-
-            <hr />
-
-            <li>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>
-                  <h5>Junior Web Developer</h5>
-                  <p>Creative Solutions, Pune</p>
-                </div>
-                <div>January 2018 - January 2019</div>
-              </div>
-              <div>
-                <p>
-                  Design the reliable offline apps for the field forces for
-                  their daily reporting task Managing Play Store Account & bug
-                  fixing with play storebeta testing & bug reports play
-                  storebeta testing & bug reports play ..
-                </p>
-
-                <p>* Learn reliable and optimiced code techniques.</p>
-                <p>* Learn to implement how to implement oop's concept</p>
-
-                <p>
-                  * Developed Firebase Cloud Function in Javascript & Typescript
-                  .
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <h4 className="mb-4">Projects: </h4>
-          <ul className="projects-list">
-            <li>
-              <a href="www.exp.com" style={{ textDecoration: "none" }}>
-                clothekart
-              </a>
-              <HiOutlineExternalLink style={{ color: "grey" }} />
-            </li>
-            <p
-              style={{
-                fontSize: "15px",
-                marginTop: "14px",
-                overflowWrap: "break-word",
-              }}
+          {data.projectDetails.length !== 0 && (
+            <div
+              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+              style={{ width: "100%", backgroundColor: "white" }}
             >
-              I worked on this project as a back-end developer and contribute to
-              testing department.
-            </p>
+              <h4 className="mb-4">Projects: </h4>
+              <ul className="projects-list">
+                {data.projectDetails.map((each) => (
+                  <>
+                    <li>
+                      <a href={each.url} style={{ textDecoration: "none" }}>
+                        {each.title}
+                      </a>
+                      <HiOutlineExternalLink style={{ color: "grey" }} />
+                    </li>
+                    <p
+                      style={{
+                        fontSize: "15px",
+                        marginTop: "14px",
+                        overflowWrap: "break-word",
+                      }}
+                    >
+                      {each.about}
+                    </p>
+                  </>
+                ))}
+              </ul>
+            </div>
+          )}
 
-            <li>
-              <a href="www.exp.com" style={{ textDecoration: "none" }}>
-                indikart
-              </a>
-              <HiOutlineExternalLink style={{ color: "grey" }} />
-            </li>
-            <p
-              style={{
-                fontSize: "15px",
-                marginTop: "14px",
-                overflowWrap: "break-word",
-              }}
+          {data.training.length !== 0 && (
+            <div
+              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+              style={{ width: "100%", backgroundColor: "white" }}
             >
-              I built to this project all the web pages.
-            </p>
-          </ul>
-        </div>
+              <h4 className="mb-4">Internship Training / Course</h4>
+              <ul className="internships-list">
+                {data.training.map((each) => (
+                  <li className="mb-3" style={{ width: "100%" }}>
+                    <div className="preview-date-container">
+                      <div>
+                        <h6 style={{ fontSize: "18px" }}>{each.title}</h6>
+                        <p>{each.institute}</p>
+                      </div>
+                      <p style={{ fontSize: "15px", marginBottom: "10px" }}>
+                        {new Date(each.startDate).toLocaleString("default", {
+                          month: "short",
+                          year: "numeric",
+                        })}{" "}
+                        -{" "}
+                        {new Date(each.endDate).toLocaleString("default", {
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </p>
+                    </div>
+                    <a
+                      key={each}
+                      style={{ textDecoration: "none", color: "blue" }}
+                      onClick={() => {
+                        const fileUrl = URL.createObjectURL(each.file)
+                        window.open(fileUrl, "_blank")
+                      }}
+                    >
+                      View Certificate
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <h4 className="mb-4">Internship Training / Course</h4>
-          <ul className="internships-list">
-            <li className="mb-3" style={{ width: "100%" }}>
-              <div className="preview-date-container">
+          {data.achievements.length !== 0 && (
+            <div
+              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+              style={{ width: "100%", backgroundColor: "white" }}
+            >
+              <h4 className="mb-4">Achievements / Awards & Recognition</h4>
+              <ul className="internships-list">
+                {data.achievements.map((each) => (
+                  <li className="mb-3">
+                    <div
+                      className="achievements-container"
+                      style={{ maxWidth: "100%", wordBreak: "break-all" }}
+                    >
+                      <h6>{each.achievement}</h6>
+                    </div>
+                    <a
+                      key={each}
+                      style={{ textDecoration: "none", color: "blue" }}
+                      onClick={() => {
+                        const fileUrl = URL.createObjectURL(each.file)
+                        window.open(fileUrl, "_blank")
+                      }}
+                    >
+                      View Certificate
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {data.degree.length !== 0 && (
+            <div
+              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
+              style={{ width: "100%", backgroundColor: "white" }}
+            >
+              <h4 className="mb-3">Education:</h4>
+              {data.degree.map((each) => (
                 <div>
-                  <h6 style={{ fontSize: "18px" }}>Android Development</h6>
-                  <p>Coderclub LLP</p>
+                  <div className="preview-date-container">
+                    <div>
+                      {each.degree === "Master's" ||
+                      each.degree === "Bachelor's" ||
+                      each.degree === "Diploma" ||
+                      each.degree === "Doctorate" ? (
+                        <>
+                          <h6>
+                            {each.degree}, {each.field}
+                          </h6>
+                          <p>
+                            {each.institute}, {each.city}
+                          </p>{" "}
+                        </>
+                      ) : (
+                        <h6>{each.degree}</h6>
+                      )}
+                    </div>
+
+                    <div className="desktop-date">
+                      {(each.degree === "High Secondary (12th)" ||
+                        each.degree === "Secondary (10th)") && (
+                        <p>
+                          {new Date(each.yearOfCompletion).toLocaleString(
+                            "default",
+                            {
+                              month: "short",
+                              year: "numeric",
+                            }
+                          )}
+                        </p>
+                      )}
+                    </div>
+
+                    <p style={{ fontSize: "15px" }}>
+                      {new Date(each.startDate).toLocaleString("default", {
+                        month: "short",
+                        year: "numeric",
+                      })}
+
+                      {each.endDate === "" &&
+                      (each.degree === "Master's" ||
+                        each.degree === "Bachelor's" ||
+                        each.degree === "Diploma" ||
+                        each.degree === "Doctorate")
+                        ? " - Present"
+                        : each.endDate !== ""
+                        ? ` - ${new Date(each.endDate).toLocaleString(
+                            "default",
+                            {
+                              month: "short",
+                              year: "numeric",
+                            }
+                          )}`
+                        : ""}
+                    </p>
+                  </div>
+                  {(each.degree === "High Secondary (12th)" ||
+                    each.degree === "Secondary (10th)") && (
+                    <p>{each.schoolName}</p>
+                  )}
+                  <div className="mobile-date">
+                    {(each.degree === "High Secondary (12th)" ||
+                      each.degree === "Secondary (10th)") && (
+                      <p>
+                        {each.yearOfCompletion.toLocaleString("default", {
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </p>
+                    )}
+                  </div>
                 </div>
-                <p style={{ fontSize: "15px", marginBottom: "10px" }}>
-                  Jan 2022 - Mar 2022
-                </p>
+              ))}
+            </div>
+          )}
+
+          {data.languages.length !== 0 && (
+            <div
+              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+              style={{ width: "100%", backgroundColor: "white" }}
+            >
+              <h4 className="mb-3">Languages:</h4>
+              <div className="languages-list">
+                {data.languages.map((each) => (
+                  <p>{each}</p>
+                ))}
               </div>
+            </div>
+          )}
 
-              <a style={{ textDecoration: "none", color: "blue" }}>
-                View Certificate
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <h4 className="mb-4">Achievements / Awards & Recognition</h4>
-          <ul className="internships-list">
-            <li className="mb-3">
-              <div
-                className="achievements-container"
-                style={{ maxWidth: "100%", wordBreak: "break-all" }}
-              >
-                <h6>First prize in quiz competetion</h6>
+          {data.availability !== "" && (
+            <div
+              className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+              style={{ width: "100%", backgroundColor: "white" }}
+            >
+              <div>
+                <h4 className="mb-3">Available:</h4>
+                <p>{data.availability}</p>
               </div>
-              <a style={{ textDecoration: "none", color: "blue" }}>
-                View Certificate
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <h4 className="mb-3">Education:</h4>
-          <ul>
-            <li>
-              <div className="preview-date-container">
-                <div>
-                  <h6>B-Tech, Information Technology(IT)</h6>
-                  <p>Sushila Devi Bansal college of Technology, Indore</p>{" "}
-                </div>
-
-                <p style={{ fontSize: "15px" }}>Jan 2018 - Mar 2022</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <h4 className="mb-3">Languages:</h4>
-          <div className="languages-list">
-            <p>English</p>
-            <p>Hindi</p>
-            <p>Marati</p>
-          </div>
-        </div>
-
-        <div
-          className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-4  rounded border "
-          style={{ width: "100%", backgroundColor: "white" }}
-        >
-          <div>
-            <h4 className="mb-3">Available:</h4>
-            <p>Actively looking for job and can join within a week</p>
-          </div>
-        </div>
-      </div>
+            </div>
+          )}
+        </>
+      )}
 
       {/*Btns container*/}
       <div>

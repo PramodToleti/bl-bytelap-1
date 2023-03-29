@@ -3,6 +3,9 @@ import Form from "react-bootstrap/Form"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import ProgressBar from "react-bootstrap/ProgressBar"
+import "react-toastify/dist/ReactToastify.css"
+import { toast } from "react-toastify"
+import { ToastContainer } from "react-toastify"
 
 import CheckboxDropdown from "../../../CheckboxDropdowm"
 import ChooseCity from "../../../ChooseCity"
@@ -23,7 +26,7 @@ import ExperiencePreview from "../../../CandidateRegisterPreview/ExperiencePrevi
 import DynamicEducationExperience from "../../../DynamicEducationExperience"
 import LocationCheckbox from "../../../LocationCheckbox"
 
-function Experience() {
+function Experience(props) {
   const [validated, setValidated] = useState(false)
   const [salaryType, setSalaryType] = useState("")
 
@@ -259,6 +262,23 @@ function Experience() {
     )
   }
 
+  const onSubmitForm = (event) => {
+    event.preventDefault()
+    if (now === 100 && isFilled === true) {
+      props.handleExperienceData(data)
+      toast.success("Data saved successfully!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
+      })
+      window.location.reload()
+      window.scrollTo(0, 0)
+    }
+
+    now === 100 ? setIsFilled(true) : setIsFilled(false)
+  }
+
   const renderSalaryType = () => {
     switch (salaryType) {
       case "Lac":
@@ -362,12 +382,13 @@ function Experience() {
 
   return (
     <>
+      <ToastContainer />
       {progressBar()}
       <Form
         action=""
         noValidate
         validated={validated}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmitForm}
         style={{ width: "100%" }}
         className="p-3"
       >

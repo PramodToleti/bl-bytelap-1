@@ -105,7 +105,7 @@
     display: grid;
     grid-template-columns: 1fr 20px 4fr;
     grid-template-rows: repeat(3, auto);
-    gap: 20px;
+    gap: 15px !important;
   }
 
   .training-f {
@@ -140,7 +140,7 @@
 
   .preferred-f {
     grid-row: 3;
-    grid-column: 1;
+    grid-column: 1 / span 2;
   }
 
   .location-f {
@@ -156,5 +156,10 @@
   .yes-f {
     grid-row: 5;
     grid-column: 3;
+  }
+
+  .colon-last {
+    grid-row: 5;
+    grid-column: 2;
   }
 }

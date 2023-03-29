@@ -157,6 +157,10 @@
     grid-row: 5;
     grid-column: 3;
   }
+
+  .location {
+    font-size: 16px;
+  }
 }
 
 .application::-webkit-scrollbar {
