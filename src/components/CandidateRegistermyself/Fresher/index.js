@@ -3,6 +3,9 @@ import Form from "react-bootstrap/Form"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import ProgressBar from "react-bootstrap/ProgressBar"
+import "react-toastify/dist/ReactToastify.css"
+import { toast } from "react-toastify"
+import { ToastContainer } from "react-toastify"
 
 import CheckboxDropdown from "../../../CheckboxDropdowm"
 import ChooseCity from "../../../ChooseCity"
@@ -23,7 +26,7 @@ import FresherPreview from "../../../CandidateRegisterPreview/FresherPreview"
 import LocationCheckbox from "../../../LocationCheckbox"
 import DynamicEducationExperience from "../../../DynamicEducationExperience"
 
-function Fresher() {
+function Fresher(props) {
   const [validated, setValidated] = useState(false)
   const [salaryType, setSalaryType] = useState("")
   const [salaryRange, setSalaryRange] = useState({
@@ -244,21 +247,20 @@ function Fresher() {
     )
       now = 90
     if (
-      jobTitle !== "" &&
-      jobTime !== "" &&
-      skills.length !== 0 &&
-      jobType !== "" &&
-      shift !== "" &&
-      coverLetter !== "" &&
-      degree.length !== 0 &&
-      projectDetails.length !== 0 &&
-      training.length !== 0 &&
-      achievements.length !== 0 &&
-      languages.length !== 0 &&
-      availability !== "" &&
-      salaryType !== "" &&
-      salaryRange.from !== "" &&
-      salaryRange.to !== "" &&
+      (jobTitle !== "" &&
+        jobTime !== "" &&
+        skills.length !== 0 &&
+        jobType !== "" &&
+        shift !== "" &&
+        coverLetter !== "" &&
+        degree.length !== 0 &&
+        projectDetails.length !== 0 &&
+        training.length !== 0 &&
+        achievements.length !== 0 &&
+        languages.length !== 0 &&
+        availability !== "" &&
+        salaryType !== "") ||
+      (salaryRange.from !== "" && salaryRange.to !== "") ||
       preferredLocation !== ""
     )
       now = 100
@@ -270,6 +272,23 @@ function Fresher() {
         style={{ height: "25px", position: "sticky" }}
       />
     )
+  }
+
+  const onSubmitForm = (event) => {
+    event.preventDefault()
+    if (now === 100 && isFilled === true) {
+      props.handleFresherData(data)
+      toast.success("Data saved successfully!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
+      })
+      window.location.reload()
+      window.scrollTo(0, 0)
+    }
+
+    now === 100 ? setIsFilled(true) : setIsFilled(false)
   }
 
   const renderSalaryType = () => {
@@ -368,12 +387,13 @@ function Fresher() {
 
   return (
     <>
+      <ToastContainer />
       {progressBar()}
       <Form
         action=""
         noValidate
         validated={validated}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmitForm}
         style={{ width: "100%" }}
         className="p-3"
       >

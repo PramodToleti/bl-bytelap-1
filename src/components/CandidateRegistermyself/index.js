@@ -20,31 +20,29 @@ function CandidateRegistermyself() {
   }
 
   const handleInternData = (data) => {
-    console.log(data)
     if (
       JSON.stringify(data) !==
       JSON.stringify(
         registerData.internship[registerData.internship.length - 1]
       )
     ) {
-      registerData.internship = [data]
+      registerData.internship.push(data)
       localStorage.setItem("registerData", JSON.stringify(registerData))
     }
   }
 
   const handleFresherData = (data) => {
     if (JSON.stringify(data) !== JSON.stringify(registerData)) {
-      const list = registerData.fresher
-      list.push(data)
-      localStorage.setItem("registerData", JSON.stringify(list))
+      registerData.fresher.push(data)
+
+      localStorage.setItem("registerData", JSON.stringify(registerData))
     }
   }
 
   const handleExperienceData = (data) => {
     if (JSON.stringify(data) !== JSON.stringify(registerData)) {
-      const list = registerData.experience
-      list.push(data)
-      localStorage.setItem("registerData", JSON.stringify(list))
+      registerData.experience.push(data)
+      localStorage.setItem("registerData", JSON.stringify(registerData))
     }
   }
 

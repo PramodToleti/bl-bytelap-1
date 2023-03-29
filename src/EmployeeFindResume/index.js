@@ -79,21 +79,277 @@ const EmployeeFindResume = (props) => {
       case "Internship":
         return (
           <>
-            <hr className="desktop-resume-count" />
             <div style={{ maxWidth: "680px" }}>
               {internData.length !== 0 ? (
                 internData.map((data, index) => (
-                  <Card className="col-lg-5 col-md-5 search-course-right main-details-card  mb-0 mt-0 p-0 bg-light text-dark  border-light rounded container reveal  p-0 mb-0 bg-white  border border-light card-details">
-                    <Card.Body className="card-size">
-                      <Card.Title>Nilesh</Card.Title>
-                      <Card.Text>{data.jobTitle}</Card.Text>
-                      <Card.Text className=" text-muted ">
-                        CoverLetter &nbsp; : &nbsp; {data.coverLetter}{" "}
-                        <Card.Text></Card.Text>
-                      </Card.Text>
-                      <Card.Text className="perks-mobile text-muted">
-                        Skills &nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;{" "}
+                  <div className="application">
+                    <Card className="col-lg-5 col-md-5 search-course-right main-details-card  mb-0 mt-0 p-0 bg-light text-dark  border-light rounded container reveal  p-0 mb-0 bg-white  border border-light card-details">
+                      <Card.Body className="card-size">
+                        <Card.Title>Nilesh</Card.Title>
+                        <Card.Text>{data.jobTitle}</Card.Text>
+                        <Card.Text className=" text-muted ">
+                          CoverLetter &nbsp; : &nbsp; {data.coverLetter}{" "}
+                          <Card.Text></Card.Text>
+                        </Card.Text>
+                        <Card.Text className="perks-mobile text-muted">
+                          Skills &nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                          &nbsp;&nbsp;{" "}
+                          {data.skills.length > 3 ? (
+                            <>
+                              <h6 className="preview-perks">
+                                {data.skills[0]}
+                              </h6>
+                              <h6 className="preview-perks">
+                                {data.skills[1]}
+                              </h6>
+                              <h6 className="preview-perks">
+                                {data.skills[2]}{" "}
+                              </h6>{" "}
+                              ...
+                            </>
+                          ) : (
+                            data.skills.map((each, i) => (
+                              <h6 className="preview-perks" key={i}>
+                                {each}
+                              </h6>
+                            ))
+                          )}
+                        </Card.Text>
+                        <Card.Text className="perks-desktop text-muted">
+                          Skills &nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                          &nbsp;&nbsp;{" "}
+                          {data.skills.map((each) => (
+                            <p className="preview-skills">{each}</p>
+                          ))}
+                        </Card.Text>
+                        <Card.Text className=" text-muted">
+                          Portfolio &nbsp; &nbsp;: &nbsp;&nbsp;{" "}
+                          {data.projectDetails.map((each) => (
+                            <a
+                              href=""
+                              style={{
+                                color: "Blue",
+                                textDecoration: "none",
+                                fontWeight: "400",
+                              }}
+                            >
+                              {each.title} &nbsp;&nbsp;&nbsp;
+                            </a>
+                          ))}
+                        </Card.Text>
+                        <Card.Text className=" text-muted">
+                          Available &nbsp; : &nbsp;&nbsp; {data.availability}
+                        </Card.Text>
+                        <div className="interested-btn-container-desktop">
+                          <div className="btns-container">
+                            <Button
+                              variant="outline-success"
+                              size="sm"
+                              className="mt-3"
+                              onClick={(e) => handleActiveType(e)}
+                            >
+                              Interested
+                            </Button>{" "}
+                            <Button
+                              variant="outline-primary"
+                              className=" mt-3"
+                              size="sm"
+                              onClick={(e) => handleActiveType(e)}
+                            >
+                              Shortlisted
+                            </Button>{" "}
+                            <Button
+                              variant="outline-secondary"
+                              className=" mt-3"
+                              size="sm"
+                              onClick={(e) => handleActiveType(e)}
+                            >
+                              Hire
+                            </Button>
+                            <Button
+                              variant="outline-secondary"
+                              className=" mt-3"
+                              size="sm"
+                              onClick={(e) => handleActiveType(e)}
+                            >
+                              Not Interested
+                            </Button>{" "}
+                          </div>
+                          <div>
+                            <Button variant="light" className=" mt-3" size="sm">
+                              Call
+                            </Button>{" "}
+                            <Button
+                              variant="link"
+                              className=" mt-3"
+                              size="sm"
+                              onClick={() => setLgShow(true)}
+                            >
+                              View Resume
+                            </Button>
+                          </div>
+                        </div>
+                        <Link
+                          to="/employee/dashboard/active-posts/job/internship/view-applicant"
+                          className="nav-link"
+                        >
+                          <div
+                            style={{ display: "flex", justifyContent: "end" }}
+                          >
+                            <p
+                              className="mt-4"
+                              style={{ color: "blue", marginBottom: "0px" }}
+                            >
+                              View Application
+                            </p>
+                          </div>
+                        </Link>
+                        <p style={{ fontSize: "12px", margin: "0px" }}>
+                          Update: 1 day ago
+                        </p>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                ))
+              ) : (
+                <div className="no-applications">
+                  <h1>No Applications Found.</h1>
+                </div>
+              )}
+            </div>
+          </>
+        )
+
+      case "Fresher":
+        return (
+          <>
+            <hr className="desktop-resume-count" />
+            <div style={{ maxWidth: "680px" }}>
+              {fresherData.map((data) => (
+                <div className="application">
+                  <div className="col-lg-12 col-md-12 search-course-right  card-size mb-0 mt-4 p-4 container reveal  p-3 ">
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <h4>Nilesh</h4>
+                        <p>{data.jobTitle}</p>
+                      </div>
+                      <div>
+                        <p className="location">
+                          <ImLocation
+                            style={{ fontSize: "20px", color: "grey" }}
+                          />{" "}
+                          Indore, MP
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-3">
+                      <div>
+                        <p className="text-muted">
+                          <span>Cover Letter </span> : &nbsp;&nbsp;&nbsp;{" "}
+                          <span className="text-muted">{data.coverLetter}</span>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="card-container-mobile">
+                      <div
+                        style={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          alignItems: "center",
+                        }}
+                      >
+                        <p
+                          style={{ marginRight: "10px" }}
+                          className="text-muted"
+                        >
+                          Training/Certified&nbsp;&nbsp;:
+                        </p>
+                        <div className="mt-1">
+                          {data.training.map((each) => (
+                            <>
+                              <p
+                                className="text-muted"
+                                style={{ marginBottom: "5px" }}
+                              >
+                                {each.title} at {each.institute}
+                              </p>
+                              <p
+                                style={{ fontSize: "14px" }}
+                                className="text-muted"
+                              >
+                                {new Date(each.startDate).toLocaleString(
+                                  "default",
+                                  {
+                                    month: "short",
+                                    year: "numeric",
+                                  }
+                                )}{" "}
+                                -{" "}
+                                {new Date(each.endDate).toLocaleString(
+                                  "default",
+                                  {
+                                    month: "short",
+                                    year: "numeric",
+                                  }
+                                )}
+                              </p>
+                            </>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div
+                        style={{ display: "flex", flexWrap: "wrap" }}
+                        className="mb-1"
+                      >
+                        <p
+                          style={{ marginRight: "10px" }}
+                          className="text-muted"
+                        >
+                          Portfolio &nbsp;&nbsp;&nbsp;&nbsp;:
+                        </p>
+                        {data.projectDetails.map((each) => (
+                          <a
+                            href={each.url}
+                            style={{
+                              color: "Blue",
+                              textDecoration: "none",
+                              marginTop: "3px",
+                            }}
+                          >
+                            {each.title} &nbsp;&nbsp;&nbsp;
+                          </a>
+                        ))}
+                      </div>
+
+                      <div
+                        style={{ display: "flex", flexWrap: "wrap" }}
+                        className="text-muted mb-3"
+                      >
+                        <p className="text-muted">
+                          Preferred Location&nbsp;:&nbsp;{" "}
+                        </p>
+                        {data.preferredLocation.map((each) => (
+                          <p className="text-muted">{each.value}, &nbsp;</p>
+                        ))}
+                      </div>
+
+                      <div
+                        style={{ display: "flex", flexWrap: "wrap" }}
+                        className="text-muted perks-mobile mb-3"
+                      >
+                        <p style={{ marginRight: "10px" }}>
+                          Skills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                        </p>
                         {data.skills.length > 3 ? (
                           <>
                             <h6 className="preview-perks">{data.skills[0]}</h6>
@@ -110,36 +366,156 @@ const EmployeeFindResume = (props) => {
                             </h6>
                           ))
                         )}
-                      </Card.Text>
-                      <Card.Text className="perks-desktop text-muted">
-                        Skills &nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;{" "}
+                      </div>
+
+                      <div
+                        style={{ display: "flex", flexWrap: "wrap" }}
+                        className="mb-3"
+                      >
+                        <p
+                          style={{ marginRight: "10px" }}
+                          className="text-muted"
+                        >
+                          Availability &nbsp;: &nbsp;{data.availability}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="card-container">
+                      <p className="mt-1 text-muted">Training/Certified</p>
+                      <div className="mt-1">:</div>
+                      <div className="course-f">
+                        <div className="mt-1">
+                          {data.training.map((each) => (
+                            <>
+                              <p
+                                className="text-muted"
+                                style={{ marginBottom: "5px" }}
+                              >
+                                {each.title} at {each.institute}
+                              </p>
+                              <p
+                                style={{ fontSize: "14px" }}
+                                className="text-muted"
+                              >
+                                {new Date(each.startDate).toLocaleString(
+                                  "default",
+                                  {
+                                    month: "short",
+                                    year: "numeric",
+                                  }
+                                )}{" "}
+                                -{" "}
+                                {new Date(each.endDate).toLocaleString(
+                                  "default",
+                                  {
+                                    month: "short",
+                                    year: "numeric",
+                                  }
+                                )}
+                              </p>
+                            </>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="skill-header-f text-muted">
+                        <p className="text-muted">Skills</p>
+                      </div>
+                      <div className="colon">:</div>
+                      <div className="react-f text-muted">
                         {data.skills.map((each) => (
                           <p className="preview-skills">{each}</p>
                         ))}
-                      </Card.Text>
-                      <Card.Text className=" text-muted">
-                        Portfolio &nbsp; &nbsp;: &nbsp;&nbsp;{" "}
+                      </div>
+                      <div className="portfolio-f text-muted">Portfolio</div>
+                      <div className="colon">:</div>
+                      <div className="ekart-f">
                         {data.projectDetails.map((each) => (
                           <a
-                            href=""
+                            href={each.url}
                             style={{
                               color: "Blue",
                               textDecoration: "none",
-                              fontWeight: "400",
+                              marginTop: "3px",
                             }}
                           >
                             {each.title} &nbsp;&nbsp;&nbsp;
                           </a>
                         ))}
-                      </Card.Text>
-                      <Card.Text className=" text-muted">
-                        Available &nbsp; : &nbsp;&nbsp; {data.availability}
-                      </Card.Text>
+                      </div>
+
+                      <div className="preferred-f text-muted">
+                        Preferred Location
+                      </div>
+                      <div className="colon">:</div>
+                      <div className="location-f text-muted">
+                        {data.preferredLocation.map((each) => (
+                          <span className="text-muted">
+                            {each.value}, &nbsp;
+                          </span>
+                        ))}
+                      </div>
+                      <div className="available-f text-muted">Available</div>
+                      <div className="colon">:</div>
+                      <div className="yes-f text-muted">
+                        {data.availability}
+                      </div>
+                    </div>
+
+                    <div className="mt-3"></div>
+                    <div>
+                      <div className="interested-btn-container">
+                        <Button
+                          variant="success"
+                          size="sm"
+                          className=" mt-3"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Interested
+                        </Button>{" "}
+                        <Button
+                          variant="primary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Shortlisted
+                        </Button>
+                        <Button
+                          variant="primary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Hire
+                        </Button>{" "}
+                        <Button
+                          variant="danger"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Not Interested
+                        </Button>{" "}
+                        <Button variant="light" className=" mt-3" size="sm">
+                          Call
+                        </Button>{" "}
+                        <Button
+                          variant="link"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={() => setLgShow(true)}
+                        >
+                          View Resume
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div>
                       <div className="interested-btn-container-desktop">
                         <div className="btns-container">
                           <Button
-                            variant="outline-success"
+                            variant="success"
                             size="sm"
                             className="mt-3"
                             onClick={(e) => handleActiveType(e)}
@@ -147,7 +523,7 @@ const EmployeeFindResume = (props) => {
                             Interested
                           </Button>{" "}
                           <Button
-                            variant="outline-primary"
+                            variant="primary"
                             className=" mt-3"
                             size="sm"
                             onClick={(e) => handleActiveType(e)}
@@ -155,7 +531,7 @@ const EmployeeFindResume = (props) => {
                             Shortlisted
                           </Button>{" "}
                           <Button
-                            variant="outline-secondary"
+                            variant="primary"
                             className=" mt-3"
                             size="sm"
                             onClick={(e) => handleActiveType(e)}
@@ -163,7 +539,7 @@ const EmployeeFindResume = (props) => {
                             Hire
                           </Button>
                           <Button
-                            variant="outline-secondary"
+                            variant="danger"
                             className=" mt-3"
                             size="sm"
                             onClick={(e) => handleActiveType(e)}
@@ -185,322 +561,24 @@ const EmployeeFindResume = (props) => {
                           </Button>
                         </div>
                       </div>
-                      <Link
-                        to="/employee/dashboard/active-posts/job/internship/view-applicant"
-                        className="nav-link"
-                      >
-                        <div style={{ display: "flex", justifyContent: "end" }}>
-                          <p
-                            className="mt-4"
-                            style={{ color: "blue", marginBottom: "0px" }}
-                          >
-                            View Application
-                          </p>
-                        </div>
-                      </Link>
-                      <p style={{ fontSize: "12px", margin: "0px" }}>
-                        Update: 1 day ago
-                      </p>
-                    </Card.Body>
-                  </Card>
-                ))
-              ) : (
-                <div className="no-applications">
-                  <h1>No Applications Found.</h1>
+                    </div>
+
+                    <Link
+                      to="/employee/dashboard/active-posts/job/fresher/view-applicant"
+                      className="nav-link"
+                    >
+                      <div style={{ display: "flex", justifyContent: "end" }}>
+                        <p className="mt-4" style={{ color: "blue" }}>
+                          View Application
+                        </p>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
-              )}
+              ))}
             </div>
           </>
         )
-
-      case "Fresher":
-        return fresherData.map((data) => (
-          <div className="application">
-            <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3    rounded border border-secondary">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div>
-                  <h4>Nilesh</h4>
-                  <p>React JS Developer</p>
-                </div>
-                <div>
-                  <p className="location">
-                    <ImLocation style={{ fontSize: "20px", color: "grey" }} />{" "}
-                    Indore, MP
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-3">
-                <div>
-                  <p>
-                    <span style={{ fontWeight: "300" }}>Cover Letter</span> :
-                    &nbsp;&nbsp;&nbsp; I have all the desired skills and I have
-                    very strong back-end knowledge also . I am quick learner ,
-                    positive attitude , highly dedicated positive .I am Eager
-                    and passionate about the new as well with challenges task.
-                  </p>
-                </div>
-              </div>
-
-              <div className="card-container-mobile">
-                <div style={{ display: "flex", flexWrap: "wrap" }}>
-                  <p style={{ marginRight: "10px", fontWeight: "300" }}>
-                    Training/Certified&nbsp;&nbsp;:
-                    <div className="mt-1">
-                      <h6>React js internship at Bytelap Technologies</h6>
-                      <p style={{ fontSize: "14px" }}>Jan 2023 - Mar 2023</p>
-                    </div>
-                  </p>
-                </div>
-
-                <div
-                  style={{ display: "flex", flexWrap: "wrap" }}
-                  className="mb-1"
-                >
-                  <p style={{ marginRight: "10px", fontWeight: 300 }}>
-                    Portfolio &nbsp;&nbsp;&nbsp;:
-                  </p>
-                  <a
-                    href=""
-                    style={{
-                      color: "Blue",
-                      textDecoration: "none",
-                      fontWeight: "500",
-                    }}
-                  >
-                    Ekart
-                  </a>{" "}
-                  &nbsp;&nbsp;&nbsp;
-                  <a
-                    href=""
-                    style={{
-                      color: "Blue",
-                      marginBottom: "15px",
-                      marginTop: "0",
-                      marginLeft: "15px",
-                      textDecoration: "none",
-                      fontWeight: "500",
-                    }}
-                  >
-                    {" "}
-                    Wekart
-                  </a>
-                </div>
-
-                <div
-                  className="mb-3"
-                  style={{ display: "flex", flexWrap: "wrap" }}
-                >
-                  <span style={{ fontWeight: "300" }}>Preferred Location</span>{" "}
-                  : &nbsp;Indore, Pune, Mumbai, Bangalore, Chennai, Thane
-                </div>
-
-                <div
-                  style={{ display: "flex", flexWrap: "wrap" }}
-                  className="mb-3"
-                >
-                  <p style={{ marginRight: "10px", fontWeight: "300" }}>
-                    Skills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                  </p>
-                  <p className="preview-skills">React JS</p>
-                  <p className="preview-skills">Node JS</p>
-                  <p className="preview-skills">SQL</p>
-                  <p className="preview-skills">MongoDB</p>
-                  <p className="preview-skills">Redux</p>
-                </div>
-
-                <div
-                  style={{ display: "flex", flexWrap: "wrap" }}
-                  className="mb-3"
-                >
-                  <p style={{ marginRight: "10px", fontWeight: "300" }}>
-                    Availability :
-                  </p>
-                  <p>Immediate Joiner</p>
-                </div>
-              </div>
-
-              <div className="card-container">
-                <div className="training-f" style={{ fontWeight: "300" }}>
-                  Training/Certified
-                </div>
-                <div>:</div>
-                <div className="course-f">
-                  <div className="mt-1">
-                    <h6>React js internship at Bytelap Technologies</h6>
-                    <p style={{ fontSize: "14px" }}>Jan 2023 - Mar 2023</p>
-                  </div>
-                </div>
-                <div
-                  className="skill-header-f"
-                  style={{ fontWeight: "300", fontWeight: "300" }}
-                >
-                  Skills
-                </div>
-                <div className="colon">:</div>
-                <div className="react-f">
-                  React JS &nbsp;&nbsp;&nbsp; Node JS &nbsp;&nbsp;&nbsp; SQL
-                </div>
-                <div className="portfolio-f" style={{ fontWeight: "300" }}>
-                  Portfolio
-                </div>
-                <div className="colon">:</div>
-                <div className="ekart-f">
-                  <a
-                    href=""
-                    style={{
-                      color: "Blue",
-                      textDecoration: "none",
-                      fontWeight: "500",
-                    }}
-                  >
-                    Ekart
-                  </a>{" "}
-                  &nbsp;&nbsp;&nbsp;
-                  <a
-                    href=""
-                    style={{
-                      color: "Blue",
-                      marginBottom: "15px",
-                      marginTop: "0",
-                      marginLeft: "15px",
-                      textDecoration: "none",
-                      fontWeight: "500",
-                    }}
-                  >
-                    {" "}
-                    Wekart
-                  </a>{" "}
-                </div>
-
-                <div className="preferred-f" style={{ fontWeight: "300" }}>
-                  Preferred Location
-                </div>
-                <div className="colon">:</div>
-                <div className="location-f">
-                  Indore, Pune, Mumbai, Bangalore, Chennai, Thane
-                </div>
-                <div className="available-f" style={{ fontWeight: "300" }}>
-                  Available
-                </div>
-                <div className="colon">:</div>
-                <div className="yes-f">Immediate Joiner</div>
-              </div>
-
-              <div className="mt-3"></div>
-              <div>
-                <div className="interested-btn-container">
-                  <Button
-                    variant="success"
-                    size="sm"
-                    className=" mt-3"
-                    onClick={(e) => handleActiveType(e)}
-                  >
-                    Interested
-                  </Button>{" "}
-                  <Button
-                    variant="primary"
-                    className=" mt-3"
-                    size="sm"
-                    onClick={(e) => handleActiveType(e)}
-                  >
-                    Shortlisted
-                  </Button>
-                  <Button
-                    variant="primary"
-                    className=" mt-3"
-                    size="sm"
-                    onClick={(e) => handleActiveType(e)}
-                  >
-                    Hire
-                  </Button>{" "}
-                  <Button
-                    variant="danger"
-                    className=" mt-3"
-                    size="sm"
-                    onClick={(e) => handleActiveType(e)}
-                  >
-                    Not Interested
-                  </Button>{" "}
-                  <Button variant="light" className=" mt-3" size="sm">
-                    Call
-                  </Button>{" "}
-                  <Button
-                    variant="link"
-                    className=" mt-3"
-                    size="sm"
-                    onClick={() => setLgShow(true)}
-                  >
-                    View Resume
-                  </Button>
-                </div>
-              </div>
-
-              <div>
-                <div className="interested-btn-container-desktop">
-                  <div className="btns-container">
-                    <Button
-                      variant="success"
-                      size="sm"
-                      className="mt-3"
-                      onClick={(e) => handleActiveType(e)}
-                    >
-                      Interested
-                    </Button>{" "}
-                    <Button
-                      variant="primary"
-                      className=" mt-3"
-                      size="sm"
-                      onClick={(e) => handleActiveType(e)}
-                    >
-                      Shortlisted
-                    </Button>{" "}
-                    <Button
-                      variant="primary"
-                      className=" mt-3"
-                      size="sm"
-                      onClick={(e) => handleActiveType(e)}
-                    >
-                      Hire
-                    </Button>
-                    <Button
-                      variant="danger"
-                      className=" mt-3"
-                      size="sm"
-                      onClick={(e) => handleActiveType(e)}
-                    >
-                      Not Interested
-                    </Button>{" "}
-                  </div>
-                  <div>
-                    <Button variant="light" className=" mt-3" size="sm">
-                      Call
-                    </Button>{" "}
-                    <Button
-                      variant="link"
-                      className=" mt-3"
-                      size="sm"
-                      onClick={() => setLgShow(true)}
-                    >
-                      View Resume
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
-              <Link
-                to="/employee/dashboard/active-posts/job/fresher/view-applicant"
-                className="nav-link"
-              >
-                <div style={{ display: "flex", justifyContent: "end" }}>
-                  <p className="mt-4" style={{ color: "blue" }}>
-                    View Application
-                  </p>
-                </div>
-              </Link>
-            </div>
-          </div>
-        ))
 
       case "Experience":
         return <p>No data found</p>
@@ -791,6 +869,7 @@ const EmployeeFindResume = (props) => {
                 className="col-lg-10 col-md-10 search-course-right   mb-0        border-secondary rounded container reveal  p-1    rounded border border-secondary"
               >
                 <p className="desktop-resume-count">2038 resumes</p>
+                <hr className="desktop-resume-count" />
                 {renderActiveResume()}
               </div>
             </div>
