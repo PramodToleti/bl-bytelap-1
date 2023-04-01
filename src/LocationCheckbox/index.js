@@ -58,7 +58,8 @@ class LocationDropdown extends Component {
     this.setState({
       optionSelected: selected,
     })
-    this.props.handleLocation(selected)
+    this.props.handleLocation !== undefined &&
+      this.props.handleLocation(selected)
   }
 
   render() {

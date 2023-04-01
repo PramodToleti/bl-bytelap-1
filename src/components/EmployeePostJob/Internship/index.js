@@ -141,7 +141,7 @@ function Internship() {
       if (jobData === null) {
         localStorage.setItem("internshipJob", JSON.stringify([data]))
       } else {
-        jobData.push(data)
+        jobData.unshift(data)
         localStorage.setItem("internshipJob", JSON.stringify(jobData))
       }
       window.scrollTo(0, 0)
@@ -310,7 +310,10 @@ function Internship() {
 
           <AddRemove handleEducation={handleEducation} />
 
-          <CheckboxDropdown handleSkills={handleSkills} />
+          <Form.Group>
+            <Form.Label>Intern's Skills</Form.Label>
+            <CheckboxDropdown handleSkills={handleSkills} />
+          </Form.Group>
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Intern's responsibilities</Form.Label>

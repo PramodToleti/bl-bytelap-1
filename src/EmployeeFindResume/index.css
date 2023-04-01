@@ -13,7 +13,8 @@
   padding: 15px;
 }
 
-.desktop-resume-count {
+.desktop-resume-count,
+.count-container {
   display: none;
 }
 
@@ -106,4 +107,14 @@
 
 .find-resume-container::-webkit-scrollbar {
   width: 0.5em;
+}
+
+.close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  z-index: 100;
+  background: #ffffff;
+  border-radius: 10px;
 }

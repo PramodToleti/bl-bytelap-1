@@ -49,82 +49,36 @@ const DynamicEducationForm = (props) => {
       {bookRoomData.map((data, i) => {
         return (
           <Row key={i}>
-            {bookRoomData.length > 1 && (
-              <hr
-                className="separator mt-2 mb-2"
-                style={{
-                  border: "1px solid #000000",
-                  backgroundColor: "#000000",
-                }}
-              />
+            {bookRoomData.length > 1 && i !== 0 && (
+              <div className="d-flex justify-content-center">
+                <hr
+                  className="separator mt-1 mb-3"
+                  style={{
+                    border: "1px solid #9e9e9e",
+                    backgroundColor: "#9e9e9e",
+                    width: "99%",
+                  }}
+                />
+              </div>
             )}
             <Form.Group>
-              <Row>
-                <Col xs={12} md={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>School Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="schoolName"
-                      onChange={onHandleChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col xs={12} md={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Degree</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="degree"
-                      onChange={onHandleChange}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Start Date</Form.Label>
-                    <Form.Control
-                      type="date"
-                      name="startDate"
-                      onChange={onHandleChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col xs={12} md={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>End Date</Form.Label>
-                    <Form.Control
-                      type="date"
-                      name="endDate"
-                      onChange={onHandleChange}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>City</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="schoolCity"
-                      onChange={onHandleChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col xs={12} md={6}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Branch</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="branch"
-                      onChange={onHandleChange}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="text"
+                  name="schoolName"
+                  onChange={onHandleChange}
+                  placeholder="Graduation / University"
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="text"
+                  name="degree"
+                  onChange={onHandleChange}
+                  placeholder="Field of Study"
+                />
+              </Form.Group>
             </Form.Group>
           </Row>
         )
@@ -132,7 +86,7 @@ const DynamicEducationForm = (props) => {
 
       <Row>
         <Col className="pt-3 d-flex justify-content-between">
-          <Button variant="primary" onClick={handleAddFields}>
+          <Button size="sm" variant="primary" onClick={handleAddFields}>
             Add More
           </Button>
           {bookRoomData.length > 1 && (

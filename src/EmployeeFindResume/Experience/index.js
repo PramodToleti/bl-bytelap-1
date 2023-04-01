@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import Modal from "react-bootstrap/Modal"
 import { ImLocation } from "react-icons/im"
+import PostTime from "../../PostTime"
 
 const Experience = () => {
   const experienceData = JSON.parse(
@@ -384,6 +385,9 @@ const Experience = () => {
                   </p>
                 </div>
               </Link>
+              <p style={{ fontSize: "12px", margin: "0px" }}>
+                Update: <PostTime time={data.time} />
+              </p>
             </div>
           </div>
         ))}

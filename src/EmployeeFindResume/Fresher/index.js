@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import Modal from "react-bootstrap/Modal"
+import PostTime from "../../PostTime"
 
 const Fresher = () => {
   const fresherData = JSON.parse(localStorage.getItem("registerData")).fresher
@@ -324,6 +325,9 @@ const Fresher = () => {
                   </p>
                 </div>
               </Link>
+              <p style={{ fontSize: "12px", margin: "0px" }}>
+                Update: <PostTime time={data.time} />
+              </p>
             </div>
           </div>
         ))}

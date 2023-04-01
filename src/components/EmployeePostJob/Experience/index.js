@@ -96,7 +96,7 @@ function Experience() {
       if (jobData === null) {
         localStorage.setItem("experienceJob", JSON.stringify([data]))
       } else {
-        jobData.push(data)
+        jobData.unshift(data)
         localStorage.setItem("experienceJob", JSON.stringify(jobData))
       }
       window.scrollTo(0, 0)
@@ -327,7 +327,10 @@ function Experience() {
             <AddRemove handleEducation={handleEducation} />
           </Form.Group>
 
-          <CheckboxDropdown handleSkills={handleSkills} />
+          <Form.Group className="mb-3">
+            <Form.Label>Skills</Form.Label>
+            <CheckboxDropdown handleSkills={handleSkills} />
+          </Form.Group>
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Job description</Form.Label>

@@ -10,6 +10,7 @@
     "bootstrap": "^5.2.3",
     "formik": "^2.2.9",
     "jquery": "^3.6.3",
+    "js-cookie": "^3.0.1",
     "mdb-react-ui-kit": "^5.1.0",
     "mobx": "^6.7.0",
     "mobx-react-lite": "^3.4.0",

@@ -11,6 +11,7 @@ import Dropdown from "react-bootstrap/Dropdown"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Oval } from "react-loader-spinner"
+import Cookies from "js-cookie"
 
 import Theme from "../../Theme"
 import CandidateJobs from "../Candidate/CandidateJobs"
@@ -21,13 +22,29 @@ import "./index.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 function LoginPage() {
+  const [accepted, setAccepted] = useState(false)
   const [activeSearch, setActiveSearch] = useState("")
   const [activeLocation, setActiveLocation] = useState("")
   const [activeShifts, setActiveShifts] = useState([])
   const [activeSchedule, setActiveSchedule] = useState([])
-  const [checkedShifts, setCheckedShifts] = useState([])
   const [checkedJobTypes, setCheckedJobTypes] = useState(["Internship"])
   const [isLoading, setIsLoading] = useState(false)
+
+  const [selectedOption, setSelectedOption] = useState("Internship")
+  const [duration, setDuration] = useState([])
+  const [timePeriod, setTimePeriod] = useState(["Full Time"])
+  const [workPlace, setWorkPlace] = useState([])
+  const [checkedShifts, setCheckedShifts] = useState([])
+  const [yearsOfExperience, setYearsOfExperience] = useState(null)
+
+  const handleDropdownSelect = (e) => {
+    setSelectedOption(e.target.textContent)
+    setDuration([])
+    setTimePeriod(["Full Time"])
+    setWorkPlace([])
+    setCheckedShifts([])
+    setYearsOfExperience(null)
+  }
 
   const [searchDetails, setSearchDetails] = useState({
     search: "",
@@ -50,6 +67,563 @@ function LoginPage() {
     setTimeout(() => {
       setIsLoading(false)
     }, 200)
+
+  //Cookies
+
+  useEffect(() => {
+    if (Cookies.get("acceptedCookies")) {
+      setAccepted(true)
+    }
+  }, [])
+
+  const acceptCookies = () => {
+    Cookies.set("acceptedCookies", true, { expires: 30 })
+    setAccepted(true)
+  }
+
+  const declineCookies = () => {
+    Cookies.remove("acceptedCookies")
+    setAccepted(false)
+  }
+
+  const renderDropDown = () => {
+    switch (selectedOption) {
+      case "Internship":
+        return (
+          <>
+            {/* Duration */}
+            <Dropdown>
+              <Dropdown.Toggle size="sm" variant="outline-secondary">
+                {duration.length !== 0 ? duration.join(", ") : "Duration"}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                {Array(6)
+                  .fill(null)
+                  .map((_, index) => (
+                    <Dropdown.Item key={index} href="#/action-1">
+                      <Form.Check
+                        type="checkbox"
+                        label={`${index + 1} Months`}
+                        name="Duration"
+                        checked={duration.includes(`${index + 1} Months`)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setDuration([...duration, `${index + 1} Months`])
+                          } else {
+                            setDuration(
+                              duration.filter(
+                                (option) => option !== `${index + 1} Months`
+                              )
+                            )
+                          }
+                        }}
+                      />
+                    </Dropdown.Item>
+                  ))}
+              </Dropdown.Menu>
+            </Dropdown>
+
+            {/* Time Period */}
+            <Dropdown>
+              <Dropdown.Toggle size="sm" variant="outline-secondary">
+                {timePeriod.length !== 0 ? timePeriod.join(", ") : "Full Time"}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">
+                  <Form.Check
+                    type="checkbox"
+                    label="Full Time"
+                    name="Full Time"
+                    checked={timePeriod.includes("Full Time")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setTimePeriod([...timePeriod, "Full Time"])
+                      } else {
+                        setTimePeriod(
+                          timePeriod.filter((option) => option !== "Full Time")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-1">
+                  <Form.Check
+                    type="checkbox"
+                    label="Part Time"
+                    name="Part Time"
+                    checked={timePeriod.includes("Part Time")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setTimePeriod([...timePeriod, "Part Time"])
+                      } else {
+                        setTimePeriod(
+                          timePeriod.filter((option) => option !== "Part Time")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            {/* Work Place */}
+            <Dropdown>
+              <Dropdown.Toggle
+                size="sm"
+                variant="outline-secondary"
+                id="dropdown-basic"
+              >
+                {workPlace.length !== 0 ? workPlace.join(", ") : "Work Place"}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">
+                  <Form.Check
+                    type="checkbox"
+                    label="Work From Home"
+                    value="Work From Home"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setWorkPlace([...workPlace, "Work From Home"])
+                      } else {
+                        setWorkPlace(
+                          workPlace.filter(
+                            (option) => option !== "Work From Home"
+                          )
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-2">
+                  <Form.Check
+                    type="checkbox"
+                    label="Office"
+                    value="Office"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setWorkPlace([...workPlace, "Office"])
+                      } else {
+                        setWorkPlace(
+                          workPlace.filter((option) => option !== "Office")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-3">
+                  <Form.Check
+                    type="checkbox"
+                    label="Hybrid"
+                    value="Hybrid"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setWorkPlace([...workPlace, "Hybrid"])
+                      } else {
+                        setWorkPlace(
+                          workPlace.filter((option) => option !== "Hybrid")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </>
+        )
+
+      case "Fresher":
+        return (
+          <>
+            {/* Time Period */}
+            <Dropdown>
+              <Dropdown.Toggle size="sm" variant="outline-secondary">
+                {timePeriod.length !== 0 ? timePeriod.join(", ") : "Full Time"}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">
+                  <Form.Check
+                    type="checkbox"
+                    label="Full Time"
+                    name="Full Time"
+                    checked={timePeriod.includes("Full Time")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setTimePeriod([...timePeriod, "Full Time"])
+                      } else {
+                        setTimePeriod(
+                          timePeriod.filter((option) => option !== "Full Time")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-1">
+                  <Form.Check
+                    type="checkbox"
+                    label="Part Time"
+                    name="Part Time"
+                    checked={timePeriod.includes("Part Time")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setTimePeriod([...timePeriod, "Part Time"])
+                      } else {
+                        setTimePeriod(
+                          timePeriod.filter((option) => option !== "Part Time")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            {/* Shifts */}
+            <Dropdown>
+              <Dropdown.Toggle
+                size="sm"
+                variant="outline-secondary"
+                id="dropdown-basic"
+              >
+                {checkedShifts.length !== 0
+                  ? checkedShifts.join(", ")
+                  : "Shifts"}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">
+                  <Form.Check
+                    type="checkbox"
+                    label="Day Shift"
+                    name="Day Shift"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCheckedShifts([...checkedShifts, e.target.name])
+                      } else {
+                        setCheckedShifts(
+                          checkedShifts.filter(
+                            (shift) => shift !== e.target.name
+                          )
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-2">
+                  <Form.Check
+                    type="checkbox"
+                    label="Night Shift"
+                    name="Night Shift"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCheckedShifts([...checkedShifts, e.target.name])
+                      } else {
+                        setCheckedShifts(
+                          checkedShifts.filter(
+                            (shift) => shift !== e.target.name
+                          )
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-3">
+                  <Form.Check
+                    type="checkbox"
+                    label="Rotational"
+                    name="Rotational"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCheckedShifts([...checkedShifts, e.target.name])
+                      } else {
+                        setCheckedShifts(
+                          checkedShifts.filter(
+                            (shift) => shift !== e.target.name
+                          )
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            {/* Work Place */}
+            <Dropdown>
+              <Dropdown.Toggle
+                size="sm"
+                variant="outline-secondary"
+                id="dropdown-basic"
+              >
+                {workPlace.length !== 0 ? workPlace.join(", ") : "Work Place"}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">
+                  <Form.Check
+                    type="checkbox"
+                    label="Work From Home"
+                    value="Work From Home"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setWorkPlace([...workPlace, "Work From Home"])
+                      } else {
+                        setWorkPlace(
+                          workPlace.filter(
+                            (option) => option !== "Work From Home"
+                          )
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-2">
+                  <Form.Check
+                    type="checkbox"
+                    label="Office"
+                    value="Office"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setWorkPlace([...workPlace, "Office"])
+                      } else {
+                        setWorkPlace(
+                          workPlace.filter((option) => option !== "Office")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-3">
+                  <Form.Check
+                    type="checkbox"
+                    label="Hybrid"
+                    value="Hybrid"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setWorkPlace([...workPlace, "Hybrid"])
+                      } else {
+                        setWorkPlace(
+                          workPlace.filter((option) => option !== "Hybrid")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </>
+        )
+
+      case "Experience":
+        return (
+          <>
+            {/* Time Period */}
+            <Dropdown>
+              <Dropdown.Toggle size="sm" variant="outline-secondary">
+                {timePeriod.length !== 0 ? timePeriod.join(", ") : "Full Time"}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">
+                  <Form.Check
+                    type="checkbox"
+                    label="Full Time"
+                    name="Full Time"
+                    checked={timePeriod.includes("Full Time")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setTimePeriod([...timePeriod, "Full Time"])
+                      } else {
+                        setTimePeriod(
+                          timePeriod.filter((option) => option !== "Full Time")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-1">
+                  <Form.Check
+                    type="checkbox"
+                    label="Part Time"
+                    name="Part Time"
+                    checked={timePeriod.includes("Part Time")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setTimePeriod([...timePeriod, "Part Time"])
+                      } else {
+                        setTimePeriod(
+                          timePeriod.filter((option) => option !== "Part Time")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            {/* Shifts */}
+            <Dropdown>
+              <Dropdown.Toggle
+                size="sm"
+                variant="outline-secondary"
+                id="dropdown-basic"
+              >
+                {checkedShifts.length !== 0
+                  ? checkedShifts.join(", ")
+                  : "Shifts"}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">
+                  <Form.Check
+                    type="checkbox"
+                    label="Day Shift"
+                    name="Day Shift"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCheckedShifts([...checkedShifts, e.target.name])
+                      } else {
+                        setCheckedShifts(
+                          checkedShifts.filter(
+                            (shift) => shift !== e.target.name
+                          )
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-2">
+                  <Form.Check
+                    type="checkbox"
+                    label="Night Shift"
+                    name="Night Shift"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCheckedShifts([...checkedShifts, e.target.name])
+                      } else {
+                        setCheckedShifts(
+                          checkedShifts.filter(
+                            (shift) => shift !== e.target.name
+                          )
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-3">
+                  <Form.Check
+                    type="checkbox"
+                    label="Rotational"
+                    name="Rotational"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setCheckedShifts([...checkedShifts, e.target.name])
+                      } else {
+                        setCheckedShifts(
+                          checkedShifts.filter(
+                            (shift) => shift !== e.target.name
+                          )
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            {/* Work Place */}
+            <Dropdown>
+              <Dropdown.Toggle
+                size="sm"
+                variant="outline-secondary"
+                id="dropdown-basic"
+              >
+                {workPlace.length !== 0 ? workPlace.join(", ") : "Work Place"}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">
+                  <Form.Check
+                    type="checkbox"
+                    label="Work From Home"
+                    value="Work From Home"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setWorkPlace([...workPlace, "Work From Home"])
+                      } else {
+                        setWorkPlace(
+                          workPlace.filter(
+                            (option) => option !== "Work From Home"
+                          )
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-2">
+                  <Form.Check
+                    type="checkbox"
+                    label="Office"
+                    value="Office"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setWorkPlace([...workPlace, "Office"])
+                      } else {
+                        setWorkPlace(
+                          workPlace.filter((option) => option !== "Office")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-3">
+                  <Form.Check
+                    type="checkbox"
+                    label="Hybrid"
+                    value="Hybrid"
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setWorkPlace([...workPlace, "Hybrid"])
+                      } else {
+                        setWorkPlace(
+                          workPlace.filter((option) => option !== "Hybrid")
+                        )
+                      }
+                    }}
+                  />
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            {/* Experience */}
+            <Dropdown>
+              <Dropdown.Toggle size="sm" variant="outline-secondary">
+                {yearsOfExperience !== null ? yearsOfExperience : "Year of Exp"}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {Array(8)
+                  .fill(null)
+                  .map((_, i) => (
+                    <Dropdown.Item key={i}>
+                      <p
+                        onClick={() => {
+                          setYearsOfExperience(i + 1)
+                        }}
+                        style={{ marginBottom: "0px" }}
+                      >
+                        {i + 1}
+                      </p>
+                    </Dropdown.Item>
+                  ))}
+              </Dropdown.Menu>
+            </Dropdown>
+          </>
+        )
+
+      default:
+        null
+    }
+  }
 
   return (
     <>
@@ -163,264 +737,43 @@ function LoginPage() {
           </Row>
 
           <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-            <Stack direction="horizontal" gap={3}>
+            <Stack direction="horizontal" gap={3} style={{ flexWrap: "wrap" }}>
+              {/* Type */}
               <Dropdown>
                 <Dropdown.Toggle
                   size="sm"
                   variant="outline-secondary"
                   id="dropdown-basic"
                 >
-                  {checkedJobTypes.length !== 0
-                    ? checkedJobTypes.join(", ")
-                    : "Job Type"}
+                  {selectedOption}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">
-                    <Form.Check
-                      type="checkbox"
-                      label="Internship"
-                      name="Internship"
-                      checked={checkedJobTypes.includes("Internship")}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setCheckedJobTypes([
-                            ...checkedJobTypes,
-                            e.target.name,
-                          ])
-                          setIsLoading(true)
-                        } else {
-                          setCheckedJobTypes(
-                            checkedJobTypes.filter(
-                              (type) => type !== e.target.name
-                            )
-                          )
-                          setIsLoading(true)
-                        }
-                      }}
-                    />
+                  <Dropdown.Item
+                    eventKey="Internship"
+                    onClick={(e) => handleDropdownSelect(e)}
+                  >
+                    Internship
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-1">
-                    <Form.Check
-                      type="checkbox"
-                      label="Fresher"
-                      name="Fresher"
-                      checked={checkedJobTypes.includes("Fresher")}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setCheckedJobTypes([
-                            ...checkedJobTypes,
-                            e.target.name,
-                          ])
-                          setIsLoading(true)
-                        } else {
-                          setCheckedJobTypes(
-                            checkedJobTypes.filter(
-                              (type) => type !== e.target.name
-                            )
-                          )
-                          setIsLoading(true)
-                        }
-                      }}
-                    />
+                  <Dropdown.Item
+                    eventKey="Fresher"
+                    onClick={(e) => handleDropdownSelect(e)}
+                  >
+                    Fresher
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-1">
-                    <Form.Check
-                      type="checkbox"
-                      label="Experience"
-                      name="Experience"
-                      checked={checkedJobTypes.includes("Experience")}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setCheckedJobTypes([
-                            ...checkedJobTypes,
-                            e.target.name,
-                          ])
-                          setIsLoading(true)
-                        } else {
-                          setCheckedJobTypes(
-                            checkedJobTypes.filter(
-                              (type) => type !== e.target.name
-                            )
-                          )
-                          setIsLoading(true)
-                        }
-                      }}
-                    />
+                  <Dropdown.Item
+                    eventKey="Experience"
+                    onClick={(e) => handleDropdownSelect(e)}
+                  >
+                    Experience
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
 
-              <Dropdown>
-                <Dropdown.Toggle
-                  size="sm"
-                  variant="outline-secondary"
-                  id="dropdown-basic"
-                >
-                  {checkedShifts.length === 0
-                    ? "Shift"
-                    : checkedShifts.join(", ")}
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">
-                    <Form.Check
-                      type="checkbox"
-                      label="Day"
-                      name="Day"
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setCheckedShifts([...checkedShifts, e.target.name])
-                        } else {
-                          setCheckedShifts(
-                            checkedShifts.filter(
-                              (shift) => shift !== e.target.name
-                            )
-                          )
-                        }
-                      }}
-                    />
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    <Form.Check
-                      type="checkbox"
-                      label="Night"
-                      name="Night"
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setCheckedShifts([...checkedShifts, e.target.name])
-                        } else {
-                          setCheckedShifts(
-                            checkedShifts.filter(
-                              (shift) => shift !== e.target.name
-                            )
-                          )
-                        }
-                      }}
-                    />
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    <Form.Check
-                      type="checkbox"
-                      label="Rotational"
-                      name="Rotational"
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setCheckedShifts([...checkedShifts, e.target.name])
-                        } else {
-                          setCheckedShifts(
-                            checkedShifts.filter(
-                              (shift) => shift !== e.target.name
-                            )
-                          )
-                        }
-                      }}
-                    />
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-4">
-                    <Form.Check
-                      type="checkbox"
-                      label="Any"
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setCheckedShifts(["Any"])
-                        } else {
-                          setCheckedShifts([])
-                        }
-                      }}
-                    />
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-
-              <Dropdown>
-                <Dropdown.Toggle
-                  size="sm"
-                  variant="outline-secondary"
-                  id="dropdown-basic"
-                >
-                  {activeSchedule.length === 0
-                    ? "Schedule"
-                    : activeSchedule.join(", ")}
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">
-                    <Form.Check
-                      type="checkbox"
-                      label="Work From Home"
-                      value="Work From Home"
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setActiveSchedule([...activeSchedule, e.target.value])
-                        } else {
-                          setActiveSchedule(
-                            activeSchedule.filter(
-                              (schedule) => schedule !== e.target.value
-                            )
-                          )
-                        }
-                      }}
-                    />
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    <Form.Check
-                      type="checkbox"
-                      label="Office"
-                      value="Office"
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setActiveSchedule([...activeSchedule, e.target.value])
-                        } else {
-                          setActiveSchedule(
-                            activeSchedule.filter(
-                              (schedule) => schedule !== e.target.value
-                            )
-                          )
-                        }
-                      }}
-                    />
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    <Form.Check
-                      type="checkbox"
-                      label="Flexible"
-                      value="Flexible"
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setActiveSchedule([...activeSchedule, e.target.value])
-                        } else {
-                          setActiveSchedule(
-                            activeSchedule.filter(
-                              (schedule) => schedule !== e.target.value
-                            )
-                          )
-                        }
-                      }}
-                    />
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-4">
-                    <Form.Check
-                      type="checkbox"
-                      label="Any"
-                      value="Any"
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setActiveSchedule([...activeSchedule, e.target.value])
-                        } else {
-                          setActiveSchedule(
-                            activeSchedule.filter(
-                              (schedule) => schedule !== e.target.value
-                            )
-                          )
-                        }
-                      }}
-                    />
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+              {renderDropDown()}
             </Stack>
           </Form.Group>
+
           <hr className="mb-3 mt-4" />
         </div>
 
@@ -448,6 +801,27 @@ function LoginPage() {
           />
         )}
       </div>
+
+      {!accepted && (
+        <div className="accept-cookies">
+          <p>
+            We use cookies to ensure you get the best experience on our website.
+            By continuing to browse the site, you agree to our{" "}
+            <span style={{ color: "blue" }}>Privacy Policy</span> &{" "}
+            <span style={{ color: "blue" }}>Terms & Conditions</span>
+          </p>
+          <div className="d-flex justify-content-center">
+            <div style={{ display: "flex", gap: "20px" }}>
+              <Button variant="primary" onClick={acceptCookies}>
+                Got it
+              </Button>
+              <Button variant="secondary" onClick={declineCookies}>
+                Decline
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }

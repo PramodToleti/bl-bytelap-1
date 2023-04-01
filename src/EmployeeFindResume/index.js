@@ -12,6 +12,7 @@ import { FaTimes } from "react-icons/fa"
 import { RxHamburgerMenu } from "react-icons/rx"
 import Popup from "reactjs-popup"
 import { Document, Page } from "react-pdf"
+import Offcanvas from "react-bootstrap/Offcanvas"
 
 import JobSearchField from "../JobSearchField"
 import JobLocationField from "../JobLocationField"
@@ -22,17 +23,25 @@ import "reactjs-popup/dist/index.css"
 import Internship from "./Internship"
 import Fresher from "./Fresher"
 import Experience from "./Experience"
+import Intern from "./AdvancedFilter/Intern"
+import Fresh from "./AdvancedFilter/Fresh"
+import Exp from "./AdvancedFilter/Exp"
 
 const EmployeeFindResume = (props) => {
   const [activeType, setActiveType] = useState("")
   const [lgShow, setLgShow] = useState(false)
   const [activeResume, setActiveResume] = useState("Internship")
 
-  const [showCard, setShowCard] = useState(false)
+  const [show, setShow] = useState(false)
 
-  const handleCardClose = () => {
-    setShowCard(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+  const handleTeamClick = () => {
+    offcanvasRef.current.hide()
   }
+
+  console.log(show)
 
   const handleActiveType = (e) => {
     setActiveType(e.target.textContent)
@@ -74,6 +83,20 @@ const EmployeeFindResume = (props) => {
 
       default:
         return null
+    }
+  }
+
+  const renderAdvancedFilter = () => {
+    switch (activeResume) {
+      case "Internship":
+        return <Intern />
+      case "Fresher":
+        return <Fresh />
+      case "Experience":
+        return <Exp />
+
+      default:
+        null
     }
   }
 
@@ -145,10 +168,34 @@ const EmployeeFindResume = (props) => {
                 <option>Experience</option>
               </Form.Select>
 
-              <h6 style={{ color: "blue", cursor: "pointer" }}>
-                {" "}
-                Advanced Filter
-              </h6>
+              <Popup
+                modal
+                closeOnDocumentClick
+                trigger={
+                  <button
+                    style={{
+                      color: "blue",
+                      fontWeight: "500",
+                      background: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Advanced Filter
+                  </button>
+                }
+              >
+                {(close) => (
+                  <div className="popup">
+                    <div className="d-flex justify-content-end">
+                      <button className="close" onClick={close}>
+                        Close
+                      </button>
+                    </div>
+                    <div className="container">{renderAdvancedFilter()}</div>
+                  </div>
+                )}
+              </Popup>
             </Form.Group>
           </div>
 
@@ -156,7 +203,7 @@ const EmployeeFindResume = (props) => {
             <div className="main-resume-container">
               <div
                 style={{
-                  height: "35rem",
+                  height: "47rem",
                   width: "",
                   borderTopLeftRadius: "10px",
                 }}
@@ -226,119 +273,109 @@ const EmployeeFindResume = (props) => {
 
               <div className="custom-select">
                 <Container>
-                  <Row>
-                    <Col>
-                      <div className="d-flex justify-content-start">
-                        <Button
-                          variant="light"
-                          onClick={() => setShowCard(true)}
-                        >
-                          <div
-                            style={{
-                              border: "1px solid grey",
-                              borderRadius: "5px",
-                              padding: "5px",
-                              cursor: "pointer",
-                              width: "50px",
-                            }}
-                          >
-                            <RxHamburgerMenu size={24} color="grey" />
-                          </div>
-                        </Button>
-                      </div>
-                      <Card
-                        className={
-                          showCard ? "message-card" : "hide-message-card"
-                        }
-                      >
-                        <Card.Header>
-                          <div className="d-flex justify-content-end">
-                            <Button variant="light" onClick={handleCardClose}>
-                              <FaTimes size={24} />
-                            </Button>
-                          </div>
-                        </Card.Header>
-                        <Card.Body>
-                          <Card.Text>
-                            <p
-                              className={
-                                activeType === "Interested" ? "activeType" : ""
-                              }
-                              style={{ cursor: "pointer" }}
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Interested
-                            </p>
-                            <p
-                              className={
-                                activeType === "Shortlisted"
-                                  ? "activeType mt-4"
-                                  : "mt-4"
-                              }
-                              style={{ cursor: "pointer" }}
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Shortlisted
-                            </p>
-                            <p
-                              className={
-                                activeType === "Hire"
-                                  ? "activeType mt-4"
-                                  : "mt-4"
-                              }
-                              style={{ cursor: "pointer" }}
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Hire
-                            </p>
-                            <p
-                              className={
-                                activeType === "Not Interested"
-                                  ? "activeType mt-4"
-                                  : "mt-4"
-                              }
-                              style={{ cursor: "pointer" }}
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Not Interested
-                            </p>
-                            <hr />
-                            <Popup
-                              trigger={
-                                <p
-                                  className="pl-2"
-                                  style={{ cursor: "pointer" }}
-                                >
-                                  {" "}
-                                  Team{" "}
-                                </p>
-                              }
-                              modal
-                              nested
-                            >
-                              <div className="container p-3">
-                                <div classname="container">
-                                  <div className="d-flex justify-content-center">
-                                    <p>Team Access</p>
-                                  </div>
-                                  <Form.Group className="mt-3 mb-4">
-                                    <Form.Control
-                                      type="text"
-                                      placeholder="Enter Email ID"
-                                    />
-                                  </Form.Group>
-                                  <div className="d-flex justify-content-end">
-                                    <Button variant="primary">Invite</Button>
-                                  </div>
-                                </div>
-                              </div>
-                            </Popup>
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  </Row>
+                  <Button variant="light" onClick={handleShow}>
+                    <div
+                      style={{
+                        border: "1px solid grey",
+                        borderRadius: "5px",
+                        padding: "5px",
+                        cursor: "pointer",
+                        width: "50px",
+                      }}
+                    >
+                      <RxHamburgerMenu size={24} color="grey" />
+                    </div>
+                  </Button>
                 </Container>
+
+                <Offcanvas
+                  show={show}
+                  onHide={handleClose}
+                  style={{
+                    width: "55%",
+                    borderTopRightRadius: "10px",
+                    borderBottomRightRadius: "10px",
+                  }}
+                >
+                  <Offcanvas.Header closeButton>
+                    <Offcanvas.Title></Offcanvas.Title>
+                  </Offcanvas.Header>
+                  <Offcanvas.Body>
+                    <p
+                      className={
+                        activeType === "Interested" ? "activeType" : ""
+                      }
+                      style={{ cursor: "pointer" }}
+                      onClick={(e) => handleActiveType(e)}
+                    >
+                      Interested
+                    </p>
+                    <p
+                      className={
+                        activeType === "Shortlisted"
+                          ? "activeType mt-4"
+                          : "mt-4"
+                      }
+                      style={{ cursor: "pointer" }}
+                      onClick={(e) => handleActiveType(e)}
+                    >
+                      Shortlisted
+                    </p>
+                    <p
+                      className={
+                        activeType === "Hire" ? "activeType mt-4" : "mt-4"
+                      }
+                      style={{ cursor: "pointer" }}
+                      onClick={(e) => handleActiveType(e)}
+                    >
+                      Hire
+                    </p>
+                    <p
+                      className={
+                        activeType === "Not Interested"
+                          ? "activeType mt-4"
+                          : "mt-4"
+                      }
+                      style={{ cursor: "pointer" }}
+                      onClick={(e) => handleActiveType(e)}
+                    >
+                      Not Interested
+                    </p>
+                    <hr />
+                    <Popup
+                      trigger={
+                        <p
+                          className="pl-2"
+                          style={{ cursor: "pointer" }}
+                          onClick={handleClose}
+                        >
+                          {" "}
+                          Team{" "}
+                        </p>
+                      }
+                      modal
+                      nested
+                      closeOnDocumentClick={!show}
+                    >
+                      <div className="container p-4">
+                        <div classname="container">
+                          <div className="d-flex justify-content-center">
+                            <p>Team Access</p>
+                          </div>
+                          <Form.Group className="mt-3 mb-4">
+                            <Form.Control
+                              type="text"
+                              placeholder="Enter Email ID"
+                            />
+                          </Form.Group>
+                          <div className="d-flex justify-content-end">
+                            <Button variant="primary">Invite</Button>
+                          </div>
+                        </div>
+                      </div>
+                    </Popup>
+                  </Offcanvas.Body>
+                </Offcanvas>
 
                 <p
                   style={{
@@ -356,15 +393,23 @@ const EmployeeFindResume = (props) => {
                 style={{
                   fontSize: "17px",
                   fontWeight: "400",
-                  height: "35rem",
-                  overflow: "scroll",
+                  height: "47rem",
                   borderTopRightRadius: "10px",
                 }}
                 className="col-lg-10 col-md-10 search-course-right   mb-0    find-resume-container    border-secondary  container reveal  p-1     border border-secondary"
               >
                 <p className="desktop-resume-count">2038 resumes</p>
                 <hr className="desktop-resume-count" />
-                {renderActiveResume()}
+                <div
+                  style={{
+                    height: "45rem",
+                    overflow: "scroll",
+                    paddingBottom: "50px",
+                  }}
+                >
+                  {renderActiveResume()}
+                  {renderActiveResume()}
+                </div>
               </div>
             </div>
           </div>

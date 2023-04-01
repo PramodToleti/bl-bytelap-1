@@ -1,0 +1,38 @@
+.filter-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .filter-container {
+    flex-direction: row;
+    gap: 50px;
+  }
+
+  .filter-side-1,
+  .filter-side-2 {
+    width: 50%;
+  }
+
+  .filter-side-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}
+
+.filter-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.save-filter {
+  display: flex;
+  gap: 20px;
+}
+
+.relocate-checkbox {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}

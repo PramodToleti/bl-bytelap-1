@@ -6,6 +6,7 @@ import ProgressBar from "react-bootstrap/ProgressBar"
 import "react-toastify/dist/ReactToastify.css"
 import { toast } from "react-toastify"
 import { ToastContainer } from "react-toastify"
+import moment from "moment/moment"
 
 import CheckboxDropdown from "../../../CheckboxDropdowm"
 import ChooseCity from "../../../ChooseCity"
@@ -69,6 +70,7 @@ function Fresher(props) {
     languages,
     availability,
     preferredLocation,
+    time: moment(),
   }
 
   const handleTitle = (e) => {
@@ -438,10 +440,13 @@ function Fresher(props) {
               </Form.Select>
             </Form.Group>
 
-            <CheckboxDropdown
-              onSelectionChange={handleSelectionChange}
-              handleSkills={handleSkills}
-            />
+            <Form.Group className="mb-3">
+              <Form.Label>Skills</Form.Label>
+              <CheckboxDropdown
+                onSelectionChange={handleSelectionChange}
+                handleSkills={handleSkills}
+              />
+            </Form.Group>
           </div>
 
           <div

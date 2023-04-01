@@ -42,13 +42,12 @@ class CheckboxDropdown extends Component {
     this.setState({
       optionSelected: selected,
     })
-    this.props.handleSkills(selected)
+    this.props.handleSkills !== undefined && this.props.handleSkills(selected)
   }
 
   render() {
     return (
-      <Form.Group controlId="formRoomType" className="mb-3 mt-2">
-        <Form.Label>Skills</Form.Label>
+      <Form.Group controlId="formRoomType" className="mb-3">
         <span
           className="input-field"
           data-toggle="popover"

@@ -11,7 +11,9 @@ const JobLocationField = (props) => {
 
   const onChangeTitle = (e) => {
     setSelected(e)
-    e[0] !== undefined && handleLocation(e[0].label)
+    e[0] !== undefined &&
+      handleLocation !== undefined &&
+      handleLocation(e[0].label)
   }
 
   const onInputChange = (inputValue) => {

@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { toast } from "react-toastify"
+import moment from "moment/moment"
 import "react-datepicker/dist/react-datepicker.css"
 import CheckboxDropdown from "../../../CheckboxDropdowm"
 
@@ -52,6 +53,7 @@ function Internship(props) {
     achievements,
     languages,
     availability,
+    time: moment(),
   }
 
   const formRef = useRef(null)
@@ -345,10 +347,13 @@ const progressRef = useRef(null)*/
               </Form.Select>
             </Form.Group>
 
-            <CheckboxDropdown
-              onSelectionChange={handleSelectionChange}
-              handleSkills={handleSkills}
-            />
+            <Form.Group className="mb-3 mt-2" controlId="title">
+              <Form.Label> Skills</Form.Label>
+              <CheckboxDropdown
+                onSelectionChange={handleSelectionChange}
+                handleSkills={handleSkills}
+              />
+            </Form.Group>
           </div>
 
           <div

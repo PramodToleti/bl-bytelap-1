@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import Modal from "react-bootstrap/Modal"
+import PostTime from "../../PostTime"
 
 const Internship = () => {
   const internData = JSON.parse(localStorage.getItem("registerData")).internship
@@ -15,7 +16,10 @@ const Internship = () => {
         {internData.length !== 0 ? (
           internData.map((data, index) => (
             <div className="application">
-              <Card className="col-lg-5 col-md-5 search-course-right main-details-card  mb-0 mt-2 p-0 bg-light text-dark  border-light rounded container reveal  p-0 mb-0 bg-white  border border-light card-details">
+              <Card
+                className="col-lg-5 col-md-5  main-details-card  mb-0 mt-2 p-0    card-details"
+                style={{ border: "0px" }}
+              >
                 <Card.Body className="card-size">
                   <Card.Title>Nilesh</Card.Title>
                   <Card.Text>{data.jobTitle}</Card.Text>
@@ -177,7 +181,7 @@ const Internship = () => {
                     </div>
                   </Link>
                   <p style={{ fontSize: "12px", margin: "0px" }}>
-                    Update: 1 day ago
+                    Update: <PostTime time={data.time} />
                   </p>
                 </Card.Body>
               </Card>
