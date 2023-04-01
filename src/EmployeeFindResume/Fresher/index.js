@@ -14,7 +14,7 @@ const Fresher = () => {
       <div style={{ maxWidth: "680px" }}>
         {fresherData.map((data) => (
           <div className="application">
-            <div className="col-lg-12 col-md-12 search-course-right  card-size mb-0 mt-4 p-4 container reveal  p-3 ">
+            <div className="col-lg-12 col-md-12 search-course-right  card-size mb-0 mt-2 p-4 container reveal  p-3 ">
               <div
                 style={{
                   display: "flex",

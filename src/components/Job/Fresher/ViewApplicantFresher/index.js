@@ -16,28 +16,6 @@ function ViewApplicantFresher() {
     <div style={{ padding: "15px", marginBottom: "20px" }}>
       <EmployeeHome />
 
-      {/*Dashboard Header*/}
-      <div
-        className="col-lg-12 col-md-12 search-course-right pt-3 mb-3 rounded container reveal   rounded "
-        style={{
-          color: "#000000",
-        }}
-      >
-        <p style={{ display: "flex", gap: "10px", marginBottom: "0px" }}>
-          <Link
-            to="/employee/dashboard/active-posts"
-            style={{ marginBottom: "0", marginBottom: "20px" }}
-            className="nav-link"
-          >
-            Dashboard
-          </Link>
-          <Link
-            to="/employee/dashboard/active-posts/job/fresher"
-            className="nav-link"
-          >{`> CV Applicant's`}</Link>
-          {`> Nilesh`}
-        </p>
-      </div>
       {/*Applicant*/}
       {data !== undefined && (
         <>
@@ -151,17 +129,20 @@ function ViewApplicantFresher() {
                         <p>{each.institute}</p>
                       </div>
                       <p style={{ fontSize: "15px" }}>
-                        {each.startDate.toLocaleString("default", {
+                        {new Date(each.startDate).toLocaleString("default", {
                           month: "short",
                           year: "numeric",
                         })}
 
                         {each.endDate === ""
                           ? " - Present"
-                          : ` - ${each.endDate.toLocaleString("default", {
-                              month: "short",
-                              year: "numeric",
-                            })}`}
+                          : ` - ${new Date(each.endDate).toLocaleString(
+                              "default",
+                              {
+                                month: "short",
+                                year: "numeric",
+                              }
+                            )}`}
                       </p>
                     </div>
                     {each.file !== null && (
@@ -246,16 +227,19 @@ function ViewApplicantFresher() {
                       {(each.degree === "High Secondary (12th)" ||
                         each.degree === "Secondary (10th)") && (
                         <p>
-                          {each.yearOfCompletion.toLocaleString("default", {
-                            month: "short",
-                            year: "numeric",
-                          })}
+                          {new Date(each.yearOfCompletion).toLocaleString(
+                            "default",
+                            {
+                              month: "short",
+                              year: "numeric",
+                            }
+                          )}
                         </p>
                       )}
                     </div>
 
                     <p style={{ fontSize: "15px" }}>
-                      {each.startDate.toLocaleString("default", {
+                      {new Date(each.startDate).toLocaleString("default", {
                         month: "short",
                         year: "numeric",
                       })}
@@ -267,10 +251,13 @@ function ViewApplicantFresher() {
                         each.degree === "Doctorate")
                         ? " - Present"
                         : each.endDate !== ""
-                        ? ` - ${each.endDate.toLocaleString("default", {
-                            month: "short",
-                            year: "numeric",
-                          })}`
+                        ? ` - ${new Date(each.endDate).toLocaleString(
+                            "default",
+                            {
+                              month: "short",
+                              year: "numeric",
+                            }
+                          )}`
                         : ""}
                     </p>
                   </div>
@@ -282,10 +269,13 @@ function ViewApplicantFresher() {
                     {(each.degree === "High Secondary (12th)" ||
                       each.degree === "Secondary (10th)") && (
                       <p>
-                        {each.yearOfCompletion.toLocaleString("default", {
-                          month: "short",
-                          year: "numeric",
-                        })}
+                        {new Date(each.yearOfCompletion).toLocaleString(
+                          "default",
+                          {
+                            month: "short",
+                            year: "numeric",
+                          }
+                        )}
                       </p>
                     )}
                   </div>

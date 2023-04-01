@@ -18,7 +18,7 @@ const Experience = () => {
       <div style={{ maxWidth: "680px" }}>
         {experienceData.map((data) => (
           <div className="application">
-            <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4        container reveal  p-3 mb-5   rounded card-size">
+            <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-2 p-4        container reveal  p-3 mb-5   rounded card-size">
               <div
                 style={{
                   display: "flex",

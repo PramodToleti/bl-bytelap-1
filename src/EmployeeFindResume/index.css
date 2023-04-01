@@ -24,6 +24,9 @@
 
   .desktop-resume-count {
     display: block;
+    margin-left: 10px;
+    margin-top: 6px;
+    font-size: 14px;
   }
 }
 
@@ -95,4 +98,12 @@
     margin-top: 15px;
     display: block;
   }
+}
+
+.application {
+  margin: 5px;
+}
+
+.find-resume-container::-webkit-scrollbar {
+  width: 0.5em;
 }

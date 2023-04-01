@@ -152,11 +152,15 @@ const EmployeeFindResume = (props) => {
             </Form.Group>
           </div>
 
-          <div className="col-lg-12 col-md-12    rounded ">
+          <div className="col-lg-12 col-md-12">
             <div className="main-resume-container">
               <div
-                style={{ height: "35rem", width: "" }}
-                className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container pl-4       border-secondary rounded container reveal  p-3    rounded border border-secondary"
+                style={{
+                  height: "35rem",
+                  width: "",
+                  borderTopLeftRadius: "10px",
+                }}
+                className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container       border-secondary  container reveal  p-4     border border-secondary"
               >
                 <p
                   className={activeType === "Interested" ? "activeType" : ""}
@@ -354,8 +358,9 @@ const EmployeeFindResume = (props) => {
                   fontWeight: "400",
                   height: "35rem",
                   overflow: "scroll",
+                  borderTopRightRadius: "10px",
                 }}
-                className="col-lg-10 col-md-10 search-course-right   mb-0        border-secondary rounded container reveal  p-1    rounded border border-secondary"
+                className="col-lg-10 col-md-10 search-course-right   mb-0    find-resume-container    border-secondary  container reveal  p-1     border border-secondary"
               >
                 <p className="desktop-resume-count">2038 resumes</p>
                 <hr className="desktop-resume-count" />
