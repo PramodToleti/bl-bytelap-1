@@ -11,8 +11,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(225, 225, 225, 0.5);
-  backdrop-filter: blur(5px) saturate(120%);
+  background-color: #dad8d8;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   display: flex;
@@ -25,7 +24,7 @@
 }
 
 .accept-cookies p {
-  font-size: 16px;
+  font-size: 14px;
   color: #333;
   margin: 0;
   margin-right: 16px;
