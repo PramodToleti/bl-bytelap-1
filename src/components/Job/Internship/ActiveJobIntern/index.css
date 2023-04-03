@@ -1,9 +1,10 @@
 .custom-select {
   border-radius: 10px;
   font-weight: 500;
-  padding: 10px;
+  padding: 10px !important;
   -webkit-appearance: none;
   appearance: none;
+  margin-bottom: 15px;
 }
 
 @media screen and (min-width: 768px) {

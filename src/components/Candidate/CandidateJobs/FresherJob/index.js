@@ -204,11 +204,13 @@ const FresherJob = (props) => {
         <hr className="hr-line" style={{ marginTop: "0px" }} />
 
         <div className="perks-mobile">
-          {data.skills.length > 3 ? (
+          {data.skills.length > 5 ? (
             <>
               <h6 className="preview-perks">{data.skills[0]}</h6>
               <h6 className="preview-perks">{data.skills[1]}</h6>
-              <h6 className="preview-perks">{data.skills[2]} </h6> ...
+              <h6 className="preview-perks">{data.skills[2]} </h6>
+              <h6 className="preview-perks">{data.skills[3]} </h6>
+              <h6 className="preview-perks">{data.skills[4]} </h6> ...
             </>
           ) : (
             data.skills.map((each, i) => (

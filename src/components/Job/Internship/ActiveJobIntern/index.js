@@ -5,13 +5,18 @@ import Col from "react-bootstrap/Col"
 import { Link } from "react-router-dom"
 import { ImLocation } from "react-icons/im"
 import Modal from "react-bootstrap/Modal"
+import classNames from "classnames"
+import Popup from "reactjs-popup"
 
 import EmployeeHome from "../../../EmployeeHome"
+import StickyContainer from "../../../../EmployeeFindResume/StickyContainer"
+import Internship from "../../../../EmployeeFindResume/Internship"
 
 import "./index.css"
 import { useState } from "react"
 
 function ActiveJobIntern(props) {
+  const { sticky, stickyRef } = StickyContainer()
   const [activeType, setActiveType] = useState("")
   const [lgShow, setLgShow] = useState(false)
 
@@ -54,9 +59,16 @@ function ActiveJobIntern(props) {
       }}
     >
       <EmployeeHome />
-      <div style={{ padding: "10px" }}>
-        <div className="col-lg-12 col-md-12  p-3  rounded ">
-          <p style={{ display: "flex", gap: "10px" }}>
+      <div>
+        <div className="col-lg-12 col-md-12  rounded ">
+          <p
+            style={{
+              display: "flex",
+              gap: "10px",
+              marginLeft: "15px",
+              marginTop: "15px",
+            }}
+          >
             <Link
               to="/employee/dashboard/active-posts"
               style={{ marginBottom: "0", marginBottom: "20px" }}
@@ -66,16 +78,29 @@ function ActiveJobIntern(props) {
             </Link>
             {`> CV applicant's`}
           </p>
-          <div className="d-flex justify-content-around">
+          <div
+            className={classNames("d-flex justify-content-around", { sticky })}
+            ref={stickyRef}
+            style={{
+              minHeight: "100vh",
+              backgroundColor: "#ffffff",
+              width: "100%",
+            }}
+          >
             <div
-              style={{ height: "35rem", width: "", marginRight: "13px" }}
-              className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container p-2 pl-4       border-secondary rounded container reveal  p-3    rounded border border-secondary"
+              style={{
+                height: "47rem",
+                width: "",
+                backgroundColor: "rgba(128, 128, 128, 0.06)",
+                border: "1px solid #d8d8d8",
+                borderRight: "0px",
+              }}
+              className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container         container reveal  p-4   "
             >
-              <h5 className="mt-3">Applied 147</h5>
               <p
-                className={
-                  activeType === "Interested" ? "activeType mt-4" : "mt-4"
-                }
+                className={activeType === "Interested" ? "activeType" : ""}
+                style={{ cursor: "pointer" }}
+                onClick={(e) => handleActiveType(e)}
               >
                 Interested
               </p>
@@ -83,31 +108,68 @@ function ActiveJobIntern(props) {
                 className={
                   activeType === "Shortlisted" ? "activeType mt-4" : "mt-4"
                 }
+                style={{ cursor: "pointer" }}
+                onClick={(e) => handleActiveType(e)}
               >
                 Shortlisted
               </p>
-              <p className={activeType === "Hire" ? "activeType mt-4" : "mt-4"}>
-                Hire{" "}
+              <p
+                className={activeType === "Hire" ? "activeType mt-4" : "mt-4"}
+                style={{ cursor: "pointer" }}
+                onClick={(e) => handleActiveType(e)}
+              >
+                Hire
               </p>
               <p
                 className={
                   activeType === "Not Interested" ? "activeType mt-4" : "mt-4"
                 }
+                style={{ cursor: "pointer" }}
+                onClick={(e) => handleActiveType(e)}
               >
-                {" "}
                 Not Interested
               </p>
+              <hr />
+              <Popup
+                trigger={
+                  <p className="pl-2" style={{ cursor: "pointer" }}>
+                    {" "}
+                    Team{" "}
+                  </p>
+                }
+                modal
+                nested
+              >
+                <div className="container p-4">
+                  <div classname="container">
+                    <div className="d-flex justify-content-center">
+                      <p>Team Access</p>
+                    </div>
+                    <Form.Group className="mt-3 mb-4">
+                      <Form.Control type="text" placeholder="Enter Email ID" />
+                    </Form.Group>
+                    <div className="d-flex justify-content-end">
+                      <Button variant="primary">Invite</Button>
+                    </div>
+                  </div>
+                </div>
+              </Popup>
             </div>
 
             <div
               style={{
                 fontSize: "17px",
                 fontWeight: "400",
-                height: "35rem",
+                height: "47rem",
+                border: "1px solid #d8d8d8",
+                backgroundColor: "#ffff",
               }}
-              className="col-lg-10 col-md-10 search-course-right   mb-0  p-2       border-secondary rounded container reveal  p-3    rounded border border-secondary"
+              className="col-lg-10 col-md-10 search-course-right   mb-0  p-2    container reveal  p-3"
             >
-              <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-0 p-0       border-secondary rounded container reveal  p-3 mb-0    rounded border border-secondary">
+              <div
+                className="col-lg-12 col-md-12 search-course-right   mb-0 mt-0 p-0  rounded container reveal  p-3 mb-0    rounded "
+                style={{ border: "1px solid #d8d8d8" }}
+              >
                 <Form.Group
                   className="mb-0 mt-0 fs-10"
                   controlId="formBasicText"
@@ -191,263 +253,26 @@ function ActiveJobIntern(props) {
                 </Form.Select>
               </Form.Group>
 
-              <div style={{ maxHeight: "350px", overflow: "scroll" }}>
-                {internData.length !== 0 ? (
-                  internData.map((data, index) => (
-                    <div
-                      style={{ overflow: "scroll", maxHeight: "340px" }}
-                      className="application"
-                      key={index}
-                    >
-                      <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-4 p-4       border-secondary rounded container reveal  p-3  rounded border border-secondary">
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                          }}
-                        >
-                          <div>
-                            <h4>Nilesh</h4>
-                            <p>{data.jobTitle}</p>
-                          </div>
-                          <div>
-                            <p className="location">
-                              <ImLocation
-                                style={{ fontSize: "20px", color: "grey" }}
-                              />{" "}
-                              Indore, MP
-                            </p>
-                          </div>
-                        </div>
-                        <div className="mt-3">
-                          <div>
-                            <p>
-                              <span style={{ fontWeight: "300" }}>
-                                Cover Letter:
-                              </span>{" "}
-                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.coverLetter}
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="card-container-mobile">
-                          <div
-                            style={{ display: "flex", flexWrap: "wrap" }}
-                            className="mb-3"
-                          >
-                            <p
-                              style={{ marginRight: "10px", fontWeight: "300" }}
-                            >
-                              Skills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                            </p>
-                            {data.skills.map((each) => (
-                              <p className="preview-skills">{each}</p>
-                            ))}
-                          </div>
-
-                          <div style={{ display: "flex", flexWrap: "wrap" }}>
-                            <p
-                              style={{ marginRight: "10px", fontWeight: "300" }}
-                            >
-                              Portfolio &nbsp;&nbsp;&nbsp;:
-                            </p>
-
-                            {data.projectDetails.map((each) => (
-                              <a
-                                href=""
-                                style={{
-                                  color: "Blue",
-                                  textDecoration: "none",
-                                  fontWeight: "500",
-                                }}
-                              >
-                                {each.title} &nbsp;&nbsp;&nbsp;
-                              </a>
-                            ))}
-                          </div>
-
-                          <div style={{ display: "flex", flexWrap: "wrap" }}>
-                            <p
-                              style={{ marginRight: "10px", fontWeight: "300" }}
-                            >
-                              Availability :
-                            </p>
-                            <p>{data.availability}</p>
-                          </div>
-                        </div>
-                        <div className="card-container">
-                          <div
-                            className="skill-header"
-                            style={{ fontWeight: "300" }}
-                          >
-                            Skills
-                          </div>
-                          <div className="colon">:</div>
-                          <div className="react">
-                            {data.skills.map((each) => (
-                              <p className="preview-skills">
-                                {each} &nbsp;&nbsp;&nbsp;
-                              </p>
-                            ))}
-                          </div>
-                          <div
-                            className="portfolio"
-                            style={{ fontWeight: "300" }}
-                          >
-                            Portfolio
-                          </div>
-                          <div className="colon">:</div>
-                          <div className="ekart">
-                            {data.projectDetails.map((each) => (
-                              <a
-                                href=""
-                                style={{
-                                  color: "Blue",
-                                  textDecoration: "none",
-                                  fontWeight: "500",
-                                }}
-                              >
-                                {each.title} &nbsp;&nbsp;&nbsp;
-                              </a>
-                            ))}
-                          </div>
-                          <div
-                            className="available"
-                            style={{ fontWeight: "300" }}
-                          >
-                            Available
-                          </div>
-                          <div className="colon">:</div>
-                          <div className="yes">{data.availability}</div>
-                        </div>
-
-                        <div className="mt-3"></div>
-                        <div>
-                          <div className="interested-btn-container">
-                            <Button
-                              variant="success"
-                              size="sm"
-                              className=" mt-3"
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Interested
-                            </Button>{" "}
-                            <Button
-                              variant="primary"
-                              className=" mt-3"
-                              size="sm"
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Shortlisted
-                            </Button>
-                            <Button
-                              variant="primary"
-                              className=" mt-3"
-                              size="sm"
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Hire
-                            </Button>{" "}
-                            <Button
-                              variant="danger"
-                              className=" mt-3"
-                              size="sm"
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Not Interested
-                            </Button>{" "}
-                            <Button variant="light" className=" mt-3" size="sm">
-                              Call
-                            </Button>{" "}
-                            <Button
-                              variant="link"
-                              className=" mt-3"
-                              size="sm"
-                              onClick={() => setLgShow(true)}
-                            >
-                              View Resume
-                            </Button>
-                          </div>
-                        </div>
-                        <div>
-                          <div className="interested-btn-container-desktop">
-                            <div className="btns-container">
-                              <Button
-                                variant="success"
-                                size="sm"
-                                className="mt-3"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Interested
-                              </Button>{" "}
-                              <Button
-                                variant="primary"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Shortlisted
-                              </Button>{" "}
-                              <Button
-                                variant="primary"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Hire
-                              </Button>
-                              <Button
-                                variant="danger"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Not Interested
-                              </Button>{" "}
-                            </div>
-                            <div>
-                              <Button
-                                variant="light"
-                                className=" mt-3"
-                                size="sm"
-                              >
-                                Call
-                              </Button>{" "}
-                              <Button
-                                variant="link"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={() => setLgShow(true)}
-                              >
-                                View Resume
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                        <Link
-                          to="/employee/dashboard/active-posts/job/internship/view-applicant"
-                          className="nav-link"
-                          onClick={console.log(index)}
-                        >
-                          <div
-                            style={{ display: "flex", justifyContent: "end" }}
-                          >
-                            <p className="mt-4" style={{ color: "blue" }}>
-                              View Application
-                            </p>
-                          </div>
-                        </Link>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="no-applications">
-                    <h1>No Applications Found.</h1>
-                  </div>
-                )}
+              <div
+                style={{
+                  height: "43rem",
+                  overflow: "scroll",
+                  paddingBottom: "50px",
+                  maxHeight: "550px",
+                }}
+                className="find-resume-container"
+              >
+                {<Internship />}
               </div>
             </div>
           </div>
+          {sticky && (
+            <div
+              style={{
+                height: `${stickyRef.current?.clientHeight}px`,
+              }}
+            />
+          )}
         </div>
       </div>
 

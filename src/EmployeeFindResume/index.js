@@ -418,7 +418,6 @@ const EmployeeFindResume = (props) => {
               <div
                 style={{
                   height: `${stickyRef.current?.clientHeight}px`,
-                  width: "100%",
                 }}
               />
             )}
