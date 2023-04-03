@@ -29,3 +29,7 @@
   margin: 0;
   margin-right: 16px;
 }
+
+.nav-bar {
+  box-shadow: 0px 2px 20px #e7e7e7;
+}

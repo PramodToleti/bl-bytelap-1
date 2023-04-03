@@ -12,7 +12,12 @@ function EmployeeHome() {
   return (
     <>
       {["sm"].map((expand) => (
-        <Navbar key={expand} bg="" expand={expand} className="mb-3 pt-3 ">
+        <Navbar
+          key={expand}
+          bg=""
+          expand={expand}
+          className="mb-3 pt-1 pb-2 nav-bar"
+        >
           <Container>
             <p
               className="website-name"
@@ -30,12 +35,11 @@ function EmployeeHome() {
               to="/employee/find-resume"
               className="website-name find-resume"
               style={{
-                marginLeft: "20px",
                 cursor: "pointer",
                 fontSize: "18px",
                 textDecoration: "none",
                 color: "#333333",
-                marginTop: "8px",
+                marginTop: "16px",
               }}
             >
               Find Resume

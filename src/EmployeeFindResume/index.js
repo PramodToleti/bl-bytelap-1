@@ -13,10 +13,12 @@ import { RxHamburgerMenu } from "react-icons/rx"
 import Popup from "reactjs-popup"
 import { Document, Page } from "react-pdf"
 import Offcanvas from "react-bootstrap/Offcanvas"
+import classNames from "classnames"
 
 import JobSearchField from "../JobSearchField"
 import JobLocationField from "../JobLocationField"
 import EmployeeHome from "../components/EmployeeHome"
+import StickyContainer from "./StickyContainer"
 
 import "./index.css"
 import "reactjs-popup/dist/index.css"
@@ -28,6 +30,7 @@ import Fresh from "./AdvancedFilter/Fresh"
 import Exp from "./AdvancedFilter/Exp"
 
 const EmployeeFindResume = (props) => {
+  const { sticky, stickyRef } = StickyContainer()
   const [activeType, setActiveType] = useState("")
   const [lgShow, setLgShow] = useState(false)
   const [activeResume, setActiveResume] = useState("Internship")
@@ -36,12 +39,6 @@ const EmployeeFindResume = (props) => {
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-
-  const handleTeamClick = () => {
-    offcanvasRef.current.hide()
-  }
-
-  console.log(show)
 
   const handleActiveType = (e) => {
     setActiveType(e.target.textContent)
@@ -200,7 +197,10 @@ const EmployeeFindResume = (props) => {
           </div>
 
           <div className="col-lg-12 col-md-12">
-            <div className="main-resume-container">
+            <div
+              className={classNames("main-resume-container", { sticky })}
+              ref={stickyRef}
+            >
               <div
                 style={{
                   height: "47rem",
@@ -402,16 +402,25 @@ const EmployeeFindResume = (props) => {
                 <hr className="desktop-resume-count" />
                 <div
                   style={{
-                    height: "45rem",
+                    height: "43rem",
                     overflow: "scroll",
                     paddingBottom: "50px",
                   }}
+                  className="find-resume-container"
                 >
                   {renderActiveResume()}
                   {renderActiveResume()}
                 </div>
               </div>
             </div>
+            {sticky && (
+              <div
+                style={{
+                  height: `${stickyRef.current?.clientHeight}px`,
+                  width: "100%",
+                }}
+              />
+            )}
           </div>
         </div>
 

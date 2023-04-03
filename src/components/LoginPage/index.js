@@ -25,14 +25,11 @@ function LoginPage() {
   const [accepted, setAccepted] = useState(false)
   const [activeSearch, setActiveSearch] = useState("")
   const [activeLocation, setActiveLocation] = useState("")
-  const [activeShifts, setActiveShifts] = useState([])
-  const [activeSchedule, setActiveSchedule] = useState([])
-  const [checkedJobTypes, setCheckedJobTypes] = useState(["Internship"])
   const [isLoading, setIsLoading] = useState(false)
 
   const [selectedOption, setSelectedOption] = useState("Internship")
   const [duration, setDuration] = useState([])
-  const [timePeriod, setTimePeriod] = useState(["Full Time"])
+  const [timePeriod, setTimePeriod] = useState([])
   const [workPlace, setWorkPlace] = useState([])
   const [checkedShifts, setCheckedShifts] = useState([])
   const [yearsOfExperience, setYearsOfExperience] = useState(null)
@@ -40,7 +37,7 @@ function LoginPage() {
   const handleDropdownSelect = (e) => {
     setSelectedOption(e.target.textContent)
     setDuration([])
-    setTimePeriod(["Full Time"])
+    setTimePeriod([])
     setWorkPlace([])
     setCheckedShifts([])
     setYearsOfExperience(null)
@@ -58,10 +55,6 @@ function LoginPage() {
   const handleLocation = (e) => {
     setActiveLocation(e)
   }
-
-  useEffect(() => {
-    setActiveShifts(checkedShifts)
-  }, [checkedShifts])
 
   isLoading &&
     setTimeout(() => {
@@ -94,7 +87,7 @@ function LoginPage() {
             {/* Duration */}
             <Dropdown>
               <Dropdown.Toggle size="sm" variant="outline-secondary">
-                {duration.length !== 0 ? duration.join(", ") : "Duration"}
+                Duration
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
@@ -127,7 +120,7 @@ function LoginPage() {
             {/* Time Period */}
             <Dropdown>
               <Dropdown.Toggle size="sm" variant="outline-secondary">
-                {timePeriod.length !== 0 ? timePeriod.join(", ") : "Full Time"}
+                Job Type
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">
@@ -174,7 +167,7 @@ function LoginPage() {
                 variant="outline-secondary"
                 id="dropdown-basic"
               >
-                {workPlace.length !== 0 ? workPlace.join(", ") : "Work Place"}
+                Work Place
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
@@ -239,7 +232,7 @@ function LoginPage() {
             {/* Time Period */}
             <Dropdown>
               <Dropdown.Toggle size="sm" variant="outline-secondary">
-                {timePeriod.length !== 0 ? timePeriod.join(", ") : "Full Time"}
+                Job Type
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">
@@ -286,17 +279,15 @@ function LoginPage() {
                 variant="outline-secondary"
                 id="dropdown-basic"
               >
-                {checkedShifts.length !== 0
-                  ? checkedShifts.join(", ")
-                  : "Shifts"}
+                Shift
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">
                   <Form.Check
                     type="checkbox"
-                    label="Day Shift"
-                    name="Day Shift"
+                    label="Day"
+                    name="Day"
                     onChange={(e) => {
                       if (e.target.checked) {
                         setCheckedShifts([...checkedShifts, e.target.name])
@@ -313,8 +304,8 @@ function LoginPage() {
                 <Dropdown.Item href="#/action-2">
                   <Form.Check
                     type="checkbox"
-                    label="Night Shift"
-                    name="Night Shift"
+                    label="Night"
+                    name="Night"
                     onChange={(e) => {
                       if (e.target.checked) {
                         setCheckedShifts([...checkedShifts, e.target.name])
@@ -356,7 +347,7 @@ function LoginPage() {
                 variant="outline-secondary"
                 id="dropdown-basic"
               >
-                {workPlace.length !== 0 ? workPlace.join(", ") : "Work Place"}
+                Work Place
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
@@ -421,7 +412,7 @@ function LoginPage() {
             {/* Time Period */}
             <Dropdown>
               <Dropdown.Toggle size="sm" variant="outline-secondary">
-                {timePeriod.length !== 0 ? timePeriod.join(", ") : "Full Time"}
+                Job Type
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">
@@ -468,9 +459,7 @@ function LoginPage() {
                 variant="outline-secondary"
                 id="dropdown-basic"
               >
-                {checkedShifts.length !== 0
-                  ? checkedShifts.join(", ")
-                  : "Shifts"}
+                Shift
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
@@ -538,7 +527,7 @@ function LoginPage() {
                 variant="outline-secondary"
                 id="dropdown-basic"
               >
-                {workPlace.length !== 0 ? workPlace.join(", ") : "Work Place"}
+                Work Place
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
@@ -598,7 +587,7 @@ function LoginPage() {
             {/* Experience */}
             <Dropdown>
               <Dropdown.Toggle size="sm" variant="outline-secondary">
-                {yearsOfExperience !== null ? yearsOfExperience : "Year of Exp"}
+                Year of Exp
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 {Array(8)
@@ -628,7 +617,7 @@ function LoginPage() {
   return (
     <>
       {["sm"].map((expand) => (
-        <Navbar key={expand} bg="" expand={expand} className="mb-3 mt-2">
+        <Navbar key={expand} bg="" expand={expand} className="mb-3 nav-bar">
           <Container>
             <p className="website-name">Website</p>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -795,9 +784,12 @@ function LoginPage() {
         ) : (
           <CandidateJobs
             searchDetails={searchDetails}
-            activeSchedule={activeSchedule}
-            checkedJobTypes={checkedJobTypes}
-            activeShifts={activeShifts}
+            selectedOption={selectedOption}
+            duration={duration}
+            timePeriod={timePeriod}
+            workPlace={workPlace}
+            checkedShifts={checkedShifts}
+            yearsOfExperience={yearsOfExperience}
           />
         )}
       </div>

@@ -14,7 +14,7 @@ const HomeHeader = () => {
   }
 
   return ["sm"].map((expand) => (
-    <Navbar key={expand} bg="" expand={expand} className="mb-3">
+    <Navbar key={expand} bg="" expand={expand} className="mb-3  nav-bar">
       <Container>
         <p
           className="website-name"

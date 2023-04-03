@@ -6,12 +6,17 @@ import "./index.css"
 import "reactjs-popup/dist/index.css"
 
 const CandidateJobs = (props) => {
-  const { searchDetails, checkedJobTypes, activeShifts, activeSchedule } = props
+  const {
+    searchDetails,
+    selectedOption,
+    duration,
+    timePeriod,
+    workPlace,
+    checkedShifts,
+    yearsOfExperience,
+  } = props
 
   const { search = "", location = "" } = searchDetails || {}
-
-  const shiftDetails = activeShifts || ""
-  const scheduleDetails = activeSchedule || ""
 
   const activeSearchStr = search || ""
   const activeLocationStr = location || ""
@@ -67,42 +72,30 @@ const CandidateJobs = (props) => {
 
   const renderJobs = () => {
     switch (true) {
-      case checkedJobTypes.includes("Internship") &&
-        !(
-          checkedJobTypes.includes("Fresher") ||
-          checkedJobTypes.includes("Experience")
-        ):
+      case selectedOption === "Internship" &&
+        !(selectedOption === "Fresher" || selectedOption === "Experience"):
         return <InternshipJob jobs={filteredJobsIntern} />
-      case checkedJobTypes.includes("Fresher") &&
-        !(
-          checkedJobTypes.includes("Experience") ||
-          checkedJobTypes.includes("Internship")
-        ):
+      case selectedOption === "Fresher" &&
+        !(selectedOption === "Experience" || selectedOption === "Internship"):
         return <FresherJob jobs={filteredJobsFresher} />
-      case checkedJobTypes.includes("Experience") &&
-        !(
-          checkedJobTypes.includes("Fresher") ||
-          checkedJobTypes.includes("Internship")
-        ):
+      case selectedOption === "Experience" &&
+        !(selectedOption === "Fresher" || selectedOption === "Internship"):
         return <ExperienceJob jobs={filteredJobsExperience} />
-      case checkedJobTypes.includes("Internship") &&
-        checkedJobTypes.includes("Fresher"):
+      case selectedOption === "Internship" && selectedOption === "Fresher":
         return (
           <>
             <InternshipJob jobs={filteredJobsIntern} />
             <FresherJob jobs={filteredJobsFresher} />
           </>
         )
-      case checkedJobTypes.includes("Internship") &&
-        checkedJobTypes.includes("Experience"):
+      case selectedOption === "Internship" && selectedOption === "Experience":
         return (
           <>
             <InternshipJob jobs={filteredJobsIntern} />
             <ExperienceJob jobs={filteredJobsExperience} />
           </>
         )
-      case checkedJobTypes.includes("Fresher") &&
-        checkedJobTypes.includes("Experience"):
+      case selectedOption === "Fresher" && selectedOption === "Experience":
         return (
           <>
             <FresherJob jobs={filteredJobsFresher} />
