@@ -16,6 +16,7 @@ import AddRemove from "../../../AddRemove"
 import LanguageDropdown from "../../../LanguageDropdown"
 import FresherPostPreview from "../../../EmployeePostPreview/FresherPostPreview"
 import LocationDropdown from "../../../LocationCheckbox"
+import Draft from "../../../Draft"
 
 import "./index.css"
 import "react-datepicker/dist/react-datepicker.css"
@@ -140,6 +141,10 @@ function Fresher() {
 
   const handleEducation = (e) => {
     setEducation(e)
+  }
+
+  const handleDescription = (e) => {
+    setDescription(e)
   }
 
   useEffect(() => {
@@ -354,11 +359,7 @@ function Fresher() {
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Job description</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows="5"
-              onChange={(e) => setDescription(e.target.value)}
-            />
+            <Draft handleDescription={handleDescription} />
           </Form.Group>
 
           <Row className="mb-3">

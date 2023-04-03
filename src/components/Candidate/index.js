@@ -10,6 +10,7 @@ import { useState } from "react"
 import CandidateJobs from "./CandidateJobs"
 import JobSearchField from "../../JobSearchField"
 import JobLocationField from "../../JobLocationField"
+import { Oval } from "react-loader-spinner"
 
 function Home() {
   const [activeSearch, setActiveSearch] = useState("")
@@ -673,7 +674,21 @@ function Home() {
             </Stack>
           </Form.Group>
 
-          <hr className="mb-3 mt-4" />
+          <div
+            className="container"
+            style={{ paddingBottom: "20px", marginBottom: "20px" }}
+          >
+            <hr
+              className="mb-3 mt-3"
+              style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                width: "100%",
+                margin: 0,
+              }}
+            />
+          </div>
         </div>
 
         {isLoading ? (

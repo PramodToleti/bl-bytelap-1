@@ -174,6 +174,21 @@ const Experience = () => {
                   )
                 )}
 
+                <div style={{ display: "flex", gap: "10px" }} className="mt-3">
+                  <div className="text-muted" style={{ width: "250px" }}>
+                    <p>
+                      Preferred Location &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;:
+                    </p>
+                  </div>
+                  <div className="text-muted">
+                    {data.preferredLocation.map((each) => (
+                      <span className="text-muted" style={{ fontSize: "16px" }}>
+                        {each.value}, &nbsp;
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="mt-3 text-muted" style={{ display: "flex" }}>
                   <p>Notice Period : &nbsp; {data.availability}</p>
                 </div>
@@ -265,12 +280,24 @@ const Experience = () => {
                   )
                 )}
 
-                <div className="previous-e text-muted">
+                <div className="preferred-e text-muted">
+                  <p>Preferred Location </p>
+                </div>
+                <div className="colon">:</div>
+                <div className="location-e text-muted">
+                  {data.preferredLocation.map((each) => (
+                    <span className="text-muted" style={{ fontSize: "16px" }}>
+                      {each.value}, &nbsp;
+                    </span>
+                  ))}
+                </div>
+
+                <div className="notice-e text-muted">
                   <p>Notice Period</p>
                 </div>
                 <div>:</div>
-                <div className="previous-company text-muted">
-                  {data.availability}
+                <div className="notice-company text-muted">
+                  <p className="text-muted">{data.availability}</p>
                 </div>
               </div>
 

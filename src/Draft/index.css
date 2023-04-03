@@ -1,0 +1,14 @@
+.demo-editor {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  background-color: #fafbfc;
+  min-height: 250px;
+  /* max-height: 300px;
+  overflow-y: scroll; */
+  padding: 0.5rem;
+  overflow-x: hidden;
+}
+
+.public-DraftStyleDefault-block {
+  margin: 0;
+}

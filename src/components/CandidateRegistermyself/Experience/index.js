@@ -69,6 +69,7 @@ function Experience(props) {
     experience,
     ctc,
     checkbox,
+    preferredLocation,
     time: moment(),
   }
 

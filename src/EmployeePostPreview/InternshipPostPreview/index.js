@@ -92,7 +92,7 @@ function InternshipPostPreview(props) {
                           className="icon-styles"
                           style={{ marginTop: "9px" }}
                         />
-                        <p className="home-text details-heading-preview">
+                        <p className="home-text details-heading">
                           Work from Home
                         </p>
                       </>
@@ -256,13 +256,14 @@ function InternshipPostPreview(props) {
             {data.responsibilities !== "" && (
               <>
                 <h4 className="mb-3">Job Description</h4>
-                <p style={{ fontSize: "16px" }}>
+                <p style={{ fontSize: "17px" }}>
                   Selected intern's day-to-day responsibilities include:
                 </p>
                 {data.responsibilities !== "" && (
-                  <p style={{ overflowWrap: "break-word" }}>
-                    {data.responsibilities}
-                  </p>
+                  <div
+                    className="parent-div"
+                    dangerouslySetInnerHTML={{ __html: data.responsibilities }}
+                  />
                 )}
               </>
             )}

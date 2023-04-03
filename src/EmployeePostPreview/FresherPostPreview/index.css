@@ -16,6 +16,7 @@
 .job-details-container-fresher-2 {
   display: grid;
   grid-template-rows: repeat(3, auto);
+  grid-template-columns: repeat(3, minmax(0, 130px));
   grid-row-gap: 10px;
   margin-bottom: 10px;
 }
@@ -83,4 +84,9 @@
   .incentives-text {
     font-size: 12px !important;
   }
+}
+
+.parent-div * {
+  font-family: "Roboto" !important;
+  font-size: 16px !important;
 }

@@ -17,6 +17,7 @@ import AddRemove from "../../../AddRemove"
 import CheckboxDropdown from "../../../CheckboxDropdowm"
 import ChooseCity from "../../../ChooseCity"
 import InternshipPostPreview from "../../../EmployeePostPreview/InternshipPostPreview"
+import Draft from "../../../Draft"
 
 import "react-datepicker/dist/react-datepicker.css"
 import "./index.css"
@@ -95,6 +96,10 @@ function Internship() {
 
   const handleEducation = (e) => {
     setEducation(e)
+  }
+
+  const handleDescription = (e) => {
+    setResponsibilities(e)
   }
 
   const handleChangeDate = (e) => {
@@ -317,11 +322,7 @@ function Internship() {
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>Intern's responsibilities</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows="5"
-              onChange={(e) => setResponsibilities(e.target.value)}
-            />
+            <Draft handleDescription={handleDescription} />
           </Form.Group>
 
           <Row className="mb-3">

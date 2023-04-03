@@ -249,11 +249,10 @@ const FresherJobDetails = (props) => {
               <>
                 <h4 className="mb-3">Job Description</h4>
 
-                {data.jobDescription !== "" && (
-                  <p style={{ overflowWrap: "break-word" }}>
-                    {data.jobDescription}
-                  </p>
-                )}
+                <div
+                  className="parent-div"
+                  dangerouslySetInnerHTML={{ __html: data.jobDescription }}
+                />
                 <hr />
               </>
             )}

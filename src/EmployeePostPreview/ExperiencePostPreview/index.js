@@ -153,7 +153,7 @@ function ExperiencePostPreview(props) {
 
               {data.salaryType !== "" && (
                 <div className="job-card-container-fresher">
-                  <p className="details-heading-preview">
+                  <p className="details-heading">
                     <BiRupee className="icon-styles" />
                     {data.salaryType === "Lac"
                       ? `${data.salaryRange.from}L - ${data.salaryRange.to}L PA`
@@ -260,13 +260,11 @@ function ExperiencePostPreview(props) {
             {data.jobDescription !== "" && (
               <>
                 <h4 className="mb-3">Job Description</h4>
-                <div>
-                  {data.jobDescription !== "" && (
-                    <p style={{ overflowWrap: "break-word" }}>
-                      {data.jobDescription}
-                    </p>
-                  )}
-                </div>
+
+                <div
+                  className="parent-div"
+                  dangerouslySetInnerHTML={{ __html: data.jobDescription }}
+                />
                 <hr />
               </>
             )}

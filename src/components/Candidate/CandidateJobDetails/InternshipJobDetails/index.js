@@ -327,9 +327,10 @@ function InternshipJobDetails(props) {
                   Selected intern's day-to-day responsibilities include:
                 </p>
                 {data.responsibilities !== "" && (
-                  <p style={{ overflowWrap: "break-word" }}>
-                    {data.responsibilities}
-                  </p>
+                  <div
+                    className="parent-div"
+                    dangerouslySetInnerHTML={{ __html: data.responsibilities }}
+                  />
                 )}
               </>
             )}

@@ -763,7 +763,21 @@ function LoginPage() {
             </Stack>
           </Form.Group>
 
-          <hr className="mb-3 mt-4" />
+          <div
+            className="container"
+            style={{ paddingBottom: "20px", marginBottom: "20px" }}
+          >
+            <hr
+              className="mb-3 mt-3"
+              style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                width: "100%",
+                margin: 0,
+              }}
+            />
+          </div>
         </div>
 
         {isLoading ? (

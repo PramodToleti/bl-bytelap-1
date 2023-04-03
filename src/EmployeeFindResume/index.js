@@ -205,9 +205,11 @@ const EmployeeFindResume = (props) => {
                 style={{
                   height: "47rem",
                   width: "",
-                  borderTopLeftRadius: "10px",
+                  backgroundColor: "rgba(128, 128, 128, 0.06)",
+                  border: "1px solid #d8d8d8",
+                  borderRight: "0px",
                 }}
-                className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container       border-secondary  container reveal  p-4     border border-secondary"
+                className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container         container reveal  p-4   "
               >
                 <p
                   className={activeType === "Interested" ? "activeType" : ""}
@@ -394,9 +396,9 @@ const EmployeeFindResume = (props) => {
                   fontSize: "17px",
                   fontWeight: "400",
                   height: "47rem",
-                  borderTopRightRadius: "10px",
+                  border: "1px solid #d8d8d8",
                 }}
-                className="col-lg-10 col-md-10 search-course-right   mb-0    find-resume-container    border-secondary  container reveal  p-1     border border-secondary"
+                className="col-lg-10 col-md-10 search-course-right   mb-0     container reveal  p-1    "
               >
                 <p className="desktop-resume-count">2038 resumes</p>
                 <hr className="desktop-resume-count" />
@@ -408,7 +410,6 @@ const EmployeeFindResume = (props) => {
                   }}
                   className="find-resume-container"
                 >
-                  {renderActiveResume()}
                   {renderActiveResume()}
                 </div>
               </div>

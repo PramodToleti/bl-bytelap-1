@@ -261,13 +261,11 @@ const ExperienceJobDetails = (props) => {
             {data.jobDescription !== "" && (
               <>
                 <h4 className="mb-3">Job Description</h4>
-                <div>
-                  {data.jobDescription !== "" && (
-                    <p style={{ overflowWrap: "break-word" }}>
-                      {data.jobDescription}
-                    </p>
-                  )}
-                </div>
+
+                <div
+                  className="parent-div"
+                  dangerouslySetInnerHTML={{ __html: data.jobDescription }}
+                />
                 <hr />
               </>
             )}

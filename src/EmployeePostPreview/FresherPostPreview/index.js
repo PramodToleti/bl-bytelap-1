@@ -73,7 +73,7 @@ function FresherPostPreview(props) {
                     className={` ${
                       data.jobType !== "Office"
                         ? "home-heading"
-                        : "details-heading"
+                        : "details-heading-preview"
                     }`}
                     style={{
                       display: "flex",
@@ -97,38 +97,38 @@ function FresherPostPreview(props) {
                           style={{ fontSize: "19px", color: "grey" }}
                           className="preview-icons"
                         />
-                        {data.city.length > 3 && !fullText ? (
-                          <div
-                            style={{
-                              wordBreak: "break-word",
-                              maxWidth: "288px",
-                            }}
-                          >
-                            {`${data.city[0].label}, ${data.city[1].label}, ${data.city[2].label} ...`}
-                            {!fullText && (
-                              <span
-                                style={{
-                                  color: "blue",
-                                  fontSize: "12px",
-                                  margin: "0px",
-                                  cursor: "pointer",
-                                  marginTop: "4px",
-                                  marginLeft: "4px",
-                                }}
-                                onClick={() => setFullText(true)}
-                              >
-                                View More{" "}
+                        <div
+                          style={{ wordBreak: "break-word" }}
+                          className="details-heading"
+                        >
+                          {data.city.length > 3 && !fullText ? (
+                            <div>
+                              {`${data.city[0].label}, ${data.city[1].label}, ${data.city[2].label} ...`}
+                              {!fullText && (
+                                <span
+                                  style={{
+                                    color: "blue",
+                                    fontSize: "12px",
+                                    margin: "0px",
+                                    cursor: "pointer",
+                                    marginTop: "4px",
+                                    marginLeft: "4px",
+                                  }}
+                                  onClick={() => setFullText(true)}
+                                >
+                                  View More{" "}
+                                </span>
+                              )}
+                            </div>
+                          ) : (
+                            data.city.map((each, index) => (
+                              <span key={index}>
+                                {each.label}
+                                {index !== data.city.length - 1 ? ", " : ""}
                               </span>
-                            )}
-                          </div>
-                        ) : (
-                          data.city.map((each, index) => (
-                            <span key={index}>
-                              {each.label}
-                              {index !== data.city.length - 1 ? ", " : ""}
-                            </span>
-                          ))
-                        )}
+                            ))
+                          )}
+                        </div>
                       </>
                     ) : (
                       data.jobType
@@ -219,11 +219,10 @@ function FresherPostPreview(props) {
               <>
                 <h4 className="mb-3">Job Description</h4>
 
-                {data.jobDescription !== "" && (
-                  <p style={{ overflowWrap: "break-word" }}>
-                    {data.jobDescription}
-                  </p>
-                )}
+                <div
+                  className="parent-div"
+                  dangerouslySetInnerHTML={{ __html: data.jobDescription }}
+                />
                 <hr />
               </>
             )}

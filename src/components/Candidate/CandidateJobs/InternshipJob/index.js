@@ -19,6 +19,30 @@ const InternshipJob = (props) => {
     return null
   }
 
+  if (internJobs.length === 0) {
+    return (
+      <div style={{ minHeight: "60vh", display: "grid", placeItems: "center" }}>
+        <div
+          className="text-dark mb-3   div-card container reveal  pt-3 "
+          style={{
+            maxWidth: "620px",
+            backgroundColor: "white",
+            border: "1px solid #D8D8D8",
+            borderRadius: "15px",
+            margin: "0px",
+            boxShadow: "3px 3px 3px 3px whitesmoke",
+            display: "grid",
+            placeItems: "center",
+          }}
+        >
+          <div className="header">
+            <h4 className="mb-3">No Jobs Found</h4>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return internJobs.map((data, index) => (
     <div className="d-flex flex-row container justify-content-start">
       <div
@@ -200,11 +224,13 @@ const InternshipJob = (props) => {
         </div>
 
         <div className="perks-desktop ">
-          {data.perks.length > 3 ? (
+          {data.perks.length >= 4 ? (
             <>
               <h6 className="preview-perks">{data.perks[0].value}</h6>
               <h6 className="preview-perks">{data.perks[1].value}</h6>
-              <h6 className="preview-perks">{data.perks[2].value} </h6> ...
+              <h6 className="preview-perks">{data.perks[2].value} </h6>
+              <h6 className="preview-perks">{data.perks[3].value} </h6>
+              ...
             </>
           ) : (
             data.perks.map((each, i) => (

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import Modal from "react-bootstrap/Modal"
 import PostTime from "../../PostTime"
+import { BsBagFill } from "react-icons/bs"
+import { BiRupee } from "react-icons/bi"
 
 const Fresher = () => {
   const fresherData = JSON.parse(localStorage.getItem("registerData")).fresher
@@ -15,7 +17,7 @@ const Fresher = () => {
       <div style={{ maxWidth: "680px" }}>
         {fresherData.map((data) => (
           <div className="application">
-            <div className="col-lg-12 col-md-12 search-course-right  card-size mb-0 mt-2 p-4 container reveal  p-3 ">
+            <div className="col-lg-12 col-md-12 search-course-right  card-size mb-0 mt-2  container reveal  p-2 find-resume-card">
               <div
                 style={{
                   display: "flex",
@@ -26,32 +28,104 @@ const Fresher = () => {
                   <h4>Nilesh</h4>
                   <p>{data.jobTitle}</p>
                 </div>
+              </div>
+
+              <div
+                className="mt-3 mb-2"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  maxWidth: "400px",
+                }}
+              >
+                <div>
+                  <BsBagFill
+                    style={{
+                      color: "grey",
+                      fontSize: "20px",
+                      marginBottom: "5px",
+                      marginRight: "5px",
+                    }}
+                  />
+                  <span className="location">Fresher</span>
+                </div>
+                <div>
+                  <BiRupee
+                    style={{
+                      color: "grey",
+                      fontSize: "20px",
+                      marginBottom: "5px",
+                    }}
+                  />
+                  {data.salaryType !== "Lac" ? (
+                    <span className="location"> {data.salaryType} </span>
+                  ) : (
+                    <span className="location">
+                      {" "}
+                      {data.salaryRange.from} - {data.salaryRange.to} LPA
+                    </span>
+                  )}
+                </div>
                 <div>
                   <p className="location">
-                    <ImLocation style={{ fontSize: "20px", color: "grey" }} />{" "}
+                    <ImLocation
+                      style={{
+                        fontSize: "20px",
+                        color: "grey",
+                        marginBottom: "5px",
+                      }}
+                    />{" "}
                     Indore, MP
                   </p>
                 </div>
               </div>
 
-              <div className="mt-3">
+              <div className="mt-3 mb-2">
                 <div>
                   <p className="text-muted">
                     <span>Cover Letter </span> : &nbsp;&nbsp;&nbsp;{" "}
-                    <span className="text-muted">{data.coverLetter}</span>
+                    <span className="text-muted ">{data.coverLetter}</span>
                   </p>
                 </div>
               </div>
 
-              <div className="card-container-mobile">
+              <div className="card-container-mobile mt-3">
+                <div
+                  style={{ display: "flex", flexWrap: "wrap" }}
+                  className="text-muted perks-mobile mb-2"
+                >
+                  <p style={{ marginRight: "10px" }}>
+                    Skills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                  </p>
+                  {data.skills.length > 3 ? (
+                    <>
+                      <h6 className="preview-perks">{data.skills[0]}</h6>
+                      <h6 className="preview-perks">{data.skills[1]}</h6>
+                      <h6 className="preview-perks">{data.skills[2]} </h6> ...
+                    </>
+                  ) : (
+                    data.skills.map((each, i) => (
+                      <h6 className="preview-perks" key={i}>
+                        {each}
+                      </h6>
+                    ))
+                  )}
+                </div>
+
                 <div
                   style={{
                     display: "flex",
                     flexWrap: "wrap",
+                    gap: "10px",
                     alignItems: "center",
                   }}
                 >
-                  <p style={{ marginRight: "10px" }} className="text-muted">
+                  <p
+                    style={{
+                      marginRight: "10px",
+                    }}
+                    className="text-muted"
+                  >
                     Training/Certified&nbsp;&nbsp;:
                   </p>
                   <div className="mt-1">
@@ -101,35 +175,21 @@ const Fresher = () => {
                 </div>
 
                 <div
-                  style={{ display: "flex", flexWrap: "wrap" }}
-                  className="text-muted mb-3"
+                  style={{ display: "flex", gap: "10px" }}
+                  className="mt-3 mb-3"
                 >
-                  <p className="text-muted">Preferred Location&nbsp;:&nbsp; </p>
-                  {data.preferredLocation.map((each) => (
-                    <p className="text-muted">{each.value}, &nbsp;</p>
-                  ))}
-                </div>
-
-                <div
-                  style={{ display: "flex", flexWrap: "wrap" }}
-                  className="text-muted perks-mobile mb-3"
-                >
-                  <p style={{ marginRight: "10px" }}>
-                    Skills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                  </p>
-                  {data.skills.length > 3 ? (
-                    <>
-                      <h6 className="preview-perks">{data.skills[0]}</h6>
-                      <h6 className="preview-perks">{data.skills[1]}</h6>
-                      <h6 className="preview-perks">{data.skills[2]} </h6> ...
-                    </>
-                  ) : (
-                    data.skills.map((each, i) => (
-                      <h6 className="preview-perks" key={i}>
-                        {each}
-                      </h6>
-                    ))
-                  )}
+                  <div className="text-muted" style={{ width: "250px" }}>
+                    <p>
+                      Preferred Location &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;:
+                    </p>
+                  </div>
+                  <div className="text-muted">
+                    {data.preferredLocation.map((each) => (
+                      <span className="text-muted" style={{ fontSize: "16px" }}>
+                        {each.value}, &nbsp;
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 <div
@@ -143,7 +203,7 @@ const Fresher = () => {
               </div>
 
               <div className="card-container">
-                <p className="mt-1 text-muted">Training/Certified</p>
+                <p className="mt-1 text-muted training-f">Training/Certified</p>
                 <div className="mt-1">:</div>
                 <div className="course-f">
                   <div className="mt-1">
@@ -204,17 +264,21 @@ const Fresher = () => {
                 <div className="colon"></div>
                 <div className="location-f text-muted">
                   {data.preferredLocation.map((each) => (
-                    <span className="text-muted">{each.value}, &nbsp;</span>
+                    <span className="text-muted" style={{ fontSize: "16px" }}>
+                      {each.value}, &nbsp;
+                    </span>
                   ))}
                 </div>
                 <div className="available-f text-muted">
                   <p>Available</p>
                 </div>
                 <div className="colon-last">:</div>
-                <div className="yes-f text-muted">{data.availability}</div>
+                <div className="yes-f text-muted">
+                  <p className="text-muted">{data.availability}</p>
+                </div>
               </div>
 
-              <div className="mt-3"></div>
+              <div></div>
               <div>
                 <div className="interested-btn-container">
                   <Button

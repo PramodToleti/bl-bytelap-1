@@ -18,6 +18,30 @@ const ExperienceJob = (props) => {
     return null
   }
 
+  if (experienceJobs.length === 0) {
+    return (
+      <div style={{ minHeight: "60vh", display: "grid", placeItems: "center" }}>
+        <div
+          className="text-dark mb-3   div-card container reveal  pt-3 "
+          style={{
+            maxWidth: "620px",
+            backgroundColor: "white",
+            border: "1px solid #D8D8D8",
+            borderRadius: "15px",
+            margin: "0px",
+            boxShadow: "3px 3px 3px 3px whitesmoke",
+            display: "grid",
+            placeItems: "center",
+          }}
+        >
+          <div className="header">
+            <h4 className="mb-3">No Jobs Found</h4>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return experienceJobs.map((data, index) => (
     <div className="d-flex flex-row container justify-content-start">
       <div
@@ -168,32 +192,37 @@ const ExperienceJob = (props) => {
         <hr className="hr-line" style={{ marginTop: "0px" }} />
 
         <div className="perks-mobile">
-          {data.perks.length > 3 ? (
+          {data.skills.length > 3 ? (
             <>
-              <h6 className="preview-perks">{data.perks[0].value}</h6>
-              <h6 className="preview-perks">{data.perks[1].value}</h6>
-              <h6 className="preview-perks">{data.perks[2].value} </h6> ...
+              <h6 className="preview-perks">{data.skills[0]}</h6>
+              <h6 className="preview-perks">{data.skills[1]}</h6>
+              <h6 className="preview-perks">{data.skills[2]} </h6> ...
             </>
           ) : (
-            data.perks.map((each, i) => (
+            data.skills.map((each, i) => (
               <h6 className="preview-perks" key={i}>
-                {each.value}
+                {each}
               </h6>
             ))
           )}
         </div>
 
         <div className="perks-desktop ">
-          {data.perks.length > 3 ? (
+          {data.skills.length > 8 ? (
             <>
-              <h6 className="preview-perks">{data.perks[0].value}</h6>
-              <h6 className="preview-perks">{data.perks[1].value}</h6>
-              <h6 className="preview-perks">{data.perks[2].value} </h6> ...
+              <h6 className="preview-perks">{data.skills[0]}</h6>
+              <h6 className="preview-perks">{data.skills[1]}</h6>
+              <h6 className="preview-perks">{data.skills[2]} </h6>
+              <h6 className="preview-perks">{data.skills[3]} </h6>
+              <h6 className="preview-perks">{data.skills[4]} </h6>
+              <h6 className="preview-perks">{data.skills[5]} </h6>
+              <h6 className="preview-perks">{data.skills[6]} </h6>
+              <h6 className="preview-perks">{data.skills[7]} </h6> ...
             </>
           ) : (
-            data.perks.map((each, i) => (
+            data.skills.map((each, i) => (
               <h6 className="preview-perks" key={i}>
-                {each.value}
+                {each}
               </h6>
             ))
           )}

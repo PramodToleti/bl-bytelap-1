@@ -128,3 +128,9 @@
   top: 6px;
   bottom: 6px;
 }
+
+@media screen and (min-width: 768px) {
+  .find-resume-card {
+    padding: 30px !important;
+  }
+}

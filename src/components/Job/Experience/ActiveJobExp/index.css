@@ -99,22 +99,22 @@
   }
 
   .skill-header-e {
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 1;
   }
 
   .react-e {
-    grid-row: 1;
+    grid-row: 2;
     grid-column: 3;
   }
 
   .letter-header-e {
-    grid-row: 2;
+    grid-row: 1;
     grid-column: 1;
   }
 
   .letter {
-    grid-row: 2;
+    grid-row: 1;
     grid-column: 3;
   }
 
@@ -134,6 +134,16 @@
   }
 
   .previous-company {
+    grid-row: 4;
+    grid-column: 3;
+  }
+
+  .preffered-e {
+    grid-row: 4;
+    grid-column: 1;
+  }
+
+  .location-e {
     grid-row: 4;
     grid-column: 3;
   }
