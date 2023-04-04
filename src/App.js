@@ -52,6 +52,13 @@ import InternshipJobDetails from "./components/Candidate/CandidateJobDetails/Int
 import FresherJobDetails from "./components/Candidate/CandidateJobDetails/FresherJobDetails"
 import ExperienceJobDetails from "./components/Candidate/CandidateJobDetails/ExperienceJobDetails"
 import EmployeeFindResume from "./EmployeeFindResume"
+import PrivacyPolicy from "./components/Employee/FooterLinks/PrivacyPolicy"
+import AboutUs from "./components/Employee/FooterLinks/AboutUs"
+import Media from "./components/Employee/FooterLinks/Media"
+import Blog from "./components/Employee/FooterLinks/Blog"
+import TermsAndConditons from "./components/Employee/FooterLinks/TermsAndConditions"
+import ContactUs from "./components/Employee/FooterLinks/ContactUs"
+import Subscription from "./components/Employee/Subscription"
 
 const App = () => {
   const [userResume, setResume] = useState(null)
@@ -223,6 +230,35 @@ const App = () => {
             exact
             path="/candidate/job-details/experience/:id"
             component={ExperienceJobDetails}
+          />
+
+          {/* Footer Links */}
+
+          <Route exact path="/employee/about-us" component={AboutUs} />
+
+          <Route exact path="/employee/media" component={Media} />
+
+          <Route exact path="/employee/blog" component={Blog} />
+
+          <Route
+            exact
+            path="/employee/terms-and-condition"
+            component={TermsAndConditons}
+          />
+
+          <Route exact path="/employee/contact-us" component={ContactUs} />
+
+          <Route
+            exact
+            path="/employee/privacy-policy"
+            component={PrivacyPolicy}
+          />
+
+          {/* Employee Subscriptions */}
+          <Route
+            exact
+            path="/employee/subscriptions"
+            component={Subscription}
           />
 
           <Route exact path="/employee/admin-blog" component={EditAll} />

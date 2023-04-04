@@ -6,7 +6,9 @@ import React, { useState } from "react"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import { Link } from "react-router-dom"
+
 import ChooseFile from "../../ChooseFile"
+import "./index.css"
 
 function EmployeeStep2() {
   const [validated, setValidated] = useState(false)
@@ -170,16 +172,31 @@ function EmployeeStep2() {
           </Form.Group>
         </Row>
 
-        <Form.Group className="mb-3 mt-4">
+        <Form.Group className="mb-3 mt-4 terms-container">
           <Form.Check
             required
-            label="Agree to terms and conditions"
             feedback="You must agree before submitting."
             feedbackType="invalid"
+            className="terms-and-conditions"
           />
+          <Link
+            to="/employee/privacy-policy"
+            onClick={() => {
+              window.scrollTo(0, 0)
+            }}
+          >
+            <Form.Label className="terms-label">
+              Agree to terms and conditions
+            </Form.Label>
+          </Link>
         </Form.Group>
         <div className="d-grid gap-2 mt-2">
-          <Link to="/employee">
+          <Link
+            to="/employee"
+            onClick={() => {
+              window.scrollTo(0, 0)
+            }}
+          >
             <Button
               type="submit"
               variant="outline-secondary"

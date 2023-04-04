@@ -1,0 +1,201 @@
+:root {
+  --gradient: hsl(236, 72%, 79%), hsl(237, 63%, 64%);
+  --purple: hsl(237, 63%, 64%);
+  --very-light-grayish-blue: hsl(240, 78%, 98%);
+  --light-grayish-blue: hsl(234, 14%, 74%);
+  --grayish-blue: hsl(233, 13%, 49%);
+  --dark-grayish-blue: hsl(232, 13%, 33%);
+  --white: white;
+  --body-font: "Montserrat", sans-serif;
+}
+
+.subscription-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle-exclamation {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 7px;
+  margin-right: 7px;
+  font-weight: 500;
+  margin-top: 4px;
+  padding: 10px;
+}
+
+.resume-database {
+  font-size: 20px;
+  display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .resume-database {
+    margin-left: 15px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Toggle Section */
+.toggle-section {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 1.9rem;
+  margin: 0 auto;
+  margin-top: 2.6rem;
+  align-items: center;
+}
+
+.toggle-area {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  width: 3.8rem;
+  height: 2.3rem;
+  border-radius: 25px;
+  background: linear-gradient(var(--gradient));
+}
+
+.toggle-btn {
+  cursor: pointer;
+  position: relative;
+  width: 1.7rem;
+  height: 1.7rem;
+  margin: 5%;
+  border-radius: 50%;
+  background-color: var(--very-light-grayish-blue);
+}
+
+.toggle-area.monthly {
+  justify-content: flex-end;
+  align-content: flex-end;
+}
+
+.toggle-area.anually {
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.toggle-section p {
+  color: var(--light-grayish-blue);
+}
+
+/* Subscription Cards */
+
+.app-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  overflow: auto;
+  width: 100%;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px 1px #ddd;
+  margin-bottom: 1rem;
+  max-width: 280px;
+  padding: 1rem 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.3s ease-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card .most-popular {
+  font-size: 15px;
+  font-weight: 700;
+  background-color: #9b59b6;
+  color: #fff;
+  padding: 0.25em 1rem;
+  border-radius: 15px;
+  text-transform: uppercase;
+}
+
+.card.free {
+  border-top: 6px solid #1abc9c;
+}
+
+.card.basic {
+  border-top: 6px solid #3498db;
+}
+
+.card.medium {
+  border-top: 6px solid #9b59b6;
+}
+
+.card.pro {
+  border-top: 6px solid #f1c40f;
+}
+
+.card-description,
+.card-billing,
+.card-features,
+.card-action {
+  padding: 15px;
+}
+
+.card-description h2 {
+  font-size: 26px;
+  margin-bottom: 0.5rem;
+}
+
+.card-billing {
+  background-color: #ecf0f1;
+}
+
+.card-billing p {
+  margin-bottom: 0.5rem;
+}
+
+.card-billing .price {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.card-features {
+  min-height: 150px;
+}
+
+.card-features ul li {
+  margin-bottom: 0.5rem;
+}
+
+.card-action > button {
+  background-color: transparent;
+  color: #3498db;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  width: 100%;
+  border: 3px solid transparent;
+  border-image: linear-gradient(to right, #3498db, #9b59b6);
+  border-image-slice: 1 1 1 1;
+  transition: 0.3s ease all;
+}
+
+.card-action > button:hover {
+  background-image: linear-gradient(125deg, #3498db, #9b59b6);
+  color: #fff;
+  transition: 0.3s ease all;
+}
+
+.card-features {
+  text-align: start;
+}

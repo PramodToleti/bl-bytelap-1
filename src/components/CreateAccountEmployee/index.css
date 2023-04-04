@@ -1,0 +1,14 @@
+.terms-container {
+  display: flex;
+  gap: 7px;
+}
+
+.terms-label {
+  cursor: pointer;
+  margin-top: 2px !important;
+  color: #000;
+}
+
+.terms-label:hover {
+  color: rgb(64, 64, 228);
+}

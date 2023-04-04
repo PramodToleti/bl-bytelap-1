@@ -1,9 +1,15 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useLocation } from "react"
 
 import "./index.css"
 import data from "./postData"
+import UnregisteredNavBar from "../../UnregisteredNavBar"
+import EmployeeHome from "../../../EmployeeHome"
+import EmployeeFooter from "../../EmployeeFooter"
 
 const Blog = (props) => {
+  const location = useLocation()
+  const isRegistered = location.state?.isRegistered
+
   const [recentPost, setRecentPost] = useState(0)
   const [currentIndex1, setCurrentIndex1] = useState(0)
   const [currentIndex2, setCurrentIndex2] = useState(0)
@@ -120,72 +126,76 @@ const Blog = (props) => {
   }
 
   return (
-    <div className="blog-container container mb-5">
-      <div className="blog-header mb-3">
-        <h3>Career Guidence</h3>
-        <p>Category</p>
-      </div>
-      <div className="recent-post-container mb-2">
-        <div
-          className="recent-post-main mb-5"
-          style={{ cursor: "pointer" }}
-          key="0"
-          onClick={() => {
-            setRecentPost(0)
-            props.setIsPostActive(true)
-          }}
-        >
-          <img
-            src={mainPosts[0].imageUrl}
-            alt="recent post"
-            className="recent-post-image"
-          />
-          <p className="recent-post-description">{mainPosts[0].heading}</p>
+    <>
+      {isRegistered ? <EmployeeHome /> : <UnregisteredNavBar />}
+      <div className="blog-container container mb-5">
+        <div className="blog-header mb-3">
+          <h3>Career Guidence</h3>
+          <p>Category</p>
         </div>
-        <div
-          className="recent-post-sub "
-          style={{
-            transform: `translateX(${-currentIndex2 * containerWidth}px)`,
-            width: `${sliderWidth2}px`,
-            transition: "transform 0.5s ease",
-          }}
-        >
-          {mainPosts.slice(1).map((e, i) => (
-            <div
-              className="recent-post-sub-main"
-              onClick={() => {
-                setRecentPost(i + 1)
-                props.setIsPostActive(true)
-              }}
-            >
-              <img
-                src={mainPosts[i + 1].imageUrl}
-                className="mb-3 post-image"
-              />
-              <p>{mainPosts[i + 1].heading}</p>
+        <div className="recent-post-container mb-2">
+          <div
+            className="recent-post-main mb-5"
+            style={{ cursor: "pointer" }}
+            key="0"
+            onClick={() => {
+              setRecentPost(0)
+              props.setIsPostActive(true)
+            }}
+          >
+            <img
+              src={mainPosts[0].imageUrl}
+              alt="recent post"
+              className="recent-post-image"
+            />
+            <p className="recent-post-description">{mainPosts[0].heading}</p>
+          </div>
+          <div
+            className="recent-post-sub "
+            style={{
+              transform: `translateX(${-currentIndex2 * containerWidth}px)`,
+              width: `${sliderWidth2}px`,
+              transition: "transform 0.5s ease",
+            }}
+          >
+            {mainPosts.slice(1).map((e, i) => (
+              <div
+                className="recent-post-sub-main"
+                onClick={() => {
+                  setRecentPost(i + 1)
+                  props.setIsPostActive(true)
+                }}
+              >
+                <img
+                  src={mainPosts[i + 1].imageUrl}
+                  className="mb-3 post-image"
+                />
+                <p>{mainPosts[i + 1].heading}</p>
+              </div>
+            ))}
+          </div>
+          <div className="d-flex  flex-row justify-content-end mb-4">
+            <div className="recent-post-controllers">
+              <button
+                className="recent-post-controllers-btn"
+                onClick={handlePreviousClick2}
+              >
+                &lt; Previous
+              </button>
+              <button
+                className="recent-post-controllers-btn"
+                onClick={handleNextClick2}
+              >
+                Next &gt;
+              </button>
             </div>
-          ))}
-        </div>
-        <div className="d-flex  flex-row justify-content-end mb-4">
-          <div className="recent-post-controllers">
-            <button
-              className="recent-post-controllers-btn"
-              onClick={handlePreviousClick2}
-            >
-              &lt; Previous
-            </button>
-            <button
-              className="recent-post-controllers-btn"
-              onClick={handleNextClick2}
-            >
-              Next &gt;
-            </button>
           </div>
         </div>
-      </div>
 
-      {renderRelatedPosts()}
-    </div>
+        {renderRelatedPosts()}
+      </div>
+      <EmployeeFooter />
+    </>
   )
 }
 

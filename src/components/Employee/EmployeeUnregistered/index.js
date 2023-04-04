@@ -1,17 +1,8 @@
-import Container from "react-bootstrap/Container"
-import Navbar from "react-bootstrap/Navbar"
-import Offcanvas from "react-bootstrap/Offcanvas"
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import { Button } from "react-bootstrap"
+import { Button, Card } from "react-bootstrap"
 import Slider from "react-slick"
-import {
-  FaLinkedinIn,
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-  FaYoutube,
-} from "react-icons/fa"
+
 import Popup from "reactjs-popup"
 import FloatingLabel from "react-bootstrap/FloatingLabel"
 import Form from "react-bootstrap/Form"
@@ -38,6 +29,8 @@ import ChooseFile from "../../../ChooseFile"
 
 import "./index.css"
 import SkeletonContainer from "../../../SkeletonContainer"
+import UnregisteredNavBar from "../UnregisteredNavBar"
+import EmployeeFooter from "../EmployeeFooter"
 
 function EmployeeUnregistered() {
   const [isNext, setIsNext] = useState(false)
@@ -338,7 +331,7 @@ function EmployeeUnregistered() {
           <>
             <div className="post-job-content">
               <Popup
-                trigger={<Button>Post a Job</Button>}
+                trigger={<Button variant="outline-secondary">Post</Button>}
                 position="center center"
                 contentStyle={{
                   borderRadius: "10px",
@@ -352,52 +345,208 @@ function EmployeeUnregistered() {
 
               <div className="post-job-options">
                 <div className="option-container">
-                  <h4>1</h4>
+                  <h4 className="count-style">1</h4>
                   <h6>Create Account</h6>
                 </div>
                 <div className="option-container">
-                  <h4>2</h4>
+                  <h4 className="count-style">2</h4>
                   <h6>Post Job</h6>
                 </div>
                 <div className="option-container">
-                  <h4>3</h4>
+                  <h4 className="count-style">3</h4>
                   <h6>Select Resume's & Hire</h6>
                 </div>
               </div>
             </div>
 
             <div className="landing-page-content container mb-5 p-5">
-              <h2>Haven't found the perfect candidate yet?</h2>
-              <p>Perfect Post for the Perfect Candidate.</p>
-              <div className="skeleton-content mb-4">
+              <h2>Get Started in 3 easy steps</h2>
+              <div className="skeleton-content mb-5">
                 <div className="desktop-text">
-                  <h5>Intern's Candidate</h5>
-                  <p>Get intern candidates</p>
+                  <h4 className="count-style" style={{ color: "orange" }}>
+                    1
+                  </h4>
+                  <p style={{ fontSize: "1.4rem", maxWidth: "350px" }}>
+                    Create Account & Get Verified
+                  </p>
                 </div>
-                <SkeletonContainer />
+                {/* <SkeletonContainer /> */}
+                <Card
+                  className="shadow-sm rounded-lg"
+                  style={{
+                    borderRadius: "15px",
+                    border: "1px solid #dee2e6",
+                    boxShadow: "3px 3px 3px 3px whitesmoke",
+                    height: "250px",
+                  }}
+                >
+                  <Card.Body
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Card.Text
+                      style={{
+                        fontSize: "1.4rem",
+                        textAlign: "center",
+                        maxWidth: "280px",
+                      }}
+                    >
+                      Instantly Verify Your{" "}
+                      <span style={{ color: "red" }}>
+                        {" "}
+                        Company's Official Mail ID with OTP
+                      </span>{" "}
+                      and Start Hiring Top Talent
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
                 <div className="mobile-text">
-                  <h5>Intern's Candidate</h5>
-                  <p>Get intern candidates</p>
+                  <h4 className="count-style" style={{ color: "orange" }}>
+                    1
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: "1.4rem",
+                      maxWidth: "350px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Create Account & Get Verified
+                  </p>
                 </div>
               </div>
 
-              <div className="skeleton-content mb-4">
-                <SkeletonContainer />
-                <div style={{ textAlign: "center" }}>
-                  <h5>Fresher Candidates</h5>
-                  <p>Get Trained/Certified & Fresher candidates</p>
+              <div className="skeleton-content mb-5">
+                {/* <SkeletonContainer /> */}
+                <Card
+                  className="shadow-sm rounded-lg"
+                  style={{
+                    borderRadius: "15px",
+                    border: "1px solid #dee2e6",
+                    boxShadow: "3px 3px 3px 3px whitesmoke",
+                    height: "250px",
+                  }}
+                >
+                  <Card.Body
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Card.Title
+                      style={{
+                        fontSize: "1.4rem",
+                        fontWeight: "bold",
+                        marginBottom: "0px",
+                      }}
+                    >
+                      Post Job
+                    </Card.Title>
+                    <p style={{ fontSize: "1.3rem" }} className="mb-2 mt-3">
+                      Get relevent CV'S
+                    </p>
+                    <ul className="list-unstyled mt-4">
+                      <li className="bullet-point">
+                        <span className="bullet"></span> Intern
+                      </li>
+                      <li className="bullet-point">
+                        <span className="bullet"></span> Fresher
+                      </li>
+                      <li className="bullet-point">
+                        <span className="bullet"></span> Experience
+                      </li>
+                    </ul>
+                  </Card.Body>
+                </Card>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <h4 className="count-style" style={{ color: "orange" }}>
+                    2
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: "1.4rem",
+                      maxWidth: "350px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Hire Top Talent in a Flash Post Your Job in Just{" "}
+                    <span style={{ color: "red" }}>5 Minutes!</span>
+                  </p>
                 </div>
               </div>
 
-              <div className="skeleton-content mb-4">
+              <div className="skeleton-content mb-5">
                 <div className="desktop-text">
-                  <h5>Experience Candidates</h5>
-                  <p>Select Experience candidate's with Advance Filter</p>
+                  <h4 className="count-style" style={{ color: "orange" }}>
+                    3
+                  </h4>
+                  <div>
+                    <ul style={{ fontSize: "1.4rem" }}>
+                      <li style={{ marginBottom: "8px" }}>Download CV's</li>
+                      <li style={{ marginBottom: "8px" }}>Get Call's</li>
+                      <li style={{ marginBottom: "8px" }}>
+                        Find Candidate Availability
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <SkeletonContainer />
+                {/* <SkeletonContainer /> */}
+                <Card
+                  className="shadow-sm rounded-lg"
+                  style={{
+                    borderRadius: "15px",
+                    border: "1px solid #dee2e6",
+                    boxShadow: "3px 3px 3px 3px whitesmoke",
+                    height: "250px",
+                    marginRight: "0px",
+                  }}
+                >
+                  <Card.Body
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Card.Text
+                      style={{
+                        fontSize: "1.4rem",
+                        textAlign: "center",
+                        maxWidth: "280px",
+                      }}
+                    >
+                      Connect with Connect with{" "}
+                      <span style={{ color: "red" }}>Relevant Candidates</span>{" "}
+                      Within an Hour or Browse Our Database
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
                 <div className="mobile-text">
-                  <h5>Experience Candidates</h5>
-                  <p>Select Experience candidate's with Advance Filter</p>
+                  <h4 className="count-style" style={{ color: "orange" }}>
+                    3
+                  </h4>
+                  <ul>
+                    <li style={{ fontSize: "1.4rem", marginBottom: "8px" }}>
+                      Download CV's
+                    </li>
+                    <li style={{ fontSize: "1.4rem", marginBottom: "8px" }}>
+                      Get Call's
+                    </li>
+                    <li style={{ fontSize: "1.4rem", marginBottom: "8px" }}>
+                      Find Candidate Availability
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -531,244 +680,12 @@ function EmployeeUnregistered() {
   return (
     <>
       {/*Header*/}
-      {["sm"].map((expand) => (
-        <Navbar
-          key={expand}
-          bg=""
-          expand={expand}
-          className="mb-3 pt-1 pb-2 nav-bar"
-        >
-          <Container>
-            <p className="website-name">Website</p>{" "}
-            <Link
-              to="/employee/find-resume"
-              className="website-name"
-              style={{
-                marginLeft: "20px",
-                cursor: "pointer",
-                fontSize: "18px",
-                textDecoration: "none",
-                color: "#333333",
-                marginTop: "16px",
-              }}
-            >
-              Find Resume
-            </Link>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title
-                  id={`offcanvasNavbarLabel-expand-${expand}`}
-                  style={{
-                    textDecoration: "none",
-                    marginRight: "5px",
-                    color: "#333333",
-                    marginTop: "8px",
-                    fontSize: "18px",
-                  }}
-                >
-                  Website
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-
-              <Offcanvas.Body>
-                <div className="justify-content-end flex-grow-1 pe-3 nav-link-container">
-                  {/*<Link to="/employee/home" className="fs-5 mr-5 nav-link">
-                    Home
-                  </Link>*/}
-                  <Link
-                    to="/employee/post-job"
-                    className="nav-link"
-                    style={{
-                      textDecoration: "none",
-                      marginRight: "5px",
-                      color: "#333333",
-                      marginTop: "8px",
-                      fontSize: "18px",
-                    }}
-                  >
-                    Post Job
-                  </Link>
-                  <Link
-                    to="/employee/dashboard/active-posts"
-                    className=" nav-link"
-                    style={{
-                      textDecoration: "none",
-                      marginRight: "5px",
-                      color: "#333333",
-                      marginTop: "8px",
-                      fontSize: "18px",
-                    }}
-                  >
-                    Dashboard
-                  </Link>
-
-                  <Link
-                    to="/employee/create-account/step-1"
-                    className=" nav-link"
-                    style={{
-                      textDecoration: "none",
-                      marginRight: "5px",
-                      color: "#333333",
-                      marginTop: "8px",
-                      fontSize: "18px",
-                    }}
-                  >
-                    Create Account
-                  </Link>
-
-                  <Theme />
-                </div>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
-        </Navbar>
-      ))}
+      <UnregisteredNavBar />
 
       <div className="employee-post-job-container">{renderEmployeeHome()}</div>
 
       {/*Footer*/}
-      <footer className="employee-unregistered-footer">
-        <div className="footer-details">
-          <ul className="footer-sub-container">
-            <h5 className="footer-heading">Product</h5>
-            <li
-              className="footer-link"
-              onClick={(e) => {
-                setActiveLink(e.target.textContent)
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }}
-            >
-              About us
-            </li>
-            <li
-              className="footer-link"
-              onClick={(e) => {
-                setActiveLink(e.target.textContent)
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }}
-            >
-              Media
-            </li>
-            <li
-              className="footer-link"
-              onClick={(e) => {
-                setActiveLink(e.target.textContent)
-                setIsPostActive(false)
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }}
-            >
-              Blog
-            </li>
-            <li
-              className="footer-link"
-              onClick={(e) => {
-                setActiveLink(e.target.textContent)
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }}
-            >
-              Privacy Policy
-            </li>
-            <li
-              className="footer-link"
-              onClick={(e) => {
-                setActiveLink(e.target.textContent)
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }}
-            >
-              Terms & Condition
-            </li>
-            <li
-              className="footer-link"
-              onClick={(e) => {
-                setActiveLink(e.target.textContent)
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }}
-            >
-              Contact us
-            </li>
-          </ul>
-
-          <ul className="footer-sub-container">
-            <h5 className="footer-heading">Sales & Enquires</h5>
-            <li className="footer-link">Sales@demo.com</li>
-            <li
-              className="footer-link"
-              onClick={(e) => {
-                setActiveLink(e.target.textContent)
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }}
-            >
-              Startup Hiring
-            </li>
-            <li
-              className="footer-link"
-              onClick={(e) => {
-                setActiveLink(e.target.textContent)
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }}
-            >
-              Enterprise Hiring
-            </li>
-            <li className="footer-link">91-8888-8888-88</li>
-          </ul>
-
-          <ul className="footer-sub-container">
-            <h5 className="footer-heading">Employers</h5>
-            <li className="footer-link">Post a Job</li>
-            <li className="footer-link">FAQ</li>
-          </ul>
-
-          <ul className="footer-sub-container">
-            <h5 className="footer-heading">Candidate</h5>
-            <li className="footer-link">Find a Job</li>
-          </ul>
-        </div>
-        <div className="footer-social-media">
-          <p style={{ marginBottom: "20px" }}>Connect with us</p>
-          <div className="social-media-container">
-            <FaLinkedinIn className="footer-icon" />
-            <FaFacebookF className="footer-icon" />
-            <FaInstagram className="footer-icon" />
-            <FaTwitter className="footer-icon" />
-            <FaYoutube className="footer-icon" />
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <p className="footer-bottom-text">
-            All rights reserved © 2023 Bytelap Technologies Pvt Ltd
-          </p>
-        </div>
-      </footer>
+      <EmployeeFooter isRegistered={false} />
     </>
   )
 }

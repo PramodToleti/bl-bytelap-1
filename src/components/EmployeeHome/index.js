@@ -68,6 +68,19 @@ function EmployeeHome() {
               <Offcanvas.Body>
                 <div className="justify-content-end flex-grow-1 pe-3 nav-link-container">
                   <Link
+                    to="/employee/subscriptions"
+                    className=" mr-5 nav-link"
+                    style={{
+                      textDecoration: "none",
+                      marginRight: "5px",
+                      color: "#333333",
+                      marginTop: "8px",
+                      fontSize: "18px",
+                    }}
+                  >
+                    Subscription
+                  </Link>
+                  <Link
                     to="/employee"
                     className=" mr-5 nav-link"
                     style={{
