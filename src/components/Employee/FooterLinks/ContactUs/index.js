@@ -58,7 +58,7 @@ const ContactUs = () => {
           </div>
         </div>
       </div>
-      <EmployeeFooter />
+      <EmployeeFooter isRegistered={isRegistered} />
     </>
   )
 }

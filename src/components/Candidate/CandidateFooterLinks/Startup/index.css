@@ -1,0 +1,39 @@
+@media screen and (max-width: 767px) {
+  .startup-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .startup-form-container {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .startup-sub-container {
+    width: 48%;
+  }
+
+  .startup-container {
+    display: flex;
+    gap: 40px;
+  }
+
+  .startup-form-container {
+    width: 48%;
+    min-height: 600px;
+  }
+}
+
+.startup-image {
+  width: 100%;
+  max-height: 550px;
+}
+
+.startup-form-container {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 30px;
+  height: 100%;
+}

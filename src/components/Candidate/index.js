@@ -11,6 +11,7 @@ import CandidateJobs from "./CandidateJobs"
 import JobSearchField from "../../JobSearchField"
 import JobLocationField from "../../JobLocationField"
 import { Oval } from "react-loader-spinner"
+import CandidateFooter from "./CandidateFooter"
 
 function Home() {
   const [activeSearch, setActiveSearch] = useState("")
@@ -718,6 +719,8 @@ function Home() {
           />
         )}
       </div>
+
+      <CandidateFooter isRegistered={true} />
     </>
   )
 }

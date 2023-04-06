@@ -8,8 +8,7 @@ import "./index.css"
 const Media = () => {
   const location = useLocation()
   const isRegistered = location.state?.isRegistered
-
-  console.log(location)
+  console.log(isRegistered)
 
   return (
     <>
@@ -39,7 +38,7 @@ const Media = () => {
           </div>
         </div>
       </div>
-      <EmployeeFooter />
+      <EmployeeFooter isRegistered={isRegistered} />
     </>
   )
 }

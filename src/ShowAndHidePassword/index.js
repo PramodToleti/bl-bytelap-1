@@ -1,5 +1,5 @@
 import React from "react"
-import { Form } from "react-bootstrap"
+import { FloatingLabel, Form } from "react-bootstrap"
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai"
 
 const ShowAndHidePassword = () => {
@@ -56,37 +56,53 @@ const ShowAndHidePassword = () => {
     <>
       <div className="container">
         <div
-          className="card mt-3 p-2"
-          style={{ height: "55px", margin: "0px", width: "100%" }}
+          className="mt-3"
+          style={{
+            height: "57px",
+            margin: "0px",
+            width: "100%",
+            border: "1px solid #ced4da",
+            borderRadius: "5px",
+          }}
         >
           <form
             onSubmit={submitForm}
             style={{
-              height: "100%",
+              width: "100%",
               display: "flex",
               gap: "10px",
               alignItems: "center",
             }}
           >
-            <Form.Control
-              type={password}
-              className={` ${warnpassword ? "warning" : ""} ${
-                type ? "type_password" : ""
-              }`}
-              placeholder="Enter your password"
-              value={inputtext.password}
-              onChange={inputEvent}
-              name="password"
+            <FloatingLabel
+              ontrolId="floatingText"
+              label="Enter your password"
               style={{
-                border: 0,
-                height: "100%",
-                width: "90%",
+                width: "100%",
+                border: "0px",
                 outline: "none",
-                paddingLeft: "5px",
-                color: "#000000",
+                height: "55px",
               }}
-            />
-            <i onClick={Eye}>
+            >
+              <Form.Control
+                type={password}
+                className={` ${warnpassword ? "warning" : ""} ${
+                  type ? "type_password" : ""
+                }`}
+                placeholder="Enter your password"
+                value={inputtext.password}
+                onChange={inputEvent}
+                name="password"
+                style={{
+                  border: "0px",
+                  padding: "0px",
+                  background: "transparent",
+                  outline: "none",
+                  height: "55px",
+                }}
+              />
+            </FloatingLabel>
+            <i onClick={Eye} style={{ marginRight: "10px" }}>
               {" "}
               {eye ? (
                 <AiFillEyeInvisible

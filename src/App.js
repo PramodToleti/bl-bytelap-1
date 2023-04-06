@@ -52,6 +52,7 @@ import InternshipJobDetails from "./components/Candidate/CandidateJobDetails/Int
 import FresherJobDetails from "./components/Candidate/CandidateJobDetails/FresherJobDetails"
 import ExperienceJobDetails from "./components/Candidate/CandidateJobDetails/ExperienceJobDetails"
 import EmployeeFindResume from "./EmployeeFindResume"
+//Employee -> Footer Links
 import PrivacyPolicy from "./components/Employee/FooterLinks/PrivacyPolicy"
 import AboutUs from "./components/Employee/FooterLinks/AboutUs"
 import Media from "./components/Employee/FooterLinks/Media"
@@ -59,6 +60,17 @@ import Blog from "./components/Employee/FooterLinks/Blog"
 import TermsAndConditons from "./components/Employee/FooterLinks/TermsAndConditions"
 import ContactUs from "./components/Employee/FooterLinks/ContactUs"
 import Subscription from "./components/Employee/Subscription"
+import ReportIssue from "./components/Employee/FooterLinks/ReportIssue"
+//Candidate -> Footer Links
+import AboutUs2 from "./components/Candidate/CandidateFooterLinks/AboutUs2"
+import Blog2 from "./components/Candidate/CandidateFooterLinks/Blog2"
+import ContactUs2 from "./components/Candidate/CandidateFooterLinks/ContactUs2"
+import Media2 from "./components/Candidate/CandidateFooterLinks/Media2"
+import PrivacyPolicy2 from "./components/Candidate/CandidateFooterLinks/PrivacyPolicy2"
+import TermsAndConditons2 from "./components/Candidate/CandidateFooterLinks/TermsAndConditions2"
+import ReportIssue2 from "./components/Candidate/CandidateFooterLinks/ReportIssue2"
+import Startup from "./components/Employee/FooterLinks/Startup"
+import Enterprise from "./components/Employee/FooterLinks/Enterprise"
 
 const App = () => {
   const [userResume, setResume] = useState(null)
@@ -232,7 +244,7 @@ const App = () => {
             component={ExperienceJobDetails}
           />
 
-          {/* Footer Links */}
+          {/* Employee Footer Links */}
 
           <Route exact path="/employee/about-us" component={AboutUs} />
 
@@ -246,6 +258,8 @@ const App = () => {
             component={TermsAndConditons}
           />
 
+          <Route exact path="/employee/report-issue" component={ReportIssue} />
+
           <Route exact path="/employee/contact-us" component={ContactUs} />
 
           <Route
@@ -254,7 +268,39 @@ const App = () => {
             component={PrivacyPolicy}
           />
 
+          <Route exact path="/employee/startup-hiring" component={Startup} />
+
+          <Route
+            exact
+            path="/employee/enterprise-hiring"
+            component={Enterprise}
+          />
+
+          {/* Candidate Footer Links */}
+
+          <Route exact path="/candidate/about-us" component={AboutUs2} />
+
+          <Route exact path="/candidate/media" component={Media2} />
+
+          <Route exact path="/candiate/blog" component={Blog2} />
+
+          <Route
+            exact
+            path="/candidate/terms-and-condition"
+            component={TermsAndConditons2}
+          />
+
+          <Route exact path="/candidate/contact-us" component={ContactUs2} />
+
+          <Route
+            exact
+            path="/candidate/privacy-policy"
+            component={PrivacyPolicy2}
+          />
+          <Route exact path="/report-issue" component={ReportIssue2} />
+
           {/* Employee Subscriptions */}
+
           <Route
             exact
             path="/employee/subscriptions"

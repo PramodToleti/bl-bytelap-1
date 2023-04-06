@@ -12,7 +12,7 @@ const AboutUs = () => {
     <>
       {isRegistered ? <EmployeeHome /> : <UnregisteredNavBar />}
       <h1 className="mt-3 mb-3">About us</h1>
-      <EmployeeFooter />
+      <EmployeeFooter isRegistered={isRegistered} />
     </>
   )
 }

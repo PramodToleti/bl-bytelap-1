@@ -1,0 +1,131 @@
+.blog-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.recent-post-main {
+  width: 100%;
+}
+
+.recent-post-image {
+  width: 100%;
+  max-height: 450px;
+}
+
+@media screen and (max-width: 767px) {
+  .recent-post-sub-main {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .recent-post-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .post-image {
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .recent-post-sub {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  .recent-post-sub-main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 30%;
+    max-width: 350px;
+  }
+
+  .recent-post-description {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}
+
+.recent-post-controllers-btn {
+  border: 0;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.recent-post-controllers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  width: 200px;
+}
+
+.edit-all-btn {
+  border: none;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.add-container {
+  min-height: 310px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.add-container:hover,
+.edit-container:hover {
+  border: 1px solid #000;
+}
+
+.edit-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .edit-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .add-container {
+    width: 30%;
+    max-width: 350px;
+  }
+}
+
+.edit-btn {
+  border: none;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  align-self: flex-start;
+  margin-bottom: 15px;
+}
+
+.controller-btns {
+  display: flex;
+  gap: 20px;
+}

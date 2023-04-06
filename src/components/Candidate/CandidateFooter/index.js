@@ -7,20 +7,21 @@ import {
 } from "react-icons/fa"
 import { Link, useHistory } from "react-router-dom"
 
-const EmployeeFooter = (props) => {
+import "./index.css"
+
+const CandidateFooter = (props) => {
   const isRegistered = props.isRegistered
   const history = useHistory()
 
   return (
-    <footer className="employee-unregistered-footer">
+    <footer className="employee-unregistered-footer mt-4">
       <div className="footer-details">
         <ul className="footer-sub-container">
           <h5 className="footer-heading">Product</h5>
-
           <li
             className="footer-link privacy-policy"
             onClick={() => {
-              history.push("/employee/about-us", { isRegistered })
+              history.push("/candidate/about-us", { isRegistered })
               window.scrollTo(0, 0)
             }}
           >
@@ -30,7 +31,7 @@ const EmployeeFooter = (props) => {
           <li
             className="footer-link privacy-policy"
             onClick={() => {
-              history.push("/employee/media", { isRegistered })
+              history.push("/candidate/media", { isRegistered })
               window.scrollTo(0, 0)
             }}
           >
@@ -40,7 +41,7 @@ const EmployeeFooter = (props) => {
           <li
             className="footer-link privacy-policy"
             onClick={() => {
-              history.push("/employee/blog", { isRegistered })
+              history.push("/candiate/blog", { isRegistered })
               window.scrollTo(0, 0)
             }}
           >
@@ -50,7 +51,7 @@ const EmployeeFooter = (props) => {
           <li
             className="footer-link privacy-policy"
             onClick={() => {
-              history.push("/employee/privacy-policy", { isRegistered })
+              history.push("/candidate/privacy-policy", { isRegistered })
               window.scrollTo(0, 0)
             }}
           >
@@ -60,7 +61,7 @@ const EmployeeFooter = (props) => {
           <li
             className="footer-link privacy-policy"
             onClick={() => {
-              history.push("/employee/terms-and-condition", { isRegistered })
+              history.push("/candidate/terms-and-condition", { isRegistered })
               window.scrollTo(0, 0)
             }}
           >
@@ -70,63 +71,21 @@ const EmployeeFooter = (props) => {
           <li
             className="footer-link privacy-policy"
             onClick={() => {
-              history.push("/employee/report-issue", { isRegistered })
-              window.scrollTo(0, 0)
-            }}
-          >
-            Report Issue
-          </li>
-
-          <li
-            className="footer-link privacy-policy"
-            onClick={() => {
-              history.push("/employee/contact-us", { isRegistered })
+              history.push("/candidate/contact-us", { isRegistered })
               window.scrollTo(0, 0)
             }}
           >
             Contact us
           </li>
-        </ul>
 
-        <ul className="footer-sub-container">
-          <h5 className="footer-heading">Sales & Enquires</h5>
-          <li className="footer-link">Sales@demo.com</li>
-          <Link to="/employee/startup-hiring" className="privacy-policy">
-            <li
-              className="footer-link"
-              onClick={() => {
-                window.scrollTo(0, 0)
-              }}
-            >
-              Startup Hiring
-            </li>
-          </Link>
-          <Link to="/employee/enterprise-hiring" className="privacy-policy">
-            <li
-              className="footer-link"
-              onClick={() => {
-                window.scrollTo(0, 0)
-              }}
-            >
-              Enterprise Hiring
-            </li>
-          </Link>
-          <li className="footer-link">91-8888-8888-88</li>
-        </ul>
-
-        <ul className="footer-sub-container">
-          <h5 className="footer-heading">Employers</h5>
-          <li className="footer-link">Post a Job</li>
-          <li className="footer-link">FAQ</li>
           <li
-            className="footer-link"
+            className="footer-link privacy-policy"
             onClick={() => {
-              isRegistered
-                ? history.push("/employee")
-                : history.push("/employee/create-account/step-1")
+              history.push("/report-issue", { isRegistered })
+              window.scrollTo(0, 0)
             }}
           >
-            Create Account
+            Report Issue
           </li>
         </ul>
 
@@ -135,11 +94,59 @@ const EmployeeFooter = (props) => {
           <li
             className="footer-link"
             onClick={() => {
-              history.push("/login", { isRegistered })
+              isRegistered
+                ? history.push("/candidate", { isRegistered })
+                : history.push("/login", { isRegistered })
               window.scrollTo(0, 0)
             }}
           >
             Find a Job
+          </li>
+          <li
+            className="footer-link"
+            onClick={() => {
+              isRegistered
+                ? history.push("/candidate", { isRegistered })
+                : history.push("/candidate/create-account/step-1", {
+                    isRegistered,
+                  })
+              window.scrollTo(0, 0)
+            }}
+          >
+            Create Account
+          </li>
+          <li className="footer-link">Career</li>
+        </ul>
+
+        <ul className="footer-sub-container">
+          <h5 className="footer-heading">Jobs By Places</h5>
+          <li className="footer-link">Jobs in Indore</li>
+          <li className="footer-link">Jobs in Gwallor</li>
+          <li className="footer-link">Jobs in Jabalpur</li>
+          <li className="footer-link">Jobs in Ujjain</li>
+          <li className="footer-link">Jobs in Dewas</li>
+          <li className="footer-link">Jobs in Madhya Pradesh</li>
+        </ul>
+
+        <ul className="footer-sub-container">
+          <h5 className="footer-heading">Employers</h5>
+          <li
+            className="footer-link"
+            onClick={() => {
+              history.push("/employee", { isRegistered })
+              window.scrollTo(0, 0)
+            }}
+          >
+            Post a Job
+          </li>
+          <li
+            className="footer-link"
+            onClick={() => {
+              history.push("/employee/create-account/step-1", { isRegistered })
+              window.scrollTo(0, 0)
+            }}
+          >
+            Create Account
           </li>
         </ul>
       </div>
@@ -163,4 +170,4 @@ const EmployeeFooter = (props) => {
   )
 }
 
-export default EmployeeFooter
+export default CandidateFooter

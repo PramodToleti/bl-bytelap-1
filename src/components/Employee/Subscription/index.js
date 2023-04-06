@@ -1,4 +1,7 @@
 import { useState } from "react"
+
+import EmployeeHome from "../../EmployeeHome"
+
 import "./index.css"
 
 function CardDescription({ title, description }) {
@@ -56,7 +59,7 @@ function PricingCard(props) {
   } = props
 
   return (
-    <div className={`card pricing-card ${type}`}>
+    <div className={`card_ pricing-card ${type}`}>
       {mostPopular ? <span className="most-popular">Most Popular</span> : null}
       <CardDescription title={title} description={description} />
       <CardBilling price={price} />
@@ -68,23 +71,6 @@ function PricingCard(props) {
 
 const Subscription = () => {
   const [toggle, setToggle] = useState(false)
-
-  const largePackage = [
-    {
-      basicPlan: {
-        cost: 17450,
-        access: 850,
-      },
-      medium: {
-        cost: 44950,
-        access: 2300,
-      },
-      large: {
-        cost: 81000,
-        access: 4700,
-      },
-    },
-  ]
 
   const cardsData = [
     {
@@ -153,57 +139,60 @@ const Subscription = () => {
   ]
 
   return (
-    <div className="container pt-5 pb-5">
-      <div className="subscription-header mb-2">
-        <p className="d-flex resume-database mb-3">
-          NCV <span className="circle-exclamation">!</span> Resume Database
-          Access Packages
-        </p>
-        <h3 className="mb-2" style={{ fontWeight: "400" }}>
-          Search Active Candidate's with India's First{" "}
-          <span style={{ color: "red" }}>NCV</span> Resume Database
-        </h3>
+    <>
+      <EmployeeHome />
+      <div className="container pt-5 pb-5">
+        <div className="subscription-header mb-2">
+          <p className="d-flex resume-database mb-3">
+            NCV <span className="circle-exclamation">!</span> Resume Database
+            Access Packages
+          </p>
+          <h3 className="mb-2" style={{ fontWeight: "400" }}>
+            Search Active Candidate's with India's First{" "}
+            <span style={{ color: "red" }}>NCV</span> Resume Database
+          </h3>
 
-        {/* Toggle Section */}
-        <section className="toggle-section">
-          <p>Medium</p>
-          <div
-            className={toggle ? "toggle-area monthly" : "toggle-area anually"}
-            onClick={() => setToggle(!toggle)}
-          >
-            <div className="toggle-btn"></div>
+          {/* Toggle Section */}
+          <section className="toggle-section">
+            <p>Medium</p>
+            <div
+              className={toggle ? "toggle-area monthly" : "toggle-area anually"}
+              onClick={() => setToggle(!toggle)}
+            >
+              <div className="toggle-btn"></div>
+            </div>
+            <p>Large</p>
+          </section>
+
+          {/* Subscription Cards */}
+          <div className="app-wrapper">
+            {toggle
+              ? cardsData2.map((props) => {
+                  return <PricingCard {...props} key={props.id} />
+                })
+              : cardsData.map((props) => {
+                  return <PricingCard {...props} key={props.id} />
+                })}
           </div>
-          <p>Large</p>
-        </section>
+        </div>
 
-        {/* Subscription Cards */}
-        <div className="app-wrapper">
-          {toggle
-            ? cardsData2.map((props) => {
-                return <PricingCard {...props} key={props.id} />
-              })
-            : cardsData.map((props) => {
-                return <PricingCard {...props} key={props.id} />
-              })}
+        <div className="mt-4 mb-3">
+          <ul>
+            <li className="mb-2">
+              All NCV resumes will remain same until all not used by you
+            </li>
+            <li className="mb-2">
+              CV View / CV Download / Click to view resume / Click to view phone
+              no = 1 NCV Access,
+            </li>
+            <li className="mb-2">
+              Please note that the amounts are exclusive of taxes. Taxes will be
+              added as applicable.
+            </li>
+          </ul>
         </div>
       </div>
-
-      <div className="mt-4 mb-3">
-        <ul>
-          <li className="mb-2">
-            All NCV resumes will remain same until all not used by you
-          </li>
-          <li className="mb-2">
-            CV View / CV Download / Click to view resume / Click to view phone
-            no = 1 NCV Access,
-          </li>
-          <li className="mb-2">
-            Please note that the amounts are exclusive of taxes. Taxes will be
-            added as applicable.
-          </li>
-        </ul>
-      </div>
-    </div>
+    </>
   )
 }
 

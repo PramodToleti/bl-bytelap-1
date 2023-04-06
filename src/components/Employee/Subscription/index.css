@@ -96,10 +96,12 @@
   overflow: auto;
   width: 100%;
   justify-content: center;
+  gap: 40px;
   margin-top: 25px;
+  overflow: visible;
 }
 
-.card {
+.card_ {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -114,11 +116,11 @@
   transition: transform 0.3s ease-out;
 }
 
-.card:hover {
+.card_:hover {
   transform: scale(1.05);
 }
 
-.card .most-popular {
+.card_ .most-popular {
   font-size: 15px;
   font-weight: 700;
   background-color: #9b59b6;
@@ -128,19 +130,19 @@
   text-transform: uppercase;
 }
 
-.card.free {
+.card_.free {
   border-top: 6px solid #1abc9c;
 }
 
-.card.basic {
+.card_.basic {
   border-top: 6px solid #3498db;
 }
 
-.card.medium {
+.card_.medium {
   border-top: 6px solid #9b59b6;
 }
 
-.card.pro {
+.card_.pro {
   border-top: 6px solid #f1c40f;
 }
 

@@ -20,6 +20,7 @@ import JobLocationField from "../../JobLocationField"
 
 import "./index.css"
 import "bootstrap/dist/css/bootstrap.min.css"
+import CandidateFooter from "../Candidate/CandidateFooter"
 
 function LoginPage() {
   const [accepted, setAccepted] = useState(false)
@@ -807,6 +808,8 @@ function LoginPage() {
           />
         )}
       </div>
+
+      <CandidateFooter isRegistered={false} />
 
       {!accepted && (
         <div className="accept-cookies">

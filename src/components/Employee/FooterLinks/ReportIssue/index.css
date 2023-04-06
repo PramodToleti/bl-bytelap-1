@@ -1,0 +1,27 @@
+.report-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.issue-container {
+  width: 100%;
+  max-width: 800px;
+}
+
+.issue-form-container {
+  width: 100%;
+  height: 100%;
+}
+
+.issue-choose-file {
+  background-color: #e0dede;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
