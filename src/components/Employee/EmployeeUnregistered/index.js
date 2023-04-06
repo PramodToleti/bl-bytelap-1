@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button, Card } from "react-bootstrap"
 import Slider from "react-slick"
 
@@ -34,6 +34,24 @@ import EmployeeFooter from "../EmployeeFooter"
 
 function EmployeeUnregistered() {
   const [isNext, setIsNext] = useState(false)
+
+  const [jobs, setJobs] = useState([
+    "IT Engineering",
+    "BPO & KPO",
+    "Operations",
+    "Sales & BD",
+    "Marketing",
+    "Finance",
+  ])
+
+  /* const jobs = [
+    "IT Engineering",
+    "BPO & KPO",
+    "Operations",
+    "Sales & BD",
+    "Marketing",
+    "Finance",
+  ] */
 
   const settings = {
     dots: false,
@@ -557,81 +575,120 @@ function EmployeeUnregistered() {
                 <div className="carousel-card">
                   <Slider {...settings}>
                     <div>
-                      <div className="recommendation-card">
-                        <img
-                          src="https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?w=740&t=st=1678802253~exp=1678802853~hmac=7ee8e42d48509b8eb6f7cdfcb4b505a2048d44c09c79e90ff0460f3133224223"
+                      <div className="d-flex justify-content-center">
+                        <div
+                          className="recommendation-card"
                           style={{
-                            width: "100px",
-                            height: "100px",
-                            borderRadius: "100%",
-                            boxShadow: "0px 0px 10px 0px #ccc",
-                            marginTop: "5px",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            padding: "20px",
                           }}
-                        />
-                        <p style={{ textAlign: "start" }}>
-                          They are logical and simple to work with, quietly
-                          listen to your requirement, and provide you with
-                          excellent counsel from a distance. At the core of
-                          their customer-centricity is the automation technology
-                          they use, which entails bringing the Talent closer to
-                          each stage of the process.
-                        </p>
-                      </div>
-                      <div className="user-role-container mt-3">
-                        <h6 style={{ fontWeight: "600" }}>Nilesh Ranjan</h6>
-                        <p>Founder of Demo Technologies</p>
+                        >
+                          <div className="product-review">
+                            <img
+                              src="https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?w=740&t=st=1678802253~exp=1678802853~hmac=7ee8e42d48509b8eb6f7cdfcb4b505a2048d44c09c79e90ff0460f3133224223"
+                              style={{
+                                width: "100px",
+                                height: "100px",
+                                borderRadius: "100%",
+                                boxShadow: "0px 0px 10px 0px #ccc",
+                                marginTop: "5px",
+                              }}
+                            />
+                            <p style={{ textAlign: "start" }}>
+                              They are logical and simple to work with, quietly
+                              listen to your requirement, and provide you with
+                              excellent counsel from a distance. At the core of
+                              their customer-centricity is the automation
+                              technology they use, which entails bringing the
+                              Talent closer to each stage of the process.
+                            </p>
+                          </div>
+                          <div className="user-role-container mt-3">
+                            <h6 style={{ fontWeight: "600" }}>Nilesh Ranjan</h6>
+                            <p>Founder of Demo Technologies</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div>
-                      <div className="recommendation-card">
-                        <img
-                          src="https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?w=740&t=st=1678802253~exp=1678802853~hmac=7ee8e42d48509b8eb6f7cdfcb4b505a2048d44c09c79e90ff0460f3133224223"
+                      <div className="d-flex justify-content-center">
+                        <div
+                          className="recommendation-card"
                           style={{
-                            width: "100px",
-                            height: "100px",
-                            borderRadius: "100%",
-                            boxShadow: "0px 0px 10px 0px #ccc",
-                            marginTop: "5px",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            padding: "20px",
                           }}
-                        />
-                        <p style={{ textAlign: "start" }}>
-                          They are logical and simple to work with, quietly
-                          listen to your requirement, and provide you with
-                          excellent counsel from a distance. At the core of
-                          their customer-centricity is the automation technology
-                          they use, which entails bringing the Talent closer to
-                          each stage of the process.
-                        </p>
-                      </div>
-                      <div className="user-role-container mt-3">
-                        <h6 style={{ fontWeight: "600" }}>Nilesh Ranjan</h6>
-                        <p>Founder of Demo Technologies</p>
+                        >
+                          <div className="product-review">
+                            <img
+                              src="https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?w=740&t=st=1678802253~exp=1678802853~hmac=7ee8e42d48509b8eb6f7cdfcb4b505a2048d44c09c79e90ff0460f3133224223"
+                              style={{
+                                width: "100px",
+                                height: "100px",
+                                borderRadius: "100%",
+                                boxShadow: "0px 0px 10px 0px #ccc",
+                                marginTop: "5px",
+                              }}
+                            />
+                            <p style={{ textAlign: "start" }}>
+                              They are logical and simple to work with, quietly
+                              listen to your requirement, and provide you with
+                              excellent counsel from a distance. At the core of
+                              their customer-centricity is the automation
+                              technology they use, which entails bringing the
+                              Talent closer to each stage of the process.
+                            </p>
+                          </div>
+                          <div className="user-role-container mt-3">
+                            <h6 style={{ fontWeight: "600" }}>Nilesh Ranjan</h6>
+                            <p>Founder of Demo Technologies</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div>
-                      <div className="recommendation-card">
-                        <img
-                          src="https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?w=740&t=st=1678802253~exp=1678802853~hmac=7ee8e42d48509b8eb6f7cdfcb4b505a2048d44c09c79e90ff0460f3133224223"
+                      <div className="d-flex justify-content-center">
+                        <div
+                          className="recommendation-card"
                           style={{
-                            width: "100px",
-                            height: "100px",
-                            borderRadius: "100%",
-                            boxShadow: "0px 0px 10px 0px #ccc",
-                            marginTop: "5px",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            padding: "20px",
                           }}
-                        />
-                        <p style={{ textAlign: "start" }}>
-                          They are logical and simple to work with, quietly
-                          listen to your requirement, and provide you with
-                          excellent counsel from a distance. At the core of
-                          their customer-centricity is the automation technology
-                          they use, which entails bringing the Talent closer to
-                          each stage of the process.
-                        </p>
-                      </div>
-                      <div className="user-role-container mt-3">
-                        <h6 style={{ fontWeight: "600" }}>Nilesh Ranjan</h6>
-                        <p>Founder of Demo Technologies</p>
+                        >
+                          <div className="product-review">
+                            <img
+                              src="https://img.freepik.com/free-vector/illustration-businessman_53876-5856.jpg?w=740&t=st=1678802253~exp=1678802853~hmac=7ee8e42d48509b8eb6f7cdfcb4b505a2048d44c09c79e90ff0460f3133224223"
+                              style={{
+                                width: "100px",
+                                height: "100px",
+                                borderRadius: "100%",
+                                boxShadow: "0px 0px 10px 0px #ccc",
+                                marginTop: "5px",
+                              }}
+                            />
+                            <p style={{ textAlign: "start" }}>
+                              They are logical and simple to work with, quietly
+                              listen to your requirement, and provide you with
+                              excellent counsel from a distance. At the core of
+                              their customer-centricity is the automation
+                              technology they use, which entails bringing the
+                              Talent closer to each stage of the process.
+                            </p>
+                          </div>
+                          <div className="user-role-container mt-3">
+                            <h6 style={{ fontWeight: "600" }}>Nilesh Ranjan</h6>
+                            <p>Founder of Demo Technologies</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </Slider>
@@ -639,7 +696,7 @@ function EmployeeUnregistered() {
               </div>
             </div>
 
-            <div className="media-coverage-container">
+            {/*             <div className="media-coverage-container">
               <h4 className="mb-3">Media Coverage</h4>
               <div className="carousel-container">
                 <div className="carousel-card">
@@ -670,6 +727,19 @@ function EmployeeUnregistered() {
                     </div>
                   </Slider>
                 </div>
+              </div>
+            </div> */}
+
+            <div className="job-categories-container mb-4">
+              <h4 className="mb-3 job-categories-heading">
+                Hire instant from Trending job categories
+              </h4>
+              <div className="job-categories">
+                {jobs.map((job, index) => (
+                  <div key={index} className="job-name">
+                    {job}
+                  </div>
+                ))}
               </div>
             </div>
           </>

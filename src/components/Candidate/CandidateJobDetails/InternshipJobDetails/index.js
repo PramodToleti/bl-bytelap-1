@@ -304,7 +304,7 @@ function InternshipJobDetails(props) {
               <>
                 <h4 className="mb-3">Qualification:</h4>
                 {data.education.map((each) => (
-                  <p>
+                  <p className="mb-4">
                     {each.qualification === "Any Graduate"
                       ? "UG : "
                       : each.qualification === "Any Post Graduate"
@@ -316,19 +316,18 @@ function InternshipJobDetails(props) {
                       : each.qualification}
                   </p>
                 ))}
-                <hr />
               </>
             )}
 
             {data.responsibilities !== "" && (
               <>
-                <h4 className="mb-3">Job Description</h4>
+                <h4 className="mb-4">Job Description</h4>
                 <p style={{ fontSize: "16px" }}>
                   Selected intern's day-to-day responsibilities include:
                 </p>
                 {data.responsibilities !== "" && (
                   <div
-                    className="parent-div"
+                    className="parent-div mb-3"
                     dangerouslySetInnerHTML={{ __html: data.responsibilities }}
                   />
                 )}
@@ -336,27 +335,24 @@ function InternshipJobDetails(props) {
             )}
 
             {data.perks.length !== 0 && (
-              <div className="perks-desktop">
-                <hr />
+              <div className="perks-desktop mb-4">
                 <h4 className="mb-3">Perks & Benefits</h4>
                 {data.perks.map((each, i) => (
                   <h6 className="preview-skills" key={each}>
                     {each.value}
                   </h6>
                 ))}
-                <hr />
               </div>
             )}
 
             {data.languages.length !== 0 && (
               <div>
                 <h4 className="mb-3">Languages</h4>
-                <div className="languages-list">
+                <div className="languages-list mb-4">
                   {data.languages.map((each) => (
                     <p>{each}</p>
                   ))}
                 </div>
-                <hr />
               </div>
             )}
 

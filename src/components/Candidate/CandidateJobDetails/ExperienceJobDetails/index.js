@@ -242,7 +242,7 @@ const ExperienceJobDetails = (props) => {
               <>
                 <h4 className="mb-3">Qualification:</h4>
                 {data.education.map((each) => (
-                  <p>
+                  <p className="mb-4">
                     {each.qualification === "Any Graduate"
                       ? "UG : "
                       : each.qualification === "Any Post Graduate"
@@ -254,7 +254,6 @@ const ExperienceJobDetails = (props) => {
                       : each.qualification}
                   </p>
                 ))}
-                <hr />
               </>
             )}
 
@@ -263,16 +262,15 @@ const ExperienceJobDetails = (props) => {
                 <h4 className="mb-3">Job Description</h4>
 
                 <div
-                  className="parent-div"
+                  className="parent-div mb-4"
                   dangerouslySetInnerHTML={{ __html: data.jobDescription }}
                 />
-                <hr />
               </>
             )}
 
             {data.perks.length !== 0 && (
               <>
-                <div>
+                <div className="mb-4">
                   <h4 className="mb-3">Perks & Benefits:</h4>
                   {data.perks.map((each, i) => (
                     <h6 className="preview-skills" key={each}>
@@ -280,13 +278,12 @@ const ExperienceJobDetails = (props) => {
                     </h6>
                   ))}
                 </div>
-                <hr />
               </>
             )}
 
             {data.supplementary.length !== 0 && (
               <>
-                <div>
+                <div className="mb-4">
                   <h4 className="mb-3">Supplemental Pay:</h4>
                   {data.supplementary.map((each, i) => (
                     <h6 className="preview-skills" key={each}>
@@ -294,13 +291,12 @@ const ExperienceJobDetails = (props) => {
                     </h6>
                   ))}
                 </div>
-                <hr />
               </>
             )}
 
             {data.languages.length !== 0 && (
               <>
-                <div>
+                <div className="mb-4">
                   <h4 className="mb-3">Languages</h4>
                   <div className="languages-list">
                     {data.languages.map((each) => (
@@ -308,12 +304,11 @@ const ExperienceJobDetails = (props) => {
                     ))}
                   </div>
                 </div>
-                <hr />
               </>
             )}
 
             {data.openings !== "" && (
-              <div>
+              <div className="mb-4">
                 <h4 className="mb-3">Number of openings:</h4>
                 <h5>{data.openings !== "" && `${data.openings}+`}</h5>
               </div>

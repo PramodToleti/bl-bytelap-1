@@ -1,0 +1,92 @@
+.career-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.career-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .career-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .career-details-container {
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    grid-gap: 25px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+  }
+}
+
+.career-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.career-card:hover {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.career-card:hover .career-card-title {
+  color: #000;
+}
+
+.career-card:hover .career-card-description {
+  color: #000;
+}
+
+.career-card:hover .career-card-button {
+  background-color: #000;
+  color: #fff;
+}
+
+.career-card:hover .career-card-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.career-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.career-card-description {
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.career-card-button {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.career-card-button:hover {
+  background-color: #fff;
+  color: #000;
+}

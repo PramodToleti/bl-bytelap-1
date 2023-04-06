@@ -203,7 +203,6 @@ const FresherJobDetails = (props) => {
 
             {data.skills.length !== 0 && (
               <>
-                <hr />
                 <div className="mb-1">
                   {data.skills.map((each) => (
                     <h6 className="preview-skills" key={each}>
@@ -230,7 +229,7 @@ const FresherJobDetails = (props) => {
               <>
                 <h4 className="mb-3">Qualification:</h4>
                 {data.education.map((each) => (
-                  <p>
+                  <p className="mb-4">
                     {each.qualification === "Any Graduate"
                       ? "UG : "
                       : each.qualification === "Any Post Graduate"
@@ -242,7 +241,6 @@ const FresherJobDetails = (props) => {
                       : each.qualification}
                   </p>
                 ))}
-                <hr />
               </>
             )}
             {data.jobDescription !== "" && (
@@ -250,16 +248,15 @@ const FresherJobDetails = (props) => {
                 <h4 className="mb-3">Job Description</h4>
 
                 <div
-                  className="parent-div"
+                  className="parent-div mb-4"
                   dangerouslySetInnerHTML={{ __html: data.jobDescription }}
                 />
-                <hr />
               </>
             )}
 
             {data.perks.length !== 0 && (
               <>
-                <div>
+                <div className="mb-4">
                   <h4 className="mb-3">Perks & Benefits:</h4>
                   {data.perks.map((each, i) => (
                     <h6 className="preview-skills" key={each}>
@@ -267,14 +264,12 @@ const FresherJobDetails = (props) => {
                     </h6>
                   ))}
                 </div>
-
-                <hr />
               </>
             )}
 
             {data.supplementary.length !== 0 && (
               <>
-                <div>
+                <div className="mb-4">
                   <h4 className="mb-3">Supplemental Pay:</h4>
                   {data.supplementary.map((each, i) => (
                     <h6 className="preview-skills" key={each}>
@@ -282,13 +277,12 @@ const FresherJobDetails = (props) => {
                     </h6>
                   ))}
                 </div>
-                <hr />
               </>
             )}
 
             {data.languages.length !== 0 && (
               <>
-                <div>
+                <div className="mb-4">
                   <h4 className="mb-3">Languages</h4>
                   <div className="languages-list">
                     {data.languages.map((each) => (
@@ -296,7 +290,6 @@ const FresherJobDetails = (props) => {
                     ))}
                   </div>
                 </div>
-                <hr />
               </>
             )}
 

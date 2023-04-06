@@ -71,6 +71,7 @@ import TermsAndConditons2 from "./components/Candidate/CandidateFooterLinks/Term
 import ReportIssue2 from "./components/Candidate/CandidateFooterLinks/ReportIssue2"
 import Startup from "./components/Employee/FooterLinks/Startup"
 import Enterprise from "./components/Employee/FooterLinks/Enterprise"
+import career from "./components/Candidate/CandidateFooterLinks/career"
 
 const App = () => {
   const [userResume, setResume] = useState(null)
@@ -298,6 +299,8 @@ const App = () => {
             component={PrivacyPolicy2}
           />
           <Route exact path="/report-issue" component={ReportIssue2} />
+
+          <Route exact path="/candidate/career" component={career} />
 
           {/* Employee Subscriptions */}
 

@@ -117,7 +117,15 @@ const CandidateFooter = (props) => {
               Create Account
             </li>
           )}
-          <li className="footer-link">Career</li>
+          <li
+            className="footer-link"
+            onClick={() => {
+              history.push("/candidate/career", { isRegistered })
+              window.scrollTo(0, 0)
+            }}
+          >
+            Career
+          </li>
         </ul>
 
         <ul className="footer-sub-container">
