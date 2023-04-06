@@ -128,16 +128,18 @@ const EmployeeFooter = (props) => {
             Post a Job
           </li>
           <li className="footer-link">FAQ</li>
-          <li
-            className="footer-link"
-            onClick={() => {
-              isRegistered
-                ? history.push("/employee")
-                : history.push("/employee/create-account/step-1")
-            }}
-          >
-            Create Account
-          </li>
+          {!isRegistered && (
+            <li
+              className="footer-link"
+              onClick={() => {
+                isRegistered
+                  ? history.push("/employee")
+                  : history.push("/employee/create-account/step-1")
+              }}
+            >
+              Create Account
+            </li>
+          )}
         </ul>
 
         <ul className="footer-sub-container">

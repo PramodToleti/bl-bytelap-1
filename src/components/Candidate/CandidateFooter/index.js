@@ -102,19 +102,21 @@ const CandidateFooter = (props) => {
           >
             Find a Job
           </li>
-          <li
-            className="footer-link"
-            onClick={() => {
-              isRegistered
-                ? history.push("/candidate", { isRegistered })
-                : history.push("/candidate/create-account/step-1", {
-                    isRegistered,
-                  })
-              window.scrollTo(0, 0)
-            }}
-          >
-            Create Account
-          </li>
+          {!isRegistered && (
+            <li
+              className="footer-link"
+              onClick={() => {
+                isRegistered
+                  ? history.push("/candidate", { isRegistered })
+                  : history.push("/candidate/create-account/step-1", {
+                      isRegistered,
+                    })
+                window.scrollTo(0, 0)
+              }}
+            >
+              Create Account
+            </li>
+          )}
           <li className="footer-link">Career</li>
         </ul>
 
@@ -139,10 +141,13 @@ const CandidateFooter = (props) => {
           >
             Post a Job
           </li>
+
           <li
             className="footer-link"
             onClick={() => {
-              history.push("/employee/create-account/step-1", { isRegistered })
+              history.push("/employee/create-account/step-1", {
+                isRegistered,
+              })
               window.scrollTo(0, 0)
             }}
           >
