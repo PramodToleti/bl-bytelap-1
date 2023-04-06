@@ -91,32 +91,42 @@ const EmployeeFooter = (props) => {
         <ul className="footer-sub-container">
           <h5 className="footer-heading">Sales & Enquires</h5>
           <li className="footer-link">Sales@demo.com</li>
-          <Link to="/employee/startup-hiring" className="privacy-policy">
-            <li
-              className="footer-link"
-              onClick={() => {
-                window.scrollTo(0, 0)
-              }}
-            >
-              Startup Hiring
-            </li>
-          </Link>
-          <Link to="/employee/enterprise-hiring" className="privacy-policy">
-            <li
-              className="footer-link"
-              onClick={() => {
-                window.scrollTo(0, 0)
-              }}
-            >
-              Enterprise Hiring
-            </li>
-          </Link>
+
+          <li
+            className="footer-link privacy-policy"
+            onClick={() => {
+              history.push("/employee/startup-hiring", { isRegistered })
+              window.scrollTo(0, 0)
+            }}
+          >
+            Startup Hiring
+          </li>
+
+          <li
+            className="footer-link privacy-policy"
+            onClick={() => {
+              history.push("/employee/enterprise-hiring", { isRegistered })
+              window.scrollTo(0, 0)
+            }}
+          >
+            Enterprise Hiring
+          </li>
           <li className="footer-link">91-8888-8888-88</li>
         </ul>
 
         <ul className="footer-sub-container">
           <h5 className="footer-heading">Employers</h5>
-          <li className="footer-link">Post a Job</li>
+          <li
+            className="footer-link"
+            onClick={() => {
+              isRegistered
+                ? history.push("/employee")
+                : history.push("/employee/home")
+              window.scrollTo(0, 0)
+            }}
+          >
+            Post a Job
+          </li>
           <li className="footer-link">FAQ</li>
           <li
             className="footer-link"

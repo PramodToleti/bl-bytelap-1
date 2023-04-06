@@ -133,7 +133,7 @@ const CandidateFooter = (props) => {
           <li
             className="footer-link"
             onClick={() => {
-              history.push("/employee", { isRegistered })
+              history.push("/employee/home", { isRegistered })
               window.scrollTo(0, 0)
             }}
           >
