@@ -9,7 +9,7 @@ import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
 import Theme from "../../../../Theme"
 
-const Career = () => {
+const career = () => {
   const location = useLocation()
   const isRegistered = location.state?.isRegistered
 
@@ -145,4 +145,4 @@ const Career = () => {
   )
 }
 
-export default Career
+export default career

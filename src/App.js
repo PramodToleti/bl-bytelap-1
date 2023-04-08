@@ -71,9 +71,9 @@ import TermsAndConditons2 from "./components/Candidate/CandidateFooterLinks/Term
 import ReportIssue2 from "./components/Candidate/CandidateFooterLinks/ReportIssue2"
 import Startup from "./components/Employee/FooterLinks/Startup"
 import Enterprise from "./components/Employee/FooterLinks/Enterprise"
-import Career from "./components/Candidate/CandidateFooterLinks/Career"
+import career from "./components/Candidate/CandidateFooterLinks/Career"
+import Certification from "./components/Candidate/certification"
 import CertificationCard from "./components/Candidate/CertificationCard"
-import Certification from "./components/Candidate/Certification"
 
 const App = () => {
   const [userResume, setResume] = useState(null)
@@ -315,7 +315,7 @@ const App = () => {
           />
           <Route exact path="/report-issue" component={ReportIssue2} />
 
-          <Route exact path="/candidate/career" component={Career} />
+          <Route exact path="/candidate/career" component={career} />
 
           {/* Employee Subscriptions */}
 
