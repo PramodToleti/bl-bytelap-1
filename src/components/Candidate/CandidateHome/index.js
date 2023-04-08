@@ -99,14 +99,20 @@ const HomeHeader = () => {
               >
                 <Link
                   to="/candidate/account-setting/my-info"
-                  className="nav-link"
+                  className="nav-link mb-1"
                 >
                   Edit Profile
                 </Link>
-                <Link to="/candidate/change-password" className=" nav-link">
+                <Link
+                  to="/candidate/change-password"
+                  className=" nav-link mb-1"
+                >
                   Change Password
                 </Link>
-                <Link to="/login" className=" nav-link">
+                <Link to="/candidate/certification" className=" nav-link mb-1">
+                  Certification
+                </Link>
+                <Link to="/login" className=" nav-link mb-1">
                   Logout
                 </Link>
               </NavDropdown>

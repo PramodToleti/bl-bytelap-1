@@ -1,0 +1,71 @@
+.certification-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.header-description {
+  flex-grow: 1;
+  min-height: 450px;
+  margin: 0px;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .header-description {
+    min-height: 330px;
+  }
+}
+
+.certification-header {
+  font-weight: 500;
+  font-size: 22px;
+  max-width: 950px;
+  margin-bottom: 25px;
+}
+
+.benefits-heading {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.benefits-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.enroll-container {
+  position: relative;
+}
+
+.enroll-text {
+  background-color: #f5f5f590;
+  padding: 15px;
+  width: 100vw;
+  left: 0;
+  margin-bottom: 25px;
+  display: inline-block;
+  margin-left: -12px;
+}
+
+@media screen and (min-width: 768px) {
+  .enroll-text {
+    padding-left: 105px;
+    margin-left: -105px;
+  }
+}
+
+.filter-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .filter-form {
+    gap: 50px;
+  }
+}
