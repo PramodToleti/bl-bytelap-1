@@ -137,3 +137,22 @@
   font-size: 20px;
   margin-bottom: 0;
 }
+
+.zoom-btn-container {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+}
+
+.zoom-btn {
+  margin-right: 12px;
+  background: transparent;
+  border: 0;
+  outline: none;
+  width: auto;
+}
+
+.zoom-icon {
+  color: rgb(66, 66, 66);
+  font-size: 25px;
+}

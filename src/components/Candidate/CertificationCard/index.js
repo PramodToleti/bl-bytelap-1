@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useState, useRef, useEffect } from "react"
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
+import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai"
 import { createRoot } from "react-dom/client"
 import Popup from "reactjs-popup"
 
@@ -14,7 +15,7 @@ const CerfCard = ({ data }) => {
   const [zoom, setZoom] = useState(1)
 
   const handleZoomIn = () => {
-    setZoom(zoom + 0.1)
+    if (zoom < 1.5) setZoom(zoom + 0.1)
   }
 
   const handleZoomOut = () => {
@@ -53,7 +54,56 @@ const CerfCard = ({ data }) => {
     }
   }, [])
 
-  const renderSamplePopup = () => <p>View Sample</p>
+  const renderSamplePopup = () => (
+    <Popup
+      trigger={
+        <button
+          style={{
+            cursor: "pointer",
+            backgroundColor: "transparent",
+            border: "none",
+            outline: "none",
+          }}
+        >
+          {" "}
+          View Sample{" "}
+        </button>
+      }
+      modal
+      nested
+    >
+      {(close) => (
+        <div className="">
+          <div
+            style={{
+              overflow: "hidden",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src="https://unsplash.it/800/300"
+              alt="sample"
+              style={{ transform: `scale(${zoom})`, transition: "all 0.5s" }}
+              className="zoom-img"
+              onBlur={() => setZoom(1)}
+            />
+          </div>
+          <div className="mt-2">
+            <div className="zoom-btn-container">
+              <button onClick={handleZoomIn} className="zoom-btn">
+                <AiFillPlusCircle className="zoom-icon" />
+              </button>
+              <button onClick={handleZoomOut} className="zoom-btn">
+                <AiFillMinusCircle className="zoom-icon" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </Popup>
+  )
 
   return (
     <>
