@@ -1,0 +1,139 @@
+.card-buy-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .card-buy-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+    margin-top: 10px;
+  }
+
+  .price-container,
+  .original-price,
+  .discount-price {
+    margin-bottom: 0 !important;
+  }
+}
+
+.price-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #a9a9a9;
+  font-size: 19px;
+}
+
+.discount-price {
+  color: #f59930;
+  font-weight: 600;
+  font-size: 19px;
+}
+
+/* Faq */
+
+.wrapper {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 15px 25px rgba(155, 155, 155, 0.2);
+  box-shadow: 0 10px 25px rgba(155, 155, 155, 0.2);
+}
+
+.toggle,
+.content {
+  font-family: "Roboto", sans-serif;
+}
+
+.toggle {
+  width: 100%;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 17px;
+  color: #111130;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 0;
+}
+.content {
+  position: relative;
+  font-size: 14px;
+  text-align: justify;
+  line-height: 30px;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 0.5s;
+}
+
+/* Salary range */
+
+.salary-range-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.salary-range {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 10px;
+  box-shadow: rgba(104, 104, 104, 0.3) 0px 1px 2px 0px,
+    rgba(109, 109, 109, 0.15) 0px 2px 6px 2px;
+  border-radius: 8px;
+}
+
+.salary-cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 30px;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .salary-cards {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .salary-range {
+    width: 30%;
+  }
+}
+
+.download-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+.completion-heading {
+  font-size: 20px;
+  margin-bottom: 0;
+}

@@ -14,49 +14,56 @@ const Certification = () => {
     setActiveRadio(e.target.value)
   }
 
-  const careerDetails = [
+  const certificationDetails = [
     {
       title: "Digital Marketing",
+      route: "digitalMaketing",
       about:
         "Launch Your Career in Digital Marketing: Learn Essential Skills and Strategies",
       type: "digitalMarketing",
     },
     {
       title: "SEO",
+      route: "seo",
       about: "Unlock Your SEO Potential",
       type: "digitalMarketing",
     },
     {
       title: "React JS",
+      route: "reactjs",
       about:
         "Learn to Build Dynamic User Interfaces and Launch Your Front-End Development Career",
       type: "programming",
     },
     {
       title: "Angular JS",
+      route: "angularjs",
       about: "Learn AngularJS and Build Powerful Web Applications",
       type: "programming",
     },
     {
       title: "Node JS",
+      route: "nodejs",
       about: "Build Dynamic Web Applications with Node.js",
       type: "programming",
     },
     {
       title: "MERN Stack",
+      route: "mernStack",
       about:
         "Build Dynamic Web Applications with MongoDB, Express, React, and Node.js",
       type: "programming",
     },
     {
       title: "MEAN Stack",
+      route: "meanStack",
       about:
         "Build Dynamic Web Applications with MongoDB, Express, Angular, and Node.js",
       type: "programming",
     },
   ]
 
-  const activeCertification = careerDetails.filter((each) => {
+  const activeCertification = certificationDetails.filter((each) => {
     if (activeRadio === "all") {
       return each
     } else {
@@ -132,8 +139,15 @@ const Certification = () => {
           </div>
 
           <div className="career-details-container mt-5">
-            {activeCertification.map((each) => (
-              <Link to={`/candidate/certification/${each.type}`}>
+            {activeCertification.map((each, i) => (
+              <Link
+                to={`/candidate/certification/${each.route}`}
+                style={{ textDecoration: "none", color: "#000" }}
+                key={i}
+                onClick={() => {
+                  window.scrollTo(0, 0)
+                }}
+              >
                 <div className="career-card">
                   <div className="career-card-header">
                     <h5 className="mb-3">{each.title}</h5>
