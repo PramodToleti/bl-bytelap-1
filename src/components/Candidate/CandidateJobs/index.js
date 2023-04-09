@@ -25,8 +25,11 @@ const CandidateJobs = (props) => {
   const fresherJobs = JSON.parse(localStorage.getItem("fresherJob"))
   const experienceJobs = JSON.parse(localStorage.getItem("experienceJob"))
 
-  const totalJobs = [...internshipJobs, ...fresherJobs, ...experienceJobs]
-    .length
+  const internships = internshipJobs?.length ?? 0
+  const freshers = fresherJobs?.length ?? 0
+  const experiences = experienceJobs?.length ?? 0
+
+  const totalJobs = internships + freshers + experiences
 
   const filteredJobsIntern = (internshipJobs || []).filter((eachJob) => {
     if (
