@@ -171,11 +171,11 @@ function Internship() {
             <Form.Control
               type="number"
               placeholder="5k/Month"
-              onKeyDown={(e) => {
+              /* onKeyDown={(e) => {
                 if (e.target.value.length > 4) {
                   e.preventDefault()
                 }
-              }}
+              }} */
               onChange={(e) => setSalaryRange(e.target.value)}
             />
           </Form.Group>

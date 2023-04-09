@@ -46,6 +46,7 @@
   border-radius: 5px;
   -webkit-box-shadow: 0 15px 25px rgba(155, 155, 155, 0.2);
   box-shadow: 0 10px 25px rgba(155, 155, 155, 0.2);
+  width: 100%;
 }
 
 .toggle,

@@ -176,6 +176,8 @@ function Experience() {
                   <Form.Control
                     type="number"
                     placeholder="1 lac"
+                    min="0"
+                    max="99"
                     onChange={(e) =>
                       setSalaryRange({ ...salaryRange, from: e.target.value })
                     }
@@ -188,6 +190,9 @@ function Experience() {
                   <Form.Control
                     type="number"
                     placeholder="3 lac"
+                    min="0"
+                    max="99"
+                    oninput="validity.valid||(value=''); if(value>99) value='99'; if(value<0) value='0';"
                     onChange={(e) =>
                       setSalaryRange({ ...salaryRange, to: e.target.value })
                     }

@@ -677,7 +677,7 @@ function Home() {
 
           <div
             className="container"
-            style={{ paddingBottom: "20px", marginBottom: "20px" }}
+            style={{ paddingBottom: "20px", marginBottom: "10px" }}
           >
             <hr
               className="mb-3 mt-3"

@@ -42,11 +42,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border: 1px solid rgb(117, 117, 117);
   border-radius: 7px;
   padding: 10px;
   min-height: 100px;
   cursor: pointer;
+}
+
+.option-container:hover {
+  box-shadow: 0 0 10px 0 rgb(196, 196, 196);
 }
 
 .employee-unregistered-footer {
@@ -168,7 +172,9 @@
 
 .slick-prev:before,
 .slick-next:before {
-  color: #000 !important;
+  color: grey !important;
+  font-size: 30px;
+  box-shadow: 0 10px 25px rgba(155, 155, 155, 0.2) !important;
 }
 
 .employee-post-job-container {

@@ -25,6 +25,9 @@ const CandidateJobs = (props) => {
   const fresherJobs = JSON.parse(localStorage.getItem("fresherJob"))
   const experienceJobs = JSON.parse(localStorage.getItem("experienceJob"))
 
+  const totalJobs = [...internshipJobs, ...fresherJobs, ...experienceJobs]
+    .length
+
   const filteredJobsIntern = (internshipJobs || []).filter((eachJob) => {
     if (
       (activeSearchStr === "" ||
@@ -114,7 +117,14 @@ const CandidateJobs = (props) => {
     }
   }
 
-  return <div>{renderJobs()}</div>
+  return (
+    <div>
+      <div className="container mb-3">
+        <span>{totalJobs} Jobs</span>
+      </div>
+      {renderJobs()}
+    </div>
+  )
 }
 
 export default CandidateJobs

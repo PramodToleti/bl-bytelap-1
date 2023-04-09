@@ -227,6 +227,31 @@ const CertificationCard = () => {
           ques: "Who is this SEO course for?",
           ans: "This course is designed for intermediate to advanced marketers, business owners, and webmasters who want to take their SEO knowledge to the next level.	",
         },
+        {
+          ques: "Do I need any prior SEO knowledge to take this course?",
+          ans: "No prior SEO knowledge is required to take this course. However, it is recommended that you have a basic understanding of SEO and digital marketing concepts before taking this course.	",
+        },
+
+        {
+          ques: "How long is the course?",
+          ans: "The course is self-paced and consists of 6 modules. The total length of the course will depend on how quickly you work through the modules and how much time you devote to each one.",
+        },
+        {
+          ques: "How is the course delivered?",
+          ans: "The course is delivered online. You will be able to access the course material and complete the modules at your own pace. You will also be able to download the course material and access it offline.",
+        },
+        {
+          ques: "Will I receive a certificate upon completion of the course?",
+          ans: "Yes, you will receive a certificate of completion once you have successfully completed all 6 modules of the course.",
+        },
+        {
+          ques: "Is there a refund policy?",
+          ans: "No",
+        },
+        {
+          ques: "What are the SEO job roles, starting from the entry-level to the top-level?",
+          ans: "SEO Executive/Associate, SEO Manager, SEO Analyst, SEO Consultant, SEO Director, VP of SEO",
+        },
       ],
       salaryRange: [
         {

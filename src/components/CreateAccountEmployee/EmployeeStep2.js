@@ -187,16 +187,30 @@ function EmployeeStep2() {
               feedbackType="invalid"
               className="terms-and-conditions"
             />
-            <Link
-              to="/employee/privacy-policy"
-              onClick={() => {
-                window.scrollTo(0, 0)
-              }}
-            >
-              <Form.Label className="terms-label">
-                Agree to terms and conditions
-              </Form.Label>
-            </Link>
+
+            <Form.Label className="terms-label">
+              Agree to
+              <Link
+                to="/employee/privacy-policy"
+                onClick={() => {
+                  window.scrollTo(0, 0)
+                }}
+                style={{ textDecoration: "none" }}
+              >
+                {" "}
+                Privacy Policy
+              </Link>{" "}
+              &{" "}
+              <Link
+                to="/employee/terms-and-condition"
+                onClick={() => {
+                  window.scrollTo(0, 0)
+                }}
+                style={{ textDecoration: "none" }}
+              >
+                Terms and Conditions
+              </Link>
+            </Form.Label>
           </Form.Group>
           <div className="d-grid gap-2 mt-2">
             <Link

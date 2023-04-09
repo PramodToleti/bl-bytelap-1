@@ -172,13 +172,37 @@ function CandidateStep1(props) {
               </small>
             </Row>
 
-            <Form.Group className="mb-3">
+            <Form.Group className=" mt-4 terms-container">
               <Form.Check
                 required
-                label="Agree to terms and conditions"
                 feedback="You must agree before submitting."
                 feedbackType="invalid"
+                className="terms-and-conditions"
               />
+
+              <Form.Label className="terms-label">
+                Agree to
+                <Link
+                  to="/candidate/privacy-policy"
+                  onClick={() => {
+                    window.scrollTo(0, 0)
+                  }}
+                  style={{ textDecoration: "none" }}
+                >
+                  {" "}
+                  Privacy Policy
+                </Link>{" "}
+                &{" "}
+                <Link
+                  to="/candidate/terms-and-condition"
+                  onClick={() => {
+                    window.scrollTo(0, 0)
+                  }}
+                  style={{ textDecoration: "none" }}
+                >
+                  Terms and Conditions
+                </Link>
+              </Form.Label>
             </Form.Group>
             <div className="d-grid gap-2 mt-5">
               <Link to="/candidate/create-account/step-2">

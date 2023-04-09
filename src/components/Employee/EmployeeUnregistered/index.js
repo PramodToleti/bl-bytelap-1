@@ -349,7 +349,7 @@ function EmployeeUnregistered() {
           <>
             <div className="post-job-content">
               <Popup
-                trigger={<Button variant="outline-secondary">Post</Button>}
+                trigger={<Button variant="outline-primary">Post</Button>}
                 position="center center"
                 contentStyle={{
                   borderRadius: "10px",
@@ -741,6 +741,10 @@ function EmployeeUnregistered() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div className="d-flex justify-content-center">
+              <button className="btn btn-primary mb-5 mt-2">Post Job</button>
             </div>
           </>
         )
