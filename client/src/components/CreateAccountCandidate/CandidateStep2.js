@@ -4,21 +4,49 @@ import Form from "react-bootstrap/Form"
 import DatePicker from "react-datepicker"
 import React, { useState } from "react"
 import Row from "react-bootstrap/Row"
-
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import CreateAccountNav from "../CreateAccountNav"
 
 function CandidateStep2() {
+  const history = useHistory()
+  const step1Data = history.location.state
   const [validated, setValidated] = useState(false)
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
+  const [graduationData, setGraduationData] = useState({
+    degree: "",
+    field: "",
+    college: "",
+    city: "",
+    from: "",
+    to: "",
+    currentGoHere: false,
+  })
 
+  const handleInputChange = (e) => {
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value
+    setGraduationData({ ...graduationData, [e.target.name]: value })
+  }
+
+  const isFormFilled = () => {
+    for (const key in graduationData) {
+      if (graduationData.hasOwnProperty(key) && !graduationData[key]) {
+        return false
+      }
+    }
+    return true
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
     setValidated(true)
+    if (isFormFilled()) {
+      const candidateDetails = { ...step1Data, graduationData }
+      console.log(candidateDetails)
+      /* history.push("/candidate") */
+    } else {
+      console.log("Fill the form")
+    }
   }
 
   return (
@@ -37,16 +65,12 @@ function CandidateStep2() {
             noValidate
             validated={validated}
             onSubmit={handleSubmit}
+            onChange={handleInputChange}
           >
             <Row className="mb-3">
-              <Form.Group className="mb-3 mt-2">
+              <Form.Group className="mb-3 mt-2" controlId="degree">
                 <Form.Label>Degree </Form.Label>
-                <Form.Control
-                  required
-                  as="select"
-                  type="select"
-                  name="payment_method"
-                >
+                <Form.Control required as="select" type="select" name="degree">
                   <option value="">Select an option</option>
                   <option value="master">Master's</option>
                   <option value="bachelor">Bachelor's</option>
@@ -61,39 +85,42 @@ function CandidateStep2() {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3 mt-2" controlId="formBasicText">
+              <Form.Group className="mb-3 mt-2" controlId="field">
                 <Form.Label>Field of study</Form.Label>
                 <Form.Control
                   required
                   type="text"
                   placeholder="Information Technology"
                   defaultValue=""
+                  name="field"
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter field of study.
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3 mt-2" controlId="formBasicText">
+              <Form.Group className="mb-3 mt-2" controlId="college">
                 <Form.Label>College/University</Form.Label>
                 <Form.Control
                   required
                   type="text"
                   placeholder=""
                   defaultValue=""
+                  name="college"
                 />
                 <Form.Control.Feedback type="invalid">
                   Please select your college.
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3 mt-2" controlId="formBasicText">
+              <Form.Group className="mb-3 mt-2" controlId="city">
                 <Form.Label>City</Form.Label>
                 <Form.Control
                   required
                   type="text"
                   placeholder="Indore"
                   defaultValue=""
+                  name="city"
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter your city.
@@ -110,6 +137,11 @@ function CandidateStep2() {
                         dateFormat="MMM yyyy"
                         placeholderText="MM / YYYY"
                         showMonthYearPicker={true}
+                        name="from"
+                        selected={graduationData.from}
+                        onChange={(e) =>
+                          setGraduationData({ ...graduationData, from: e })
+                        }
                       />
                       <Form.Label className="mt-3">To</Form.Label>
                       <DatePicker
@@ -117,6 +149,11 @@ function CandidateStep2() {
                         dateFormat="MMM yyyy"
                         placeholderText="MM / YYYY"
                         showMonthYearPicker={true}
+                        name="to"
+                        selected={graduationData.to}
+                        onChange={(e) =>
+                          setGraduationData({ ...graduationData, to: e })
+                        }
                       />
                     </div>
                   </div>
@@ -127,23 +164,30 @@ function CandidateStep2() {
                 <Form.Check
                   required
                   label="I currently go there "
-                  feedback="You must select if you are currently persuing."
+                  feedback={
+                    <div
+                      style={{
+                        marginTop: ".35rem",
+                      }}
+                    >
+                      You must select if you are currently persuing.
+                    </div>
+                  }
                   feedbackType="invalid"
+                  name="currentGoHere"
                 />
               </Form.Group>
             </Row>
 
-            <div className="d-grid gap-2 mt-5">
-              <Link to="/candidate">
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="lg"
-                  style={{ width: "100%" }}
-                >
-                  Save
-                </Button>
-              </Link>
+            <div className="d-grid gap-2 mt-3">
+              <Button
+                type="submit"
+                variant="primary"
+                size="lg"
+                style={{ width: "100%" }}
+              >
+                Save
+              </Button>
             </div>
 
             <Link

@@ -16,7 +16,7 @@ function ChooseFile(props) {
   const handleDisplayFileDetails = (e) => {
     inputFile?.files && setUploadedFileName(inputFile.files[0].name)
     props.handleFileUpload !== undefined &&
-      props.handleFileUpload(e.target.files[0])
+      props.handleFileUpload(document.getElementById("input-file"))
   }
 
   //Delete uploaded file
@@ -38,13 +38,13 @@ function ChooseFile(props) {
           onChange={(e) => handleDisplayFileDetails(e)}
           className="d-none"
           type="file"
-          accept=".pdf"
         />
         <button
           onClick={handleUpload}
           className={`btn btn-outline-${
             uploadedFileName ? "success uploaded-file" : "primary"
           }`}
+          style={{ maxWidth: "200px", overflowX: "hidden" }}
         >
           {uploadedFileName ? uploadedFileName : "Upload"}
         </button>
