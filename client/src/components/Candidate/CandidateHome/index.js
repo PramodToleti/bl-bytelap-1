@@ -2,15 +2,23 @@ import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
 import NavDropdown from "react-bootstrap/NavDropdown"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 import "./index.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import Theme from "../../../Theme"
+import Cookies from "js-cookie"
 
 const HomeHeader = () => {
+  const history = useHistory()
+
   const activeThemeStyles = (theme) => {
     const darkTheme = theme ? "dark-theme" : "light-theme"
+  }
+
+  const onClickLogOut = () => {
+    Cookies.remove("userToken")
+    history.replace("/login")
   }
 
   return ["sm"].map((expand) => (
@@ -112,9 +120,10 @@ const HomeHeader = () => {
                 <Link to="/candidate/certification" className=" nav-link mb-1">
                   Certification
                 </Link>
-                <Link to="/login" className=" nav-link mb-1">
+
+                <p className="nav-link mb-1" onClick={onClickLogOut}>
                   Logout
-                </Link>
+                </p>
               </NavDropdown>
 
               <Theme activeThemeStyles={activeThemeStyles} />

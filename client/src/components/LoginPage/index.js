@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row"
 import InputGroup from "react-bootstrap/InputGroup"
 import Dropdown from "react-bootstrap/Dropdown"
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 import { Oval } from "react-loader-spinner"
 import Cookies from "js-cookie"
 
@@ -27,13 +27,17 @@ function LoginPage() {
   const [activeSearch, setActiveSearch] = useState("")
   const [activeLocation, setActiveLocation] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-
   const [selectedOption, setSelectedOption] = useState("Internship")
   const [duration, setDuration] = useState([])
   const [timePeriod, setTimePeriod] = useState([])
   const [workPlace, setWorkPlace] = useState([])
   const [checkedShifts, setCheckedShifts] = useState([])
   const [yearsOfExperience, setYearsOfExperience] = useState(null)
+
+  const jwtToken = Cookies.get("userToken")
+  if (jwtToken) {
+    return <Redirect to="/candidate" />
+  }
 
   const handleDropdownSelect = (e) => {
     setSelectedOption(e.target.textContent)

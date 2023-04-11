@@ -74,6 +74,7 @@ import Enterprise from "./components/Employee/FooterLinks/Enterprise"
 import career from "./components/Candidate/CandidateFooterLinks/Career"
 import Certification from "./components/Candidate/certification"
 import CertificationCard from "./components/Candidate/CertificationCard"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 const App = () => {
   const [userResume, setResume] = useState(null)
@@ -146,7 +147,7 @@ const App = () => {
           />
 
           {/* Home Route */}
-          <Route exact path="/candidate" component={Home} />
+          <ProtectedRoute exact path="/candidate" component={Home} />
           <Route exact path="/employee" component={Employee} />
           {/*Post Job*/}
           <Route exact path="/employee/post-job" component={EmployeePostJob} />

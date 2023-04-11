@@ -3,19 +3,23 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 const candidateSchema = new Schema({
-  firstname: {
+  firstName: {
     type: String,
     required: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     required: true,
   },
-  emailid: {
+  emailId: {
     type: String,
     required: true,
   },
-  mobilenumber: {
+  password: {
+    type: String,
+    required: true,
+  },
+  mobileNumber: {
     type: String,
     required: true,
   },
@@ -23,44 +27,28 @@ const candidateSchema = new Schema({
     type: String,
     required: true,
   },
-  file: {
-    data: Buffer,
-    required: true,
-  },
   agreeToTerms: {
     type: Boolean,
     required: true,
   },
   graduation: {
-    degree: {
-      type: String,
-      required: true,
-    },
-    fieldOfStudy: {
-      type: String,
-      required: true,
-    },
-    collegeOrUniversity: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    from: {
-      type: Date,
-      required: true,
-    },
-    to: {
-      type: Date,
-      required: true,
-    },
-    currentlyGoingHere: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
+    degree: { type: String, required: true },
+    field: { type: String, required: true },
+    college: { type: String, required: true },
+    city: { type: String, required: true },
+    from: { type: String, required: true },
+    to: { type: String, required: true },
+    currentGoHere: { type: Boolean, required: true },
+  },
+  file: {
+    fieldname: String,
+    originalname: String,
+    encoding: String,
+    mimetype: String,
+    destination: String,
+    filename: String,
+    path: String,
+    size: Number,
   },
 })
 
@@ -89,10 +77,7 @@ const employeeSchema = new Schema({
     type: String,
     required: true,
   },
-  file: {
-    data: Buffer,
-    required: true,
-  },
+  file: Buffer,
   address: {
     type: String,
     required: true,

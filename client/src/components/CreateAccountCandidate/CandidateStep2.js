@@ -4,13 +4,20 @@ import Form from "react-bootstrap/Form"
 import DatePicker from "react-datepicker"
 import React, { useState } from "react"
 import Row from "react-bootstrap/Row"
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify"
+import { ThreeDots } from "react-loader-spinner"
+import Cookies from "js-cookie"
+
 import CreateAccountNav from "../CreateAccountNav"
+
+import "react-toastify/dist/ReactToastify.css"
 
 function CandidateStep2() {
   const history = useHistory()
   const step1Data = history.location.state
   const [validated, setValidated] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [graduationData, setGraduationData] = useState({
     degree: "",
     field: "",
@@ -22,21 +29,51 @@ function CandidateStep2() {
   })
 
   const onSuccessSubmit = async (candidateDetails) => {
-    console.log(candidateDetails)
+    setIsLoading(true)
+    const formData = new FormData()
+    formData.append("file", candidateDetails.file)
+    formData.append("firstName", candidateDetails.firstName)
+    formData.append("lastName", candidateDetails.lastName)
+    formData.append("emailId", candidateDetails.emailId)
+    formData.append("password", candidateDetails.createPassword)
+    formData.append("mobileNumber", candidateDetails.mobileNumber)
+    formData.append("city", candidateDetails.city)
+    formData.append("agreeToTerms", candidateDetails.agreeToTerms)
+    formData.append(
+      "graduation",
+      JSON.stringify(candidateDetails.graduationData)
+    )
     const options = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(candidateDetails),
+      body: formData,
     }
 
     const response = await fetch(
       "http://localhost:5000/candidate/create-account",
       options
     )
+
     const data = await response.json()
-    console.log(data)
+
+    if (response.ok) {
+      setIsLoading(false)
+      toast.success("Account Created successfully!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
+      })
+      Cookies.set("userToken", data.jwtToken)
+      history.push("/candidate")
+    } else {
+      setIsLoading(false)
+      toast.error(`${data.message}!`, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: { border: "2px solid #ff0000", backgroundColor: "#fff" },
+      })
+    }
   }
 
   const handleInputChange = (e) => {
@@ -73,6 +110,7 @@ function CandidateStep2() {
   return (
     <>
       <CreateAccountNav />
+      <ToastContainer />
       <div className="p-2">
         <div
           className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2      border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary"
@@ -204,13 +242,35 @@ function CandidateStep2() {
                 type="submit"
                 variant="primary"
                 size="lg"
-                style={{ width: "100%" }}
+                style={{ width: "100%", display: "grid", placeItems: "center" }}
               >
-                Save
+                {isLoading ? (
+                  <ThreeDots
+                    height="50"
+                    width="50"
+                    radius="9"
+                    color="#ffffff"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                  />
+                ) : (
+                  "Save"
+                )}
               </Button>
             </div>
 
-            <p className="text-start mt-3">Back</p>
+            <p
+              className="text-start mt-3"
+              onClick={() => {
+                history.push("/candidate/create-account/step-1", {
+                  step1Data,
+                })
+              }}
+            >
+              Back
+            </p>
           </Form>
         </div>
       </div>

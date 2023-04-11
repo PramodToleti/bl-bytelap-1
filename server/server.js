@@ -4,16 +4,19 @@ const bodyParser = require("body-parser")
 const morgan = require("morgan")
 const cors = require("cors")
 const dotenv = require("dotenv")
+//Routes
+const candidateRouter = require("./routes/candidate/routes")
 
 dotenv.config()
 
 const app = express()
 
-app.use(bodyParser.json())
 app.use(morgan("dev"))
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const port = process.env.PORT || 8000
 const MONGO_URL = process.env.MONGO_URL
@@ -34,6 +37,4 @@ mongoose
     console.log(`Error: ${err}`)
   })
 
-app.get("/", (req, res) => {
-  res.status(200).send("MongoDB Connected Successfully")
-})
+app.use("/candidate", candidateRouter)

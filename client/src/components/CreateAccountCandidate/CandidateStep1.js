@@ -99,6 +99,7 @@ function CandidateStep1() {
                   name="firstName"
                   placeholder="First name"
                   defaultValue=""
+                  value={formData.firstName}
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter your first.
@@ -118,6 +119,7 @@ function CandidateStep1() {
                   name="lastName"
                   placeholder="Last name"
                   defaultValue=""
+                  value={formData.lastName}
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter you last name.
@@ -132,6 +134,7 @@ function CandidateStep1() {
                   name="emailId"
                   placeholder="Email id"
                   defaultValue=""
+                  value={formData.emailId}
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter your email id.
@@ -153,6 +156,7 @@ function CandidateStep1() {
                     placeholder="Password"
                     defaultValue=""
                     className="form-control pr-5"
+                    value={formData.createPassword}
                   />
                   <span
                     className="position-absolute top-50 end-0 translate-middle-y bg-white"
@@ -179,14 +183,16 @@ function CandidateStep1() {
                   </p>
                 )}
 
-                {formData.createPassword.length < 5 && validated && (
-                  <p
-                    className="mt-3"
-                    style={{ color: "#dc3545", fontSize: ".825rem" }}
-                  >
-                    Password must be at least 5 characters
-                  </p>
-                )}
+                {formData.createPassword !== "" &&
+                  formData.createPassword.length < 5 &&
+                  validated && (
+                    <p
+                      className="mt-3"
+                      style={{ color: "#dc3545", fontSize: ".825rem" }}
+                    >
+                      Password must be at least 5 characters
+                    </p>
+                  )}
               </Form.Group>
 
               <Form.Group
@@ -203,6 +209,7 @@ function CandidateStep1() {
                     name="confirmPassword"
                     placeholder="Password"
                     defaultValue=""
+                    value={formData.confirmPassword}
                     className="form-control pr-5"
                   />
                   <span
@@ -262,6 +269,7 @@ function CandidateStep1() {
                   name="mobileNumber"
                   placeholder="Number"
                   defaultValue=""
+                  value={formData.mobileNumber}
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter your number
@@ -276,6 +284,7 @@ function CandidateStep1() {
                   name="city"
                   placeholder="city"
                   defaultValue=""
+                  value={formData.city}
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter your city
@@ -335,6 +344,7 @@ function CandidateStep1() {
               <Form.Check
                 required
                 name="agreeToTerms"
+                checked={formData.agreeToTerms}
                 feedback={
                   <div
                     style={{

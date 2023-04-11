@@ -5,6 +5,7 @@ import "./index.css"
 function ChooseFile(props) {
   const [uploadedFileName, setUploadedFileName] = useState(null)
   const [inputFile, setInputFile] = useState(null)
+
   useEffect(() => {
     setInputFile(document.getElementById("input-file"))
   }, [])
