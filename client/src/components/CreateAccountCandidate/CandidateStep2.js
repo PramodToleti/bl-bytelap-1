@@ -11,7 +11,6 @@ function CandidateStep2() {
   const history = useHistory()
   const step1Data = history.location.state
   const [validated, setValidated] = useState(false)
-
   const [graduationData, setGraduationData] = useState({
     degree: "",
     field: "",
@@ -22,6 +21,24 @@ function CandidateStep2() {
     currentGoHere: false,
   })
 
+  const onSuccessSubmit = async (candidateDetails) => {
+    console.log(candidateDetails)
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(candidateDetails),
+    }
+
+    const response = await fetch(
+      "http://localhost:5000/candidate/create-account",
+      options
+    )
+    const data = await response.json()
+    console.log(data)
+  }
+
   const handleInputChange = (e) => {
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value
@@ -30,7 +47,11 @@ function CandidateStep2() {
 
   const isFormFilled = () => {
     for (const key in graduationData) {
-      if (graduationData.hasOwnProperty(key) && !graduationData[key]) {
+      if (
+        graduationData.hasOwnProperty(key) &&
+        key !== "currentGoHere" &&
+        !graduationData[key]
+      ) {
         return false
       }
     }
@@ -42,7 +63,7 @@ function CandidateStep2() {
     setValidated(true)
     if (isFormFilled()) {
       const candidateDetails = { ...step1Data, graduationData }
-      console.log(candidateDetails)
+      onSuccessSubmit(candidateDetails)
       /* history.push("/candidate") */
     } else {
       console.log("Fill the form")
@@ -162,7 +183,6 @@ function CandidateStep2() {
 
               <Form.Group className="mb-3">
                 <Form.Check
-                  required
                   label="I currently go there "
                   feedback={
                     <div
@@ -190,12 +210,7 @@ function CandidateStep2() {
               </Button>
             </div>
 
-            <Link
-              to="/candidate/create-account/step-1"
-              style={{ textDecoration: "none", color: "#000000" }}
-            >
-              <p className="text-start mt-3">Back</p>
-            </Link>
+            <p className="text-start mt-3">Back</p>
           </Form>
         </div>
       </div>
