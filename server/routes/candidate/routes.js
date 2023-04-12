@@ -7,6 +7,7 @@ const upload = multer({ dest: "uploads/" })
 
 const { Candidate } = require("../../models/model")
 
+//Create Account
 router.post("/create-account", upload.single("file"), async (req, res) => {
   const candidateDetails = req.body
 
@@ -49,6 +50,11 @@ router.post("/create-account", upload.single("file"), async (req, res) => {
   } catch (err) {
     res.status(400).json({ message: "Something went wrong" })
   }
+})
+
+//Login
+router.post("/login", (req, res) => {
+  //Authenticate User
 })
 
 module.exports = router
