@@ -218,44 +218,44 @@ const App = () => {
             component={CompanySettings}
           />
           {/*Candidate Register Myself*/}
-          <Route
+          <CandidateProtectedRoute
             exact
             path="/candidate/register-myself"
             render={(props) => <CandidateRegistermyself {...props} />}
           />
           {/* Candidate My Info */}
-          <Route
+          <CandidateProtectedRoute
             exact
             path="/candidate/account-setting/my-info"
             component={CandidateMyinfo}
           />
 
-          <Route
+          <CandidateProtectedRoute
             exact
             path="/candidate/job-details/internship/:id"
             component={InternshipJobDetails}
           />
 
-          <Route
+          <CandidateProtectedRoute
             exact
             path="/candidate/job-details/fresher/:id"
             component={FresherJobDetails}
           />
 
-          <Route
+          <CandidateProtectedRoute
             exact
             path="/candidate/job-details/experience/:id"
             component={ExperienceJobDetails}
           />
 
           {/* Candidate Certification */}
-          <Route
+          <CandidateProtectedRoute
             exact
             path="/candidate/certification"
             component={Certification}
           />
 
-          <Route
+          <CandidateProtectedRoute
             exact
             path="/candidate/certification/:id"
             component={CertificationCard}
