@@ -1,11 +1,10 @@
 import { Form, Button } from "react-bootstrap"
 
 import "./styles.css"
-import DynamicEducationForm from "../../DynamicEducationForm"
-import CheckboxDropdown from "../../CheckboxDropdowm"
-import LocationDropdown from "../../LocationCheckbox"
+import DynamicEducationForm from "../../../assets/DynamicEducationForm"
+import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
 
-const Fresh = () => {
+const Intern = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
@@ -16,23 +15,13 @@ const Fresh = () => {
         <h6>Advanced Filter</h6>
       </div>
       <div>
-        <Form.Group className="mb-2" controlId="formBasicInput">
+        <Form.Group className="mb-3" controlId="formBasicInput">
           <Form.Label>Add Skills</Form.Label>
           <CheckboxDropdown />
         </Form.Group>
 
-        <Form.Group className="mb-2">
-          <Form.Label>Must include this skills</Form.Label>
-          <CheckboxDropdown />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Preferred Location:</Form.Label>
-          <LocationDropdown />
-        </Form.Group>
-
         <Form.Group className="mb-3" controlId="formBasicInput">
-          <Form.Label>Interned/Trained/Certified Candidate</Form.Label>
+          <Form.Label>Trained/Certified Candidate</Form.Label>
           <Form.Check type="checkbox" />
         </Form.Group>
       </div>
@@ -57,6 +46,10 @@ const Fresh = () => {
           </div>
           <div className="filter-item">
             <Form.Label>Higher Secondary (12th)</Form.Label>
+            <Form.Check type="checkbox" />
+          </div>
+          <div className="filter-item">
+            <Form.Label>Pursing</Form.Label>
             <Form.Check type="checkbox" />
           </div>
         </div>
@@ -97,4 +90,4 @@ const Fresh = () => {
   )
 }
 
-export default Fresh
+export default Intern

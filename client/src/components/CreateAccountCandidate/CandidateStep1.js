@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row"
 import { Link, useHistory } from "react-router-dom"
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai"
 
-import ChooseFile from "../../ChooseFile"
+import ChooseFile from "../../assets/ChooseFile"
 import CreateAccountNav from "../CreateAccountNav"
 
 function CandidateStep1() {

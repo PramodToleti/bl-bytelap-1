@@ -10,7 +10,7 @@ import { Link } from "react-router-dom"
 import Popup from "reactjs-popup"
 import numeral from "numeral"
 
-import PostTime from "../../../../PostTime"
+import PostTime from "../../../../assets/PostTime"
 
 const InternshipJob = (props) => {
   const internJobs = props.jobs

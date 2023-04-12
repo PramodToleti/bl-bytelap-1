@@ -15,9 +15,9 @@ import { Document, Page } from "react-pdf"
 import Offcanvas from "react-bootstrap/Offcanvas"
 import classNames from "classnames"
 
-import JobSearchField from "../JobSearchField"
-import JobLocationField from "../JobLocationField"
-import EmployeeHome from "../components/EmployeeHome"
+import JobSearchField from "../../assets/JobLocationField"
+import JobLocationField from "../../assets/JobLocationField"
+import EmployeeHome from "../../components/EmployeeHome"
 import StickyContainer from "./StickyContainer"
 
 import "./index.css"

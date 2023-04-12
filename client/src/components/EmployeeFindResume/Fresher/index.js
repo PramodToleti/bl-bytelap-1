@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import Modal from "react-bootstrap/Modal"
-import PostTime from "../../PostTime"
+import PostTime from "../../../assets/PostTime"
 import { BsBagFill } from "react-icons/bs"
 import { BiRupee } from "react-icons/bi"
 

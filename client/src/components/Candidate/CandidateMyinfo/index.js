@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import { Link } from "react-router-dom"
 import CandidateHome from "../CandidateHome"
-import ChooseFile from "../../../ChooseFile"
+import ChooseFile from "../../../assets/ChooseFile"
 
 function CandidateMyinfo() {
   const [validated, setValidated] = useState(false)

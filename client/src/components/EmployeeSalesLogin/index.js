@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
-import Theme from "../../Theme"
+import Theme from "../../assets/Theme"
 
 function EmployeeSalesLogin() {
   const [validated, setValidated] = useState(false)

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom"
 import Popup from "reactjs-popup"
 import numeral from "numeral"
 
-import PostTime from "../../../../PostTime"
+import PostTime from "../../../../assets/PostTime"
 
 const ExperienceJob = (props) => {
   const experienceJobs = props.jobs

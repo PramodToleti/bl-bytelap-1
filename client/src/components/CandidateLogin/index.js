@@ -9,10 +9,10 @@ import { Link } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
-import Theme from "../../Theme"
+import Theme from "../../assets/Theme"
 
 import "./index.css"
-import ShowAndHidePassword from "../../ShowAndHidePassword"
+import ShowAndHidePassword from "../../assets/ShowAndHidePassword"
 
 function CandidateLogin() {
   const [validated, setValidated] = useState(false)

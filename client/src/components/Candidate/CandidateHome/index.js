@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom"
 
 import "./index.css"
 import "bootstrap/dist/css/bootstrap.min.css"
-import Theme from "../../../Theme"
+import Theme from "../../../assets/Theme"
 import Cookies from "js-cookie"
 
 const HomeHeader = () => {

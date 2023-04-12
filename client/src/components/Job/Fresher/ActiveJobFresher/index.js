@@ -9,11 +9,11 @@ import classNames from "classnames"
 import Popup from "reactjs-popup"
 
 import EmployeeHome from "../../../EmployeeHome"
-import StickyContainer from "../../../../EmployeeFindResume/StickyContainer"
+import StickyContainer from "../../../../components/EmployeeFindResume/StickyContainer"
 
 import "./index.css"
 import { useState } from "react"
-import Fresher from "../../../../EmployeeFindResume/Fresher"
+import Fresher from "../../../../components/EmployeeFindResume/Fresher"
 
 function ActiveJobFresher(props) {
   const { sticky, stickyRef } = StickyContainer()

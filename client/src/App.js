@@ -51,7 +51,7 @@ import EditAll from "./components/Employee/FooterLinks/Blog/EditAll"
 import InternshipJobDetails from "./components/Candidate/CandidateJobDetails/InternshipJobDetails"
 import FresherJobDetails from "./components/Candidate/CandidateJobDetails/FresherJobDetails"
 import ExperienceJobDetails from "./components/Candidate/CandidateJobDetails/ExperienceJobDetails"
-import EmployeeFindResume from "./EmployeeFindResume"
+import EmployeeFindResume from "./components/EmployeeFindResume"
 //Employee -> Footer Links
 import PrivacyPolicy from "./components/Employee/FooterLinks/PrivacyPolicy"
 import AboutUs from "./components/Employee/FooterLinks/AboutUs"

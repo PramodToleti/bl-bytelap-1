@@ -3,14 +3,14 @@ import { useState } from "react"
 import { useLocation } from "react-router-dom"
 import "./index.css"
 import TextArea from "antd/es/input/TextArea"
-import ChooseFile from "../../../../ChooseFile"
+import ChooseFile from "../../../../assets/ChooseFile"
 import CandidateFooter from "../../CandidateFooter"
 import HomeHeader from "../../CandidateHome"
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
 import { Link } from "react-router-dom"
-import Theme from "../../../../Theme"
+import Theme from "../../../../assets/Theme"
 
 const ReportIssue2 = () => {
   const location = useLocation()

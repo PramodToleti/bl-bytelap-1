@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import Modal from "react-bootstrap/Modal"
 import { ImLocation } from "react-icons/im"
-import PostTime from "../../PostTime"
+import PostTime from "../../../assets/PostTime"
 
 const Experience = () => {
   const experienceData = JSON.parse(

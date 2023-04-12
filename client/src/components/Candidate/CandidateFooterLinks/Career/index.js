@@ -7,7 +7,7 @@ import HomeHeader from "../../CandidateHome"
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
-import Theme from "../../../../Theme"
+import Theme from "../../../../assets/Theme"
 
 const career = () => {
   const location = useLocation()

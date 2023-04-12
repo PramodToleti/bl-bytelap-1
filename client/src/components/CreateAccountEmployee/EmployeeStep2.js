@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row"
 import { Link } from "react-router-dom"
 
 import CreateAccountNav from "../CreateAccountNav"
-import ChooseFile from "../../ChooseFile"
+import ChooseFile from "../../assets/ChooseFile"
 import "./index.css"
 
 function EmployeeStep2() {

@@ -5,7 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown"
 import { Link } from "react-router-dom"
 
 import "bootstrap/dist/css/bootstrap.min.css"
-import Theme from "../../Theme"
+import Theme from "../../assets/Theme"
 import "./index.css"
 
 function EmployeeHome() {

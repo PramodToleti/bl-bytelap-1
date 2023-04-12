@@ -8,7 +8,7 @@ import NavDropdown from "react-bootstrap/NavDropdown"
 import Row from "react-bootstrap/Row"
 import EmployeeHome from "../EmployeeHome"
 import { Link } from "react-router-dom"
-import ChooseFile from "../../ChooseFile"
+import ChooseFile from "../../assets/ChooseFile"
 
 function CompanySetting() {
   return (

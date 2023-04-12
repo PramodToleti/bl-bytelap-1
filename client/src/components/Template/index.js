@@ -3,9 +3,9 @@ import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
 import { Form, Card, Row, Col, Image } from "react-bootstrap"
 
-import CheckboxDropdown from "../../CheckboxDropdowm"
-import DynamicEducationForm from "../../DynamicEducationForm"
-import DynamicEmployementForm from "../../DynamicEmployementForm"
+import CheckboxDropdown from "../../assets/CheckboxDropdowm"
+import DynamicEducationForm from "../../assets/DynamicEducationForm"
+import DynamicEmployementForm from "../../assets/DynamicEmployementForm"
 
 import "./index.css"
 
@@ -137,7 +137,8 @@ const Template = () => {
               <a
                 href="https://mail.google.com/mail/"
                 target={"_blank"}
-                className="email" rel="noreferrer"
+                className="email"
+                rel="noreferrer"
               >
                 {state.email}
               </a>

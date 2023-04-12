@@ -11,11 +11,11 @@ import { BiRupee } from "react-icons/bi"
 import Popup from "reactjs-popup"
 
 import EmployeeHome from "../../../EmployeeHome"
-import StickyContainer from "../../../../EmployeeFindResume/StickyContainer"
+import StickyContainer from "../../../../components/EmployeeFindResume/StickyContainer"
 
 import "./index.css"
 import { useState } from "react"
-import Experience from "../../../../EmployeeFindResume/Experience"
+import Experience from "../../../../components/EmployeeFindResume/Experience"
 
 function ActiveJobExp(props) {
   const { sticky, stickyRef } = StickyContainer()

@@ -13,10 +13,10 @@ import { Link, Redirect } from "react-router-dom"
 import { Oval } from "react-loader-spinner"
 import Cookies from "js-cookie"
 
-import Theme from "../../Theme"
+import Theme from "../../assets/Theme"
 import CandidateJobs from "../Candidate/CandidateJobs"
-import JobSearchField from "../../JobSearchField"
-import JobLocationField from "../../JobLocationField"
+import JobSearchField from "../../assets/JobSearchField"
+import JobLocationField from "../../assets/JobLocationField"
 
 import "./index.css"
 import "bootstrap/dist/css/bootstrap.min.css"

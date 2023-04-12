@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
 import { Link } from "react-router-dom"
 
-import Theme from "../../../../Theme"
+import Theme from "../../../../assets/Theme"
 
 import "./index.css"
 import CandidateFooter from "../../CandidateFooter"

@@ -9,8 +9,8 @@ import classNames from "classnames"
 import Popup from "reactjs-popup"
 
 import EmployeeHome from "../../../EmployeeHome"
-import StickyContainer from "../../../../EmployeeFindResume/StickyContainer"
-import Internship from "../../../../EmployeeFindResume/Internship"
+import StickyContainer from "../../../../components/EmployeeFindResume/StickyContainer"
+import Internship from "../../../../components/EmployeeFindResume/Internship"
 
 import "./index.css"
 import { useState } from "react"

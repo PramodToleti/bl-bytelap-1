@@ -13,7 +13,7 @@ import "./index.css"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import EmployeeFooter from "../Employee/EmployeeFooter"
-import ChooseFile from "../../ChooseFile"
+import ChooseFile from "../../assets/ChooseFile"
 
 const PostJob = () => {
   const [isNext, setIsNext] = useState(false)
