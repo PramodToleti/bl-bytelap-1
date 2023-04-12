@@ -64,7 +64,9 @@ function CandidateStep2() {
         style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
       })
       Cookies.set("userToken", data.jwtToken)
-      history.push("/candidate")
+      setTimeout(() => {
+        history.push("/candidate")
+      }, 1000)
     } else {
       setIsLoading(false)
       toast.error(`${data.message}!`, {

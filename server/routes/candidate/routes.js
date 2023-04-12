@@ -53,8 +53,65 @@ router.post("/create-account", upload.single("file"), async (req, res) => {
 })
 
 //Login
-router.post("/login", (req, res) => {
-  //Authenticate User
+router.post("/login", async (req, res) => {
+  const { emailOrNum = "", password = "" } = req.body
+
+  // Check if input is a valid mobile number
+  const isEmail = /\S+@\S+\.\S+/.test(emailOrNum)
+
+  if (isEmail) {
+    const isPresent = await Candidate.findOne({
+      emailId: emailOrNum,
+    })
+
+    if (!isPresent) {
+      res.status(400).json({ message: "User not Found" })
+    } else {
+      const isMatch = await bcrypt.compare(password, isPresent.password)
+
+      if (!isMatch) {
+        res.status(400).json({ message: "Invalid Password" })
+      } else {
+        //Generate JWT Token
+        const payload = { id: isPresent._id, email: isPresent.emailId }
+        const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
+          expiresIn: "4d",
+        })
+
+        res.status(200).json({ message: "Login Successful", jwtToken })
+      }
+    }
+  } else {
+    // Check if input is a valid mobile number
+    const isMobile = /^\d{10}$/.test(emailOrNum)
+
+    if (isMobile) {
+      const isPresent = await Candidate.findOne({
+        mobileNumber: emailOrNum,
+      })
+
+      if (!isPresent) {
+        res.status(400).json({ message: "User not Found" })
+      } else {
+        const isMatch = await bcrypt.compare(password, isPresent.password)
+
+        if (!isMatch) {
+          res.status(400).json({ message: "Invalid Password" })
+        } else {
+          //Generate JWT Token
+          const payload = { id: isPresent._id, email: isPresent.emailId }
+          const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
+            expiresIn: "4d",
+          })
+
+          res.status(200).json({ message: "Login Successful", jwtToken })
+        }
+      }
+    } else {
+      // Return error message if input is not a valid email address or mobile number
+      res.status(400).json({ error: "Invalid email or mobile number" })
+    }
+  }
 })
 
 module.exports = router
