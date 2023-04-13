@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row"
 import InputGroup from "react-bootstrap/InputGroup"
 import Dropdown from "react-bootstrap/Dropdown"
 import { useState, useEffect } from "react"
-import { Link, Redirect } from "react-router-dom"
+import { Link, Redirect, useHistory } from "react-router-dom"
 import { Oval } from "react-loader-spinner"
 import Cookies from "js-cookie"
 
@@ -23,6 +23,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import CandidateFooter from "../Candidate/CandidateFooter"
 
 function LoginPage() {
+  const history = useHistory()
   const [accepted, setAccepted] = useState(false)
   const [activeSearch, setActiveSearch] = useState("")
   const [activeLocation, setActiveLocation] = useState("")
@@ -820,8 +821,23 @@ function LoginPage() {
           <p>
             We use cookies to ensure you get the best experience on our website.
             By continuing to browse the site, you agree to our{" "}
-            <span style={{ color: "blue" }}>Privacy Policy</span> &{" "}
-            <span style={{ color: "blue" }}>Terms & Conditions</span>
+            <span
+              style={{ color: "blue", cursor: "pointer" }}
+              onClick={() => {
+                history.push("/candidate/privacy-policy")
+              }}
+            >
+              Privacy Policy
+            </span>{" "}
+            &{" "}
+            <span
+              style={{ color: "blue", cursor: "pointer" }}
+              onClick={() => {
+                history.push("/candidate/terms-and-condition")
+              }}
+            >
+              Terms & Conditions
+            </span>
           </p>
           <div className="d-flex justify-content-center">
             <div style={{ display: "flex", gap: "20px" }}>
