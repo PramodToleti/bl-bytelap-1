@@ -5,20 +5,50 @@ import Form from "react-bootstrap/Form"
 import React, { useState } from "react"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import CreateAccountNav from "../CreateAccountNav"
 
 function EmployeeStep1() {
+  const history = useHistory()
   const [validated, setValidated] = useState(false)
+  const [companyDetails, setCompanyDetails] = useState({
+    companyName: "",
+    officialEmail: "",
+    otp: "",
+  })
+
+  const isFormFilled = () => {
+    for (const key in companyDetails) {
+      if (companyDetails.hasOwnProperty(key) && !companyDetails[key]) {
+        return false
+      }
+    }
+    return true
+  }
+
+  const isFormValid = (form) => {
+    for (let i = 0; i < form.length; i++) {
+      const input = form[i]
+      if (!input.validity.valid) {
+        return false
+      }
+    }
+    return true
+  }
 
   const handleSubmit = (event) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-
+    event.preventDefault()
     setValidated(true)
+    if (isFormFilled() && isFormValid(event.target)) {
+      history.push("/employee/create-account/step-2", companyDetails)
+    } else {
+      console.log("Fill the form")
+    }
+  }
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target
+    setCompanyDetails({ ...companyDetails, [name]: value })
   }
 
   return (
@@ -39,10 +69,11 @@ function EmployeeStep1() {
             noValidate
             validated={validated}
             onSubmit={handleSubmit}
+            onChange={handleInputChange}
           >
             <Row className="mb-3">
               <p className="text-end mt-1">Step 1-2</p>
-              <p className="text-center mt-3">Create Employer Account</p>
+              <p className="text-center mt-3 mb-3">Create Employer Account</p>
               <Form.Group as={Col} md="12" controlId="validationCustom01">
                 <FloatingLabel controlId="floatingText" label="Company Name">
                   <Form.Control
@@ -50,6 +81,7 @@ function EmployeeStep1() {
                     type="text"
                     placeholder="Demo Solution inc"
                     defaultValue=""
+                    name="companyName"
                   />
                   <Form.Control.Feedback type="invalid">
                     Please enter your company name.
@@ -72,6 +104,7 @@ function EmployeeStep1() {
                     type="email"
                     placeholder="Info@company.com"
                     defaultValue=""
+                    name="officialEmail"
                   />
                   <Form.Control.Feedback type="invalid">
                     Please enter official email ID.
@@ -80,22 +113,32 @@ function EmployeeStep1() {
               </Form.Group>
             </Row>
 
-            <div style={{ display: "flex", gap: "10px" }}>
-              <button className=" mt-1 text-center btn btn-outline-primary">
+            <div
+              style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}
+            >
+              <button
+                className=" mt-1 text-center btn btn-primary"
+                type="button"
+              >
                 Get Code
               </button>
 
-              <Form.Group className="mt-1" controlId="formBasicEmail">
+              <Form.Group className="mt-1" controlId="otp">
                 <Form.Control
-                  type="text"
+                  required
+                  type="number"
                   placeholder="Enter Code"
+                  name="otp"
                   defaultValue=""
                   style={{
-                    maxWidth: "110px",
+                    maxWidth: "120px",
                     maxHeight: "40px",
                     border: "1px solid grey",
                   }}
                 />
+                <Form.Control.Feedback type="invalid">
+                  Please enter the Code
+                </Form.Control.Feedback>
               </Form.Group>
             </div>
             <p className="text-start mt-1">
@@ -106,16 +149,14 @@ function EmployeeStep1() {
             </p>
 
             <div className="d-grid gap-2 mt-3">
-              <Link to="/employee/create-account/step-2">
-                <Button
-                  type="submit"
-                  variant="outline-secondary"
-                  size="lg"
-                  style={{ width: "100%" }}
-                >
-                  Verify & Next
-                </Button>
-              </Link>
+              <Button
+                type="submit"
+                variant="outline-secondary"
+                size="lg"
+                style={{ width: "100%" }}
+              >
+                Verify & Next
+              </Button>
             </div>
           </Form>
         </div>
