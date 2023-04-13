@@ -21,6 +21,8 @@
     "mongoose": "^7.0.3",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "sendinblue-api": "^1.0.8",
+    "sib-api-v3-sdk": "^8.5.0"
   }
 }

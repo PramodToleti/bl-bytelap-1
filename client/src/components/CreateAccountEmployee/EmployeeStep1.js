@@ -1,21 +1,111 @@
 import FloatingLabel from "react-bootstrap/FloatingLabel"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
-
 import React, { useState } from "react"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import { Link, useHistory } from "react-router-dom"
+import { Oval } from "react-loader-spinner"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 import CreateAccountNav from "../CreateAccountNav"
 
 function EmployeeStep1() {
   const history = useHistory()
   const [validated, setValidated] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [otp, setOtp] = useState("")
+  const [timeStamp, setTimeStamp] = useState("")
   const [companyDetails, setCompanyDetails] = useState({
     companyName: "",
     officialEmail: "",
     otp: "",
   })
+
+  const onSuccessOtp = (message, otp) => {
+    setIsLoading(false)
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      style: {
+        border: "2px solid #00ff00",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+      },
+    })
+    setOtp(otp)
+    setTimeStamp(Date.now())
+  }
+
+  const onFailureOtp = (message) => {
+    setIsLoading(false)
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      style: {
+        border: "2px solid #ff0000",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+      },
+    })
+  }
+
+  const onGetCode = async () => {
+    if (companyDetails.officialEmail === "") {
+      toast.error("Email can't be Empty", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #ff0000",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+      return
+    }
+    if (timeStamp === "" || Date.now() - timeStamp > 300000) {
+      setIsLoading(true)
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: companyDetails.officialEmail,
+        }),
+      }
+
+      const response = await fetch(
+        "http://localhost:5000/otp-verification/send-otp",
+        options
+      )
+      const data = await response.json()
+      if (response.ok) {
+        onSuccessOtp(data.message, data.otp)
+      } else {
+        onFailureOtp(data.message)
+      }
+    } else {
+      toast.error("OTP already sent", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #ff0000",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+    }
+  }
 
   const isFormFilled = () => {
     for (const key in companyDetails) {
@@ -40,7 +130,48 @@ function EmployeeStep1() {
     event.preventDefault()
     setValidated(true)
     if (isFormFilled() && isFormValid(event.target)) {
-      history.push("/employee/create-account/step-2", companyDetails)
+      if (parseInt(otp) !== parseInt(companyDetails.otp)) {
+        toast.error("Invalid OTP", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          style: {
+            border: "2px solid #ff0000",
+            backgroundColor: "#fff",
+            marginTop: "30px",
+            margin: "20px",
+          },
+        })
+        return
+      }
+      if (Date.now() - timeStamp > 300000) {
+        toast.error("OTP Expired", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          style: {
+            border: "2px solid #ff0000",
+            backgroundColor: "#fff",
+            marginTop: "30px",
+            margin: "20px",
+          },
+        })
+        return
+      }
+      toast.success("Verified Successfully", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #00ff00",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+      setTimeout(() => {
+        history.push("/employee/create-account/step-2", companyDetails)
+      }, 1000)
     } else {
       console.log("Fill the form")
     }
@@ -54,6 +185,7 @@ function EmployeeStep1() {
   return (
     <>
       <CreateAccountNav />
+      <ToastContainer />
       <div
         style={{
           minHeight: "100vh",
@@ -116,12 +248,43 @@ function EmployeeStep1() {
             <div
               style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}
             >
-              <button
-                className=" mt-1 text-center btn btn-primary"
-                type="button"
-              >
-                Get Code
-              </button>
+              <div>
+                <button
+                  className=" mt-1 text-center btn btn-primary"
+                  type="button"
+                  onClick={onGetCode}
+                  style={{ display: "grid", placeItems: "center" }}
+                >
+                  {isLoading ? (
+                    <Oval
+                      height={20}
+                      width={20}
+                      color="#ffffff"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                      ariaLabel="oval-loading"
+                      secondaryColor="#ffffff"
+                      strokeWidth={2}
+                      strokeWidthSecondary={2}
+                    />
+                  ) : (
+                    "Get Code"
+                  )}
+                </button>
+                {timeStamp && (
+                  <p
+                    style={{
+                      color: "#dc3545",
+                      fontSize: ".775rem",
+                      marginBottom: "0px",
+                      marginTop: "4px",
+                    }}
+                  >
+                    Expires in 5min
+                  </p>
+                )}
+              </div>
 
               <Form.Group className="mt-1" controlId="otp">
                 <Form.Control

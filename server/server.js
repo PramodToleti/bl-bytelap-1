@@ -6,6 +6,7 @@ const cors = require("cors")
 const dotenv = require("dotenv")
 //Routes
 const candidateRouter = require("./routes/candidate/routes")
+const otpRouter = require("./routes/otp/routes")
 
 dotenv.config()
 
@@ -38,3 +39,4 @@ mongoose
   })
 
 app.use("/candidate", candidateRouter)
+app.use("/otp-verification", otpRouter)
