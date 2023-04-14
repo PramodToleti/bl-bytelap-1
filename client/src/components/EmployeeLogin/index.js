@@ -5,27 +5,89 @@ import Form from "react-bootstrap/Form"
 import React, { useState } from "react"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai"
+import { ToastContainer, toast } from "react-toastify"
+import { ThreeDots } from "react-loader-spinner"
+import Cookies from "js-cookie"
+
 import Theme from "../../assets/Theme"
 
-import ShowAndHidePassword from "../../assets/ShowAndHidePassword"
-
 import "./index.css"
+import "react-toastify/dist/ReactToastify.css"
 
 function EmployeeLogin() {
+  const history = useHistory()
   const [validated, setValidated] = useState(false)
+  const [passwordInputType, setPasswordInputType] = useState("password")
+  const [isLoading, setIsLoading] = useState(false)
+  const [loginDetails, setLoginDetails] = useState({
+    email: "",
+    password: "",
+  })
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
+  const handleInputChange = (e) => {
+    const value = e.target.value
+    setLoginDetails((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: value,
+      }
+    })
+  }
 
+  const onSuccessLogin = (token) => {
+    setIsLoading(false)
+    toast.success("Login successfully!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
+    })
+    Cookies.set("userToken", token)
+    setTimeout(() => {
+      history.push("/candidate")
+    }, 1000)
+  }
+
+  const onFailureLogin = (message) => {
+    setIsLoading(false)
+    toast.error(`${message}!`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      style: { border: "2px solid #ff0000", backgroundColor: "#fff" },
+    })
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
     setValidated(true)
+    if (loginDetails.email !== "" && loginDetails.password !== "") {
+      setIsLoading(true)
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginDetails),
+      }
+
+      const response = await fetch(
+        "http://localhost:5000/employee/login",
+        options
+      )
+
+      const data = await response.json()
+      if (response.ok) {
+        onSuccessLogin(data.jwtToken)
+      } else {
+        onFailureLogin(data.message)
+      }
+    }
   }
 
   return (
@@ -130,6 +192,7 @@ function EmployeeLogin() {
             noValidate
             validated={validated}
             onSubmit={handleSubmit}
+            onChange={handleInputChange}
           >
             <Row className="mb-3">
               <Form.Group className="mb-3 mt-2" controlId="formBasicText">
@@ -148,7 +211,7 @@ function EmployeeLogin() {
                 </Stack>
               </Form.Group>
 
-              <Form.Group as={Col} md="12" controlId="validationCustom01">
+              <Form.Group as={Col} md="12" controlId="email">
                 <FloatingLabel
                   controlId="floatingText"
                   label="Registered Mail ID"
@@ -156,6 +219,7 @@ function EmployeeLogin() {
                   <Form.Control
                     required
                     type="text"
+                    name="email"
                     placeholder="Registered Mail ID"
                     defaultValue=""
                   />
@@ -165,7 +229,60 @@ function EmployeeLogin() {
                 </FloatingLabel>
               </Form.Group>
 
-              <ShowAndHidePassword />
+              <Form.Group
+                as={Col}
+                md="12"
+                controlId="password"
+                className="mt-2"
+              >
+                <div className="position-relative">
+                  <FloatingLabel
+                    controlId="password"
+                    label="Enter your Password"
+                  >
+                    <Form.Control
+                      required
+                      type={passwordInputType}
+                      name="password"
+                      placeholder="Password"
+                      defaultValue=""
+                      className="form-control pr-5"
+                      style={{ overflow: "hidden" }}
+                    />
+
+                    <span
+                      className="position-absolute top-50  end-0 translate-middle-y bg-white"
+                      style={{
+                        cursor: "pointer",
+                        marginRight: "10px",
+                        height: "50px",
+                        display: "grid",
+                        placeItems: "center",
+                      }}
+                      onClick={() =>
+                        setPasswordInputType(
+                          passwordInputType === "password" ? "text" : "password"
+                        )
+                      }
+                    >
+                      {passwordInputType === "password" ? (
+                        <AiFillEyeInvisible
+                          id="passwordToggleIcon"
+                          style={{ marginBottom: "10px", fontSize: "18px" }}
+                        />
+                      ) : (
+                        <AiFillEye
+                          id="passwordToggleIcon"
+                          style={{ marginBottom: "10px", fontSize: "18px" }}
+                        />
+                      )}
+                    </span>
+                    <Form.Control.Feedback type="invalid">
+                      Please Enter Your Password
+                    </Form.Control.Feedback>
+                  </FloatingLabel>
+                </div>
+              </Form.Group>
             </Row>
             <Link
               to="/employee/forgot-password"
@@ -176,16 +293,14 @@ function EmployeeLogin() {
             </Link>
 
             <div className="d-grid gap-2 mt-3">
-              <Link to="/employee">
-                <Button
-                  type="submit"
-                  style={{ width: "100%" }}
-                  variant="primary"
-                  size="lg"
-                >
-                  Login
-                </Button>
-              </Link>
+              <Button
+                type="submit"
+                style={{ width: "100%" }}
+                variant="primary"
+                size="lg"
+              >
+                Login
+              </Button>
             </div>
             <p className="text-center mt-3">
               I'm New Client{" "}
