@@ -81,7 +81,45 @@ const AboutUs2 = () => {
           </Navbar>
         ))
       )}
-      <h1 className="mt-3 mb-3">About us</h1>
+      <div className="container mt-5 mb-5">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="about-us-2 ">
+              <h4 className="text-center mb-4">About Us</h4>
+              <p className="mb-3">
+                Welcome to our job search engine, a platform dedicated to
+                connecting job seekers with their dream careers and employers
+                with the best talent.
+                <br /> Our mission is to make job searching stress-free and
+                efficient for everyone. Our platform offers a user-friendly
+                experience, innovative technology, and personalized support to
+                ensure that users have access to the latest tools and resources.
+                We are a team of passionate professionals with expertise in
+                various fields, including software development, data analysis,
+                marketing, and customer service. We work tirelessly to improve
+                our platform and services to meet the needs of our users.
+              </p>
+              <p className="mb-3">
+                Privacy and security are our top priorities. We understand the
+                importance of keeping personal information safe and
+                confidential. Our platform uses advanced security measures to
+                protect against cyber threats and fraud.
+              </p>
+              <p className="mb-3">
+                We value diversity and inclusivity and believe that everyone
+                deserves equal opportunities. We welcome job seekers of all
+                backgrounds and work with employers who share our values to
+                create diverse and inclusive workplaces.
+              </p>
+              <p>
+                Thank you for choosing our job search engine. We are committed
+                to helping you find your dream job or the perfect candidate for
+                your organization.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       <CandidateFooter isRegistered={isRegistered} />
     </>
   )

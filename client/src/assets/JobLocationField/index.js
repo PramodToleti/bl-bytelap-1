@@ -13,7 +13,7 @@ const JobLocationField = (props) => {
     setSelected(e)
     e[0] !== undefined &&
       handleLocation !== undefined &&
-      handleLocation(e[0].label)
+      handleLocation(e[0].city)
   }
 
   const onInputChange = (inputValue) => {
