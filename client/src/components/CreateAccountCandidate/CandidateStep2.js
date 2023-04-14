@@ -103,7 +103,6 @@ function CandidateStep2() {
     if (isFormFilled()) {
       const candidateDetails = { ...step1Data, graduationData }
       onSuccessSubmit(candidateDetails)
-      /* history.push("/candidate") */
     } else {
       console.log("Fill the form")
     }

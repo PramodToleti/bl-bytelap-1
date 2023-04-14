@@ -35,9 +35,15 @@ function LoginPage() {
   const [checkedShifts, setCheckedShifts] = useState([])
   const [yearsOfExperience, setYearsOfExperience] = useState(null)
 
-  const jwtToken = Cookies.get("userToken")
-  if (jwtToken) {
+  const userToken = Cookies.get("userToken")
+  const employeeToken = Cookies.get("employeeToken")
+
+  if (userToken) {
     return <Redirect to="/candidate" />
+  }
+
+  if (employeeToken) {
+    return <Redirect to="/employee" />
   }
 
   const handleDropdownSelect = (e) => {

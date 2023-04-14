@@ -2,13 +2,15 @@ import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Offcanvas from "react-bootstrap/Offcanvas"
 import NavDropdown from "react-bootstrap/NavDropdown"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import Theme from "../../assets/Theme"
 import "./index.css"
+import Cookies from "js-cookie"
 
 function EmployeeHome() {
+  const history = useHistory()
   return (
     <>
       {["sm"].map((expand) => (
@@ -186,13 +188,17 @@ function EmployeeHome() {
                     >
                       Support Center
                     </Link>
-                    <Link
-                      to="/login"
+
+                    <p
                       className="nav-link"
-                      style={{ marginLeft: "9px" }}
+                      style={{ marginLeft: "9px", cursor: "pointer" }}
+                      onClick={() => {
+                        Cookies.remove("token")
+                        history.push("/login")
+                      }}
                     >
                       Logout
-                    </Link>
+                    </p>
                   </NavDropdown>
                   <Theme />
                 </div>

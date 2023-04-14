@@ -75,6 +75,7 @@ import career from "./components/Candidate/CandidateFooterLinks/Career"
 import Certification from "./components/Candidate/certification"
 import CertificationCard from "./components/Candidate/CertificationCard"
 import CandidateProtectedRoute from "./components/CandidateProtectedRoute"
+import EmployeeProtectedRoute from "./components/EmployeeProtectedRoute"
 
 const App = () => {
   const [userResume, setResume] = useState(null)
@@ -148,11 +149,15 @@ const App = () => {
 
           {/* Home Route */}
           <CandidateProtectedRoute exact path="/candidate" component={Home} />
-          <Route exact path="/employee" component={Employee} />
+          <EmployeeProtectedRoute exact path="/employee" component={Employee} />
           {/*Post Job*/}
-          <Route exact path="/employee/post-job" component={EmployeePostJob} />
+          <EmployeeProtectedRoute
+            exact
+            path="/employee/post-job"
+            component={EmployeePostJob}
+          />
           {/* Dashboard */}
-          <Route
+          <EmployeeProtectedRoute
             exact
             path="/employee/dashboard/active-posts"
             component={ActivePosts}
@@ -160,7 +165,7 @@ const App = () => {
 
           {/* Find Resume */}
 
-          <Route
+          <EmployeeProtectedRoute
             exact
             path="/employee/find-resume"
             render={(props) => (
@@ -169,19 +174,19 @@ const App = () => {
           />
 
           {/* Active Job */}
-          <Route
+          <EmployeeProtectedRoute
             exact
             path="/employee/dashboard/active-posts/job/internship"
             render={(props) => <ActiveJobIntern {...props} />}
           />
 
-          <Route
+          <EmployeeProtectedRoute
             exact
             path="/employee/dashboard/active-posts/job/fresher"
             component={ActiveJobFresher}
           />
 
-          <Route
+          <EmployeeProtectedRoute
             exact
             path="/employee/dashboard/active-posts/job/experience"
             component={ActiveJobExp}
@@ -189,18 +194,18 @@ const App = () => {
 
           {/* View Applicant */}
 
-          <Route
+          <EmployeeProtectedRoute
             exact
             path="/employee/dashboard/active-posts/job/internship/view-applicant"
             render={(props) => <ViewApplicantIntern {...props} />}
           />
 
-          <Route
+          <EmployeeProtectedRoute
             path="/employee/dashboard/active-posts/job/fresher/view-applicant"
             component={ViewApplicantFresher}
           />
 
-          <Route
+          <EmployeeProtectedRoute
             path="/employee/dashboard/active-posts/job/experience/view-applicant"
             component={ViewApplicantExp}
           />

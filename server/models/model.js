@@ -57,15 +57,15 @@ const employeeSchema = new Schema({
     type: String,
     required: true,
   },
-  emailid: {
+  officialEmail: {
     type: String,
     required: true,
   },
-  firstname: {
+  firstName: {
     type: String,
     required: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     required: true,
   },
@@ -73,12 +73,11 @@ const employeeSchema = new Schema({
     type: String,
     required: true,
   },
-  companyurl: {
+  companyWebsite: {
     type: String,
     required: true,
   },
-  file: Buffer,
-  address: {
+  companyAddress: {
     type: String,
     required: true,
   },
@@ -89,6 +88,16 @@ const employeeSchema = new Schema({
   agreeToTerms: {
     type: Boolean,
     required: true,
+  },
+  file: {
+    fieldname: String,
+    originalname: String,
+    encoding: String,
+    mimetype: String,
+    destination: String,
+    filename: String,
+    path: String,
+    size: Number,
   },
 })
 

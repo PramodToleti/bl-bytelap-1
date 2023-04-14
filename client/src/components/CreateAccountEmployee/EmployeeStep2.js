@@ -6,15 +6,21 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import { Link, useHistory } from "react-router-dom"
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai"
+import { ToastContainer, toast } from "react-toastify"
+import { ThreeDots } from "react-loader-spinner"
+import Cookies from "js-cookie"
 
 import CreateAccountNav from "../CreateAccountNav"
 import ChooseFile from "../../assets/ChooseFile"
+
 import "./index.css"
+import "react-toastify/dist/ReactToastify.css"
 
 function EmployeeStep2() {
   const history = useHistory()
   const companyDetails = history.location.state
   const [validated, setValidated] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [passwordMatch, setPasswordMatch] = useState(true)
   const [passwordInputType, setPasswordInputType] = useState("password")
   const [confirmPasswordInputType, setConfirmPasswordInputType] =
@@ -32,7 +38,7 @@ function EmployeeStep2() {
   })
 
   const onSuccess = (message, token) => {
-    console.log(message)
+    setIsLoading(true)
     toast.success(message, {
       position: "top-center",
       autoClose: 3000,
@@ -41,14 +47,14 @@ function EmployeeStep2() {
       pauseOnHover: true,
       style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
     })
-    Cookies.set("token", token)
+    Cookies.set("employeeToken", token)
     setTimeout(() => {
       history.push("/employee/")
-    }, 1000)
+    }, 2000)
   }
 
   const onError = (message) => {
-    console.log(message)
+    setIsLoading(true)
     toast.error(message, {
       position: "top-center",
       autoClose: 3000,
@@ -64,8 +70,8 @@ function EmployeeStep2() {
     formData.append("file", details.companyLogo)
     formData.append("companyName", details.companyName)
     formData.append("officialEmail", details.officialEmail)
-    formData.append("firstname", details.firstName)
-    formData.append("lastname", details.lastName)
+    formData.append("firstName", details.firstName)
+    formData.append("lastName", details.lastName)
     formData.append("role", details.role)
     formData.append("companyWebsite", details.companyWebsite)
     formData.append("companyAddress", details.companyAddress)
@@ -112,7 +118,11 @@ function EmployeeStep2() {
   }
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target
+    const { name } = event.target
+    const value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+        : event.target.value
     if (name === "") {
       setCompanyInfo((prevState) => ({
         ...prevState,
@@ -127,6 +137,7 @@ function EmployeeStep2() {
   const handleSubmit = (event) => {
     event.preventDefault()
     setValidated(true)
+    setIsLoading(true)
     if (isFormFilled() && isFormValid(event.target)) {
       if (companyInfo.password !== companyInfo.confirmPassword) {
         setPasswordMatch(false)
@@ -443,9 +454,22 @@ function EmployeeStep2() {
                 type="submit"
                 variant="outline-secondary"
                 size="lg"
-                style={{ width: "100%" }}
+                style={{ width: "100%", display: "grid", placeItems: "center" }}
               >
-                Submit
+                {isLoading ? (
+                  <ThreeDots
+                    height="50"
+                    width="50"
+                    radius="9"
+                    color="lightgrey"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                  />
+                ) : (
+                  "Submit"
+                )}
               </Button>
             </div>
           </Form>
