@@ -107,6 +107,24 @@ function EmployeeStep1() {
     }
   }
 
+  const onResend = () => {
+    if (timeStamp !== "" && Date.now() - timeStamp < 300000) {
+      toast.error("Try again after 5 mins", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #ff0000",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+    } else {
+      onGetCode()
+    }
+  }
+
   const isFormFilled = () => {
     for (const key in companyDetails) {
       if (companyDetails.hasOwnProperty(key) && !companyDetails[key]) {
@@ -304,11 +322,17 @@ function EmployeeStep1() {
                 </Form.Control.Feedback>
               </Form.Group>
             </div>
-            <p className="text-start mt-1">
+            <p
+              className="text-start mt-1"
+              style={{
+                textDecoration: "none",
+                color: "blue",
+                cursor: "pointer",
+              }}
+              onClick={onResend}
+            >
               {" "}
-              <Link to="" style={{ textDecoration: "none", color: "blue" }}>
-                Resend again{" "}
-              </Link>
+              Resend again{" "}
             </p>
 
             <div className="d-grid gap-2 mt-3">
