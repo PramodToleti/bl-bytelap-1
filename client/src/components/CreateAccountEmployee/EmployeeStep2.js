@@ -31,6 +31,64 @@ function EmployeeStep2() {
     agreeToTerms: false,
   })
 
+  const onSuccess = (message, token) => {
+    console.log(message)
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
+    })
+    Cookies.set("token", token)
+    setTimeout(() => {
+      history.push("/employee/")
+    }, 1000)
+  }
+
+  const onError = (message) => {
+    console.log(message)
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      style: { border: "2px solid #ff0000", backgroundColor: "#fff" },
+    })
+  }
+
+  const onSuccessSubmit = async (details) => {
+    const formData = new FormData()
+    formData.append("file", details.companyLogo)
+    formData.append("companyName", details.companyName)
+    formData.append("officialEmail", details.officialEmail)
+    formData.append("firstname", details.firstName)
+    formData.append("lastname", details.lastName)
+    formData.append("role", details.role)
+    formData.append("companyWebsite", details.companyWebsite)
+    formData.append("companyAddress", details.companyAddress)
+    formData.append("password", details.password)
+    formData.append("agreeToTerms", details.agreeToTerms)
+
+    const options = {
+      method: "POST",
+      body: formData,
+    }
+
+    const response = await fetch(
+      "http://localhost:5000/employee/create-account",
+      options
+    )
+    const data = await response.json()
+    if (response.ok) {
+      onSuccess(data.message, data.jwtToken)
+    } else {
+      onError(data.message)
+    }
+  }
+
   const isFormFilled = () => {
     for (const key in companyDetails) {
       if (
@@ -76,7 +134,7 @@ function EmployeeStep2() {
       } else {
         setPasswordMatch(true)
       }
-      console.log({ ...companyDetails, ...companyInfo })
+      onSuccessSubmit({ ...companyDetails, ...companyInfo })
     } else {
       console.log("Fill the form")
     }
