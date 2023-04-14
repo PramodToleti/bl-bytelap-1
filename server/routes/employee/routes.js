@@ -51,6 +51,36 @@ router.post("/create-account", upload.single("file"), async (req, res) => {
 })
 
 //Login
-router.post("/login", async (req, res) => {})
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body
+
+  try {
+    const employee = await Employee.findOne({
+      officialEmail: email,
+    })
+
+    if (employee) {
+      const isPasswordCorrect = await bcrypt.compare(
+        password,
+        employee.password
+      )
+
+      if (isPasswordCorrect) {
+        const payload = { id: employee._id, email: employee.officialEmail }
+        const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
+          expiresIn: "4d",
+        })
+        res.status(200).json({ message: "Login successful", jwtToken })
+      } else {
+        res.status(400).json({ message: "Invalid credentials" })
+      }
+    } else {
+      res.status(400).json({ message: "User doesn't exist" })
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
 
 module.exports = router
