@@ -39,7 +39,7 @@ const CandidateJobs = (props) => {
           .includes(activeSearchStr.toLowerCase())) &&
       (activeLocationStr === "" ||
         eachJob.location.some(
-          (loc) => loc.value.toLowerCase() === activeLocationStr.toLowerCase()
+          (loc) => loc.label.toLowerCase() === activeLocationStr.toLowerCase()
         ))
     ) {
       return eachJob
@@ -54,7 +54,7 @@ const CandidateJobs = (props) => {
           .includes(activeSearchStr.toLowerCase())) &&
       (activeLocationStr === "" ||
         eachJob.location.some(
-          (loc) => loc.value.toLowerCase() === activeLocationStr.toLowerCase()
+          (loc) => loc.label.toLowerCase() === activeLocationStr.toLowerCase()
         ))
     ) {
       return eachJob
@@ -69,7 +69,7 @@ const CandidateJobs = (props) => {
           .includes(activeSearchStr.toLowerCase())) &&
       (activeLocationStr === "" ||
         eachJob.location.some(
-          (loc) => loc.value.toLowerCase() === activeLocationStr.toLowerCase()
+          (loc) => loc.label.toLowerCase() === activeLocationStr.toLowerCase()
         ))
     ) {
       return eachJob

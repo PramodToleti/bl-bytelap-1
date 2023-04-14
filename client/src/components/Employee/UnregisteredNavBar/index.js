@@ -56,7 +56,7 @@ const UnregisteredNavBar = () => {
                         Home
                       </Link>*/}
               <Link
-                to="/employee/post-job"
+                to="/employee/create-account/step-1"
                 className="nav-link"
                 style={{
                   textDecoration: "none",

@@ -109,7 +109,9 @@ const ExperienceJob = (props) => {
                   <>
                     <MdLocationOn style={{ fontSize: "19px", color: "grey" }} />
                     {data.city.length > 3
-                      ? `${data.city[0].label}, ${data.city[1].label}, ${data.city[2].label}  ...`
+                      ? `${data.city[0].label.split(",")[0]}, ${
+                          data.city[1].label.split(",")[0]
+                        }, ${data.city[2].label.split(",")[0]}  ...`
                       : data.city.map((each) => each.label)}
                   </>
                 ) : (

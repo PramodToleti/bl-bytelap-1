@@ -113,7 +113,9 @@ function InternshipPostPreview(props) {
                                 maxWidth: "295px",
                               }}
                             >
-                              {`${data.city[0].label}, ${data.city[1].label}, ${data.city[2].label} ...`}
+                              {`${data.city[0].label.split(",")[0]}, ${
+                                data.city[1].label.split(",")[0]
+                              }, ${data.city[2].label.split(",")[0]} ...`}
                               {!fullText && (
                                 <span
                                   style={{
@@ -133,7 +135,7 @@ function InternshipPostPreview(props) {
                           ) : (
                             data.city.map((each, index) => (
                               <span key={index}>
-                                {each.label}
+                                {each.label.split(",")[0]}
                                 {index !== data.city.length - 1 ? ", " : ""}
                               </span>
                             ))

@@ -120,6 +120,8 @@ function Internship() {
     setValidated(true)
   }
 
+  console.log(location, city)
+
   const handlePostJob = () => {
     if (
       jobTitle !== "" &&
