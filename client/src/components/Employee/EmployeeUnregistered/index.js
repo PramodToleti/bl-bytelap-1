@@ -101,6 +101,38 @@ function EmployeeUnregistered() {
     })
   }
 
+  const onResend = () => {
+    if (companyDetails.email === "") {
+      toast.error("Email can't be Empty", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #ff0000",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+      return
+    }
+    if (timeStamp !== "" && Date.now() - timeStamp < 300000) {
+      toast.error("Try again after 5 mins", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #ff0000",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+    } else {
+      onGetCode()
+    }
+  }
+
   const onGetCode = async () => {
     if (companyDetails.officialEmail === "") {
       toast.error("Email can't be Empty", {
@@ -216,7 +248,7 @@ function EmployeeUnregistered() {
         },
       })
       setTimeout(() => {
-        setIsNext(true)
+        history.push("/employee/create-account/step-2")
       }, 1000)
     } else {
       console.log("Fill the form")
@@ -344,11 +376,17 @@ function EmployeeUnregistered() {
                 </Form.Control.Feedback>
               </Form.Group>
             </div>
-            <p className="text-start mt-1">
+            <p
+              className="text-start mt-1"
+              style={{
+                textDecoration: "none",
+                color: "blue",
+                cursor: "pointer",
+              }}
+              onClick={onResend}
+            >
               {" "}
-              <Link to="" style={{ textDecoration: "none", color: "blue" }}>
-                Resend again{" "}
-              </Link>
+              Resend again{" "}
             </p>
 
             <div className="d-grid gap-2 mt-3">

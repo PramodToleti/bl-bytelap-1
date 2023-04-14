@@ -45,7 +45,12 @@ function CandidateLogin() {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: true,
-      style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
+      style: {
+        border: "2px solid #00ff00",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+      },
     })
     Cookies.set("userToken", token)
     setTimeout(() => {
@@ -59,7 +64,12 @@ function CandidateLogin() {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: true,
-      style: { border: "2px solid #ff0000", backgroundColor: "#fff" },
+      style: {
+        border: "2px solid #ff0000",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+      },
     })
   }
 

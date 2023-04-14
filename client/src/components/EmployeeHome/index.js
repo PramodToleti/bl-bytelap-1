@@ -193,7 +193,7 @@ function EmployeeHome() {
                       className="nav-link"
                       style={{ marginLeft: "9px", cursor: "pointer" }}
                       onClick={() => {
-                        Cookies.remove("token")
+                        Cookies.remove("employeeToken")
                         history.push("/login")
                       }}
                     >

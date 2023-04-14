@@ -45,11 +45,18 @@ function EmployeeLogin() {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: true,
-      style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
+      style: {
+        border: "2px solid #00ff00",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+        marginTop: "30px",
+        margin: "20px",
+      },
     })
-    Cookies.set("userToken", token)
+    Cookies.set("employeeToken", token)
     setTimeout(() => {
-      history.push("/candidate")
+      history.push("/employee")
     }, 1000)
   }
 
@@ -59,7 +66,12 @@ function EmployeeLogin() {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: true,
-      style: { border: "2px solid #ff0000", backgroundColor: "#fff" },
+      style: {
+        border: "2px solid #ff0000",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+      },
     })
   }
 
@@ -153,6 +165,8 @@ function EmployeeLogin() {
           </Container>
         </Navbar>
       ))}
+
+      <ToastContainer />
 
       <div className="employee-login-container p-2">
         <div className="col-lg-4 col-md-4 search-course-right   mb-4 mt-4 p-2       border-secondary rounded container reveal  p-3 mb-5   rounded border border-secondary">
@@ -295,11 +309,24 @@ function EmployeeLogin() {
             <div className="d-grid gap-2 mt-3">
               <Button
                 type="submit"
-                style={{ width: "100%" }}
+                style={{ width: "100%", display: "grid", placeItems: "center" }}
                 variant="primary"
                 size="lg"
               >
-                Login
+                {isLoading ? (
+                  <ThreeDots
+                    height="40"
+                    width="40"
+                    radius="9"
+                    color="#ffffff"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                  />
+                ) : (
+                  "Login"
+                )}
               </Button>
             </div>
             <p className="text-center mt-3">

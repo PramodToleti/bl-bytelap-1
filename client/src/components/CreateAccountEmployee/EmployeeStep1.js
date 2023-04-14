@@ -55,6 +55,38 @@ function EmployeeStep1() {
     })
   }
 
+  const onResend = () => {
+    if (companyDetails.email === "") {
+      toast.error("Email can't be Empty", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #ff0000",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+      return
+    }
+    if (timeStamp !== "" && Date.now() - timeStamp < 300000) {
+      toast.error("Try again after 5 mins", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #ff0000",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+    } else {
+      onGetCode()
+    }
+  }
+
   const onGetCode = async () => {
     if (companyDetails.officialEmail === "") {
       toast.error("Email can't be Empty", {
@@ -104,24 +136,6 @@ function EmployeeStep1() {
           margin: "20px",
         },
       })
-    }
-  }
-
-  const onResend = () => {
-    if (timeStamp !== "" && Date.now() - timeStamp < 300000) {
-      toast.error("Try again after 5 mins", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        style: {
-          border: "2px solid #ff0000",
-          backgroundColor: "#fff",
-          marginTop: "30px",
-          margin: "20px",
-        },
-      })
-    } else {
-      onGetCode()
     }
   }
 
