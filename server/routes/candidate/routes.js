@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken")
 const multer = require("multer")
 const upload = multer({ dest: "uploads/" })
 
-const { Candidate } = require("../../models/model")
+const { Candidate } = require("../../models/candidate/account")
 
 //Create Account
 router.post("/create-account", upload.single("file"), async (req, res) => {
