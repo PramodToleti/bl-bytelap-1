@@ -4,15 +4,15 @@ import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { toast } from "react-toastify"
 import moment from "moment/moment"
+import { Oval } from "react-loader-spinner"
 import "react-datepicker/dist/react-datepicker.css"
-import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
-
 import React, { useState, useRef } from "react"
 import Row from "react-bootstrap/Row"
 import { Col } from "react-bootstrap"
 import ProgressBar from "react-bootstrap/ProgressBar"
 
 import "./index.css"
+
 import LanguageDropdown from "../../../assets/LanguageDropdown"
 import ChooseJobTitle from "../../../assets/ChooseJobTitle"
 import TextArea from "antd/es/input/TextArea"
@@ -22,6 +22,7 @@ import DynamicEducationJob from "../../../assets/DynamicEducationJob"
 import DynamicTraining from "../../../assets/DynamicTraining"
 import InternshipPreview from "../../../components/CandidateRegisterPreview/InternshipPreview"
 import ChooseCity from "../../../assets/ChooseCity"
+import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
 
 function Internship(props) {
   const [validated, setValidated] = useState(false)
@@ -40,6 +41,7 @@ function Internship(props) {
   const [availability, setAvailability] = useState("")
   const [isFilled, setIsFilled] = useState(true)
   const [custom, setCustom] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   let data = {
     jobTitle,
@@ -285,17 +287,103 @@ const progressRef = useRef(null)*/
     )
   }
 
-  const onSubmitForm = (event) => {
+  const onSuccess = (msg) => {
+    setIsLoading(false)
+    toast.success(msg, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      style: {
+        border: "2px solid #00ff00",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+      },
+    })
+    /*  setTimeout(() => {
+      window.location.reload()
+    }, 1000) */
+  }
+
+  const onFailure = (msg) => {
+    setIsLoading(false)
+    console.log("success")
+    toast.error(msg, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      style: {
+        border: "2px solid #ff0000",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+      },
+    })
+  }
+
+  const onSubmitForm = async (event) => {
+    setIsLoading(true)
     event.preventDefault()
     if (now === 100 && isFilled === true) {
-      props.handleInternData(data)
-      toast.success("Data saved successfully!", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
+      const trainingFiles = training.map((each) => each.file)
+      const achievementsFiles = achievements.map((each) => each.file)
+      const userId = localStorage.getItem("userId")
+      const formData = new FormData()
+      formData.append("candidate", userId)
+      formData.append("jobTitle", jobTitle)
+      formData.append("jobTime", jobTime)
+      formData.append("jobType", jobType)
+      formData.append("skills", JSON.stringify(skills))
+      formData.append("coverLetter", coverLetter)
+      formData.append("degree", JSON.stringify(degree))
+      achievementsFiles.forEach((file) => {
+        formData.append("achievementsFiles", file)
       })
-      window.location.reload()
+      trainingFiles.forEach((file) => {
+        formData.append("trainingFiles", file)
+      })
+      formData.append("projectDetails", JSON.stringify(projectDetails))
+      formData.append("time", Date.now())
+      formData.append(
+        "training",
+        JSON.stringify(
+          training.map((each) => ({
+            title: each.title,
+            institute: each.institute,
+            startDate: each.startDate,
+            endDate: each.endDate,
+          }))
+        )
+      )
+      formData.append(
+        "achievements",
+        JSON.stringify(
+          achievements.map((each) => ({
+            achievement: each.achievement,
+          }))
+        )
+      )
+      formData.append("availability", availability)
+      formData.append("languages", JSON.stringify(languages))
+
+      const options = {
+        method: "POST",
+        body: formData,
+      }
+
+      const response = await fetch(
+        "http://localhost:5000/candidate/internship/register",
+        options
+      )
+      const resData = await response.json()
+
+      if (response.ok) {
+        onSuccess(resData.message)
+      } else {
+        onFailure(resData.message)
+      }
     }
 
     now === 100 ? setIsFilled(true) : setIsFilled(false)
@@ -466,8 +554,27 @@ const progressRef = useRef(null)*/
         <Row className="justify-content-center">
           {/*<Button type="button" variant="secondary" className="col-sm-2 mx-4 mt-2">Preview</Button>*/}
           <InternshipPreview data={data} />
-          <Button type="submit" className="col-sm-2 mt-2">
-            Save
+          <Button
+            type="submit"
+            className="col-sm-2 mt-2"
+            style={{ display: "grid", placeItems: "center" }}
+          >
+            {isLoading ? (
+              <Oval
+                height={20}
+                width={20}
+                color="#ffffff"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="oval-loading"
+                secondaryColor="#ffffff"
+                strokeWidth={2}
+                strokeWidthSecondary={2}
+              />
+            ) : (
+              "Save"
+            )}
           </Button>
         </Row>
       </Form>

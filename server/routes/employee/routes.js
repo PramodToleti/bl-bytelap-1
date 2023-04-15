@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const upload = multer({ dest: "uploads/" })
 
-const { Employee } = require("../../models/employee/account")
+const Employee = require("../../models/employee/account")
 
 //Create Account
 router.post("/create-account", upload.single("file"), async (req, res) => {

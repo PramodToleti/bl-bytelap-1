@@ -39,7 +39,7 @@ function CandidateLogin() {
     })
   }
 
-  const onSuccessLogin = (token) => {
+  const onSuccessLogin = (token, userId) => {
     setIsLoading(false)
     toast.success("Login successfully!", {
       position: "top-center",
@@ -53,6 +53,7 @@ function CandidateLogin() {
       },
     })
     Cookies.set("userToken", token)
+    localStorage.setItem("userId", userId)
     setTimeout(() => {
       history.push("/candidate")
     }, 1000)
@@ -93,7 +94,7 @@ function CandidateLogin() {
 
       const data = await response.json()
       if (response.ok) {
-        onSuccessLogin(data.jwtToken)
+        onSuccessLogin(data.jwtToken, data.userId)
       } else {
         onFailureLogin(data.message)
       }

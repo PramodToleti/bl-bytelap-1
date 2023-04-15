@@ -26,26 +26,6 @@ const trainingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  degree: {
-    type: String,
-    required: true,
-  },
-  field: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
-  institute: {
-    type: String,
-    required: true,
-  },
-  present: {
-    type: Boolean,
-    default: false,
-  },
   startDate: {
     type: Date,
     required: true,
@@ -60,16 +40,56 @@ const achievementSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  file: {
-    data: Buffer,
-    contentType: String,
+})
+
+const degreeSchema = new mongoose.Schema({
+  degree: {
+    type: String,
+    required: true,
+  },
+  field: {
+    type: String,
+    required: true,
+  },
+  institute: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  schoolName: {
+    type: String,
+  },
+  startDate: {
+    type: Date,
+    required: true,
+  },
+  endDate: {
+    type: Date,
+  },
+  present: {
+    type: Boolean,
+    default: false,
+  },
+  yearOfCompletion: {
+    type: Date,
   },
 })
 
 const jobApplicationSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    required: true,
+  },
   candidate: {
     type: mongoose.Schema.Types.ObjectId,
     ref: Candidate,
+    required: true,
+  },
+  username: {
+    type: String,
     required: true,
   },
   jobTitle: {
@@ -103,9 +123,33 @@ const jobApplicationSchema = new mongoose.Schema({
   achievements: {
     type: [achievementSchema],
   },
+  achievementsFiles: [
+    {
+      fieldname: String,
+      originalname: String,
+      encoding: String,
+      mimetype: String,
+      destination: String,
+      filename: String,
+      path: String,
+      size: Number,
+    },
+  ],
   training: {
     type: [trainingSchema],
   },
+  trainingsFiles: [
+    {
+      fieldname: String,
+      originalname: String,
+      encoding: String,
+      mimetype: String,
+      destination: String,
+      filename: String,
+      path: String,
+      size: Number,
+    },
+  ],
   availability: {
     type: String,
   },
@@ -113,31 +157,7 @@ const jobApplicationSchema = new mongoose.Schema({
     type: String,
   },
   degree: {
-    type: String,
-    required: true,
-  },
-  field: {
-    type: String,
-    required: true,
-  },
-  institute: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
-  present: {
-    type: Boolean,
-    default: false,
-  },
-  startDate: {
-    type: Date,
-    required: true,
-  },
-  endDate: {
-    type: Date,
+    type: [degreeSchema],
   },
 })
 

@@ -5,7 +5,8 @@ const jwt = require("jsonwebtoken")
 const multer = require("multer")
 const upload = multer({ dest: "uploads/" })
 
-const { Candidate } = require("../../models/candidate/account")
+const Candidate = require("../../models/candidate/account")
+const JobApplication = require("../../models/candidate/register")
 
 //Create Account
 router.post("/create-account", upload.single("file"), async (req, res) => {
@@ -43,9 +44,11 @@ router.post("/create-account", upload.single("file"), async (req, res) => {
         expiresIn: "4d",
       })
 
-      res
-        .status(200)
-        .json({ message: "Account created successfully", jwtToken })
+      res.status(200).json({
+        message: "Account created successfully",
+        jwtToken,
+        userId: candidate._id,
+      })
     }
   } catch (err) {
     res.status(400).json({ message: "Something went wrong" })
@@ -78,7 +81,11 @@ router.post("/login", async (req, res) => {
           expiresIn: "4d",
         })
 
-        res.status(200).json({ message: "Login Successful", jwtToken })
+        res.status(200).json({
+          message: "Login Successful",
+          jwtToken,
+          userId: isPresent._id,
+        })
       }
     }
   } else {
@@ -113,5 +120,64 @@ router.post("/login", async (req, res) => {
     }
   }
 })
+
+//Registration
+router.post(
+  "/internship/register",
+  upload.fields([
+    { name: "achievementsFiles", maxCount: 10 },
+    { name: "trainingFiles", maxCount: 10 },
+  ]),
+  async (req, res) => {
+    try {
+      const details = req.body
+
+      const isPresent = await Candidate.findOne({
+        _id: details.candidate,
+      })
+
+      const duplicate = await JobApplication.findOne({
+        candidate: details.candidate,
+      })
+
+      if (duplicate) {
+        res.status(400).json({ message: "You have already registered" })
+      } else if (!isPresent) {
+        res.status(400).json({ message: "User not Found" })
+      } else {
+        const username = isPresent.firstName + " " + isPresent.lastName
+
+        const jobApplication = new JobApplication({
+          type: "Internship",
+          candidate: details.candidate,
+          username,
+          jobTitle: details.jobTitle,
+          jobTime: details.jobTime,
+          jobType: details.jobType,
+          skills: JSON.parse(details.skills),
+          coverLetter: details.coverLetter,
+          degree: JSON.parse(details.degree),
+          achievements: JSON.parse(details.achievements),
+          achievementsFiles: req.files.achievementsFiles,
+          training: JSON.parse(details.training),
+          trainingFiles: req.files.trainingFiles,
+          projectDetails: JSON.parse(details.projectDetails),
+          time: details.time,
+          achievements: JSON.parse(details.achievements),
+          availability: details.availability,
+          languages: JSON.parse(details.languages),
+        })
+
+        const savedJobApplication = await jobApplication.save()
+        res.status(200).json({ message: "Registered Successfully" })
+      }
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({
+        error: "An error occurred while registering the job application",
+      })
+    }
+  }
+)
 
 module.exports = router

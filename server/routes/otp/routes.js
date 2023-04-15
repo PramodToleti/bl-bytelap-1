@@ -12,7 +12,7 @@ const otpTemplatePath = path.join(
   "otpTemplate.html"
 )
 
-const { Employee } = require("../../models/employee/account")
+const Employee = require("../../models/employee/account")
 
 dotenv.config()
 
