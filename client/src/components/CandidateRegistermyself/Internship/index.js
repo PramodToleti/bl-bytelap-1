@@ -60,22 +60,6 @@ function Internship(props) {
 
   const formRef = useRef(null)
 
-  {
-    /*const [isFixed, setIsFixed] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsFixed(window.pageYOffset > progressRef.current.offsetTop)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-const progressRef = useRef(null)*/
-  }
-
   const handleTitle = (e) => {
     setJobTitle(e)
   }
@@ -302,9 +286,9 @@ const progressRef = useRef(null)*/
         margin: "20px",
       },
     })
-    /*  setTimeout(() => {
+    setTimeout(() => {
       window.location.reload()
-    }, 1000) */
+    }, 1000)
   }
 
   const onFailure = (msg) => {

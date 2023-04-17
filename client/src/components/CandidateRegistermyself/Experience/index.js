@@ -4,8 +4,8 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import ProgressBar from "react-bootstrap/ProgressBar"
 import "react-toastify/dist/ReactToastify.css"
-import { toast } from "react-toastify"
-import { ToastContainer } from "react-toastify"
+import { ToastContainer, toast } from "react-toastify"
+import { Oval } from "react-loader-spinner"
 import moment from "moment/moment"
 
 import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
@@ -52,6 +52,12 @@ function Experience(props) {
   const [isFilled, setIsFilled] = useState(true)
   const [custom, setCustom] = useState("")
   const [checkbox, toggleCheckbox] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
+  console.log(employmentHistory)
+  console.log(preferredLocation)
+
+  console.log(preferredLocation)
 
   const data = {
     jobTitle,
@@ -265,21 +271,112 @@ function Experience(props) {
     )
   }
 
-  const onSubmitForm = (event) => {
+  const onSuccess = (msg) => {
+    setIsLoading(false)
+    toast.success(msg, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      style: {
+        border: "2px solid #00ff00",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+      },
+    })
+    /* setTimeout(() => {
+      window.location.reload()
+    }, 1000) */
+  }
+
+  const onFailure = (msg) => {
+    setIsLoading(false)
+    toast.error(msg, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      style: {
+        border: "2px solid #ff0000",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+      },
+    })
+  }
+
+  const onSubmitForm = async (event) => {
     event.preventDefault()
     if (now === 100 && isFilled === true) {
-      props.handleExperienceData(data)
-      toast.success("Data saved successfully!", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
-      })
-      window.location.reload()
-      window.scrollTo(0, 0)
-    }
+      setIsLoading(true)
+      if (now === 100 && isFilled === true) {
+        const trainingFiles = training.map((each) => each.file)
+        const achievementsFiles = achievements.map((each) => each.file)
+        const userId = localStorage.getItem("userId")
+        const formData = new FormData()
+        formData.append("candidate", userId)
+        formData.append("jobTitle", jobTitle)
+        formData.append("jobTime", jobTime)
+        formData.append("jobType", jobType)
+        formData.append("shift", shift)
+        formData.append("skills", JSON.stringify(skills))
+        formData.append("experience", JSON.stringify(experience))
+        formData.append("ctc", JSON.stringify(ctc)),
+          formData.append("coverLetter", coverLetter)
+        formData.append("degree", JSON.stringify(degree))
+        formData.append("employementHistory", JSON.stringify(employmentHistory))
+        formData.append("projectDetails", JSON.stringify(projectDetails))
+        formData.append("preferredLocation", JSON.stringify(preferredLocation))
+        formData.append("languages", JSON.stringify(languages))
+        formData.append("availability", availability)
+        formData.append("time", Date.now())
+        formData.append(
+          "training",
+          JSON.stringify(
+            training.map((each) => ({
+              title: each.title,
+              institute: each.institute,
+              startDate: each.startDate,
+              endDate: each.endDate,
+            }))
+          )
+        )
+        formData.append(
+          "achievements",
+          JSON.stringify(
+            achievements.map((each) => ({
+              achievement: each.achievement,
+            }))
+          )
+        )
+        achievementsFiles.forEach((file) => {
+          formData.append("achievementsFiles", file)
+        })
+        trainingFiles.forEach((file) => {
+          formData.append("trainingFiles", file)
+        })
 
-    now === 100 ? setIsFilled(true) : setIsFilled(false)
+        const options = {
+          method: "POST",
+          body: formData,
+        }
+
+        const response = await fetch(
+          "http://localhost:5000/candidate/experience/register",
+          options
+        )
+        const resData = await response.json()
+
+        if (response.ok) {
+          onSuccess(resData.message)
+        } else {
+          onFailure(resData.message)
+        }
+      }
+
+      now === 100 ? setIsFilled(true) : setIsFilled(false)
+    }
   }
 
   const renderSalaryType = () => {
@@ -700,8 +797,24 @@ function Experience(props) {
               now === 100 ? setIsFilled(true) : setIsFilled(false)
             }
             className="col-sm-2 mt-2"
+            style={{ display: "grid", placeItems: "center" }}
           >
-            Save
+            {isLoading ? (
+              <Oval
+                height={20}
+                width={20}
+                color="#ffffff"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="oval-loading"
+                secondaryColor="#ffffff"
+                strokeWidth={2}
+                strokeWidthSecondary={2}
+              />
+            ) : (
+              "Save"
+            )}
           </Button>
         </Row>
       </Form>

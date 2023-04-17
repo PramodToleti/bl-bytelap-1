@@ -23,6 +23,8 @@ const DynamicEducationJob = (props) => {
     },
   ])
 
+  console.log(degreeList)
+
   const handleChangeStart = (date, index) => {
     const list = [...degreeList]
     list[index].startDate = date

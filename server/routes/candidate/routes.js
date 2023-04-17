@@ -6,7 +6,9 @@ const multer = require("multer")
 const upload = multer({ dest: "uploads/" })
 
 const Candidate = require("../../models/candidate/account")
-const JobApplication = require("../../models/candidate/register")
+const InternApplication = require("../../models/candidate/Registration/internship")
+const FresherApplication = require("../../models/candidate/Registration/fresher")
+const ExperienceApplicaton = require("../../models/candidate/Registration/experience")
 
 //Create Account
 router.post("/create-account", upload.single("file"), async (req, res) => {
@@ -136,7 +138,7 @@ router.post(
         _id: details.candidate,
       })
 
-      const duplicate = await JobApplication.findOne({
+      const duplicate = await InternApplication.findOne({
         candidate: details.candidate,
       })
 
@@ -147,7 +149,7 @@ router.post(
       } else {
         const username = isPresent.firstName + " " + isPresent.lastName
 
-        const jobApplication = new JobApplication({
+        const jobApplication = new InternApplication({
           type: "Internship",
           candidate: details.candidate,
           username,
@@ -166,6 +168,129 @@ router.post(
           achievements: JSON.parse(details.achievements),
           availability: details.availability,
           languages: JSON.parse(details.languages),
+        })
+
+        const savedJobApplication = await jobApplication.save()
+        res.status(200).json({ message: "Registered Successfully" })
+      }
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({
+        error: "An error occurred while registering the job application",
+      })
+    }
+  }
+)
+
+router.post(
+  "/fresher/register",
+  upload.fields([
+    { name: "achievementsFiles", maxCount: 10 },
+    { name: "trainingFiles", maxCount: 10 },
+  ]),
+  async (req, res) => {
+    try {
+      const details = req.body
+
+      const isPresent = await Candidate.findOne({
+        _id: details.candidate,
+      })
+
+      const duplicate = await FresherApplication.findOne({
+        candidate: details.candidate,
+      })
+
+      if (duplicate) {
+        res.status(400).json({ message: "You have already registered" })
+      } else if (!isPresent) {
+        res.status(400).json({ message: "User not Found" })
+      } else {
+        const username = isPresent.firstName + " " + isPresent.lastName
+
+        const jobApplication = new FresherApplication({
+          type: "Fresher",
+          candidate: details.candidate,
+          username,
+          jobTitle: details.jobTitle,
+          jobTime: details.jobTime,
+          jobType: details.jobType,
+          shift: details.shift,
+          skills: JSON.parse(details.skills),
+          salaryType: details.salaryType,
+          salaryRange: JSON.parse(details.salaryRange),
+          coverLetter: details.coverLetter,
+          degree: JSON.parse(details.degree),
+          projectDetails: JSON.parse(details.projectDetails),
+          training: JSON.parse(details.training),
+          trainingFiles: req.files.trainingFiles,
+          achievements: JSON.parse(details.achievements),
+          achievementsFiles: req.files.achievementsFiles,
+          preferredLocation: details.preferredLocation,
+          languages: JSON.parse(details.languages),
+          availability: details.availability,
+          time: details.time,
+        })
+
+        const savedJobApplication = await jobApplication.save()
+        res.status(200).json({ message: "Registered Successfully" })
+      }
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({
+        error: "An error occurred while registering the job application",
+      })
+    }
+  }
+)
+
+router.post(
+  "/experience/register",
+  upload.fields([
+    { name: "achievementsFiles", maxCount: 10 },
+    { name: "trainingFiles", maxCount: 10 },
+  ]),
+  async (req, res) => {
+    try {
+      const details = req.body
+
+      const isPresent = await Candidate.findOne({
+        _id: details.candidate,
+      })
+
+      const duplicate = await ExperienceApplicaton.findOne({
+        candidate: details.candidate,
+      })
+
+      if (duplicate) {
+        res.status(400).json({ message: "You have already registered" })
+      } else if (!isPresent) {
+        res.status(400).json({ message: "User not Found" })
+      } else {
+        const username = isPresent.firstName + " " + isPresent.lastName
+
+        const jobApplication = new ExperienceApplicaton({
+          type: "Experience",
+          candidate: details.candidate,
+          username,
+          jobTitle: details.jobTitle,
+          jobTime: details.jobTime,
+          jobType: details.jobType,
+          shift: details.shift,
+          skills: JSON.parse(details.skills),
+          experience: JSON.parse(details.experience),
+          ctc: JSON.parse(details.ctc),
+          coverLetter: details.coverLetter,
+          degree: JSON.parse(details.degree),
+          employementHistory: JSON.parse(details.employementHistory),
+          projectDetails: JSON.parse(details.projectDetails),
+          training: JSON.parse(details.training),
+          trainingFiles: req.files.trainingFiles,
+          achievements: JSON.parse(details.achievements),
+          achievementsFiles: req.files.achievementsFiles,
+          preferredLocation: JSON.parse(details.preferredLocation),
+          languages: JSON.parse(details.languages),
+          availability: details.availability,
+          time: details.time,
         })
 
         const savedJobApplication = await jobApplication.save()

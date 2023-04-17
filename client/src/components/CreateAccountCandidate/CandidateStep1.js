@@ -344,7 +344,7 @@ function CandidateStep1() {
               <Form.Check
                 required
                 name="agreeToTerms"
-                checked={formData.agreeToTerms}
+                /* checked={formData.agreeToTerms} */
                 feedback={
                   <div
                     style={{

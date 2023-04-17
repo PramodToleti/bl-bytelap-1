@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const Candidate = require("./account")
+const Candidate = require("../account")
 
 const projectDetailsSchema = new mongoose.Schema({
   title: {
@@ -78,7 +78,7 @@ const degreeSchema = new mongoose.Schema({
   },
 })
 
-const jobApplicationSchema = new mongoose.Schema({
+const FresherApplicationSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
@@ -96,45 +96,42 @@ const jobApplicationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  jobType: {
-    type: String,
-    required: true,
-  },
   jobTime: {
     type: String,
     required: true,
   },
-  languages: {
-    type: [String],
+  jobType: {
+    type: String,
+    required: true,
+  },
+  shift: {
+    type: String,
     required: true,
   },
   skills: {
     type: [String],
     required: true,
   },
+  salaryType: {
+    type: String,
+    required: true,
+  },
+  salaryRange: {
+    type: {
+      from: String,
+      to: String,
+    },
+  },
+  coverLetter: {
+    type: String,
+  },
+  degree: {
+    type: [degreeSchema],
+  },
   projectDetails: {
     type: [projectDetailsSchema],
     required: true,
   },
-  time: {
-    type: Date,
-    required: true,
-  },
-  achievements: {
-    type: [achievementSchema],
-  },
-  achievementsFiles: [
-    {
-      fieldname: String,
-      originalname: String,
-      encoding: String,
-      mimetype: String,
-      destination: String,
-      filename: String,
-      path: String,
-      size: Number,
-    },
-  ],
   training: {
     type: [trainingSchema],
   },
@@ -150,15 +147,36 @@ const jobApplicationSchema = new mongoose.Schema({
       size: Number,
     },
   ],
+  achievements: {
+    type: [achievementSchema],
+  },
+  achievementsFiles: [
+    {
+      fieldname: String,
+      originalname: String,
+      encoding: String,
+      mimetype: String,
+      destination: String,
+      filename: String,
+      path: String,
+      size: Number,
+    },
+  ],
+  preferredLocation: {
+    type: [String],
+    required: true,
+  },
+  languages: {
+    type: [String],
+    required: true,
+  },
   availability: {
     type: String,
   },
-  coverLetter: {
-    type: String,
-  },
-  degree: {
-    type: [degreeSchema],
+  time: {
+    type: Date,
+    required: true,
   },
 })
 
-module.exports = mongoose.model("JobApplication", jobApplicationSchema)
+module.exports = mongoose.model("FresherApplicaton", FresherApplicationSchema)

@@ -21,7 +21,6 @@ const DynamicEmployementHistory = (props) => {
       hidden: false,
     },
   ])
-  console.log(employmentHistory[0].location)
 
   const handleHideFields = (index) => {
     const list = [...employmentHistory]
