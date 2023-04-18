@@ -4,16 +4,7 @@ import "./index.css"
 import { components } from "react-select"
 import { Form } from "react-bootstrap"
 
-const skills = [
-  { value: "HTML", label: "HTML" },
-  { value: "CSS", label: "CSS" },
-  { value: "Javascript", label: "Javascript" },
-  { value: "ReactJS", label: "ReactJS" },
-  { value: "NodeJS", label: "NodeJS" },
-  { value: "ExpressJS", label: "ExpressJS" },
-  { value: "Ruby", label: "Ruby" },
-  { value: "SQL", label: "SQL" },
-]
+import skills from "./data"
 
 const Option = (props) => {
   return (

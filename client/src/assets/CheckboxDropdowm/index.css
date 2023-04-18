@@ -1,6 +1,7 @@
 .input-field {
   width: 100%;
   margin-bottom: 20px;
+  z-index: 999;
 }
 
 .skills-name {
