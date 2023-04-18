@@ -133,11 +133,11 @@ function Experience() {
         "http://localhost:5000/employee/job/experience",
         options
       )
-      const data = await response.json()
+      const resData = await response.json()
       if (response.ok) {
-        onSuccess(data.message)
+        onSuccess(resData.message)
       } else {
-        onFailure(data.message)
+        onFailure(resData.message)
       }
     } else {
       toast.error("Please fill all the fields!", {

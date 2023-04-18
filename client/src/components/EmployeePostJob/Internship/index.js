@@ -123,6 +123,7 @@ function Internship() {
   }
 
   const onSuccess = (message) => {
+    setIsLoading(false)
     toast.success(message, {
       position: "top-center",
       autoClose: 3000,
@@ -141,6 +142,7 @@ function Internship() {
   }
 
   const onFailure = (message) => {
+    setIsLoading(false)
     toast.error(message, {
       position: "top-center",
       autoClose: 3000,
@@ -170,6 +172,7 @@ function Internship() {
       location.length !== 0 &&
       education.length !== 0
     ) {
+      setIsLoading(true)
       const options = {
         method: "POST",
         headers: {
@@ -182,11 +185,11 @@ function Internship() {
         "http://localhost:5000/employee/job/internship",
         options
       )
-      const data = await response.json()
+      const resData = await response.json()
       if (response.ok) {
-        onSuccess(data.message)
+        onSuccess(resData.message)
       } else {
-        onFailure(data.message)
+        onFailure(resData.message)
       }
     } else {
       toast.error("Please fill all the fields!", {
