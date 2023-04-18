@@ -39,7 +39,7 @@ function Experience() {
   })
   const [salaryType, setSalaryType] = useState("")
   const [salaryRange, setSalaryRange] = useState({ from: "", to: "" })
-  const [incentives, setIncentives] = useState("")
+  const [incentives, setIncentives] = useState(false)
   const [incentivesValue, setIncentivesValue] = useState("")
   const [supplementary, setSupplemantary] = useState([])
   const [perks, setPerks] = useState([])

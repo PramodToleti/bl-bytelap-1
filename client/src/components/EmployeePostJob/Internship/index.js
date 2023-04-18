@@ -50,12 +50,13 @@ function Internship() {
     jobTitle,
     jobTime,
     jobType,
+    shift: "Day Shift",
     city,
     duration,
     checked,
     skills,
     startDate,
-    responsibilities,
+    jobDescription: responsibilities,
     salaryType,
     salaryRange,
     incentives,
@@ -214,7 +215,9 @@ function Internship() {
                   e.preventDefault()
                 }
               }} */
-              onChange={(e) => setSalaryRange(e.target.value)}
+              onChange={(e) =>
+                setSalaryRange({ ...salaryRange, from: e.target.value })
+              }
             />
           </Form.Group>
         )
