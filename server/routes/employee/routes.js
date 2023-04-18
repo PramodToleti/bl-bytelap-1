@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken")
 const upload = multer({ dest: "uploads/" })
 
 const Employee = require("../../models/employee/account")
+const PostedJobs = require("../../models/employee/Jobs/intern")
 
 //Create Account
 router.post("/create-account", upload.single("file"), async (req, res) => {
@@ -77,6 +78,100 @@ router.post("/login", async (req, res) => {
     } else {
       res.status(400).json({ message: "User doesn't exist" })
     }
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+//Job Post
+router.post("/job/internship", async (req, res) => {
+  const jobDetails = req.body
+  try {
+    const jobPost = new PostedJobs({
+      type: "Internship",
+      jobTitle: jobDetails.jobTitle,
+      jobTime: jobDetails.jobTime,
+      jobType: jobDetails.jobType,
+      city: jobDetails.city,
+      shift: jobDetails.shift,
+      skills: jobDetails.skills,
+      jobDescription: jobDetails.jobDescription,
+      salaryType: jobDetails.salaryType,
+      salaryRange: jobDetails.salaryRange,
+      incentives: jobDetails.incentives,
+      incentivesValue: jobDetails.incentivesValue,
+      perks: jobDetails.perks,
+      languages: jobDetails.languages,
+      openings: jobDetails.openings,
+      location: jobDetails.location,
+      time: jobDetails.time,
+    })
+    await jobPost.save()
+    res.status(200).json({ message: "Job posted successfully" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+router.post("/job/fresher", async (req, res) => {
+  const jobDetails = req.body
+  try {
+    const jobPost = new PostedJobs({
+      type: "Fresher",
+      jobTitle: jobDetails.jobTitle,
+      jobTime: jobDetails.jobTime,
+      jobType: jobDetails.jobType,
+      city: jobDetails.city,
+      shift: jobDetails.shift,
+      skills: jobDetails.skills,
+      jobDescription: jobDetails.jobDescription,
+      salaryType: jobDetails.salaryType,
+      salaryRange: jobDetails.salaryRange,
+      incentives: jobDetails.incentives,
+      incentivesValue: jobDetails.incentivesValue,
+      supplementary: jobDetails.supplementary,
+      perks: jobDetails.perks,
+      languages: jobDetails.languages,
+      openings: jobDetails.openings,
+      location: jobDetails.location,
+      time: jobDetails.time,
+    })
+    await jobPost.save()
+    res.status(200).json({ message: "Job posted successfully" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+router.post("/job/experience", async (req, res) => {
+  const jobDetails = req.body
+  try {
+    const jobPost = new PostedJobs({
+      type: "Experience",
+      jobTitle: jobDetails.jobTitle,
+      jobTime: jobDetails.jobTime,
+      jobType: jobDetails.jobType,
+      city: jobDetails.city,
+      shift: jobDetails.shift,
+      skills: jobDetails.skills,
+      jobDescription: jobDetails.jobDescription,
+      salaryType: jobDetails.salaryType,
+      salaryRange: jobDetails.salaryRange,
+      incentives: jobDetails.incentives,
+      incentivesValue: jobDetails.incentivesValue,
+      experience: jobDetails.experience,
+      supplementary: jobDetails.supplementary,
+      perks: jobDetails.perks,
+      languages: jobDetails.languages,
+      openings: jobDetails.openings,
+      location: jobDetails.location,
+      time: jobDetails.time,
+    })
+    await jobPost.save()
+    res.status(200).json({ message: "Job posted successfully" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
