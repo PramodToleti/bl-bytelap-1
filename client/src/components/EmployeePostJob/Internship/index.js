@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { toast } from "react-toastify"
+import { Oval } from "react-loader-spinner"
 import moment from "moment/moment"
 
 import PerksDropdown from "../../../assets/PerksDropdown"
@@ -43,6 +44,7 @@ function Internship() {
   const [location, setLocation] = useState([])
   const [education, setEducation] = useState([])
   const [checked, setChecked] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const data = {
     jobTitle,
@@ -120,7 +122,39 @@ function Internship() {
     setValidated(true)
   }
 
-  const handlePostJob = () => {
+  const onSuccess = (message) => {
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      style: {
+        border: "2px solid #00ff00",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+      },
+    })
+
+    /* setTimeout(() => {
+      window.location.reload()
+    }, 1000) */
+  }
+
+  const onFailure = (message) => {
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: true,
+      style: {
+        border: "2px solid #ff0000",
+        backgroundColor: "#fff",
+        marginTop: "30px",
+        margin: "20px",
+      },
+    })
+  }
+
+  const handlePostJob = async () => {
     if (
       jobTitle !== "" &&
       jobTime !== "" &&
@@ -136,23 +170,24 @@ function Internship() {
       location.length !== 0 &&
       education.length !== 0
     ) {
-      toast.success("Job Posted successfully!", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
-      })
-      const jobData = JSON.parse(localStorage.getItem("internshipJob"))
-      if (jobData === null) {
-        localStorage.setItem("internshipJob", JSON.stringify([data]))
-      } else {
-        jobData.unshift(data)
-        localStorage.setItem("internshipJob", JSON.stringify(jobData))
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       }
-      window.scrollTo(0, 0)
-      setTimeout(() => {
-        window.location.reload()
-      }, 1000)
+
+      const response = await fetch(
+        "http://localhost:5000/employee/job/internship",
+        options
+      )
+      const data = await response.json()
+      if (response.ok) {
+        onSuccess(data.message)
+      } else {
+        onFailure(data.message)
+      }
     } else {
       toast.error("Please fill all the fields!", {
         position: "top-center",
@@ -383,8 +418,27 @@ function Internship() {
         <InternshipPostPreview data={data} />
         <div className="save-container">
           <Button variant="success">Save Draft</Button>
-          <Button variant="primary" onClick={handlePostJob}>
-            Post Job
+          <Button
+            variant="primary"
+            onClick={handlePostJob}
+            style={{ display: "grid", placeItems: "center" }}
+          >
+            {isLoading ? (
+              <Oval
+                height={20}
+                width={20}
+                color="#ffffff"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="oval-loading"
+                secondaryColor="#ffffff"
+                strokeWidth={2}
+                strokeWidthSecondary={2}
+              />
+            ) : (
+              "Post Job"
+            )}
           </Button>
         </div>
       </Form>
