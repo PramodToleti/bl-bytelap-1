@@ -30,7 +30,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Connected to MongdoDB")
+    console.log("Connected to MongoDB")
     app.listen(port, () => {
       console.log(`Server is running on http://localhost:${port}`)
     })

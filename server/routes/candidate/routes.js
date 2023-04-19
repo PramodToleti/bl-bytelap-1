@@ -10,6 +10,8 @@ const InternApplication = require("../../models/candidate/Registration/internshi
 const FresherApplication = require("../../models/candidate/Registration/fresher")
 const ExperienceApplicaton = require("../../models/candidate/Registration/experience")
 
+const PostedJobs = require("../../models/employee/Jobs/intern")
+
 //Create Account
 router.post("/create-account", upload.single("file"), async (req, res) => {
   const candidateDetails = req.body
@@ -304,5 +306,18 @@ router.post(
     }
   }
 )
+
+// @route   GET api/jobs/
+// @desc    Get all the jobs
+// @access  Public
+router.get("/jobs", async (req, res) => {
+  try {
+    const jobs = await PostedJobs.find()
+    res.status(200).json(jobs)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: "An error occurred while fetching jobs" })
+  }
+})
 
 module.exports = router

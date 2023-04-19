@@ -104,6 +104,7 @@ router.post("/job/internship", async (req, res) => {
       perks: jobDetails.perks,
       languages: jobDetails.languages,
       openings: jobDetails.openings,
+      education: jobDetails.education,
       location: jobDetails.location,
       time: jobDetails.time,
     })
@@ -132,6 +133,7 @@ router.post("/job/fresher", async (req, res) => {
       incentives: jobDetails.incentives,
       incentivesValue: jobDetails.incentivesValue,
       supplementary: jobDetails.supplementary,
+      education: jobDetails.education,
       perks: jobDetails.perks,
       languages: jobDetails.languages,
       openings: jobDetails.openings,
@@ -168,6 +170,7 @@ router.post("/job/experience", async (req, res) => {
       languages: jobDetails.languages,
       openings: jobDetails.openings,
       location: jobDetails.location,
+      education: jobDetails.education,
       time: jobDetails.time,
     })
     await jobPost.save()
