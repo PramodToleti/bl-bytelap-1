@@ -112,7 +112,9 @@ const ExperienceJob = (props) => {
                       ? `${data.city[0].label.split(",")[0]}, ${
                           data.city[1].label.split(",")[0]
                         }, ${data.city[2].label.split(",")[0]}  ...`
-                      : data.city.map((each) => each.label)}
+                      : data.city.map(
+                          (each) => `${each.label.split(",")[0]}, `
+                        )}
                   </>
                 ) : (
                   data.jobType
