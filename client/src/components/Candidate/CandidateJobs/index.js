@@ -24,61 +24,6 @@ const CandidateJobs = (props) => {
   const activeSearchStr = search || ""
   const activeLocationStr = location || ""
 
-  const internshipJobs = JSON.parse(localStorage.getItem("internshipJob"))
-  const fresherJobs = JSON.parse(localStorage.getItem("fresherJob"))
-  const experienceJobs = JSON.parse(localStorage.getItem("experienceJob"))
-
-  const internships = internshipJobs?.length ?? 0
-  const freshers = fresherJobs?.length ?? 0
-  const experiences = experienceJobs?.length ?? 0
-
-  const totalJobs = internships + freshers + experiences
-
-  const filteredJobsIntern = (internshipJobs || []).filter((eachJob) => {
-    if (
-      (activeSearchStr === "" ||
-        eachJob.jobTitle
-          .toLowerCase()
-          .includes(activeSearchStr.toLowerCase())) &&
-      (activeLocationStr === "" ||
-        eachJob.location.some(
-          (loc) => loc.label.toLowerCase() === activeLocationStr.toLowerCase()
-        ))
-    ) {
-      return eachJob
-    }
-  })
-
-  const filteredJobsFresher = (fresherJobs || []).filter((eachJob) => {
-    if (
-      (activeSearchStr === "" ||
-        eachJob.jobTitle
-          .toLowerCase()
-          .includes(activeSearchStr.toLowerCase())) &&
-      (activeLocationStr === "" ||
-        eachJob.location.some(
-          (loc) => loc.label.toLowerCase() === activeLocationStr.toLowerCase()
-        ))
-    ) {
-      return eachJob
-    }
-  })
-
-  const filteredJobsExperience = (experienceJobs || []).filter((eachJob) => {
-    if (
-      (activeSearchStr === "" ||
-        eachJob.jobTitle
-          .toLowerCase()
-          .includes(activeSearchStr.toLowerCase())) &&
-      (activeLocationStr === "" ||
-        eachJob.location.some(
-          (loc) => loc.label.toLowerCase() === activeLocationStr.toLowerCase()
-        ))
-    ) {
-      return eachJob
-    }
-  })
-
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("http://localhost:5000/candidate/jobs")
@@ -90,40 +35,95 @@ const CandidateJobs = (props) => {
     fetchData()
   }, [])
 
-  console.log(jobs)
+  const internJobs = jobs.filter((job) => {
+    // Filter by type
+    if (job.type !== "Internship") {
+      return false
+    }
+
+    // Filter by job title
+    if (
+      activeSearchStr !== "" &&
+      job.jobTitle.toLowerCase() !== activeSearchStr.toLowerCase()
+    ) {
+      return false
+    }
+
+    // Filter by location
+    if (
+      activeLocationStr !== "" &&
+      job.location
+        .map((each) => each.label.toLowerCase())
+        .includes(activeLocationStr.toLowerCase()) === false
+    ) {
+      return false
+    }
+
+    return true
+  })
+
+  const fresherJobs = jobs.filter((job) => {
+    // Filter by type
+    if (job.type !== "Fresher") {
+      return false
+    }
+
+    // Filter by job title
+    if (
+      activeSearchStr !== "" &&
+      job.jobTitle.toLowerCase() !== activeSearchStr.toLowerCase()
+    ) {
+      return false
+    }
+
+    // Filter by location
+    if (
+      activeLocationStr !== "" &&
+      job.location
+        .map((each) => each.label.toLowerCase())
+        .includes(activeLocationStr.toLowerCase()) === false
+    ) {
+      return false
+    }
+
+    return true
+  })
+
+  const experienceJobs = jobs.filter((job) => {
+    // Filter by type
+    if (job.type !== "Experience") {
+      return false
+    }
+
+    // Filter by job title
+    if (
+      activeSearchStr !== "" &&
+      job.jobTitle.toLowerCase() !== activeSearchStr.toLowerCase()
+    ) {
+      return false
+    }
+
+    // Filter by location
+    if (
+      activeLocationStr !== "" &&
+      job.location
+        .map((each) => each.label.toLowerCase())
+        .includes(activeLocationStr.toLowerCase()) === false
+    ) {
+      return false
+    }
+
+    return true
+  })
 
   const renderJobs = () => {
     switch (true) {
-      case selectedOption === "Internship" &&
-        !(selectedOption === "Fresher" || selectedOption === "Experience"):
-        return <InternshipJob jobs={filteredJobsIntern} />
-      case selectedOption === "Fresher" &&
-        !(selectedOption === "Experience" || selectedOption === "Internship"):
-        return <FresherJob jobs={filteredJobsFresher} />
-      case selectedOption === "Experience" &&
-        !(selectedOption === "Fresher" || selectedOption === "Internship"):
-        return <ExperienceJob jobs={filteredJobsExperience} />
-      case selectedOption === "Internship" && selectedOption === "Fresher":
-        return (
-          <>
-            <InternshipJob jobs={filteredJobsIntern} />
-            <FresherJob jobs={filteredJobsFresher} />
-          </>
-        )
-      case selectedOption === "Internship" && selectedOption === "Experience":
-        return (
-          <>
-            <InternshipJob jobs={filteredJobsIntern} />
-            <ExperienceJob jobs={filteredJobsExperience} />
-          </>
-        )
-      case selectedOption === "Fresher" && selectedOption === "Experience":
-        return (
-          <>
-            <FresherJob jobs={filteredJobsFresher} />
-            <ExperienceJob jobs={filteredJobsExperience} />
-          </>
-        )
+      case selectedOption === "Internship":
+        return <InternshipJob jobs={internJobs} />
+      case selectedOption === "Fresher":
+        return <FresherJob jobs={fresherJobs} />
+      case selectedOption === "Experience":
+        return <ExperienceJob jobs={experienceJobs} />
 
       default:
         return (
@@ -139,7 +139,7 @@ const CandidateJobs = (props) => {
   return (
     <div>
       <div className="container mb-3">
-        <span>{totalJobs} Jobs</span>
+        <span>{jobs.length} Jobs</span>
       </div>
       {renderJobs()}
     </div>
