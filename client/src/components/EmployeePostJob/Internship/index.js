@@ -29,7 +29,7 @@ function Internship() {
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
-  const [city, setCity] = useState("")
+  const [city, setCity] = useState([])
   const [duration, setDuration] = useState("")
   const [skills, setSkills] = useState([])
   const [startDate, setStartDate] = useState("")
@@ -109,10 +109,6 @@ function Internship() {
     setStartDate(e)
   }
 
-  useEffect(() => {
-    if (salaryType === "Fixed") setSalaryRange("5k/month")
-  }, [salaryType])
-
   const handleSubmit = (event) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
@@ -137,9 +133,9 @@ function Internship() {
       },
     })
 
-    /* setTimeout(() => {
+    setTimeout(() => {
       window.location.reload()
-    }, 1000) */
+    }, 1000)
   }
 
   const onFailure = (message) => {
@@ -215,9 +211,7 @@ function Internship() {
                   e.preventDefault()
                 }
               }} */
-              onChange={(e) =>
-                setSalaryRange({ ...salaryRange, from: e.target.value })
-              }
+              onChange={(e) => setSalaryRange({ from: e.target.value, to: "" })}
             />
           </Form.Group>
         )

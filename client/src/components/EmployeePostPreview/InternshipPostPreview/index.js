@@ -133,6 +133,7 @@ function InternshipPostPreview(props) {
                               )}
                             </div>
                           ) : (
+                            data.city.length !== 0 &&
                             data.city.map((each, index) => (
                               <span key={index}>
                                 {each.label.split(",")[0]}
@@ -181,10 +182,7 @@ function InternshipPostPreview(props) {
                       {data.salaryType === "Fixed"
                         ? data.salaryRange.from === undefined
                           ? `${numeral(data.salaryRange).format(0, 0)} /month `
-                          : `${numeral(data.salaryRange.from * 1000).format(
-                              0,
-                              0
-                            )} - ${numeral(data.salaryRange.to * 1000).format(
+                          : `${numeral(data.salaryRange.from).format(
                               0,
                               0
                             )} /month `

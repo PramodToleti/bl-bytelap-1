@@ -168,7 +168,7 @@ function ExperiencePostPreview(props) {
                           0
                         )} / month`
                       : data.salaryType === "Fixed"
-                      ? `${numeral(data.salaryRange).format(0, 0)} / month`
+                      ? `${numeral(data.salaryRange.from).format(0, 0)} / month`
                       : data.salaryType === "Negotiable"
                       ? `${numeral(data.salaryRange.from).format(
                           0,

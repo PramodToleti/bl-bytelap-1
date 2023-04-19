@@ -29,7 +29,7 @@ function Experience() {
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
-  const [city, setCity] = useState("")
+  const [city, setCity] = useState([])
   const [shift, setShift] = useState("")
   const [skills, setSkills] = useState([])
   const [jobDescription, setDescription] = useState("")
@@ -274,7 +274,7 @@ function Experience() {
             <Form.Control
               type="number"
               placeholder="20k/Month"
-              onChange={(e) => setSalaryRange(e.target.value)}
+              onChange={(e) => setSalaryRange({ from: e.target.value, to: "" })}
             />
           </Form.Group>
         )

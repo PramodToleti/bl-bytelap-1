@@ -29,7 +29,7 @@ function Fresher() {
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
-  const [city, setCity] = useState("")
+  const [city, setCity] = useState([])
   const [shift, setShift] = useState("")
   const [skills, setSkills] = useState([])
   const [jobDescription, setDescription] = useState("")
@@ -79,9 +79,9 @@ function Fresher() {
       },
     })
 
-    /* setTimeout(() => {
+    setTimeout(() => {
       window.location.reload()
-    }, 1000) */
+    }, 1000)
   }
 
   const onFailure = (message) => {
@@ -181,10 +181,6 @@ function Fresher() {
   const handleDescription = (e) => {
     setDescription(e)
   }
-
-  useEffect(() => {
-    if (salaryType === "Fixed") setSalaryRange("5k")
-  }, [salaryType])
 
   const handleSubmit = (event) => {
     const form = event.currentTarget
@@ -291,7 +287,7 @@ function Fresher() {
                   e.preventDefault()
                 }
               }} */
-              onChange={(e) => setSalaryRange(e.target.value)}
+              onChange={(e) => setSalaryRange({ from: e.target.value, to: "" })}
             />
           </Form.Group>
         )

@@ -4,8 +4,11 @@ import ExperienceJob from "./ExperienceJob"
 
 import "./index.css"
 import "reactjs-popup/dist/index.css"
+import { useEffect, useState } from "react"
 
 const CandidateJobs = (props) => {
+  const [jobs, setJobs] = useState([])
+
   const {
     searchDetails,
     selectedOption,
@@ -75,6 +78,19 @@ const CandidateJobs = (props) => {
       return eachJob
     }
   })
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("http://localhost:5000/candidate/jobs")
+      const data = await response.json()
+      if (data !== null) {
+        setJobs(data)
+      }
+    }
+    fetchData()
+  }, [])
+
+  console.log(jobs)
 
   const renderJobs = () => {
     switch (true) {
