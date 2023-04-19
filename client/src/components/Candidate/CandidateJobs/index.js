@@ -5,9 +5,17 @@ import ExperienceJob from "./ExperienceJob"
 import "./index.css"
 import "reactjs-popup/dist/index.css"
 import { useEffect, useState } from "react"
+import { Oval } from "react-loader-spinner"
 
 const CandidateJobs = (props) => {
   const [jobs, setJobs] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+
+  const totalInternJobs = jobs.filter((job) => job.type === "Internship").length
+  const totalFresherJobs = jobs.filter((job) => job.type === "Fresher").length
+  const totalExperienceJobs = jobs.filter(
+    (job) => job.type === "Experience"
+  ).length
 
   const {
     searchDetails,
@@ -26,10 +34,12 @@ const CandidateJobs = (props) => {
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true)
       const response = await fetch("http://localhost:5000/candidate/jobs")
       const data = await response.json()
       if (data !== null) {
         setJobs(data)
+        setIsLoading(false)
       }
     }
     fetchData()
@@ -119,29 +129,49 @@ const CandidateJobs = (props) => {
   const renderJobs = () => {
     switch (true) {
       case selectedOption === "Internship":
-        return <InternshipJob jobs={internJobs} />
+        return <InternshipJob jobs={internJobs} totalJobs={totalInternJobs} />
       case selectedOption === "Fresher":
-        return <FresherJob jobs={fresherJobs} />
+        return <FresherJob jobs={fresherJobs} totalJobs={totalFresherJobs} />
       case selectedOption === "Experience":
-        return <ExperienceJob jobs={experienceJobs} />
-
-      default:
         return (
-          <>
-            <InternshipJob jobs={filteredJobsIntern} />
-            <FresherJob jobs={filteredJobsFresher} />
-            <ExperienceJob jobs={filteredJobsExperience} />
-          </>
+          <ExperienceJob
+            jobs={experienceJobs}
+            totalJobs={totalExperienceJobs}
+          />
         )
+      default:
+        return null
     }
   }
 
   return (
     <div>
-      <div className="container mb-3">
-        <span>{jobs.length} Jobs</span>
-      </div>
-      {renderJobs()}
+      {!isLoading ? (
+        renderJobs()
+      ) : (
+        <div
+          style={{
+            width: "100%",
+            height: "50vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Oval
+            height={60}
+            width={60}
+            color="blue"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            ariaLabel="oval-loading"
+            secondaryColor="#ffffff"
+            strokeWidth={2}
+            strokeWidthSecondary={2}
+          />
+        </div>
+      )}
     </div>
   )
 }

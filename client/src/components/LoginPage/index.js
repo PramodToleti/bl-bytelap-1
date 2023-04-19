@@ -10,7 +10,6 @@ import InputGroup from "react-bootstrap/InputGroup"
 import Dropdown from "react-bootstrap/Dropdown"
 import { useState, useEffect } from "react"
 import { Link, Redirect, useHistory } from "react-router-dom"
-import { Oval } from "react-loader-spinner"
 import Cookies from "js-cookie"
 
 import Theme from "../../assets/Theme"
@@ -27,7 +26,6 @@ function LoginPage() {
   const [accepted, setAccepted] = useState(false)
   const [activeSearch, setActiveSearch] = useState("")
   const [activeLocation, setActiveLocation] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
   const [selectedOption, setSelectedOption] = useState("Internship")
   const [duration, setDuration] = useState([])
   const [timePeriod, setTimePeriod] = useState([])
@@ -67,11 +65,6 @@ function LoginPage() {
   const handleLocation = (e) => {
     setActiveLocation(e)
   }
-
-  isLoading &&
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 200)
 
   //Cookies
 
@@ -728,7 +721,6 @@ function LoginPage() {
                       search: activeSearch,
                       location: activeLocation,
                     })
-                    setIsLoading(true)
                   }}
                 >
                   Search
@@ -792,32 +784,15 @@ function LoginPage() {
           </div>
         </div>
 
-        {isLoading ? (
-          <div className="loader-container">
-            <Oval
-              height={50}
-              width={50}
-              color="blue"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-              ariaLabel="oval-loading"
-              secondaryColor="lightblue"
-              strokeWidth={2}
-              strokeWidthSecondary={2}
-            />
-          </div>
-        ) : (
-          <CandidateJobs
-            searchDetails={searchDetails}
-            selectedOption={selectedOption}
-            duration={duration}
-            timePeriod={timePeriod}
-            workPlace={workPlace}
-            checkedShifts={checkedShifts}
-            yearsOfExperience={yearsOfExperience}
-          />
-        )}
+        <CandidateJobs
+          searchDetails={searchDetails}
+          selectedOption={selectedOption}
+          duration={duration}
+          timePeriod={timePeriod}
+          workPlace={workPlace}
+          checkedShifts={checkedShifts}
+          yearsOfExperience={yearsOfExperience}
+        />
       </div>
 
       <CandidateFooter isRegistered={false} />
