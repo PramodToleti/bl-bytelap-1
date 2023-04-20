@@ -201,4 +201,29 @@ router.post("/my-info", auth, async (req, res) => {
   }
 })
 
+// @route   POST /employee.my-info
+// @desc POST employee info
+// @access Private
+
+router.post("/update-info", auth, async (req, res) => {
+  const employeeDetails = req.body
+  try {
+    const userId = employeeDetails.userId
+    const employee = await Employee.findById(userId)
+    if (employee) {
+      employee.firstName = employeeDetails.firstName
+      employee.lastName = employeeDetails.lastName
+      employee.officialEmail = employeeDetails.officialEmail
+
+      await employee.save()
+      res.status(200).json({ message: "Info updated" })
+    } else {
+      res.status(400).json({ message: "Employee not found" })
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
 module.exports = router
