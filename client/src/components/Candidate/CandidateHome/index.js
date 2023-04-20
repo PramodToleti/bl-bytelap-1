@@ -121,7 +121,11 @@ const HomeHeader = () => {
                   Certification
                 </Link>
 
-                <p className="nav-link mb-1" onClick={onClickLogOut}>
+                <p
+                  className="nav-link mb-1"
+                  onClick={onClickLogOut}
+                  style={{ cursor: "pointer" }}
+                >
                   Logout
                 </p>
               </NavDropdown>
