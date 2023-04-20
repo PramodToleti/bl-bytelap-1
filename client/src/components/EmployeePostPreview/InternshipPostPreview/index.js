@@ -225,7 +225,7 @@ function InternshipPostPreview(props) {
             </div>
           </div>
         )}
-        {(data.responsibilities !== "" ||
+        {(data.jobDescription !== "" ||
           data.languages.length !== 0 ||
           data.education.length !== 0 ||
           data.openings !== "") && (
@@ -253,16 +253,16 @@ function InternshipPostPreview(props) {
               </>
             )}
 
-            {data.responsibilities !== "" && (
+            {data.jobDescription !== "" && (
               <>
                 <h4 className="mb-3">Job Description</h4>
                 <p style={{ fontSize: "17px" }}>
                   Selected intern's day-to-day responsibilities include:
                 </p>
-                {data.responsibilities !== "" && (
+                {data.jobDescription !== "" && (
                   <div
                     className="parent-div"
-                    dangerouslySetInnerHTML={{ __html: data.responsibilities }}
+                    dangerouslySetInnerHTML={{ __html: data.jobDescription }}
                   />
                 )}
               </>
