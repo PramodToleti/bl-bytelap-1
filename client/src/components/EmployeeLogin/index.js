@@ -39,7 +39,7 @@ function EmployeeLogin() {
     })
   }
 
-  const onSuccessLogin = (token) => {
+  const onSuccessLogin = (token, userId) => {
     setIsLoading(false)
     toast.success("Login successfully!", {
       position: "top-center",
@@ -55,6 +55,7 @@ function EmployeeLogin() {
       },
     })
     Cookies.set("employeeToken", token)
+    localStorage.setItem("userId", userId)
     setTimeout(() => {
       history.push("/employee")
     }, 1000)
@@ -95,7 +96,7 @@ function EmployeeLogin() {
 
       const data = await response.json()
       if (response.ok) {
-        onSuccessLogin(data.jwtToken)
+        onSuccessLogin(data.jwtToken, data.userId)
       } else {
         onFailureLogin(data.message)
       }

@@ -18,6 +18,7 @@ const HomeHeader = () => {
 
   const onClickLogOut = () => {
     Cookies.remove("userToken")
+    localStorage.removeItem("userId")
     history.replace("/login")
   }
 

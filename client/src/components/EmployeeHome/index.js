@@ -194,6 +194,7 @@ function EmployeeHome() {
                       style={{ marginLeft: "9px", cursor: "pointer" }}
                       onClick={() => {
                         Cookies.remove("employeeToken")
+                        localStorage.removeItem("userId")
                         history.push("/login")
                       }}
                     >

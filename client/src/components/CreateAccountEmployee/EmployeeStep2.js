@@ -37,7 +37,7 @@ function EmployeeStep2() {
     agreeToTerms: false,
   })
 
-  const onSuccess = (message, token) => {
+  const onSuccess = (message, token, userId) => {
     setIsLoading(true)
     toast.success(message, {
       position: "top-center",
@@ -48,6 +48,7 @@ function EmployeeStep2() {
       style: { border: "2px solid #00ff00", backgroundColor: "#fff" },
     })
     Cookies.set("employeeToken", token)
+    localStorage.setItem("userId", userId)
     setTimeout(() => {
       history.push("/employee/")
     }, 2000)
@@ -89,7 +90,7 @@ function EmployeeStep2() {
     )
     const data = await response.json()
     if (response.ok) {
-      onSuccess(data.message, data.jwtToken)
+      onSuccess(data.message, data.jwtToken, data.userId)
     } else {
       onError(data.message)
     }
