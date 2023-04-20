@@ -145,7 +145,30 @@ router.post(
       })
 
       if (duplicate) {
-        res.status(400).json({ message: "You have already registered" })
+        const updatedJobApplication = await InternApplication.findOneAndUpdate(
+          { candidate: details.candidate }, // Find document based on candidate
+          {
+            type: "Internship",
+            candidate: details.candidate,
+            username,
+            jobTitle: details.jobTitle,
+            jobTime: details.jobTime,
+            jobType: details.jobType,
+            skills: JSON.parse(details.skills),
+            coverLetter: details.coverLetter,
+            degree: JSON.parse(details.degree),
+            achievements: JSON.parse(details.achievements),
+            achievementsFiles: req.files.achievementsFiles,
+            training: JSON.parse(details.training),
+            trainingFiles: req.files.trainingFiles,
+            projectDetails: JSON.parse(details.projectDetails),
+            time: details.time,
+            achievements: JSON.parse(details.achievements),
+            availability: details.availability,
+            languages: JSON.parse(details.languages),
+          }
+        )
+        res.status(200).json({ message: "Data updated Successfully" })
       } else if (!isPresent) {
         res.status(400).json({ message: "User not Found" })
       } else {
@@ -198,12 +221,39 @@ router.post(
         _id: details.candidate,
       })
 
-      const duplicate = await FresherApplication.findOne({
+      const duplicate = await FresherApplication.findOneAndUpdate({
         candidate: details.candidate,
       })
 
       if (duplicate) {
-        res.status(400).json({ message: "You have already registered" })
+        await FresherApplication.findOneAndUpdate(
+          { candidate: details.candidate },
+          {
+            type: "Fresher",
+            candidate: details.candidate,
+            username: isPresent.firstName + " " + isPresent.lastName,
+            jobTitle: details.jobTitle,
+            jobTime: details.jobTime,
+            jobType: details.jobType,
+            shift: details.shift,
+            skills: JSON.parse(details.skills),
+            salaryType: details.salaryType,
+            salaryRange: JSON.parse(details.salaryRange),
+            coverLetter: details.coverLetter,
+            degree: JSON.parse(details.degree),
+            projectDetails: JSON.parse(details.projectDetails),
+            training: JSON.parse(details.training),
+            trainingFiles: req.files.trainingFiles,
+            achievements: JSON.parse(details.achievements),
+            achievementsFiles: req.files.achievementsFiles,
+            preferredLocation: details.preferredLocation,
+            languages: JSON.parse(details.languages),
+            availability: details.availability,
+            time: details.time,
+          }
+        )
+
+        res.status(200).json({ message: "Data Updated Successfully" })
       } else if (!isPresent) {
         res.status(400).json({ message: "User not Found" })
       } else {
@@ -264,7 +314,32 @@ router.post(
       })
 
       if (duplicate) {
-        res.status(400).json({ message: "You have already registered" })
+        const jobApplication = new ExperienceApplicaton.findOneAndUpdate({
+          type: "Experience",
+          candidate: details.candidate,
+          username,
+          jobTitle: details.jobTitle,
+          jobTime: details.jobTime,
+          jobType: details.jobType,
+          shift: details.shift,
+          skills: JSON.parse(details.skills),
+          experience: JSON.parse(details.experience),
+          ctc: JSON.parse(details.ctc),
+          coverLetter: details.coverLetter,
+          degree: JSON.parse(details.degree),
+          employementHistory: JSON.parse(details.employementHistory),
+          projectDetails: JSON.parse(details.projectDetails),
+          training: JSON.parse(details.training),
+          trainingFiles: req.files.trainingFiles,
+          achievements: JSON.parse(details.achievements),
+          achievementsFiles: req.files.achievementsFiles,
+          preferredLocation: JSON.parse(details.preferredLocation),
+          languages: JSON.parse(details.languages),
+          availability: details.availability,
+          time: details.time,
+        })
+
+        res.status(200).json({ message: "Data Updated Successfully" })
       } else if (!isPresent) {
         res.status(400).json({ message: "User not Found" })
       } else {

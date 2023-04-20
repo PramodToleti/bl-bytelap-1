@@ -49,22 +49,18 @@ const degreeSchema = new mongoose.Schema({
   },
   field: {
     type: String,
-    required: true,
   },
   institute: {
     type: String,
-    required: true,
   },
   city: {
     type: String,
-    required: true,
   },
   schoolName: {
     type: String,
   },
   startDate: {
     type: Date,
-    required: true,
   },
   endDate: {
     type: Date,
