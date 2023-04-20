@@ -382,7 +382,7 @@ router.post(
   }
 )
 
-// @route   GET api/jobs/
+// @route   GET /jobs/
 // @desc    Get all the jobs
 // @access  Public
 router.get("/jobs", async (req, res) => {
@@ -408,6 +408,34 @@ router.post("/my-info", auth, async (req, res) => {
   } catch (error) {
     console.log(error)
     res.status(500).json({ error: "An error occurred while fetching details" })
+  }
+})
+
+// @route  POST candidate/my-info
+// @desc   Update candidate info
+// @access Private
+
+router.post("/update-info", auth, upload.single("file"), async (req, res) => {
+  const candidateDetails = req.body
+  try {
+    const userId = candidateDetails.userId
+    const candidate = await Candidate.findById(userId)
+    if (candidate) {
+      candidate.firstName = candidateDetails.firstName
+      candidate.lastName = candidateDetails.lastName
+      candidate.emailId = candidateDetails.emailId
+      candidate.mobile = candidateDetails.mobile
+      candidate.city = candidateDetails.city
+      candidate.file = req.file
+
+      await candidate.save()
+      res.status(200).json({ message: "Updated Successfully" })
+    } else {
+      res.status(400).json({ message: "User not found" })
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: "An error occurred while updating details" })
   }
 })
 

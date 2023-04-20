@@ -17,7 +17,7 @@ function ChooseFile(props) {
   const handleDisplayFileDetails = (e) => {
     inputFile?.files && setUploadedFileName(inputFile.files[0].name)
     props.handleFileUpload !== undefined &&
-      props.handleFileUpload(document.getElementById("input-file"))
+      props.handleFileUpload(inputFile.files[0])
   }
 
   //Delete uploaded file

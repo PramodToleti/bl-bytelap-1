@@ -6,19 +6,26 @@ import React, { useEffect, useState } from "react"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import { Link } from "react-router-dom"
+import Cookies from "js-cookie"
+import { ToastContainer, toast } from "react-toastify"
+import { Oval } from "react-loader-spinner"
+
 import CandidateHome from "../CandidateHome"
 import ChooseFile from "../../../assets/ChooseFile"
-import Cookies from "js-cookie"
 
 function CandidateMyinfo() {
   const [validated, setValidated] = useState(false)
-  const [data, setData] = useState({
+  const [file, setFile] = useState(null)
+  const [userData, setData] = useState({
+    userId: "",
     firstName: "",
     lastName: "",
     emailId: "",
     mobileNumber: "",
     city: "",
   })
+
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -40,13 +47,88 @@ function CandidateMyinfo() {
       )
       const data = await response.json()
       if (response.ok) {
-        setData(data)
+        setData({
+          userId: data._id,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          emailId: data.emailId,
+          mobileNumber: data.mobileNumber,
+          city: data.city,
+        })
       } else {
         console.log(data)
       }
     }
     fetchData()
   }, [])
+
+  const handleUpdate = async (e) => {
+    e.preventDefault()
+    setIsLoading(true)
+    const token = Cookies.get("userToken")
+
+    const formdata = new FormData()
+
+    formdata.append("userId", userData.userId)
+    formdata.append("firstName", userData.firstName)
+    formdata.append("lastName", userData.lastName)
+    formdata.append("emailId", userData.emailId)
+    formdata.append("mobileNumber", userData.mobileNumber)
+    formdata.append("city", userData.city)
+    formdata.append("file", file)
+
+    const options = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formdata,
+    }
+
+    const response = await fetch(
+      "http://localhost:5000/candidate/update-info",
+      options
+    )
+
+    const data = await response.json()
+    if (response.ok) {
+      toast.success("Updated Successfully", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        style: {
+          border: "2px solid #00ff00",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+      setIsLoading(false)
+    } else {
+      toast.error("Something went wrong", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        style: {
+          border: "2px solid #ff0000",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+      setIsLoading(false)
+    }
+  }
+
+  const handleFileUpload = (e) => {
+    setFile(e)
+  }
 
   const handleSubmit = (event) => {
     const form = event.currentTarget
@@ -60,6 +142,7 @@ function CandidateMyinfo() {
 
   return (
     <>
+      <ToastContainer />
       <CandidateHome />
       <div style={{ margin: "15px" }}>
         <div
@@ -81,7 +164,10 @@ function CandidateMyinfo() {
                   required
                   type="text"
                   placeholder="First name"
-                  defaultValue={data.firstName}
+                  defaultValue={userData.firstName}
+                  onChange={(e) =>
+                    setData({ ...userData, firstName: e.target.value })
+                  }
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter your first.
@@ -99,7 +185,10 @@ function CandidateMyinfo() {
                   required
                   type="text"
                   placeholder="Last name"
-                  defaultValue={data.lastName}
+                  defaultValue={userData.lastName}
+                  onChange={(e) =>
+                    setData({ ...userData, lastName: e.target.value })
+                  }
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter you last name.
@@ -117,7 +206,10 @@ function CandidateMyinfo() {
                   required
                   type="Email"
                   placeholder="Email id"
-                  defaultValue={data.emailId}
+                  defaultValue={userData.emailId}
+                  onChange={(e) =>
+                    setData({ ...userData, emailId: e.target.value })
+                  }
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter your email id.
@@ -135,7 +227,10 @@ function CandidateMyinfo() {
                   required
                   type="number"
                   placeholder="Number"
-                  defaultValue={data.mobileNumber}
+                  defaultValue={userData.mobileNumber}
+                  onChange={(e) =>
+                    setData({ ...userData, mobileNumber: e.target.value })
+                  }
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter your number
@@ -153,7 +248,10 @@ function CandidateMyinfo() {
                   required
                   type="city"
                   placeholder="city"
-                  defaultValue={data.city}
+                  defaultValue={userData.city}
+                  onChange={(e) =>
+                    setData({ ...userData, city: e.target.value })
+                  }
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter your city
@@ -176,7 +274,7 @@ function CandidateMyinfo() {
                   }}
                 >
                   <input className="d-none" type="file" />
-                  <ChooseFile />
+                  <ChooseFile handleFileUpload={handleFileUpload} />
                   <div className="or-container">
                     {" "}
                     <p
@@ -203,16 +301,28 @@ function CandidateMyinfo() {
             </Row>
 
             <div className="d-grid gap-2 mt-5">
-              <Link to="/candidate">
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="lg"
-                  style={{ width: "100%" }}
-                >
-                  Save
-                </Button>
-              </Link>
+              <Button
+                type="submit"
+                variant="primary"
+                size="lg"
+                style={{ width: "100%", display: "grid", placeItems: "center" }}
+                onClick={handleUpdate}
+              >
+                {isLoading ? (
+                  <Oval
+                    height="20"
+                    width="20"
+                    radius="9"
+                    color="#ffffff"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                  />
+                ) : (
+                  "Update"
+                )}
+              </Button>
             </div>
           </Form>
         </div>
