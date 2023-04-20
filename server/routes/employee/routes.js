@@ -41,9 +41,11 @@ router.post("/create-account", upload.single("file"), async (req, res) => {
         expiresIn: "4d",
       })
 
-      res
-        .status(200)
-        .json({ message: "Account created successfully", jwtToken })
+      res.status(200).json({
+        message: "Account created successfully",
+        jwtToken,
+        userId: employee._id,
+      })
     }
   } catch (err) {
     console.log(err)
@@ -71,7 +73,9 @@ router.post("/login", async (req, res) => {
         const jwtToken = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: "4d",
         })
-        res.status(200).json({ message: "Login successful", jwtToken })
+        res
+          .status(200)
+          .json({ message: "Login successful", jwtToken, userId: employee._id })
       } else {
         res.status(400).json({ message: "Invalid credentials" })
       }
@@ -175,6 +179,22 @@ router.post("/job/experience", async (req, res) => {
     })
     await jobPost.save()
     res.status(200).json({ message: "Job posted successfully" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+// @route   POST /employee.my-info
+// @desc Get employee info
+// @dccess Private
+
+const auth = require("../../middleware/auth")
+
+router.post("/my-info", auth, async (req, res) => {
+  try {
+    const employee = await Employee.findById(req.body.userId)
+    res.status(200).json(employee)
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
