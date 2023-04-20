@@ -395,4 +395,20 @@ router.get("/jobs", async (req, res) => {
   }
 })
 
+// @route  GET candidate/my-info
+// @desc   Get candidate info
+// @access Private
+
+const auth = require("../../middleware/auth")
+
+router.post("/my-info", auth, async (req, res) => {
+  try {
+    const candidate = await Candidate.findOne({ _id: req.body.userId })
+    res.status(200).json(candidate)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: "An error occurred while fetching details" })
+  }
+})
+
 module.exports = router
