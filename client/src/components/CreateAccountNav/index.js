@@ -23,7 +23,7 @@ const CreateAccountNav = () =>
           <Offcanvas.Body className="dark-mode-active">
             <div className="justify-content-end flex-grow-1 nav-link-container">
               <Link
-                to="/login/candidate"
+                to="/login/employee"
                 style={{
                   textDecoration: "none",
                   marginRight: "5px",

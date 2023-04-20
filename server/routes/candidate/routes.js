@@ -221,7 +221,7 @@ router.post(
         _id: details.candidate,
       })
 
-      const duplicate = await FresherApplication.findOneAndUpdate({
+      const duplicate = await FresherApplication.findOne({
         candidate: details.candidate,
       })
 
