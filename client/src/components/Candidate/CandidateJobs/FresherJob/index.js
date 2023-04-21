@@ -5,7 +5,7 @@ import { BiRupee } from "react-icons/bi"
 import { RiShoppingBagFill } from "react-icons/ri"
 import { MdLocationOn } from "react-icons/md"
 import { FaHome } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { Link, useHistory, useLocation } from "react-router-dom"
 import Popup from "reactjs-popup"
 import numeral from "numeral"
 
@@ -14,6 +14,9 @@ import PostTime from "../../../../assets/PostTime"
 const FresherJob = (props) => {
   const fresherJobs = props.jobs
   const totalJobs = props.totalJobs
+
+  const history = useHistory()
+  const location = useLocation()
 
   if (fresherJobs === null) {
     return null
@@ -263,21 +266,24 @@ const FresherJob = (props) => {
               <p style={{ fontSize: "11px", marginBottom: "0px" }}>
                 <PostTime time={data.time} />
               </p>
-              <Link to={`/candidate/job-details/fresher/${index + 1}`}>
-                <button
-                  type="button"
-                  style={{
-                    border: "0",
-                    background: "transparent",
-                    color: "blue",
-                    cursor: "pointer",
-                    marginBottom: "0px",
-                  }}
-                  key={index}
-                >
-                  View Details
-                </button>
-              </Link>
+              <button
+                type="button"
+                style={{
+                  border: "0",
+                  background: "transparent",
+                  color: "blue",
+                  cursor: "pointer",
+                  marginBottom: "0px",
+                }}
+                key={index}
+                onClick={() => {
+                  history.push(`/candidate/job-details/fresher/${data._id}`, {
+                    data: data,
+                  })
+                }}
+              >
+                View Details
+              </button>
             </div>
           </div>
         </div>

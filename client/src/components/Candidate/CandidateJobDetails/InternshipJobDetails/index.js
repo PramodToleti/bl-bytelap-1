@@ -11,15 +11,12 @@ import { MdLocationOn } from "react-icons/md"
 import { HiOutlineExternalLink } from "react-icons/hi"
 import Popup from "reactjs-popup"
 import numeral from "numeral"
+import { useHistory } from "react-router-dom"
 
 function InternshipJobDetails(props) {
-  const internJobs = JSON.parse(localStorage.getItem("internshipJob"))
+  const history = useHistory()
+  const data = history.location.state.data
   const [fullText, setFullText] = useState(false)
-
-  const { match } = props
-  const { id } = match.params
-
-  const data = internJobs[id - 1]
 
   function renderPreview() {
     return (
@@ -94,10 +91,8 @@ function InternshipJobDetails(props) {
                           style={{ marginTop: "9px" }}
                         />
                         <p
-                          style={{
-                            color: "grey",
-                          }}
                           className="home-text details-heading-preview"
+                          style={{ marginTop: "5px" }}
                         >
                           Work from Home
                         </p>
@@ -206,25 +201,17 @@ function InternshipJobDetails(props) {
                     >
                       <p className="details-text details-text-preview">
                         {data.salaryType === "Fixed"
-                          ? data.salaryRange.from === undefined
-                            ? `${numeral(data.salaryRange).format(
-                                0,
-                                0
-                              )} /month `
-                            : `${numeral(data.salaryRange.from * 1000).format(
-                                0,
-                                0
-                              )} - ${numeral(data.salaryRange.to * 1000).format(
-                                0,
-                                0
-                              )} /month `
-                          : `${numeral(data.salaryRange.from).format(
+                          ? `${numeral(data.salaryRange.from).format(
                               0,
                               0
-                            )} - ${numeral(data.salaryRange.to).format(
+                            )} /month `
+                          : `${numeral(data.salaryRange.from * 1000).format(
                               0,
                               0
-                            )} /month`}
+                            )} - ${numeral(data.salaryRange.to * 1000).format(
+                              0,
+                              0
+                            )} /month `}
                       </p>
                       {data.incentives && data.salaryType === "Fixed" && (
                         <>
@@ -321,16 +308,16 @@ function InternshipJobDetails(props) {
               </>
             )}
 
-            {data.responsibilities !== "" && (
+            {data.jobDescription !== "" && (
               <>
                 <h4 className="mb-4">Job Description</h4>
                 <p style={{ fontSize: "16px" }}>
                   Selected intern's day-to-day responsibilities include:
                 </p>
-                {data.responsibilities !== "" && (
+                {data.jobDescription !== "" && (
                   <div
                     className="parent-div mb-3"
-                    dangerouslySetInnerHTML={{ __html: data.responsibilities }}
+                    dangerouslySetInnerHTML={{ __html: data.jobDescription }}
                   />
                 )}
               </>

@@ -2,14 +2,14 @@ import EmployeeHome from "../../../EmployeeHome"
 import { HiOutlineExternalLink } from "react-icons/hi"
 import { MdLocationOn } from "react-icons/md"
 import { Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import "./index.css"
 
-function ViewApplicantIntern(props) {
-  const internData = JSON.parse(localStorage.getItem("registerData")).internship
+function ViewApplicantIntern() {
+  const location = useLocation()
 
-  const data = internData[0]
+  const data = location.state
 
   return (
     <>

@@ -5,7 +5,7 @@ import { BiRupee } from "react-icons/bi"
 import { RiShoppingBagFill } from "react-icons/ri"
 import { MdLocationOn } from "react-icons/md"
 import { FaHome } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { Link, useHistory, useLocation } from "react-router-dom"
 import Popup from "reactjs-popup"
 import numeral from "numeral"
 
@@ -15,9 +15,8 @@ const ExperienceJob = (props) => {
   const experienceJobs = props.jobs
   const totalJobs = props.totalJobs
 
-  if (experienceJobs) {
-    return null
-  }
+  const history = useHistory()
+  const location = useLocation()
 
   if (experienceJobs.length === 0) {
     return (
@@ -138,7 +137,7 @@ const ExperienceJob = (props) => {
                 data.experience.month !== "") && (
                 <div className="job-card-container-experience">
                   <RiShoppingBagFill className="icon-styles" />
-                  <p className="details-heading">{`${data.experience.years} - ${data.experience.month} Yrs`}</p>
+                  <p className="details-heading">{`${data.experience.years} . ${data.experience.month} Yrs`}</p>
                 </div>
               )}
 
@@ -252,21 +251,29 @@ const ExperienceJob = (props) => {
               <p style={{ fontSize: "11px", marginBottom: "0px" }}>
                 <PostTime time={data.time} />
               </p>
-              <Link to={`/candidate/job-details/experience/${index + 1}`}>
-                <button
-                  type="button"
-                  style={{
-                    border: "0",
-                    background: "transparent",
-                    color: "blue",
-                    cursor: "pointer",
-                    marginBottom: "0px",
-                  }}
-                  key={index}
-                >
-                  View Details
-                </button>
-              </Link>
+              <button
+                type="button"
+                style={{
+                  border: "0",
+                  background: "transparent",
+                  color: "blue",
+                  cursor: "pointer",
+                  marginBottom: "0px",
+                }}
+                key={index}
+                onClick={() => {
+                  location.pathname === "/login"
+                    ? history.push("/candidate/create-account/step-1")
+                    : history.push(
+                        `/candidate/job-details/experience/${data._id}`,
+                        {
+                          data: data,
+                        }
+                      )
+                }}
+              >
+                View Details
+              </button>
             </div>
           </div>
         </div>

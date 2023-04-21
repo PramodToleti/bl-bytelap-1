@@ -10,15 +10,12 @@ import { BsFillShareFill } from "react-icons/bs"
 import { FaHome } from "react-icons/fa"
 import Popup from "reactjs-popup"
 import numeral from "numeral"
+import { useHistory } from "react-router-dom"
 
 const ExperienceJobDetails = (props) => {
-  const experienceJobs = JSON.parse(localStorage.getItem("experienceJob"))
+  const history = useHistory()
+  const data = history.location.state.data
   const [fullText, setFullText] = useState(false)
-
-  const { match } = props
-  const { id } = match.params
-
-  const data = experienceJobs[id - 1]
 
   const renderPreview = () => {
     return (
@@ -150,7 +147,7 @@ const ExperienceJobDetails = (props) => {
                 data.experience.month !== "") && (
                 <div className="job-card-container-experience">
                   <RiShoppingBagFill className="icon-styles" />
-                  <p className="details-heading-preview">{`${data.experience.years} - ${data.experience.month} Yrs`}</p>
+                  <p className="details-heading-preview">{`${data.experience.years} . ${data.experience.month} Yrs`}</p>
                 </div>
               )}
 

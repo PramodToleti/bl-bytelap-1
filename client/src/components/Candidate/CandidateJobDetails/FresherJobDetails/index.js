@@ -10,15 +10,12 @@ import { MdLocationOn } from "react-icons/md"
 import { BsFillShareFill } from "react-icons/bs"
 import Popup from "reactjs-popup"
 import numeral from "numeral"
+import { useHistory } from "react-router-dom"
 
 const FresherJobDetails = (props) => {
-  const fresherJobs = JSON.parse(localStorage.getItem("fresherJob"))
+  const history = useHistory()
+  const data = history.location.state.data
   const [fullText, setFullText] = useState(false)
-
-  const { match } = props
-  const { id } = match.params
-
-  const data = fresherJobs[id - 1]
 
   const renderPreview = () => {
     return (
