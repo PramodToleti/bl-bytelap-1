@@ -103,6 +103,8 @@ router.post("/job/internship", async (req, res) => {
       city: jobDetails.city,
       shift: jobDetails.shift,
       skills: jobDetails.skills,
+      checked: jobDetails.checked,
+      startDate: jobDetails.startDate,
       jobDescription: jobDetails.jobDescription,
       salaryType: jobDetails.salaryType,
       salaryRange: jobDetails.salaryRange,
