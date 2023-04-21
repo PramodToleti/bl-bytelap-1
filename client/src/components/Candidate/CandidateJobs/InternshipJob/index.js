@@ -6,15 +6,18 @@ import { AiFillYoutube } from "react-icons/ai"
 import { MdDateRange } from "react-icons/md"
 import { BiRupee } from "react-icons/bi"
 import { FaHome } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { Link, useHistory, useLocation } from "react-router-dom"
 import Popup from "reactjs-popup"
 import numeral from "numeral"
 
 import PostTime from "../../../../assets/PostTime"
 
 const InternshipJob = (props) => {
+  const history = useHistory()
   const internJobs = props.jobs
   const totalJobs = props.totalJobs
+
+  const location = useLocation()
 
   if (internJobs === null) {
     return null
@@ -50,7 +53,10 @@ const InternshipJob = (props) => {
         <span>{totalJobs} Jobs</span>
       </div>
       {internJobs.map((data, index) => (
-        <div className="d-flex flex-row container justify-content-start">
+        <div
+          className="d-flex flex-row container justify-content-start"
+          key={index}
+        >
           <div
             className="text-dark mb-3   div-card container reveal  pt-3 "
             style={{
@@ -175,25 +181,17 @@ const InternshipJob = (props) => {
                     >
                       <p className="details-text">
                         {data.salaryType === "Fixed"
-                          ? data.salaryRange.from === undefined
-                            ? `${numeral(data.salaryRange).format(
-                                0,
-                                0
-                              )} /month `
-                            : `${numeral(data.salaryRange.from).format(
-                                0,
-                                0
-                              )} - ${numeral(data.salaryRange.to).format(
-                                0,
-                                0
-                              )} / month`
+                          ? `${numeral(data.salaryRange.from).format(
+                              0,
+                              0
+                            )} /month `
                           : `${numeral(data.salaryRange.from).format(
                               0,
                               0
                             )} - ${numeral(data.salaryRange.to).format(
                               0,
                               0
-                            )} /month`}
+                            )} / month`}
                       </p>
                       {data.incentives && data.salaryType === "Fixed" && (
                         <>
@@ -269,21 +267,28 @@ const InternshipJob = (props) => {
               <p style={{ fontSize: "11px", marginBottom: "0px" }}>
                 <PostTime time={data.time} />
               </p>
-              <Link to={`/candidate/job-details/internship/${index + 1}`}>
-                <button
-                  type="button"
-                  style={{
-                    border: "0",
-                    background: "transparent",
-                    color: "blue",
-                    cursor: "pointer",
-                    marginBottom: "0px",
-                  }}
-                  key={index}
-                >
-                  View Details
-                </button>
-              </Link>
+
+              <button
+                type="button"
+                style={{
+                  border: "0",
+                  background: "transparent",
+                  color: "blue",
+                  cursor: "pointer",
+                  marginBottom: "0px",
+                }}
+                key={index}
+                onClick={() => {
+                  history.push(
+                    `/candidate/job-details/internship/${data._id}`,
+                    {
+                      data: data,
+                    }
+                  )
+                }}
+              >
+                View Details
+              </button>
             </div>
           </div>
         </div>
