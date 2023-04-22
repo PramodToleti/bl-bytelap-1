@@ -9,8 +9,8 @@ const Candidate = require("../../models/candidate/account")
 const InternApplication = require("../../models/candidate/Registration/internship")
 const FresherApplication = require("../../models/candidate/Registration/fresher")
 const ExperienceApplicaton = require("../../models/candidate/Registration/experience")
-
 const PostedJobs = require("../../models/employee/Jobs/intern")
+const auth = require("../../middleware/auth")
 
 //Create Account
 router.post("/create-account", upload.single("file"), async (req, res) => {
@@ -246,7 +246,7 @@ router.post(
             trainingFiles: req.files.trainingFiles,
             achievements: JSON.parse(details.achievements),
             achievementsFiles: req.files.achievementsFiles,
-            preferredLocation: details.preferredLocation,
+            preferredLocation: JSON.parse(details.preferredLocation),
             languages: JSON.parse(details.languages),
             availability: details.availability,
             time: details.time,
@@ -277,7 +277,7 @@ router.post(
           trainingFiles: req.files.trainingFiles,
           achievements: JSON.parse(details.achievements),
           achievementsFiles: req.files.achievementsFiles,
-          preferredLocation: details.preferredLocation,
+          preferredLocation: JSON.parse(details.preferredLocation),
           languages: JSON.parse(details.languages),
           availability: details.availability,
           time: details.time,
@@ -304,6 +304,8 @@ router.post(
   async (req, res) => {
     try {
       const details = req.body
+
+      console.log(details.preferredLocation)
 
       const isPresent = await Candidate.findOne({
         _id: details.candidate,
@@ -333,7 +335,7 @@ router.post(
           trainingFiles: req.files.trainingFiles,
           achievements: JSON.parse(details.achievements),
           achievementsFiles: req.files.achievementsFiles,
-          preferredLocation: JSON.parse(details.preferredLocation),
+          preferredLocation: details.preferredLocation,
           languages: JSON.parse(details.languages),
           availability: details.availability,
           time: details.time,
@@ -364,7 +366,7 @@ router.post(
           trainingFiles: req.files.trainingFiles,
           achievements: JSON.parse(details.achievements),
           achievementsFiles: req.files.achievementsFiles,
-          preferredLocation: JSON.parse(details.preferredLocation),
+          preferredLocation: details.preferredLocation,
           languages: JSON.parse(details.languages),
           availability: details.availability,
           time: details.time,
@@ -398,8 +400,6 @@ router.get("/jobs", async (req, res) => {
 // @route  GET candidate/my-info
 // @desc   Get candidate info
 // @access Private
-
-const auth = require("../../middleware/auth")
 
 router.post("/my-info", auth, async (req, res) => {
   try {

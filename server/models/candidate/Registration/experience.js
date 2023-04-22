@@ -187,7 +187,7 @@ const ExperienceApplicationSchema = new mongoose.Schema({
   training: {
     type: [trainingSchema],
   },
-  trainingsFiles: [
+  trainingFiles: [
     {
       fieldname: String,
       originalname: String,
@@ -215,13 +215,7 @@ const ExperienceApplicationSchema = new mongoose.Schema({
     },
   ],
   preferredLocation: {
-    type: [
-      {
-        type: {
-          locationSchema,
-        },
-      },
-    ],
+    type: [String],
     required: true,
   },
   languages: {

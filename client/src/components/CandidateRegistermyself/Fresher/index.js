@@ -294,9 +294,9 @@ function Fresher(props) {
         margin: "20px",
       },
     })
-    setTimeout(() => {
+    /*  setTimeout(() => {
       window.location.reload()
-    }, 1000)
+    }, 1000) */
   }
 
   const onFailure = (msg) => {
@@ -334,7 +334,7 @@ function Fresher(props) {
       formData.append("coverLetter", coverLetter)
       formData.append("degree", JSON.stringify(degree))
       formData.append("projectDetails", JSON.stringify(projectDetails))
-      formData.append("preferredLocation", preferredLocation)
+      formData.append("preferredLocation", JSON.stringify(preferredLocation))
       formData.append("languages", JSON.stringify(languages))
       formData.append("availability", availability)
       formData.append("time", Date.now())

@@ -131,7 +131,7 @@ const FresherApplicationSchema = new mongoose.Schema({
   training: {
     type: [trainingSchema],
   },
-  trainingsFiles: [
+  trainingFiles: [
     {
       fieldname: String,
       originalname: String,
