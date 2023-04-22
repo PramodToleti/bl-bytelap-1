@@ -12,15 +12,163 @@ import { HiOutlineExternalLink } from "react-icons/hi"
 import Popup from "reactjs-popup"
 import numeral from "numeral"
 import { useHistory } from "react-router-dom"
+import Modal from "react-modal"
+import { ToastContainer, toast } from "react-toastify"
+import { Oval } from "react-loader-spinner"
 
-function InternshipJobDetails(props) {
+import "react-toastify/dist/ReactToastify.css"
+
+// Add custom styles for the modal
+const customStyles = {
+  content: {
+    maxWidth: "350px", // Set max width of the modal
+    maxHeight: "200px", // Set max height of the modal
+    margin: "auto", // Center align the modal horizontally
+    borderRadius: "8px", // Add border radius to give a rounded corner look
+    boxShadow: "0 2px 10px rgba(0,0,0,0.1)", // Add shadow for a popup effect
+    display: "flex", // Add display flex for centering content and buttons
+    flexDirection: "column", // Set flex direction to column for stacking content and buttons
+    justifyContent: "center", // Center align content and buttons horizontally
+    alignItems: "center", // Center align content and buttons vertically
+    padding: "20px", // Add padding to the modal content
+  },
+  h2: {
+    textAlign: "center",
+    fontSize: "22px",
+    marginBottom: "30px", // Add margin bottom to the heading
+  },
+  buttonContainer: {
+    display: "flex", // Add display flex for centering buttons
+    gap: "10px", // Add gap between buttons
+  },
+  button: {
+    backgroundColor: "#007BFF", // Set background color for the buttons
+    color: "#FFF", // Set text color for the buttons
+    padding: "10px 20px", // Add padding to the buttons
+    borderRadius: "4px", // Add border radius to the buttons
+    cursor: "pointer", // Add cursor pointer for hover effect
+    border: "none", // Remove button border
+    outline: "none", // Remove button outline
+    transition: "background-color 0.3s", // Add transition for smooth hover effect
+    display: "grid",
+    placeItems: "center",
+  },
+  buttonNo: {
+    backgroundColor: "#DC3545", // Set background color for the No button
+  },
+}
+
+function InternshipJobDetails() {
   const history = useHistory()
   const data = history.location.state.data
   const [fullText, setFullText] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const jobId = history.location.pathname.split("/").pop()
+
+  const onApply = async () => {
+    setLoading(true)
+    const userId = localStorage.getItem("userId")
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId, jobId }),
+    }
+
+    const response = await fetch(
+      "http://localhost:5000/candidate/internship/apply",
+      options
+    )
+
+    const data = await response.json()
+
+    if (response.ok) {
+      toast.success(data, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #00ff00",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+      setLoading(false)
+      setIsOpen(false)
+    } else {
+      toast.error(data, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #ff0000",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+      setLoading(false)
+      setIsOpen(false)
+    }
+    console.log(data)
+  }
+
+  const handleApplyClick = () => {
+    setIsOpen(true)
+  }
+
+  const handleCloseClick = () => {
+    setIsOpen(false)
+  }
+
+  const handleApply = () => {
+    handleApplyClick()
+  }
 
   function renderPreview() {
     return (
       <>
+        <ToastContainer />
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={handleCloseClick}
+          contentLabel="Apply Modal"
+          style={customStyles} // Pass the custom styles to the modal
+          ariaHideApp={false}
+        >
+          <h2 style={customStyles.h2}>Do you want to apply for this job?</h2>
+          <div style={customStyles.buttonContainer}>
+            <button onClick={onApply} style={customStyles.button}>
+              {loading ? (
+                <Oval
+                  height={20}
+                  width={20}
+                  color="#ffffff"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                  ariaLabel="oval-loading"
+                  secondaryColor="#ffffff"
+                  strokeWidth={2}
+                  strokeWidthSecondary={2}
+                />
+              ) : (
+                "Yes"
+              )}
+            </button>
+            <button
+              onClick={handleCloseClick}
+              style={{ ...customStyles.button, ...customStyles.buttonNo }}
+            >
+              No
+            </button>
+          </div>
+        </Modal>
         {(data.jobTitle !== "" ||
           data.jobTime !== "" ||
           data.jobType !== "" ||
@@ -367,7 +515,13 @@ function InternshipJobDetails(props) {
           data.salaryRange.to !== "") && (
           <>
             <div className="row justify-content-center mb-4">
-              <button type="button" className="apply-button">
+              <button
+                type="button"
+                className="apply-button"
+                onClick={() => {
+                  handleApply()
+                }}
+              >
                 Apply
               </button>
             </div>
