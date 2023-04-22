@@ -9,6 +9,9 @@ const Candidate = require("../../models/candidate/account")
 const InternApplication = require("../../models/candidate/Registration/internship")
 const FresherApplication = require("../../models/candidate/Registration/fresher")
 const ExperienceApplicaton = require("../../models/candidate/Registration/experience")
+const InternJob = require("../../models/candidate/Applications/internship")
+const FresherJob = require("../../models/candidate/Applications/fresher")
+const ExperienceJob = require("../../models/candidate/Applications/experience")
 const PostedJobs = require("../../models/employee/Jobs/intern")
 const auth = require("../../middleware/auth")
 
@@ -383,6 +386,117 @@ router.post(
     }
   }
 )
+
+// @route  POST /internship/apply
+// @desc   Apply for internship
+// @access Public
+router.post("/internship/apply", async (req, res) => {
+  try {
+    const userId = req.body.userId
+    const jobId = req.body.jobId
+
+    const isApplied = await InternJob.findOne({ candidate: userId })
+
+    if (isApplied) {
+      res.status(400).json("You already applied for this job")
+    } else {
+      const candidateData = await InternApplication.findOne({
+        candidate: userId,
+      })
+
+      let candidateDataObj = candidateData.toObject()
+
+      delete candidateDataObj._id
+
+      candidateDataObj.jobId = jobId
+
+      if (candidateDataObj) {
+        const application = new InternJob(candidateDataObj)
+        application.save()
+        res.status(200).json("Job Applied Successfully")
+      } else {
+        res.status(400).json("User not found")
+      }
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(400).json("Something went wrong")
+  }
+})
+
+// @route  POST /fresher/apply
+// @desc   Apply for fresher
+// @access Public
+router.post("/fresher/apply", async (req, res) => {
+  try {
+    const userId = req.body.userId
+    const jobId = req.body.jobId
+
+    const isApplied = await FresherJob.findOne({ candidate: userId })
+
+    if (isApplied) {
+      res.status(400).json("You already applied for this job")
+    } else {
+      const candidateData = await FresherApplication.findOne({
+        candidate: userId,
+      })
+
+      let candidateDataObj = candidateData.toObject()
+
+      delete candidateDataObj._id
+
+      candidateDataObj.jobId = jobId
+
+      if (candidateDataObj) {
+        const application = new FresherJob(candidateDataObj)
+        application.save()
+        res.status(200).json("Job Applied Successfully")
+      } else {
+        res.status(400).json("User not found")
+      }
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(400).json("Something went wrong")
+  }
+})
+
+// @route  POST /experience/apply
+// @desc   Apply for Experience
+// @access Public
+router.post("/experience/apply", async (req, res) => {
+  try {
+    const userId = req.body.userId
+    const jobId = req.body.jobId
+
+    const isApplied = await ExperienceJob.findOne({ candidate: userId })
+
+    if (isApplied) {
+      res.status(400).json("You already applied for this job")
+    } else {
+      const candidateData = await ExperienceApplicaton.findOne({
+        candidate: userId,
+      })
+
+      let candidateDataObj = candidateData.toObject()
+
+      delete candidateDataObj._id
+
+      candidateDataObj.jobId = jobId
+
+      if (candidateDataObj) {
+        const application = new ExperienceJob(candidateDataObj)
+        application.save()
+        res.status(200).json("Job Applied Successfully")
+      } else {
+        res.status(400).json("User not found")
+      }
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(400).json("Something went wrong")
+  }
+})
 
 // @route   GET /jobs/
 // @desc    Get all the jobs

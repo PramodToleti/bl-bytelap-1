@@ -88,6 +88,10 @@ const InternApplicationSchema = new mongoose.Schema({
     ref: Candidate,
     required: true,
   },
+  jobId: {
+    type: String,
+    required: true,
+  },
   username: {
     type: String,
     required: true,
@@ -161,4 +165,4 @@ const InternApplicationSchema = new mongoose.Schema({
   },
 })
 
-module.exports = mongoose.model("InternApplication", InternApplicationSchema)
+module.exports = mongoose.model("InternJob", InternApplicationSchema)

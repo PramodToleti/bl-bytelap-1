@@ -49,22 +49,18 @@ const degreeSchema = new mongoose.Schema({
   },
   field: {
     type: String,
-    required: true,
   },
   institute: {
     type: String,
-    required: true,
   },
   city: {
     type: String,
-    required: true,
   },
   schoolName: {
     type: String,
   },
   startDate: {
     type: Date,
-    required: true,
   },
   endDate: {
     type: Date,
@@ -78,7 +74,7 @@ const degreeSchema = new mongoose.Schema({
   },
 })
 
-const InternApplicationSchema = new mongoose.Schema({
+const FresherApplicationSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
@@ -86,6 +82,10 @@ const InternApplicationSchema = new mongoose.Schema({
   candidate: {
     type: mongoose.Schema.Types.ObjectId,
     ref: Candidate,
+    required: true,
+  },
+  jobId: {
+    type: String,
     required: true,
   },
   username: {
@@ -96,45 +96,42 @@ const InternApplicationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  jobType: {
-    type: String,
-    required: true,
-  },
   jobTime: {
     type: String,
     required: true,
   },
-  languages: {
-    type: [String],
+  jobType: {
+    type: String,
+    required: true,
+  },
+  shift: {
+    type: String,
     required: true,
   },
   skills: {
     type: [String],
     required: true,
   },
+  salaryType: {
+    type: String,
+    required: true,
+  },
+  salaryRange: {
+    type: {
+      from: String,
+      to: String,
+    },
+  },
+  coverLetter: {
+    type: String,
+  },
+  degree: {
+    type: [degreeSchema],
+  },
   projectDetails: {
     type: [projectDetailsSchema],
     required: true,
   },
-  time: {
-    type: Date,
-    required: true,
-  },
-  achievements: {
-    type: [achievementSchema],
-  },
-  achievementsFiles: [
-    {
-      fieldname: String,
-      originalname: String,
-      encoding: String,
-      mimetype: String,
-      destination: String,
-      filename: String,
-      path: String,
-      size: Number,
-    },
-  ],
   training: {
     type: [trainingSchema],
   },
@@ -150,15 +147,36 @@ const InternApplicationSchema = new mongoose.Schema({
       size: Number,
     },
   ],
+  achievements: {
+    type: [achievementSchema],
+  },
+  achievementsFiles: [
+    {
+      fieldname: String,
+      originalname: String,
+      encoding: String,
+      mimetype: String,
+      destination: String,
+      filename: String,
+      path: String,
+      size: Number,
+    },
+  ],
+  preferredLocation: {
+    type: [String],
+    required: true,
+  },
+  languages: {
+    type: [String],
+    required: true,
+  },
   availability: {
     type: String,
   },
-  coverLetter: {
-    type: String,
-  },
-  degree: {
-    type: [degreeSchema],
+  time: {
+    type: Date,
+    required: true,
   },
 })
 
-module.exports = mongoose.model("InternApplication", InternApplicationSchema)
+module.exports = mongoose.model("FresherJob", FresherApplicationSchema)
