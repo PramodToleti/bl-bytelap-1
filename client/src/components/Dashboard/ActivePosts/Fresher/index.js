@@ -47,10 +47,6 @@ const Fresher = (props) => {
   }
 
   return jobTitles.map((each, index) => {
-    localStorage.setItem(
-      "fresherData",
-      JSON.stringify(jobApplications[each.key])
-    )
     return (
       <div
         className="col-lg-6 col-md-6 search-course-right   mt-0 p-2  rounded  p-3 mb-4"
@@ -126,6 +122,10 @@ const Fresher = (props) => {
             style={{ color: "blue" }}
             onClick={() => {
               history.push("/employee/dashboard/active-posts/job/fresher")
+              localStorage.setItem(
+                "fresherData",
+                JSON.stringify(jobApplications[each.key])
+              )
             }}
           >
             {`View Application's (${each.no})`}
