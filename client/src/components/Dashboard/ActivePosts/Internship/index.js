@@ -46,6 +46,8 @@ const Internship = (props) => {
     )
   }
 
+  console.log(internData)
+
   return jobTitles.map((each, index) => (
     <div
       className="col-lg-6 col-md-6 search-course-right   mt-0 p-2  rounded  p-3  mb-4 rounded  "
