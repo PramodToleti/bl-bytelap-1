@@ -30,7 +30,9 @@ function ViewApplicantExperience() {
                 className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
                 style={{ width: "100%", backgroundColor: "white" }}
               >
-                {data.jobTitle !== "" && <h2 className="mb-4">Nilesh</h2>}
+                {data.jobTitle !== "" && (
+                  <h2 className="mb-4">{data.username}</h2>
+                )}
                 <h4 className="mb-3">{data.jobTitle}</h4>
                 <div className="experience-container mb-3">
                   {data.experience.years !== "" && <h4>Experience: </h4>}

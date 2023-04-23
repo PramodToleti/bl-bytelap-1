@@ -281,7 +281,7 @@ function ActiveJobFresher() {
                           }}
                         >
                           <div>
-                            <h4>Nilesh</h4>
+                            <h4>{data.username}</h4>
                             <p>{data.jobTitle}</p>
                           </div>
                         </div>
@@ -469,14 +469,16 @@ function ActiveJobFresher() {
                               </p>
                             </div>
                             <div className="text-muted">
-                              {data.preferredLocation.map((each) => (
-                                <span
-                                  className="text-muted"
-                                  style={{ fontSize: "16px" }}
-                                >
-                                  {each.value}, &nbsp;
-                                </span>
-                              ))}
+                              {JSON.parse(data.preferredLocation[0]).map(
+                                (each) => (
+                                  <span
+                                    className="text-muted"
+                                    style={{ fontSize: "16px" }}
+                                  >
+                                    {each.label}, &nbsp;
+                                  </span>
+                                )
+                              )}
                             </div>
                           </div>
 
@@ -565,14 +567,16 @@ function ActiveJobFresher() {
                           </div>
                           <div className="colon"></div>
                           <div className="location-f text-muted">
-                            {data.preferredLocation.map((each) => (
-                              <span
-                                className="text-muted"
-                                style={{ fontSize: "16px" }}
-                              >
-                                {each.value}, &nbsp;
-                              </span>
-                            ))}
+                            {JSON.parse(data.preferredLocation[0]).map(
+                              (each) => (
+                                <span
+                                  className="text-muted"
+                                  style={{ fontSize: "16px" }}
+                                >
+                                  {each.label}, &nbsp;
+                                </span>
+                              )
+                            )}
                           </div>
                           <div className="available-f text-muted">
                             <p>Available</p>

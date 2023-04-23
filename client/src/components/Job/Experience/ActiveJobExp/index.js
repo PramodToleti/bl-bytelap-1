@@ -281,7 +281,7 @@ function ActiveJobExp(props) {
                           }}
                         >
                           <div>
-                            <h4>Nilesh</h4>
+                            <h4>{data.username}</h4>
                             <p>{data.jobTitle}</p>
                           </div>
                         </div>
@@ -370,7 +370,7 @@ function ActiveJobExp(props) {
                             </div>
                           </div>
 
-                          {/*  {data.employmentHistory.map((each) =>
+                          {data.employementHistory.map((each) =>
                             each.present === true ? (
                               <div
                                 className="mt-3  text-muted"
@@ -397,7 +397,7 @@ function ActiveJobExp(props) {
                                       marginBottom: "5px",
                                     }}
                                   />{" "}
-                                  {each.location[0].value}
+                                  {each.location[0].label}
                                 </div>
                               </div>
                             ) : (
@@ -440,11 +440,11 @@ function ActiveJobExp(props) {
                                       marginBottom: "5px",
                                     }}
                                   />{" "}
-                                  {each.location[0].value}
+                                  {each.location[0].label}
                                 </div>
                               </div>
                             )
-                          )} */}
+                          )}
 
                           <div
                             style={{ display: "flex", gap: "10px" }}
@@ -460,14 +460,16 @@ function ActiveJobExp(props) {
                               </p>
                             </div>
                             <div className="text-muted">
-                              {data.preferredLocation.map((each) => (
-                                <span
-                                  className="text-muted"
-                                  style={{ fontSize: "16px" }}
-                                >
-                                  {each.value}, &nbsp;
-                                </span>
-                              ))}
+                              {JSON.parse(data.preferredLocation[0]).map(
+                                (each) => (
+                                  <span
+                                    className="text-muted"
+                                    style={{ fontSize: "16px" }}
+                                  >
+                                    {each.label}, &nbsp;
+                                  </span>
+                                )
+                              )}
                             </div>
                           </div>
 
@@ -498,7 +500,7 @@ function ActiveJobExp(props) {
                             <p className="text-muted">{data.coverLetter}</p>
                           </div>
 
-                          {/*  {data.employmentHistory.map((each) =>
+                          {data.employementHistory.map((each) =>
                             each.present === true ? (
                               <>
                                 <div className="current-e text-muted">
@@ -530,7 +532,7 @@ function ActiveJobExp(props) {
                                       marginBottom: "5px",
                                     }}
                                   />{" "}
-                                  {each.location[0].value}
+                                  {each.location[0].label}
                                 </div>
                               </>
                             ) : (
@@ -568,25 +570,27 @@ function ActiveJobExp(props) {
                                       marginBottom: "5px",
                                     }}
                                   />{" "}
-                                  {each.location[0].value}
+                                  {each.location[0].label}
                                 </div>
                               </>
                             )
                           )}
- */}
+
                           <div className="preferred-e text-muted">
                             <p>Preferred Location </p>
                           </div>
                           <div className="colon">:</div>
                           <div className="location-e text-muted">
-                            {data.preferredLocation.map((each) => (
-                              <span
-                                className="text-muted"
-                                style={{ fontSize: "16px" }}
-                              >
-                                {each.value}, &nbsp;
-                              </span>
-                            ))}
+                            {JSON.parse(data.preferredLocation[0]).map(
+                              (each) => (
+                                <span
+                                  className="text-muted"
+                                  style={{ fontSize: "16px" }}
+                                >
+                                  {each.label}, &nbsp;
+                                </span>
+                              )
+                            )}
                           </div>
 
                           <div className="notice-e text-muted">

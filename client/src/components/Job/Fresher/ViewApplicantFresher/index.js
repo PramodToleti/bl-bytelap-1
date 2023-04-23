@@ -28,7 +28,7 @@ function ViewApplicantFresher() {
               >
                 {data.jobTitle !== "" && (
                   <>
-                    <h2 className="mb-4">Nilesh</h2>
+                    <h2 className="mb-4">{data.username}</h2>
                     <h4 className="mb-3">{data.jobTitle}</h4>
                   </>
                 )}

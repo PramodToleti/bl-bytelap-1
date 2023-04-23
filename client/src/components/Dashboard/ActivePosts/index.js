@@ -29,7 +29,7 @@ function Accountsetting() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/employee/applications",
+        "http://localhost:5000/candidate/applications",
         options
       )
       const data = await response.json()

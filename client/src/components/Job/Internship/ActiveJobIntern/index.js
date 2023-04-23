@@ -270,7 +270,7 @@ function ActiveJobIntern(props) {
                         style={{ border: "0px" }}
                       >
                         <Card.Body className="card-size">
-                          <Card.Title>Nilesh</Card.Title>
+                          <Card.Title>{data.username}</Card.Title>
                           <Card.Text>{data.jobTitle}</Card.Text>
                           <Card.Text className=" text-muted ">
                             CoverLetter &nbsp; : &nbsp; {data.coverLetter}{" "}
