@@ -231,21 +231,4 @@ router.post("/update-info", auth, async (req, res) => {
   }
 })
 
-// @route  POST /employee/applications
-// @desc   GET all applications
-// @access Private
-
-router.post("/applications", auth, async (req, res) => {
-  try {
-    const intern = await InternApplication.find()
-    const fresher = await FresherApplication.find()
-    const exp = await ExperienceApplication.find()
-    const applications = [...intern, ...fresher, ...exp]
-    res.status(200).json(applications)
-  } catch (err) {
-    console.log(err)
-    res.status(400).json({ message: "Something went wrong" })
-  }
-})
-
 module.exports = router

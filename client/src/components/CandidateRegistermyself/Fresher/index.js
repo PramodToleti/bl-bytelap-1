@@ -294,9 +294,9 @@ function Fresher(props) {
         margin: "20px",
       },
     })
-    /*  setTimeout(() => {
+    setTimeout(() => {
       window.location.reload()
-    }, 1000) */
+    }, 1000)
   }
 
   const onFailure = (msg) => {

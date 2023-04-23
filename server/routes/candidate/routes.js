@@ -249,7 +249,7 @@ router.post(
             trainingFiles: req.files.trainingFiles,
             achievements: JSON.parse(details.achievements),
             achievementsFiles: req.files.achievementsFiles,
-            preferredLocation: JSON.parse(details.preferredLocation),
+            preferredLocation: JSON.stringify(details.preferredLocation),
             languages: JSON.parse(details.languages),
             availability: details.availability,
             time: details.time,
@@ -280,7 +280,7 @@ router.post(
           trainingFiles: req.files.trainingFiles,
           achievements: JSON.parse(details.achievements),
           achievementsFiles: req.files.achievementsFiles,
-          preferredLocation: JSON.parse(details.preferredLocation),
+          preferredLocation: JSON.stringify(details.preferredLocation),
           languages: JSON.parse(details.languages),
           availability: details.availability,
           time: details.time,
@@ -292,7 +292,7 @@ router.post(
     } catch (error) {
       console.log(error)
       res.status(500).json({
-        error: "An error occurred while registering the job application",
+        message: "An error occurred while registering the job application",
       })
     }
   }
@@ -338,7 +338,7 @@ router.post(
           trainingFiles: req.files.trainingFiles,
           achievements: JSON.parse(details.achievements),
           achievementsFiles: req.files.achievementsFiles,
-          preferredLocation: details.preferredLocation,
+          preferredLocation: JSON.stringify(details.preferredLocation),
           languages: JSON.parse(details.languages),
           availability: details.availability,
           time: details.time,
@@ -369,7 +369,7 @@ router.post(
           trainingFiles: req.files.trainingFiles,
           achievements: JSON.parse(details.achievements),
           achievementsFiles: req.files.achievementsFiles,
-          preferredLocation: details.preferredLocation,
+          preferredLocation: JSON.stringify(details.preferredLocation),
           languages: JSON.parse(details.languages),
           availability: details.availability,
           time: details.time,
@@ -381,7 +381,7 @@ router.post(
     } catch (error) {
       console.log(error)
       res.status(500).json({
-        error: "An error occurred while registering the job application",
+        message: "An error occurred while registering the job application",
       })
     }
   }
@@ -395,27 +395,33 @@ router.post("/internship/apply", async (req, res) => {
     const userId = req.body.userId
     const jobId = req.body.jobId
 
-    const isApplied = await InternJob.findOne({ candidate: userId })
+    const isApplied = await InternJob.find({ candidate: userId })
 
-    if (isApplied) {
+    const appliedJobs = isApplied.map((each) => each.jobId)
+
+    if (appliedJobs.includes(jobId)) {
       res.status(400).json("You already applied for this job")
     } else {
       const candidateData = await InternApplication.findOne({
         candidate: userId,
       })
 
-      let candidateDataObj = candidateData.toObject()
-
-      delete candidateDataObj._id
-
-      candidateDataObj.jobId = jobId
-
-      if (candidateDataObj) {
-        const application = new InternJob(candidateDataObj)
-        application.save()
-        res.status(200).json("Job Applied Successfully")
+      if (!candidateData) {
+        res.status(400).json("Register first to apply for a Job")
       } else {
-        res.status(400).json("User not found")
+        let candidateDataObj = candidateData.toObject()
+
+        delete candidateDataObj._id
+
+        candidateDataObj.jobId = jobId
+
+        if (candidateDataObj) {
+          const application = new InternJob(candidateDataObj)
+          application.save()
+          res.status(200).json("Job Applied Successfully")
+        } else {
+          res.status(400).json("User not found")
+        }
       }
     }
   } catch (err) {
@@ -432,27 +438,33 @@ router.post("/fresher/apply", async (req, res) => {
     const userId = req.body.userId
     const jobId = req.body.jobId
 
-    const isApplied = await FresherJob.findOne({ candidate: userId })
+    const isApplied = await FresherJob.find({ candidate: userId })
 
-    if (isApplied) {
+    const appliedJobs = isApplied.map((each) => each.jobId)
+
+    if (appliedJobs.includes(jobId)) {
       res.status(400).json("You already applied for this job")
     } else {
       const candidateData = await FresherApplication.findOne({
         candidate: userId,
       })
 
-      let candidateDataObj = candidateData.toObject()
-
-      delete candidateDataObj._id
-
-      candidateDataObj.jobId = jobId
-
-      if (candidateDataObj) {
-        const application = new FresherJob(candidateDataObj)
-        application.save()
-        res.status(200).json("Job Applied Successfully")
+      if (!candidateData) {
+        res.status(400).json("Register first to apply for a Job")
       } else {
-        res.status(400).json("User not found")
+        let candidateDataObj = candidateData.toObject()
+
+        delete candidateDataObj._id
+
+        candidateDataObj.jobId = jobId
+
+        if (candidateDataObj) {
+          const application = new FresherJob(candidateDataObj)
+          application.save()
+          res.status(200).json("Job Applied Successfully")
+        } else {
+          res.status(400).json("User not found")
+        }
       }
     }
   } catch (err) {
@@ -469,32 +481,58 @@ router.post("/experience/apply", async (req, res) => {
     const userId = req.body.userId
     const jobId = req.body.jobId
 
-    const isApplied = await ExperienceJob.findOne({ candidate: userId })
+    const isApplied = await ExperienceJob.find({ candidate: userId })
 
-    if (isApplied) {
+    const appliedJobs = isApplied.map((each) => each.jobId)
+
+    if (appliedJobs.includes(jobId)) {
       res.status(400).json("You already applied for this job")
     } else {
       const candidateData = await ExperienceApplicaton.findOne({
         candidate: userId,
       })
 
-      let candidateDataObj = candidateData.toObject()
-
-      delete candidateDataObj._id
-
-      candidateDataObj.jobId = jobId
-
-      if (candidateDataObj) {
-        const application = new ExperienceJob(candidateDataObj)
-        application.save()
-        res.status(200).json("Job Applied Successfully")
+      if (!candidateData) {
+        res.status(400).json("Register first to apply for a Job")
       } else {
-        res.status(400).json("User not found")
+        let candidateDataObj = candidateData.toObject()
+
+        delete candidateDataObj._id
+
+        candidateDataObj.jobId = jobId
+
+        if (candidateDataObj) {
+          const application = new ExperienceJob(candidateDataObj)
+          application.save()
+          res.status(200).json("Job Applied Successfully")
+        } else {
+          res.status(400).json("User not found")
+        }
       }
     }
   } catch (err) {
     console.log(err)
     res.status(400).json("Something went wrong")
+  }
+})
+
+// @route   GET /applications
+// @desc    Get all the applications
+// @access  Private
+router.post("/applications", auth, async (req, res) => {
+  try {
+    const internApplications = await InternJob.find()
+    const fresherApplications = await FresherJob.find()
+    const experienceApplications = await ExperienceJob.find()
+    const applications = [
+      ...internApplications,
+      ...fresherApplications,
+      ...experienceApplications,
+    ]
+    res.status(200).json(applications)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: "An error occurred while fetching jobs" })
   }
 })
 
