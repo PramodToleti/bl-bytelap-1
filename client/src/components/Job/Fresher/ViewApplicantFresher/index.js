@@ -29,7 +29,7 @@ function ViewApplicantFresher() {
                 {data.jobTitle !== "" && (
                   <>
                     <h2 className="mb-4">{data.username}</h2>
-                    <h4 className="mb-3">{data.jobTitle}</h4>
+                    <h4 className="mb-3">{data.jobName}</h4>
                   </>
                 )}
                 <div className="role-container mb-3">

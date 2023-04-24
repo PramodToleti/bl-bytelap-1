@@ -13,7 +13,7 @@ const Experience = (props) => {
   const jobTitles = []
 
   expData.forEach((job) => {
-    const jobTitle = job.jobTitle
+    const jobTitle = job.jobName
     const jobId = job._id
 
     if (jobApplications.hasOwnProperty(jobTitle)) {
@@ -27,7 +27,7 @@ const Experience = (props) => {
     jobTitles.push({ key, no: value.length })
   }
 
-  if (expData === null) {
+  if (expData.length === 0) {
     return (
       <div style={{ display: "grid", placeItems: "center" }}>
         <p>
@@ -46,6 +46,7 @@ const Experience = (props) => {
       </div>
     )
   }
+
   return jobTitles.map((each, index) => {
     localStorage.setItem(
       "experienceData",
@@ -123,7 +124,7 @@ const Experience = (props) => {
 
           <p
             className="text-start fs-10"
-            style={{ color: "blue" }}
+            style={{ color: "blue", cursor: "pointer" }}
             onClick={() => {
               history.push("/employee/dashboard/active-posts/job/experience")
             }}

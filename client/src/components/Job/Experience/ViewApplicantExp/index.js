@@ -33,7 +33,7 @@ function ViewApplicantExperience() {
                 {data.jobTitle !== "" && (
                   <h2 className="mb-4">{data.username}</h2>
                 )}
-                <h4 className="mb-3">{data.jobTitle}</h4>
+                <h4 className="mb-3">{data.jobName}</h4>
                 <div className="experience-container mb-3">
                   {data.experience.years !== "" && <h4>Experience: </h4>}
                   <div

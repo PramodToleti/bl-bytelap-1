@@ -264,14 +264,14 @@ function ActiveJobIntern(props) {
               >
                 <div style={{ maxWidth: "680px" }}>
                   {internData.map((data, index) => (
-                    <div className="application">
+                    <div className="application mb-4">
                       <Card
                         className="col-lg-5 col-md-5  main-details-card  mb-0 mt-2 p-0    card-details"
                         style={{ border: "0px" }}
                       >
                         <Card.Body className="card-size">
                           <Card.Title>{data.username}</Card.Title>
-                          <Card.Text>{data.jobTitle}</Card.Text>
+                          <Card.Text>{data.jobName}</Card.Text>
                           <Card.Text className=" text-muted ">
                             CoverLetter &nbsp; : &nbsp; {data.coverLetter}{" "}
                             <Card.Text></Card.Text>

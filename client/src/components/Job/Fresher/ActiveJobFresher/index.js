@@ -282,7 +282,7 @@ function ActiveJobFresher() {
                         >
                           <div>
                             <h4>{data.username}</h4>
-                            <p>{data.jobTitle}</p>
+                            <p>{data.jobName}</p>
                           </div>
                         </div>
 

@@ -13,7 +13,7 @@ const Fresher = (props) => {
   const jobTitles = []
 
   fresherData.forEach((job) => {
-    const jobTitle = job.jobTitle
+    const jobTitle = job.jobName
 
     if (jobApplications.hasOwnProperty(jobTitle)) {
       jobApplications[jobTitle] = [...jobApplications[jobTitle], job]
@@ -26,7 +26,7 @@ const Fresher = (props) => {
     jobTitles.push({ key, no: value.length })
   }
 
-  if (fresherData === null) {
+  if (fresherData.length === 0) {
     return (
       <div style={{ display: "grid", placeItems: "center" }}>
         <p>
@@ -119,7 +119,7 @@ const Fresher = (props) => {
 
           <p
             className="text-start fs-10"
-            style={{ color: "blue" }}
+            style={{ color: "blue", cursor: "pointer" }}
             onClick={() => {
               history.push("/employee/dashboard/active-posts/job/fresher")
               localStorage.setItem(

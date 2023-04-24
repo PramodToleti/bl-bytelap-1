@@ -13,7 +13,7 @@ const Internship = (props) => {
   const jobTitles = []
 
   internData.forEach((job) => {
-    const jobTitle = job.jobTitle
+    const jobTitle = job.jobName
 
     if (jobApplications.hasOwnProperty(jobTitle)) {
       jobApplications[jobTitle] = [...jobApplications[jobTitle], job]
@@ -26,7 +26,7 @@ const Internship = (props) => {
     jobTitles.push({ key, no: value.length })
   }
 
-  if (internData === null) {
+  if (internData.length === 0) {
     return (
       <div style={{ display: "grid", placeItems: "center" }}>
         <p>
@@ -45,8 +45,6 @@ const Internship = (props) => {
       </div>
     )
   }
-
-  console.log(internData)
 
   return jobTitles.map((each, index) => (
     <div
@@ -120,7 +118,7 @@ const Internship = (props) => {
 
         <p
           className="text-start fs-10"
-          style={{ color: "blue" }}
+          style={{ color: "blue", cursor: "pointer" }}
           onClick={() => {
             history.push("/employee/dashboard/active-posts/job/internship")
             localStorage.setItem(

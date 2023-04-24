@@ -48,8 +48,6 @@ function Accountsetting() {
     setActiveFilter(event.target.name)
   }
 
-  console.log(applications)
-
   const InternApplications = applications.filter(
     (application) => application.type === "Internship"
   )
