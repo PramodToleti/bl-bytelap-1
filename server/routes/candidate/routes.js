@@ -397,9 +397,13 @@ router.post("/internship/apply", async (req, res) => {
 
     const isApplied = await InternJob.find({ candidate: userId })
 
-    const appliedJobs = isApplied.map((each) => each.jobId)
+    let jobName = await PostedJobs.findOne({ _id: jobId })
 
-    if (appliedJobs.includes(jobId)) {
+    jobName = jobName.toObject().jobTitle
+
+    const appliedJobs = isApplied.map((each) => each.jobName)
+
+    if (appliedJobs.includes(jobName)) {
       res.status(400).json("You already applied for this job")
     } else {
       const candidateData = await InternApplication.findOne({
@@ -413,7 +417,7 @@ router.post("/internship/apply", async (req, res) => {
 
         delete candidateDataObj._id
 
-        candidateDataObj.jobId = jobId
+        candidateDataObj.jobName = jobName
 
         if (candidateDataObj) {
           const application = new InternJob(candidateDataObj)
@@ -440,9 +444,13 @@ router.post("/fresher/apply", async (req, res) => {
 
     const isApplied = await FresherJob.find({ candidate: userId })
 
-    const appliedJobs = isApplied.map((each) => each.jobId)
+    let jobName = await PostedJobs.findOne({ _id: jobId })
 
-    if (appliedJobs.includes(jobId)) {
+    jobName = jobName.toObject().jobTitle
+
+    const appliedJobs = isApplied.map((each) => each.jobName)
+
+    if (appliedJobs.includes(jobName)) {
       res.status(400).json("You already applied for this job")
     } else {
       const candidateData = await FresherApplication.findOne({
@@ -456,7 +464,7 @@ router.post("/fresher/apply", async (req, res) => {
 
         delete candidateDataObj._id
 
-        candidateDataObj.jobId = jobId
+        candidateDataObj.jobName = jobName
 
         if (candidateDataObj) {
           const application = new FresherJob(candidateDataObj)
@@ -483,9 +491,13 @@ router.post("/experience/apply", async (req, res) => {
 
     const isApplied = await ExperienceJob.find({ candidate: userId })
 
-    const appliedJobs = isApplied.map((each) => each.jobId)
+    let jobName = await PostedJobs.findOne({ _id: jobId })
 
-    if (appliedJobs.includes(jobId)) {
+    jobName = jobName.toObject().jobTitle
+
+    const appliedJobs = isApplied.map((each) => each.jobName)
+
+    if (appliedJobs.includes(jobName)) {
       res.status(400).json("You already applied for this job")
     } else {
       const candidateData = await ExperienceApplicaton.findOne({
@@ -499,7 +511,7 @@ router.post("/experience/apply", async (req, res) => {
 
         delete candidateDataObj._id
 
-        candidateDataObj.jobId = jobId
+        candidateDataObj.jobName = jobName
 
         if (candidateDataObj) {
           const application = new ExperienceJob(candidateDataObj)
