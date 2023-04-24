@@ -12,11 +12,17 @@ import HomeHeader from "../CandidateHome"
 import { useState } from "react"
 import { ToastContainer, toast } from "react-toastify"
 import { ThreeDots } from "react-loader-spinner"
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai"
+import Cookies from "js-cookie"
 
 function CandidateForgotPassword() {
   const [validated, setValidated] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [passwordInputType, setPasswordInputType] = useState("password")
+  const [confirmPasswordInputType, setConfirmPasswordInputType] =
+    useState("password")
   const [password, setPassword] = useState({
+    userId: localStorage.getItem("userId"),
     oldPassword: "",
     newPassword: "",
     confirmPassword: "",
@@ -26,7 +32,13 @@ function CandidateForgotPassword() {
     e.preventDefault()
     setValidated(true)
     if (password.newPassword !== password.confirmPassword) {
-      toast.error("Password doesn't match", { position: "top-center" })
+      toast.error("Password doesn't match", {
+        position: "top-center",
+        style: {
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
       return
     }
     if (
@@ -39,22 +51,40 @@ function CandidateForgotPassword() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("userToken")}`,
         },
         body: JSON.stringify(password),
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.status === 200) {
-            toast.success(data.message, { position: "top-center" })
+          if (data.message === "Password updated successfully") {
+            toast.success(data.message, {
+              position: "top-center",
+              style: {
+                marginTop: "30px",
+                margin: "20px",
+              },
+            })
             setIsLoading(false)
           } else {
-            toast.error(data.message, { position: "top-center" })
+            toast.error(data.message, {
+              position: "top-center",
+              style: {
+                marginTop: "30px",
+                margin: "20px",
+              },
+            })
             setIsLoading(false)
           }
         })
         .catch((err) => {
-          toast.error(err.message, { position: "top-center" })
+          toast.error(err.message, {
+            position: "top-center",
+            style: {
+              marginTop: "30px",
+              margin: "20px",
+            },
+          })
           setIsLoading(false)
         })
     }
@@ -96,32 +126,100 @@ function CandidateForgotPassword() {
 
             <Form.Group className="mb-3 mt-2" controlId="newPassword">
               <Form.Label>New Password </Form.Label>
-              <Form.Control
-                required
-                type="password"
-                placeholder=""
-                onChange={(e) => {
-                  setPassword({ ...password, newPassword: e.target.value })
-                }}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please enter your new password.
-              </Form.Control.Feedback>
+              <div className="position-relative">
+                <Form.Control
+                  required
+                  type={passwordInputType}
+                  placeholder=""
+                  onChange={(e) => {
+                    setPassword({ ...password, newPassword: e.target.value })
+                  }}
+                />
+
+                <span
+                  className="position-absolute  bg-white"
+                  style={{
+                    cursor: "pointer",
+                    marginRight: "10px",
+                    height: "30px",
+                    display: "grid",
+                    placeItems: "center",
+                    top: "5px",
+                    right: "0px",
+                  }}
+                  onClick={() =>
+                    setPasswordInputType(
+                      passwordInputType === "password" ? "text" : "password"
+                    )
+                  }
+                >
+                  {passwordInputType === "password" ? (
+                    <AiFillEyeInvisible
+                      id="passwordToggleIcon"
+                      style={{ marginBottom: "10px", fontSize: "18px" }}
+                    />
+                  ) : (
+                    <AiFillEye
+                      id="passwordToggleIcon"
+                      style={{ marginBottom: "10px", fontSize: "18px" }}
+                    />
+                  )}
+                </span>
+                <Form.Control.Feedback type="invalid">
+                  Please enter your new password.
+                </Form.Control.Feedback>
+              </div>
             </Form.Group>
 
             <Form.Group className="mb-3 mt-2" controlId="confirmPassword">
-              <Form.Label>Confirm Password </Form.Label>
-              <Form.Control
-                required
-                type="password"
-                placeholder=""
-                onChange={(e) => {
-                  setPassword({ ...password, confirmPassword: e.target.value })
-                }}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please confirm your password.
-              </Form.Control.Feedback>
+              <div className="position-relative">
+                <Form.Label>Confirm Password </Form.Label>
+                <Form.Control
+                  required
+                  type={confirmPasswordInputType}
+                  placeholder=""
+                  onChange={(e) => {
+                    setPassword({
+                      ...password,
+                      confirmPassword: e.target.value,
+                    })
+                  }}
+                />
+                <span
+                  className="position-absolute  bg-white"
+                  style={{
+                    cursor: "pointer",
+                    marginRight: "10px",
+                    height: "30px",
+                    display: "grid",
+                    placeItems: "center",
+                    top: "50px",
+                    right: "0px",
+                  }}
+                  onClick={() =>
+                    setConfirmPasswordInputType(
+                      confirmPasswordInputType === "password"
+                        ? "text"
+                        : "password"
+                    )
+                  }
+                >
+                  {confirmPasswordInputType === "password" ? (
+                    <AiFillEyeInvisible
+                      id="confirmPasswordToggleIcon"
+                      style={{ marginBottom: "10px", fontSize: "18px" }}
+                    />
+                  ) : (
+                    <AiFillEye
+                      id="confirmPasswordToggleIcon"
+                      style={{ marginBottom: "10px", fontSize: "18px" }}
+                    />
+                  )}
+                </span>
+                <Form.Control.Feedback type="invalid">
+                  Please confirm your password.
+                </Form.Control.Feedback>
+              </div>
             </Form.Group>
 
             <div className="d-grid gap-2 mt-5">
