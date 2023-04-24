@@ -57,7 +57,7 @@ function EmployeeLogin() {
     Cookies.set("employeeToken", token)
     localStorage.setItem("userId", userId)
     setTimeout(() => {
-      history.push("/employee")
+      history.replace("/employee")
     }, 1000)
   }
 

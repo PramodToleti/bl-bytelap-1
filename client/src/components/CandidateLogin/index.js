@@ -55,7 +55,7 @@ function CandidateLogin() {
     Cookies.set("userToken", token)
     localStorage.setItem("userId", userId)
     setTimeout(() => {
-      history.push("/candidate")
+      history.replace("/candidate")
     }, 1000)
   }
 

@@ -50,7 +50,7 @@ function EmployeeStep2() {
     Cookies.set("employeeToken", token)
     localStorage.setItem("userId", userId)
     setTimeout(() => {
-      history.push("/employee/")
+      history.replace("/employee/")
     }, 2000)
   }
 

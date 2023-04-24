@@ -71,7 +71,7 @@ function CandidateStep2() {
       Cookies.set("userToken", data.jwtToken)
       localStorage.setItem("userId", data.userId)
       setTimeout(() => {
-        history.push("/candidate")
+        history.replace("/candidate")
       }, 1000)
     } else {
       setIsLoading(false)
