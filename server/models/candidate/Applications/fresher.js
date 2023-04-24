@@ -84,7 +84,7 @@ const FresherApplicationSchema = new mongoose.Schema({
     ref: Candidate,
     required: true,
   },
-  jobId: {
+  jobName: {
     type: String,
     required: true,
   },
