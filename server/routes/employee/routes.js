@@ -231,4 +231,39 @@ router.post("/update-info", auth, async (req, res) => {
   }
 })
 
+router.post("/update-password", auth, async (req, res) => {
+  const employeeDetails = req.body
+  try {
+    const userId = employeeDetails.userId
+
+    const user = await Employee.findById(userId)
+    if (user) {
+      const isMatch = await bcrypt.compare(
+        employeeDetails.oldPassword,
+        user.password
+      )
+      if (isMatch) {
+        if (employeeDetails.newPassword.length < 5) {
+          res
+            .status(400)
+            .json({ message: "Password must be atleast 5 characters long" })
+        } else {
+          const salt = await bcrypt.genSalt(10)
+          const hash = await bcrypt.hash(employeeDetails.newPassword, salt)
+          user.password = hash
+          await user.save()
+          res.status(200).json({ message: "Password updated successfully" })
+        }
+      } else {
+        res.status(400).json({ message: "Old password is incorrect" })
+      }
+    } else {
+      res.status(400).json({ message: "User not found" })
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: "An error occurred while updating details" })
+  }
+})
+
 module.exports = router
