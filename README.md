@@ -42,7 +42,7 @@ To run the Job Search Engine locally, follow these steps:
 1. Clone the repository to your local machine.
 
 ```bash
-git clone https://github.com/yourusername/job-search-engine.git
+https://github.com/PramodToleti/bl-bytelap-1.git
 ```
 
 2. Change directory to the client folder using the following command:
