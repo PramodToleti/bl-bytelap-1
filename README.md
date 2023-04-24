@@ -1,5 +1,7 @@
 # Job Search Engine
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 🔍 A modern and interactive job search engine developed using the MERN stack technologies.
 
 ![Job Search Engine Demo](https://cdn.dribbble.com/users/3848091/screenshots/7827479/media/5f226eb6aa71d3b639a73d214e716db6.gif)
