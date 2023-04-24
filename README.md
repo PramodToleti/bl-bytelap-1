@@ -76,7 +76,9 @@ npm install
 
 7. Start the backend server by running the following command:
 
+```bash
 npm start
+```
 
 
 8. Make sure to provide your MongoDB URI connection string in the backend server configuration also the Sendinblue API key for email verification.
