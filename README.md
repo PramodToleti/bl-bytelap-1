@@ -2,7 +2,7 @@
 
 🔍 A modern and interactive job search engine developed using the MERN stack technologies.
 
-![Job Search Engine Demo](https://cdn.dribbble.com/users/1242979/screenshots/7025888/media/68202e8081679b1c470a89b6b8e541a9.gif)
+![Job Search Engine Demo]([https://cdn.dribbble.com/users/1242979/screenshots/7025888/media/68202e8081679b1c470a89b6b8e541a9.gif])
 
 ## Features
 
