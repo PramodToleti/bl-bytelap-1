@@ -16,7 +16,7 @@ function Accountsetting() {
   useEffect(() => {
     async function fetchData() {
       setLoading(true)
-      const token = Cookies.get("employeeToken")
+      /*  const token = Cookies.get("employeeToken")
       const userId = localStorage.getItem("userId")
 
       const options = {
@@ -27,11 +27,8 @@ function Accountsetting() {
         },
         body: JSON.stringify({ userId }),
       }
-
-      const response = await fetch(
-        "http://localhost:5000/candidate/applications",
-        options
-      )
+ */
+      const response = await fetch("http://localhost:5000/candidate/jobs")
       const data = await response.json()
       if (response.ok) {
         setApplications(data)

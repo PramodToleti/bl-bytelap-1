@@ -3,12 +3,13 @@ import { Col } from "react-bootstrap"
 import Stack from "react-bootstrap/Stack"
 import { NavDropdown } from "react-bootstrap"
 import { Link, useHistory } from "react-router-dom"
+import PostTime from "../../../../assets/PostTime"
 
 const Experience = (props) => {
   const history = useHistory()
   const expData = props.ExperienceApplications
 
-  const jobApplications = {}
+  /* const jobApplications = {}
 
   const jobTitles = []
 
@@ -26,6 +27,7 @@ const Experience = (props) => {
   for (const [key, value] of Object.entries(jobApplications)) {
     jobTitles.push({ key, no: value.length })
   }
+ */
 
   if (expData.length === 0) {
     return (
@@ -47,19 +49,16 @@ const Experience = (props) => {
     )
   }
 
-  return jobTitles.map((each, index) => {
-    localStorage.setItem(
-      "experienceData",
-      JSON.stringify(jobApplications[each.key])
-    )
+  return expData.map((each, index) => {
     return (
       <div
-        className="col-lg-6 col-md-6 search-course-right rounded mt-0 p-2  p-3 mb-4"
+        className="col-lg-6 col-md-6 search-course-right rounded mt-0 mb-4"
         style={{
           boxShadow:
             "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+          padding: "22px",
         }}
-        key={each.key}
+        key={index}
       >
         <Form.Group
           as={Col}
@@ -74,15 +73,22 @@ const Experience = (props) => {
               alignItems: "center",
             }}
           >
-            <p className="text-start" style={{ marginBottom: "15px" }}>
-              {each.key}
+            <p
+              className="text-start"
+              style={{
+                marginBottom: "15px",
+                marginRight: "4px",
+                fontWeight: "600",
+              }}
+            >
+              {each.jobTitle}
             </p>
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                minWidth: "130px",
+                minWidth: "125px",
               }}
             >
               <p style={{ marginBottom: "15px", fontSize: "15px" }}>Open</p>
@@ -123,15 +129,25 @@ const Experience = (props) => {
           </div>
 
           <p
-            className="text-start fs-10"
-            style={{ color: "blue", cursor: "pointer" }}
+            className="text-start"
+            style={{ color: "blue", cursor: "pointer", fontSize: "16px" }}
             onClick={() => {
               history.push("/employee/dashboard/active-posts/job/experience")
             }}
           >
-            {`View Application's (${each.no})`}
+            {`View Application's (0)`}
           </p>
         </Form.Group>
+        <p
+          style={{
+            fontSize: "13px",
+            marginTop: "10px",
+            marginBottom: "0px",
+            color: "#000",
+          }}
+        >
+          {<PostTime time={each.time} />}
+        </p>
       </div>
     )
   })
