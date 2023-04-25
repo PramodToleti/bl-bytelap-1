@@ -130,7 +130,7 @@ const Fresher = (props) => {
             className="text-start"
             style={{ color: "blue", cursor: "pointer", fontSize: "16px" }}
             onClick={() => {
-              history.push("/employee/dashboard/active-posts/job/experience")
+              history.push("/employee/dashboard/active-posts/job/fresher")
             }}
           >
             {`View Application's (0)`}

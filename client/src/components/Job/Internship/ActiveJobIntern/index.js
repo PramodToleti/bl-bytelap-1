@@ -19,7 +19,7 @@ import { useState } from "react"
 function ActiveJobIntern(props) {
   const location = useLocation()
   const history = useHistory()
-  const internData = JSON.parse(localStorage.getItem("internData"))
+  const internData = props.InternshipApplications
   const { sticky, stickyRef } = StickyContainer()
   const [activeType, setActiveType] = useState("")
   const [lgShow, setLgShow] = useState(false)
@@ -28,25 +28,247 @@ function ActiveJobIntern(props) {
     setActiveType(e.target.textContent)
   }
 
-  if (internData === null) {
-    return (
-      <>
-        <EmployeeHome />
-        <p>
-          Not Jobs Available. Please{" "}
-          <Link
-            to="/employee"
-            style={{
-              color: "black",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
+  const renderApplications = () => {
+    if (internData === undefined || internData.length === 0) {
+      return (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "20rem",
+          }}
+        >
+          <p>
+            No Applications Available. Please{" "}
+            <Link
+              to="/employee"
+              style={{
+                color: "blue",
+                textDecoration: "none",
+                cursor: "pointer",
+              }}
+            >
+              Go Back
+            </Link>
+          </p>
+        </div>
+      )
+    } else {
+      return (
+        <div
+          style={{
+            height: "43rem",
+            overflow: "scroll",
+            paddingBottom: "50px",
+            maxHeight: "500px",
+          }}
+          className="find-resume-container"
+        >
+          <div style={{ maxWidth: "680px" }}>
+            {internData.map((data, index) => (
+              <div className="application mb-4">
+                <Card
+                  className="col-lg-5 col-md-5  main-details-card  mb-0 mt-2 p-0    card-details"
+                  style={{ border: "0px" }}
+                >
+                  <Card.Body className="card-size">
+                    <Card.Title>{data.username}</Card.Title>
+                    <Card.Text>{data.jobName}</Card.Text>
+                    <Card.Text className=" text-muted ">
+                      CoverLetter &nbsp; : &nbsp; {data.coverLetter}{" "}
+                      <Card.Text></Card.Text>
+                    </Card.Text>
+                    <Card.Text className="perks-mobile text-muted">
+                      Skills &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                      &nbsp;&nbsp;{" "}
+                      {data.skills.length > 3 ? (
+                        <>
+                          <h6 className="preview-perks">{data.skills[0]}</h6>
+                          <h6 className="preview-perks">{data.skills[1]}</h6>
+                          <h6 className="preview-perks">
+                            {data.skills[2]}{" "}
+                          </h6>{" "}
+                          ...
+                        </>
+                      ) : (
+                        data.skills.map((each, i) => (
+                          <h6 className="preview-perks" key={i}>
+                            {each}
+                          </h6>
+                        ))
+                      )}
+                    </Card.Text>
+                    <Card.Text className="perks-desktop text-muted">
+                      Skills &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                      &nbsp;&nbsp;{" "}
+                      {data.skills.map((each) => (
+                        <p className="preview-skills">{each}</p>
+                      ))}
+                    </Card.Text>
+                    <Card.Text className=" text-muted">
+                      Portfolio &nbsp; &nbsp;: &nbsp;&nbsp;{" "}
+                      {data.projectDetails.map((each) => (
+                        <a
+                          href=""
+                          style={{
+                            color: "Blue",
+                            textDecoration: "none",
+                            fontWeight: "400",
+                          }}
+                        >
+                          {each.title} &nbsp;&nbsp;&nbsp;
+                        </a>
+                      ))}
+                    </Card.Text>
+                    <Card.Text className=" text-muted">
+                      Available &nbsp; : &nbsp;&nbsp; {data.availability}
+                    </Card.Text>
+
+                    <div>
+                      <div className="interested-btn-container">
+                        <Button
+                          variant="outline-success"
+                          size="sm"
+                          className=" mt-3"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Interested
+                        </Button>{" "}
+                        <Button
+                          variant="outline-primary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Shortlisted
+                        </Button>
+                        <Button
+                          variant="outline-secondary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Hire
+                        </Button>{" "}
+                        <Button
+                          variant="outline-secondary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Not Interested
+                        </Button>{" "}
+                        <Button variant="light" className=" mt-3" size="sm">
+                          Call
+                        </Button>{" "}
+                        <Button
+                          variant="link"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={() => setLgShow(true)}
+                        >
+                          View Resume
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="interested-btn-container-desktop">
+                      <div className="btns-container">
+                        <Button
+                          variant="outline-success"
+                          size="sm"
+                          className="mt-3"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Interested
+                        </Button>{" "}
+                        <Button
+                          variant="outline-primary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Shortlisted
+                        </Button>{" "}
+                        <Button
+                          variant="outline-secondary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Hire
+                        </Button>
+                        <Button
+                          variant="outline-secondary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Not Interested
+                        </Button>{" "}
+                      </div>
+                      <div>
+                        <Button variant="light" className=" mt-3" size="sm">
+                          Call
+                        </Button>{" "}
+                        <Button
+                          variant="link"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={() => setLgShow(true)}
+                        >
+                          View Resume
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "end",
+                      }}
+                    >
+                      <p
+                        className="mt-4"
+                        style={{ color: "blue", marginBottom: "0px" }}
+                        onClick={() => {
+                          history.push(
+                            "/employee/dashboard/active-posts/job/internship/view-applicant",
+                            data
+                          )
+                        }}
+                      >
+                        View Application
+                      </p>
+                    </div>
+
+                    <p style={{ fontSize: "12px", margin: "0px" }}>
+                      Update: <PostTime time={data.time} />
+                    </p>
+                  </Card.Body>
+                </Card>
+              </div>
+            ))}
+          </div>
+          <Modal
+            size="lg"
+            show={lgShow}
+            onHide={() => setLgShow(false)}
+            aria-labelledby="example-modal-sizes-title-lg"
           >
-            Go Back
-          </Link>
-        </p>
-      </>
-    )
+            <Modal.Header closeButton>
+              <Modal.Title id="example-modal-sizes-title-lg">
+                Resume
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div>No PDF file specified</div>
+            </Modal.Body>
+          </Modal>
+        </div>
+      )
+    }
   }
 
   return (
@@ -253,231 +475,7 @@ function ActiveJobIntern(props) {
                 </Form.Select>
               </Form.Group>
 
-              <div
-                style={{
-                  height: "43rem",
-                  overflow: "scroll",
-                  paddingBottom: "50px",
-                  maxHeight: "500px",
-                }}
-                className="find-resume-container"
-              >
-                <div style={{ maxWidth: "680px" }}>
-                  {internData.map((data, index) => (
-                    <div className="application mb-4">
-                      <Card
-                        className="col-lg-5 col-md-5  main-details-card  mb-0 mt-2 p-0    card-details"
-                        style={{ border: "0px" }}
-                      >
-                        <Card.Body className="card-size">
-                          <Card.Title>{data.username}</Card.Title>
-                          <Card.Text>{data.jobName}</Card.Text>
-                          <Card.Text className=" text-muted ">
-                            CoverLetter &nbsp; : &nbsp; {data.coverLetter}{" "}
-                            <Card.Text></Card.Text>
-                          </Card.Text>
-                          <Card.Text className="perks-mobile text-muted">
-                            Skills &nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                            &nbsp;&nbsp;{" "}
-                            {data.skills.length > 3 ? (
-                              <>
-                                <h6 className="preview-perks">
-                                  {data.skills[0]}
-                                </h6>
-                                <h6 className="preview-perks">
-                                  {data.skills[1]}
-                                </h6>
-                                <h6 className="preview-perks">
-                                  {data.skills[2]}{" "}
-                                </h6>{" "}
-                                ...
-                              </>
-                            ) : (
-                              data.skills.map((each, i) => (
-                                <h6 className="preview-perks" key={i}>
-                                  {each}
-                                </h6>
-                              ))
-                            )}
-                          </Card.Text>
-                          <Card.Text className="perks-desktop text-muted">
-                            Skills &nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                            &nbsp;&nbsp;{" "}
-                            {data.skills.map((each) => (
-                              <p className="preview-skills">{each}</p>
-                            ))}
-                          </Card.Text>
-                          <Card.Text className=" text-muted">
-                            Portfolio &nbsp; &nbsp;: &nbsp;&nbsp;{" "}
-                            {data.projectDetails.map((each) => (
-                              <a
-                                href=""
-                                style={{
-                                  color: "Blue",
-                                  textDecoration: "none",
-                                  fontWeight: "400",
-                                }}
-                              >
-                                {each.title} &nbsp;&nbsp;&nbsp;
-                              </a>
-                            ))}
-                          </Card.Text>
-                          <Card.Text className=" text-muted">
-                            Available &nbsp; : &nbsp;&nbsp; {data.availability}
-                          </Card.Text>
-
-                          <div>
-                            <div className="interested-btn-container">
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className=" mt-3"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Interested
-                              </Button>{" "}
-                              <Button
-                                variant="outline-primary"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Shortlisted
-                              </Button>
-                              <Button
-                                variant="outline-secondary"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Hire
-                              </Button>{" "}
-                              <Button
-                                variant="outline-secondary"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Not Interested
-                              </Button>{" "}
-                              <Button
-                                variant="light"
-                                className=" mt-3"
-                                size="sm"
-                              >
-                                Call
-                              </Button>{" "}
-                              <Button
-                                variant="link"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={() => setLgShow(true)}
-                              >
-                                View Resume
-                              </Button>
-                            </div>
-                          </div>
-
-                          <div className="interested-btn-container-desktop">
-                            <div className="btns-container">
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="mt-3"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Interested
-                              </Button>{" "}
-                              <Button
-                                variant="outline-primary"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Shortlisted
-                              </Button>{" "}
-                              <Button
-                                variant="outline-secondary"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Hire
-                              </Button>
-                              <Button
-                                variant="outline-secondary"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Not Interested
-                              </Button>{" "}
-                            </div>
-                            <div>
-                              <Button
-                                variant="light"
-                                className=" mt-3"
-                                size="sm"
-                              >
-                                Call
-                              </Button>{" "}
-                              <Button
-                                variant="link"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={() => setLgShow(true)}
-                              >
-                                View Resume
-                              </Button>
-                            </div>
-                          </div>
-
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "end",
-                            }}
-                          >
-                            <p
-                              className="mt-4"
-                              style={{ color: "blue", marginBottom: "0px" }}
-                              onClick={() => {
-                                history.push(
-                                  "/employee/dashboard/active-posts/job/internship/view-applicant",
-                                  data
-                                )
-                              }}
-                            >
-                              View Application
-                            </p>
-                          </div>
-
-                          <p style={{ fontSize: "12px", margin: "0px" }}>
-                            Update: <PostTime time={data.time} />
-                          </p>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  ))}
-                </div>
-                <Modal
-                  size="lg"
-                  show={lgShow}
-                  onHide={() => setLgShow(false)}
-                  aria-labelledby="example-modal-sizes-title-lg"
-                >
-                  <Modal.Header closeButton>
-                    <Modal.Title id="example-modal-sizes-title-lg">
-                      Resume
-                    </Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <div>No PDF file specified</div>
-                  </Modal.Body>
-                </Modal>
-              </div>
+              {renderApplications()}
             </div>
           </div>
           {sticky && (

@@ -20,34 +20,491 @@ import { useState } from "react"
 function ActiveJobExp(props) {
   const { sticky, stickyRef } = StickyContainer()
   const [activeType, setActiveType] = useState("")
+  const experienceData = props.experienceData
   const [lgShow, setLgShow] = useState(false)
 
   const handleActiveType = (e) => {
     setActiveType(e.target.textContent)
   }
 
-  let experienceData = JSON.parse(localStorage.getItem("experienceData"))
   console.log(experienceData)
 
-  if (experienceData === null) {
-    return (
-      <>
-        <EmployeeHome />
-        <p>
-          Not Jobs Available. Please{" "}
-          <Link
-            to="/employee"
-            style={{
-              color: "black",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
-            Go Back
-          </Link>
-        </p>
-      </>
-    )
+  const renderApplications = () => {
+    if (experienceData === undefined || experienceData.length === 0) {
+      return (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "20rem",
+          }}
+        >
+          <p>
+            No Applications Available. Please{" "}
+            <Link
+              to="/employee"
+              style={{
+                color: "black",
+                textDecoration: "none",
+                cursor: "pointer",
+              }}
+            >
+              Go Back
+            </Link>
+          </p>
+        </div>
+      )
+    } else {
+      return (
+        <div
+          style={{
+            height: "43rem",
+            overflow: "scroll",
+            paddingBottom: "50px",
+            maxHeight: "550px",
+          }}
+          className="find-resume-container"
+        >
+          <div style={{ maxWidth: "680px" }}>
+            {experienceData.map((data) => (
+              <div className="application">
+                <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-2 p-4        container reveal  p-3 mb-5   rounded card-size">
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <div>
+                      <h4>{data.username}</h4>
+                      <p>{data.jobName}</p>
+                    </div>
+                  </div>
+
+                  <div
+                    className="mt-3 mb-2"
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      maxWidth: "400px",
+                    }}
+                  >
+                    <div>
+                      <BsBagFill
+                        style={{
+                          color: "grey",
+                          fontSize: "20px",
+                          marginBottom: "5px",
+                        }}
+                      />
+                      <span className="location">
+                        {" "}
+                        {data.experience.years} years
+                      </span>
+                    </div>
+                    <div>
+                      <BiRupee
+                        style={{
+                          color: "grey",
+                          fontSize: "20px",
+                          marginBottom: "5px",
+                        }}
+                      />
+                      <span className="location"> {data.ctc.lacs} LPA</span>
+                    </div>
+                    <div>
+                      <p className="location">
+                        <ImLocation
+                          style={{
+                            fontSize: "20px",
+                            color: "grey",
+                            marginBottom: "5px",
+                          }}
+                        />{" "}
+                        Indore, MP
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="card-container-mobile">
+                    <div className="mt-3 perks-mobile">
+                      <p className="text-muted">Skill's &nbsp;&nbsp;: </p>
+                      {data.skills.length > 3 ? (
+                        <>
+                          <h6 className="preview-perks text-muted">
+                            {data.skills[0]}
+                          </h6>
+                          <h6 className="preview-perks text-muted">
+                            {data.skills[1]}
+                          </h6>
+                          <h6 className="preview-perks text-muted">
+                            {data.skills[2]}{" "}
+                          </h6>{" "}
+                          ...
+                        </>
+                      ) : (
+                        data.skills.map((each, i) => (
+                          <h6 className="preview-perks" key={i}>
+                            {each}
+                          </h6>
+                        ))
+                      )}
+                    </div>
+
+                    <div className="mt-3">
+                      <div>
+                        <p className="text-muted">
+                          <span className="text-muted">
+                            Cover Letter &nbsp;:
+                          </span>{" "}
+                          &nbsp;&nbsp;&nbsp;{data.coverLetter}
+                        </p>
+                      </div>
+                    </div>
+
+                    {data.employementHistory.map((each) =>
+                      each.present === true ? (
+                        <div
+                          className="mt-3  text-muted"
+                          style={{ display: "flex" }}
+                        >
+                          <p className="mt-2">Current Company &nbsp;:</p>
+                          &nbsp;&nbsp;&nbsp;
+                          <div>
+                            <p>{each.companyName}</p>
+                            <p>
+                              {new Date(each.startDate).toLocaleString(
+                                "default",
+                                {
+                                  month: "short",
+                                  year: "numeric",
+                                }
+                              )}{" "}
+                              - Present &nbsp;&nbsp;&nbsp;
+                            </p>
+                            <ImLocation
+                              style={{
+                                fontSize: "16px",
+                                color: "grey",
+                                marginBottom: "5px",
+                              }}
+                            />{" "}
+                            {each.location[0].label}
+                          </div>
+                        </div>
+                      ) : (
+                        <div
+                          className="mt-3  text-muted"
+                          style={{ display: "flex" }}
+                        >
+                          <p className="mt-2" style={{ maxWidth: "115px" }}>
+                            Previous Company &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                          </p>
+                          &nbsp;&nbsp;&nbsp;
+                          <div>
+                            <p>{each.companyName}</p>
+                            <p>
+                              {new Date(each.startDate).toLocaleString(
+                                "default",
+                                {
+                                  month: "short",
+                                  year: "numeric",
+                                }
+                              )}{" "}
+                              -{" "}
+                              {new Date(each.endDate).toLocaleString(
+                                "default",
+                                {
+                                  month: "short",
+                                  year: "numeric",
+                                }
+                              )}{" "}
+                            </p>
+                            &nbsp;&nbsp;&nbsp;
+                            <ImLocation
+                              style={{
+                                fontSize: "16px",
+                                color: "grey",
+                                marginBottom: "5px",
+                              }}
+                            />{" "}
+                            {each.location[0].label}
+                          </div>
+                        </div>
+                      )
+                    )}
+
+                    <div
+                      style={{ display: "flex", gap: "10px" }}
+                      className="mt-3"
+                    >
+                      <div className="text-muted" style={{ width: "250px" }}>
+                        <p>
+                          Preferred Location &nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;:
+                        </p>
+                      </div>
+                      <div className="text-muted">
+                        {JSON.parse(data.preferredLocation[0]).map((each) => (
+                          <span
+                            className="text-muted"
+                            style={{ fontSize: "16px" }}
+                          >
+                            {each.label}, &nbsp;
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div
+                      className="mt-3 text-muted"
+                      style={{ display: "flex" }}
+                    >
+                      <p>Notice Period : &nbsp; {data.availability}</p>
+                    </div>
+                  </div>
+
+                  <div className="card-container">
+                    <div className="skill-header-e text-muted">
+                      <p>Skills</p>
+                    </div>
+                    <div className="colon">:</div>
+                    <div className="react-e">
+                      {data.skills.map((each) => (
+                        <p className="preview-skills">{each}</p>
+                      ))}
+                    </div>
+
+                    <div className="letter-header-e text-muted">
+                      <p>Cover Letter</p>
+                    </div>
+                    <div>:</div>
+                    <div className="letter">
+                      <p className="text-muted">{data.coverLetter}</p>
+                    </div>
+
+                    {data.employementHistory.map((each) =>
+                      each.present === true ? (
+                        <>
+                          <div className="current-e text-muted">
+                            <p>Current Company</p>
+                          </div>
+                          <div>:</div>
+                          <div className="current-company text-muted">
+                            <p className="text-muted">
+                              {each.profile} at {each.company}
+                            </p>
+                            <span
+                              className="text-muted"
+                              style={{ fontSize: "14px" }}
+                            >
+                              {new Date(each.startDate).toLocaleString(
+                                "default",
+                                {
+                                  month: "short",
+                                  year: "numeric",
+                                }
+                              )}{" "}
+                              - Present
+                            </span>
+                            &nbsp;&nbsp;&nbsp;
+                            <ImLocation
+                              style={{
+                                fontSize: "16px",
+                                color: "grey",
+                                marginBottom: "5px",
+                              }}
+                            />{" "}
+                            {each.location[0].label}
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="current-e text-muted">
+                            <p>Previous Company</p>
+                          </div>
+                          <div>:</div>
+                          <div className="current-company text-muted">
+                            <p className="text-muted">
+                              {each.profile} at {each.company}
+                            </p>
+                            <span className="text-muted">
+                              {new Date(each.startDate).toLocaleString(
+                                "default",
+                                {
+                                  month: "short",
+                                  year: "numeric",
+                                }
+                              )}{" "}
+                              -{" "}
+                              {new Date(each.endDate).toLocaleString(
+                                "default",
+                                {
+                                  month: "short",
+                                  year: "numeric",
+                                }
+                              )}
+                            </span>
+                            &nbsp;&nbsp;&nbsp;
+                            <ImLocation
+                              style={{
+                                fontSize: "16px",
+                                color: "grey",
+                                marginBottom: "5px",
+                              }}
+                            />{" "}
+                            {each.location[0].label}
+                          </div>
+                        </>
+                      )
+                    )}
+
+                    <div className="preferred-e text-muted">
+                      <p>Preferred Location </p>
+                    </div>
+                    <div className="colon">:</div>
+                    <div className="location-e text-muted">
+                      {JSON.parse(data.preferredLocation[0]).map((each) => (
+                        <span
+                          className="text-muted"
+                          style={{ fontSize: "16px" }}
+                        >
+                          {each.label}, &nbsp;
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="notice-e text-muted">
+                      <p>Notice Period</p>
+                    </div>
+                    <div>:</div>
+                    <div className="notice-company text-muted">
+                      <p className="text-muted">{data.availability}</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-3"></div>
+                  <div>
+                    <div className="interested-btn-container">
+                      <Button
+                        variant="outline-success"
+                        size="sm"
+                        className=" mt-3"
+                        onClick={(e) => handleActiveType(e)}
+                      >
+                        Interested
+                      </Button>{" "}
+                      <Button
+                        variant="outline-primary"
+                        className=" mt-3"
+                        size="sm"
+                        onClick={(e) => handleActiveType(e)}
+                      >
+                        Shortlisted
+                      </Button>
+                      <Button
+                        variant="outline-secondary"
+                        className=" mt-3"
+                        size="sm"
+                        onClick={(e) => handleActiveType(e)}
+                      >
+                        Hire
+                      </Button>{" "}
+                      <Button
+                        variant="outline-secondary"
+                        className=" mt-3"
+                        size="sm"
+                        onClick={(e) => handleActiveType(e)}
+                      >
+                        Not Interested
+                      </Button>{" "}
+                      <Button variant="light" className=" mt-3" size="sm">
+                        Call
+                      </Button>{" "}
+                      <Button
+                        variant="link"
+                        className=" mt-3"
+                        size="sm"
+                        onClick={() => setLgShow(true)}
+                      >
+                        View Resume
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="interested-btn-container-desktop">
+                      <div className="btns-container">
+                        <Button
+                          variant="outline-success"
+                          size="sm"
+                          className="mt-3"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Interested
+                        </Button>{" "}
+                        <Button
+                          variant="outline-primary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Shortlisted
+                        </Button>{" "}
+                        <Button
+                          variant="outline-secondary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Hire
+                        </Button>
+                        <Button
+                          variant="outline-secondary"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={(e) => handleActiveType(e)}
+                        >
+                          Not Interested
+                        </Button>{" "}
+                      </div>
+                      <div>
+                        <Button variant="light" className=" mt-3" size="sm">
+                          Call
+                        </Button>{" "}
+                        <Button
+                          variant="link"
+                          className=" mt-3"
+                          size="sm"
+                          onClick={() => setLgShow(true)}
+                        >
+                          View Resume
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <Link
+                    to="/employee/dashboard/active-posts/job/experience/view-applicant"
+                    className="nav-link"
+                  >
+                    <div style={{ display: "flex", justifyContent: "end" }}>
+                      <p className="mt-4" style={{ color: "blue" }}>
+                        View Application
+                      </p>
+                    </div>
+                  </Link>
+                  <p style={{ fontSize: "12px", margin: "0px" }}>
+                    Update: <PostTime time={data.time} />
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
   }
 
   return (
@@ -261,472 +718,7 @@ function ActiveJobExp(props) {
                 </Form.Select>
               </Form.Group>
 
-              <div
-                style={{
-                  height: "43rem",
-                  overflow: "scroll",
-                  paddingBottom: "50px",
-                  maxHeight: "550px",
-                }}
-                className="find-resume-container"
-              >
-                <div style={{ maxWidth: "680px" }}>
-                  {experienceData.map((data) => (
-                    <div className="application">
-                      <div className="col-lg-12 col-md-12 search-course-right   mb-0 mt-2 p-4        container reveal  p-3 mb-5   rounded card-size">
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                          }}
-                        >
-                          <div>
-                            <h4>{data.username}</h4>
-                            <p>{data.jobName}</p>
-                          </div>
-                        </div>
-
-                        <div
-                          className="mt-3 mb-2"
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            maxWidth: "400px",
-                          }}
-                        >
-                          <div>
-                            <BsBagFill
-                              style={{
-                                color: "grey",
-                                fontSize: "20px",
-                                marginBottom: "5px",
-                              }}
-                            />
-                            <span className="location">
-                              {" "}
-                              {data.experience.years} years
-                            </span>
-                          </div>
-                          <div>
-                            <BiRupee
-                              style={{
-                                color: "grey",
-                                fontSize: "20px",
-                                marginBottom: "5px",
-                              }}
-                            />
-                            <span className="location">
-                              {" "}
-                              {data.ctc.lacs} LPA
-                            </span>
-                          </div>
-                          <div>
-                            <p className="location">
-                              <ImLocation
-                                style={{
-                                  fontSize: "20px",
-                                  color: "grey",
-                                  marginBottom: "5px",
-                                }}
-                              />{" "}
-                              Indore, MP
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="card-container-mobile">
-                          <div className="mt-3 perks-mobile">
-                            <p className="text-muted">Skill's &nbsp;&nbsp;: </p>
-                            {data.skills.length > 3 ? (
-                              <>
-                                <h6 className="preview-perks text-muted">
-                                  {data.skills[0]}
-                                </h6>
-                                <h6 className="preview-perks text-muted">
-                                  {data.skills[1]}
-                                </h6>
-                                <h6 className="preview-perks text-muted">
-                                  {data.skills[2]}{" "}
-                                </h6>{" "}
-                                ...
-                              </>
-                            ) : (
-                              data.skills.map((each, i) => (
-                                <h6 className="preview-perks" key={i}>
-                                  {each}
-                                </h6>
-                              ))
-                            )}
-                          </div>
-
-                          <div className="mt-3">
-                            <div>
-                              <p className="text-muted">
-                                <span className="text-muted">
-                                  Cover Letter &nbsp;:
-                                </span>{" "}
-                                &nbsp;&nbsp;&nbsp;{data.coverLetter}
-                              </p>
-                            </div>
-                          </div>
-
-                          {data.employementHistory.map((each) =>
-                            each.present === true ? (
-                              <div
-                                className="mt-3  text-muted"
-                                style={{ display: "flex" }}
-                              >
-                                <p className="mt-2">Current Company &nbsp;:</p>
-                                &nbsp;&nbsp;&nbsp;
-                                <div>
-                                  <p>{each.companyName}</p>
-                                  <p>
-                                    {new Date(each.startDate).toLocaleString(
-                                      "default",
-                                      {
-                                        month: "short",
-                                        year: "numeric",
-                                      }
-                                    )}{" "}
-                                    - Present &nbsp;&nbsp;&nbsp;
-                                  </p>
-                                  <ImLocation
-                                    style={{
-                                      fontSize: "16px",
-                                      color: "grey",
-                                      marginBottom: "5px",
-                                    }}
-                                  />{" "}
-                                  {each.location[0].label}
-                                </div>
-                              </div>
-                            ) : (
-                              <div
-                                className="mt-3  text-muted"
-                                style={{ display: "flex" }}
-                              >
-                                <p
-                                  className="mt-2"
-                                  style={{ maxWidth: "115px" }}
-                                >
-                                  Previous Company
-                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                                </p>
-                                &nbsp;&nbsp;&nbsp;
-                                <div>
-                                  <p>{each.companyName}</p>
-                                  <p>
-                                    {new Date(each.startDate).toLocaleString(
-                                      "default",
-                                      {
-                                        month: "short",
-                                        year: "numeric",
-                                      }
-                                    )}{" "}
-                                    -{" "}
-                                    {new Date(each.endDate).toLocaleString(
-                                      "default",
-                                      {
-                                        month: "short",
-                                        year: "numeric",
-                                      }
-                                    )}{" "}
-                                  </p>
-                                  &nbsp;&nbsp;&nbsp;
-                                  <ImLocation
-                                    style={{
-                                      fontSize: "16px",
-                                      color: "grey",
-                                      marginBottom: "5px",
-                                    }}
-                                  />{" "}
-                                  {each.location[0].label}
-                                </div>
-                              </div>
-                            )
-                          )}
-
-                          <div
-                            style={{ display: "flex", gap: "10px" }}
-                            className="mt-3"
-                          >
-                            <div
-                              className="text-muted"
-                              style={{ width: "250px" }}
-                            >
-                              <p>
-                                Preferred Location &nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;:
-                              </p>
-                            </div>
-                            <div className="text-muted">
-                              {JSON.parse(data.preferredLocation[0]).map(
-                                (each) => (
-                                  <span
-                                    className="text-muted"
-                                    style={{ fontSize: "16px" }}
-                                  >
-                                    {each.label}, &nbsp;
-                                  </span>
-                                )
-                              )}
-                            </div>
-                          </div>
-
-                          <div
-                            className="mt-3 text-muted"
-                            style={{ display: "flex" }}
-                          >
-                            <p>Notice Period : &nbsp; {data.availability}</p>
-                          </div>
-                        </div>
-
-                        <div className="card-container">
-                          <div className="skill-header-e text-muted">
-                            <p>Skills</p>
-                          </div>
-                          <div className="colon">:</div>
-                          <div className="react-e">
-                            {data.skills.map((each) => (
-                              <p className="preview-skills">{each}</p>
-                            ))}
-                          </div>
-
-                          <div className="letter-header-e text-muted">
-                            <p>Cover Letter</p>
-                          </div>
-                          <div>:</div>
-                          <div className="letter">
-                            <p className="text-muted">{data.coverLetter}</p>
-                          </div>
-
-                          {data.employementHistory.map((each) =>
-                            each.present === true ? (
-                              <>
-                                <div className="current-e text-muted">
-                                  <p>Current Company</p>
-                                </div>
-                                <div>:</div>
-                                <div className="current-company text-muted">
-                                  <p className="text-muted">
-                                    {each.profile} at {each.company}
-                                  </p>
-                                  <span
-                                    className="text-muted"
-                                    style={{ fontSize: "14px" }}
-                                  >
-                                    {new Date(each.startDate).toLocaleString(
-                                      "default",
-                                      {
-                                        month: "short",
-                                        year: "numeric",
-                                      }
-                                    )}{" "}
-                                    - Present
-                                  </span>
-                                  &nbsp;&nbsp;&nbsp;
-                                  <ImLocation
-                                    style={{
-                                      fontSize: "16px",
-                                      color: "grey",
-                                      marginBottom: "5px",
-                                    }}
-                                  />{" "}
-                                  {each.location[0].label}
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <div className="current-e text-muted">
-                                  <p>Previous Company</p>
-                                </div>
-                                <div>:</div>
-                                <div className="current-company text-muted">
-                                  <p className="text-muted">
-                                    {each.profile} at {each.company}
-                                  </p>
-                                  <span className="text-muted">
-                                    {new Date(each.startDate).toLocaleString(
-                                      "default",
-                                      {
-                                        month: "short",
-                                        year: "numeric",
-                                      }
-                                    )}{" "}
-                                    -{" "}
-                                    {new Date(each.endDate).toLocaleString(
-                                      "default",
-                                      {
-                                        month: "short",
-                                        year: "numeric",
-                                      }
-                                    )}
-                                  </span>
-                                  &nbsp;&nbsp;&nbsp;
-                                  <ImLocation
-                                    style={{
-                                      fontSize: "16px",
-                                      color: "grey",
-                                      marginBottom: "5px",
-                                    }}
-                                  />{" "}
-                                  {each.location[0].label}
-                                </div>
-                              </>
-                            )
-                          )}
-
-                          <div className="preferred-e text-muted">
-                            <p>Preferred Location </p>
-                          </div>
-                          <div className="colon">:</div>
-                          <div className="location-e text-muted">
-                            {JSON.parse(data.preferredLocation[0]).map(
-                              (each) => (
-                                <span
-                                  className="text-muted"
-                                  style={{ fontSize: "16px" }}
-                                >
-                                  {each.label}, &nbsp;
-                                </span>
-                              )
-                            )}
-                          </div>
-
-                          <div className="notice-e text-muted">
-                            <p>Notice Period</p>
-                          </div>
-                          <div>:</div>
-                          <div className="notice-company text-muted">
-                            <p className="text-muted">{data.availability}</p>
-                          </div>
-                        </div>
-
-                        <div className="mt-3"></div>
-                        <div>
-                          <div className="interested-btn-container">
-                            <Button
-                              variant="outline-success"
-                              size="sm"
-                              className=" mt-3"
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Interested
-                            </Button>{" "}
-                            <Button
-                              variant="outline-primary"
-                              className=" mt-3"
-                              size="sm"
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Shortlisted
-                            </Button>
-                            <Button
-                              variant="outline-secondary"
-                              className=" mt-3"
-                              size="sm"
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Hire
-                            </Button>{" "}
-                            <Button
-                              variant="outline-secondary"
-                              className=" mt-3"
-                              size="sm"
-                              onClick={(e) => handleActiveType(e)}
-                            >
-                              Not Interested
-                            </Button>{" "}
-                            <Button variant="light" className=" mt-3" size="sm">
-                              Call
-                            </Button>{" "}
-                            <Button
-                              variant="link"
-                              className=" mt-3"
-                              size="sm"
-                              onClick={() => setLgShow(true)}
-                            >
-                              View Resume
-                            </Button>
-                          </div>
-                        </div>
-
-                        <div>
-                          <div className="interested-btn-container-desktop">
-                            <div className="btns-container">
-                              <Button
-                                variant="outline-success"
-                                size="sm"
-                                className="mt-3"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Interested
-                              </Button>{" "}
-                              <Button
-                                variant="outline-primary"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Shortlisted
-                              </Button>{" "}
-                              <Button
-                                variant="outline-secondary"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Hire
-                              </Button>
-                              <Button
-                                variant="outline-secondary"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={(e) => handleActiveType(e)}
-                              >
-                                Not Interested
-                              </Button>{" "}
-                            </div>
-                            <div>
-                              <Button
-                                variant="light"
-                                className=" mt-3"
-                                size="sm"
-                              >
-                                Call
-                              </Button>{" "}
-                              <Button
-                                variant="link"
-                                className=" mt-3"
-                                size="sm"
-                                onClick={() => setLgShow(true)}
-                              >
-                                View Resume
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-
-                        <Link
-                          to="/employee/dashboard/active-posts/job/experience/view-applicant"
-                          className="nav-link"
-                        >
-                          <div
-                            style={{ display: "flex", justifyContent: "end" }}
-                          >
-                            <p className="mt-4" style={{ color: "blue" }}>
-                              View Application
-                            </p>
-                          </div>
-                        </Link>
-                        <p style={{ fontSize: "12px", margin: "0px" }}>
-                          Update: <PostTime time={data.time} />
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              {renderApplications()}
             </div>
           </div>
           {sticky && (
