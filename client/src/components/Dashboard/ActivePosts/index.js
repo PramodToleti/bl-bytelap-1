@@ -26,6 +26,7 @@ function Accountsetting() {
         console.log(data)
         setLoading(false)
       }
+      setIsMounted(true)
     }
 
     async function fetchApplications() {
@@ -55,8 +56,8 @@ function Accountsetting() {
       }
     }
 
-    fetchJobs()
     fetchApplications()
+    fetchJobs()
   }, [])
 
   const handleOptionChange = (event) => {
@@ -84,10 +85,10 @@ function Accountsetting() {
   for (const obj of InternApplications) {
     for (const obj2 of InternJobs) {
       if (obj.jobName === obj2.jobTitle) {
-        if (!Array.isArray(obj2.applications)) {
-          obj2.applications = []
+        obj2.applications = obj2.applications || []
+        if (!obj2.applications.includes(obj)) {
+          obj2.applications.push(obj)
         }
-        obj2.applications.push(obj)
       }
     }
   }
@@ -95,10 +96,10 @@ function Accountsetting() {
   for (const obj of FresherApplications) {
     for (const obj2 of FresherJobs) {
       if (obj.jobName === obj2.jobTitle) {
-        if (!Array.isArray(obj2.applications)) {
-          obj2.applications = []
+        obj2.applications = obj2.applications || []
+        if (!obj2.applications.includes(obj)) {
+          obj2.applications.push(obj)
         }
-        obj2.applications.push(obj)
       }
     }
   }
@@ -106,10 +107,10 @@ function Accountsetting() {
   for (const obj of ExperienceApplications) {
     for (const obj2 of ExperienceJobs) {
       if (obj.jobName === obj2.jobTitle) {
-        if (!Array.isArray(obj2.applications)) {
-          obj2.applications = []
+        obj2.applications = obj2.applications || []
+        if (!obj2.applications.includes(obj)) {
+          obj2.applications.push(obj)
         }
-        obj2.applications.push(obj)
       }
     }
   }

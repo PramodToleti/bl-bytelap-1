@@ -10,8 +10,6 @@ const Internship = (props) => {
   const history = useHistory()
   const internData = props.InternJobs
 
-  console.log(internData)
-
   if (internData.length === 0) {
     return (
       <div style={{ display: "grid", placeItems: "center" }}>
@@ -114,10 +112,14 @@ const Internship = (props) => {
           className="text-start"
           style={{ color: "blue", cursor: "pointer", fontSize: "16px" }}
           onClick={() => {
-            history.push("/employee/dashboard/active-posts/job/internship")
+            history.push("/employee/dashboard/active-posts/job/internship", {
+              data: each.applications,
+            })
           }}
         >
-          {`View Application's (0)`}
+          {each.applications === undefined
+            ? "View Application's (0)"
+            : `View Application's (${each.applications.length})`}
         </p>
       </Form.Group>
       <p

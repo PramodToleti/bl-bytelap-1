@@ -9,24 +9,6 @@ const Fresher = (props) => {
   const history = useHistory()
   const fresherData = props.FresherJobs
 
-  /*  const jobApplications = {}
-
-  const jobTitles = []
-
-  fresherData.forEach((job) => {
-    const jobTitle = job.jobName
-
-    if (jobApplications.hasOwnProperty(jobTitle)) {
-      jobApplications[jobTitle] = [...jobApplications[jobTitle], job]
-    } else {
-      jobApplications[jobTitle] = [job]
-    }
-  })
-
-  for (const [key, value] of Object.entries(jobApplications)) {
-    jobTitles.push({ key, no: value.length })
-  } */
-
   if (fresherData.length === 0) {
     return (
       <div style={{ display: "grid", placeItems: "center" }}>
@@ -130,10 +112,14 @@ const Fresher = (props) => {
             className="text-start"
             style={{ color: "blue", cursor: "pointer", fontSize: "16px" }}
             onClick={() => {
-              history.push("/employee/dashboard/active-posts/job/fresher")
+              history.push("/employee/dashboard/active-posts/job/fresher", {
+                data: each.applications,
+              })
             }}
           >
-            {`View Application's (0)`}
+            {each.applications === undefined
+              ? "View Application's (0)"
+              : `View Application's (${each.applications.length})`}
           </p>
         </Form.Group>
         <p
