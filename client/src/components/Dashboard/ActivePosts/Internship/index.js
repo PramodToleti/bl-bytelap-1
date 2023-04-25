@@ -10,23 +10,7 @@ const Internship = (props) => {
   const history = useHistory()
   const internData = props.InternJobs
 
-  /* const jobApplications = {}
-
-  const jobTitles = []
-
-  internData.forEach((job) => {
-    const jobTitle = job.jobName
-
-    if (jobApplications.hasOwnProperty(jobTitle)) {
-      jobApplications[jobTitle] = [...jobApplications[jobTitle], job]
-    } else {
-      jobApplications[jobTitle] = [job]
-    }
-  })
-
-  for (const [key, value] of Object.entries(jobApplications)) {
-    jobTitles.push({ key, no: value.length })
-  } */
+  console.log(internData)
 
   if (internData.length === 0) {
     return (

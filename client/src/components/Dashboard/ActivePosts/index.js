@@ -69,41 +69,59 @@ function Accountsetting() {
 
   const ExperienceJobs = activeJobs.filter((job) => job.type === "Experience")
 
-  const InternApplications = applications.filter(
+  let InternApplications = applications.filter(
     (application) => application.type === "Internship"
   )
 
-  const FresherApplications = applications.filter(
+  let FresherApplications = applications.filter(
     (application) => application.type === "Fresher"
   )
 
-  const ExperienceApplications = applications.filter(
+  let ExperienceApplications = applications.filter(
     (application) => application.type === "Experience"
   )
+
+  for (const obj of InternApplications) {
+    for (const obj2 of InternJobs) {
+      if (obj.jobName === obj2.jobTitle) {
+        if (!Array.isArray(obj2.applications)) {
+          obj2.applications = []
+        }
+        obj2.applications.push(obj)
+      }
+    }
+  }
+
+  for (const obj of FresherApplications) {
+    for (const obj2 of FresherJobs) {
+      if (obj.jobName === obj2.jobTitle) {
+        if (!Array.isArray(obj2.applications)) {
+          obj2.applications = []
+        }
+        obj2.applications.push(obj)
+      }
+    }
+  }
+
+  for (const obj of ExperienceApplications) {
+    for (const obj2 of ExperienceJobs) {
+      if (obj.jobName === obj2.jobTitle) {
+        if (!Array.isArray(obj2.applications)) {
+          obj2.applications = []
+        }
+        obj2.applications.push(obj)
+      }
+    }
+  }
 
   const renderActiveJob = () => {
     switch (activeFilter) {
       case "Internship":
-        return (
-          <Internship
-            InternApplications={InternApplications}
-            InternJobs={InternJobs}
-          />
-        )
+        return <Internship InternJobs={InternJobs} />
       case "Fresher":
-        return (
-          <Fresher
-            FresherApplications={FresherApplications}
-            FresherJobs={FresherJobs}
-          />
-        )
+        return <Fresher FresherJobs={FresherJobs} />
       case "Experience":
-        return (
-          <Experience
-            ExperienceApplications={ExperienceApplications}
-            ExperienceJobs={ExperienceJobs}
-          />
-        )
+        return <Experience ExperienceJobs={ExperienceJobs} />
       default:
         return null
     }
