@@ -2,7 +2,7 @@ import Stack from "react-bootstrap/Stack"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import Col from "react-bootstrap/Col"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { ImLocation } from "react-icons/im"
 import Modal from "react-bootstrap/Modal"
 import classNames from "classnames"
@@ -17,10 +17,11 @@ import PostTime from "../../../../assets/PostTime"
 import "./index.css"
 import { useState } from "react"
 
-function ActiveJobExp(props) {
+function ActiveJobExp() {
+  const location = useLocation()
   const { sticky, stickyRef } = StickyContainer()
   const [activeType, setActiveType] = useState("")
-  const experienceData = props.experienceData
+  const experienceData = location.state.data || []
   const [lgShow, setLgShow] = useState(false)
 
   const handleActiveType = (e) => {
@@ -701,7 +702,9 @@ function ActiveJobExp(props) {
                 <h5>Filter</h5>
               </Form.Group>
 
-              <p className="mt-3">89 applications</p>
+              <p className="mt-3">
+                {experienceData ? experienceData.length : 0} applications
+              </p>
 
               <Form.Group
                 as={Col}

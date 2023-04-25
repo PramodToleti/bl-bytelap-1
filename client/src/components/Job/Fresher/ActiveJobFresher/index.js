@@ -21,7 +21,7 @@ import { useState } from "react"
 function ActiveJobFresher(props) {
   const location = useLocation()
   const history = useHistory()
-  const fresherData = props.FresherApplications
+  const fresherData = location.state.data || []
   const { sticky, stickyRef } = StickyContainer()
   const [activeType, setActiveType] = useState("")
   const [lgShow, setLgShow] = useState(false)
@@ -693,7 +693,9 @@ function ActiveJobFresher(props) {
                 <h5>Filter</h5>
               </Form.Group>
 
-              <p className="mt-3">89 applications</p>
+              <p className="mt-3">
+                {fresherData ? fresherData.length : 0} applications
+              </p>
 
               <Form.Group
                 as={Col}

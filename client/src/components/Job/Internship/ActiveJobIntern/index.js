@@ -16,10 +16,10 @@ import PostTime from "../../../../assets/PostTime"
 import "./index.css"
 import { useState } from "react"
 
-function ActiveJobIntern(props) {
+function ActiveJobIntern() {
   const location = useLocation()
   const history = useHistory()
-  const internData = props.InternshipApplications
+  const internData = location.state.data || []
   const { sticky, stickyRef } = StickyContainer()
   const [activeType, setActiveType] = useState("")
   const [lgShow, setLgShow] = useState(false)
@@ -458,7 +458,9 @@ function ActiveJobIntern(props) {
                 <h5>Filter</h5>
               </Form.Group>
 
-              <p className="mt-3">89 applications</p>
+              <p className="mt-3">
+                {interndata ? internData.length : 0} applications
+              </p>
 
               <Form.Group
                 as={Col}
