@@ -7,7 +7,7 @@ import PostTime from "../../../../assets/PostTime"
 
 const Experience = (props) => {
   const history = useHistory()
-  const expData = props.ExperienceApplications
+  const expData = props.ExperienceJobs
 
   /* const jobApplications = {}
 

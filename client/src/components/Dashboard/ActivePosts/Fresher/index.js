@@ -7,7 +7,7 @@ import PostTime from "../../../../assets/PostTime"
 
 const Fresher = (props) => {
   const history = useHistory()
-  const fresherData = props.FresherApplications
+  const fresherData = props.FresherJobs
 
   /*  const jobApplications = {}
 

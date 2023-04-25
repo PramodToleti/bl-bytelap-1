@@ -4,10 +4,11 @@ import Stack from "react-bootstrap/Stack"
 import { NavDropdown } from "react-bootstrap"
 import { Link, useHistory } from "react-router-dom"
 import PostTime from "../../../../assets/PostTime"
+import { useState, useEffect } from "react"
 
 const Internship = (props) => {
   const history = useHistory()
-  const internData = props.InternApplications
+  const internData = props.InternJobs
 
   /* const jobApplications = {}
 
@@ -26,8 +27,6 @@ const Internship = (props) => {
   for (const [key, value] of Object.entries(jobApplications)) {
     jobTitles.push({ key, no: value.length })
   } */
-
-  console.log(internData)
 
   if (internData.length === 0) {
     return (

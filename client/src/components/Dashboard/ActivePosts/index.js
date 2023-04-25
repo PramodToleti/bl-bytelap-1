@@ -10,13 +10,27 @@ import Cookies from "js-cookie"
 
 function Accountsetting() {
   const [activeFilter, setActiveFilter] = useState("Internship")
+  const [activeJobs, setActiveJobs] = useState([])
   const [applications, setApplications] = useState([])
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchJobs() {
       setLoading(true)
-      /*  const token = Cookies.get("employeeToken")
+      const response = await fetch("http://localhost:5000/candidate/jobs")
+      const data = await response.json()
+      if (response.ok) {
+        setActiveJobs(data)
+        setLoading(false)
+      } else {
+        console.log(data)
+        setLoading(false)
+      }
+    }
+
+    async function fetchApplications() {
+      setLoading(true)
+      const token = Cookies.get("employeeToken")
       const userId = localStorage.getItem("userId")
 
       const options = {
@@ -27,8 +41,10 @@ function Accountsetting() {
         },
         body: JSON.stringify({ userId }),
       }
- */
-      const response = await fetch("http://localhost:5000/candidate/jobs")
+      const response = await fetch(
+        "http://localhost:5000/candidate/applications",
+        options
+      )
       const data = await response.json()
       if (response.ok) {
         setApplications(data)
@@ -38,12 +54,20 @@ function Accountsetting() {
         setLoading(false)
       }
     }
-    fetchData()
+
+    fetchJobs()
+    fetchApplications()
   }, [])
 
   const handleOptionChange = (event) => {
     setActiveFilter(event.target.name)
   }
+
+  const InternJobs = activeJobs.filter((job) => job.type === "Internship")
+
+  const FresherJobs = activeJobs.filter((job) => job.type === "Fresher")
+
+  const ExperienceJobs = activeJobs.filter((job) => job.type === "Experience")
 
   const InternApplications = applications.filter(
     (application) => application.type === "Internship"
@@ -60,11 +84,26 @@ function Accountsetting() {
   const renderActiveJob = () => {
     switch (activeFilter) {
       case "Internship":
-        return <Internship InternApplications={InternApplications} />
+        return (
+          <Internship
+            InternApplications={InternApplications}
+            InternJobs={InternJobs}
+          />
+        )
       case "Fresher":
-        return <Fresher FresherApplications={FresherApplications} />
+        return (
+          <Fresher
+            FresherApplications={FresherApplications}
+            FresherJobs={FresherJobs}
+          />
+        )
       case "Experience":
-        return <Experience ExperienceApplications={ExperienceApplications} />
+        return (
+          <Experience
+            ExperienceApplications={ExperienceApplications}
+            ExperienceJobs={ExperienceJobs}
+          />
+        )
       default:
         return null
     }
