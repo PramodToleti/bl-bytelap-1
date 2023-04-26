@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker"
 
 import ChooseCity from "../ChooseCity"
 import ChooseField from "../ChooseField"
+import ChooseDegree from "../ChooseDegree"
 
 const DynamicEducationExperience = (props) => {
   const [showHiddenFields, setShowHiddenFields] = useState(false)
@@ -136,23 +137,10 @@ const DynamicEducationExperience = (props) => {
         return (
           <Row key={i}>
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <Form.Select
-                required
-                onChange={(e) => onChangeDegree(e, i)}
-                value={data.degree}
-              >
-                <option>Degree</option>
-                <option>Master's</option>
-                <option>Bachelor's</option>
-                <option>Diploma</option>
-                <option>High Secondary (12th)</option>
-                <option>Secondary (10th)</option>
-                <option>Doctorate</option>
-                <option>Other</option>
-              </Form.Select>
-              <Form.Control.Feedback>
-                Please select a degree
-              </Form.Control.Feedback>
+              <ChooseDegree
+                onChangeField={(e) => onChangeField(e, i)}
+                value={data.field}
+              />
             </Form.Group>
 
             {(data.degree === "High Secondary (12th)" ||
