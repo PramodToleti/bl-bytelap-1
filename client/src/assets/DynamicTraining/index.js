@@ -107,6 +107,7 @@ const DynamicTraining = (props) => {
                     dateFormat="MMM yyyy"
                     placeholderText="MM / YYYY"
                     showMonthYearPicker={true}
+                    autoComplete="false"
                   />
                   <Form.Label className="mt-3">To</Form.Label>
                   <DatePicker
