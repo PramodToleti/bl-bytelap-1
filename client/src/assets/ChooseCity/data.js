@@ -1947,6 +1947,14 @@ const cities = [
   { label: "Nandgaon, Maharashtra" },
 ]
 
+cities.sort((a, b) => {
+  const stateA = a.label.split(",")[1].trim() // Extract state name from label
+  const stateB = b.label.split(",")[1].trim() // Extract state name from label
+  if (stateA < stateB) return -1
+  if (stateA > stateB) return 1
+  return 0
+})
+
 export default cities.map((each, index) => ({
   value: index,
   label: each.label,
