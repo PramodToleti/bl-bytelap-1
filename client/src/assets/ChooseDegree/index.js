@@ -5,7 +5,7 @@ import data from "./data"
 
 import "react-bootstrap-typeahead/css/Typeahead.css"
 
-const ChooseField = (props) => {
+const ChooseDegree = (props) => {
   const { onChangeField } = props
   const [selected, setSelected] = useState([])
   const [options, setOptions] = useState(data)
@@ -48,7 +48,7 @@ const ChooseField = (props) => {
     <Typeahead
       id="basic-example"
       options={options}
-      placeholder="Field"
+      placeholder="Degree"
       selected={selected}
       onChange={onChangeTitle}
       value={props.value}
@@ -57,4 +57,4 @@ const ChooseField = (props) => {
   )
 }
 
-export default ChooseField
+export default ChooseDegree
