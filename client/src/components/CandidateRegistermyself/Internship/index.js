@@ -27,6 +27,7 @@ import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
 function Internship(props) {
   const [validated, setValidated] = useState(false)
   //Input data
+  const [resumeFile, setResumeFile] = useState(null)
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
@@ -59,6 +60,7 @@ function Internship(props) {
   }
 
   const formRef = useRef(null)
+  const fileInputRef = useRef(null)
 
   const handleTitle = (e) => {
     setJobTitle(e)
@@ -316,6 +318,7 @@ function Internship(props) {
       const userId = localStorage.getItem("userId")
       const formData = new FormData()
       formData.append("candidate", userId)
+      formData.append("resume", resumeFile)
       formData.append("jobTitle", jobTitle)
       formData.append("jobTime", jobTime)
       formData.append("jobType", jobType)
@@ -373,10 +376,35 @@ function Internship(props) {
     now === 100 ? setIsFilled(true) : setIsFilled(false)
   }
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0]
+    setResumeFile(file)
+  }
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click()
+  }
+
+  console.log(data)
+
   return (
     <>
       <ToastContainer />
       {progressBar()}
+      <Button
+        type="button"
+        variant="outline-primary"
+        className="mt-4"
+        onClick={handleButtonClick}
+      >
+        Upload Resume
+      </Button>
+      <input
+        type="file"
+        ref={fileInputRef}
+        style={{ display: "none" }}
+        onChange={handleFileChange}
+      />
       <Form
         action=""
         noValidate

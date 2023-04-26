@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer, toast } from "react-toastify"
 import { Oval } from "react-loader-spinner"
 import moment from "moment/moment"
+import { useRef } from "react"
 
 import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
 import ChooseCity from "../../../assets/ChooseCity"
@@ -32,6 +33,7 @@ function Experience(props) {
   const [salaryType, setSalaryType] = useState("")
 
   //Input data
+  const [resumeFile, setResumeFile] = useState(null)
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
   const [jobType, setJobType] = useState("")
@@ -54,10 +56,7 @@ function Experience(props) {
   const [checkbox, toggleCheckbox] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  console.log(employmentHistory)
-  console.log(preferredLocation)
-
-  console.log(preferredLocation)
+  const fileInputRef = useRef(null)
 
   const data = {
     jobTitle,
@@ -480,10 +479,35 @@ function Experience(props) {
     }
   }
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0]
+    setResumeFile(file)
+  }
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click()
+  }
+
+  console.log(resumeFile)
+
   return (
     <>
       <ToastContainer />
       {progressBar()}
+      <Button
+        type="button"
+        variant="outline-primary"
+        className="mt-4"
+        onClick={handleButtonClick}
+      >
+        Upload Resume
+      </Button>
+      <input
+        type="file"
+        ref={fileInputRef}
+        style={{ display: "none" }}
+        onChange={handleFileChange}
+      />
       <Form
         action=""
         noValidate
