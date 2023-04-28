@@ -245,12 +245,12 @@ router.post(
             salaryRange: JSON.parse(details.salaryRange),
             coverLetter: details.coverLetter,
             degree: JSON.parse(details.degree),
-            projectDetails: JSON.parse(details.projectDetails),
-            training: JSON.parse(details.training),
-            trainingFiles: req.files.trainingFiles,
-            achievements: JSON.parse(details.achievements),
-            achievementsFiles: req.files.achievementsFiles,
-            preferredLocation: details.preferredLocation,
+            projectDetails: JSON.parse(details.projectDetails) || [],
+            training: JSON.parse(details.training) || [],
+            trainingFiles: req.files.trainingFiles || [],
+            achievements: JSON.parse(details.achievements) || [],
+            achievementsFiles: req.files.achievementsFiles || [],
+            preferredLocation: details.preferredLocation || [],
             languages: JSON.parse(details.languages),
             availability: details.availability,
             time: details.time,
@@ -309,8 +309,6 @@ router.post(
     try {
       const details = req.body
 
-      console.log(details.preferredLocation)
-
       const isPresent = await Candidate.findOne({
         _id: details.candidate,
       })
@@ -320,7 +318,8 @@ router.post(
       })
 
       if (duplicate) {
-        const jobApplication = new ExperienceApplicaton.findOneAndUpdate({
+        const username = isPresent.firstName + " " + isPresent.lastName
+        const jobApplication = await ExperienceApplicaton.findOneAndUpdate({
           type: "Experience",
           candidate: details.candidate,
           username,
@@ -334,12 +333,12 @@ router.post(
           coverLetter: details.coverLetter,
           degree: JSON.parse(details.degree),
           employementHistory: JSON.parse(details.employementHistory),
-          projectDetails: JSON.parse(details.projectDetails),
-          training: JSON.parse(details.training),
-          trainingFiles: req.files.trainingFiles,
-          achievements: JSON.parse(details.achievements),
-          achievementsFiles: req.files.achievementsFiles,
-          preferredLocation: details.preferredLocation,
+          projectDetails: JSON.parse(details.projectDetails) || [],
+          training: JSON.parse(details.training) || [],
+          trainingFiles: req.files.trainingFiles || [],
+          achievements: JSON.parse(details.achievements) || [],
+          achievementsFiles: req.files.achievementsFiles || [],
+          preferredLocation: details.preferredLocation || [],
           languages: JSON.parse(details.languages),
           availability: details.availability,
           time: details.time,
