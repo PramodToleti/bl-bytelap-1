@@ -4,26 +4,60 @@ import { components } from "react-select"
 import { Form } from "react-bootstrap"
 
 const skills = [
-  { value: "English", label: "English" },
-  { value: "Telugu", label: "Telugu" },
-  { value: "Hindi", label: "Hindi" },
-  { value: "Tamil", label: "Tamil" },
-  { value: "Russian", label: "Russian" },
-  { value: "Turkish", label: "Turkish" },
-  { value: "Spanish", label: "Spanish" },
-  { value: "French", label: "French" },
-  { value: "Germany", label: "Germany" },
-  { value: "Chinese", label: "Chinese" },
-  { value: "Italic", label: "Italic" },
-  { value: "Arabic", label: "Arabic" },
+  { value: "english-beginner", label: "English (Beginner)" },
+  { value: "english-intermediate", label: "English (Intermediate)" },
+  { value: "english-fluent", label: "English (Fluent)" },
+  { value: "english-native", label: "English (Native)" },
+  { value: "telugu-beginner", label: "Telugu (Beginner)" },
+  { value: "telugu-intermediate", label: "Telugu (Intermediate)" },
+  { value: "telugu-fluent", label: "Telugu (Fluent)" },
+  { value: "telugu-native", label: "Telugu (Native)" },
+  { value: "hindi-beginner", label: "Hindi (Beginner)" },
+  { value: "hindi-intermediate", label: "Hindi (Intermediate)" },
+  { value: "hindi-fluent", label: "Hindi (Fluent)" },
+  { value: "hindi-native", label: "Hindi (Native)" },
+  { value: "tamil-beginner", label: "Tamil (Beginner)" },
+  { value: "tamil-intermediate", label: "Tamil (Intermediate)" },
+  { value: "tamil-fluent", label: "Tamil (Fluent)" },
+  { value: "tamil-native", label: "Tamil (Native)" },
+  { value: "russian-beginner", label: "Russian (Beginner)" },
+  { value: "russian-intermediate", label: "Russian (Intermediate)" },
+  { value: "russian-fluent", label: "Russian (Fluent)" },
+  { value: "russian-native", label: "Russian (Native)" },
+  { value: "turkish-beginner", label: "Turkish (Beginner)" },
+  { value: "turkish-intermediate", label: "Turkish (Intermediate)" },
+  { value: "turkish-fluent", label: "Turkish (Fluent)" },
+  { value: "turkish-native", label: "Turkish (Native)" },
+  { value: "spanish-beginner", label: "Spanish (Beginner)" },
+  { value: "spanish-intermediate", label: "Spanish (Intermediate)" },
+  { value: "spanish-fluent", label: "Spanish (Fluent)" },
+  { value: "spanish-native", label: "Spanish (Native)" },
+  { value: "french-beginner", label: "French (Beginner)" },
+  { value: "french-intermediate", label: "French (Intermediate)" },
+  { value: "french-fluent", label: "French (Fluent)" },
+  { value: "french-native", label: "French (Native)" },
+  { value: "german-beginner", label: "German (Beginner)" },
+  { value: "german-intermediate", label: "German (Intermediate)" },
+  { value: "german-fluent", label: "German (Fluent)" },
+  { value: "german-native", label: "German (Native)" },
+  { value: "chinese-beginner", label: "Chinese (Beginner)" },
+  { value: "chinese-intermediate", label: "Chinese (Intermediate)" },
+  { value: "chinese-fluent", label: "Chinese (Fluent)" },
+  { value: "chinese-native", label: "Chinese (Native)" },
 ]
 
 const Option = (props) => {
+  const labelParts = props.label.split("-")
+  const language = labelParts[0]
+  const proficiency = labelParts[1]
+
   return (
     <div className="option">
       <components.Option {...props}>
-        {" "}
-        <label className="skills-name">{props.label}</label>
+        <div className="skills-name">
+          <div className="language">{language}</div>
+          <div className="proficiency">{proficiency}</div>
+        </div>
       </components.Option>
     </div>
   )
@@ -34,14 +68,70 @@ class LanguageDropdown extends Component {
     super(props)
     this.state = {
       optionSelected: null,
+      filteredSkills: skills,
     }
   }
 
   handleChange = (selected) => {
+    const selectedLanguages = selected.map((option) => {
+      const labelParts = option.value.split("-")
+      const language = labelParts[0]
+      const proficiency = labelParts[1]
+      return { language, proficiency }
+    })
+
+    const filteredSkills = skills.filter(
+      (skill) =>
+        !selectedLanguages.some(
+          (selectedLanguage) =>
+            selectedLanguage.language === skill.value.split("-")[0]
+        ) ||
+        selected.some(
+          (option) => option.value.split("-")[0] !== skill.value.split(" ")[0]
+        )
+    )
+    const languages = selectedLanguages.map((option) => option.language)
+
+    const filteredLanguages = skills.filter(
+      (skill) => !languages.includes(skill.value.split("-")[0])
+    )
+
     this.setState({
       optionSelected: selected,
+      selectedLanguages: selectedLanguages,
+      filteredSkills: filteredLanguages,
     })
-    this.props.handleLanguages(selected)
+
+    this.props.handleLanguages(selectedLanguages)
+  }
+
+  handleRemove = (removedOption) => {
+    const selected = this.state.optionSelected.filter(
+      (option) => option.value !== removedOption.value
+    )
+
+    const selectedLanguages = selected.map((option) => {
+      const labelParts = option.label.split("-")
+      const language = labelParts[0]
+      const proficiency = labelParts[1]
+      return { language, proficiency }
+    })
+
+    const filteredSkills = skills.filter(
+      (skill) =>
+        !selectedLanguages.some(
+          (selectedLanguage) =>
+            selectedLanguage.language === skill.label.split(" ")[0]
+        ) || selected.some((option) => option.label === skill.label)
+    )
+
+    this.setState({
+      optionSelected: selected,
+      selectedLanguages: selectedLanguages,
+      filteredSkills: filteredSkills,
+    })
+
+    this.props.handleLanguages(selectedLanguages)
   }
 
   render() {
@@ -54,10 +144,10 @@ class LanguageDropdown extends Component {
           className="input-field"
           data-toggle="popover"
           data-trigger="focus"
-          data-content="Please selecet account(s)"
+          data-content="Please select account(s)"
         >
           <ReactSelect
-            options={skills}
+            options={this.state.filteredSkills}
             isMulti
             closeMenuOnSelect={false}
             hideSelectedOptions={false}
@@ -67,6 +157,7 @@ class LanguageDropdown extends Component {
             onChange={this.handleChange}
             allowSelectAll={true}
             value={this.state.optionSelected}
+            onRemove={this.handleRemove}
           />
         </span>
       </Form.Group>

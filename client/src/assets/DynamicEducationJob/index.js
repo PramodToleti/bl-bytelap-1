@@ -26,8 +26,6 @@ const DynamicEducationJob = (props) => {
     },
   ])
 
-  console.log(degreeList)
-
   const handleHideFields = (index) => {
     const list = [...degreeList]
     list[index].hidden = true
