@@ -80,16 +80,6 @@ class LanguageDropdown extends Component {
       return { language, proficiency }
     })
 
-    const filteredSkills = skills.filter(
-      (skill) =>
-        !selectedLanguages.some(
-          (selectedLanguage) =>
-            selectedLanguage.language === skill.value.split("-")[0]
-        ) ||
-        selected.some(
-          (option) => option.value.split("-")[0] !== skill.value.split(" ")[0]
-        )
-    )
     const languages = selectedLanguages.map((option) => option.language)
 
     const filteredLanguages = skills.filter(

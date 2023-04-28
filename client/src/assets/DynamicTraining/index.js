@@ -122,9 +122,9 @@ const DynamicTraining = (props) => {
               </div>
             </Form.Group>
           </Form.Group>
-          <Form.Group className="mb-2">
+          {/* <Form.Group className="mb-2">
             <ChooseFileTraining handleFile={handleFile} index={index} />
-          </Form.Group>
+          </Form.Group> */}
 
           {trainings.length > 1 && index !== trainings.length - 1 && (
             <hr

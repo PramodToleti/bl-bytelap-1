@@ -3,12 +3,15 @@ import "bootstrap/dist/css/bootstrap.css"
 import { Form, Button, Row, Col } from "react-bootstrap"
 import ChooseFileAchievement from "./ChooseFileAchievement"
 import TextArea from "antd/es/input/TextArea"
+import DatePicker from "react-datepicker"
 
 const DynamicAchievements = (props) => {
   const [achievements, setAchievements] = useState([
     {
       achievement: "",
-      file: null,
+      title: "",
+      month: "",
+      year: "",
     },
   ])
 
@@ -69,11 +72,60 @@ const DynamicAchievements = (props) => {
               placeholder="Eg. First Prize in Quiz Competition"
             />
           </Form.Group>
-          <Form.Group className="mb-2">
+          {/* <Form.Group className="mb-2">
             <ChooseFileAchievement
               handleFileUpload={handleFileUpload}
               index={index}
             />
+          </Form.Group> */}
+
+          <Form.Group className="mb-2">
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              type="text"
+              onChange={(e) => {
+                const values = [...achievements]
+                values[index].title = e.target.value
+                setAchievements(values)
+              }}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-2">
+            <Form.Group className="mb-3" style={{ width: "100%" }}>
+              <div className="mt-3 custom-date">
+                <div className="date-container">
+                  <Form.Label className="mt-3">Month</Form.Label>
+                  <DatePicker
+                    className="year-date"
+                    dateFormat="MMM"
+                    placeholderText="Month"
+                    showMonthYearPicker={true}
+                    autoComplete="false"
+                    selected={achievements[index].month}
+                    onChange={(date) => {
+                      const values = [...achievements]
+                      values[index].month = date
+                      setAchievements(values)
+                    }}
+                  />
+                  <Form.Label className="mt-3">Year</Form.Label>
+                  <DatePicker
+                    className="year-date"
+                    dateFormat="yyyy"
+                    placeholderText="Year"
+                    showMonthYearPicker={true}
+                    autoComplete="false"
+                    selected={achievements[index].year}
+                    onChange={(date) => {
+                      const values = [...achievements]
+                      values[index].year = date
+                      setAchievements(values)
+                    }}
+                  />
+                </div>
+              </div>
+            </Form.Group>
           </Form.Group>
 
           {achievements.length > 1 && index !== achievements.length - 1 && (
