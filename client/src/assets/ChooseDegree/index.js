@@ -6,12 +6,12 @@ import data from "./data"
 import "react-bootstrap-typeahead/css/Typeahead.css"
 
 const ChooseDegree = (props) => {
-  const { onChangeField } = props
+  const { onChangeDegree } = props
   const [selected, setSelected] = useState([])
   const [options, setOptions] = useState(data)
 
   const onChangeTitle = (e) => {
-    e[0] !== undefined && onChangeField(e[0].label)
+    e[0] !== undefined && onChangeDegree(e[0].label)
     setSelected(e)
   }
 
@@ -27,7 +27,7 @@ const ChooseDegree = (props) => {
       setSelected([newOption])
 
       // Call the handleTitle function with the entered value
-      onChangeField(inputValue)
+      onChangeDegree(inputValue)
     } else {
       setSelected([])
     }

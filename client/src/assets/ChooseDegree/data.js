@@ -1,6 +1,6 @@
 export default [
   { label: "None" },
-  { label: "Bacelor's" },
+  { label: "Bachelor's" },
   { label: "Master's" },
   { label: "Higher Secondary (12th Pass)" },
   { label: "Secondary (10th Pass)" },
