@@ -110,7 +110,6 @@ const InternApplicationSchema = new mongoose.Schema({
   },
   projectDetails: {
     type: [projectDetailsSchema],
-    required: true,
   },
   time: {
     type: Date,
@@ -148,9 +147,11 @@ const InternApplicationSchema = new mongoose.Schema({
   ],
   availability: {
     type: String,
+    required: true,
   },
   coverLetter: {
     type: String,
+    required: true,
   },
   degree: {
     type: [degreeSchema],

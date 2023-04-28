@@ -95,7 +95,7 @@ const historySchema = new mongoose.Schema({
     required: true,
   },
   location: {
-    type: [locationSchema],
+    type: String,
   },
   startDate: {
     type: Date,
@@ -178,7 +178,6 @@ const ExperienceApplicationSchema = new mongoose.Schema({
   },
   projectDetails: {
     type: [projectDetailsSchema],
-    required: true,
   },
   training: {
     type: [trainingSchema],
@@ -212,7 +211,6 @@ const ExperienceApplicationSchema = new mongoose.Schema({
   ],
   preferredLocation: {
     type: [String],
-    required: true,
   },
   languages: {
     type: [String],

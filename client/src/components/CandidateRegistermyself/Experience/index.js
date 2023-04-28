@@ -54,6 +54,7 @@ function Experience(props) {
   const [isFilled, setIsFilled] = useState(true)
   const [custom, setCustom] = useState("")
   const [checkbox, toggleCheckbox] = useState(false)
+  const [relocate, setRelocate] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
   const fileInputRef = useRef(null)
@@ -234,7 +235,6 @@ function Experience(props) {
       degree.length !== 0 &&
       projectDetails.length !== 0 &&
       training.length !== 0 &&
-      achievements.length !== 0 &&
       languages.length !== 0 &&
       employmentHistory.length !== 0
     )
@@ -246,14 +246,20 @@ function Experience(props) {
       jobType !== "" &&
       shift !== "" &&
       coverLetter !== "" &&
-      degree.length !== 0 &&
-      projectDetails.length !== 0 &&
-      training.length !== 0 &&
-      achievements.length !== 0 &&
+      degree.every((degree) => {
+        return (
+          degree.degree !== "" &&
+          (((degree.endDate !== "" || degree.present !== false) &&
+            degree.institute !== "" &&
+            degree.field !== "" &&
+            degree.city !== "" &&
+            degree.startYear !== "") ||
+            (degree.schoolName !== "" && degree.yearOfCompletion !== ""))
+        )
+      }) &&
       languages.length !== 0 &&
       employmentHistory.length !== 0 &&
       availability !== "" &&
-      preferredLocation !== "" &&
       experience.years !== "" &&
       experience.months !== "" &&
       ((checkbox === true && ctc.lacs === "" && ctc.thousand === "") ||
@@ -285,9 +291,6 @@ function Experience(props) {
         margin: "20px",
       },
     })
-    setTimeout(() => {
-      window.location.reload()
-    }, 1000)
   }
 
   const onFailure = (msg) => {
@@ -752,8 +755,23 @@ function Experience(props) {
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
-            <Form.Label>Select Prefered Location</Form.Label>
-            <LocationCheckbox handleLocation={handleLocation} />
+            <Form.Check
+              className="mb-4 mr-2"
+              label="I am willing to relocate"
+              onChange={(e) => {
+                setRelocate(e.target.checked)
+              }}
+            />
+
+            {relocate && (
+              <>
+                <LocationCheckbox
+                  handleLocation={handleLocation}
+                  className="mt-3"
+                />
+                <Form.Check className="mb-2 mt-2" label="Anywhere" />
+              </>
+            )}
           </div>
 
           <div

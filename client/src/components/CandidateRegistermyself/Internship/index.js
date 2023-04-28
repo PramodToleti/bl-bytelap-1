@@ -40,7 +40,6 @@ function Internship(props) {
   const [achievements, setAchievements] = useState([])
   const [languages, setLanguages] = useState([])
   const [availability, setAvailability] = useState("")
-  const [isFilled, setIsFilled] = useState(true)
   const [custom, setCustom] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
@@ -105,8 +104,11 @@ function Internship(props) {
   }
 
   const handleLanguages = (e) => {
+    console.log(e)
     let languages = []
-    e.map((each) => languages.push(each.value))
+    e.map((each) =>
+      languages.push({ language: each.language, proficient: each.proficiency })
+    )
     setLanguages(languages)
   }
 
@@ -215,7 +217,7 @@ function Internship(props) {
             (degree.schoolName !== "" && degree.yearOfCompletion !== ""))
         )
       }) &&
-      projectDetails.length !== 0 &&
+      /* projectDetails.length !== 0 &&
       projectDetails.every((projectDetails) => {
         return (
           projectDetails.title !== "" &&
@@ -240,7 +242,7 @@ function Internship(props) {
           achievements.file !== null &&
           languages.length !== 0
         )
-      }) &&
+      }) && */
       availability !== "" &&
       languages.length !== 0
     )
@@ -288,9 +290,6 @@ function Internship(props) {
         margin: "20px",
       },
     })
-    setTimeout(() => {
-      window.location.reload()
-    }, 1000)
   }
 
   const onFailure = (msg) => {
@@ -312,46 +311,51 @@ function Internship(props) {
   const onSubmitForm = async (event) => {
     setIsLoading(true)
     event.preventDefault()
-    if (now === 100 && isFilled === true) {
+    if (now === 100) {
       const trainingFiles = training.map((each) => each.file)
       const achievementsFiles = achievements.map((each) => each.file)
       const userId = localStorage.getItem("userId")
       const formData = new FormData()
       formData.append("candidate", userId)
-      formData.append("resume", resumeFile)
+      resumeFile && formData.append("resume", resumeFile)
       formData.append("jobTitle", jobTitle)
       formData.append("jobTime", jobTime)
       formData.append("jobType", jobType)
       formData.append("skills", JSON.stringify(skills))
       formData.append("coverLetter", coverLetter)
       formData.append("degree", JSON.stringify(degree))
-      achievementsFiles.forEach((file) => {
-        formData.append("achievementsFiles", file)
-      })
-      trainingFiles.forEach((file) => {
-        formData.append("trainingFiles", file)
-      })
-      formData.append("projectDetails", JSON.stringify(projectDetails))
+      achievementsFiles &&
+        achievementsFiles.forEach((file) => {
+          formData.append("achievementsFiles", file)
+        })
+      trainingFiles &&
+        trainingFiles.forEach((file) => {
+          formData.append("trainingFiles", file)
+        })
+      projectDetails &&
+        formData.append("projectDetails", JSON.stringify(projectDetails))
       formData.append("time", Date.now())
-      formData.append(
-        "training",
-        JSON.stringify(
-          training.map((each) => ({
-            title: each.title,
-            institute: each.institute,
-            startDate: each.startDate,
-            endDate: each.endDate,
-          }))
+      training &&
+        formData.append(
+          "training",
+          JSON.stringify(
+            training.map((each) => ({
+              title: each.title,
+              institute: each.institute,
+              startDate: each.startDate,
+              endDate: each.endDate,
+            }))
+          )
         )
-      )
-      formData.append(
-        "achievements",
-        JSON.stringify(
-          achievements.map((each) => ({
-            achievement: each.achievement,
-          }))
+      achievements &&
+        formData.append(
+          "achievements",
+          JSON.stringify(
+            achievements.map((each) => ({
+              achievement: each.achievement,
+            }))
+          )
         )
-      )
       formData.append("availability", availability)
       formData.append("languages", JSON.stringify(languages))
 
@@ -373,7 +377,21 @@ function Internship(props) {
       }
     }
 
-    now === 100 ? setIsFilled(true) : setIsFilled(false)
+    now === 100
+      ? null
+      : (setIsLoading(false),
+        toast.error("Please fill all the required fields", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          style: {
+            textAlign: "center",
+            border: "2px solid #ff0000",
+            backgroundColor: "#fff",
+            marginTop: "30px",
+            margin: "20px",
+          },
+        }))
   }
 
   const handleFileChange = (event) => {
@@ -550,19 +568,6 @@ function Internship(props) {
             />
           </div>
         </Row>
-        {isFilled ? null : (
-          <>
-            <span
-              style={{
-                color: "red",
-                fontFamily: "Roboto",
-              }}
-            >
-              *Fill all the required field to save
-            </span>
-            <br />
-          </>
-        )}
         <Row className="justify-content-center">
           {/*<Button type="button" variant="secondary" className="col-sm-2 mx-4 mt-2">Preview</Button>*/}
           <InternshipPreview data={data} />

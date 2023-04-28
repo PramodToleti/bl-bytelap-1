@@ -57,6 +57,7 @@ function Fresher(props) {
   const [preferredLocation, setPreferredLocation] = useState("")
   const [isFilled, setIsFilled] = useState(true)
   const [custom, setCustom] = useState("")
+  const [relocate, setRelocate] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
   const data = {
@@ -262,14 +263,21 @@ function Fresher(props) {
         jobType !== "" &&
         shift !== "" &&
         coverLetter !== "" &&
-        degree.length !== 0 &&
-        projectDetails.length !== 0 &&
-        training.length !== 0 &&
-        achievements.length !== 0 &&
+        degree.every((degree) => {
+          return (
+            degree.degree !== "" &&
+            (((degree.endDate !== "" || degree.present !== false) &&
+              degree.institute !== "" &&
+              degree.field !== "" &&
+              degree.city !== "" &&
+              degree.startYear !== "") ||
+              (degree.schoolName !== "" && degree.yearOfCompletion !== ""))
+          )
+        }) &&
         languages.length !== 0 &&
         availability !== "" &&
-        salaryType !== "") ||
-      (salaryRange.from !== "" && salaryRange.to !== "") ||
+        (salaryType !== "" ||
+          (salaryRange.from !== "" && salaryRange.to !== ""))) ||
       preferredLocation !== ""
     )
       now = 100
@@ -282,6 +290,8 @@ function Fresher(props) {
       />
     )
   }
+
+  console.log(degree)
 
   const onSuccess = (msg) => {
     setIsLoading(false)
@@ -298,9 +308,6 @@ function Fresher(props) {
         margin: "20px",
       },
     })
-    setTimeout(() => {
-      window.location.reload()
-    }, 1000)
   }
 
   const onFailure = (msg) => {
@@ -650,8 +657,23 @@ function Fresher(props) {
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark  rounded container reveal  p-4  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
-            <Form.Label>Select Prefered Location</Form.Label>
-            <LocationCheckbox handleLocation={handleLocation} />
+            <Form.Check
+              className="mb-4 mr-2"
+              label="I am willing to relocate"
+              onChange={(e) => {
+                setRelocate(e.target.checked)
+              }}
+            />
+
+            {relocate && (
+              <>
+                <LocationCheckbox
+                  handleLocation={handleLocation}
+                  className="mt-3"
+                />
+                <Form.Check className="mb-2 mt-2" label="Anywhere" />
+              </>
+            )}
           </div>
 
           <div

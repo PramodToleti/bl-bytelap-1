@@ -126,7 +126,6 @@ const FresherApplicationSchema = new mongoose.Schema({
   },
   projectDetails: {
     type: [projectDetailsSchema],
-    required: true,
   },
   training: {
     type: [trainingSchema],
@@ -160,7 +159,6 @@ const FresherApplicationSchema = new mongoose.Schema({
   ],
   preferredLocation: {
     type: [String],
-    required: true,
   },
   languages: {
     type: [String],
@@ -168,6 +166,7 @@ const FresherApplicationSchema = new mongoose.Schema({
   },
   availability: {
     type: String,
+    required: true,
   },
   time: {
     type: Date,
