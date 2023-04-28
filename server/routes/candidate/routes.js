@@ -148,6 +148,7 @@ router.post(
       })
 
       if (duplicate) {
+        const username = isPresent.firstName + " " + isPresent.lastName
         const updatedJobApplication = await InternApplication.findOneAndUpdate(
           { candidate: details.candidate }, // Find document based on candidate
           {
@@ -160,13 +161,13 @@ router.post(
             skills: JSON.parse(details.skills),
             coverLetter: details.coverLetter,
             degree: JSON.parse(details.degree),
-            achievements: JSON.parse(details.achievements),
-            achievementsFiles: req.files.achievementsFiles,
-            training: JSON.parse(details.training),
-            trainingFiles: req.files.trainingFiles,
-            projectDetails: JSON.parse(details.projectDetails),
+            achievements: JSON.parse(details.achievements) || [],
+            achievementsFiles: req.files.achievementsFiles || [],
+            training: JSON.parse(details.training) || [],
+            trainingFiles: req.files.trainingFiles || [],
+            projectDetails: JSON.parse(details.projectDetails) || [],
             time: details.time,
-            achievements: JSON.parse(details.achievements),
+            achievements: JSON.parse(details.achievements) || [],
             availability: details.availability,
             languages: JSON.parse(details.languages),
           }
