@@ -8,6 +8,7 @@ import ChooseField from "../ChooseField"
 
 import "./index.css"
 import ChooseDegree from "../ChooseDegree"
+import ChooseInstitute from "../ChooseInstitute"
 
 const DynamicEducationJob = (props) => {
   const [showHiddenFields, setShowHiddenFields] = useState(false)
@@ -64,14 +65,14 @@ const DynamicEducationJob = (props) => {
 
   const onChangeDegree = (e, index) => {
     const list = [...degreeList]
-    list[index].degree = e.target.value
+    list[index].degree = e
 
     setDegreeList(list)
     if (
-      e.target.value !== "Master's" ||
-      e.target.value !== "Bachelor's" ||
-      e.target.value !== "Diploma" ||
-      e.target.value !== "Doctorate"
+      e !== "Master's" ||
+      e !== "Bachelor's" ||
+      e !== "Diploma" ||
+      e !== "Doctorate"
     ) {
       list[index].startDate = ""
       list[index].endDate = ""
@@ -86,13 +87,13 @@ const DynamicEducationJob = (props) => {
 
   const onChangeField = (e, index) => {
     const list = [...degreeList]
-    list[index].field = e[0].label
+    list[index].field = e
     setDegreeList(list)
   }
 
   const onChangeCity = (e, index) => {
     const list = [...degreeList]
-    list[index].city = e[0].label
+    list[index].city = e
     setDegreeList(list)
   }
 
@@ -110,7 +111,7 @@ const DynamicEducationJob = (props) => {
 
   const onChangeInstitute = (e, index) => {
     const list = [...degreeList]
-    list[index].institute = e.target.value
+    list[index].institute = e
     setDegreeList(list)
   }
 
@@ -149,14 +150,14 @@ const DynamicEducationJob = (props) => {
           <Row key={i}>
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
               <ChooseDegree
-                onChangeField={(e) => onChangeField(e, i)}
+                onChangeDegree={(e) => onChangeDegree(e, i)}
                 value={data.field}
               />
             </Form.Group>
 
             {!data.hidden &&
-              (data.degree === "High Secondary (12th)" ||
-                data.degree === "Secondary (10th)") && (
+              (data.degree === "High Secondary (12th Pass)" ||
+                data.degree === "Secondary (10th Pass)") && (
                 <>
                   <Form.Group controlId="schoolName" className="mb-3">
                     <Form.Control
@@ -199,12 +200,9 @@ const DynamicEducationJob = (props) => {
                       value={data.field}
                     />
                     <Form.Group className="mt-3" controlId="collegeName">
-                      <Form.Control
-                        type="text"
-                        placeholder="Institute Name"
-                        required
+                      <ChooseInstitute
                         value={data.institute}
-                        onChange={(e) => onChangeInstitute(e, i)}
+                        onChangeInstitute={(e) => onChangeInstitute(e, i)}
                       />
                       <Form.Control.Feedback type="invalid">
                         Please enter your Institute
