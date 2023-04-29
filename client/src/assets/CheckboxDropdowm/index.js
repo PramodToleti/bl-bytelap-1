@@ -37,6 +37,7 @@ class CheckboxDropdown extends Component {
       filteredOptions: [],
     }
     this.menuListRef = createRef()
+    this.selectRef = createRef()
   }
 
   componentDidMount() {
@@ -61,10 +62,15 @@ class CheckboxDropdown extends Component {
   }
 
   handleChange = (selected) => {
-    this.setState({
-      optionSelected: selected,
-    })
-    this.props.handleSkills !== undefined && this.props.handleSkills(selected)
+    this.setState(
+      {
+        optionSelected: selected,
+      },
+      () => {
+        this.selectRef.current.setState({ menuIsOpen: false })
+      }
+    ),
+      this.props.handleSkills !== undefined && this.props.handleSkills(selected)
   }
 
   handleInputChange = (inputValue) => {
@@ -90,6 +96,7 @@ class CheckboxDropdown extends Component {
           data-content="Please select account(s)"
         >
           <ReactSelect
+            ref={this.selectRef}
             options={options}
             isMulti
             closeMenuOnSelect={false}
