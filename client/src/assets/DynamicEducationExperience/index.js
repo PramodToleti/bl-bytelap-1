@@ -146,7 +146,7 @@ const DynamicEducationExperience = (props) => {
               />
             </Form.Group>
 
-            {(data.degree === "High Secondary (12th Pass)" ||
+            {(data.degree === "Higher Secondary (12th Pass)" ||
               data.degree === "Secondary (10th Pass)") && (
               <>
                 <Form.Group controlId="schoolName" className="mb-3">
@@ -266,44 +266,56 @@ const DynamicEducationExperience = (props) => {
       })}
 
       <Row>
-        <Col className=" mb-3 d-flex justify-content-between">
-          <Button
-            variant="outline-primary"
-            style={{ marginRight: "8px" }}
-            onClick={handleAddFields}
-          >
-            Add More Education
-          </Button>
-          <div style={{ display: "flex", gap: "10px" }}>
-            {degreeList.length > 1 && (
-              <>
+        {degreeList.length < 2 && (
+          <Col className="mb-3 d-flex justify-content-end">
+            <Col className="mb-2 d-flex justify-content-end">
+              <Button
+                variant="outline-primary"
+                className="ml-auto"
+                onClick={handleAddFields}
+              >
+                Add More
+              </Button>
+            </Col>
+          </Col>
+        )}
+
+        {degreeList.length > 1 && (
+          <Col className=" mb-3 d-flex justify-content-between">
+            <div style={{ display: "flex", gap: "10px" }}>
+              <Button
+                variant="outline-danger"
+                size="sm"
+                onClick={handleRemoveFields}
+              >
+                Remove
+              </Button>
+              {!showHiddenFields && (
                 <Button
-                  variant="outline-danger"
-                  size="sm"
-                  onClick={handleRemoveFields}
+                  variant="outline-secondary"
+                  onClick={() => handleHideFields(degreeList.length - 1)}
                 >
-                  Remove
+                  Hide
                 </Button>
-                {!showHiddenFields && (
-                  <Button
-                    variant="outline-secondary"
-                    onClick={() => handleHideFields(degreeList.length - 1)}
-                  >
-                    Hide
-                  </Button>
-                )}
-                {showHiddenFields && (
-                  <Button
-                    variant="outline-secondary"
-                    onClick={() => handleShowFields(degreeList.length - 1)}
-                  >
-                    Show
-                  </Button>
-                )}
-              </>
-            )}
-          </div>
-        </Col>
+              )}
+              {showHiddenFields && (
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => handleShowFields(degreeList.length - 1)}
+                >
+                  Show
+                </Button>
+              )}
+            </div>
+            <Button
+              variant="outline-primary"
+              className="ml-auto"
+              onClick={handleAddFields}
+            >
+              Add More
+            </Button>
+          </Col>
+        )}
       </Row>
     </Form>
   )

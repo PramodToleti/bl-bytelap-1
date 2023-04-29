@@ -15,7 +15,7 @@ const ChooseDegree = (props) => {
     setSelected(e)
   }
 
-  const onInputChange = (inputValue) => {
+  /* const onInputChange = (inputValue) => {
     if (inputValue && !options.some((option) => option.label === inputValue)) {
       // Create a new option object with the entered value as label
       const newOption = { label: inputValue }
@@ -42,7 +42,7 @@ const ChooseDegree = (props) => {
       )
       setOptions(cleanedOptions)
     }
-  }
+  } */
 
   return (
     <Typeahead
@@ -52,7 +52,8 @@ const ChooseDegree = (props) => {
       selected={selected}
       onChange={onChangeTitle}
       value={props.value}
-      onInputChange={onInputChange}
+      filterBy={() => true} // disable default filtering
+      /* onInputChange={onInputChange} */
     />
   )
 }
