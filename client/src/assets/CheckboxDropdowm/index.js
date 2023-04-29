@@ -10,11 +10,6 @@ const Option = (props) => {
   return (
     <div className="option">
       <components.Option {...props}>
-        <input
-          type="checkbox"
-          checked={props.isSelected}
-          onChange={() => null}
-        />{" "}
         <label className="skills-name">{props.label}</label>
       </components.Option>
     </div>
