@@ -522,7 +522,11 @@ function Experience(props) {
         <Row>
           <div
             className="col-lg-6 col-md-4 search-course-right text-dark  mb-4  form-container  rounded container reveal p-3 pt-4    "
-            style={{ width: "100%", backgroundColor: "white" }}
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <h5>
               Job Info <span style={{ color: "red" }}>*</span>
@@ -573,7 +577,11 @@ function Experience(props) {
 
           <div
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal  p-3 pt-4    "
-            style={{ width: "100%", backgroundColor: "white" }}
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <h5 className="mb-3">
               Experience & Current CTC <span style={{ color: "red" }}>*</span>
@@ -704,7 +712,11 @@ function Experience(props) {
 
           <div
             className="col-lg-6 col-md-4 search-course-right text-dark  mb-4  form-container  rounded container reveal p-3 pt-4    "
-            style={{ width: "100%", backgroundColor: "white" }}
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label>
               Cover Letter <span style={{ color: "red" }}>*</span>
@@ -714,7 +726,11 @@ function Experience(props) {
 
           <div
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
-            style={{ width: "100%", backgroundColor: "white" }}
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label>
               Graduation <span style={{ color: "red" }}>*</span>
@@ -724,21 +740,33 @@ function Experience(props) {
 
           <div
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
-            style={{ width: "100%", backgroundColor: "white" }}
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <DynamicEmployementHistory handleHistory={handleHistory} />
           </div>
 
           <div
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
-            style={{ width: "100%", backgroundColor: "white" }}
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <DynamicProjectForm handleProject={handleProject} />
           </div>
 
           <div
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4   "
-            style={{ width: "100%", backgroundColor: "white" }}
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label className="mb-3">
               Internship Training / Course (Optional)
@@ -748,14 +776,22 @@ function Experience(props) {
 
           <div
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
-            style={{ width: "100%", backgroundColor: "white" }}
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <DynamicAchievements handleAchievements={handleAchievements} />
           </div>
 
           <div
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
-            style={{ width: "100%", backgroundColor: "white" }}
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Check
               className="mb-4 mr-2"
@@ -778,14 +814,22 @@ function Experience(props) {
 
           <div
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
-            style={{ width: "100%", backgroundColor: "white" }}
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <LanguageDropdown handleLanguages={handleLanguages} />
           </div>
 
           <div
             className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
-            style={{ width: "100%", backgroundColor: "white" }}
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label>
               Availability <span style={{ color: "red" }}>*</span>
