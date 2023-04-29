@@ -9,11 +9,6 @@ const Option = (props) => {
   return (
     <div className="option">
       <components.Option {...props}>
-        <input
-          type="checkbox"
-          checked={props.isSelected}
-          onChange={() => null}
-        />{" "}
         <label className="skills-name">{props.label}</label>
       </components.Option>
     </div>
@@ -41,6 +36,7 @@ class LocationDropdown extends Component {
       filteredOptions: [],
     }
     this.menuListRef = createRef()
+    this.selectRef = createRef()
   }
 
   componentDidMount() {
@@ -65,9 +61,14 @@ class LocationDropdown extends Component {
   }
 
   handleChange = (selected) => {
-    this.setState({
-      optionSelected: selected,
-    })
+    this.setState(
+      {
+        optionSelected: selected,
+      },
+      () => {
+        this.selectRef.current.setState({ menuIsOpen: false })
+      }
+    )
     this.props.handleSkills !== undefined && this.props.handleSkills(selected)
   }
 
@@ -94,6 +95,7 @@ class LocationDropdown extends Component {
           data-content="Please select account(s)"
         >
           <ReactSelect
+            ref={this.selectRef}
             options={options}
             isMulti
             closeMenuOnSelect={false}
