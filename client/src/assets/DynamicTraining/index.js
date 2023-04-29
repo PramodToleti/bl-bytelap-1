@@ -127,7 +127,7 @@ const DynamicTraining = (props) => {
                     marginLeft: "10px",
                   }}
                 >
-                  Training
+                  Training/Exp
                 </Form.Check.Label>
               </Form.Check>
             </Form.Group>
@@ -177,15 +177,24 @@ const DynamicTraining = (props) => {
                   autoComplete="false"
                 />
                 <Form.Label className="mt-3">To</Form.Label>
-                <DatePicker
-                  className="year-date"
-                  dateFormat="MMM yyyy"
-                  placeholderText="MM / YYYY"
-                  showMonthYearPicker={true}
-                  selected={training.endDate}
-                  onChange={(date) => handleChangeEnd(date, index)}
-                  autoComplete="false"
-                />
+                {training.isPresent ? (
+                  <Form.Control
+                    type="text"
+                    className="year-date"
+                    placeholder="Present"
+                    disabled
+                  />
+                ) : (
+                  <DatePicker
+                    className="year-date"
+                    dateFormat="MMM yyyy"
+                    placeholderText="MM / YYYY"
+                    showMonthYearPicker={true}
+                    selected={training.endDate}
+                    onChange={(date) => handleChangeEnd(date, index)}
+                    autoComplete="false"
+                  />
+                )}
               </div>
             </div>
           </Form.Group>

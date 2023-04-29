@@ -180,8 +180,7 @@ const DynamicEducationExperience = (props) => {
             {(data.degree === "Master's" ||
               data.degree === "Bachelor's" ||
               data.degree === "Diploma" ||
-              data.degree === "" ||
-              data.degree === "Doctrate") && (
+              data.degree === "") && (
               <>
                 <FormGroup className="mb-3 ">
                   <ChooseField
