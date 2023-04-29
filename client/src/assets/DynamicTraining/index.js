@@ -6,6 +6,7 @@ import ChooseFileTraining from "./ChooseFileTraining"
 import TextArea from "antd/es/input/TextArea"
 
 const DynamicTraining = (props) => {
+  const [showHiddenFields, setShowHiddenFields] = useState(false)
   const [trainings, setTrainings] = useState([
     {
       title: "",
@@ -52,6 +53,20 @@ const DynamicTraining = (props) => {
     const newTrainings = [...trainings]
     newTrainings[index].file = event.target.files[0]
     setTrainings(newTrainings)
+  }
+
+  const handleHideFields = (index) => {
+    const list = [...projectDetails]
+    list[index].hidden = true
+    setProjectDetails(list)
+    setShowHiddenFields(true)
+  }
+
+  const handleShowFields = (index) => {
+    const list = [...projectDetails]
+    list[index].hidden = false
+    setProjectDetails(list)
+    setShowHiddenFields(false)
   }
 
   const handleAddFields = () => {
@@ -249,9 +264,27 @@ const DynamicTraining = (props) => {
         )}
         {trainings.length > 1 && (
           <Col className="mb-2  mt-4 d-flex justify-content-between">
-            <Button variant="danger" onClick={handleRemoveFields}>
-              Remove
-            </Button>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <Button variant="danger" onClick={handleRemoveFields}>
+                Remove
+              </Button>
+              {!showHiddenFields && (
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => handleHideFields(projectDetails.length - 1)}
+                >
+                  Hide
+                </Button>
+              )}
+              {showHiddenFields && (
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => handleShowFields(projectDetails.length - 1)}
+                >
+                  Show
+                </Button>
+              )}
+            </div>
 
             <Button
               variant="outline-primary"

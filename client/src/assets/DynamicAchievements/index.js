@@ -59,27 +59,12 @@ const DynamicAchievements = (props) => {
 
   return (
     <Form>
-      <Form.Label className="mb-3">
+      <Form.Label className="mb-2">
         Acheivements / Awards & Recognition
       </Form.Label>
       {achievements.map((data, index) => (
         <Row className="" key={index}>
-          <Form.Group className="mb-3" controlId="formBasicText">
-            <TextArea
-              rows={3}
-              value={data.achievement}
-              onChange={(e) => onChangeAchievements(e, index)}
-              placeholder="Eg. First Prize in Quiz Competition"
-            />
-          </Form.Group>
-          {/* <Form.Group className="mb-2">
-            <ChooseFileAchievement
-              handleFileUpload={handleFileUpload}
-              index={index}
-            />
-          </Form.Group> */}
-
-          <Form.Group className="mb-2">
+          <Form.Group className="mb-4">
             <Form.Label>Title</Form.Label>
             <Form.Control
               type="text"
@@ -90,6 +75,20 @@ const DynamicAchievements = (props) => {
               }}
             />
           </Form.Group>
+          <Form.Group className="mb-2" controlId="formBasicText">
+            <TextArea
+              rows={3}
+              value={data.achievement}
+              onChange={(e) => onChangeAchievements(e, index)}
+              placeholder="Eg. First Prize in Quiz Competition (Optional)"
+            />
+          </Form.Group>
+          {/* <Form.Group className="mb-2">
+            <ChooseFileAchievement
+              handleFileUpload={handleFileUpload}
+              index={index}
+            />
+          </Form.Group> */}
 
           <Form.Group className="mb-2">
             <Form.Group className="mb-3" style={{ width: "100%" }}>
