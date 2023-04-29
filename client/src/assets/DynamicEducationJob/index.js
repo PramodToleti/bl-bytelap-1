@@ -192,7 +192,7 @@ const DynamicEducationJob = (props) => {
                 data.degree === "Bachelor's" ||
                 data.degree === "Diploma" ||
                 data.degree === "" ||
-                data.degree === "Doctorate") && (
+                data.degree === "Doctrate") && (
                 <>
                   <FormGroup className="mb-3 ">
                     <ChooseField
