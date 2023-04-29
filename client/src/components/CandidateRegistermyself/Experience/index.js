@@ -32,6 +32,8 @@ import LocationCheckbox from "../../../assets/LocationCheckbox"
 function Experience(props) {
   const [validated, setValidated] = useState(false)
   const [salaryType, setSalaryType] = useState("")
+  const [selectedYears, setSelectedYears] = useState([])
+  const [selectedMonths, setSelectedMonths] = useState([])
 
   //Input data
   const [resumeFile, setResumeFile] = useState(null)
@@ -79,6 +81,18 @@ function Experience(props) {
     checkbox,
     preferredLocation,
     time: moment(),
+  }
+
+  const handleYearChange = (selected) => {
+    const yearsLabel = selected[0]?.label
+    const yearsValue = selected[0]?.value
+    setSelectedYears([{ label: `${yearsLabel} Years`, value: yearsValue }])
+  }
+
+  const handleMonthChange = (selected) => {
+    const monthsLabel = selected[0]?.label
+    const monthsValue = selected[0]?.value
+    setSelectedMonths([{ label: `${monthsLabel} Months`, value: monthsValue }])
   }
 
   const handleTitle = (e) => {
@@ -159,28 +173,15 @@ function Experience(props) {
     })
   }
 
-  const yearOptions = Array.from(
-    { length: 15 },
-    (_, index) => `${index + 1} Years`
-  )
-  const monthOptions = Array.from(
-    { length: 12 },
-    (_, index) => `${index + 1} Months`
-  )
+  const yearOptions = Array.from({ length: 15 }, (_, index) => ({
+    label: `${index + 1}`,
+    value: index + 1,
+  }))
 
-  const handleYearChange = (selected) => {
-    setExperience((prev) => ({
-      ...prev,
-      years: selected[0]?.split(" ")[0] || "",
-    }))
-  }
-
-  const handleMonthChange = (selected) => {
-    setExperience((prev) => ({
-      ...prev,
-      months: selected[0]?.split(" ")[0] || "",
-    }))
-  }
+  const monthOptions = Array.from({ length: 12 }, (_, index) => ({
+    label: `${index + 1}`,
+    value: index + 1,
+  }))
 
   let now = 0
   function progressBar() {
@@ -633,7 +634,8 @@ function Experience(props) {
                   options={yearOptions}
                   placeholder="Years"
                   onChange={handleYearChange}
-                  selected={[`${experience.years} Years`]}
+                  selected={selectedYears}
+                  filterBy={() => true}
                 />
                 <Form.Control.Feedback type="invalid">
                   Please Enter a valid year
@@ -648,14 +650,14 @@ function Experience(props) {
                   options={monthOptions}
                   placeholder="Months"
                   onChange={handleMonthChange}
-                  selected={[`${experience.months} Months`]}
+                  selected={selectedMonths}
+                  filterBy={() => true}
                 />
                 <Form.Control.Feedback type="invalid">
                   Please Enter a valid month
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
-
             <Row>
               <Form.Label>Current CTC</Form.Label>
               {checkbox ? (
