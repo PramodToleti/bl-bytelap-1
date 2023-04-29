@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer, toast } from "react-toastify"
 import { Oval } from "react-loader-spinner"
 import moment from "moment/moment"
+import { Typeahead } from "react-bootstrap-typeahead"
 import { useRef } from "react"
 
 import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
@@ -156,6 +157,29 @@ function Experience(props) {
       ...state,
       selectedSkills: selected,
     })
+  }
+
+  const yearOptions = Array.from(
+    { length: 15 },
+    (_, index) => `${index + 1} Years`
+  )
+  const monthOptions = Array.from(
+    { length: 12 },
+    (_, index) => `${index + 1} Months`
+  )
+
+  const handleYearChange = (selected) => {
+    setExperience((prev) => ({
+      ...prev,
+      years: selected[0]?.split(" ")[0] || "",
+    }))
+  }
+
+  const handleMonthChange = (selected) => {
+    setExperience((prev) => ({
+      ...prev,
+      months: selected[0]?.split(" ")[0] || "",
+    }))
   }
 
   let now = 0
@@ -597,22 +621,20 @@ function Experience(props) {
               </Form.Select>
             </Form.Group>
   {renderSalaryType()}*/}
+
             <Row>
               <Form.Label>Experience</Form.Label>
               <Form.Group
                 controlId="experience-years"
                 className="col-sm-5 mb-2"
               >
-                <Form.Select
-                  onChange={(e) =>
-                    setExperience({ ...experience, years: e.target.value })
-                  }
-                >
-                  <option>Years</option>
-                  {Array.from({ length: 15 }, (_, index) => (
-                    <option key={index}>{index + 1}</option>
-                  ))}
-                </Form.Select>
+                <Typeahead
+                  id="year-typeahead"
+                  options={yearOptions}
+                  placeholder="Years"
+                  onChange={handleYearChange}
+                  selected={[`${experience.years} Years`]}
+                />
                 <Form.Control.Feedback type="invalid">
                   Please Enter a valid year
                 </Form.Control.Feedback>
@@ -621,16 +643,13 @@ function Experience(props) {
                 controlId="experience-months"
                 className="col-sm-5 mb-2"
               >
-                <Form.Select
-                  onChange={(e) =>
-                    setExperience({ ...experience, months: e.target.value })
-                  }
-                >
-                  <option>Months</option>
-                  {Array.from({ length: 12 }, (_, index) => (
-                    <option key={index}>{index + 1}</option>
-                  ))}
-                </Form.Select>
+                <Typeahead
+                  id="month-typeahead"
+                  options={monthOptions}
+                  placeholder="Months"
+                  onChange={handleMonthChange}
+                  selected={[`${experience.months} Months`]}
+                />
                 <Form.Control.Feedback type="invalid">
                   Please Enter a valid month
                 </Form.Control.Feedback>
