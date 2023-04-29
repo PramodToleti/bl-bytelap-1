@@ -55,6 +55,7 @@ function Experience(props) {
   const [custom, setCustom] = useState("")
   const [checkbox, toggleCheckbox] = useState(false)
   const [relocate, setRelocate] = useState(false)
+  const [anywhere, setAnywhere] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
   const fileInputRef = useRef(null)
@@ -793,22 +794,36 @@ function Experience(props) {
               border: "1px solid #b0b0b0",
             }}
           >
-            <Form.Check
-              className="mb-4 mr-2"
-              label="I am willing to relocate"
-              onChange={(e) => {
-                setRelocate(e.target.checked)
-              }}
-            />
+            <Form.Check className="">
+              <Form.Check.Input
+                type="checkbox"
+                onChange={(e) => {
+                  setRelocate(e.target.checked)
+                }}
+              />
+              <Form.Check.Label style={{ marginLeft: "8px" }}>
+                I am willing to relocate
+              </Form.Check.Label>
+            </Form.Check>
+
+            {relocate && !anywhere && (
+              <div className="mt-4">
+                <LocationCheckbox handleLocation={handleLocation} />
+              </div>
+            )}
 
             {relocate && (
-              <>
-                <LocationCheckbox
-                  handleLocation={handleLocation}
-                  className="mt-3"
+              <div className="mt-4">
+                <Form.Check.Input
+                  type="checkbox"
+                  onChange={(e) => {
+                    setAnywhere(e.target.checked)
+                  }}
                 />
-                <Form.Check className="mb-2 mt-2" label="Anywhere" />
-              </>
+                <Form.Check.Label style={{ marginLeft: "10px" }}>
+                  Anywhere
+                </Form.Check.Label>
+              </div>
             )}
           </div>
 
