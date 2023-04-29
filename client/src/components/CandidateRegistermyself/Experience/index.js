@@ -521,7 +521,7 @@ function Experience(props) {
       >
         <Row>
           <div
-            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border-dark form-container  rounded container reveal p-3 pt-4  rounded border "
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4  form-container  rounded container reveal p-3 pt-4    "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <h5>
@@ -572,7 +572,7 @@ function Experience(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal  p-3 pt-4  rounded border "
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal  p-3 pt-4    "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <h5 className="mb-3">
@@ -703,7 +703,7 @@ function Experience(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border-dark form-container  rounded container reveal p-3 pt-4  rounded border "
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4  form-container  rounded container reveal p-3 pt-4    "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <Form.Label>
@@ -713,7 +713,7 @@ function Experience(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <Form.Label>
@@ -723,21 +723,21 @@ function Experience(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <DynamicEmployementHistory handleHistory={handleHistory} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <DynamicProjectForm handleProject={handleProject} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4 rounded border "
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4   "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <Form.Label className="mb-3">
@@ -747,14 +747,14 @@ function Experience(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <DynamicAchievements handleAchievements={handleAchievements} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <Form.Check
@@ -777,14 +777,14 @@ function Experience(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <LanguageDropdown handleLanguages={handleLanguages} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <Form.Label>

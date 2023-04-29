@@ -529,8 +529,12 @@ function Fresher(props) {
       >
         <Row>
           <div
-            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border-dark form-container  rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4  form-container  rounded container reveal p-3 pt-4    "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <h5>
               Job Info <span style={{ color: "red" }}>*</span>
@@ -580,8 +584,12 @@ function Fresher(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <h5>
               Salary Expectations <span style={{ color: "red" }}>*</span>
@@ -604,8 +612,12 @@ function Fresher(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border-dark form-container  rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4  form-container  rounded container reveal p-3 pt-4    "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label>
               Cover Letter <span style={{ color: "red" }}>*</span>
@@ -622,8 +634,12 @@ function Fresher(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label>
               Graduation <span style={{ color: "red" }}>*</span>
@@ -632,15 +648,23 @@ function Fresher(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <DynamicProjectForm handleProject={handleProject} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label className="mb-3">
               Internship Training / Course
@@ -649,15 +673,23 @@ function Fresher(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4 rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4   "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <DynamicAchievements handleAchievements={handleAchievements} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Check
               className="mb-4 mr-2"
@@ -679,15 +711,23 @@ function Fresher(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4   form-container rounded container reveal p-3 pt-4    "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <LanguageDropdown handleLanguages={handleLanguages} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  border-dark form-container rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4  form-container rounded container reveal p-3 pt-4    "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label>
               Availability <span style={{ color: "red" }}>*</span>

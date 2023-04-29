@@ -412,7 +412,7 @@ function Internship(props) {
       <Button
         type="button"
         variant="outline-primary"
-        className="mt-4"
+        className="mt-4 mb-2"
         onClick={handleButtonClick}
       >
         Upload Resume
@@ -429,13 +429,17 @@ function Internship(props) {
         validated={validated}
         onSubmit={onSubmitForm}
         style={{ width: "100%" }}
-        className="p-2"
+        className="p-3"
         ref={formRef}
       >
         <Row className="mb-3">
           <div
-            className="col-lg-6 col-md-4 search-course-right text-dark form-container mb-4 border-dark   rounded container reveal  p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right text-dark form-container mb-4   rounded container reveal  p-3 pt-4 "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <h5>
               Job Info <span style={{ color: "red" }}>*</span>
@@ -476,8 +480,12 @@ function Internship(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right text-dark form-container mb-4 border-dark   rounded container reveal  p-3 pt-4 rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right text-dark form-container mb-4   rounded container reveal  p-3 pt-4"
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label>
               Cover Letter <span style={{ color: "red" }}>*</span>
@@ -486,8 +494,12 @@ function Internship(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark form-container mb-4  border-dark  rounded container reveal   p-3 pt-4 rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark form-container mb-4  rounded container reveal   p-3 pt-4 "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label>
               Graduation <span style={{ color: "red" }}>*</span>
@@ -496,14 +508,18 @@ function Internship(props) {
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark form-container mb-4  border-dark  rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark form-container mb-4   rounded container reveal p-3 pt-4  "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <DynamicProjectForm handleProject={handleProject} />
           </div>
 
           {/*<div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4 border-dark   rounded container reveal  p-4  rounded border "
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4    rounded container reveal  p-4    "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             <Form.Label>About us</Form.Label>
@@ -511,30 +527,46 @@ function Internship(props) {
           </div>*/}
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark form-container mb-4  border-dark  rounded container reveal  p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark form-container mb-4  rounded container reveal  p-3 pt-4 "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label className="mb-3">Training / Course</Form.Label>
             <DynamicTraining handleTraining={handleTraining} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4 form-container border-dark  rounded container reveal  p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4 form-container rounded container reveal  p-3 pt-4   "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <DynamicAchievements handleAchievements={handleAchievements} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4 form-container border-dark  rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4 form-container rounded container reveal p-3 pt-4"
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <LanguageDropdown handleLanguages={handleLanguages} />
           </div>
 
           <div
-            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4 form-container border-dark  rounded container reveal p-3 pt-4  rounded border "
-            style={{ width: "100%", backgroundColor: "white" }}
+            className="col-lg-6 col-md-4 search-course-right  text-dark  mb-4 form-container rounded container reveal p-3 pt-4 "
+            style={{
+              width: "100%",
+              backgroundColor: "white",
+              border: "1px solid #b0b0b0",
+            }}
           >
             <Form.Label>
               Availability <span style={{ color: "red" }}>*</span>
