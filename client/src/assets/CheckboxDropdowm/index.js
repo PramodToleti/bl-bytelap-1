@@ -67,6 +67,7 @@ class CheckboxDropdown extends Component {
         optionSelected: selected,
       },
       () => {
+        console.log(this.selectRef.current)
         this.selectRef.current.setState({ menuIsOpen: false })
       }
     ),
@@ -99,7 +100,7 @@ class CheckboxDropdown extends Component {
             ref={this.selectRef}
             options={options}
             isMulti
-            closeMenuOnSelect={false}
+            closeMenuOnSelect={true}
             hideSelectedOptions={false}
             components={{
               Option,

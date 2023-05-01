@@ -98,7 +98,7 @@ class LocationDropdown extends Component {
             ref={this.selectRef}
             options={options}
             isMulti
-            closeMenuOnSelect={false}
+            closeMenuOnSelect={true}
             hideSelectedOptions={false}
             components={{
               Option,
