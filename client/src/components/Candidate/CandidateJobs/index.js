@@ -29,6 +29,17 @@ const CandidateJobs = (props) => {
 
   const { search = "", location = "" } = searchDetails || {}
 
+  console.log(
+    search,
+    location,
+    selectedOption,
+    duration,
+    timePeriod,
+    workPlace,
+    checkedShifts,
+    yearsOfExperience
+  )
+
   const activeSearchStr = search || ""
   const activeLocationStr = location || ""
 
@@ -69,8 +80,25 @@ const CandidateJobs = (props) => {
       return false
     }
 
+    // Filter by duration
+    if (duration.length !== 0 && duration.includes(job.durantion) === false) {
+      return false
+    }
+
+    // Filter by work place
+    if (workPlace.length !== 0 && workPlace.includes(job.jobType) === false) {
+      return false
+    }
+
+    // Filter by time period
+    if (timePeriod.length !== 0 && timePeriod.includes(job.jobTime) === false) {
+      return false
+    }
+
     return true
   })
+
+  console.log(internJobs)
 
   const fresherJobs = jobs.filter((job) => {
     // Filter by type

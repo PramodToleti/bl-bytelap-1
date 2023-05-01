@@ -99,15 +99,15 @@ function Home() {
                 <Dropdown.Item href="#/action-1">
                   <Form.Check
                     type="checkbox"
-                    label="Full Time"
-                    name="Full Time"
-                    checked={timePeriod.includes("Full Time")}
+                    label="Full-Time"
+                    name="Full-Time"
+                    checked={timePeriod.includes("Full-Time")}
                     onChange={(e) => {
                       if (e.target.checked) {
-                        setTimePeriod([...timePeriod, "Full Time"])
+                        setTimePeriod([...timePeriod, "Full-Time"])
                       } else {
                         setTimePeriod(
-                          timePeriod.filter((option) => option !== "Full Time")
+                          timePeriod.filter((option) => option !== "Full-Time")
                         )
                       }
                     }}
@@ -116,15 +116,15 @@ function Home() {
                 <Dropdown.Item href="#/action-1">
                   <Form.Check
                     type="checkbox"
-                    label="Part Time"
-                    name="Part Time"
-                    checked={timePeriod.includes("Part Time")}
+                    label="Part-Time"
+                    name="Part-Time"
+                    checked={timePeriod.includes("Part-Time")}
                     onChange={(e) => {
                       if (e.target.checked) {
-                        setTimePeriod([...timePeriod, "Part Time"])
+                        setTimePeriod([...timePeriod, "Part-Time"])
                       } else {
                         setTimePeriod(
-                          timePeriod.filter((option) => option !== "Part Time")
+                          timePeriod.filter((option) => option !== "Part-Time")
                         )
                       }
                     }}
@@ -147,15 +147,15 @@ function Home() {
                 <Dropdown.Item href="#/action-1">
                   <Form.Check
                     type="checkbox"
-                    label="Work From Home"
-                    value="Work From Home"
+                    label="Work from Home"
+                    value="Work from Home"
                     onChange={(e) => {
                       if (e.target.checked) {
-                        setWorkPlace([...workPlace, "Work From Home"])
+                        setWorkPlace([...workPlace, "Work from Home"])
                       } else {
                         setWorkPlace(
                           workPlace.filter(
-                            (option) => option !== "Work From Home"
+                            (option) => option !== "Work from Home"
                           )
                         )
                       }

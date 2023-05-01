@@ -275,7 +275,8 @@ const InternshipJob = (props) => {
                   background: "transparent",
                   color: "blue",
                   cursor: "pointer",
-                  marginBottom: "0px",
+                  marginTop: "5px",
+                  marginBottom: "5px",
                 }}
                 key={index}
                 onClick={() => {
