@@ -4,25 +4,25 @@ import { components } from "react-select"
 import { Form } from "react-bootstrap"
 
 const skills = [
-  { value: "english-beginner", label: "English (Beginner)" },
-  { value: "english-intermediate", label: "English (Intermediate)" },
-  { value: "english-fluent", label: "English (Fluent)" },
-  { value: "english-native", label: "English (Native)" },
+  { value: "English-beginner", label: "English (Beginner)" },
+  { value: "English-intermediate", label: "English (Intermediate)" },
+  { value: "English-fluent", label: "English (Fluent)" },
+  { value: "English-native", label: "English (Native)" },
 
-  { value: "telugu-beginner", label: "Telugu (Beginner)" },
-  { value: "telugu-intermediate", label: "Telugu (Intermediate)" },
-  { value: "telugu-fluent", label: "Telugu (Fluent)" },
-  { value: "telugu-native", label: "Telugu (Native)" },
+  { value: "Telugu-beginner", label: "Telugu (Beginner)" },
+  { value: "Telugu-intermediate", label: "Telugu (Intermediate)" },
+  { value: "Telugu-fluent", label: "Telugu (Fluent)" },
+  { value: "Telugu-native", label: "Telugu (Native)" },
 
-  { value: "hindi-beginner", label: "Hindi (Beginner)" },
-  { value: "hindi-intermediate", label: "Hindi (Intermediate)" },
-  { value: "hindi-fluent", label: "Hindi (Fluent)" },
-  { value: "hindi-native", label: "Hindi (Native)" },
+  { value: "Hindi-beginner", label: "Hindi (Beginner)" },
+  { value: "Hindi-intermediate", label: "Hindi (Intermediate)" },
+  { value: "Hindi-fluent", label: "Hindi (Fluent)" },
+  { value: "Hindi-native", label: "Hindi (Native)" },
 
-  { value: "tamil-beginner", label: "Tamil (Beginner)" },
-  { value: "tamil-intermediate", label: "Tamil (Intermediate)" },
-  { value: "tamil-fluent", label: "Tamil (Fluent)" },
-  { value: "tamil-native", label: "Tamil (Native)" },
+  { value: "Tamil-beginner", label: "Tamil (Beginner)" },
+  { value: "Tamil-intermediate", label: "Tamil (Intermediate)" },
+  { value: "Tamil-fluent", label: "Tamil (Fluent)" },
+  { value: "Tamil-native", label: "Tamil (Native)" },
 
   { value: "Marathi-beginner", label: "Marathi (Beginner)" },
   { value: "Marathi-intermediate", label: "Marathi (Intermediate)" },
@@ -119,20 +119,20 @@ const skills = [
   { value: "Dogri-fluent", label: "Dogri (Fluent)" },
   { value: "Dogri-native", label: "Dogri (Native)" },
 
-  { value: "russian-beginner", label: "Russian (Beginner)" },
-  { value: "russian-intermediate", label: "Russian (Intermediate)" },
-  { value: "russian-fluent", label: "Russian (Fluent)" },
-  { value: "russian-native", label: "Russian (Native)" },
+  { value: "Russian-beginner", label: "Russian (Beginner)" },
+  { value: "Russian-intermediate", label: "Russian (Intermediate)" },
+  { value: "Russian-fluent", label: "Russian (Fluent)" },
+  { value: "Russian-native", label: "Russian (Native)" },
 
-  { value: "turkish-beginner", label: "Turkish (Beginner)" },
-  { value: "turkish-intermediate", label: "Turkish (Intermediate)" },
-  { value: "turkish-fluent", label: "Turkish (Fluent)" },
-  { value: "turkish-native", label: "Turkish (Native)" },
+  { value: "Turkish-beginner", label: "Turkish (Beginner)" },
+  { value: "Turkish-intermediate", label: "Turkish (Intermediate)" },
+  { value: "Turkish-fluent", label: "Turkish (Fluent)" },
+  { value: "Turkish-native", label: "Turkish (Native)" },
 
-  { value: "spanish-beginner", label: "Spanish (Beginner)" },
-  { value: "spanish-intermediate", label: "Spanish (Intermediate)" },
-  { value: "spanish-fluent", label: "Spanish (Fluent)" },
-  { value: "spanish-native", label: "Spanish (Native)" },
+  { value: "Spanish-beginner", label: "Spanish (Beginner)" },
+  { value: "Spanish-intermediate", label: "Spanish (Intermediate)" },
+  { value: "Spanish-fluent", label: "Spanish (Fluent)" },
+  { value: "Spanish-native", label: "Spanish (Native)" },
 ]
 
 const Option = (props) => {
@@ -181,7 +181,7 @@ class LanguageDropdown extends Component {
       filteredSkills: filteredLanguages,
     })
 
-    this.props.handleLanguages(selectedLanguages)
+    this.props.handleLanguages(selected.map((each) => each.label))
   }
 
   handleRemove = (removedOption) => {

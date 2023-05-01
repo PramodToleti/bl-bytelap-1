@@ -69,7 +69,8 @@ class LocationDropdown extends Component {
         this.selectRef.current.setState({ menuIsOpen: false })
       }
     )
-    this.props.handleSkills !== undefined && this.props.handleSkills(selected)
+    this.props.handleLocation !== undefined &&
+      this.props.handleLocation(selected)
   }
 
   handleInputChange = (inputValue) => {
