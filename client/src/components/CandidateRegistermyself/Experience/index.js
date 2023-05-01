@@ -84,14 +84,14 @@ function Experience(props) {
   }
 
   const handleYearChange = (selected) => {
-    const yearsLabel = selected[0]?.label
-    const yearsValue = selected[0]?.value
+    const yearsLabel = selected[0]?.label || ""
+    const yearsValue = selected[0]?.value || ""
     setSelectedYears([{ label: `${yearsLabel} Years`, value: yearsValue }])
   }
 
   const handleMonthChange = (selected) => {
-    const monthsLabel = selected[0]?.label
-    const monthsValue = selected[0]?.value
+    const monthsLabel = selected[0]?.label || ""
+    const monthsValue = selected[0]?.value || ""
     setSelectedMonths([{ label: `${monthsLabel} Months`, value: monthsValue }])
   }
 
