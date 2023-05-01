@@ -1,7 +1,5 @@
 .demo-editor {
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  background-color: #fafbfc;
+  background-color: white;
   min-height: 250px;
   /* max-height: 300px;
   overflow-y: scroll; */
@@ -11,4 +9,23 @@
 
 .public-DraftStyleDefault-block {
   margin: 0;
+}
+
+.DraftEditor-editorContainer {
+  z-index: 0 !important;
+}
+
+.rdw-editor-wrapper {
+  border: 1px solid #ced4da;
+  border-radius: 2px !important;
+}
+
+.rdw-editor-toolbar {
+  border: none !important;
+  border-bottom: #ced4da 1px solid !important;
+  padding: 0.5rem !important;
+}
+
+.rdw-option-wrapper {
+  border: none !important;
 }
