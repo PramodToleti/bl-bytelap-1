@@ -20,6 +20,8 @@ function InternshipPostPreview(props) {
   const [lgShow, setLgShow] = useState(false)
   const [fullText, setFullText] = useState(false)
 
+  console.log(data)
+
   function renderPreview() {
     return (
       <>
@@ -96,7 +98,7 @@ function InternshipPostPreview(props) {
                           Work from Home
                         </p>
                       </>
-                    ) : data.city.length !== 0 ? (
+                    ) : data.city !== "" ? (
                       <>
                         <MdLocationOn
                           style={{ fontSize: "19px", color: "grey" }}
@@ -106,16 +108,15 @@ function InternshipPostPreview(props) {
                           style={{ wordBreak: "break-word" }}
                           className="details-heading"
                         >
-                          {data.city.length > 3 && !fullText ? (
+                          <div className="">{data.city}</div>
+                          {/* {data.city.length > 3 && !fullText ? (
                             <div
                               style={{
                                 wordBreak: "break-word",
                                 maxWidth: "295px",
                               }}
                             >
-                              {`${data.city[0].label.split(",")[0]}, ${
-                                data.city[1].label.split(",")[0]
-                              }, ${data.city[2].label.split(",")[0]} ...`}
+                              {data.city}
                               {!fullText && (
                                 <span
                                   style={{
@@ -140,7 +141,7 @@ function InternshipPostPreview(props) {
                                 {index !== data.city.length - 1 ? ", " : ""}
                               </span>
                             ))
-                          )}
+                          )} */}
                         </div>
                       </>
                     ) : (
@@ -243,9 +244,9 @@ function InternshipPostPreview(props) {
                       : each.qualification === "Any Post Graduate"
                       ? "PG : "
                       : ""}
-                    {each.field.length !== 0
-                      ? `${each.qualification} in
-                        (${each.field.map((each) => `${each}, `)})`
+
+                    {each.field !== ""
+                      ? `${each.qualification} in(${each.field})`
                       : each.qualification}
                   </p>
                 ))}

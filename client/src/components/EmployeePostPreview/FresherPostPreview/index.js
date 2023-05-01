@@ -91,7 +91,7 @@ function FresherPostPreview(props) {
                           Work from Home
                         </p>
                       </>
-                    ) : data.city.length !== 0 ? (
+                    ) : data.city !== "" ? (
                       <>
                         <MdLocationOn
                           style={{ fontSize: "19px", color: "grey" }}
@@ -101,35 +101,7 @@ function FresherPostPreview(props) {
                           style={{ wordBreak: "break-word" }}
                           className="details-heading"
                         >
-                          {data.city.length > 3 && !fullText ? (
-                            <div>
-                              {`${data.city[0].label.split(",")[0]}, ${
-                                data.city[1].label.split(",")[0]
-                              }, ${data.city[2].label.split(",")[0]} ...`}
-                              {!fullText && (
-                                <span
-                                  style={{
-                                    color: "blue",
-                                    fontSize: "12px",
-                                    margin: "0px",
-                                    cursor: "pointer",
-                                    marginTop: "4px",
-                                    marginLeft: "4px",
-                                  }}
-                                  onClick={() => setFullText(true)}
-                                >
-                                  View More{" "}
-                                </span>
-                              )}
-                            </div>
-                          ) : (
-                            data.city.map((each, index) => (
-                              <span key={index}>
-                                {each.label.split(",")[0]}
-                                {index !== data.city.length - 1 ? ", " : ""}
-                              </span>
-                            ))
-                          )}
+                          <div className="">{data.city}</div>
                         </div>
                       </>
                     ) : (
@@ -195,7 +167,7 @@ function FresherPostPreview(props) {
           data.supplementary.length !== 0 ||
           data.languages.length !== 0) && (
           <div
-            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border    rounded container reveal  p-3  rounded border "
+            className="col-lg-6 col-md-4 search-course-right text-dark  mb-4 border  div-card  rounded container reveal  p-2  rounded border "
             style={{ width: "100%", backgroundColor: "white" }}
           >
             {data.education.length !== 0 && (
@@ -208,68 +180,54 @@ function FresherPostPreview(props) {
                       : each.qualification === "Any Post Graduate"
                       ? "PG : "
                       : ""}
-                    {each.field.length !== 0
-                      ? `${each.qualification} in
-                        (${each.field.map((each) => `${each}, `)})`
+
+                    {each.field !== ""
+                      ? `${each.qualification} in(${each.field})`
                       : each.qualification}
                   </p>
                 ))}
                 <hr />
               </>
             )}
+
             {data.jobDescription !== "" && (
               <>
                 <h4 className="mb-3">Job Description</h4>
-
-                <div
-                  className="parent-div"
-                  dangerouslySetInnerHTML={{ __html: data.jobDescription }}
-                />
-                <hr />
+                <p style={{ fontSize: "17px" }}>
+                  Selected intern's day-to-day responsibilities include:
+                </p>
+                {data.jobDescription !== "" && (
+                  <div
+                    className="parent-div"
+                    dangerouslySetInnerHTML={{ __html: data.jobDescription }}
+                  />
+                )}
               </>
             )}
 
             {data.perks.length !== 0 && (
-              <>
-                <div>
-                  <h4 className="mb-3">Perks & Benefits:</h4>
-                  {data.perks.map((each, i) => (
-                    <h6 className="preview-skills" key={each}>
-                      {each.value}
-                    </h6>
-                  ))}
-                </div>
-
+              <div className="perks-desktop">
                 <hr />
-              </>
-            )}
-
-            {data.supplementary.length !== 0 && (
-              <>
-                <div>
-                  <h4 className="mb-3">Supplemental Pay:</h4>
-                  {data.supplementary.map((each, i) => (
-                    <h6 className="preview-skills" key={each}>
-                      {each.value}
-                    </h6>
-                  ))}
-                </div>
+                <h4 className="mb-3">Perks & Benefits</h4>
+                {data.perks.map((each, i) => (
+                  <h6 className="preview-skills" key={each}>
+                    {each.value}
+                  </h6>
+                ))}
                 <hr />
-              </>
+              </div>
             )}
 
             {data.languages.length !== 0 && (
-              <>
-                <div>
-                  <h4 className="mb-3">Languages</h4>
-                  <div className="languages-list">
-                    {data.languages.map((each) => (
-                      <p>{each}</p>
-                    ))}
-                  </div>
+              <div>
+                <h4 className="mb-3">Languages</h4>
+                <div className="languages-list">
+                  {data.languages.map((each) => (
+                    <p>{each}</p>
+                  ))}
                 </div>
                 <hr />
-              </>
+              </div>
             )}
 
             {data.openings !== "" && (
