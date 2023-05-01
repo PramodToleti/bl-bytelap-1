@@ -58,7 +58,7 @@ const internSchema = new mongoose.Schema({
     required: true,
   },
   city: {
-    type: [locationSchema],
+    type: String,
   },
   duration: {
     type: String,

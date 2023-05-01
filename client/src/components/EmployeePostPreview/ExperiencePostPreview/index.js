@@ -225,9 +225,9 @@ function ExperiencePostPreview(props) {
                       ? "PG : "
                       : ""}
 
-                    {each.field !== ""
-                      ? `${each.qualification} in(${each.field})`
-                      : each.qualification}
+                    {each.field.length === 0
+                      ? each.qualification
+                      : `${each.qualification} in(${each.field})`}
                   </p>
                 ))}
                 <hr />

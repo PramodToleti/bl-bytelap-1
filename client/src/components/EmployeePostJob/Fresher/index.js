@@ -166,7 +166,7 @@ function Fresher() {
 
   const handleLanguages = (e) => {
     let languages = []
-    e.map((each) => languages.push(each.value))
+    e.map((each) => languages.push(each))
     setLanguages(languages)
   }
 

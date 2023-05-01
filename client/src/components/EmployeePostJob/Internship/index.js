@@ -36,7 +36,7 @@ function Internship() {
   const [responsibilities, setResponsibilities] = useState("")
   const [salaryType, setSalaryType] = useState("")
   const [salaryRange, setSalaryRange] = useState({ from: "", to: "" })
-  const [incentives, setIncentives] = useState("")
+  const [incentives, setIncentives] = useState(false)
   const [incentivesValue, setIncentivesValue] = useState("")
   const [perks, setPerks] = useState([])
   const [languages, setLanguages] = useState([])
@@ -89,7 +89,7 @@ function Internship() {
 
   const handleLanguages = (e) => {
     let languages = []
-    e.map((each) => languages.push(each.value))
+    e.map((each) => languages.push(each))
     setLanguages(languages)
   }
 
@@ -98,6 +98,7 @@ function Internship() {
   }
 
   const handleEducation = (e) => {
+    console.log(e)
     setEducation(e)
   }
 
@@ -154,10 +155,11 @@ function Internship() {
   }
 
   const handlePostJob = async () => {
+    console.log(data)
     if (
       jobTitle !== "" &&
       jobTime !== "" &&
-      (jobType !== "" || city.length !== 0) &&
+      (jobType !== "" || city !== "") &&
       duration !== "" &&
       (checked !== false || startDate !== "") &&
       skills.length !== 0 &&

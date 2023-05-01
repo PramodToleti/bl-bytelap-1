@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify"
 import { toast } from "react-toastify"
 import { Oval } from "react-loader-spinner"
 import moment from "moment/moment"
+import { Typeahead } from "react-bootstrap-typeahead"
 
 import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
 import ChooseCity from "../../../assets/ChooseCity"
@@ -25,6 +26,8 @@ import "react-toastify/dist/ReactToastify.css"
 
 function Experience() {
   const [validated, setValidated] = useState(false)
+  const [selectedYears, setSelectedYears] = useState([])
+  const [selectedMonths, setSelectedMonths] = useState([])
   //Input data
   const [jobTitle, setJobTitle] = useState("")
   const [jobTime, setJobTime] = useState("")
@@ -149,6 +152,28 @@ function Experience() {
     }
   }
 
+  const handleYearChange = (selected) => {
+    const yearsLabel = selected[0]?.label || ""
+    const yearsValue = selected[0]?.value || ""
+    setSelectedYears([{ label: `${yearsLabel} Years`, value: yearsValue }])
+  }
+
+  const handleMonthChange = (selected) => {
+    const monthsLabel = selected[0]?.label || ""
+    const monthsValue = selected[0]?.value || ""
+    setSelectedMonths([{ label: `${monthsLabel} Years`, value: monthsValue }])
+  }
+
+  const yearOptions = Array.from({ length: 15 }, (_, index) => ({
+    label: `${index + 1}`,
+    value: index + 1,
+  }))
+
+  const monthOptions = Array.from({ length: 15 }, (_, index) => ({
+    label: `${index + 1}`,
+    value: index + 1,
+  }))
+
   const handleTitle = (e) => {
     setJobTitle(e)
   }
@@ -173,7 +198,7 @@ function Experience() {
 
   const handleLanguages = (e) => {
     let languages = []
-    e.map((each) => languages.push(each.value))
+    e.map((each) => languages.push(each))
     setLanguages(languages)
   }
 
@@ -385,35 +410,41 @@ function Experience() {
           <Row className="mb-3">
             <Form.Label>Experience</Form.Label>
             <Col xs={6}>
-              <Form.Group className="mb-3">
-                <Form.Select
-                  placeholder="From"
-                  onChange={(e) =>
-                    setExperience({ ...experience, years: e.target.value })
-                  }
-                >
-                  {[0, 1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
-                    (each) => (
-                      <option>{each}</option>
-                    )
-                  )}
-                </Form.Select>
+              <Form.Group
+                controlId="experience-years"
+                className="col-sm-5 mb-2"
+              >
+                <Form.Label>From</Form.Label>
+                <Typeahead
+                  id="year-typeahead"
+                  options={yearOptions}
+                  placeholder="Year"
+                  onChange={handleYearChange}
+                  selected={selectedYears}
+                  filterBy={() => true}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please Enter a valid year
+                </Form.Control.Feedback>
               </Form.Group>
             </Col>
             <Col xs={6}>
-              <Form.Group className="mb-3">
-                <Form.Select
-                  placeholder="To"
-                  onChange={(e) =>
-                    setExperience({ ...experience, month: e.target.value })
-                  }
-                >
-                  {[1, 2, 3, 4, 5, 6, 7, , 9, 10, 11, 12, 13, 14, 15].map(
-                    (each) => (
-                      <option>{each}</option>
-                    )
-                  )}
-                </Form.Select>
+              <Form.Group
+                controlId="experience-months"
+                className="col-sm-5 mb-2"
+              >
+                <Form.Label>To</Form.Label>
+                <Typeahead
+                  id="month-typeahead"
+                  options={monthOptions}
+                  placeholder="Year"
+                  onChange={handleMonthChange}
+                  selected={selectedMonths}
+                  filterBy={() => true}
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please Enter a valid month
+                </Form.Control.Feedback>
               </Form.Group>
             </Col>
           </Row>

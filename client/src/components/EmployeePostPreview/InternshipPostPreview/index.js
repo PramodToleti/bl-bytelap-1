@@ -20,8 +20,6 @@ function InternshipPostPreview(props) {
   const [lgShow, setLgShow] = useState(false)
   const [fullText, setFullText] = useState(false)
 
-  console.log(data)
-
   function renderPreview() {
     return (
       <>
@@ -245,9 +243,9 @@ function InternshipPostPreview(props) {
                       ? "PG : "
                       : ""}
 
-                    {each.field !== ""
-                      ? `${each.qualification} in(${each.field})`
-                      : each.qualification}
+                    {each.field.length === 0
+                      ? each.qualification
+                      : `${each.qualification} in(${each.field})`}
                   </p>
                 ))}
                 <hr />
