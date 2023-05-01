@@ -362,10 +362,18 @@ function Internship() {
             <Draft handleDescription={handleDescription} />
           </Form.Group>
 
-          <Row className="mb-3">
-            <Form.Group as={Col} md="6" controlId="validationCustom03">
+          <Row className="mb-3" style={{ paddingRight: "0px" }}>
+            <Form.Group
+              as={Col}
+              md="6"
+              controlId="validationCustom03"
+              style={{ paddingRight: "0px" }}
+            >
               <Form.Label>Salary Range</Form.Label>
-              <Form.Select onChange={(e) => setSalaryType(e.target.value)}>
+              <Form.Select
+                onChange={(e) => setSalaryType(e.target.value)}
+                style={{ width: "100%" }}
+              >
                 <option>Select</option>
                 <option> Fixed </option>
                 <option>Negotiable</option>

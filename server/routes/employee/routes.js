@@ -95,11 +95,13 @@ router.post("/login", async (req, res) => {
 router.post("/job/internship", async (req, res) => {
   const jobDetails = req.body
   try {
+    console.log(jobDetails)
     const jobPost = new PostedJobs({
       type: "Internship",
       jobTitle: jobDetails.jobTitle,
       jobTime: jobDetails.jobTime,
       jobType: jobDetails.jobType,
+      duration: jobDetails.duration,
       city: jobDetails.city,
       shift: jobDetails.shift,
       skills: jobDetails.skills,
