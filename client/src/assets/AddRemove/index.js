@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "bootstrap/dist/css/bootstrap.css"
 import { Form, Button, Row, Col } from "react-bootstrap"
+import ChooseDegree from "../ChooseDegree"
 import ChooseField from "../ChooseField"
 import FieldCheckbox from "../FieldCheckbox"
 
@@ -24,20 +25,16 @@ const AddRemove = (props) => {
     setEducation(values)
   }
 
-  const onChangeQualification = (e, i) => {
+  const onChangeDegree = (e, i) => {
     const list = [...education]
-    list[i].qualification = e.target.value
+    list[i].qualification = e
     list[i].field = []
     setEducation(list)
   }
 
-  const handleLocation = (e, i) => {
+  const onChangeField = (e, i) => {
     const list = [...education]
-    const newList = []
-    e.map((each) => {
-      newList.push(each.label)
-    })
-    list[i].field = newList
+    list[i].field = e
     setEducation(list)
   }
 
@@ -55,18 +52,7 @@ const AddRemove = (props) => {
           <Row className="" key={i}>
             <Form.Group className="mb-3" controlId="formBasicText">
               <Form.Label>Qualification</Form.Label>
-              <Form.Select onChange={(e) => onChangeQualification(e, i)}>
-                <option>Select an option</option>
-                <option>Master's</option>
-                <option>Bachelor's</option>
-                <option>Bsc</option>
-                <option>Diploma</option>
-                <option>High Secondary (12th)</option>
-                <option>Secondary (10th)</option>
-                <option>Any Graduate</option>
-                <option>Any Post Graduate</option>
-                <option>None</option>
-              </Form.Select>
+              <ChooseDegree onChangeDegree={(e) => onChangeDegree(e, i)} />
             </Form.Group>
             {(data.qualification === "Master's" ||
               data.qualification === "Bachelor's" ||
@@ -74,7 +60,7 @@ const AddRemove = (props) => {
               data.qualification === "Diploma") && (
               <Form.Group className="mb-3">
                 <Form.Label>Field </Form.Label>
-                <FieldCheckbox handleLocation={(e) => handleLocation(e, i)} />
+                <ChooseField onChangeField={(e) => onChangeField(e, i)} />
               </Form.Group>
             )}
           </Row>
