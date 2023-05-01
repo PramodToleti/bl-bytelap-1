@@ -1,4 +1,4 @@
-export default [
+const cities = [
   {
     label: "Adilabad,AndhraPradesh",
   },
@@ -1811,7 +1811,6 @@ export default [
   { label: "Hapur,UttarPradesh" },
   { label: "Vindhyachal,UttarPradesh" },
   { label: "Fatehgarh,UttarPradesh" },
-  { label: "" },
   { label: "Kathgodam,Uttarakhand" },
   { label: "Almora,Uttarakhand" },
   { label: "Bazpur,Uttarakhand" },
@@ -1843,7 +1842,6 @@ export default [
   { label: "TehriGarhwal,Uttarakhand" },
   { label: "UdhamSinghNagar,Uttarakhand" },
   { label: "Uttarkashi,Uttarakhand" },
-  { label: "" },
   { label: "Alipurduar,WestBengal" },
   { label: "Arambagh,WestBengal" },
   { label: "Asansol,WestBengal" },
@@ -1961,4 +1959,34 @@ export default [
   { label: "Bansberia,WestBengal" },
   { label: "Bhadreswar,WestBengal" },
   { label: "Kalyani,WestBengal" },
+  { label: "Uttar Pradesh" },
+  { label: "Maharashtra" },
+  { label: "Bihar" },
+  { label: "West Bengal" },
+  { label: "Madhya Pradesh" },
+  { label: "Tamil Nadu" },
+  { label: "Rajasthan" },
+  { label: "Karnataka" },
+  { label: "Gujarat" },
+  { label: "Andhra Pradesh" },
+  { label: "Odisha" },
+  { label: "Telangana" },
+  { label: "Kerala" },
+  { label: "Jharkhand" },
+  { label: "Assam" },
+  { label: "Punjab" },
+  { label: "Chhattisgarh" },
+  { label: "Haryana" },
+  { label: "Dadra & Nagar Haveli and Daman & Diu" },
+  { label: "Andaman & Nicobar" },
+  { label: "Ladakh" },
+  { label: "Lakshadweep" },
+  { label: "Delhi" },
+  { label: "Jammu & Kashmir" },
+  { label: "Chandigarh" },
+  { label: "Puducherry" },
 ]
+
+export default cities.map((city) => {
+  return { value: city.label, label: city.label }
+})
