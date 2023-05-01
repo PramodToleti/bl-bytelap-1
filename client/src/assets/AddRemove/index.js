@@ -39,11 +39,8 @@ const AddRemove = (props) => {
   }
 
   useEffect(() => {
-    education.every((each) => {
-      if (each.qualification !== "" || each.field.length !== 0)
-        props.handleEducation(education)
-    })
-  }, [education, props])
+    props.handleEducation(education)
+  }, [education.qualification, education.field])
 
   return (
     <Form>
