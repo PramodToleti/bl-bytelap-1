@@ -27,6 +27,10 @@ const employeeSchema = new Schema({
     type: String,
     required: true,
   },
+  aboutCompany: {
+    type: String,
+    required: true,
+  },
   companyAddress: {
     type: String,
     required: true,

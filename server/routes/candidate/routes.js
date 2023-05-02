@@ -585,15 +585,22 @@ router.post("/update-info", auth, upload.single("file"), async (req, res) => {
     const userId = candidateDetails.userId
     const candidate = await Candidate.findById(userId)
     if (candidate) {
-      candidate.firstName = candidateDetails.firstName
-      candidate.lastName = candidateDetails.lastName
-      candidate.emailId = candidateDetails.emailId
-      candidate.mobile = candidateDetails.mobile
-      candidate.city = candidateDetails.city
-      candidate.file = req.file
+      const isEmailExists = await Candidate.findOne({
+        emailId: candidateDetails.emailId,
+      })
+      if (isEmailExists && isEmailExists._id != userId) {
+        res.status(400).json({ message: "Email already exists" })
+      } else {
+        candidate.firstName = candidateDetails.firstName
+        candidate.lastName = candidateDetails.lastName
+        candidate.emailId = candidateDetails.emailId
+        candidate.mobile = candidateDetails.mobile
+        candidate.city = candidateDetails.city
+        candidate.file = req.file
 
-      await candidate.save()
-      res.status(200).json({ message: "Updated Successfully" })
+        await candidate.save()
+        res.status(200).json({ message: "Updated Successfully" })
+      }
     } else {
       res.status(400).json({ message: "User not found" })
     }

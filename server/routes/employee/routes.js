@@ -32,6 +32,7 @@ router.post("/create-account", upload.single("file"), async (req, res) => {
         lastName: employeeDetails.lastName,
         role: employeeDetails.role,
         companyWebsite: employeeDetails.companyWebsite,
+        aboutCompany: employeeDetails.aboutCompany,
         companyAddress: employeeDetails.companyAddress,
         password: hashedPassword,
         agreeToTerms: JSON.parse(employeeDetails.agreeToTerms),
@@ -208,7 +209,7 @@ router.post("/my-info", auth, async (req, res) => {
   }
 })
 
-// @route   POST /employee.my-info
+// @route   POST /employee.update-info
 // @desc POST employee info
 // @access Private
 
@@ -267,5 +268,75 @@ router.post("/update-password", auth, async (req, res) => {
     res.status(500).json({ error: "An error occurred while updating details" })
   }
 })
+
+// @route   POST /employee.company-info
+// @desc Get company info
+// @access Private
+
+router.post("/company-info", auth, async (req, res) => {
+  try {
+    const employeeId = req.body.employeeId
+    const employee = await Employee.findById(employeeId)
+    const companyInfo = {
+      companyName: employee.companyName,
+      officialEmail: employee.officialEmail,
+      firstName: employee.firstName,
+      lastName: employee.lastName,
+      companyWebsite: employee.companyWebsite,
+      aboutCompany: employee.aboutCompany,
+      companyAddress: employee.companyAddress,
+      role: employee.role,
+      file: employee.file,
+    }
+    res.status(200).json(companyInfo)
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+// @route   POST /employee.update-company-info
+// @desc POST company info
+// @access Private
+
+router.post(
+  "/update-company-info",
+  auth,
+  upload.single("file"),
+  async (req, res) => {
+    const employeeDetails = req.body
+
+    try {
+      const employee = await Employee.findById(employeeDetails.employeeId)
+
+      if (employee) {
+        const isEmailExists = await Employee.findOne({
+          officialEmail: employeeDetails.officialEmail,
+        })
+        if (isEmailExists) {
+          res.status(400).json({ message: "Email already exists" })
+        } else {
+          employee.companyName = employeeDetails.companyName
+          employee.officialEmail = employeeDetails.officialEmail
+          employee.firstName = employeeDetails.firstName
+          employee.lastName = employeeDetails.lastName
+          employee.companyWebsite = employeeDetails.companyWebsite
+          employee.aboutCompany = employeeDetails.aboutCompany
+          employee.companyAddress = employeeDetails.companyAddress
+          employee.role = employeeDetails.role
+          employee.file = req.file ? req.file : employee.file
+
+          await employee.save()
+          res.status(200).json({ message: "Info updated" })
+        }
+      } else {
+        res.status(400).json({ message: "Employee not found" })
+      }
+    } catch (err) {
+      console.log(err)
+      res.status(400).json({ message: err })
+    }
+  }
+)
 
 module.exports = router
