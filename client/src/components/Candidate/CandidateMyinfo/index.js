@@ -16,6 +16,7 @@ import ChooseFile from "../../../assets/ChooseFile"
 function CandidateMyinfo() {
   const [validated, setValidated] = useState(false)
   const [file, setFile] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
   const [userData, setData] = useState({
     userId: "",
     firstName: "",
@@ -24,8 +25,6 @@ function CandidateMyinfo() {
     mobileNumber: "",
     city: "",
   })
-
-  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
