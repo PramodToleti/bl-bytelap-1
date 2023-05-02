@@ -413,6 +413,9 @@ function Experience() {
               <Form.Group
                 controlId="experience-years"
                 className="col-sm-5 mb-2"
+                style={{
+                  width: "100%",
+                }}
               >
                 <Form.Label>From</Form.Label>
                 <Typeahead
@@ -432,6 +435,9 @@ function Experience() {
               <Form.Group
                 controlId="experience-months"
                 className="col-sm-5 mb-2"
+                style={{
+                  width: "100%",
+                }}
               >
                 <Form.Label>To</Form.Label>
                 <Typeahead
