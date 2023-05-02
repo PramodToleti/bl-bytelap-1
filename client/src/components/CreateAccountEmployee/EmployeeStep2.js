@@ -37,6 +37,12 @@ function EmployeeStep2() {
     agreeToTerms: false,
   })
 
+  if (companyDetails === undefined) {
+    history.replace("/employee/create-account/step-1")
+  }
+
+  console.log(companyInfo)
+
   const onSuccess = (message, token, userId) => {
     setIsLoading(true)
     toast.success(message, {
@@ -75,6 +81,7 @@ function EmployeeStep2() {
     formData.append("lastName", details.lastName)
     formData.append("role", details.role)
     formData.append("companyWebsite", details.companyWebsite)
+    formData.append("aboutCompany", details.aboutCompany)
     formData.append("companyAddress", details.companyAddress)
     formData.append("password", details.password)
     formData.append("agreeToTerms", details.agreeToTerms)
@@ -277,6 +284,21 @@ function EmployeeStep2() {
                   Please upload company logo.
                 </p>
               )}
+
+              <Form.Group className="mb-2 mt-3" controlId="aboutCompany">
+                <Form.Label>About Company</Form.Label>
+                <Form.Control
+                  required
+                  text="type"
+                  as="textarea"
+                  rows={2}
+                  placeholder=""
+                  name="aboutCompany"
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please enter about your company.
+                </Form.Control.Feedback>
+              </Form.Group>
 
               <Form.Group className="mb-3 mt-3" controlId="companyAddress">
                 <Form.Label>Company Address</Form.Label>
