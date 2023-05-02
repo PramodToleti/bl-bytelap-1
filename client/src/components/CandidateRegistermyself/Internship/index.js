@@ -23,6 +23,7 @@ import DynamicTraining from "../../../assets/DynamicTraining"
 import InternshipPreview from "../../../components/CandidateRegisterPreview/InternshipPreview"
 import ChooseCity from "../../../assets/ChooseCity"
 import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
+import Draft from "../../../assets/Draft"
 
 function Internship(props) {
   const [validated, setValidated] = useState(false)
@@ -87,8 +88,8 @@ function Internship(props) {
     setDegree(e)
   }
 
-  const handleCoverLetter = (e) => {
-    setCoverLetter(e.target.value)
+  const handleDescription = (e) => {
+    setCoverLetter(e)
   }
 
   const handleProject = (projectDetails) => {
@@ -104,7 +105,6 @@ function Internship(props) {
   }
 
   const handleLanguages = (e) => {
-    console.log(e)
     let languages = []
     e.map((each) =>
       languages.push({ language: each.language, proficient: each.proficiency })
@@ -490,7 +490,7 @@ function Internship(props) {
             <Form.Label>
               Cover Letter <span style={{ color: "red" }}>*</span>
             </Form.Label>
-            <TextArea rows={6} className="mb-3" onChange={handleCoverLetter} />
+            <Draft handleDescription={handleDescription} />
           </div>
 
           <div

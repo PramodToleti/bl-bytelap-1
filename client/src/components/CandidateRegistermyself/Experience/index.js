@@ -28,6 +28,7 @@ import DynamicEmployementHistory from "../../../assets/DynamicEmployementHistory
 import ExperiencePreview from "../../../components/CandidateRegisterPreview/ExperiencePreview"
 import DynamicEducationExperience from "../../../assets/DynamicEducationExperience"
 import LocationCheckbox from "../../../assets/LocationCheckbox"
+import Draft from "../../../assets/Draft"
 
 function Experience(props) {
   const [validated, setValidated] = useState(false)
@@ -121,8 +122,8 @@ function Experience(props) {
     setShift(e.target.value)
   }
 
-  const handleCoverLetter = (e) => {
-    setCoverLetter(e.target.value)
+  const handleDescription = (e) => {
+    setCoverLetter(e)
   }
 
   const handleProject = (projectDetails) => {
@@ -743,7 +744,7 @@ function Experience(props) {
             <Form.Label>
               Cover Letter <span style={{ color: "red" }}>*</span>
             </Form.Label>
-            <TextArea rows={6} className="mb-3" onChange={handleCoverLetter} />
+            <Draft handleDescription={handleDescription} />
           </div>
 
           <div

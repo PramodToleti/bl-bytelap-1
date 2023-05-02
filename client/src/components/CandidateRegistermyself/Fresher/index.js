@@ -28,6 +28,7 @@ import DynamicTraining from "../../../assets/DynamicTraining"
 import FresherPreview from "../../../components/CandidateRegisterPreview/FresherPreview"
 import LocationCheckbox from "../../../assets/LocationCheckbox"
 import DynamicEducationExperience from "../../../assets/DynamicEducationExperience"
+import Draft from "../../../assets/Draft"
 
 function Fresher(props) {
   const [validated, setValidated] = useState(false)
@@ -108,8 +109,8 @@ function Fresher(props) {
     setShift(e.target.value)
   }
 
-  const handleCoverLetter = (e) => {
-    setCoverLetter(e.target.value)
+  const handleDescription = (e) => {
+    setCoverLetter(e)
   }
 
   const handleProject = (projectDetails) => {
@@ -623,12 +624,7 @@ function Fresher(props) {
             <Form.Label>
               Cover Letter <span style={{ color: "red" }}>*</span>
             </Form.Label>
-            <TextArea
-              rows={6}
-              className="mb-3"
-              onChange={handleCoverLetter}
-              required
-            />
+            <Draft handleDescription={handleDescription} />
             <Form.Control.Feedback type="invalid">
               Please provide a cover letter
             </Form.Control.Feedback>
