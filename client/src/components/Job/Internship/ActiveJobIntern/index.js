@@ -30,8 +30,41 @@ function ActiveJobIntern() {
   const [activeFilter, setActiveFilter] = useState(location.state?.data || "")
   const [loading, setLoading] = useState(false)
 
-  const handleActiveType = (e) => {
-    /* setActiveType(e.target.textContent) */
+  const handleActiveType = async (e, data) => {
+    const endPoint = e.target.textContent.replace(/\s+/g, "-").toLowerCase()
+    const token = Cookies.get("employeeToken")
+    const url = `http://localhost:5000/employee/dashboard/${endPoint}`
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    }
+
+    const response = await fetch(url, options)
+    const resData = await response.json()
+    if (response.ok) {
+      toast.success(resData.message, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        marginTop: "30px",
+        margin: "20px",
+      })
+    } else {
+      toast.error(resData.message, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        marginTop: "30px",
+        margin: "20px",
+      })
+    }
   }
 
   useEffect(() => {
@@ -198,15 +231,7 @@ function ActiveJobIntern() {
                           size="sm"
                           className=" mt-3"
                           onClick={(e) => {
-                            handleActiveType(e)
-                            toast.success("Added to Interested List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
+                            handleActiveType(e, data)
                           }}
                         >
                           Interested
@@ -216,15 +241,7 @@ function ActiveJobIntern() {
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
-                            handleActiveType(e)
-                            toast.success("Added to Shortlisted List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
+                            handleActiveType(e, data)
                           }}
                         >
                           Shortlisted
@@ -234,15 +251,7 @@ function ActiveJobIntern() {
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
-                            handleActiveType(e)
-                            toast.success("Added to Hiring List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
+                            handleActiveType(e, data)
                           }}
                         >
                           Hire
@@ -252,15 +261,7 @@ function ActiveJobIntern() {
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
-                            handleActiveType(e)
-                            toast.success("Added to Not Interested List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
+                            handleActiveType(e, data)
                           }}
                         >
                           Not Interested
@@ -286,15 +287,7 @@ function ActiveJobIntern() {
                           size="sm"
                           className="mt-3"
                           onClick={(e) => {
-                            handleActiveType(e)
-                            toast.success("Added to Interested List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
+                            handleActiveType(e, data)
                           }}
                         >
                           Interested
@@ -304,15 +297,7 @@ function ActiveJobIntern() {
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
-                            handleActiveType(e)
-                            toast.success("Added to Shortlisted List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
+                            handleActiveType(e, data)
                           }}
                         >
                           Shortlisted
@@ -322,15 +307,7 @@ function ActiveJobIntern() {
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
-                            handleActiveType(e)
-                            toast.success("Added to Hiring List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
+                            handleActiveType(e, data)
                           }}
                         >
                           Hire
@@ -340,15 +317,7 @@ function ActiveJobIntern() {
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
-                            handleActiveType(e)
-                            toast.success("Added to Not Interested List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
+                            handleActiveType(e, data)
                           }}
                         >
                           Not Interested
@@ -470,14 +439,14 @@ function ActiveJobIntern() {
               <p
                 className={activeType === "Applied" ? "activeType" : ""}
                 style={{ cursor: "pointer", marginBottom: "15px" }}
-                onClick={(e) => handleActiveType(e)}
+                onClick={(e) => setActiveType(e.target.textContent)}
               >
                 Applied ({internData.length})
               </p>
               <p
                 className={activeType === "Interested" ? "activeType" : ""}
                 style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
+                onClick={(e) => setActiveType(e.target.textContent)}
               >
                 Interested
               </p>
@@ -486,14 +455,14 @@ function ActiveJobIntern() {
                   activeType === "Shortlisted" ? "activeType mt-4" : "mt-4"
                 }
                 style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
+                onClick={(e) => setActiveType(e.target.textContent)}
               >
                 Shortlisted
               </p>
               <p
                 className={activeType === "Hire" ? "activeType mt-4" : "mt-4"}
                 style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
+                onClick={(e) => setActiveType(e.target.textContent)}
               >
                 Hire
               </p>
@@ -502,7 +471,7 @@ function ActiveJobIntern() {
                   activeType === "Not Interested" ? "activeType mt-4" : "mt-4"
                 }
                 style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
+                onClick={(e) => setActiveType(e.target.textContent)}
               >
                 Not Interested
               </p>

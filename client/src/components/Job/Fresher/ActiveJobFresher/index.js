@@ -31,9 +31,7 @@ function ActiveJobFresher(props) {
   const [activeFilter, setActiveFilter] = useState(location.state?.data || "")
   const [loading, setLoading] = useState(false)
 
-  const handleActiveType = (e) => {
-    /* setActiveType(e.target.textContent) */
-  }
+  const handleActiveType = (e) => {}
 
   useEffect(() => {
     async function fetchJobs() {
@@ -434,7 +432,7 @@ function ActiveJobFresher(props) {
                         size="sm"
                         className=" mt-3"
                         onClick={(e) => {
-                          handleActiveType(e)
+                          handleActiveType(e, data)
                           toast.success("Added to Interested List", {
                             position: "top-right",
                             autoClose: 2000,
@@ -452,7 +450,7 @@ function ActiveJobFresher(props) {
                         className=" mt-3"
                         size="sm"
                         onClick={(e) => {
-                          handleActiveType(e)
+                          handleActiveType(e, data)
                           toast.success("Added to Shortlisted List", {
                             position: "top-right",
                             autoClose: 2000,
@@ -470,7 +468,7 @@ function ActiveJobFresher(props) {
                         className=" mt-3"
                         size="sm"
                         onClick={(e) => {
-                          handleActiveType(e)
+                          handleActiveType(e, data)
                           toast.success("Added to Hiring List", {
                             position: "top-right",
                             autoClose: 2000,
@@ -488,7 +486,7 @@ function ActiveJobFresher(props) {
                         className=" mt-3"
                         size="sm"
                         onClick={(e) => {
-                          handleActiveType(e)
+                          handleActiveType(e, data)
                           toast.success("Added to Not Interested List", {
                             position: "top-right",
                             autoClose: 2000,
@@ -523,7 +521,7 @@ function ActiveJobFresher(props) {
                           size="sm"
                           className="mt-3"
                           onClick={(e) => {
-                            handleActiveType(e)
+                            handleActiveType(e, data)
                             toast.success("Added to Interested List", {
                               position: "top-right",
                               autoClose: 2000,
@@ -541,7 +539,7 @@ function ActiveJobFresher(props) {
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
-                            handleActiveType(e)
+                            handleActiveType(e, data)
                             toast.success("Added to Shortlisted List", {
                               position: "top-right",
                               autoClose: 2000,
@@ -559,7 +557,7 @@ function ActiveJobFresher(props) {
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
-                            handleActiveType(e)
+                            handleActiveType(e, data)
                             toast.success("Added to Hiring List", {
                               position: "top-right",
                               autoClose: 2000,
@@ -577,7 +575,7 @@ function ActiveJobFresher(props) {
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
-                            handleActiveType(e)
+                            handleActiveType(e, data)
                             toast.success("Added to Not Interested List", {
                               position: "top-right",
                               autoClose: 2000,
@@ -703,14 +701,14 @@ function ActiveJobFresher(props) {
               <p
                 className={activeType === "Applied" ? "activeType" : ""}
                 style={{ cursor: "pointer", marginBottom: "15px" }}
-                onClick={(e) => handleActiveType(e)}
+                onClick={(e) => setActiveType(e.target.textContent)}
               >
                 Applied ({fresherData.length})
               </p>
               <p
                 className={activeType === "Interested" ? "activeType" : ""}
                 style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
+                onClick={(e) => setActiveType(e.target.textContent)}
               >
                 Interested
               </p>
@@ -719,14 +717,14 @@ function ActiveJobFresher(props) {
                   activeType === "Shortlisted" ? "activeType mt-4" : "mt-4"
                 }
                 style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
+                onClick={(e) => setActiveType(e.target.textContent)}
               >
                 Shortlisted
               </p>
               <p
                 className={activeType === "Hire" ? "activeType mt-4" : "mt-4"}
                 style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
+                onClick={(e) => setActiveType(e.target.textContent)}
               >
                 Hire
               </p>
@@ -735,7 +733,7 @@ function ActiveJobFresher(props) {
                   activeType === "Not Interested" ? "activeType mt-4" : "mt-4"
                 }
                 style={{ cursor: "pointer" }}
-                onClick={(e) => handleActiveType(e)}
+                onClick={(e) => setActiveType(e.target.textContent)}
               >
                 Not Interested
               </p>
