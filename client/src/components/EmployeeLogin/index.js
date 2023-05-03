@@ -50,8 +50,6 @@ function EmployeeLogin() {
         backgroundColor: "#fff",
         marginTop: "30px",
         margin: "20px",
-        marginTop: "30px",
-        margin: "20px",
       },
     })
     Cookies.set("employeeToken", token)
