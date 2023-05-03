@@ -10,6 +10,10 @@ const PostedJobs = require("../../models/employee/Jobs/intern")
 const InternApplication = require("../../models/candidate/Registration/internship")
 const FresherApplication = require("../../models/candidate/Registration/fresher")
 const ExperienceApplication = require("../../models/candidate/Registration/experience")
+//Dashboard
+const InternDashboard = require("../../models/employee/Dashboard/internship")
+const FresherDashboard = require("../../models/employee/Dashboard/fresher")
+const ExperienceDashboard = require("../../models/employee/Dashboard/experience")
 
 //Create Account
 router.post("/create-account", upload.single("file"), async (req, res) => {
@@ -338,5 +342,36 @@ router.post(
     }
   }
 )
+
+// @route   POST /employee.dashboard
+// @desc Post dashboard info
+// @access Private
+
+router.post("/dashboard/interested", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Interested"
+
+  try {
+    const response = new InternDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Interested List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+router.post("/dashboard/shortlisted", auth, async (req, res) => {
+  const application = req.body
+})
+
+router.post("/dashboard/hire", auth, async (req, res) => {
+  const application = req.body
+  console.log(application)
+})
+
+router.post("/dashboard/not-interested", auth, async (req, res) => {
+  const application = req.body
+})
 
 module.exports = router
