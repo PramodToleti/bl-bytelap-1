@@ -8,11 +8,9 @@ import { Button } from "react-bootstrap"
 import "./index.css"
 
 function ViewApplicantExperience() {
-  const experienceData = JSON.parse(
-    localStorage.getItem("registerData")
-  ).experience
+  const location = useLocation()
 
-  const data = experienceData[0]
+  const data = location.state
 
   return (
     <>

@@ -4,13 +4,14 @@ import { MdLocationOn } from "react-icons/md"
 import { BiRupee } from "react-icons/bi"
 import { Link } from "react-router-dom"
 import { Button } from "react-bootstrap"
+import { useLocation } from "react-router-dom"
 
 import "./index.css"
 
 function ViewApplicantFresher() {
-  const fresherData = JSON.parse(localStorage.getItem("registerData")).fresher
+  const location = useLocation()
 
-  const data = fresherData[0]
+  const data = location.state
 
   return (
     <>

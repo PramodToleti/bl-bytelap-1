@@ -7,27 +7,92 @@ import { ImLocation } from "react-icons/im"
 import Modal from "react-bootstrap/Modal"
 import classNames from "classnames"
 import Popup from "reactjs-popup"
-import { Card } from "react-bootstrap"
 import { BsBagFill } from "react-icons/bs"
 import { BiRupee } from "react-icons/bi"
+import Cookies from "js-cookie"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 import EmployeeHome from "../../../EmployeeHome"
 import StickyContainer from "../../../../components/EmployeeFindResume/StickyContainer"
 import PostTime from "../../../../assets/PostTime"
 
 import "./index.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 function ActiveJobFresher(props) {
   const location = useLocation()
   const history = useHistory()
-  const fresherData = location.state.data || []
   const { sticky, stickyRef } = StickyContainer()
   const [activeType, setActiveType] = useState("")
   const [lgShow, setLgShow] = useState(false)
+  const [activeJobs, setActiveJobs] = useState([])
+  const [applications, setApplications] = useState([])
+  const [activeFilter, setActiveFilter] = useState(location.state?.data || "")
+  const [loading, setLoading] = useState(false)
 
   const handleActiveType = (e) => {
-    setActiveType(e.target.textContent)
+    /* setActiveType(e.target.textContent) */
+  }
+
+  useEffect(() => {
+    async function fetchJobs() {
+      setLoading(true)
+      const response = await fetch("http://localhost:5000/candidate/jobs")
+      const data = await response.json()
+      if (response.ok) {
+        setActiveJobs(data)
+        setLoading(false)
+      } else {
+        console.log(data)
+        setLoading(false)
+      }
+    }
+
+    async function fetchApplications() {
+      setLoading(true)
+      const token = Cookies.get("employeeToken")
+      const userId = localStorage.getItem("userId")
+
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ userId }),
+      }
+      const response = await fetch(
+        "http://localhost:5000/candidate/applications",
+        options
+      )
+      const data = await response.json()
+      if (response.ok) {
+        const filteredData = data.filter((each) => each.type === "Fresher")
+        setApplications(filteredData)
+        setLoading(false)
+      } else {
+        console.log(data)
+        setLoading(false)
+      }
+    }
+
+    fetchApplications()
+    fetchJobs()
+  }, [])
+
+  let fresherData = []
+
+  if (activeFilter !== "") {
+    for (const obj of applications) {
+      if (obj.jobName === activeFilter) {
+        fresherData.push(obj)
+      } else {
+        fresherData = fresherData
+      }
+    }
+  } else {
+    fresherData = applications
   }
 
   const renderApplications = () => {
@@ -250,7 +315,7 @@ function ActiveJobFresher(props) {
                         </p>
                       </div>
                       <div className="text-muted">
-                        {JSON.parse(data.preferredLocation[0]).map((each) => (
+                        {JSON.parse(data.preferredLocation).map((each) => (
                           <span
                             className="text-muted"
                             style={{ fontSize: "16px" }}
@@ -368,7 +433,17 @@ function ActiveJobFresher(props) {
                         variant="outline-success"
                         size="sm"
                         className=" mt-3"
-                        onClick={(e) => handleActiveType(e)}
+                        onClick={(e) => {
+                          handleActiveType(e)
+                          toast.success("Added to Interested List", {
+                            position: "top-right",
+                            autoClose: 2000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            marginTop: "30px",
+                            margin: "20px",
+                          })
+                        }}
                       >
                         Interested
                       </Button>{" "}
@@ -376,7 +451,17 @@ function ActiveJobFresher(props) {
                         variant="outline-primary"
                         className=" mt-3"
                         size="sm"
-                        onClick={(e) => handleActiveType(e)}
+                        onClick={(e) => {
+                          handleActiveType(e)
+                          toast.success("Added to Shortlisted List", {
+                            position: "top-right",
+                            autoClose: 2000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            marginTop: "30px",
+                            margin: "20px",
+                          })
+                        }}
                       >
                         Shortlisted
                       </Button>
@@ -384,7 +469,17 @@ function ActiveJobFresher(props) {
                         variant="outline-secondary"
                         className=" mt-3"
                         size="sm"
-                        onClick={(e) => handleActiveType(e)}
+                        onClick={(e) => {
+                          handleActiveType(e)
+                          toast.success("Added to Hiring List", {
+                            position: "top-right",
+                            autoClose: 2000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            marginTop: "30px",
+                            margin: "20px",
+                          })
+                        }}
                       >
                         Hire
                       </Button>{" "}
@@ -392,7 +487,17 @@ function ActiveJobFresher(props) {
                         variant="outline-secondary"
                         className=" mt-3"
                         size="sm"
-                        onClick={(e) => handleActiveType(e)}
+                        onClick={(e) => {
+                          handleActiveType(e)
+                          toast.success("Added to Not Interested List", {
+                            position: "top-right",
+                            autoClose: 2000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            marginTop: "30px",
+                            margin: "20px",
+                          })
+                        }}
                       >
                         Not Interested
                       </Button>{" "}
@@ -417,7 +522,17 @@ function ActiveJobFresher(props) {
                           variant="outline-success"
                           size="sm"
                           className="mt-3"
-                          onClick={(e) => handleActiveType(e)}
+                          onClick={(e) => {
+                            handleActiveType(e)
+                            toast.success("Added to Interested List", {
+                              position: "top-right",
+                              autoClose: 2000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              marginTop: "30px",
+                              margin: "20px",
+                            })
+                          }}
                         >
                           Interested
                         </Button>{" "}
@@ -425,7 +540,17 @@ function ActiveJobFresher(props) {
                           variant="outline-primary"
                           className=" mt-3"
                           size="sm"
-                          onClick={(e) => handleActiveType(e)}
+                          onClick={(e) => {
+                            handleActiveType(e)
+                            toast.success("Added to Shortlisted List", {
+                              position: "top-right",
+                              autoClose: 2000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              marginTop: "30px",
+                              margin: "20px",
+                            })
+                          }}
                         >
                           Shortlisted
                         </Button>{" "}
@@ -433,7 +558,17 @@ function ActiveJobFresher(props) {
                           variant="outline-secondary"
                           className=" mt-3"
                           size="sm"
-                          onClick={(e) => handleActiveType(e)}
+                          onClick={(e) => {
+                            handleActiveType(e)
+                            toast.success("Added to Hiring List", {
+                              position: "top-right",
+                              autoClose: 2000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              marginTop: "30px",
+                              margin: "20px",
+                            })
+                          }}
                         >
                           Hire
                         </Button>
@@ -441,7 +576,17 @@ function ActiveJobFresher(props) {
                           variant="outline-secondary"
                           className=" mt-3"
                           size="sm"
-                          onClick={(e) => handleActiveType(e)}
+                          onClick={(e) => {
+                            handleActiveType(e)
+                            toast.success("Added to Not Interested List", {
+                              position: "top-right",
+                              autoClose: 2000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              marginTop: "30px",
+                              margin: "20px",
+                            })
+                          }}
                         >
                           Not Interested
                         </Button>{" "}
@@ -462,16 +607,22 @@ function ActiveJobFresher(props) {
                     </div>
                   </div>
 
-                  <Link
-                    to="/employee/dashboard/active-posts/job/fresher/view-applicant"
-                    className="nav-link"
-                  >
-                    <div style={{ display: "flex", justifyContent: "end" }}>
-                      <p className="mt-4" style={{ color: "blue" }}>
-                        View Application
-                      </p>
-                    </div>
-                  </Link>
+                  <div style={{ display: "flex", justifyContent: "end" }}>
+                    <p
+                      className="mt-4"
+                      style={{ color: "blue" }}
+                      onClick={() => {
+                        history.push(
+                          "/employee/dashboard/active-posts/job/fresher/view-applicant",
+                          data
+                        )
+                        window.scrollTo(0, 0)
+                      }}
+                    >
+                      View Application
+                    </p>
+                  </div>
+
                   <p style={{ fontSize: "12px", margin: "0px" }}>
                     Update: <PostTime time={data.time} />
                   </p>
@@ -509,6 +660,7 @@ function ActiveJobFresher(props) {
         overflow: "hidden",
       }}
     >
+      <ToastContainer />
       <EmployeeHome />
       <div>
         <div className="col-lg-12 col-md-12  rounded ">
@@ -548,6 +700,13 @@ function ActiveJobFresher(props) {
               }}
               className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container         container reveal  p-4   "
             >
+              <p
+                className={activeType === "Applied" ? "activeType" : ""}
+                style={{ cursor: "pointer", marginBottom: "15px" }}
+                onClick={(e) => handleActiveType(e)}
+              >
+                Applied ({fresherData.length})
+              </p>
               <p
                 className={activeType === "Interested" ? "activeType" : ""}
                 style={{ cursor: "pointer" }}
@@ -682,12 +841,18 @@ function ActiveJobFresher(props) {
                 className="mb-3 mt-4 "
                 style={{ display: "flex", gap: "15px", alignItems: "center" }}
               >
-                <Form.Select>
-                  <option> Select Post</option>
-                  <option> React JS </option>
-                  <option>PHP developer</option>
+                <Form.Select
+                  value={activeFilter}
+                  onChange={(e) => {
+                    setActiveFilter(e.target.value)
+                  }}
+                >
+                  <option>Select Post</option>
+                  {activeJobs.map((job) => {
+                    if (job.type === "Fresher")
+                      return <option value={job.Title}>{job.jobTitle}</option>
+                  })}
                 </Form.Select>
-
                 <Form.Control type="text" placeholder="Search by Name" />
 
                 <h5>Filter</h5>
@@ -712,7 +877,15 @@ function ActiveJobFresher(props) {
                 </Form.Select>
               </Form.Group>
 
-              {renderApplications()}
+              {loading ? (
+                <div className="text-center">
+                  <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              ) : (
+                renderApplications()
+              )}
             </div>
           </div>
           {sticky && (
