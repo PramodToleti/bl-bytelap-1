@@ -33,7 +33,7 @@ function ActiveJobIntern() {
   const handleActiveType = async (e, data) => {
     const endPoint = e.target.textContent.replace(/\s+/g, "-").toLowerCase()
     const token = Cookies.get("employeeToken")
-    const url = `http://localhost:5000/employee/dashboard/${endPoint}`
+    const url = `http://localhost:5000/employee/dashboard/internship/${endPoint}`
 
     const options = {
       method: "POST",

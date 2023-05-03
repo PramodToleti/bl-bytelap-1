@@ -347,7 +347,7 @@ router.post(
 // @desc Post dashboard info
 // @access Private
 
-router.post("/dashboard/interested", auth, async (req, res) => {
+router.post("/dashboard/internship/interested", auth, async (req, res) => {
   let application = req.body
   application.dashboardType = "Interested"
 
@@ -361,17 +361,46 @@ router.post("/dashboard/interested", auth, async (req, res) => {
   }
 })
 
-router.post("/dashboard/shortlisted", auth, async (req, res) => {
-  const application = req.body
+router.post("/dashboard/internship/shortlisted", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Shortlisted"
+
+  try {
+    const response = new InternDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Shortlisted List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
 })
 
-router.post("/dashboard/hire", auth, async (req, res) => {
-  const application = req.body
-  console.log(application)
+router.post("/dashboard/internship/hire", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Hire"
+
+  try {
+    const response = new InternDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Hirinng List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
 })
 
-router.post("/dashboard/not-interested", auth, async (req, res) => {
-  const application = req.body
+router.post("/dashboard/internship/not-interested", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Not-Interested"
+
+  try {
+    const response = new InternDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Not Interested List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
 })
 
 module.exports = router
