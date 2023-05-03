@@ -24,14 +24,49 @@ function ActiveJobFresher(props) {
   const location = useLocation()
   const history = useHistory()
   const { sticky, stickyRef } = StickyContainer()
-  const [activeType, setActiveType] = useState("")
+  const [activeType, setActiveType] = useState("Applied")
   const [lgShow, setLgShow] = useState(false)
   const [activeJobs, setActiveJobs] = useState([])
   const [applications, setApplications] = useState([])
   const [activeFilter, setActiveFilter] = useState(location.state?.data || "")
   const [loading, setLoading] = useState(false)
 
-  const handleActiveType = (e) => {}
+  const handleActiveType = async (e, data) => {
+    const endPoint = e.target.textContent.replace(/\s+/g, "-").toLowerCase()
+    const token = Cookies.get("employeeToken")
+    const url = `http://localhost:5000/employee/dashboard/fresher/${endPoint}`
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    }
+
+    const response = await fetch(url, options)
+    const resData = await response.json()
+    if (response.ok) {
+      toast.success(resData.message, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        marginTop: "30px",
+        margin: "20px",
+      })
+    } else {
+      toast.error(resData.message, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        marginTop: "30px",
+        margin: "20px",
+      })
+    }
+  }
 
   useEffect(() => {
     async function fetchJobs() {
@@ -433,14 +468,6 @@ function ActiveJobFresher(props) {
                         className=" mt-3"
                         onClick={(e) => {
                           handleActiveType(e, data)
-                          toast.success("Added to Interested List", {
-                            position: "top-right",
-                            autoClose: 2000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            marginTop: "30px",
-                            margin: "20px",
-                          })
                         }}
                       >
                         Interested
@@ -451,14 +478,6 @@ function ActiveJobFresher(props) {
                         size="sm"
                         onClick={(e) => {
                           handleActiveType(e, data)
-                          toast.success("Added to Shortlisted List", {
-                            position: "top-right",
-                            autoClose: 2000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            marginTop: "30px",
-                            margin: "20px",
-                          })
                         }}
                       >
                         Shortlisted
@@ -469,14 +488,6 @@ function ActiveJobFresher(props) {
                         size="sm"
                         onClick={(e) => {
                           handleActiveType(e, data)
-                          toast.success("Added to Hiring List", {
-                            position: "top-right",
-                            autoClose: 2000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            marginTop: "30px",
-                            margin: "20px",
-                          })
                         }}
                       >
                         Hire
@@ -487,14 +498,6 @@ function ActiveJobFresher(props) {
                         size="sm"
                         onClick={(e) => {
                           handleActiveType(e, data)
-                          toast.success("Added to Not Interested List", {
-                            position: "top-right",
-                            autoClose: 2000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            marginTop: "30px",
-                            margin: "20px",
-                          })
                         }}
                       >
                         Not Interested
@@ -522,14 +525,6 @@ function ActiveJobFresher(props) {
                           className="mt-3"
                           onClick={(e) => {
                             handleActiveType(e, data)
-                            toast.success("Added to Interested List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
                           }}
                         >
                           Interested
@@ -540,14 +535,6 @@ function ActiveJobFresher(props) {
                           size="sm"
                           onClick={(e) => {
                             handleActiveType(e, data)
-                            toast.success("Added to Shortlisted List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
                           }}
                         >
                           Shortlisted
@@ -558,14 +545,6 @@ function ActiveJobFresher(props) {
                           size="sm"
                           onClick={(e) => {
                             handleActiveType(e, data)
-                            toast.success("Added to Hiring List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
                           }}
                         >
                           Hire
@@ -576,14 +555,6 @@ function ActiveJobFresher(props) {
                           size="sm"
                           onClick={(e) => {
                             handleActiveType(e, data)
-                            toast.success("Added to Not Interested List", {
-                              position: "top-right",
-                              autoClose: 2000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              marginTop: "30px",
-                              margin: "20px",
-                            })
                           }}
                         >
                           Not Interested
@@ -701,7 +672,7 @@ function ActiveJobFresher(props) {
               <p
                 className={activeType === "Applied" ? "activeType" : ""}
                 style={{ cursor: "pointer", marginBottom: "15px" }}
-                onClick={(e) => setActiveType(e.target.textContent)}
+                onClick={(e) => setActiveType("Applied")}
               >
                 Applied ({fresherData.length})
               </p>

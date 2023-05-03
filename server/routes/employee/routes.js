@@ -347,6 +347,8 @@ router.post(
 // @desc Post dashboard info
 // @access Private
 
+//Internship
+
 router.post("/dashboard/internship/interested", auth, async (req, res) => {
   let application = req.body
   application.dashboardType = "Interested"
@@ -395,6 +397,122 @@ router.post("/dashboard/internship/not-interested", auth, async (req, res) => {
 
   try {
     const response = new InternDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Not Interested List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+//Fresher
+
+router.post("/dashboard/fresher/interested", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Interested"
+
+  try {
+    const response = new FresherDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Interested List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+router.post("/dashboard/fresher/shortlisted", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Shortlisted"
+
+  try {
+    const response = new FresherDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Shortlisted List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+router.post("/dashboard/fresher/hire", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Hire"
+
+  try {
+    const response = new FresherDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Hirinng List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+router.post("/dashboard/fresher/not-interested", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Not-Interested"
+
+  try {
+    const response = new FresherDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Not Interested List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+//Experience
+
+router.post("/dashboard/experience/interested", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Interested"
+
+  try {
+    const response = new ExperienceDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Interested List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+router.post("/dashboard/experience/shortlisted", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Shortlisted"
+
+  try {
+    const response = new ExperienceDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Shortlisted List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+router.post("/dashboard/experience/hire", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Hire"
+
+  try {
+    const response = new ExperienceDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Hirinng List" })
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
+router.post("/dashboard/experience/not-interested", auth, async (req, res) => {
+  let application = req.body
+  application.dashboardType = "Not-Interested"
+
+  try {
+    const response = new ExperienceDashboard(application)
     response.save()
     res.status(200).json({ message: "Added to Not Interested List" })
   } catch (err) {
