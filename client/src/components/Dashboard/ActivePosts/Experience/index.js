@@ -113,7 +113,7 @@ const Experience = (props) => {
             style={{ color: "blue", cursor: "pointer", fontSize: "16px" }}
             onClick={() => {
               history.push("/employee/dashboard/active-posts/job/experience", {
-                data: each.applications,
+                data: each.jobTitle,
               })
             }}
           >
