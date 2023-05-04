@@ -137,7 +137,7 @@ const ExperienceJob = (props) => {
                 data.experience.month !== "") && (
                 <div className="job-card-container-experience">
                   <RiShoppingBagFill className="icon-styles" />
-                  <p className="details-heading">{`${data.experience.years} . ${data.experience.month} Yrs`}</p>
+                  <p className="details-heading">{`${data.experience.years} - ${data.experience.month} Yrs`}</p>
                 </div>
               )}
 
@@ -156,7 +156,7 @@ const ExperienceJob = (props) => {
                           0
                         )} / month`
                       : data.salaryType === "Fixed"
-                      ? `${numeral(data.salaryRange).format(0, 0)} / month`
+                      ? `${numeral(data.salaryRange.from).format(0, 0)} / month`
                       : data.salaryType === "Negotiable"
                       ? `${numeral(data.salaryRange.from).format(
                           0,

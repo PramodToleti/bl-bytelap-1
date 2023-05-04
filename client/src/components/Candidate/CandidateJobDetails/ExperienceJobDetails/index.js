@@ -295,7 +295,7 @@ const ExperienceJobDetails = (props) => {
                 data.experience.month !== "") && (
                 <div className="job-card-container-experience">
                   <RiShoppingBagFill className="icon-styles" />
-                  <p className="details-heading-preview">{`${data.experience.years} . ${data.experience.month} Yrs`}</p>
+                  <p className="details-heading-preview">{`${data.experience.years} - ${data.experience.month} Yrs`}</p>
                 </div>
               )}
 
