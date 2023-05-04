@@ -117,6 +117,10 @@ const historySchema = new mongoose.Schema({
 })
 
 const ExperienceApplicationSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true,
+  },
   dashboardType: {
     type: String,
     required: true,

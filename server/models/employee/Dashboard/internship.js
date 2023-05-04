@@ -75,6 +75,10 @@ const degreeSchema = new mongoose.Schema({
 })
 
 const InternApplicationSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true,
+  },
   dashboardType: {
     type: String,
     required: true,
