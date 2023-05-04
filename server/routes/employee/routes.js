@@ -523,9 +523,11 @@ router.post("/dashboard/experience/not-interested", auth, async (req, res) => {
 
 //get dashboard data
 
-router.get("/dashboard/internship", auth, async (req, res) => {
+router.post("/dashboard/internship", auth, async (req, res) => {
+  const userId = req.body.userId
+
   try {
-    const applications = await InternDashboard.find()
+    const applications = await InternDashboard.find({ userId: userId })
     res.status(200).json(applications)
   } catch (err) {
     console.log(err)
@@ -533,9 +535,11 @@ router.get("/dashboard/internship", auth, async (req, res) => {
   }
 })
 
-router.get("/dashboard/fresher", auth, async (req, res) => {
+router.post("/dashboard/fresher", auth, async (req, res) => {
+  const userId = req.body.userId
+
   try {
-    const applications = await FresherDashboard.find()
+    const applications = await FresherDashboard.find({ userId: userId })
     res.status(200).json(applications)
   } catch (err) {
     console.log(err)
@@ -543,9 +547,11 @@ router.get("/dashboard/fresher", auth, async (req, res) => {
   }
 })
 
-router.get("/dashboard/experience", auth, async (req, res) => {
+router.post("/dashboard/experience", auth, async (req, res) => {
+  const userId = req.body.userId
+
   try {
-    const applications = await ExperienceDashboard.find()
+    const applications = await ExperienceDashboard.find({ userId: userId })
     res.status(200).json(applications)
   } catch (err) {
     console.log(err)
