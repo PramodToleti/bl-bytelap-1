@@ -130,8 +130,7 @@ const ExperienceApplicationSchema = new mongoose.Schema({
     required: true,
   },
   candidate: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: Candidate,
+    type: String,
     required: true,
   },
   username: {

@@ -35,8 +35,13 @@ function ActiveJobIntern() {
     const endPoint = e.target.textContent.replace(/\s+/g, "-").toLowerCase()
     const token = Cookies.get("employeeToken")
     const userId = localStorage.getItem("userId")
-    data.userId = userId
     const url = `http://localhost:5000/employee/dashboard/internship/${endPoint}`
+
+    data.userId = userId
+
+    delete data._id
+
+    console.log(data)
 
     const options = {
       method: "POST",

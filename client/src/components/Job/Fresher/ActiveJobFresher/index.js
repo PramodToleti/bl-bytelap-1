@@ -36,8 +36,11 @@ function ActiveJobFresher(props) {
     const endPoint = e.target.textContent.replace(/\s+/g, "-").toLowerCase()
     const token = Cookies.get("employeeToken")
     const userId = localStorage.getItem("userId")
-    data.userId = userId
     const url = `http://localhost:5000/employee/dashboard/fresher/${endPoint}`
+
+    data.userId = userId
+
+    delete data._id
 
     const options = {
       method: "POST",

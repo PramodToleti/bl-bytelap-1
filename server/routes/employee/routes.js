@@ -352,11 +352,19 @@ router.post(
 router.post("/dashboard/internship/interested", auth, async (req, res) => {
   let application = req.body
   application.dashboardType = "Interested"
+  const candidateId = application.candidate
 
   try {
-    const response = new InternDashboard(application)
-    response.save()
-    res.status(200).json({ message: "Added to Interested List" })
+    const isPresent = await InternDashboard.findOne({
+      candidate: candidateId,
+    })
+    if (isPresent) {
+      res.status(400).json({ message: "Already added" })
+    } else {
+      const response = new InternDashboard(application)
+      response.save()
+      res.status(200).json({ message: "Added to Interested List" })
+    }
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -537,6 +545,8 @@ router.post("/dashboard/internship", auth, async (req, res) => {
 
 router.post("/dashboard/fresher", auth, async (req, res) => {
   const userId = req.body.userId
+
+  console.log(userId)
 
   try {
     const applications = await FresherDashboard.find({ userId: userId })
