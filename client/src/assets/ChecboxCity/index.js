@@ -1,6 +1,5 @@
 import React, { Component, createRef } from "react"
 import { default as ReactSelect } from "react-select"
-import "./index.css"
 import { components } from "react-select"
 import { Form } from "react-bootstrap"
 
@@ -28,7 +27,7 @@ const LoadMoreOption = (props) => {
   )
 }
 
-class CheckboxDropdown extends Component {
+class CheckboxCity extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -67,10 +66,11 @@ class CheckboxDropdown extends Component {
         optionSelected: selected,
       },
       () => {
+        console.log(this.selectRef.current)
         this.selectRef.current.setState({ menuIsOpen: false })
       }
     ),
-      this.props.handleSkills !== undefined && this.props.handleSkills(selected)
+      this.props.onChangeCity !== undefined && this.props.onChangeCity(selected)
   }
 
   handleInputChange = (inputValue) => {
@@ -126,4 +126,4 @@ class CheckboxDropdown extends Component {
   }
 }
 
-export default CheckboxDropdown
+export default CheckboxCity
