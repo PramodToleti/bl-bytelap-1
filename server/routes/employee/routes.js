@@ -166,6 +166,7 @@ router.post("/job/fresher", async (req, res) => {
 
 router.post("/job/experience", async (req, res) => {
   const jobDetails = req.body
+  console.log(jobDetails)
   try {
     const jobPost = new PostedJobs({
       type: "Experience",

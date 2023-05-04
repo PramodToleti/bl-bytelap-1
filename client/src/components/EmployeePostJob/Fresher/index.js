@@ -9,7 +9,7 @@ import { Oval } from "react-loader-spinner"
 import moment from "moment/moment"
 
 import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
-import ChooseCity from "../../../assets/ChooseCity"
+import CheckboxCity from "../../../assets/CheckboxCity"
 import PerksDropdown from "../../../assets/PerksDropdown"
 import SupplementaryDropdown from "../../../assets/SupplementaryDropdown"
 import ChooseJobTitle from "../../../assets/ChooseJobTitle"
@@ -63,7 +63,7 @@ function Fresher() {
     openings,
     location,
     education,
-    time: moment(),
+    time: Date.now(),
   }
 
   const onSuccess = (message) => {
@@ -79,9 +79,9 @@ function Fresher() {
       },
     })
 
-    setTimeout(() => {
+    /* setTimeout(() => {
       window.location.reload()
-    }, 1000)
+    }, 1000) */
   }
 
   const onFailure = (message) => {
@@ -99,6 +99,7 @@ function Fresher() {
   }
 
   const handlePostJob = async () => {
+    console.log(data)
     if (
       jobTitle !== "" &&
       jobTime !== "" &&
@@ -362,7 +363,7 @@ function Fresher() {
           </Form.Group>
           {jobType === "Office" && (
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <ChooseCity onChangeCity={onChangeCity} />
+              <CheckboxCity onChangeCity={onChangeCity} />
               <Form.Control.Feedback type="invalid">
                 Please enter your city.
               </Form.Control.Feedback>

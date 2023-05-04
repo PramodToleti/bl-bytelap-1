@@ -52,7 +52,7 @@ const InternshipJob = (props) => {
       <div className="container mb-3">
         <span>{totalJobs} Jobs</span>
       </div>
-      {internJobs.map((data, index) => (
+      {internJobs.reverse().map((data, index) => (
         <div
           className="d-flex flex-row container justify-content-start"
           key={index}

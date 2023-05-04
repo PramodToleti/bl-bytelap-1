@@ -10,7 +10,7 @@ import moment from "moment/moment"
 import { Typeahead } from "react-bootstrap-typeahead"
 
 import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
-import ChooseCity from "../../../assets/ChooseCity"
+import CheckboxCity from "../../../assets/CheckboxCity"
 import PerksDropdown from "../../../assets/PerksDropdown"
 import SupplementaryDropdown from "../../../assets/SupplementaryDropdown"
 import ChooseJobTitle from "../../../assets/ChooseJobTitle"
@@ -60,7 +60,10 @@ function Experience() {
     shift,
     skills,
     jobDescription,
-    experience,
+    experience: {
+      years: selectedYears[0]?.value || "",
+      month: selectedMonths[0]?.value || "",
+    },
     salaryType,
     salaryRange,
     incentives,
@@ -114,8 +117,8 @@ function Experience() {
       shift !== "" &&
       skills.length !== 0 &&
       jobDescription !== "" &&
-      experience.years !== "" &&
-      experience.month !== "" &&
+      experience.years !== 0 &&
+      experience.month !== 0 &&
       (salaryType !== "" || salaryRange !== "") &&
       supplementary.length !== 0 &&
       perks.length !== 0 &&
@@ -374,7 +377,7 @@ function Experience() {
           </Form.Group>
           {jobType === "Office" && (
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <ChooseCity onChangeCity={onChangeCity} />
+              <CheckboxCity onChangeCity={onChangeCity} />
               <Form.Control.Feedback type="invalid">
                 Please enter your city.
               </Form.Control.Feedback>

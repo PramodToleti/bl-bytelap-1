@@ -48,7 +48,7 @@ const ExperienceJob = (props) => {
         <span>{totalJobs} Jobs</span>
       </div>
 
-      {experienceJobs.map((data, index) => (
+      {experienceJobs.reverse().map((data, index) => (
         <div className="d-flex flex-row container justify-content-start">
           <div
             className="text-dark mb-3   div-card container reveal p-2  pt-3 "

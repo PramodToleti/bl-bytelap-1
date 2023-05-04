@@ -106,8 +106,7 @@ function InternshipPostPreview(props) {
                           style={{ wordBreak: "break-word" }}
                           className="details-heading"
                         >
-                          <div className="">{data.city}</div>
-                          {/* {data.city.length > 3 && !fullText ? (
+                          {data.city.length > 3 && !fullText ? (
                             <div
                               style={{
                                 wordBreak: "break-word",
@@ -139,7 +138,7 @@ function InternshipPostPreview(props) {
                                 {index !== data.city.length - 1 ? ", " : ""}
                               </span>
                             ))
-                          )} */}
+                          )}
                         </div>
                       </>
                     ) : (

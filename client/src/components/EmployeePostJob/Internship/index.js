@@ -16,7 +16,7 @@ import LocationDropdown from "../../../assets/LocationCheckbox"
 import ChooseJobTitle from "../../../assets/ChooseJobTitle"
 import AddRemove from "../../../assets/AddRemove"
 import CheckboxDropdown from "../../../assets/CheckboxDropdowm"
-import ChooseCity from "../../../assets/ChooseCity"
+import CheckboxCity from "../../../assets/CheckboxCity"
 import InternshipPostPreview from "../../../components/EmployeePostPreview/InternshipPostPreview"
 import Draft from "../../../assets/Draft"
 
@@ -66,7 +66,7 @@ function Internship() {
     openings,
     location,
     education,
-    time: moment(),
+    time: Date.now(),
   }
 
   const handleTitle = (e) => {
@@ -134,9 +134,9 @@ function Internship() {
       },
     })
 
-    setTimeout(() => {
+    /*  setTimeout(() => {
       window.location.reload()
-    }, 1000)
+    }, 1000) */
   }
 
   const onFailure = (message) => {
@@ -285,7 +285,7 @@ function Internship() {
           </Form.Group>
           {jobType === "Office" && (
             <Form.Group className="mb-3 mt-2" controlId="formBasicText">
-              <ChooseCity onChangeCity={onChangeCity} />
+              <CheckboxCity onChangeCity={onChangeCity} />
               <Form.Control.Feedback type="invalid">
                 Please enter your city.
               </Form.Control.Feedback>

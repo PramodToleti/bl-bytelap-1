@@ -96,7 +96,7 @@ const UnregisteredNavBar = () => {
                 Create Account
               </Link>
 
-              <Theme />
+              {/* <Theme /> */}
             </div>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
