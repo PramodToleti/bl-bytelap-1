@@ -17,13 +17,15 @@ const InternDashboard = ({ activeType }) => {
   useEffect(() => {
     async function fetchData() {
       const token = Cookies.get("employeeToken")
+      const userId = localStorage.getItem("userId")
 
       const options = {
-        method: "GET",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
+        body: JSON.stringify({ userId }),
       }
       const response = await fetch(
         "http://localhost:5000/employee/dashboard/internship",
