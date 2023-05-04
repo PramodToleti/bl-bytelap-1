@@ -511,7 +511,8 @@ function Experience() {
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>
-              Which location do you prefer looking for intern's ? (optional)
+              Which location do you prefer looking for experienced candidates?
+              (optional)
             </Form.Label>
             <LocationDropdown handleLocation={handleLocation} />
           </Form.Group>
