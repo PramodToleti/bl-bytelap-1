@@ -521,4 +521,36 @@ router.post("/dashboard/experience/not-interested", auth, async (req, res) => {
   }
 })
 
+//get dashboard data
+
+router.get("/dashboard/internship", auth, async (req, res) => {
+  try {
+    const applications = await InternDashboard.find()
+    res.status(200).json(applications)
+  } catch (err) {
+    console.log(err)
+    res.status(400).json(err)
+  }
+})
+
+router.get("/dashboard/fresher", auth, async (req, res) => {
+  try {
+    const applications = await FresherDashboard.find()
+    res.status(200).json(applications)
+  } catch (err) {
+    console.log(err)
+    res.status(400).json(err)
+  }
+})
+
+router.get("/dashboard/experience", auth, async (req, res) => {
+  try {
+    const applications = await ExperienceDashboard.find()
+    res.status(200).json(applications)
+  } catch (err) {
+    console.log(err)
+    res.status(400).json(err)
+  }
+})
+
 module.exports = router
