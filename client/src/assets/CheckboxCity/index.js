@@ -66,7 +66,6 @@ class CheckboxCity extends Component {
         optionSelected: selected,
       },
       () => {
-        console.log(this.selectRef.current)
         this.selectRef.current.setState({ menuIsOpen: false })
       }
     ),

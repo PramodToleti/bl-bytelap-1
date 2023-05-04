@@ -1,0 +1,9 @@
+.typeahead-field:hover,
+.typeahead-field:focus,
+.typeahead-field:active,
+.typeahead-field:visited {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 20px -5px,
+    rgba(0, 0, 0, 0.03) 0px 10px 10px -5px;
+  border: none !important;
+  border-radius: 0.375rem;
+}

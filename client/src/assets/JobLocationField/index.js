@@ -32,6 +32,7 @@ const JobLocationField = (props) => {
       onChange={onChangeTitle}
       value={selected}
       onInputChange={onInputChange}
+      className="typeahead-field"
     />
   )
 }

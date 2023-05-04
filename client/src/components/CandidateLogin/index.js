@@ -157,7 +157,6 @@ function CandidateLogin() {
                   >
                     Employer / Post Job
                   </Link>
-                  <Theme />
                 </div>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

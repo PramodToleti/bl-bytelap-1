@@ -131,7 +131,7 @@ const HomeHeader = () => {
                 </p>
               </NavDropdown>
 
-              <Theme activeThemeStyles={activeThemeStyles} />
+              {/* <Theme activeThemeStyles={activeThemeStyles} /> */}
             </div>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
