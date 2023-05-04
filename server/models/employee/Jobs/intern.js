@@ -29,7 +29,7 @@ const educationSchema = new mongoose.Schema({
 
 const locationSchema = new mongoose.Schema({
   value: {
-    type: Number,
+    type: String,
   },
   label: {
     type: String,
@@ -58,7 +58,7 @@ const internSchema = new mongoose.Schema({
     required: true,
   },
   city: {
-    type: String,
+    type: [locationSchema],
   },
   duration: {
     type: String,

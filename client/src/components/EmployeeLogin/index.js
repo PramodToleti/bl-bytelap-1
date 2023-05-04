@@ -157,7 +157,7 @@ function EmployeeLogin() {
                   >
                     Employer / Post Job
                   </Link>
-                  <Theme />
+                  {/* <Theme /> */}
                 </div>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

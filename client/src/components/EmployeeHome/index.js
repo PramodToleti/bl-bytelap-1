@@ -201,7 +201,7 @@ function EmployeeHome() {
                       Logout
                     </p>
                   </NavDropdown>
-                  <Theme />
+                  {/*  <Theme /> */}
                 </div>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
