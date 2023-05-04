@@ -98,7 +98,10 @@ router.post("/login", async (req, res) => {
 
 //Job Post
 router.post("/job/internship", async (req, res) => {
+
+  
   const jobDetails = req.body
+  console.log(jobDetails)
   try {
     console.log(jobDetails)
     const jobPost = new PostedJobs({

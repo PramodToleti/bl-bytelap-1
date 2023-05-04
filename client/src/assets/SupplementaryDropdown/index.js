@@ -59,7 +59,7 @@ class SupplementaryDropdown extends Component {
           <ReactSelect
             options={skills}
             isMulti
-            closeMenuOnSelect={false}
+            closeMenuOnSelect={true}
             hideSelectedOptions={false}
             components={{
               Option,

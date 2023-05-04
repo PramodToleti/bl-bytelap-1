@@ -62,7 +62,7 @@ class PerksDropdown extends Component {
           <ReactSelect
             options={skills}
             isMulti
-            closeMenuOnSelect={false}
+            closeMenuOnSelect={true}
             hideSelectedOptions={false}
             components={{
               Option,
