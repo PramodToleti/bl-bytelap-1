@@ -42,3 +42,4 @@ mongoose
 app.use("/candidate", candidateRouter)
 app.use("/employee", employeeRouter)
 app.use("/otp-verification", otpRouter)
+app.use("/uploads", express.static("uploads"))

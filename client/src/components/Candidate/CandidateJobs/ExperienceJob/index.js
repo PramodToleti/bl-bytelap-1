@@ -43,10 +43,10 @@ const ExperienceJob = (props) => {
   }
 
   const renderCompanyImage = (file) => {
-    if (file !== undefined) {
-      return URL.createObjectURL(file)
-    } else {
+    if (file === "" || file === null || file === undefined) {
       return "https://res.cloudinary.com/dlpgowt5s/image/upload/v1677222848/Screenshot_20230224_124108_e09oie.png"
+    } else {
+      return file
     }
   }
 
@@ -72,10 +72,26 @@ const ExperienceJob = (props) => {
             <>
               <div className="header">
                 <h4 className="mb-3">{data.jobTitle}</h4>
-                <img
-                  src={renderCompanyImage(data.file)}
-                  className="company-image"
-                />
+                <div
+                  style={{
+                    width: "30%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <img
+                    src={renderCompanyImage(data.file)}
+                    className="company-image"
+                  />
+                  <p
+                    style={{
+                      fontSize: "11px",
+                    }}
+                  >
+                    {data.companyName}
+                  </p>
+                </div>
               </div>
               <div style={{ display: "flex", gap: "8px" }} className="mb-1">
                 <FaBuilding style={{ color: "grey", fontSize: "18px" }} />

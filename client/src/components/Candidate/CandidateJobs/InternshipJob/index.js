@@ -79,10 +79,26 @@ const InternshipJob = (props) => {
             <>
               <div className="header">
                 <h4 className="mb-3">{data.jobTitle}</h4>
-                <img
-                  src={renderCompanyImage(data.file)}
-                  className="company-image"
-                />
+                <div
+                  style={{
+                    width: "30%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <img
+                    src={renderCompanyImage(data.file)}
+                    className="company-image"
+                  />
+                  <p
+                    style={{
+                      fontSize: "11px",
+                    }}
+                  >
+                    {data.companyName}
+                  </p>
+                </div>
               </div>
               <div style={{ display: "flex", gap: "8px" }} className="mb-1">
                 <FaBuilding style={{ color: "grey", fontSize: "18px" }} />

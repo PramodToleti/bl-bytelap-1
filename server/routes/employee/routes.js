@@ -102,6 +102,10 @@ router.post("/job/internship", async (req, res) => {
   try {
     const companyDetails = await Employee.findById(jobDetails.userId)
 
+    console.log(
+      req.protocol + "://" + req.get("host") + "/" + companyDetails.file.path
+    )
+
     const jobPost = new PostedJobs({
       type: "Internship",
       userId: jobDetails.userId,
@@ -125,7 +129,14 @@ router.post("/job/internship", async (req, res) => {
       education: jobDetails.education,
       location: jobDetails.location,
       time: jobDetails.time,
-      file: companyDetails.file,
+      file: (
+        req.protocol +
+        "://" +
+        req.get("host") +
+        "/" +
+        companyDetails.file.path
+      ).toString(),
+      companyName: companyDetails.companyName,
     })
     await jobPost.save()
     res.status(200).json({ message: "Job posted successfully" })
@@ -161,7 +172,14 @@ router.post("/job/fresher", async (req, res) => {
       openings: jobDetails.openings,
       location: jobDetails.location,
       time: jobDetails.time,
-      file: companyDetails.file,
+      file: (
+        req.protocol +
+        "://" +
+        req.get("host") +
+        "/" +
+        companyDetails.file.path
+      ).toString(),
+      companyName: companyDetails.companyName,
     })
     await jobPost.save()
     res.status(200).json({ message: "Job posted successfully" })
@@ -198,7 +216,14 @@ router.post("/job/experience", async (req, res) => {
       location: jobDetails.location,
       education: jobDetails.education,
       time: jobDetails.time,
-      file: companyDetails.file,
+      file: (
+        req.protocol +
+        "://" +
+        req.get("host") +
+        "/" +
+        companyDetails.file.path
+      ).toString(),
+      companyName: companyDetails.companyName,
     })
     await jobPost.save()
     res.status(200).json({ message: "Job posted successfully" })
