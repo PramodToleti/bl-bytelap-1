@@ -172,6 +172,9 @@ function Internship() {
       education.length !== 0
     ) {
       setIsLoading(true)
+      const userId = localStorage.getItem("userId")
+      data.userId = userId
+
       const options = {
         method: "POST",
         headers: {

@@ -127,6 +127,9 @@ function Experience() {
       location.length !== 0 &&
       education.length !== 0
     ) {
+      const userId = localStorage.getItem("userId")
+      data.userId = userId
+
       const options = {
         method: "POST",
         headers: {
