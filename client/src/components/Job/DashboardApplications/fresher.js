@@ -135,42 +135,62 @@ const FresherDashboard = ({ activeType }) => {
                     <div>
                       <div className="interested-btn-container">
                         <Button
-                          variant="outline-success"
+                          variant={
+                            data.dashboardType === "Interested"
+                              ? "success"
+                              : "outline-success"
+                          }
                           size="sm"
                           className=" mt-3"
                           onClick={(e) => {
                             handleActiveType(e, data)
                           }}
+                          disabled
                         >
                           Interested
                         </Button>{" "}
                         <Button
-                          variant="outline-primary"
+                          variant={
+                            data.dashboardType === "Shortlisted"
+                              ? "primary"
+                              : "outline-secondary"
+                          }
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
                             handleActiveType(e, data)
                           }}
+                          disabled
                         >
                           Shortlisted
                         </Button>
                         <Button
-                          variant="outline-secondary"
+                          variant={
+                            data.dashboardType === "Hire"
+                              ? "secondary"
+                              : "outline-secondary"
+                          }
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
                             handleActiveType(e, data)
                           }}
+                          disabled
                         >
                           Hire
                         </Button>{" "}
                         <Button
-                          variant="outline-secondary"
+                          variant={
+                            data.dashboardType === "Not-Interested"
+                              ? "secondary"
+                              : "outline-secondary"
+                          }
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
                             handleActiveType(e, data)
                           }}
+                          disabled
                         >
                           Not Interested
                         </Button>{" "}
@@ -191,42 +211,62 @@ const FresherDashboard = ({ activeType }) => {
                     <div className="interested-btn-container-desktop">
                       <div className="btns-container">
                         <Button
-                          variant="outline-success"
+                          variant={
+                            data.dashboardType === "Interested"
+                              ? "success"
+                              : "outline-success"
+                          }
                           size="sm"
                           className="mt-3"
                           onClick={(e) => {
                             handleActiveType(e, data)
                           }}
+                          disabled
                         >
                           Interested
                         </Button>{" "}
                         <Button
-                          variant="outline-primary"
+                          variant={
+                            data.dashboardType === "Shortlisted"
+                              ? "primary"
+                              : "outline-primary"
+                          }
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
                             handleActiveType(e, data)
                           }}
+                          disabled
                         >
                           Shortlisted
                         </Button>{" "}
                         <Button
-                          variant="outline-secondary"
+                          variant={
+                            data.dashboardType === "Hire"
+                              ? "secondary"
+                              : "outline-secondary"
+                          }
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
                             handleActiveType(e, data)
                           }}
+                          disabled
                         >
                           Hire
                         </Button>
                         <Button
-                          variant="outline-secondary"
+                          variant={
+                            data.dashboardType === "Not-Interested"
+                              ? "secondary"
+                              : "outline-secondary"
+                          }
                           className=" mt-3"
                           size="sm"
                           onClick={(e) => {
                             handleActiveType(e, data)
                           }}
+                          disabled
                         >
                           Not Interested
                         </Button>{" "}
