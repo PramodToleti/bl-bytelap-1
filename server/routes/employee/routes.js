@@ -99,11 +99,12 @@ router.post("/login", async (req, res) => {
 //Job Post
 router.post("/job/internship", async (req, res) => {
   const jobDetails = req.body
-  console.log(jobDetails)
   try {
-    console.log(jobDetails)
+    const companyDetails = await Employee.findById(jobDetails.userId)
+
     const jobPost = new PostedJobs({
       type: "Internship",
+      userId: jobDetails.userId,
       jobTitle: jobDetails.jobTitle,
       jobTime: jobDetails.jobTime,
       jobType: jobDetails.jobType,
@@ -124,6 +125,7 @@ router.post("/job/internship", async (req, res) => {
       education: jobDetails.education,
       location: jobDetails.location,
       time: jobDetails.time,
+      file: companyDetails.file,
     })
     await jobPost.save()
     res.status(200).json({ message: "Job posted successfully" })
@@ -136,8 +138,11 @@ router.post("/job/internship", async (req, res) => {
 router.post("/job/fresher", async (req, res) => {
   const jobDetails = req.body
   try {
+    const companyDetails = await Employee.findById(jobDetails.userId)
+
     const jobPost = new PostedJobs({
       type: "Fresher",
+      userId: jobDetails.userId,
       jobTitle: jobDetails.jobTitle,
       jobTime: jobDetails.jobTime,
       jobType: jobDetails.jobType,
@@ -156,6 +161,7 @@ router.post("/job/fresher", async (req, res) => {
       openings: jobDetails.openings,
       location: jobDetails.location,
       time: jobDetails.time,
+      file: companyDetails.file,
     })
     await jobPost.save()
     res.status(200).json({ message: "Job posted successfully" })
@@ -167,10 +173,12 @@ router.post("/job/fresher", async (req, res) => {
 
 router.post("/job/experience", async (req, res) => {
   const jobDetails = req.body
-  console.log(jobDetails)
+  const companyDetails = await Employee.findById(jobDetails.userId)
+
   try {
     const jobPost = new PostedJobs({
       type: "Experience",
+      userId: jobDetails.userId,
       jobTitle: jobDetails.jobTitle,
       jobTime: jobDetails.jobTime,
       jobType: jobDetails.jobType,
@@ -190,6 +198,7 @@ router.post("/job/experience", async (req, res) => {
       location: jobDetails.location,
       education: jobDetails.education,
       time: jobDetails.time,
+      file: companyDetails.file,
     })
     await jobPost.save()
     res.status(200).json({ message: "Job posted successfully" })

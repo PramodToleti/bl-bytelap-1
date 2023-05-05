@@ -41,6 +41,10 @@ const internSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: String,
+    required: true,
+  },
   jobTitle: {
     type: String,
     required: true,
@@ -130,6 +134,16 @@ const internSchema = new mongoose.Schema({
   time: {
     type: Date,
     default: Date.now(),
+  },
+  file: {
+    fieldname: String,
+    originalname: String,
+    encoding: String,
+    mimetype: String,
+    destination: String,
+    filename: String,
+    path: String,
+    size: Number,
   },
 })
 
