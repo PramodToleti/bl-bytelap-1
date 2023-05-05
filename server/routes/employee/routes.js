@@ -360,7 +360,7 @@ router.post("/dashboard/internship/interested", auth, async (req, res) => {
     const isPresent = await InternDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Interested") {
+    if (isPresent && isPresent?.dashboardType === "Interested") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new InternDashboard(application)
@@ -382,7 +382,7 @@ router.post("/dashboard/internship/shortlisted", auth, async (req, res) => {
     const isPresent = await InternDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Shortlisted") {
+    if (isPresent && isPresent?.dashboardType === "Shortlisted") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new InternDashboard(application)
@@ -404,7 +404,7 @@ router.post("/dashboard/internship/hire", auth, async (req, res) => {
     const isPresent = await InternDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Hire") {
+    if (isPresent && isPresent?.dashboardType === "Hire") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new InternDashboard(application)
@@ -426,7 +426,7 @@ router.post("/dashboard/internship/not-interested", auth, async (req, res) => {
     const isPresent = await InternDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Not-Interested") {
+    if (isPresent && isPresent?.dashboardType === "Not-Interested") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new InternDashboard(application)
@@ -449,7 +449,7 @@ router.post("/dashboard/fresher/interested", auth, async (req, res) => {
     const isPresent = await FresherDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Interested") {
+    if (isPresent && isPresent?.dashboardType === "Interested") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new FresherDashboard(application)
@@ -471,7 +471,7 @@ router.post("/dashboard/fresher/shortlisted", auth, async (req, res) => {
     const isPresent = await FresherDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Shortlisted") {
+    if (isPresent && isPresent?.dashboardType === "Shortlisted") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new FresherDashboard(application)
@@ -493,7 +493,7 @@ router.post("/dashboard/fresher/hire", auth, async (req, res) => {
     const isPresent = await FresherDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Hire") {
+    if (isPresent && isPresent?.dashboardType === "Hire") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new FresherDashboard(application)
@@ -515,7 +515,7 @@ router.post("/dashboard/fresher/not-interested", auth, async (req, res) => {
     const isPresent = await FresherDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Not-Interested") {
+    if (isPresent && isPresent?.dashboardType === "Not-Interested") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new FresherDashboard(application)
@@ -539,7 +539,7 @@ router.post("/dashboard/experience/interested", auth, async (req, res) => {
     const isPresent = await ExperienceDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Interested") {
+    if (isPresent && isPresent?.dashboardType === "Interested") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new ExperienceDashboard(application)
@@ -561,7 +561,7 @@ router.post("/dashboard/experience/shortlisted", auth, async (req, res) => {
     const isPresent = await ExperienceDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Shortlisted") {
+    if (isPresent && isPresent?.dashboardType === "Shortlisted") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new ExperienceDashboard(application)
@@ -583,7 +583,7 @@ router.post("/dashboard/experience/hire", auth, async (req, res) => {
     const isPresent = await ExperienceDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Hire") {
+    if (isPresent && isPresent?.dashboardType === "Hire") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new ExperienceDashboard(application)
@@ -605,7 +605,7 @@ router.post("/dashboard/experience/not-interested", auth, async (req, res) => {
     const isPresent = await ExperienceDashboard.findOne({
       candidate: candidateId,
     })
-    if (isPresent.dashboardType === "Not-Interested") {
+    if (isPresent && isPresent?.dashboardType === "Not-Interested") {
       res.status(400).json({ message: "Already added" })
     } else {
       const response = new ExperienceDashboard(application)

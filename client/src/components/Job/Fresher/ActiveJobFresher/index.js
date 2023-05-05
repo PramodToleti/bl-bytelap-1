@@ -375,14 +375,17 @@ function ActiveJobFresher(props) {
                             </p>
                           </div>
                           <div className="text-muted">
-                            {JSON.parse(data.preferredLocation).map((each) => (
-                              <span
-                                className="text-muted"
-                                style={{ fontSize: "16px" }}
-                              >
-                                {each.label}, &nbsp;
-                              </span>
-                            ))}
+                            {JSON.parse(data.preferredLocation) !== "" &&
+                              JSON.parse(data.preferredLocation).map((each) => {
+                                return (
+                                  <span
+                                    className="text-muted"
+                                    style={{ fontSize: "16px" }}
+                                  >
+                                    {each.label}, &nbsp;
+                                  </span>
+                                )
+                              })}
                           </div>
                         </div>
 
@@ -471,14 +474,17 @@ function ActiveJobFresher(props) {
                         </div>
                         <div className="colon"></div>
                         <div className="location-f text-muted">
-                          {JSON.parse(data.preferredLocation[0]).map((each) => (
-                            <span
-                              className="text-muted"
-                              style={{ fontSize: "16px" }}
-                            >
-                              {each.label}, &nbsp;
-                            </span>
-                          ))}
+                          {JSON.parse(data.preferredLocation) !== "" &&
+                            JSON.parse(data.preferredLocation).map((each) => {
+                              return (
+                                <span
+                                  className="text-muted"
+                                  style={{ fontSize: "16px" }}
+                                >
+                                  {each.label}, &nbsp;
+                                </span>
+                              )
+                            })}
                         </div>
                         <div className="available-f text-muted">
                           <p>Available</p>
