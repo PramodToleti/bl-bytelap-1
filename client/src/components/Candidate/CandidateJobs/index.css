@@ -65,3 +65,7 @@
     display: none;
   }
 }
+
+.company-image {
+  width: 15% !important;
+}

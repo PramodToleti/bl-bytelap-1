@@ -47,6 +47,13 @@ const InternshipJob = (props) => {
     )
   }
 
+  const renderCompanyImage = (file) => {
+    if (file === "" || file === null || file === undefined) {
+      return "https://res.cloudinary.com/dlpgowt5s/image/upload/v1677222848/Screenshot_20230224_124108_e09oie.png"
+    } else {
+      return file
+    }
+  }
 
   return (
     <>
@@ -73,7 +80,7 @@ const InternshipJob = (props) => {
               <div className="header">
                 <h4 className="mb-3">{data.jobTitle}</h4>
                 <img
-                  src="https://res.cloudinary.com/dlpgowt5s/image/upload/v1677222848/Screenshot_20230224_124108_e09oie.png"
+                  src={renderCompanyImage(data.file)}
                   className="company-image"
                 />
               </div>
