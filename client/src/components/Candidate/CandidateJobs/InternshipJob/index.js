@@ -145,7 +145,7 @@ const InternshipJob = (props) => {
                   <p className="details-heading-2">
                     <p className="sub-headings">Start Date</p>
                     <p className="details-text">
-                      {data.checked && data.startDate === ""
+                      {data.checked && data.startDate === null
                         ? "Start Immediately"
                         : new Date(data.startDate).toLocaleString("en-US", {
                             month: "short",
