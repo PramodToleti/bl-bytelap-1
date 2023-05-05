@@ -136,14 +136,8 @@ const internSchema = new mongoose.Schema({
     default: Date.now(),
   },
   file: {
-    fieldname: String,
-    originalname: String,
-    encoding: String,
-    mimetype: String,
-    destination: String,
-    filename: String,
-    path: String,
-    size: Number,
+    type: String,
+    required: true,
   },
 })
 
