@@ -67,6 +67,14 @@ function InternshipJobDetails() {
 
   const jobId = history.location.pathname.split("/").pop()
 
+  const renderCompanyImage = (file) => {
+    if (file === "" || file === null || file === undefined) {
+      return "https://res.cloudinary.com/dlpgowt5s/image/upload/v1677222848/Screenshot_20230224_124108_e09oie.png"
+    } else {
+      return file
+    }
+  }
+
   const onApply = async () => {
     setLoading(true)
     const userId = localStorage.getItem("userId")
@@ -186,10 +194,19 @@ function InternshipJobDetails() {
               <>
                 <div className="header">
                   <h4 className="mb-3">{data.jobTitle}</h4>
-                  <img
-                    src="https://res.cloudinary.com/dlpgowt5s/image/upload/v1677222848/Screenshot_20230224_124108_e09oie.png"
-                    className="company-image"
-                  />
+                  <div
+                    style={{
+                      width: "20%",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    <img
+                      src={renderCompanyImage(data.file)}
+                      className="company-image"
+                    />
+                  </div>
                 </div>
                 <div style={{ display: "flex", gap: "8px" }} className="mb-2">
                   <FaBuilding style={{ color: "grey", fontSize: "22px" }} />
