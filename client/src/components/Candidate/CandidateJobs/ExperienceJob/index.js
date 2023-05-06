@@ -84,13 +84,6 @@ const ExperienceJob = (props) => {
                     src={renderCompanyImage(data.file)}
                     className="company-image"
                   />
-                  <p
-                    style={{
-                      fontSize: "11px",
-                    }}
-                  >
-                    {data.companyName}
-                  </p>
                 </div>
               </div>
               <div style={{ display: "flex", gap: "8px" }} className="mb-1">
