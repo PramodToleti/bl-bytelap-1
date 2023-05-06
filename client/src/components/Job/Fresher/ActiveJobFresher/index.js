@@ -62,6 +62,9 @@ function ActiveJobFresher(props) {
         marginTop: "30px",
         margin: "20px",
       })
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     } else {
       toast.error(resData.message, {
         position: "top-right",
@@ -135,7 +138,10 @@ function ActiveJobFresher(props) {
   }
 
   const renderApplications = () => {
-    if (fresherData === undefined || fresherData.length === 0) {
+    if (
+      fresherData === undefined ||
+      (fresherData.length === 0 && activeType === "Applied")
+    ) {
       return (
         <div
           style={{

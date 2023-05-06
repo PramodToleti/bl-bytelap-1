@@ -61,6 +61,9 @@ function ActiveJobExp() {
         marginTop: "30px",
         margin: "20px",
       })
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     } else {
       toast.error(resData.message, {
         position: "top-right",
@@ -134,7 +137,10 @@ function ActiveJobExp() {
   }
 
   const renderApplications = () => {
-    if (experienceData === undefined || experienceData.length === 0) {
+    if (
+      experienceData === undefined ||
+      (experienceData.length === 0 && activeType === "Applied")
+    ) {
       return (
         <div
           style={{

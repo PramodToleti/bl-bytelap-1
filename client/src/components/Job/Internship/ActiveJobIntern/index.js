@@ -63,6 +63,9 @@ function ActiveJobIntern() {
         marginTop: "30px",
         margin: "20px",
       })
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     } else {
       toast.error(resData.message, {
         position: "top-right",
@@ -136,7 +139,10 @@ function ActiveJobIntern() {
   }
 
   const renderApplications = () => {
-    if (internData === undefined || internData.length === 0) {
+    if (
+      internData === undefined ||
+      (internData.length === 0 && activeType === "Applied")
+    ) {
       return (
         <div
           style={{
@@ -619,7 +625,10 @@ function ActiveJobIntern() {
                 className=" mb -3 mt-4"
                 style={{ width: "120px" }}
               >
-                <Form.Select className="custom-select">
+                <Form.Select
+                  className="custom-select"
+                  onChange={(e) => setActiveType(e.target.value)}
+                >
                   <option> Applied</option>
                   <option> Interested </option>
                   <option>Shortlisted</option>
