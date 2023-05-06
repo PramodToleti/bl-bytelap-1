@@ -71,7 +71,6 @@
 @media screen and (min-width: 767px) {
   .interested-btn-container-desktop {
     display: flex;
-    justify-content: space-between;
     max-width: 80%;
   }
 }
@@ -79,7 +78,7 @@
 .btns-container {
   display: flex;
   justify-content: space-between;
-  min-width: 70%;
+  min-width: 40%;
 }
 
 .card-container {

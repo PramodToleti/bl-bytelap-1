@@ -75,6 +75,17 @@
   }
 }
 
+@media screen and (min-width: 768px) {
+  .interested-btn-container-desktop {
+    justify-content: start !important;
+  }
+
+  .btns-container {
+    gap: 10px;
+    min-width: 30% !important;
+  }
+}
+
 .btns-container {
   display: flex;
   justify-content: space-between;
