@@ -356,7 +356,11 @@ router.post(
         const isEmailExists = await Employee.findOne({
           officialEmail: employeeDetails.officialEmail,
         })
-        if (isEmailExists) {
+        if (
+          isEmailExists &&
+          isEmailExists.officialEmail !== employee.officialEmail
+        ) {
+          console.log(employee)
           res.status(400).json({ message: "Email already exists" })
         } else {
           employee.companyName = employeeDetails.companyName
