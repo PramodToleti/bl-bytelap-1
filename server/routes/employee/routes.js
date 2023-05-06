@@ -14,6 +14,9 @@ const ExperienceApplication = require("../../models/candidate/Registration/exper
 const InternDashboard = require("../../models/employee/Dashboard/internship")
 const FresherDashboard = require("../../models/employee/Dashboard/fresher")
 const ExperienceDashboard = require("../../models/employee/Dashboard/experience")
+const InternJob = require("../../models/candidate/Applications/internship")
+const FresherJob = require("../../models/candidate/Applications/fresher")
+const ExperienceJob = require("../../models/candidate/Applications/experience")
 
 //Create Account
 router.post("/create-account", upload.single("file"), async (req, res) => {
@@ -391,16 +394,30 @@ router.post("/dashboard/internship/interested", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await InternDashboard.findOne({
+    const isPresent = await InternJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Interested") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new InternDashboard(application)
-      response.save()
-      res.status(200).json({ message: "Added to Interested List" })
+    const isPresentInDashboard = await InternDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Interested"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await InternDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await InternJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new InternDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Interested List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -413,16 +430,30 @@ router.post("/dashboard/internship/shortlisted", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await InternDashboard.findOne({
+    const isPresent = await InternJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Shortlisted") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new InternDashboard(application)
-      response.save()
-      res.status(200).json({ message: "Added to Shortlisted List" })
+    const isPresentInDashboard = await InternDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Shortlisted"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await InternDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await InternJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new InternDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Shortlisted List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -435,16 +466,30 @@ router.post("/dashboard/internship/hire", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await InternDashboard.findOne({
+    const isPresent = await InternJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Hire") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new InternDashboard(application)
-      response.save()
-      res.status(200).json({ message: "Added to Hirinng List" })
+    const isPresentInDashboard = await InternDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Hire"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await InternDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await InternJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new InternDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Hiring List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -457,15 +502,31 @@ router.post("/dashboard/internship/not-interested", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await InternDashboard.findOne({
+    const isPresent = await InternJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Not-Interested") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new InternDashboard(application)
-      response.save()
+
+    const isPresentInDashboard = await InternDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Not-Interested"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await InternDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await InternJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new InternDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Not interested List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -480,16 +541,30 @@ router.post("/dashboard/fresher/interested", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await FresherDashboard.findOne({
+    const isPresent = await FresherJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Interested") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new FresherDashboard(application)
-      response.save()
-      res.status(200).json({ message: "Added to Interested List" })
+    const isPresentInDashboard = await FresherDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Interested"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await FresherDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await FresherJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new FresherDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Interested List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -502,16 +577,30 @@ router.post("/dashboard/fresher/shortlisted", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await FresherDashboard.findOne({
+    const isPresent = await FresherJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Shortlisted") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new FresherDashboard(application)
-      response.save()
-      res.status(200).json({ message: "Added to Shortlisted List" })
+    const isPresentInDashboard = await FresherDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Shortlisted"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await FresherDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await FresherJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new FresherDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Shortlisted List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -524,16 +613,30 @@ router.post("/dashboard/fresher/hire", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await FresherDashboard.findOne({
+    const isPresent = await FresherJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Hire") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new FresherDashboard(application)
-      response.save()
-      res.status(200).json({ message: "Added to Hirinng List" })
+    const isPresentInDashboard = await FresherDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Hire"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await FresherDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await FresherJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new FresherDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Hiring List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -546,16 +649,30 @@ router.post("/dashboard/fresher/not-interested", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await FresherDashboard.findOne({
+    const isPresent = await FresherJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Not-Interested") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new FresherDashboard(application)
-      response.save()
-      res.status(200).json({ message: "Added to Not Interested List" })
+    const isPresentInDashboard = await FresherDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Not-Interested"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await FresherDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await FresherJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new FresherDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Not interested List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -570,16 +687,30 @@ router.post("/dashboard/experience/interested", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await ExperienceDashboard.findOne({
+    const isPresent = await ExperienceJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Interested") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new ExperienceDashboard(application)
-      response.save()
-      res.status(200).json({ message: "Added to Interested List" })
+    const isPresentInDashboard = await ExperienceDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Interested"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await ExperienceDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await ExperienceJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new ExperienceDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Interested List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -592,16 +723,30 @@ router.post("/dashboard/experience/shortlisted", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await ExperienceDashboard.findOne({
+    const isPresent = await ExperienceJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Shortlisted") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new ExperienceDashboard(application)
-      response.save()
-      res.status(200).json({ message: "Added to Shortlisted List" })
+    const isPresentInDashboard = await ExperienceDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Shortlisted"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await ExperienceDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await ExperienceJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new ExperienceDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Shortlisted List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -614,16 +759,30 @@ router.post("/dashboard/experience/hire", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await ExperienceDashboard.findOne({
+    const isPresent = await ExperienceJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Hire") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new ExperienceDashboard(application)
-      response.save()
-      res.status(200).json({ message: "Added to Hirinng List" })
+    const isPresentInDashboard = await ExperienceDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Hire"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await ExperienceDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await ExperienceJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new ExperienceDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Hiring List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -636,16 +795,30 @@ router.post("/dashboard/experience/not-interested", auth, async (req, res) => {
   const candidateId = application.candidate
 
   try {
-    const isPresent = await ExperienceDashboard.findOne({
+    const isPresent = await ExperienceJob.findOne({
       candidate: candidateId,
     })
-    if (isPresent && isPresent?.dashboardType === "Not-Interested") {
-      res.status(400).json({ message: "Already added" })
-    } else {
-      const response = new ExperienceDashboard(application)
-      response.save()
-      res.status(200).json({ message: "Added to Not Interested List" })
+    const isPresentInDashboard = await ExperienceDashboard.findOne({
+      candidate: candidateId,
+    })
+
+    if (
+      isPresentInDashboard &&
+      isPresentInDashboard?.dashboardType === "Not-Interested"
+    ) {
+      return res.status(400).json({ message: "Already added" })
     }
+
+    if (isPresentInDashboard && isPresentInDashboard?.dashboardType !== "") {
+      await ExperienceDashboard.deleteOne({ candidate: candidateId })
+    }
+
+    if (isPresent) {
+      await ExperienceJob.deleteOne({ candidate: candidateId })
+    }
+    const response = new ExperienceDashboard(application)
+    response.save()
+    res.status(200).json({ message: "Added to Not interested List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -668,8 +841,6 @@ router.post("/dashboard/internship", auth, async (req, res) => {
 
 router.post("/dashboard/fresher", auth, async (req, res) => {
   const userId = req.body.userId
-
-  console.log(userId)
 
   try {
     const applications = await FresherDashboard.find({ userId: userId })

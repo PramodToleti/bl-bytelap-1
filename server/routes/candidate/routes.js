@@ -517,6 +517,7 @@ router.post("/experience/apply", async (req, res) => {
           const application = new ExperienceJob(candidateDataObj)
           application.save()
           res.status(200).json("Job Applied Successfully")
+          console.log(candidateDataObj)
         } else {
           res.status(400).json("User not found")
         }
