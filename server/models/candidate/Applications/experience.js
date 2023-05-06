@@ -38,7 +38,6 @@ const trainingSchema = new mongoose.Schema({
 const achievementSchema = new mongoose.Schema({
   achievement: {
     type: String,
-    required: true,
   },
 })
 
@@ -76,7 +75,7 @@ const degreeSchema = new mongoose.Schema({
 
 const locationSchema = new mongoose.Schema({
   value: {
-    type: Number,
+    type: String,
     required: true,
   },
   label: {
@@ -215,8 +214,7 @@ const ExperienceApplicationSchema = new mongoose.Schema({
     },
   ],
   preferredLocation: {
-    type: [String],
-    required: true,
+    type: [locationSchema],
   },
   languages: {
     type: [String],
