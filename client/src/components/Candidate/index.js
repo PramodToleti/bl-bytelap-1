@@ -6,14 +6,21 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import InputGroup from "react-bootstrap/InputGroup"
 import Dropdown from "react-bootstrap/Dropdown"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import CandidateJobs from "./CandidateJobs"
 import JobSearchField from "../../assets/JobSearchField"
 import JobLocationField from "../../assets/JobLocationField"
 import { Oval } from "react-loader-spinner"
 import CandidateFooter from "./CandidateFooter"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
+import "./index.css"
+import { Link, useHistory } from "react-router-dom"
 
 function Home() {
+  const history = useHistory()
+  const [showNotification, setShowNotification] = useState(false)
   const [activeSearch, setActiveSearch] = useState("")
   const [activeLocation, setActiveLocation] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -587,8 +594,50 @@ function Home() {
     }
   }
 
+  useEffect(() => {
+    let count = 1
+    const isComingFromLogin = history.location.state?.from === "login"
+    if (isComingFromLogin && !localStorage.getItem("count")) {
+      count = 2
+      localStorage.setItem("count", count)
+      setTimeout(() => {
+        toast(
+          <div className="fraud-notifcation">
+            <p className="fraud-message">
+              Avoid Job Scams: Don't Pay Money to HR fro Job Offers
+              <span className="learn-more-txt">
+                <Link
+                  to="/candidate/fraud-alert"
+                  style={{
+                    color: "blue",
+                    textDecoration: "none",
+                    cursor: "pointer",
+                    display: "inline-block",
+                  }}
+                >
+                  Learn more
+                </Link>
+              </span>
+            </p>
+          </div>,
+          {
+            autoClose: false,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            className: "custom-toast",
+            toastClassName: "custom-notification",
+          }
+        )
+      }, 2500)
+    }
+  }, [])
+
   return (
     <>
+      <ToastContainer className="my-container" />
       <HomeHeader />
       <div style={{ paddingLeft: "7px" }}>
         <div className="col-lg-12 col-md-4 search-course-right    mt-4 p-2 bg-light text-dark  border-white rounded container reveal  p-34 bg-white rounded border border-secondary">
@@ -719,7 +768,6 @@ function Home() {
           />
         )}
       </div>
-
       <CandidateFooter isRegistered={true} />
     </>
   )

@@ -4,3 +4,35 @@
   justify-content: center;
   align-items: center;
 }
+
+.custom-toast {
+  padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .custom-toast {
+    margin: 10px;
+    margin-top: 20px;
+  }
+
+  .learn-more-txt {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .custom-notification {
+    top: 250px;
+  }
+
+  .learn-more-txt {
+    margin-top: 10px;
+  }
+
+  .my-container {
+    position: fixed;
+    top: 45%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+}
