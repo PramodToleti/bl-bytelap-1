@@ -246,13 +246,13 @@ function CandidateLogin() {
                     />
 
                     <span
-                      className="position-absolute top-50  end-0 translate-middle-y bg-white"
+                      className=" bg-white"
                       style={{
                         cursor: "pointer",
                         marginRight: "10px",
-                        height: "50px",
-                        display: "grid",
-                        placeItems: "center",
+                        position: "absolute",
+                        right: "0px",
+                        top: "15px",
                       }}
                       onClick={() =>
                         setPasswordInputType(
@@ -261,15 +261,9 @@ function CandidateLogin() {
                       }
                     >
                       {passwordInputType === "password" ? (
-                        <AiFillEyeInvisible
-                          id="passwordToggleIcon"
-                          style={{ marginBottom: "10px", fontSize: "18px" }}
-                        />
+                        <AiFillEyeInvisible id="passwordToggleIcon" />
                       ) : (
-                        <AiFillEye
-                          id="passwordToggleIcon"
-                          style={{ marginBottom: "10px", fontSize: "18px" }}
-                        />
+                        <AiFillEye id="passwordToggleIcon" />
                       )}
                     </span>
                     <Form.Control.Feedback type="invalid">

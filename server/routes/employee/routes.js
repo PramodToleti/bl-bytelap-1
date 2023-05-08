@@ -602,9 +602,10 @@ router.post("/dashboard/fresher/shortlisted", auth, async (req, res) => {
     if (isPresent) {
       await FresherJob.deleteOne({ candidate: candidateId })
     }
-    const response = new FresherDashboard(application)
+    console.log(isPresent)
+    /*  const response = new FresherDashboard(application)
     response.save()
-    res.status(200).json({ message: "Added to Shortlisted List" })
+    res.status(200).json({ message: "Added to Shortlisted List" }) */
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })

@@ -76,11 +76,9 @@ const degreeSchema = new mongoose.Schema({
 const locationSchema = new mongoose.Schema({
   value: {
     type: String,
-    required: true,
   },
   label: {
     type: String,
-    required: true,
   },
 })
 
