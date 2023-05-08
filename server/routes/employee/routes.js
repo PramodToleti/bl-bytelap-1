@@ -566,6 +566,7 @@ router.post("/dashboard/fresher/interested", auth, async (req, res) => {
     if (isPresent) {
       await FresherJob.deleteOne({ candidate: candidateId })
     }
+
     const response = new FresherDashboard(application)
     response.save()
     res.status(200).json({ message: "Added to Interested List" })
@@ -602,10 +603,9 @@ router.post("/dashboard/fresher/shortlisted", auth, async (req, res) => {
     if (isPresent) {
       await FresherJob.deleteOne({ candidate: candidateId })
     }
-    console.log(isPresent)
-    /*  const response = new FresherDashboard(application)
+    const response = new FresherDashboard(application)
     response.save()
-    res.status(200).json({ message: "Added to Shortlisted List" }) */
+    res.status(200).json({ message: "Added to Shortlisted List" })
   } catch (err) {
     console.log(err)
     res.status(400).json({ message: "Something went wrong" })
@@ -710,9 +710,10 @@ router.post("/dashboard/experience/interested", auth, async (req, res) => {
       await ExperienceDashboard.deleteOne({ candidate: candidateId })
     }
 
-    if (isPresent) {
+    if (isPresent && isPresent.dashboardType !== "") {
       await ExperienceJob.deleteOne({ candidate: candidateId })
     }
+
     const response = new ExperienceDashboard(application)
     response.save()
     res.status(200).json({ message: "Added to Interested List" })
@@ -846,9 +847,10 @@ router.post("/dashboard/internship", auth, async (req, res) => {
 
 router.post("/dashboard/fresher", auth, async (req, res) => {
   const userId = req.body.userId
-
+  console.log(userId)
   try {
     const applications = await FresherDashboard.find({ userId: userId })
+    console.log(applications)
     res.status(200).json(applications)
   } catch (err) {
     console.log(err)

@@ -74,13 +74,11 @@ const degreeSchema = new mongoose.Schema({
 })
 
 const locationSchema = new mongoose.Schema({
-  value: {
+  0: {
     type: String,
-    required: true,
   },
-  label: {
+  1: {
     type: String,
-    required: true,
   },
 })
 
@@ -171,11 +169,9 @@ const FresherApplicationSchema = new mongoose.Schema({
       size: Number,
     },
   ],
-  preferredLocation: [
-    {
-      type: locationSchema,
-    },
-  ],
+  preferredLocation: {
+    type: [locationSchema],
+  },
   languages: {
     type: [String],
     required: true,

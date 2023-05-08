@@ -250,7 +250,6 @@ router.post(
             trainingFiles: req.files.trainingFiles || [],
             achievements: JSON.parse(details.achievements) || [],
             achievementsFiles: req.files.achievementsFiles || [],
-            preferredLocation: details.preferredLocation || [],
             languages: JSON.parse(details.languages),
             availability: details.availability,
             time: details.time,
@@ -466,10 +465,6 @@ router.post("/fresher/apply", async (req, res) => {
 
         candidateDataObj.jobName = jobName
 
-        candidateDataObj.preferredLocation = JSON.parse(
-          candidateDataObj.preferredLocation
-        )
-
         if (candidateDataObj) {
           const application = new FresherJob(candidateDataObj)
           application.save()
@@ -516,10 +511,6 @@ router.post("/experience/apply", async (req, res) => {
         delete candidateDataObj._id
 
         candidateDataObj.jobName = jobName
-
-        candidateDataObj.preferredLocation = JSON.parse(
-          candidateDataObj.preferredLocation
-        )
 
         if (candidateDataObj) {
           const application = new ExperienceJob(candidateDataObj)

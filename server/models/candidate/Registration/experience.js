@@ -210,7 +210,7 @@ const ExperienceApplicationSchema = new mongoose.Schema({
     },
   ],
   preferredLocation: {
-    type: [String],
+    type: [locationSchema],
   },
   languages: {
     type: [String],

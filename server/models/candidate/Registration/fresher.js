@@ -170,11 +170,9 @@ const FresherApplicationSchema = new mongoose.Schema({
       size: Number,
     },
   ],
-  preferredLocation: [
-    {
-      type: locationSchema,
-    },
-  ],
+  preferredLocation: {
+    type: [locationSchema],
+  },
   languages: {
     type: [String],
     required: true,

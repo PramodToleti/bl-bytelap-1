@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
 const Candidate = require("../../candidate/account")
+
 const projectDetailsSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -73,13 +74,11 @@ const degreeSchema = new mongoose.Schema({
 })
 
 const locationSchema = new mongoose.Schema({
-  value: {
+  0: {
     type: String,
-    required: true,
   },
-  label: {
+  1: {
     type: String,
-    required: true,
   },
 })
 
@@ -112,6 +111,14 @@ const historySchema = new mongoose.Schema({
 
 const ExperienceApplicationSchema = new mongoose.Schema({
   type: {
+    type: String,
+    required: true,
+  },
+  userId: {
+    type: String,
+    required: true,
+  },
+  dashboardType: {
     type: String,
     required: true,
   },
@@ -207,11 +214,9 @@ const ExperienceApplicationSchema = new mongoose.Schema({
       size: Number,
     },
   ],
-  preferredLocation: [
-    {
-      type: locationSchema,
-    },
-  ],
+  preferredLocation: {
+    type: [locationSchema],
+  },
   languages: {
     type: [String],
     required: true,
