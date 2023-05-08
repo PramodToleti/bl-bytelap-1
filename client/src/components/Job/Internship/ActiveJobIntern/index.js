@@ -41,8 +41,6 @@ function ActiveJobIntern() {
 
     delete data._id
 
-    console.log(data)
-
     const options = {
       method: "POST",
       headers: {

@@ -135,9 +135,8 @@ function Fresher(props) {
   }
 
   const handleLanguages = (e) => {
-    console.log(e)
     let languages = []
-    e.map((each) => languages.push(each.label))
+    e.map((each) => languages.push(each))
     setLanguages(languages)
   }
 
@@ -385,7 +384,7 @@ function Fresher(props) {
         body: formData,
       }
 
-      /*  const response = await fetch(
+      const response = await fetch(
         "http://localhost:5000/candidate/fresher/register",
         options
       )
@@ -395,7 +394,7 @@ function Fresher(props) {
         onSuccess(resData.message)
       } else {
         onFailure(resData.message)
-      } */
+      }
     }
 
     now === 100 ? setIsFilled(true) : setIsFilled(false)

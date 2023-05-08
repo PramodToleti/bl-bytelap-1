@@ -137,7 +137,7 @@ function ActiveJobFresher(props) {
     fresherData = applications
   }
 
-  console.log(fresherData)
+  console.log(activeType)
 
   const renderApplications = () => {
     if (
@@ -881,7 +881,10 @@ function ActiveJobFresher(props) {
                 className=" mb -3 mt-4"
                 style={{ width: "120px" }}
               >
-                <Form.Select className="custom-select">
+                <Form.Select
+                  className="custom-select"
+                  onChange={(e) => setActiveType(e.target.value)}
+                >
                   <option> Applied</option>
                   <option> Interested </option>
                   <option>Shortlisted</option>

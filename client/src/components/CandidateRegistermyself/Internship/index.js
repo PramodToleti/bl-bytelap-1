@@ -106,9 +106,7 @@ function Internship(props) {
 
   const handleLanguages = (e) => {
     let languages = []
-    e.map((each) =>
-      languages.push({ language: each.language, proficient: each.proficiency })
-    )
+    e.map((each) => languages.push(each))
     setLanguages(languages)
   }
 
