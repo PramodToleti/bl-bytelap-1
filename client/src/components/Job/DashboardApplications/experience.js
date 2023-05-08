@@ -350,6 +350,212 @@ const ExperienceDashboard = ({ activeType }) => {
     }
   }
 
+  const renderMobileBtns = (data) => {
+    switch (data.dashboardType) {
+      case "Interested":
+        return (
+          <div>
+            <div className="interested-btn-container">
+              <Button
+                variant={
+                  data.dashboardType === "Shortlisted"
+                    ? "primary"
+                    : "outline-secondary"
+                }
+                className=" mt-3"
+                size="sm"
+                onClick={(e) => {
+                  handleActiveType(e, data)
+                }}
+              >
+                Shortlisted
+              </Button>
+              <Button
+                variant={
+                  data.dashboardType === "Hire"
+                    ? "secondary"
+                    : "outline-secondary"
+                }
+                className=" mt-3"
+                size="sm"
+                onClick={(e) => {
+                  handleActiveType(e, data)
+                }}
+              >
+                Hire
+              </Button>{" "}
+              <Button
+                variant={
+                  data.dashboardType === "Not-Interested"
+                    ? "secondary"
+                    : "outline-secondary"
+                }
+                className=" mt-3"
+                size="sm"
+                onClick={(e) => {
+                  handleActiveType(e, data)
+                }}
+              >
+                Not Interested
+              </Button>{" "}
+              <Button variant="light" className=" mt-3" size="sm">
+                Call
+              </Button>{" "}
+              <Button
+                variant="link"
+                className=" mt-3"
+                size="sm"
+                onClick={() => setLgShow(true)}
+              >
+                View Resume
+              </Button>
+            </div>
+          </div>
+        )
+      case "Shortlisted":
+        return (
+          <div>
+            <div className="interested-btn-container">
+              <Button
+                variant={
+                  data.dashboardType === "Hire"
+                    ? "secondary"
+                    : "outline-secondary"
+                }
+                className=" mt-3"
+                size="sm"
+                onClick={(e) => {
+                  handleActiveType(e, data)
+                }}
+              >
+                Hire
+              </Button>{" "}
+              <Button
+                variant={
+                  data.dashboardType === "Not-Interested"
+                    ? "secondary"
+                    : "outline-secondary"
+                }
+                className=" mt-3"
+                size="sm"
+                onClick={(e) => {
+                  handleActiveType(e, data)
+                }}
+              >
+                Not Interested
+              </Button>{" "}
+              <Button variant="light" className=" mt-3" size="sm">
+                Call
+              </Button>{" "}
+              <Button
+                variant="link"
+                className=" mt-3"
+                size="sm"
+                onClick={() => setLgShow(true)}
+              >
+                View Resume
+              </Button>
+            </div>
+          </div>
+        )
+      case "Hire":
+        return (
+          <div>
+            <div className="interested-btn-container">
+              <Button
+                variant={
+                  data.dashboardType === "Not-Interested"
+                    ? "secondary"
+                    : "outline-secondary"
+                }
+                className=" mt-3"
+                size="sm"
+                onClick={(e) => {
+                  handleActiveType(e, data)
+                }}
+              >
+                Not Interested
+              </Button>{" "}
+              <Button variant="light" className=" mt-3" size="sm">
+                Call
+              </Button>{" "}
+              <Button
+                variant="link"
+                className=" mt-3"
+                size="sm"
+                onClick={() => setLgShow(true)}
+              >
+                View Resume
+              </Button>
+            </div>
+          </div>
+        )
+      case "Not-Interested":
+        return (
+          <div>
+            <div className="interested-btn-container">
+              <Button
+                variant={
+                  data.dashboardType === "Interested"
+                    ? "success"
+                    : "outline-success"
+                }
+                size="sm"
+                className=" mt-3"
+                onClick={(e) => {
+                  handleActiveType(e, data)
+                }}
+              >
+                Interested
+              </Button>{" "}
+              <Button
+                variant={
+                  data.dashboardType === "Shortlisted"
+                    ? "primary"
+                    : "outline-secondary"
+                }
+                className=" mt-3"
+                size="sm"
+                onClick={(e) => {
+                  handleActiveType(e, data)
+                }}
+              >
+                Shortlisted
+              </Button>
+              <Button
+                variant={
+                  data.dashboardType === "Hire"
+                    ? "secondary"
+                    : "outline-secondary"
+                }
+                className=" mt-3"
+                size="sm"
+                onClick={(e) => {
+                  handleActiveType(e, data)
+                }}
+              >
+                Hire
+              </Button>{" "}
+              <Button variant="light" className=" mt-3" size="sm">
+                Call
+              </Button>{" "}
+              <Button
+                variant="link"
+                className=" mt-3"
+                size="sm"
+                onClick={() => setLgShow(true)}
+              >
+                View Resume
+              </Button>
+            </div>
+          </div>
+        )
+
+      default:
+        return null
+    }
+  }
+
   const renderApplications = () => {
     return (
       <>
@@ -426,81 +632,7 @@ const ExperienceDashboard = ({ activeType }) => {
                       Available &nbsp; : &nbsp;&nbsp; {data.availability}
                     </Card.Text>
 
-                    <div>
-                      <div className="interested-btn-container">
-                        <Button
-                          variant={
-                            data.dashboardType === "Interested"
-                              ? "success"
-                              : "outline-success"
-                          }
-                          size="sm"
-                          className=" mt-3"
-                          onClick={(e) => {
-                            handleActiveType(e, data)
-                          }}
-                          disabled
-                        >
-                          Interested
-                        </Button>{" "}
-                        <Button
-                          variant={
-                            data.dashboardType === "Shortlisted"
-                              ? "primary"
-                              : "outline-secondary"
-                          }
-                          className=" mt-3"
-                          size="sm"
-                          onClick={(e) => {
-                            handleActiveType(e, data)
-                          }}
-                          disabled
-                        >
-                          Shortlisted
-                        </Button>
-                        <Button
-                          variant={
-                            data.dashboardType === "Hire"
-                              ? "secondary"
-                              : "outline-secondary"
-                          }
-                          className=" mt-3"
-                          size="sm"
-                          onClick={(e) => {
-                            handleActiveType(e, data)
-                          }}
-                          disabled
-                        >
-                          Hire
-                        </Button>{" "}
-                        <Button
-                          variant={
-                            data.dashboardType === "Not-Interested"
-                              ? "secondary"
-                              : "outline-secondary"
-                          }
-                          className=" mt-3"
-                          size="sm"
-                          onClick={(e) => {
-                            handleActiveType(e, data)
-                          }}
-                          disabled
-                        >
-                          Not Interested
-                        </Button>{" "}
-                        <Button variant="light" className=" mt-3" size="sm">
-                          Call
-                        </Button>{" "}
-                        <Button
-                          variant="link"
-                          className=" mt-3"
-                          size="sm"
-                          onClick={() => setLgShow(true)}
-                        >
-                          View Resume
-                        </Button>
-                      </div>
-                    </div>
+                    {renderMobileBtns(data)}
 
                     {renderDesktopBtns(data)}
 
