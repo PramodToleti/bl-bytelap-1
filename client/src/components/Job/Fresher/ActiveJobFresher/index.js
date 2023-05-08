@@ -137,6 +137,8 @@ function ActiveJobFresher(props) {
     fresherData = applications
   }
 
+  console.log(fresherData)
+
   const renderApplications = () => {
     if (
       fresherData === undefined ||
@@ -381,8 +383,8 @@ function ActiveJobFresher(props) {
                             </p>
                           </div>
                           <div className="text-muted">
-                            {JSON.parse(data.preferredLocation) !== "" &&
-                              JSON.parse(data.preferredLocation).map((each) => {
+                            {data.preferredLocation !== "" &&
+                              data.preferredLocation.map((each) => {
                                 return (
                                   <span
                                     className="text-muted"
@@ -480,8 +482,8 @@ function ActiveJobFresher(props) {
                         </div>
                         <div className="colon"></div>
                         <div className="location-f text-muted">
-                          {JSON.parse(data.preferredLocation) !== "" &&
-                            JSON.parse(data.preferredLocation).map((each) => {
+                          {data.preferredLocation !== "" &&
+                            data.preferredLocation.map((each) => {
                               return (
                                 <span
                                   className="text-muted"

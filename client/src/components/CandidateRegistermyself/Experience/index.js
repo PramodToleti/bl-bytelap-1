@@ -49,7 +49,9 @@ function Experience(props) {
   const [projectDetails, setProjectDetails] = useState([])
   const [training, setTraining] = useState([])
   const [achievements, setAchievements] = useState([])
-  const [preferredLocation, setPreferredLocation] = useState("")
+  const [preferredLocation, setPreferredLocation] = useState([
+    { label: "", value: "" },
+  ])
   const [employmentHistory, setEmploymentHistory] = useState([])
   const [experience, setExperience] = useState({ years: "", months: "" })
   const [ctc, setCTC] = useState({ lacs: "", thousand: "" })
@@ -84,16 +86,20 @@ function Experience(props) {
     time: moment(),
   }
 
+  console.log(data)
+
   const handleYearChange = (selected) => {
     const yearsLabel = selected[0]?.label || ""
     const yearsValue = selected[0]?.value || ""
     setSelectedYears([{ label: `${yearsLabel} Years`, value: yearsValue }])
+    setExperience({ ...experience, years: yearsValue })
   }
 
   const handleMonthChange = (selected) => {
     const monthsLabel = selected[0]?.label || ""
     const monthsValue = selected[0]?.value || ""
     setSelectedMonths([{ label: `${monthsLabel} Months`, value: monthsValue }])
+    setExperience({ ...experience, months: monthsValue })
   }
 
   const handleTitle = (e) => {
@@ -145,7 +151,7 @@ function Experience(props) {
 
   const handleLanguages = (e) => {
     let languages = []
-    e.map((each) => languages.push(each.value))
+    e.map((each) => languages.push(each))
     setLanguages(languages)
   }
 
@@ -285,7 +291,6 @@ function Experience(props) {
         )
       }) &&
       languages.length !== 0 &&
-      employmentHistory.length !== 0 &&
       availability !== "" &&
       experience.years !== "" &&
       experience.months !== "" &&
@@ -356,7 +361,7 @@ function Experience(props) {
         formData.append("degree", JSON.stringify(degree))
         formData.append("employementHistory", JSON.stringify(employmentHistory))
         formData.append("projectDetails", JSON.stringify(projectDetails))
-        formData.append("preferredLocation", JSON.stringify(preferredLocation))
+        formData.append("preferredLocation", preferredLocation)
         formData.append("languages", JSON.stringify(languages))
         formData.append("availability", availability)
         formData.append("time", Date.now())

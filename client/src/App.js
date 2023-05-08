@@ -76,6 +76,7 @@ import Certification from "./components/Candidate/certification"
 import CertificationCard from "./components/Candidate/CertificationCard"
 import CandidateProtectedRoute from "./components/CandidateProtectedRoute"
 import EmployeeProtectedRoute from "./components/EmployeeProtectedRoute"
+import FraudAlert from "./components/Candidate/CandidateFooterLinks/FraudAlert"
 
 const App = () => {
   const [userResume, setResume] = useState(null)
@@ -322,6 +323,8 @@ const App = () => {
           <Route exact path="/report-issue" component={ReportIssue2} />
 
           <Route exact path="/candidate/career" component={career} />
+
+          <Route exact path="/candidate/fraud-alert" component={FraudAlert} />
 
           {/* Employee Subscriptions */}
 

@@ -87,6 +87,16 @@ const CandidateFooter = (props) => {
           >
             Report Issue
           </li>
+
+          <li
+            className="footer-link privacy-policy"
+            onClick={() => {
+              history.push("/candidate/fraud-alert", { isRegistered })
+              window.scrollTo(0, 0)
+            }}
+          >
+            Fraud Alert
+          </li>
         </ul>
 
         <ul className="footer-sub-container">

@@ -55,7 +55,9 @@ function Fresher(props) {
   const [achievements, setAchievements] = useState([])
   const [languages, setLanguages] = useState([])
   const [availability, setAvailability] = useState("")
-  const [preferredLocation, setPreferredLocation] = useState("")
+  const [preferredLocation, setPreferredLocation] = useState([
+    { label: "", value: "" },
+  ])
   const [isFilled, setIsFilled] = useState(true)
   const [custom, setCustom] = useState("")
   const [relocate, setRelocate] = useState(false)
@@ -80,6 +82,8 @@ function Fresher(props) {
     preferredLocation,
     time: moment(),
   }
+
+  console.log(data)
 
   const fileInputRef = useRef(null)
 
@@ -131,8 +135,9 @@ function Fresher(props) {
   }
 
   const handleLanguages = (e) => {
+    console.log(e)
     let languages = []
-    e.map((each) => languages.push(each.value))
+    e.map((each) => languages.push(each.label))
     setLanguages(languages)
   }
 
@@ -293,8 +298,6 @@ function Fresher(props) {
     )
   }
 
-  console.log(degree)
-
   const onSuccess = (msg) => {
     setIsLoading(false)
     toast.success(msg, {
@@ -382,7 +385,7 @@ function Fresher(props) {
         body: formData,
       }
 
-      const response = await fetch(
+      /*  const response = await fetch(
         "http://localhost:5000/candidate/fresher/register",
         options
       )
@@ -392,7 +395,7 @@ function Fresher(props) {
         onSuccess(resData.message)
       } else {
         onFailure(resData.message)
-      }
+      } */
     }
 
     now === 100 ? setIsFilled(true) : setIsFilled(false)

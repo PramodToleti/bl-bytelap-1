@@ -1,7 +1,6 @@
 const mongoose = require("mongoose")
 
 const Candidate = require("../../candidate/account")
-
 const projectDetailsSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -38,7 +37,6 @@ const trainingSchema = new mongoose.Schema({
 const achievementSchema = new mongoose.Schema({
   achievement: {
     type: String,
-    required: true,
   },
 })
 
@@ -76,7 +74,7 @@ const degreeSchema = new mongoose.Schema({
 
 const locationSchema = new mongoose.Schema({
   value: {
-    type: Number,
+    type: String,
     required: true,
   },
   label: {
@@ -88,18 +86,15 @@ const locationSchema = new mongoose.Schema({
 const historySchema = new mongoose.Schema({
   profile: {
     type: String,
-    required: true,
   },
   company: {
     type: String,
-    required: true,
   },
   location: {
-    type: String,
+    type: [locationSchema] || String,
   },
   startDate: {
     type: Date,
-    required: true,
   },
   endDate: {
     type: Date,
@@ -109,7 +104,6 @@ const historySchema = new mongoose.Schema({
   },
   responsibilities: {
     type: String,
-    required: true,
   },
   hidden: {
     type: Boolean,
@@ -117,19 +111,16 @@ const historySchema = new mongoose.Schema({
 })
 
 const ExperienceApplicationSchema = new mongoose.Schema({
-  userId: {
-    type: String,
-    required: true,
-  },
-  dashboardType: {
-    type: String,
-    required: true,
-  },
   type: {
     type: String,
     required: true,
   },
   candidate: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: Candidate,
+    required: true,
+  },
+  jobName: {
     type: String,
     required: true,
   },
@@ -216,9 +207,11 @@ const ExperienceApplicationSchema = new mongoose.Schema({
       size: Number,
     },
   ],
-  preferredLocation: {
-    type: [String],
-  },
+  preferredLocation: [
+    {
+      type: locationSchema,
+    },
+  ],
   languages: {
     type: [String],
     required: true,

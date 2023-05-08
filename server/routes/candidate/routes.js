@@ -466,6 +466,10 @@ router.post("/fresher/apply", async (req, res) => {
 
         candidateDataObj.jobName = jobName
 
+        candidateDataObj.preferredLocation = JSON.parse(
+          candidateDataObj.preferredLocation
+        )
+
         if (candidateDataObj) {
           const application = new FresherJob(candidateDataObj)
           application.save()
@@ -513,11 +517,14 @@ router.post("/experience/apply", async (req, res) => {
 
         candidateDataObj.jobName = jobName
 
+        candidateDataObj.preferredLocation = JSON.parse(
+          candidateDataObj.preferredLocation
+        )
+
         if (candidateDataObj) {
           const application = new ExperienceJob(candidateDataObj)
           application.save()
           res.status(200).json("Job Applied Successfully")
-          console.log(candidateDataObj)
         } else {
           res.status(400).json("User not found")
         }

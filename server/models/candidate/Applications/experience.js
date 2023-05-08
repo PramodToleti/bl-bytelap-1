@@ -87,18 +87,15 @@ const locationSchema = new mongoose.Schema({
 const historySchema = new mongoose.Schema({
   profile: {
     type: String,
-    required: true,
   },
   company: {
     type: String,
-    required: true,
   },
   location: {
-    type: [locationSchema],
+    type: [locationSchema] || String,
   },
   startDate: {
     type: Date,
-    required: true,
   },
   endDate: {
     type: Date,
@@ -108,7 +105,6 @@ const historySchema = new mongoose.Schema({
   },
   responsibilities: {
     type: String,
-    required: true,
   },
   hidden: {
     type: Boolean,
@@ -181,7 +177,6 @@ const ExperienceApplicationSchema = new mongoose.Schema({
   },
   projectDetails: {
     type: [projectDetailsSchema],
-    required: true,
   },
   training: {
     type: [trainingSchema],
@@ -213,9 +208,11 @@ const ExperienceApplicationSchema = new mongoose.Schema({
       size: Number,
     },
   ],
-  preferredLocation: {
-    type: [locationSchema],
-  },
+  preferredLocation: [
+    {
+      type: locationSchema,
+    },
+  ],
   languages: {
     type: [String],
     required: true,

@@ -38,7 +38,6 @@ const trainingSchema = new mongoose.Schema({
 const achievementSchema = new mongoose.Schema({
   achievement: {
     type: String,
-    required: true,
   },
 })
 
@@ -71,6 +70,17 @@ const degreeSchema = new mongoose.Schema({
   },
   yearOfCompletion: {
     type: Date,
+  },
+})
+
+const locationSchema = new mongoose.Schema({
+  value: {
+    type: String,
+    required: true,
+  },
+  label: {
+    type: String,
+    required: true,
   },
 })
 
@@ -130,7 +140,6 @@ const FresherApplicationSchema = new mongoose.Schema({
   },
   projectDetails: {
     type: [projectDetailsSchema],
-    required: true,
   },
   training: {
     type: [trainingSchema],
@@ -162,10 +171,11 @@ const FresherApplicationSchema = new mongoose.Schema({
       size: Number,
     },
   ],
-  preferredLocation: {
-    type: [String],
-    required: true,
-  },
+  preferredLocation: [
+    {
+      type: locationSchema,
+    },
+  ],
   languages: {
     type: [String],
     required: true,

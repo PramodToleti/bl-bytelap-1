@@ -207,6 +207,8 @@ class LanguageDropdown extends Component {
       filteredSkills: filteredLanguages,
     })
 
+    console.log(selected)
+
     this.props.handleLanguages(selected.map((each) => each.label))
   }
 

@@ -136,6 +136,8 @@ function ActiveJobExp() {
     experienceData = applications
   }
 
+  console.log(experienceData)
+
   const renderApplications = () => {
     if (
       experienceData === undefined ||
@@ -273,7 +275,13 @@ function ActiveJobExp() {
                               <span className="text-muted">
                                 Cover Letter &nbsp;:
                               </span>{" "}
-                              &nbsp;&nbsp;&nbsp;{data.coverLetter}
+                              &nbsp;&nbsp;&nbsp;
+                              <div
+                                className="parent-div"
+                                dangerouslySetInnerHTML={{
+                                  __html: data.coverLetter,
+                                }}
+                              />
                             </p>
                           </div>
                         </div>
@@ -364,16 +372,14 @@ function ActiveJobExp() {
                             </p>
                           </div>
                           <div className="text-muted">
-                            {JSON.parse(data.preferredLocation[0]).map(
-                              (each) => (
-                                <span
-                                  className="text-muted"
-                                  style={{ fontSize: "16px" }}
-                                >
-                                  {each.label}, &nbsp;
-                                </span>
-                              )
-                            )}
+                            {data.preferredLocation.map((each) => (
+                              <span
+                                className="text-muted"
+                                style={{ fontSize: "16px" }}
+                              >
+                                {each.label}, &nbsp;
+                              </span>
+                            ))}
                           </div>
                         </div>
 
@@ -401,7 +407,18 @@ function ActiveJobExp() {
                         </div>
                         <div>:</div>
                         <div className="letter">
-                          <p className="text-muted">{data.coverLetter}</p>
+                          <p className="text-muted">
+                            <div
+                              style={{
+                                maxWidth: "450px",
+                                overflow: "hidden",
+                                wordWrap: "break-word",
+                              }}
+                              dangerouslySetInnerHTML={{
+                                __html: data.coverLetter,
+                              }}
+                            />
+                          </p>
                         </div>
 
                         {data.employementHistory.map((each) =>
@@ -485,7 +502,7 @@ function ActiveJobExp() {
                         </div>
                         <div className="colon">:</div>
                         <div className="location-e text-muted">
-                          {JSON.parse(data.preferredLocation[0]).map((each) => (
+                          {data.preferredLocation.map((each) => (
                             <span
                               className="text-muted"
                               style={{ fontSize: "16px" }}
