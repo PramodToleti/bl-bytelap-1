@@ -10,10 +10,11 @@ import { BsFillShareFill } from "react-icons/bs"
 import { FaHome } from "react-icons/fa"
 import Popup from "reactjs-popup"
 import numeral from "numeral"
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import Modal from "react-modal"
 import { ToastContainer, toast } from "react-toastify"
 import { Oval } from "react-loader-spinner"
+import Cookies from "js-cookie"
 
 import "react-toastify/dist/ReactToastify.css"
 
@@ -63,6 +64,7 @@ const ExperienceJobDetails = (props) => {
   const [fullText, setFullText] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const token = Cookies.get("userToken")
 
   const jobId = history.location.pathname.split("/").pop()
 
@@ -139,7 +141,11 @@ const ExperienceJobDetails = (props) => {
 
   const renderPreview = () => {
     return (
-      <>
+      <div
+        style={{
+          maxWidth: "1000px",
+        }}
+      >
         <ToastContainer />
         <Modal
           isOpen={isOpen}
@@ -150,30 +156,44 @@ const ExperienceJobDetails = (props) => {
         >
           <h2 style={customStyles.h2}>Do you want to apply for this job?</h2>
           <div style={customStyles.buttonContainer}>
-            <button onClick={onApply} style={customStyles.button}>
-              {loading ? (
-                <Oval
-                  height={20}
-                  width={20}
-                  color="#ffffff"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                  visible={true}
-                  ariaLabel="oval-loading"
-                  secondaryColor="#ffffff"
-                  strokeWidth={2}
-                  strokeWidthSecondary={2}
-                />
-              ) : (
-                "Yes"
-              )}
-            </button>
-            <button
-              onClick={handleCloseClick}
-              style={{ ...customStyles.button, ...customStyles.buttonNo }}
-            >
-              No
-            </button>
+            {token ? (
+              <>
+                <button onClick={onApply} style={customStyles.button}>
+                  {loading ? (
+                    <Oval
+                      height={20}
+                      width={20}
+                      color="#ffffff"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                      ariaLabel="oval-loading"
+                      secondaryColor="#ffffff"
+                      strokeWidth={2}
+                      strokeWidthSecondary={2}
+                    />
+                  ) : (
+                    "Yes"
+                  )}
+                </button>
+
+                <button
+                  onClick={handleCloseClick}
+                  style={{ ...customStyles.button, ...customStyles.buttonNo }}
+                >
+                  No
+                </button>
+              </>
+            ) : (
+              <button style={customStyles.button}>
+                <Link
+                  to="/candidate/create-account/step-1"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Create Account
+                </Link>
+              </button>
+            )}
           </div>
         </Modal>
         {(data.jobTitle !== "" ||
@@ -527,12 +547,22 @@ const ExperienceJobDetails = (props) => {
             />
           </div>
         </div>
-      </>
+      </div>
     )
   }
   return (
     <>
-      <div className="p-3">{renderPreview()}</div>
+      <div
+        className="p-3"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {renderPreview()}
+      </div>
     </>
   )
 }

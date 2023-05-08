@@ -279,14 +279,12 @@ const ExperienceJob = (props) => {
                 }}
                 key={index}
                 onClick={() => {
-                  location.pathname === "/login"
-                    ? history.push("/candidate/create-account/step-1")
-                    : history.push(
-                        `/candidate/job-details/experience/${data._id}`,
-                        {
-                          data: data,
-                        }
-                      )
+                  history.push(
+                    `/candidate/job-details/experience/${data._id}`,
+                    {
+                      data: data,
+                    }
+                  )
                 }}
               >
                 View Details
