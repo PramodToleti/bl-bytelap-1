@@ -236,19 +236,19 @@ const App = () => {
             component={CandidateMyinfo}
           />
 
-          <CandidateProtectedRoute
+          <Route
             exact
             path="/candidate/job-details/internship/:id"
             component={InternshipJobDetails}
           />
 
-          <CandidateProtectedRoute
+          <Route
             exact
             path="/candidate/job-details/fresher/:id"
             component={FresherJobDetails}
           />
 
-          <CandidateProtectedRoute
+          <Route
             exact
             path="/candidate/job-details/experience/:id"
             component={ExperienceJobDetails}

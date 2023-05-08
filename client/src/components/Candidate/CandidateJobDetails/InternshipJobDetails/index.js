@@ -64,6 +64,7 @@ function InternshipJobDetails() {
   const [fullText, setFullText] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const token = localStorage.getItem("userToken")
 
   const jobId = history.location.pathname.split("/").pop()
 
@@ -135,7 +136,11 @@ function InternshipJobDetails() {
   }
 
   const handleApply = () => {
-    handleApplyClick()
+    if (token) {
+      handleApplyClick()
+    } else {
+      history.push("/login")
+    }
   }
 
   function renderPreview() {
