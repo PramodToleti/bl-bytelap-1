@@ -423,53 +423,6 @@ function EmployeeStep2() {
                   </p>
                 )}
               </Form.Group>
-
-              <Form.Group className="mb-3  terms-container">
-                <Form.Check
-                  required
-                  feedback={
-                    <div
-                      style={{
-                        position: "absolute",
-                        marginTop: "1.5rem",
-                        marginBottom: "1rem",
-                      }}
-                    >
-                      You must agree before submitting.
-                    </div>
-                  }
-                  feedbackType="invalid"
-                  className="terms-and-conditions"
-                  name="agreeToTerms"
-                />
-
-                <Form.Label
-                  className="terms-label"
-                  style={{ fontSize: "16px", marginBottom: "30px" }}
-                >
-                  Agree to
-                  <Link
-                    to="/employee/privacy-policy"
-                    onClick={() => {
-                      window.scrollTo(0, 0)
-                    }}
-                    style={{ textDecoration: "none" }}
-                  >
-                    {" "}
-                    Privacy Policy
-                  </Link>{" "}
-                  &{" "}
-                  <Link
-                    to="/employee/terms-and-condition"
-                    onClick={() => {
-                      window.scrollTo(0, 0)
-                    }}
-                    style={{ textDecoration: "none" }}
-                  >
-                    Terms and Conditions
-                  </Link>
-                </Form.Label>
-              </Form.Group>
             </Row>
 
             <div className="d-grid gap-2 mt-3">
