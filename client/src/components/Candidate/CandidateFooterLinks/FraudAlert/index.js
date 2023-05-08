@@ -10,16 +10,16 @@ const FraudAlert = () => {
           <h1 className="mb-4">Fraud Alert</h1>
         </div>
         <div className="fraud-alert-content fs-5">
-          <p className="mb-3 fs-5" style={{ fontWeight: "500" }}>
+          <p className="mb-3 fs-4" style={{ fontWeight: "500" }}>
             Don't Get Scammed: Beware of Fraudulent Requests for Payment in
-            Exchange for Job Offers At Company, we believe that finding a job
-            should be a safe and secure experience for all job seekers. We are
-            committed to providing a trustworthy platform where job seekers can
-            connect with reputable employers and find meaningful employment
-            opportunities.
+            Exchange for Job Offers
           </p>
 
-          <p className="mb-3 fs-5">
+          <p className="mb-4 fs-5">
+            At Company, we believe that finding a job should be a safe and
+            secure experience for all job seekers. We are committed to providing
+            a trustworthy platform where job seekers can connect with reputable
+            employers and find meaningful employment opportunities. <br />
             However, with the rise of online job portals, there has also been an
             increase in fraudulent activity aimed at taking advantage of
             unsuspecting job seekers. That's why we take the safety and security
@@ -27,7 +27,7 @@ const FraudAlert = () => {
             help you stay safe while searching for jobs online.
           </p>
 
-          <p className="mb-3 fs-5">
+          <p className="mb-5 fs-5">
             {" "}
             Our top priority is to make sure you can trust the job search
             process on Company. We recommend that you always research the
@@ -35,10 +35,7 @@ const FraudAlert = () => {
             offers, and never share personal information until you have verified
             the job offer. Trust your instincts and report any suspicious
             activity to us immediately.
-          </p>
-
-          <p className="mb-5 fs-5">
-            {" "}
+            <br />
             We want you to have a safe and successful job search experience, and
             we are committed to providing a platform where you can find
             legitimate job opportunities with peace of mind.
