@@ -823,10 +823,7 @@ function LoginPage() {
           <div className="d-flex justify-content-center">
             <div style={{ display: "flex", gap: "20px" }}>
               <Button variant="primary" onClick={acceptCookies}>
-                Got it
-              </Button>
-              <Button variant="secondary" onClick={declineCookies}>
-                Decline
+                Ok
               </Button>
             </div>
           </div>
