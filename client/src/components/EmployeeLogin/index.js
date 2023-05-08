@@ -41,7 +41,7 @@ function EmployeeLogin() {
 
   const onSuccessLogin = (token, userId) => {
     setIsLoading(false)
-    toast.success("Login successfully!", {
+    toast.success("Login successful!", {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: true,
