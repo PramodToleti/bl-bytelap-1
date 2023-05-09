@@ -13,6 +13,7 @@ const ExperienceDashboard = ({ activeType }) => {
   const [applications, setApplications] = useState([])
   const [loading, setLoading] = useState(true)
   const [lgShow, setLgShow] = useState(false)
+  const [dataChanged, setDataChanged] = useState(false)
 
   activeType = activeType === "Not Interested" ? "Not-Interested" : activeType
 
@@ -44,7 +45,7 @@ const ExperienceDashboard = ({ activeType }) => {
     }
 
     fetchData()
-  }, [activeType])
+  }, [activeType, dataChanged])
 
   const filterApplicatons = applications.filter(
     (data) => data.dashboardType === activeType
@@ -82,9 +83,8 @@ const ExperienceDashboard = ({ activeType }) => {
         marginTop: "30px",
         margin: "20px",
       })
-      setTimeout(() => {
-        window.location.reload()
-      }, 2000)
+      setLoading(true)
+      setDataChanged(!dataChanged)
     } else {
       toast.error(resData.message, {
         position: "top-right",
@@ -689,7 +689,15 @@ const ExperienceDashboard = ({ activeType }) => {
     <div>
       <ToastContainer />
       {loading ? (
-        <div className="text-center mt-5">
+        <div
+          className="text-center mt-5"
+          style={{
+            minHeight: "400px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <div className="spinner-border text-primary" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>

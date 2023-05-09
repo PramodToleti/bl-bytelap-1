@@ -12,6 +12,7 @@ const InternDashboard = ({ activeType }) => {
   const [applications, setApplications] = useState([])
   const [loading, setLoading] = useState(true)
   const [lgShow, setLgShow] = useState(false)
+  const [dataChanged, setDataChanged] = useState(false)
 
   activeType = activeType === "Not Interested" ? "Not-Interested" : activeType
 
@@ -43,7 +44,7 @@ const InternDashboard = ({ activeType }) => {
     }
 
     fetchData()
-  }, [activeType])
+  }, [activeType, dataChanged])
 
   const handleActiveType = async (e, data) => {
     const endPoint = e.target.textContent.replace(/\s+/g, "-").toLowerCase()
@@ -77,9 +78,9 @@ const InternDashboard = ({ activeType }) => {
         marginTop: "30px",
         margin: "20px",
       })
-      setTimeout(() => {
-        window.location.reload()
-      }, 2000)
+      console.log(resData)
+      setLoading(true)
+      setDataChanged(!dataChanged)
     } else {
       toast.error(resData.message, {
         position: "top-right",
@@ -688,7 +689,15 @@ const InternDashboard = ({ activeType }) => {
     <div>
       <ToastContainer />
       {loading ? (
-        <div className="text-center mt-5">
+        <div
+          className="text-center mt-5"
+          style={{
+            minHeight: "400px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <div className="spinner-border text-primary" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>

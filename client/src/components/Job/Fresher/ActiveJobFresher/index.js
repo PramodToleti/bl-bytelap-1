@@ -31,6 +31,7 @@ function ActiveJobFresher(props) {
   const [applications, setApplications] = useState([])
   const [activeFilter, setActiveFilter] = useState(location.state?.data || "")
   const [loading, setLoading] = useState(false)
+  const [dataChanged, setDataChanged] = useState(false)
 
   const handleActiveType = async (e, data) => {
     const endPoint = e.target.textContent.replace(/\s+/g, "-").toLowerCase()
@@ -62,9 +63,8 @@ function ActiveJobFresher(props) {
         marginTop: "30px",
         margin: "20px",
       })
-      setTimeout(() => {
-        window.location.reload()
-      }, 2000)
+      setLoading(true)
+      setDataChanged(!dataChanged)
     } else {
       toast.error(resData.message, {
         position: "top-right",
@@ -121,7 +121,7 @@ function ActiveJobFresher(props) {
 
     fetchApplications()
     fetchJobs()
-  }, [])
+  }, [dataChanged])
 
   let fresherData = []
 
@@ -884,6 +884,7 @@ function ActiveJobFresher(props) {
                 <Form.Select
                   className="custom-select"
                   onChange={(e) => setActiveType(e.target.value)}
+                  value={activeType}
                 >
                   <option> Applied</option>
                   <option> Interested </option>

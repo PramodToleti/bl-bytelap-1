@@ -30,51 +30,7 @@ function ActiveJobIntern() {
   const [applications, setApplications] = useState([])
   const [activeFilter, setActiveFilter] = useState(location.state?.data || "")
   const [loading, setLoading] = useState(false)
-
-  const handleActiveType = async (e, data) => {
-    const endPoint = e.target.textContent.replace(/\s+/g, "-").toLowerCase()
-    const token = Cookies.get("employeeToken")
-    const userId = localStorage.getItem("userId")
-    const url = `http://localhost:5000/employee/dashboard/internship/${endPoint}`
-
-    data.userId = userId
-
-    delete data._id
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    }
-
-    const response = await fetch(url, options)
-    const resData = await response.json()
-    if (response.ok) {
-      toast.success(resData.message, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        marginTop: "30px",
-        margin: "20px",
-      })
-      setTimeout(() => {
-        window.location.reload()
-      }, 2000)
-    } else {
-      toast.error(resData.message, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        marginTop: "30px",
-        margin: "20px",
-      })
-    }
-  }
+  const [dataChanged, setDataChanged] = useState(false)
 
   useEffect(() => {
     async function fetchJobs() {
@@ -120,7 +76,51 @@ function ActiveJobIntern() {
 
     fetchApplications()
     fetchJobs()
-  }, [])
+  }, [dataChanged])
+
+  const handleActiveType = async (e, data) => {
+    const endPoint = e.target.textContent.replace(/\s+/g, "-").toLowerCase()
+    const token = Cookies.get("employeeToken")
+    const userId = localStorage.getItem("userId")
+    const url = `http://localhost:5000/employee/dashboard/internship/${endPoint}`
+
+    data.userId = userId
+
+    delete data._id
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    }
+
+    const response = await fetch(url, options)
+    const resData = await response.json()
+    if (response.ok) {
+      toast.success(resData.message, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        marginTop: "30px",
+        margin: "20px",
+      })
+      setLoading(true)
+      setDataChanged(!dataChanged)
+    } else {
+      toast.error(resData.message, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        marginTop: "30px",
+        margin: "20px",
+      })
+    }
+  }
 
   let internData = []
 
@@ -626,6 +626,7 @@ function ActiveJobIntern() {
                 <Form.Select
                   className="custom-select"
                   onChange={(e) => setActiveType(e.target.value)}
+                  value={activeType}
                 >
                   <option> Applied</option>
                   <option> Interested </option>
