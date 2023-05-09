@@ -112,3 +112,7 @@ p {
     display: none;
   }
 }
+
+.dropdown-menu.show {
+  z-index: 0 !important;
+}
