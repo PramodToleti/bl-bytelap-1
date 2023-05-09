@@ -41,6 +41,10 @@ const internSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  status: {
+    type: String,
+    default: "Open",
+  },
   companyName: {
     type: String,
     required: true,
