@@ -13,6 +13,11 @@ function Accountsetting() {
   const [activeJobs, setActiveJobs] = useState([])
   const [applications, setApplications] = useState([])
   const [loading, setLoading] = useState(false)
+  const [isDataChanged, setIsDataChanged] = useState(false)
+
+  const handleDataChange = () => {
+    setIsDataChanged(!isDataChanged)
+  }
 
   useEffect(() => {
     async function fetchJobs() {
@@ -26,7 +31,6 @@ function Accountsetting() {
         console.log(data)
         setLoading(false)
       }
-      setIsMounted(true)
     }
 
     async function fetchApplications() {
@@ -58,7 +62,7 @@ function Accountsetting() {
 
     fetchApplications()
     fetchJobs()
-  }, [])
+  }, [isDataChanged])
 
   const handleOptionChange = (event) => {
     setActiveFilter(event.target.name)
@@ -118,11 +122,26 @@ function Accountsetting() {
   const renderActiveJob = () => {
     switch (activeFilter) {
       case "Internship":
-        return <Internship InternJobs={InternJobs} />
+        return (
+          <Internship
+            InternJobs={InternJobs}
+            handleDataChange={handleDataChange}
+          />
+        )
       case "Fresher":
-        return <Fresher FresherJobs={FresherJobs} />
+        return (
+          <Fresher
+            FresherJobs={FresherJobs}
+            handleDataChange={handleDataChange}
+          />
+        )
       case "Experience":
-        return <Experience ExperienceJobs={ExperienceJobs} />
+        return (
+          <Experience
+            ExperienceJobs={ExperienceJobs}
+            handleDataChange={handleDataChange}
+          />
+        )
       default:
         return null
     }

@@ -116,3 +116,30 @@ p {
 .dropdown-menu.show {
   z-index: 0 !important;
 }
+
+.open-status {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #33ff00;
+  margin-left: 15px;
+}
+
+.pause-status {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fbff00;
+  margin-left: 15px;
+}
+
+.close-status {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  margin-left: 15px;
+}
