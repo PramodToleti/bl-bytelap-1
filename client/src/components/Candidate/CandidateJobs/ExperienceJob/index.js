@@ -50,13 +50,21 @@ const ExperienceJob = (props) => {
     }
   }
 
-  return (
-    <>
-      <div className="container mb-3">
-        <span>{totalJobs} Jobs</span>
-      </div>
+  const renderJobs = () => {
+    const filteredJobs = experienceJobs.filter(
+      (job) => job.status !== "Paused" && job.status !== "Closed"
+    )
 
-      {experienceJobs.reverse().map((data, index) => (
+    // Render job cards in reverse order
+    const jobCards = [
+      <div className="container mb-3">
+        <span>{filteredJobs.length} Jobs</span>
+      </div>,
+    ]
+    for (let i = filteredJobs.length - 1; i >= 0; i--) {
+      const data = filteredJobs[i]
+      const index = i
+      jobCards.push(
         <div className="d-flex flex-row container justify-content-start">
           <div
             className="text-dark mb-3   div-card container reveal p-2  pt-3 "
@@ -214,7 +222,7 @@ const ExperienceJob = (props) => {
                             to the minimum-assured stipend, you will also be
                             paid a performance-linked incentive{" "}
                             {`(₹ ${data.incentivesValue}
-                                per sale)`}
+                              per sale)`}
                           </p>
                         </Popup>
                       </p>
@@ -292,9 +300,13 @@ const ExperienceJob = (props) => {
             </div>
           </div>
         </div>
-      ))}
-    </>
-  )
+      )
+    }
+
+    return jobCards
+  }
+
+  return <>{renderJobs()}</>
 }
 
 export default ExperienceJob

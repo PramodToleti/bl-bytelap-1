@@ -54,12 +54,21 @@ const FresherJob = (props) => {
     }
   }
 
-  return (
-    <>
+  const renderJobs = () => {
+    const filteredJobs = fresherJobs.filter(
+      (job) => job.status !== "Paused" && job.status !== "Closed"
+    )
+
+    // Render job cards in reverse order
+    const jobCards = [
       <div className="container mb-3">
-        <span>{totalJobs} Jobs</span>
-      </div>
-      {fresherJobs.reverse().map((data, index) => (
+        <span>{filteredJobs.length} Jobs</span>
+      </div>,
+    ]
+    for (let i = filteredJobs.length - 1; i >= 0; i--) {
+      const data = filteredJobs[i]
+      const index = i
+      jobCards.push(
         <div className="d-flex flex-row container justify-content-start">
           <div
             className="text-dark mb-3   div-card container reveal p-2  pt-3  "
@@ -304,9 +313,13 @@ const FresherJob = (props) => {
             </div>
           </div>
         </div>
-      ))}
-    </>
-  )
+      )
+    }
+
+    return jobCards
+  }
+
+  return <>{renderJobs()}</>
 }
 
 export default FresherJob

@@ -11,6 +11,7 @@ import Popup from "reactjs-popup"
 import numeral from "numeral"
 
 import PostTime from "../../../../assets/PostTime"
+import { useState } from "react"
 
 const InternshipJob = (props) => {
   const history = useHistory()
@@ -55,12 +56,22 @@ const InternshipJob = (props) => {
     }
   }
 
-  return (
-    <>
+  const renderJobs = () => {
+    // Filter out paused and closed jobs
+    const filteredJobs = internJobs.filter(
+      (job) => job.status !== "Paused" && job.status !== "Closed"
+    )
+
+    // Render job cards in reverse order
+    const jobCards = [
       <div className="container mb-3">
-        <span>{totalJobs} Jobs</span>
-      </div>
-      {internJobs.reverse().map((data, index) => (
+        <span>{filteredJobs.length} Jobs</span>
+      </div>,
+    ]
+    for (let i = filteredJobs.length - 1; i >= 0; i--) {
+      const data = filteredJobs[i]
+      const index = i
+      jobCards.push(
         <div
           className="d-flex flex-row container justify-content-start"
           key={index}
@@ -310,9 +321,12 @@ const InternshipJob = (props) => {
             </div>
           </div>
         </div>
-      ))}
-    </>
-  )
+      )
+    }
+    return jobCards
+  }
+
+  return <>{renderJobs()}</>
 }
 
 export default InternshipJob
