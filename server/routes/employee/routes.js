@@ -904,4 +904,25 @@ router.put("/job/dashboard/pause/:id", auth, async (req, res) => {
   }
 })
 
+router.put("/job/dashboard/open/:id", auth, async (req, res) => {
+  const id = req.params.id
+
+  try {
+    const result = await PostedJobs.updateOne(
+      { _id: id },
+      { $set: { status: "Open" } }
+    )
+
+    if (result.modifiedCount === 1) {
+      res.status(200).json({ message: "Updated Successfully" })
+    } else {
+      console.log(result)
+      res.status(400).json({ message: "Something went wrong" })
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ message: "Something went wrong" })
+  }
+})
+
 module.exports = router
