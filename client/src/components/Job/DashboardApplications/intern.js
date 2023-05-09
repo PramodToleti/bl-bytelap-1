@@ -8,7 +8,7 @@ import { useState, useEffect } from "react"
 
 import PostTime from "../../../assets/PostTime"
 
-const InternDashboard = ({ activeType }) => {
+const InternDashboard = ({ activeType, handleAppcount }) => {
   const [applications, setApplications] = useState([])
   const [loading, setLoading] = useState(true)
   const [lgShow, setLgShow] = useState(false)

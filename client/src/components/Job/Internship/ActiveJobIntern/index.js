@@ -32,6 +32,13 @@ function ActiveJobIntern() {
   const [loading, setLoading] = useState(false)
   const [dataChanged, setDataChanged] = useState(false)
 
+  const [appCount, setAppCount] = useState({
+    interested: 0,
+    shortlisted: 0,
+    hire: 0,
+    notInterested: 0,
+  })
+
   useEffect(() => {
     async function fetchJobs() {
       setLoading(true)
@@ -135,6 +142,34 @@ function ActiveJobIntern() {
   } else {
     internData = applications
   }
+
+  const handleAppcount = () => {
+    let interested = 0
+    let shortlisted = 0
+    let hire = 0
+    let notInterested = 0
+
+    for (const obj of internData) {
+      if (obj.status === "Interested") {
+        interested++
+      } else if (obj.status === "Shortlisted") {
+        shortlisted++
+      } else if (obj.status === "Hire") {
+        hire++
+      } else if (obj.status === "Not Interested") {
+        notInterested++
+      }
+    }
+
+    setAppCount({
+      interested,
+      shortlisted,
+      hire,
+      notInterested,
+    })
+  }
+
+  console.log(appCount)
 
   const renderApplications = () => {
     if (
@@ -410,7 +445,12 @@ function ActiveJobIntern() {
           </>
         )
       } else {
-        return <InternDashboard activeType={activeType} />
+        return (
+          <InternDashboard
+            activeType={activeType}
+            handleAppcount={handleAppcount}
+          />
+        )
       }
     }
   }
