@@ -55,6 +55,7 @@ const Fresher = (props) => {
   const fresherData = props.FresherJobs
   const handleDataChange = props.handleDataChange
   const [isOpen, setIsOpen] = useState(false)
+  const [isStatusOpen, setIsStatusOpen] = useState(false)
   const [isPauseOpen, setIsPauseOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [id, setJobId] = useState("")
@@ -87,12 +88,16 @@ const Fresher = (props) => {
     setIsOpen(false)
   }
 
+  const handleOpenClick = () => {
+    setIsStatusOpen(true)
+  }
+
   const handlePauseClick = () => {
     setIsPauseOpen(true)
   }
 
-  const handleDeletePost = (jobDetails) => {
-    handleApplyClick()
+  const handleOpenStatus = (jobDetails) => {
+    handleOpenClick()
     const jobId = jobDetails._id
     setJobId(jobId)
   }
@@ -101,6 +106,61 @@ const Fresher = (props) => {
     handlePauseClick()
     const jobId = jobDetails._id
     setJobId(jobId)
+  }
+
+  const handleDeletePost = (jobDetails) => {
+    handleApplyClick()
+    const jobId = jobDetails._id
+    setJobId(jobId)
+  }
+
+  const onOpen = async () => {
+    setLoading(true)
+    const jobId = id
+    const token = Cookies.get("employeeToken")
+    const response = await fetch(
+      `http://localhost:5000/employee/job/dashboard/open/${jobId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    const data = await response.json()
+    if (response.ok) {
+      setLoading(false)
+      setIsStatusOpen(false)
+      toast.success("Job Opened Successfully", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #00ff00",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+      setTimeout(() => {
+        handleDataChange()
+      }, 1000)
+    } else {
+      setLoading(false)
+      setIsStatusOpen(false)
+      toast.error(data.message, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #ff0000",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+    }
   }
 
   const onPause = async () => {
@@ -205,6 +265,44 @@ const Fresher = (props) => {
     return (
       <>
         <ToastContainer />
+        <Modal
+          isOpen={isStatusOpen}
+          onRequestClose={handleCloseClick}
+          contentLabel="Apply Modal"
+          style={customStyles} // Pass the custom styles to the modal
+          ariaHideApp={false}
+        >
+          <h2 style={customStyles.h2}>Do you want to Open this job?</h2>
+          <div style={customStyles.buttonContainer}>
+            <>
+              <button onClick={() => onOpen()} style={customStyles.button}>
+                {loading ? (
+                  <Oval
+                    height={20}
+                    width={20}
+                    color="#ffffff"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                    ariaLabel="oval-loading"
+                    secondaryColor="#ffffff"
+                    strokeWidth={2}
+                    strokeWidthSecondary={2}
+                  />
+                ) : (
+                  "Yes"
+                )}
+              </button>
+
+              <button
+                onClick={handleCloseClick}
+                style={{ ...customStyles.button, ...customStyles.buttonNo }}
+              >
+                No
+              </button>
+            </>
+          </div>
+        </Modal>
         <Modal
           isOpen={isOpen}
           onRequestClose={handleCloseClick}
@@ -336,6 +434,7 @@ const Fresher = (props) => {
                       to="#action3"
                       className="nav-link"
                       style={{ marginLeft: "9px", marginBottom: "8px" }}
+                      onClick={() => handleOpenStatus(each)}
                     >
                       Open{" "}
                       {each.status === "Open" && (
