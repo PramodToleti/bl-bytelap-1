@@ -49,6 +49,18 @@ const internSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  companyWebsite: {
+    type: String,
+    required: true,
+  },
+  companyAddress: {
+    type: String,
+    required: true,
+  },
+  companyInfo: {
+    type: String,
+    required: true,
+  },
   userId: {
     type: String,
     required: true,

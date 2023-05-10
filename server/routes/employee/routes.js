@@ -105,9 +105,7 @@ router.post("/job/internship", async (req, res) => {
   try {
     const companyDetails = await Employee.findById(jobDetails.userId)
 
-    console.log(
-      req.protocol + "://" + req.get("host") + "/" + companyDetails.file.path
-    )
+    console.log(companyDetails)
 
     const jobPost = new PostedJobs({
       type: "Internship",
@@ -140,6 +138,9 @@ router.post("/job/internship", async (req, res) => {
         companyDetails.file.path
       ).toString(),
       companyName: companyDetails.companyName,
+      companyWebsite: companyDetails.companyWebsite,
+      companyAddress: companyDetails.companyAddress,
+      companyInfo: companyDetails.aboutCompany,
     })
     await jobPost.save()
     res.status(200).json({ message: "Job posted successfully" })
@@ -183,6 +184,9 @@ router.post("/job/fresher", async (req, res) => {
         companyDetails.file.path
       ).toString(),
       companyName: companyDetails.companyName,
+      companyWebsite: companyDetails.companyWebsite,
+      companyAddress: companyDetails.companyAddress,
+      companyInfo: companyDetails.aboutCompany,
     })
     await jobPost.save()
     res.status(200).json({ message: "Job posted successfully" })
@@ -227,6 +231,9 @@ router.post("/job/experience", async (req, res) => {
         companyDetails.file.path
       ).toString(),
       companyName: companyDetails.companyName,
+      companyWebsite: companyDetails.companyWebsite,
+      companyAddress: companyDetails.companyAddress,
+      companyInfo: companyDetails.aboutCompany,
     })
     await jobPost.save()
     res.status(200).json({ message: "Job posted successfully" })
