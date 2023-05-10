@@ -56,9 +56,10 @@ const Internship = (props) => {
   const history = useHistory()
   const internData = props.InternJobs
   const handleDataChange = props.handleDataChange
-  const [isOpen, setIsOpen] = useState(false)
   const [isStatusOpen, setIsStatusOpen] = useState(false)
   const [isPauseOpen, setIsPauseOpen] = useState(false)
+  const [isCloseOpen, setIsCloseOpen] = useState(false)
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [id, setJobId] = useState("")
 
@@ -82,12 +83,19 @@ const Internship = (props) => {
     )
   }
 
-  const handleApplyClick = () => {
-    setIsOpen(true)
+  const handleCloseClick = () => {
+    setIsStatusOpen(false)
+    setIsPauseOpen(false)
+    setIsCloseOpen(false)
+    setIsDeleteOpen(false)
   }
 
-  const handleCloseClick = () => {
-    setIsOpen(false)
+  const handleApplyClick = () => {
+    setIsDeleteOpen(true)
+  }
+
+  const handleCloseStatus = () => {
+    setIsCloseOpen(true)
   }
 
   const handleOpenClick = () => {
@@ -106,6 +114,12 @@ const Internship = (props) => {
 
   const handlePausePost = (jobDetails) => {
     handlePauseClick()
+    const jobId = jobDetails._id
+    setJobId(jobId)
+  }
+
+  const handleClosePost = (jobDetails) => {
+    handleCloseStatus()
     const jobId = jobDetails._id
     setJobId(jobId)
   }
@@ -201,6 +215,56 @@ const Internship = (props) => {
       setLoading(false)
       setIsPauseOpen(false)
       toast.error("Error Pausing Job", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #ff0000",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+    }
+  }
+
+  const onClose = async () => {
+    setLoading(true)
+    const jobId = id
+    const token = Cookies.get("employeeToken")
+    const response = await fetch(
+      `http://localhost:5000/employee/job/dashboard/close/${jobId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    const data = await response.json()
+    if (response.ok) {
+      setLoading(false)
+      setIsCloseOpen(false)
+      toast.success("Job Closed Successfully", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        style: {
+          border: "2px solid #00ff00",
+          backgroundColor: "#fff",
+          marginTop: "30px",
+          margin: "20px",
+        },
+      })
+
+      setTimeout(() => {
+        handleDataChange()
+      }, 1000)
+    } else {
+      setLoading(false)
+      setIsCloseOpen(false)
+      toast.error("Error Closing Job", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: true,
@@ -343,7 +407,7 @@ const Internship = (props) => {
         </div>
       </Modal>
       <Modal
-        isOpen={isOpen}
+        isOpen={isDeleteOpen}
         onRequestClose={handleCloseClick}
         contentLabel="Apply Modal"
         style={customStyles} // Pass the custom styles to the modal
@@ -353,6 +417,44 @@ const Internship = (props) => {
         <div style={customStyles.buttonContainer}>
           <>
             <button onClick={() => onDelete()} style={customStyles.button}>
+              {loading ? (
+                <Oval
+                  height={20}
+                  width={20}
+                  color="#ffffff"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                  ariaLabel="oval-loading"
+                  secondaryColor="#ffffff"
+                  strokeWidth={2}
+                  strokeWidthSecondary={2}
+                />
+              ) : (
+                "Yes"
+              )}
+            </button>
+
+            <button
+              onClick={handleCloseClick}
+              style={{ ...customStyles.button, ...customStyles.buttonNo }}
+            >
+              No
+            </button>
+          </>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={isCloseOpen}
+        onRequestClose={handleCloseClick}
+        contentLabel="Apply Modal"
+        style={customStyles} // Pass the custom styles to the modal
+        ariaHideApp={false}
+      >
+        <h2 style={customStyles.h2}>Do you want to Close this job?</h2>
+        <div style={customStyles.buttonContainer}>
+          <>
+            <button onClick={() => onClose()} style={customStyles.button}>
               {loading ? (
                 <Oval
                   height={20}
@@ -433,9 +535,17 @@ const Internship = (props) => {
                 >
                   <Link
                     to="#action3"
-                    className="nav-link"
+                    className={`nav-link${
+                      each.status === "Closed" ? " disabled-link" : ""
+                    }`}
                     style={{ marginLeft: "9px", marginBottom: "8px" }}
-                    onClick={() => handleOpenStatus(each)}
+                    onClick={() => {
+                      if (each.status === "Closed") {
+                        this.removeEventListener("click", arguments.callee)
+                        return false
+                      }
+                      handleOpenStatus(each)
+                    }}
                   >
                     Open{" "}
                     {each.status === "Open" && (
@@ -444,9 +554,17 @@ const Internship = (props) => {
                   </Link>
                   <Link
                     to="#action3"
-                    className="nav-link"
+                    className={`nav-link${
+                      each.status === "Closed" ? " disabled-link" : ""
+                    }`}
                     style={{ marginLeft: "9px", marginBottom: "8px" }}
-                    onClick={() => handlePausePost(each)}
+                    onClick={() => {
+                      if (each.status === "Closed") {
+                        this.removeEventListener("click", arguments.callee)
+                        return false
+                      }
+                      handlePausePost(each)
+                    }}
                   >
                     Pause{" "}
                     {each.status === "Paused" && (
@@ -457,6 +575,7 @@ const Internship = (props) => {
                     to="#action3"
                     className="nav-link"
                     style={{ marginLeft: "9px", marginBottom: "8px" }}
+                    onClick={() => handleClosePost(each)}
                   >
                     Close{" "}
                     {each.status === "Closed" && (
