@@ -295,7 +295,7 @@ const Internship = (props) => {
     const data = await response.json()
     if (response.ok) {
       setLoading(false)
-      setIsOpen(false)
+      setIsDeleteOpen(false)
       toast.success("Job Deleted Successfully", {
         position: "top-center",
         autoClose: 3000,
@@ -312,7 +312,7 @@ const Internship = (props) => {
       }, 1000)
     } else {
       setLoading(false)
-      setIsOpen(false)
+      setIsDeleteOpen(false)
       toast.error("Error Deleting Job", {
         position: "top-center",
         autoClose: 3000,
@@ -324,6 +324,83 @@ const Internship = (props) => {
           margin: "20px",
         },
       })
+    }
+  }
+
+  const renderStatus = (status) => {
+    switch (status) {
+      case "Open":
+        return (
+          <p
+            style={{
+              marginBottom: "15px",
+              fontSize: "15px",
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
+          >
+            {status}{" "}
+            <span
+              className="open-status"
+              style={{ marginLeft: "2px", marginRight: "10px" }}
+            ></span>
+          </p>
+        )
+      case "Paused":
+        return (
+          <p
+            style={{
+              marginBottom: "15px",
+              fontSize: "15px",
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
+          >
+            {status}{" "}
+            <span
+              className="pause-status"
+              style={{ marginLeft: "2px", marginRight: "10px" }}
+            ></span>
+          </p>
+        )
+      case "Closed":
+        return (
+          <p
+            style={{
+              marginBottom: "15px",
+              fontSize: "15px",
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
+          >
+            {status}{" "}
+            <span
+              className="close-status"
+              style={{ marginLeft: "2px", marginRight: "10px" }}
+            ></span>
+          </p>
+        )
+      default:
+        return (
+          <p
+            style={{
+              marginBottom: "15px",
+              fontSize: "15px",
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
+          >
+            {status}{" "}
+            <span
+              className="open-status"
+              style={{ marginLeft: "2px", marginRight: "10px" }}
+            ></span>
+          </p>
+        )
     }
   }
 
@@ -522,7 +599,7 @@ const Internship = (props) => {
                 minWidth: "125px",
               }}
             >
-              <p style={{ marginBottom: "15px", fontSize: "15px" }}>Open</p>
+              {renderStatus(each.status)}
               <div>
                 <NavDropdown
                   className="fs-4 mb-4"
