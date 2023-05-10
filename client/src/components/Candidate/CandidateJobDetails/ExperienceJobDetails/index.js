@@ -519,21 +519,21 @@ const ExperienceJobDetails = (props) => {
           <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
             <h4>About</h4>
             <div style={{ fontSize: "16px", fontFamily: "Roboto" }}>
-              Wiro Tech Limited{" "}
+              {data.companyName}{" "}
               <HiOutlineExternalLink
                 style={{ color: "grey", fontSize: "18px" }}
+                onClick={() => {
+                  const url = data.companyWebsite
+                  window.open(url, "_blank")
+                }}
               />
             </div>
           </div>
           <div className="mb-3">
-            <MdLocationOn style={{ color: "grey", fontSize: "18px" }} /> Pune,
-            MH
+            <MdLocationOn style={{ color: "grey", fontSize: "18px" }} /> Indore,
+            MP
           </div>
-          <p style={{ fontFamily: "Roboto" }}>
-            Wiro Tech Limited is the best IT company in Indore. Wiro Tech
-            Limited is the fastest growing and best IT company in Indore. We are
-            the top-rated developers in technology....
-          </p>
+          <p style={{ fontFamily: "Roboto" }}>{data.companyInfo}</p>
         </div>
 
         <div className="row justify-content-end mb-3 mt-3">
