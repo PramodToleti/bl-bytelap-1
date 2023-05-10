@@ -141,6 +141,8 @@ function CompanySetting() {
     setValidated(true)
   }
 
+  console.log(companyInfo)
+
   return (
     <>
       <ToastContainer />
@@ -239,7 +241,11 @@ function CompanySetting() {
             <Form.Label>About Company</Form.Label>
             <Form.Control
               required
-              value={companyInfo.aboutCompany}
+              value={
+                companyInfo.aboutCompany !== "undefined"
+                  ? companyInfo.aboutCompany
+                  : ""
+              }
               type="text"
               as="textarea"
               rows={4}
