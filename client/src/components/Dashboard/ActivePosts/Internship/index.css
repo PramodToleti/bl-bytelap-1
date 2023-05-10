@@ -114,7 +114,12 @@ p {
 }
 
 .dropdown-menu.show {
-  z-index: 0 !important;
+  z-index: 99 !important;
+}
+
+.ReactModal__Content,
+.ReactModal__Overlay {
+  z-index: 1000 !important;
 }
 
 .open-status {
