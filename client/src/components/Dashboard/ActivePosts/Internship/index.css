@@ -120,6 +120,11 @@ p {
 .ReactModal__Content,
 .ReactModal__Overlay {
   z-index: 1000 !important;
+  box-shadow: none !important;
+}
+
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.062) !important;
 }
 
 .open-status {

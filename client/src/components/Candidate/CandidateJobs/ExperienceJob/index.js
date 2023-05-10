@@ -96,7 +96,7 @@ const ExperienceJob = (props) => {
               </div>
               <div style={{ display: "flex", gap: "8px" }} className="mb-1">
                 <FaBuilding style={{ color: "grey", fontSize: "18px" }} />
-                <p style={{ color: "grey" }}>Wiro Tech Limited</p>
+                <p style={{ color: "grey" }}>{data.companyName}</p>
               </div>
             </>
 

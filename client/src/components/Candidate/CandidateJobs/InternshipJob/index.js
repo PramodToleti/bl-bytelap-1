@@ -56,6 +56,8 @@ const InternshipJob = (props) => {
     }
   }
 
+  console.log(internJobs)
+
   const renderJobs = () => {
     // Filter out paused and closed jobs
     const filteredJobs = internJobs.filter(
