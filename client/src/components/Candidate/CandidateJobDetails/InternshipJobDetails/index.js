@@ -583,8 +583,8 @@ function InternshipJobDetails() {
             </div>
           </div>
           <div className="mb-3">
-            <MdLocationOn style={{ color: "grey", fontSize: "18px" }} /> Indore,
-            MP
+            <MdLocationOn style={{ color: "grey", fontSize: "18px" }} />{" "}
+            {data.companyCity}
           </div>
           <p style={{ fontFamily: "Roboto" }}>{data.companyInfo}</p>
         </div>
