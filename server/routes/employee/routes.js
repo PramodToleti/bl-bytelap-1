@@ -331,6 +331,7 @@ router.post("/company-info", auth, async (req, res) => {
   try {
     const employeeId = req.body.employeeId
     const employee = await Employee.findById(employeeId)
+    console.log(employee)
     const companyInfo = {
       companyName: employee.companyName,
       officialEmail: employee.officialEmail,
@@ -360,7 +361,7 @@ router.post(
   upload.single("file"),
   async (req, res) => {
     const employeeDetails = req.body
-
+    console.log(employeeDetails)
     try {
       const employee = await Employee.findById(employeeDetails.employeeId)
 
@@ -372,7 +373,6 @@ router.post(
           isEmailExists &&
           isEmailExists.officialEmail !== employee.officialEmail
         ) {
-          console.log(employee)
           res.status(400).json({ message: "Email already exists" })
         } else {
           employee.companyName = employeeDetails.companyName

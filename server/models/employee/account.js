@@ -27,7 +27,7 @@ const employeeSchema = new Schema({
     type: String,
     required: true,
   },
-  city: {
+  companyCity: {
     type: String,
     required: true,
   },
