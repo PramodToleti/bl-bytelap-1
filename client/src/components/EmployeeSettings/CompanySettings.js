@@ -13,6 +13,7 @@ import { useState, useEffect } from "react"
 import Cookies from "js-cookie"
 import { ToastContainer, toast } from "react-toastify"
 import { Oval } from "react-loader-spinner"
+import ChooseCity from "../../assets/ChooseCity"
 
 function CompanySetting() {
   const [validated, setValidated] = useState(false)
@@ -25,6 +26,7 @@ function CompanySetting() {
     lastName: "",
     role: "",
     companyWebsite: "",
+    city: "",
     aboutCompany: "",
     companyAddress: "",
   })
@@ -55,6 +57,7 @@ function CompanySetting() {
           lastName: res.lastName,
           role: res.role,
           companyWebsite: res.companyWebsite,
+          city: res.city,
           aboutCompany: res.aboutCompany,
           companyAddress: res.companyAddress,
         })
@@ -76,6 +79,7 @@ function CompanySetting() {
     formdata.append("lastName", companyInfo.lastName)
     formdata.append("role", companyInfo.role)
     formdata.append("companyWebsite", companyInfo.companyWebsite)
+    formdata.append("city", companyInfo.city)
     formdata.append("aboutCompany", companyInfo.aboutCompany)
     formdata.append("companyAddress", companyInfo.companyAddress)
     formdata.append("file", file)
@@ -139,6 +143,10 @@ function CompanySetting() {
     }
 
     setValidated(true)
+  }
+
+  const onChangeCity = (e) => {
+    setCompanyInfo({ ...companyInfo, city: e })
   }
 
   console.log(companyInfo)
@@ -212,6 +220,26 @@ function CompanySetting() {
               Please enter your company website
             </Form.Control.Feedback>
           </Form.Group>
+
+          <Form.Group className="mt-3">
+            <Form.Label>City</Form.Label>
+            <ChooseCity
+              onChangeCity={(e) => onChangeCity(e)}
+              value={companyInfo.city}
+            />
+          </Form.Group>
+          {companyInfo.city === "" && validated && (
+            <p
+              style={{
+                color: "#dc3545",
+                marginTop: "10px",
+
+                fontSize: ".875rem",
+              }}
+            >
+              Please select a city.
+            </p>
+          )}
 
           <Form.Group className="mb-3 mt-2">
             <Form.Label>You are </Form.Label>

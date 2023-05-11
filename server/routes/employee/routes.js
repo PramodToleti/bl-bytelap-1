@@ -337,6 +337,7 @@ router.post("/company-info", auth, async (req, res) => {
       firstName: employee.firstName,
       lastName: employee.lastName,
       companyWebsite: employee.companyWebsite,
+      city: employee.city,
       aboutCompany: employee.aboutCompany,
       companyAddress: employee.companyAddress,
       role: employee.role,
@@ -379,6 +380,7 @@ router.post(
           employee.firstName = employeeDetails.firstName
           employee.lastName = employeeDetails.lastName
           employee.companyWebsite = employeeDetails.companyWebsite
+          employee.city = employeeDetails.city
           employee.aboutCompany = employeeDetails.aboutCompany
           employee.companyAddress = employeeDetails.companyAddress
           employee.role = employeeDetails.role

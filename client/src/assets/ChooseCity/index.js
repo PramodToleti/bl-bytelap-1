@@ -7,7 +7,7 @@ import "react-bootstrap-typeahead/css/Typeahead.css"
 
 const ChooseCity = (props) => {
   const { onChangeCity } = props
-  const [selected, setSelected] = useState([])
+  const [selected, setSelected] = useState([props.value || ""])
   const [options, setOptions] = useState(data)
 
   const onChangeTitle = (e) => {
@@ -51,7 +51,7 @@ const ChooseCity = (props) => {
       placeholder="City"
       selected={selected}
       onChange={onChangeTitle}
-      value={props.value}
+      value={selected}
       onInputChange={onInputChange}
     />
   )

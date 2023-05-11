@@ -168,8 +168,6 @@ function EmployeeStep2() {
     setCompanyInfo({ ...companyInfo, city: e })
   }
 
-  console.log(companyInfo)
-
   return (
     <>
       <CreateAccountNav />
