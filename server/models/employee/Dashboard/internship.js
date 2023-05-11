@@ -38,7 +38,6 @@ const trainingSchema = new mongoose.Schema({
 const achievementSchema = new mongoose.Schema({
   achievement: {
     type: String,
-    required: true,
   },
 })
 
@@ -100,6 +99,10 @@ const InternApplicationSchema = new mongoose.Schema({
     required: true,
   },
   jobType: {
+    type: String,
+    required: true,
+  },
+  jobName: {
     type: String,
     required: true,
   },

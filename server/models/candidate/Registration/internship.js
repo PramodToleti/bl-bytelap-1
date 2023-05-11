@@ -38,7 +38,6 @@ const trainingSchema = new mongoose.Schema({
 const achievementSchema = new mongoose.Schema({
   achievement: {
     type: String,
-    required: true,
   },
 })
 
