@@ -825,7 +825,7 @@ function ActiveJobExp() {
                 </p>
                 {`(${
                   experienceData.filter(
-                    (each) => each.dashboardType === "Not Interested"
+                    (each) => each.dashboardType === "Not-Interested"
                   ).length
                 })`}
               </div>

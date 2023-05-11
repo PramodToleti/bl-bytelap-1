@@ -169,6 +169,120 @@ function ActiveJobIntern() {
     })
   }
 
+  const renderSideBar = (args) => {
+    if (args === "reload") {
+      return (
+        <div className="text-center">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )
+    }
+    return (
+      <div
+        style={{
+          height: "47rem",
+          width: "",
+          backgroundColor: "rgba(128, 128, 128, 0.06)",
+          border: "1px solid #d8d8d8",
+          borderRight: "0px",
+        }}
+        className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container         container reveal  p-4   "
+      >
+        <p
+          className={activeType === "Applied" ? "activeType" : ""}
+          style={{ cursor: "pointer", marginBottom: "15px" }}
+          onClick={(e) => setActiveType("Applied")}
+        >
+          Applied{" "}
+          {internData
+            ? `(${
+                internData.filter((data) => data.dashboardType === undefined)
+                  .length
+              })`
+            : 0}
+        </p>
+        <div style={{ display: "flex", gap: "10px", marginBottom: "15px" }}>
+          <p
+            className={activeType === "Interested" ? "activeType" : ""}
+            style={{ cursor: "pointer" }}
+            onClick={(e) => setActiveType(e.target.textContent)}
+          >
+            Interested
+          </p>
+          {`(${
+            internData.filter((each) => each.dashboardType === "Interested")
+              .length
+          })`}
+        </div>
+        <div style={{ display: "flex", gap: "10px", marginBottom: "15px" }}>
+          <p
+            className={activeType === "Shortlisted" ? "activeType" : ""}
+            style={{ cursor: "pointer" }}
+            onClick={(e) => setActiveType(e.target.textContent)}
+          >
+            Shortlisted
+          </p>
+          {`(${
+            internData.filter((each) => each.dashboardType === "Shortlisted")
+              .length
+          })`}
+        </div>
+        <div style={{ display: "flex", gap: "10px", marginBottom: "15px" }}>
+          <p
+            className={activeType === "Hire" ? "activeType" : ""}
+            style={{ cursor: "pointer" }}
+            onClick={(e) => setActiveType(e.target.textContent)}
+          >
+            Hire
+          </p>
+          {`(${
+            internData.filter((each) => each.dashboardType === "Hire").length
+          })`}
+        </div>
+        <div style={{ display: "flex", gap: "10px", marginBottom: "15px" }}>
+          <p
+            className={activeType === "Not Interested" ? "activeType" : ""}
+            style={{ cursor: "pointer" }}
+            onClick={(e) => setActiveType(e.target.textContent)}
+          >
+            Not Interested
+          </p>
+          {`(${
+            internData.filter((each) => each.dashboardType === "Not-Interested")
+              .length
+          })`}
+        </div>
+        <hr />
+        <Popup
+          trigger={
+            <p className="pl-2" style={{ cursor: "pointer" }}>
+              {" "}
+              Team{" "}
+            </p>
+          }
+          modal
+          nested
+        >
+          <div className="container p-4">
+            <div classname="container">
+              <div className="d-flex justify-content-center">
+                <p>Team Access</p>
+              </div>
+              <Form.Group className="mt-3 mb-4">
+                <Form.Control type="text" placeholder="Enter Email ID" />
+              </Form.Group>
+              <div className="d-flex justify-content-end">
+                <Button variant="primary">Invite</Button>
+              </div>
+            </div>
+          </div>
+        </Popup>
+      </div>
+    )
+  }
+
   const renderApplications = () => {
     if (
       internData === undefined ||
@@ -477,7 +591,9 @@ function ActiveJobIntern() {
     }
   }
 
-  console.log(internData)
+  /* useEffect(() => {
+    renderSideBar()
+  }, [activeType]) */
 
   return (
     <div
@@ -518,121 +634,7 @@ function ActiveJobIntern() {
               width: "100%",
             }}
           >
-            <div
-              style={{
-                height: "47rem",
-                width: "",
-                backgroundColor: "rgba(128, 128, 128, 0.06)",
-                border: "1px solid #d8d8d8",
-                borderRight: "0px",
-              }}
-              className="col-lg-2 col-md-2 search-course-right mr-3  mb-0 side-bar-container         container reveal  p-4   "
-            >
-              <p
-                className={activeType === "Applied" ? "activeType" : ""}
-                style={{ cursor: "pointer", marginBottom: "15px" }}
-                onClick={(e) => setActiveType("Applied")}
-              >
-                Applied{" "}
-                {internData
-                  ? `(${
-                      internData.filter(
-                        (data) => data.dashboardType === undefined
-                      ).length
-                    })`
-                  : 0}
-              </p>
-              <div
-                style={{ display: "flex", gap: "10px", marginBottom: "15px" }}
-              >
-                <p
-                  className={activeType === "Interested" ? "activeType" : ""}
-                  style={{ cursor: "pointer" }}
-                  onClick={(e) => setActiveType(e.target.textContent)}
-                >
-                  Interested
-                </p>
-                {`(${
-                  internData.filter(
-                    (each) => each.dashboardType === "Interested"
-                  ).length
-                })`}
-              </div>
-              <div
-                style={{ display: "flex", gap: "10px", marginBottom: "15px" }}
-              >
-                <p
-                  className={activeType === "Shortlisted" ? "activeType" : ""}
-                  style={{ cursor: "pointer" }}
-                  onClick={(e) => setActiveType(e.target.textContent)}
-                >
-                  Shortlisted
-                </p>
-                {`(${
-                  internData.filter(
-                    (each) => each.dashboardType === "Shortlisted"
-                  ).length
-                })`}
-              </div>
-              <div
-                style={{ display: "flex", gap: "10px", marginBottom: "15px" }}
-              >
-                <p
-                  className={activeType === "Hire" ? "activeType" : ""}
-                  style={{ cursor: "pointer" }}
-                  onClick={(e) => setActiveType(e.target.textContent)}
-                >
-                  Hire
-                </p>
-                {`(${
-                  internData.filter((each) => each.dashboardType === "Hire")
-                    .length
-                })`}
-              </div>
-              <div
-                style={{ display: "flex", gap: "10px", marginBottom: "15px" }}
-              >
-                <p
-                  className={
-                    activeType === "Not Interested" ? "activeType" : ""
-                  }
-                  style={{ cursor: "pointer" }}
-                  onClick={(e) => setActiveType(e.target.textContent)}
-                >
-                  Not Interested
-                </p>
-                {`(${
-                  internData.filter(
-                    (each) => each.dashboardType === "Not Interested"
-                  ).length
-                })`}
-              </div>
-              <hr />
-              <Popup
-                trigger={
-                  <p className="pl-2" style={{ cursor: "pointer" }}>
-                    {" "}
-                    Team{" "}
-                  </p>
-                }
-                modal
-                nested
-              >
-                <div className="container p-4">
-                  <div classname="container">
-                    <div className="d-flex justify-content-center">
-                      <p>Team Access</p>
-                    </div>
-                    <Form.Group className="mt-3 mb-4">
-                      <Form.Control type="text" placeholder="Enter Email ID" />
-                    </Form.Group>
-                    <div className="d-flex justify-content-end">
-                      <Button variant="primary">Invite</Button>
-                    </div>
-                  </div>
-                </div>
-              </Popup>
-            </div>
+            {renderSideBar()}
 
             <div
               style={{

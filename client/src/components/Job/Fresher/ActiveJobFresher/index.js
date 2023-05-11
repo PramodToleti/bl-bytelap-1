@@ -817,7 +817,7 @@ function ActiveJobFresher(props) {
                 </p>
                 {`(${
                   fresherData.filter(
-                    (each) => each.dashboardType === "Not Interested"
+                    (each) => each.dashboardType === "Not-Interested"
                   ).length
                 })`}
               </div>
