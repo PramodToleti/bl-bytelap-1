@@ -210,7 +210,7 @@ function CompanySetting() {
                 required
                 value={companyInfo.companyWebsite}
                 type="link"
-                placeholder="URL"
+                placeholder="https://"
                 onChange={(e) => {
                   setCompanyInfo({
                     ...companyInfo,

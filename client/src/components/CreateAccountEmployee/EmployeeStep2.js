@@ -249,7 +249,7 @@ function EmployeeStep2() {
                 <Form.Control
                   required
                   type="link"
-                  placeholder="Paste URL"
+                  placeholder="https://"
                   defaultValue=""
                   name="companyWebsite"
                 />
