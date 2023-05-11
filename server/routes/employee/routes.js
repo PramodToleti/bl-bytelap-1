@@ -39,6 +39,7 @@ router.post("/create-account", upload.single("file"), async (req, res) => {
         lastName: employeeDetails.lastName,
         role: employeeDetails.role,
         companyWebsite: employeeDetails.companyWebsite,
+        city: employeeDetails.city,
         aboutCompany: employeeDetails.aboutCompany,
         companyAddress: employeeDetails.companyAddress,
         password: hashedPassword,
@@ -139,6 +140,7 @@ router.post("/job/internship", async (req, res) => {
       ).toString(),
       companyName: companyDetails.companyName,
       companyWebsite: companyDetails.companyWebsite,
+      city: companyDetails.city,
       companyAddress: companyDetails.companyAddress,
       companyInfo: companyDetails.aboutCompany,
     })
@@ -185,6 +187,7 @@ router.post("/job/fresher", async (req, res) => {
       ).toString(),
       companyName: companyDetails.companyName,
       companyWebsite: companyDetails.companyWebsite,
+      city: companyDetails.city,
       companyAddress: companyDetails.companyAddress,
       companyInfo: companyDetails.aboutCompany,
     })
@@ -232,6 +235,7 @@ router.post("/job/experience", async (req, res) => {
       ).toString(),
       companyName: companyDetails.companyName,
       companyWebsite: companyDetails.companyWebsite,
+      city: companyDetails.city,
       companyAddress: companyDetails.companyAddress,
       companyInfo: companyDetails.aboutCompany,
     })
