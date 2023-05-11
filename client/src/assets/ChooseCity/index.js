@@ -7,7 +7,10 @@ import "react-bootstrap-typeahead/css/Typeahead.css"
 
 const ChooseCity = (props) => {
   const { onChangeCity } = props
-  const [selected, setSelected] = useState([{ label: props.value }])
+
+  const [selected, setSelected] = useState([
+    { label: props.value ? props.value : "" },
+  ])
   const [options, setOptions] = useState(data)
 
   const onChangeTitle = (e) => {

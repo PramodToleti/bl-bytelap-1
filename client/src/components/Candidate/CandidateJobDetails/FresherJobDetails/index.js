@@ -517,9 +517,9 @@ const FresherJobDetails = () => {
             <div style={{ fontSize: "16px", fontFamily: "Roboto" }}>
               {data.companyName}{" "}
               <HiOutlineExternalLink
-                style={{ color: "grey", fontSize: "18px", cursor: "pointer" }}
+                style={{ color: "blue", fontSize: "18px", cursor: "pointer" }}
                 onClick={() => {
-                  const url = `http://${data.companyWebsite}`
+                  const url = `${data.companyWebsite}`
                   window.open(url, "_blank")
                 }}
               />
