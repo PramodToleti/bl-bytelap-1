@@ -53,6 +53,10 @@ const internSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  companyCity: {
+    type: String,
+    required: true,
+  },
   companyAddress: {
     type: String,
     required: true,

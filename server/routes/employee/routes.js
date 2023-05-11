@@ -140,7 +140,7 @@ router.post("/job/internship", async (req, res) => {
       ).toString(),
       companyName: companyDetails.companyName,
       companyWebsite: companyDetails.companyWebsite,
-      city: companyDetails.city,
+      companyCity: companyDetails.city,
       companyAddress: companyDetails.companyAddress,
       companyInfo: companyDetails.aboutCompany,
     })
@@ -187,7 +187,7 @@ router.post("/job/fresher", async (req, res) => {
       ).toString(),
       companyName: companyDetails.companyName,
       companyWebsite: companyDetails.companyWebsite,
-      city: companyDetails.city,
+      companyCity: companyDetails.city,
       companyAddress: companyDetails.companyAddress,
       companyInfo: companyDetails.aboutCompany,
     })
@@ -235,7 +235,7 @@ router.post("/job/experience", async (req, res) => {
       ).toString(),
       companyName: companyDetails.companyName,
       companyWebsite: companyDetails.companyWebsite,
-      city: companyDetails.city,
+      companyCity: companyDetails.city,
       companyAddress: companyDetails.companyAddress,
       companyInfo: companyDetails.aboutCompany,
     })
@@ -337,7 +337,7 @@ router.post("/company-info", auth, async (req, res) => {
       firstName: employee.firstName,
       lastName: employee.lastName,
       companyWebsite: employee.companyWebsite,
-      city: employee.city,
+      city: employee.companyCity,
       aboutCompany: employee.aboutCompany,
       companyAddress: employee.companyAddress,
       role: employee.role,
@@ -380,7 +380,7 @@ router.post(
           employee.firstName = employeeDetails.firstName
           employee.lastName = employeeDetails.lastName
           employee.companyWebsite = employeeDetails.companyWebsite
-          employee.city = employeeDetails.city
+          employee.companyCity = employeeDetails.city
           employee.aboutCompany = employeeDetails.aboutCompany
           employee.companyAddress = employeeDetails.companyAddress
           employee.role = employeeDetails.role
