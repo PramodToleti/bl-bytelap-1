@@ -432,6 +432,7 @@ router.post("/dashboard/internship/interested", auth, async (req, res) => {
     if (isPresent) {
       await InternJob.deleteOne({ candidate: candidateId })
     }
+
     const response = new InternDashboard(application)
     response.save()
     res.status(200).json({ message: "Added to Interested List" })
@@ -468,6 +469,7 @@ router.post("/dashboard/internship/shortlisted", auth, async (req, res) => {
     if (isPresent) {
       await InternJob.deleteOne({ candidate: candidateId })
     }
+
     const response = new InternDashboard(application)
     response.save()
     res.status(200).json({ message: "Added to Shortlisted List" })
@@ -481,7 +483,7 @@ router.post("/dashboard/internship/hire", auth, async (req, res) => {
   let application = req.body
   application.dashboardType = "Hire"
   const candidateId = application.candidate
-
+  console.log(application)
   try {
     const isPresent = await InternJob.findOne({
       candidate: candidateId,
@@ -504,6 +506,7 @@ router.post("/dashboard/internship/hire", auth, async (req, res) => {
     if (isPresent) {
       await InternJob.deleteOne({ candidate: candidateId })
     }
+
     const response = new InternDashboard(application)
     response.save()
     res.status(200).json({ message: "Added to Hiring List" })
@@ -541,6 +544,7 @@ router.post("/dashboard/internship/not-interested", auth, async (req, res) => {
     if (isPresent) {
       await InternJob.deleteOne({ candidate: candidateId })
     }
+
     const response = new InternDashboard(application)
     response.save()
     res.status(200).json({ message: "Added to Not interested List" })

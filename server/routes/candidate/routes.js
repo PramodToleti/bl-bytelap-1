@@ -9,6 +9,10 @@ const Candidate = require("../../models/candidate/account")
 const InternApplication = require("../../models/candidate/Registration/internship")
 const FresherApplication = require("../../models/candidate/Registration/fresher")
 const ExperienceApplicaton = require("../../models/candidate/Registration/experience")
+//Dashboard Applications
+const InternDashboard = require("../../models/employee/Dashboard/internship")
+const FresherDashboard = require("../../models/employee/Dashboard/fresher")
+const ExperienceDashboard = require("../../models/employee/Dashboard/experience")
 const InternJob = require("../../models/candidate/Applications/internship")
 const FresherJob = require("../../models/candidate/Applications/fresher")
 const ExperienceJob = require("../../models/candidate/Applications/experience")
@@ -535,10 +539,19 @@ router.post("/applications", auth, async (req, res) => {
     const internApplications = await InternJob.find()
     const fresherApplications = await FresherJob.find()
     const experienceApplications = await ExperienceJob.find()
+
+    //Dashboard Applications
+    const interDashboardApplications = await InternDashboard.find()
+    const fresherDashboardApplications = await FresherDashboard.find()
+    const experienceDashboardApplications = await ExperienceDashboard.find()
+
     const applications = [
       ...internApplications,
       ...fresherApplications,
       ...experienceApplications,
+      ...interDashboardApplications,
+      ...fresherDashboardApplications,
+      ...experienceDashboardApplications,
     ]
     res.status(200).json(applications)
   } catch (error) {
