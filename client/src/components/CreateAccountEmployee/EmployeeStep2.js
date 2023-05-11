@@ -15,6 +15,7 @@ import ChooseFile from "../../assets/ChooseFile"
 
 import "./index.css"
 import "react-toastify/dist/ReactToastify.css"
+import ChooseCity from "../../assets/ChooseCity"
 
 function EmployeeStep2() {
   const history = useHistory()
@@ -30,6 +31,7 @@ function EmployeeStep2() {
     lastName: "",
     role: "",
     companyWebsite: "",
+    city: "",
     companyLogo: null,
     companyAddress: "",
     password: "",
@@ -81,6 +83,7 @@ function EmployeeStep2() {
     formData.append("lastName", details.lastName)
     formData.append("role", details.role)
     formData.append("companyWebsite", details.companyWebsite)
+    formData.append("city", details.city)
     formData.append("aboutCompany", details.aboutCompany)
     formData.append("companyAddress", details.companyAddress)
     formData.append("password", details.password)
@@ -132,10 +135,11 @@ function EmployeeStep2() {
         ? event.target.checked
         : event.target.value
     if (name === "") {
-      setCompanyInfo((prevState) => ({
-        ...prevState,
-        companyLogo: event.target.files[0],
-      }))
+      event.target.files[0] &&
+        setCompanyInfo((prevState) => ({
+          ...prevState,
+          companyLogo: event.target.files[0],
+        }))
     } else {
       setCompanyInfo({ ...companyInfo, [name]: value })
     }
@@ -156,8 +160,15 @@ function EmployeeStep2() {
       onSuccessSubmit({ ...companyDetails, ...companyInfo })
     } else {
       console.log("Fill the form")
+      setIsLoading(false)
     }
   }
+
+  const onChangeCity = (e) => {
+    setCompanyInfo({ ...companyInfo, city: e })
+  }
+
+  console.log(companyInfo)
 
   return (
     <>
@@ -248,6 +259,23 @@ function EmployeeStep2() {
                   Enter your company website URL.
                 </Form.Control.Feedback>
               </Form.Group>
+
+              <Form.Group className="mt-3">
+                <Form.Label>City</Form.Label>
+                <ChooseCity onChangeCity={(e) => onChangeCity(e)} />
+              </Form.Group>
+              {companyInfo.city === "" && validated && (
+                <p
+                  style={{
+                    color: "#dc3545",
+                    marginTop: "10px",
+
+                    fontSize: ".875rem",
+                  }}
+                >
+                  Please select a city.
+                </p>
+              )}
 
               <Form.Group
                 as={Col}
