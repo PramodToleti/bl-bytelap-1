@@ -583,7 +583,12 @@ const InternDashboard = ({ activeType, handleAppcount }) => {
                     <Card.Title>{data.username}</Card.Title>
                     <Card.Text>{data.jobName}</Card.Text>
                     <Card.Text className=" text-muted ">
-                      CoverLetter &nbsp; : &nbsp; {data.coverLetter}{" "}
+                      CoverLetter &nbsp; : &nbsp;{" "}
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: data.coverLetter,
+                        }}
+                      />{" "}
                       <Card.Text></Card.Text>
                     </Card.Text>
                     <Card.Text className="perks-mobile text-muted">
