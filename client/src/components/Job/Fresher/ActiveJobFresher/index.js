@@ -754,40 +754,73 @@ function ActiveJobFresher(props) {
                         (data) => data.dashboardType === undefined
                       ).length
                     })`
-                  : 0}{" "}
+                  : 0}
               </p>
-              <p
-                className={activeType === "Interested" ? "activeType" : ""}
-                style={{ cursor: "pointer" }}
-                onClick={(e) => setActiveType(e.target.textContent)}
+              <div
+                style={{ display: "flex", gap: "10px", marginBottom: "15px" }}
               >
-                Interested
-              </p>
-              <p
-                className={
-                  activeType === "Shortlisted" ? "activeType mt-4" : "mt-4"
-                }
-                style={{ cursor: "pointer" }}
-                onClick={(e) => setActiveType(e.target.textContent)}
+                <p
+                  className={activeType === "Interested" ? "activeType" : ""}
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => setActiveType(e.target.textContent)}
+                >
+                  Interested
+                </p>
+                {`(${
+                  fresherData.filter(
+                    (each) => each.dashboardType === "Interested"
+                  ).length
+                })`}
+              </div>
+              <div
+                style={{ display: "flex", gap: "10px", marginBottom: "15px" }}
               >
-                Shortlisted
-              </p>
-              <p
-                className={activeType === "Hire" ? "activeType mt-4" : "mt-4"}
-                style={{ cursor: "pointer" }}
-                onClick={(e) => setActiveType(e.target.textContent)}
+                <p
+                  className={activeType === "Shortlisted" ? "activeType" : ""}
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => setActiveType(e.target.textContent)}
+                >
+                  Shortlisted
+                </p>
+                {`(${
+                  fresherData.filter(
+                    (each) => each.dashboardType === "Shortlisted"
+                  ).length
+                })`}
+              </div>
+              <div
+                style={{ display: "flex", gap: "10px", marginBottom: "15px" }}
               >
-                Hire
-              </p>
-              <p
-                className={
-                  activeType === "Not Interested" ? "activeType mt-4" : "mt-4"
-                }
-                style={{ cursor: "pointer" }}
-                onClick={(e) => setActiveType(e.target.textContent)}
+                <p
+                  className={activeType === "Hire" ? "activeType" : ""}
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => setActiveType(e.target.textContent)}
+                >
+                  Hire
+                </p>
+                {`(${
+                  fresherData.filter((each) => each.dashboardType === "Hire")
+                    .length
+                })`}
+              </div>
+              <div
+                style={{ display: "flex", gap: "10px", marginBottom: "15px" }}
               >
-                Not Interested
-              </p>
+                <p
+                  className={
+                    activeType === "Not Interested" ? "activeType" : ""
+                  }
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => setActiveType(e.target.textContent)}
+                >
+                  Not Interested
+                </p>
+                {`(${
+                  fresherData.filter(
+                    (each) => each.dashboardType === "Not Interested"
+                  ).length
+                })`}
+              </div>
               <hr />
               <Popup
                 trigger={
