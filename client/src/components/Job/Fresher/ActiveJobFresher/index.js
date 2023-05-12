@@ -930,7 +930,7 @@ function ActiveJobFresher(props) {
                   }}
                 >
                   <option>All Posts</option>
-                  {activeJobs.map((job) => {
+                  {activeJobs.reverse().map((job) => {
                     if (job.type === "Fresher")
                       return <option value={job.Title}>{job.jobTitle}</option>
                   })}

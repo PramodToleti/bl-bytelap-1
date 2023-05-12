@@ -712,7 +712,7 @@ function ActiveJobIntern() {
                   }}
                 >
                   <option>All Posts</option>
-                  {activeJobs.map((job) => {
+                  {activeJobs.reverse().map((job) => {
                     if (job.type === "Internship")
                       return <option value={job.Title}>{job.jobTitle}</option>
                   })}
