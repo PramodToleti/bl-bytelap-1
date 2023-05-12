@@ -1,30 +1,100 @@
 import { Card } from "react-bootstrap"
 import Button from "react-bootstrap/Button"
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Modal from "react-bootstrap/Modal"
 import PostTime from "../../../assets/PostTime"
+import Cookies from "js-cookie"
 
 const Internship = () => {
-  const internData = JSON.parse(localStorage.getItem("registerData")).internship
+  const [internData, setInternData] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const [lgShow, setLgShow] = useState(false)
 
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true)
+      const userId = localStorage.getItem("userId")
+      const token = Cookies.get("employeeToken")
+
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ userId }),
+      }
+
+      const response = await fetch(
+        "http://localhost:5000/employee/find-resume/internship",
+        options
+      )
+
+      const data = await response.json()
+      if (response.ok) {
+        setInternData(data)
+        setLoading(false)
+      } else {
+        setLoading(false)
+        console.log(data)
+      }
+      console.log(data)
+    }
+
+    fetchData()
+  }, [])
+
+  if ((internData?.length === 0 || internData === null) && !loading)
+    return (
+      <div
+        className="no-data"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "50vh",
+        }}
+      >
+        <h4>No Data Found</h4>
+      </div>
+    )
+
   return (
     <>
-      <div style={{ maxWidth: "680px" }}>
-        {internData.length !== 0 ? (
-          internData.map((data, index) => (
+      {loading ? (
+        <div
+          className="no-data"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "50vh",
+          }}
+        >
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      ) : (
+        <div style={{ maxWidth: "680px" }}>
+          {internData.map((data, index) => (
             <div className="application">
               <Card
                 className="col-lg-5 col-md-5  main-details-card  mb-0 mt-2 p-0    card-details"
                 style={{ border: "0px" }}
               >
                 <Card.Body className="card-size">
-                  <Card.Title>Nilesh</Card.Title>
+                  <Card.Title>{data.username}</Card.Title>
                   <Card.Text>{data.jobTitle}</Card.Text>
                   <Card.Text className=" text-muted ">
-                    CoverLetter &nbsp; : &nbsp; {data.coverLetter}{" "}
+                    CoverLetter &nbsp; : &nbsp;{" "}
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: data.coverLetter,
+                      }}
+                    />{" "}
                     <Card.Text></Card.Text>
                   </Card.Text>
                   <Card.Text className="perks-mobile text-muted">
@@ -186,13 +256,10 @@ const Internship = () => {
                 </Card.Body>
               </Card>
             </div>
-          ))
-        ) : (
-          <div className="no-applications">
-            <h1>No Applications Found.</h1>
-          </div>
-        )}
-      </div>
+          ))}
+          )
+        </div>
+      )}
       <Modal
         size="lg"
         show={lgShow}
