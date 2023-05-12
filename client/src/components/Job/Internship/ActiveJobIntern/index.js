@@ -711,7 +711,7 @@ function ActiveJobIntern() {
                     setActiveFilter(e.target.value)
                   }}
                 >
-                  <option>Select Post</option>
+                  <option>All Posts</option>
                   {activeJobs.map((job) => {
                     if (job.type === "Internship")
                       return <option value={job.Title}>{job.jobTitle}</option>

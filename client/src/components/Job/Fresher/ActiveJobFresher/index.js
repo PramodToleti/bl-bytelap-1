@@ -929,7 +929,7 @@ function ActiveJobFresher(props) {
                     setActiveFilter(e.target.value)
                   }}
                 >
-                  <option>Select Post</option>
+                  <option>All Posts</option>
                   {activeJobs.map((job) => {
                     if (job.type === "Fresher")
                       return <option value={job.Title}>{job.jobTitle}</option>

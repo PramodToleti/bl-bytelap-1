@@ -938,9 +938,9 @@ function ActiveJobExp() {
                     setActiveFilter(e.target.value)
                   }}
                 >
-                  <option>Select Post</option>
+                  <option>All Posts</option>
                   {activeJobs.map((job) => {
-                    if (job.type === "Fresher")
+                    if (job.type === "Experience")
                       return <option value={job.Title}>{job.jobTitle}</option>
                   })}
                 </Form.Select>
