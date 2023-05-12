@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import Modal from "react-bootstrap/Modal"
 import Row from "react-bootstrap/Row"
 import InputGroup from "react-bootstrap/InputGroup"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Container from "react-bootstrap/Container"
 import { Card } from "react-bootstrap"
 import { FaTimes } from "react-icons/fa"
@@ -42,29 +42,6 @@ const EmployeeFindResume = (props) => {
 
   const handleActiveType = (e) => {
     setActiveType(e.target.textContent)
-  }
-
-  let registerData = JSON.parse(localStorage.getItem("registerData"))
-
-  if (registerData === null) {
-    return (
-      <>
-        <EmployeeHome />
-        <p>
-          No Jobs Available. Please{" "}
-          <Link
-            to="/employee"
-            style={{
-              color: "black",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
-            Go Back
-          </Link>
-        </p>
-      </>
-    )
   }
 
   const renderActiveResume = () => {
