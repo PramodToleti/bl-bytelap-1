@@ -402,304 +402,315 @@ const Fresher = (props) => {
     }
   }
 
-  return fresherData.map((each, index) => {
-    return (
-      <>
-        <ToastContainer />
-        <Modal
-          isOpen={isStatusOpen}
-          onRequestClose={handleCloseClick}
-          contentLabel="Apply Modal"
-          style={customStyles} // Pass the custom styles to the modal
-          ariaHideApp={false}
-        >
-          <h2 style={customStyles.h2}>Do you want to Open this job?</h2>
-          <div style={customStyles.buttonContainer}>
-            <>
-              <button onClick={() => onOpen()} style={customStyles.button}>
-                {loading ? (
-                  <Oval
-                    height={20}
-                    width={20}
-                    color="#ffffff"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                    ariaLabel="oval-loading"
-                    secondaryColor="#ffffff"
-                    strokeWidth={2}
-                    strokeWidthSecondary={2}
-                  />
-                ) : (
-                  "Yes"
-                )}
-              </button>
+  const renderActivePosts = () => {
+    const jobPosts = []
 
-              <button
-                onClick={handleCloseClick}
-                style={{ ...customStyles.button, ...customStyles.buttonNo }}
-              >
-                No
-              </button>
-            </>
-          </div>
-        </Modal>
-        <Modal
-          isOpen={isPauseOpen}
-          onRequestClose={handleCloseClick}
-          contentLabel="Apply Modal"
-          style={customStyles} // Pass the custom styles to the modal
-          ariaHideApp={false}
-        >
-          <h2 style={customStyles.h2}>Do you want to Pause this job?</h2>
-          <div style={customStyles.buttonContainer}>
-            <>
-              <button onClick={() => onPause()} style={customStyles.button}>
-                {loading ? (
-                  <Oval
-                    height={20}
-                    width={20}
-                    color="#ffffff"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                    ariaLabel="oval-loading"
-                    secondaryColor="#ffffff"
-                    strokeWidth={2}
-                    strokeWidthSecondary={2}
-                  />
-                ) : (
-                  "Yes"
-                )}
-              </button>
+    for (let i = fresherData.length - 1; i >= 0; i--) {
+      const each = fresherData[i]
+      const index = i
 
-              <button
-                onClick={handleCloseClick}
-                style={{ ...customStyles.button, ...customStyles.buttonNo }}
-              >
-                No
-              </button>
-            </>
-          </div>
-        </Modal>
-        <Modal
-          isOpen={isDeleteOpen}
-          onRequestClose={handleCloseClick}
-          contentLabel="Apply Modal"
-          style={customStyles} // Pass the custom styles to the modal
-          ariaHideApp={false}
-        >
-          <h2 style={customStyles.h2}>Do you want to delete this job?</h2>
-          <div style={customStyles.buttonContainer}>
-            <>
-              <button onClick={() => onDelete()} style={customStyles.button}>
-                {loading ? (
-                  <Oval
-                    height={20}
-                    width={20}
-                    color="#ffffff"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                    ariaLabel="oval-loading"
-                    secondaryColor="#ffffff"
-                    strokeWidth={2}
-                    strokeWidthSecondary={2}
-                  />
-                ) : (
-                  "Yes"
-                )}
-              </button>
-
-              <button
-                onClick={handleCloseClick}
-                style={{ ...customStyles.button, ...customStyles.buttonNo }}
-              >
-                No
-              </button>
-            </>
-          </div>
-        </Modal>
-        <Modal
-          isOpen={isCloseOpen}
-          onRequestClose={handleCloseClick}
-          contentLabel="Apply Modal"
-          style={customStyles} // Pass the custom styles to the modal
-          ariaHideApp={false}
-        >
-          <h2 style={customStyles.h2}>Do you want to Close this job?</h2>
-          <div style={customStyles.buttonContainer}>
-            <>
-              <button onClick={() => onClose()} style={customStyles.button}>
-                {loading ? (
-                  <Oval
-                    height={20}
-                    width={20}
-                    color="#ffffff"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                    ariaLabel="oval-loading"
-                    secondaryColor="#ffffff"
-                    strokeWidth={2}
-                    strokeWidthSecondary={2}
-                  />
-                ) : (
-                  "Yes"
-                )}
-              </button>
-
-              <button
-                onClick={handleCloseClick}
-                style={{ ...customStyles.button, ...customStyles.buttonNo }}
-              >
-                No
-              </button>
-            </>
-          </div>
-        </Modal>
-        <div
-          className="col-lg-6 col-md-6 search-course-right rounded mt-0 mb-4"
-          style={{
-            boxShadow:
-              "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
-            padding: "22px",
-          }}
-          key={index}
-        >
-          <Form.Group
-            as={Col}
-            md="12"
-            className="mt-0"
-            controlId="validationCustom01"
+      jobPosts.push(
+        <>
+          <ToastContainer />
+          <Modal
+            isOpen={isStatusOpen}
+            onRequestClose={handleCloseClick}
+            contentLabel="Apply Modal"
+            style={customStyles} // Pass the custom styles to the modal
+            ariaHideApp={false}
           >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
+            <h2 style={customStyles.h2}>Do you want to Open this job?</h2>
+            <div style={customStyles.buttonContainer}>
+              <>
+                <button onClick={() => onOpen()} style={customStyles.button}>
+                  {loading ? (
+                    <Oval
+                      height={20}
+                      width={20}
+                      color="#ffffff"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                      ariaLabel="oval-loading"
+                      secondaryColor="#ffffff"
+                      strokeWidth={2}
+                      strokeWidthSecondary={2}
+                    />
+                  ) : (
+                    "Yes"
+                  )}
+                </button>
+
+                <button
+                  onClick={handleCloseClick}
+                  style={{ ...customStyles.button, ...customStyles.buttonNo }}
+                >
+                  No
+                </button>
+              </>
+            </div>
+          </Modal>
+          <Modal
+            isOpen={isPauseOpen}
+            onRequestClose={handleCloseClick}
+            contentLabel="Apply Modal"
+            style={customStyles} // Pass the custom styles to the modal
+            ariaHideApp={false}
+          >
+            <h2 style={customStyles.h2}>Do you want to Pause this job?</h2>
+            <div style={customStyles.buttonContainer}>
+              <>
+                <button onClick={() => onPause()} style={customStyles.button}>
+                  {loading ? (
+                    <Oval
+                      height={20}
+                      width={20}
+                      color="#ffffff"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                      ariaLabel="oval-loading"
+                      secondaryColor="#ffffff"
+                      strokeWidth={2}
+                      strokeWidthSecondary={2}
+                    />
+                  ) : (
+                    "Yes"
+                  )}
+                </button>
+
+                <button
+                  onClick={handleCloseClick}
+                  style={{ ...customStyles.button, ...customStyles.buttonNo }}
+                >
+                  No
+                </button>
+              </>
+            </div>
+          </Modal>
+          <Modal
+            isOpen={isDeleteOpen}
+            onRequestClose={handleCloseClick}
+            contentLabel="Apply Modal"
+            style={customStyles} // Pass the custom styles to the modal
+            ariaHideApp={false}
+          >
+            <h2 style={customStyles.h2}>Do you want to delete this job?</h2>
+            <div style={customStyles.buttonContainer}>
+              <>
+                <button onClick={() => onDelete()} style={customStyles.button}>
+                  {loading ? (
+                    <Oval
+                      height={20}
+                      width={20}
+                      color="#ffffff"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                      ariaLabel="oval-loading"
+                      secondaryColor="#ffffff"
+                      strokeWidth={2}
+                      strokeWidthSecondary={2}
+                    />
+                  ) : (
+                    "Yes"
+                  )}
+                </button>
+
+                <button
+                  onClick={handleCloseClick}
+                  style={{ ...customStyles.button, ...customStyles.buttonNo }}
+                >
+                  No
+                </button>
+              </>
+            </div>
+          </Modal>
+          <Modal
+            isOpen={isCloseOpen}
+            onRequestClose={handleCloseClick}
+            contentLabel="Apply Modal"
+            style={customStyles} // Pass the custom styles to the modal
+            ariaHideApp={false}
+          >
+            <h2 style={customStyles.h2}>Do you want to Close this job?</h2>
+            <div style={customStyles.buttonContainer}>
+              <>
+                <button onClick={() => onClose()} style={customStyles.button}>
+                  {loading ? (
+                    <Oval
+                      height={20}
+                      width={20}
+                      color="#ffffff"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                      ariaLabel="oval-loading"
+                      secondaryColor="#ffffff"
+                      strokeWidth={2}
+                      strokeWidthSecondary={2}
+                    />
+                  ) : (
+                    "Yes"
+                  )}
+                </button>
+
+                <button
+                  onClick={handleCloseClick}
+                  style={{ ...customStyles.button, ...customStyles.buttonNo }}
+                >
+                  No
+                </button>
+              </>
+            </div>
+          </Modal>
+          <div
+            className="col-lg-6 col-md-6 search-course-right rounded mt-0 mb-4"
+            style={{
+              boxShadow:
+                "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+              padding: "22px",
+            }}
+            key={index}
+          >
+            <Form.Group
+              as={Col}
+              md="12"
+              className="mt-0"
+              controlId="validationCustom01"
             >
-              <p
-                className="text-start"
-                style={{
-                  marginBottom: "15px",
-                  marginRight: "4px",
-                  fontWeight: "600",
-                }}
-              >
-                {each.jobTitle}
-              </p>
               <div
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  minWidth: "125px",
                 }}
               >
-                {renderStatus(each.status)}
-                <div>
-                  <NavDropdown
-                    className="fs-4 mb-4"
-                    title={
-                      <span style={{ fontSize: "15px" }} className="mb-3">
-                        Action
-                      </span>
-                    }
-                    id={`offcanvasNavbarDropdown-expand-sm`}
-                  >
-                    <Link
-                      to="#action3"
-                      className={`nav-link${
-                        each.status === "Closed" ? " disabled-link" : ""
-                      }`}
-                      style={{ marginLeft: "9px", marginBottom: "8px" }}
-                      onClick={() => {
-                        if (each.status === "Closed") {
-                          this.removeEventListener("click", arguments.callee)
-                          return false
-                        }
-                        handleOpenStatus(each)
-                      }}
+                <p
+                  className="text-start"
+                  style={{
+                    marginBottom: "15px",
+                    marginRight: "4px",
+                    fontWeight: "600",
+                  }}
+                >
+                  {each.jobTitle}
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    minWidth: "125px",
+                  }}
+                >
+                  {renderStatus(each.status)}
+                  <div>
+                    <NavDropdown
+                      className="fs-4 mb-4"
+                      title={
+                        <span style={{ fontSize: "15px" }} className="mb-3">
+                          Action
+                        </span>
+                      }
+                      id={`offcanvasNavbarDropdown-expand-sm`}
                     >
-                      Open{" "}
-                      {each.status === "Open" && (
-                        <span className="open-status"> </span>
-                      )}
-                    </Link>
-                    <Link
-                      to="#action3"
-                      className={`nav-link${
-                        each.status === "Closed" ? " disabled-link" : ""
-                      }`}
-                      style={{ marginLeft: "9px", marginBottom: "8px" }}
-                      onClick={() => {
-                        if (each.status === "Closed") {
-                          this.removeEventListener("click", arguments.callee)
-                          return false
-                        }
-                        handlePausePost(each)
-                      }}
-                    >
-                      Pause{" "}
-                      {each.status === "Paused" && (
-                        <span className="pause-status"> </span>
-                      )}
-                    </Link>
-                    <Link
-                      to="#action3"
-                      className="nav-link"
-                      style={{ marginLeft: "9px", marginBottom: "8px" }}
-                      onClick={() => handleClosePost(each)}
-                    >
-                      Close{" "}
-                      {each.status === "Closed" && (
-                        <span className="close-status"> </span>
-                      )}
-                    </Link>
+                      <Link
+                        to="#action3"
+                        className={`nav-link${
+                          each.status === "Closed" ? " disabled-link" : ""
+                        }`}
+                        style={{ marginLeft: "9px", marginBottom: "8px" }}
+                        onClick={() => {
+                          if (each.status === "Closed") {
+                            this.removeEventListener("click", arguments.callee)
+                            return false
+                          }
+                          handleOpenStatus(each)
+                        }}
+                      >
+                        Open{" "}
+                        {each.status === "Open" && (
+                          <span className="open-status"> </span>
+                        )}
+                      </Link>
+                      <Link
+                        to="#action3"
+                        className={`nav-link${
+                          each.status === "Closed" ? " disabled-link" : ""
+                        }`}
+                        style={{ marginLeft: "9px", marginBottom: "8px" }}
+                        onClick={() => {
+                          if (each.status === "Closed") {
+                            this.removeEventListener("click", arguments.callee)
+                            return false
+                          }
+                          handlePausePost(each)
+                        }}
+                      >
+                        Pause{" "}
+                        {each.status === "Paused" && (
+                          <span className="pause-status"> </span>
+                        )}
+                      </Link>
+                      <Link
+                        to="#action3"
+                        className="nav-link"
+                        style={{ marginLeft: "9px", marginBottom: "8px" }}
+                        onClick={() => handleClosePost(each)}
+                      >
+                        Close{" "}
+                        {each.status === "Closed" && (
+                          <span className="close-status"> </span>
+                        )}
+                      </Link>
 
-                    <Link
-                      to="#action3"
-                      className="nav-link"
-                      style={{ marginLeft: "9px", marginBottom: "8px" }}
-                      onClick={() => handleDeletePost(each)}
-                    >
-                      Delete
-                    </Link>
-                  </NavDropdown>
+                      <Link
+                        to="#action3"
+                        className="nav-link"
+                        style={{ marginLeft: "9px", marginBottom: "8px" }}
+                        onClick={() => handleDeletePost(each)}
+                      >
+                        Delete
+                      </Link>
+                    </NavDropdown>
+                  </div>
                 </div>
               </div>
-            </div>
 
+              <p
+                className="text-start"
+                style={{ color: "blue", cursor: "pointer", fontSize: "16px" }}
+                onClick={() => {
+                  history.push("/employee/dashboard/active-posts/job/fresher", {
+                    data: each.jobTitle,
+                  })
+                }}
+              >
+                {each.applications === undefined
+                  ? "View Application's (0)"
+                  : `View Application's (${each.applications.length})`}
+              </p>
+            </Form.Group>
             <p
-              className="text-start"
-              style={{ color: "blue", cursor: "pointer", fontSize: "16px" }}
-              onClick={() => {
-                history.push("/employee/dashboard/active-posts/job/fresher", {
-                  data: each.jobTitle,
-                })
+              style={{
+                fontSize: "13px",
+                marginTop: "10px",
+                marginBottom: "0px",
+                color: "#000",
               }}
             >
-              {each.applications === undefined
-                ? "View Application's (0)"
-                : `View Application's (${each.applications.length})`}
+              {<PostTime time={each.time} />}
             </p>
-          </Form.Group>
-          <p
-            style={{
-              fontSize: "13px",
-              marginTop: "10px",
-              marginBottom: "0px",
-              color: "#000",
-            }}
-          >
-            {<PostTime time={each.time} />}
-          </p>
-        </div>
-      </>
-    )
-  })
+          </div>
+        </>
+      )
+    }
+
+    return jobPosts
+  }
+
+  return renderActivePosts()
 }
 
 export default Fresher
