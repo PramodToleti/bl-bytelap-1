@@ -83,7 +83,11 @@ function ViewApplicantFresher() {
               >
                 <h4 className="mb-4">Cover Letter:</h4>
                 <p className="mb-3" style={{ overflowWrap: "break-word" }}>
-                  {data.coverLetter}
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: data.coverLetter,
+                    }}
+                  />{" "}
                 </p>
               </div>
             )}
