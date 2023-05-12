@@ -963,4 +963,45 @@ router.put("/job/dashboard/close/:id", auth, async (req, res) => {
   }
 })
 
+//Find Resume Applications
+
+router.post("/find-resume/internship", auth, async (req, res) => {
+  const userId = req.body.userId
+
+  try {
+    const applications = await InternApplication.find()
+
+    res.status(200).json(applications)
+  } catch (err) {
+    console.log(err)
+    res.status(400).json(err)
+  }
+})
+
+router.post("/find-resume/fresher", auth, async (req, res) => {
+  const userId = req.body.userId
+
+  try {
+    const applications = await FresherApplication.find()
+
+    res.status(200).json(applications)
+  } catch (err) {
+    console.log(err)
+    res.status(400).json(err)
+  }
+})
+
+router.post("/find-resume/experience", auth, async (req, res) => {
+  const userId = req.body.userId
+
+  try {
+    const applications = await ExperienceApplication.find()
+
+    res.status(200).json(applications)
+  } catch (err) {
+    console.log(err)
+    res.status(400).json(err)
+  }
+})
+
 module.exports = router
