@@ -322,15 +322,33 @@ const PostJob = () => {
               </Link>
 
               <div className="post-job-options">
-                <div className="option-container">
+                <div
+                  className="option-container"
+                  style={{
+                    borderRadius: "15px",
+                    border: "1px solid #dee2e6",
+                  }}
+                >
                   <h4 className="count-style">1</h4>
                   <h6>Create Account</h6>
                 </div>
-                <div className="option-container">
+                <div
+                  className="option-container"
+                  style={{
+                    borderRadius: "15px",
+                    border: "1px solid #dee2e6",
+                  }}
+                >
                   <h4 className="count-style">2</h4>
                   <h6>Post Job</h6>
                 </div>
-                <div className="option-container">
+                <div
+                  className="option-container"
+                  style={{
+                    borderRadius: "15px",
+                    border: "1px solid #dee2e6",
+                  }}
+                >
                   <h4 className="count-style">3</h4>
                   <h6>Select Resume's & Hire</h6>
                 </div>
@@ -704,7 +722,9 @@ const PostJob = () => {
             </div>
 
             <div className="d-flex justify-content-center">
-              <button className="btn btn-primary mb-5 mt-4">Post Job</button>
+              <Link to="/employee/post-job">
+                <button className="btn btn-primary mb-5 mt-4">Post Job</button>
+              </Link>
             </div>
           </>
         )
